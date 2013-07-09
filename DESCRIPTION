@@ -1,0 +1,21 @@
+Package: rnoaa
+Maintainer: Ted Hart <joeschmoe@gmail.com>
+Author: Ted Hart
+Version: 0.0.1
+License: CC0
+Title: NOAA climate data.
+Description: stuff and things
+Imports:
+    httr,
+    lubridate,
+    scales
+Suggests:
+    testthat,
+    roxygen2
+Collate:
+    'datasets.r'
+    'datatypes.r'
+    'noaa_data.r'
+    'noaa_plot.r'
+    'rnoaa2-package.r'
+    'zzz.r'
