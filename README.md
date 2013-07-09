@@ -11,6 +11,16 @@ Still early days, so not much here yet, but look quick start below...
 
 You'll need an API key to use this package (essentially a password). Go [here](http://www.ncdc.noaa.gov/cdo-web/token) to get one. 
 
+
+### Install from Github (not on CRAN yet)
+
+```coffee
+install.packages("devtools")
+library(devtools)
+install_github("rnoaa", "ropensci")
+library(rnoaa)
+```
+
 ### Quick start
 
 #### Search for data and get a data.frame or list
