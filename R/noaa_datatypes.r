@@ -1,7 +1,12 @@
 #' Get possible data types for a particular dataset
 #' 
+#' @param dataset foo
+#' @param  startdate foo
+#' @param  enddate foo
+#' @param  page foo
+#' @param  token API key
 #' @template rnoaa
-#' @return A data.frame for all datasets, or a list of length two, each with a data.frame.
+#' @return A \code{data.frame} for all datasets, or a list of length two, each with a data.frame.
 #' @examples \dontrun{
 #' noaa_datatypes(dataset="ANNUAL")
 #' }

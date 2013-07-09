@@ -7,6 +7,16 @@
     token = getOption("noaakey", stop("you need an API key NOAA data")))
 }
 \arguments{
+  \item{dataset}{foo}
+
+  \item{startdate}{foo}
+
+  \item{enddate}{foo}
+
+  \item{page}{foo}
+
+  \item{token}{API key}
+
   \item{dataset}{The data set name, see datasets()}
 
   \item{startdate}{The date format pattern to limit the
@@ -42,8 +52,8 @@
   Required.}
 }
 \value{
-  A data.frame for all datasets, or a list of length two,
-  each with a data.frame.
+  A \code{data.frame} for all datasets, or a list of length
+  two, each with a data.frame.
 }
 \description{
   Get possible data types for a particular dataset

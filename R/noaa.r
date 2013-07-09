@@ -5,6 +5,7 @@
 #' @param station The station, within a dataset, see function \code{\link{noaa_stations}}
 #' @param datatype The data type, see function \code{\link{noaa_datatypes}}
 #' @return A data.frame for all datasets, or a list of length two, each with a data.frame.
+#' @import httr
 #' @examples \dontrun{
 #' # Get data from a particular dataset, station, and data type
 #' noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
