@@ -13,9 +13,10 @@ Suggests:
     testthat,
     roxygen2
 Collate:
-    'datasets.r'
-    'datatypes.r'
     'noaa_data.r'
     'noaa_plot.r'
     'rnoaa2-package.r'
     'zzz.r'
+    'noaa_datasets.r'
+    'noaa_datatypes.r'
+    'noaa.r'

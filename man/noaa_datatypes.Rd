@@ -1,9 +1,9 @@
-\name{datasets}
-\alias{datasets}
-\title{Search NOAA datasets}
+\name{noaa_datatypes}
+\alias{noaa_datatypes}
+\title{Get possible data types for a particular dataset}
 \usage{
-  datasets(dataset = NULL, startdate = NULL,
-    enddate = NULL, page = NULL, year = NULL, month = NULL,
+  noaa_datatypes(dataset = NULL, startdate = NULL,
+    enddate = NULL, page = NULL,
     token = getOption("noaakey", stop("you need an API key NOAA data")))
 }
 \arguments{
@@ -46,15 +46,11 @@
   each with a data.frame.
 }
 \description{
-  Search NOAA datasets
+  Get possible data types for a particular dataset
 }
 \examples{
 \dontrun{
-# Get a table of all datasets
-datasets()
-
-# Get details from a particular dataset
-datasets(dataset='ANNUAL')
+noaa_datatypes(dataset="ANNUAL")
 }
 }
 

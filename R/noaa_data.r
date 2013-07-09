@@ -1,26 +1,30 @@
-#' Get NOAA data
+#' Get NOAA data.
 #' 
-#' @import lubridate
-#' @template rnoaa 
-#' @param station The station, within a dataset, see function \code{\link{stations}}
-#' @param datatype The data type, see function \code{\link{datatypes}}
-#' @return A data.frame for all datasets, or a list of length two, each with a data.frame.
+#' @import plyr
+#' @param input Output from noaa function.
+#' @param datatype One of df or list.
+#' @return A data.frame or list.
+#' @description datatype = data_df returns all data in a data.frame, while data_list
+#'    returns data in a list.
 #' @examples \dontrun{
-#' # Get data from a particular dataset, station, and data type
-#' noaa_data(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
+#' out <- noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
+#' noaa_data(input=out) # data.frame output by default
+#' noaa_data(input=out, datatype="list") # list if you want it
 #' }
 #' @export
-noaa_data <- function(dataset=NULL, station=NULL, datatype=NULL, startdate=NULL, enddate=NULL, page=NULL, year=NULL, month=NULL, token=getOption("noaakey", stop("you need an API key NOAA data")))
-{
-  url <- sprintf("http://www.ncdc.noaa.gov/cdo-services/services/datasets/%s/stations/%s/datatypes/%s/data", dataset, station, datatype)
-  args <- compact(list(startdate=startdate,enddate=enddate,page=page,year=year,month=month,token=token))
-  tt <- content(GET(url, query=args))
-  atts <- c(totalCount=as.numeric(tt$dataCollection$`@totalCount`), pageCount=as.numeric(tt$dataCollection$`@pageCount`))
-  out <- ldply(tt$dataCollection$data, function(x) data.frame(x[c('date','dataType','station','value')]))
-  out$date <- as.POSIXct.Date(out$date, format="%d/%m/%y")
-#   ymd(as.POSIXct.Date(out$date, format="%d/%m/%y"))
-  class(out) <- "noaa"
-  return( out )
-}
+noaa_data <- function(input = NULL, datatype="df") UseMethod("noaa_data")
 
-# floor_date(ymd_hms(as.character(out$date)), "day")
+#' @S3method noaa_data noaa
+#' @export
+#' @keywords internal
+noaa_data.noaa <- function(input = NULL, datatype="df")
+{
+  if(!is.noaa(input))
+    stop("Input is not of class noaa")
+  
+  if(datatype=="df"){
+    df_out <- ldply(input, function(x) data.frame(x))
+    return( df_out )
+  } else
+    if(datatype=="list"){ return( input ) }
+}

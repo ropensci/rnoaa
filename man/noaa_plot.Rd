@@ -16,7 +16,7 @@
 \examples{
 \dontrun{
 # Search for data first, then plot
-out <- noaa_data(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
+out <- noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
 noaa_plot(out)
 }
 }

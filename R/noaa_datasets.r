@@ -4,13 +4,13 @@
 #' @return A data.frame for all datasets, or a list of length two, each with a data.frame.
 #' @examples \dontrun{
 #' # Get a table of all datasets
-#' datasets()
+#' noaa_datasets()
 #' 
 #' # Get details from a particular dataset
-#' datasets(dataset='ANNUAL')
+#' noaa_datasets(dataset='ANNUAL')
 #' }
 #' @export
-datasets <- function(dataset=NULL, startdate=NULL, enddate=NULL, page=NULL, year=NULL, month=NULL, token=getOption("noaakey", stop("you need an API key NOAA data")))
+noaa_datasets <- function(dataset=NULL, startdate=NULL, enddate=NULL, page=NULL, year=NULL, month=NULL, token=getOption("noaakey", stop("you need an API key NOAA data")))
 {
   url <- "http://www.ncdc.noaa.gov/cdo-services/services/datasets"
   if(!is.null(dataset))
