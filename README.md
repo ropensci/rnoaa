@@ -13,12 +13,6 @@ You'll need an API key to use this package (essentially a password). Go [here](h
 
 ### Quick start
 
-#### Available datasets
-
-```coffee
-
-```
-
 #### Search for data and get a data.frame or list
 
 ```coffee
