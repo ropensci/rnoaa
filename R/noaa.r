@@ -11,7 +11,7 @@
 #' noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
 #' }
 #' @export
-noaa <- function(dataset=NULL, station=NULL, datatype=NULL, startdate=NULL, enddate=NULL, page=NULL, year=NULL, month=NULL, token=getOption("noaakey", stop("you need an API key NOAA data")))
+noaa <- function(dataset=NULL, station=NULL, datatype=NULL, startdate=NULL, enddate=NULL, page=NULL, year=NULL, month=NULL, token=getOption("noaakey", stop("you need an API key NOAA data")), ...)
 {
   url <- sprintf("http://www.ncdc.noaa.gov/cdo-services/services/datasets/%s/stations/%s/datatypes/%s/data", dataset, station, datatype)
   args <- compact(list(startdate=startdate,enddate=enddate,page=page,year=year,month=month,token=token))

@@ -19,3 +19,4 @@
 #'    where MM is the 2-digit month,
 #' @param token This must be a valid token token supplied to you by NCDC's Climate 
 #'    Data Online access token generator. Required.
+#' @param callopts Further arguments passed on to the API GET call.

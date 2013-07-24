@@ -1,22 +1,14 @@
-\name{noaa_datatypes}
-\alias{noaa_datatypes}
-\title{Get possible data types for a particular dataset}
+\name{noaa_stations}
+\alias{noaa_stations}
+\title{Get metadata about NOAA stations.}
 \usage{
-  noaa_datatypes(dataset = NULL, startdate = NULL,
+  noaa_stations(dataset = NULL, station = NULL,
+    location = NULL, locationtype = NULL, startdate = NULL,
     enddate = NULL, page = NULL,
-    token = getOption("noaakey", stop("you need an API key NOAA data")))
+    token = getOption("noaakey", stop("you need an API key NOAA data")),
+    callopts = list())
 }
 \arguments{
-  \item{dataset}{foo}
-
-  \item{startdate}{foo}
-
-  \item{enddate}{foo}
-
-  \item{page}{foo}
-
-  \item{token}{API key}
-
   \item{dataset}{The data set name, see datasets()}
 
   \item{startdate}{The date format pattern to limit the
@@ -53,17 +45,47 @@
 
   \item{callopts}{Further arguments passed on to the API
   GET call.}
+
+  \item{station}{The station, within a dataset.}
+
+  \item{datatype}{The data type, see function
+  \code{\link{noaa_datatypes}}.}
+
+  \item{location}{Location}
+
+  \item{locationtype}{The location type}
 }
 \value{
-  A \code{data.frame} for all datasets, or a list of length
-  two, each with a data.frame.
+  A list of metadata.
 }
 \description{
-  Get possible data types for a particular dataset
+  Get metadata about NOAA stations.
 }
 \examples{
 \dontrun{
-noaa_datatypes(dataset="ANNUAL")
+# Displays all stations within GHCN-Daily (100 Stations per page limit)
+noaa_stations(dataset='GHCND')
+
+# Station
+noaa_stations(dataset='NORMAL_DLY', station='GHCND:USW00014895')
+
+# Displays all stations within GHCN-Daily (Displaying page 10 of the results)
+noaa_stations(dataset='GHCND', page=10)
+
+# Specify dataset and location
+noaa_stations(dataset='GHCND', location='FIPS:12017')
+
+# Specify dataset, location, and station
+noaa_stations(dataset='GHCND', location='FIPS:12017', station='GHCND:USC00084289')
+
+# Specify dataset, locationtype, location, and station
+noaa_stations(dataset='GHCND', locationtype='CNTY', location='FIPS:12017', station='GHCND:USC00084289')
+
+# Displays list of stations within the specified county
+noaa_stations(dataset='GHCND', locationtype='CNTY', location='FIPS:12017')
+
+# Displays list of Hourly Precipitation locations between 01/01/1990 and 12/31/1990
+noaa_stations(dataset='PRECIP_HLY', startdate='19900101', enddate='19901231')
 }
 }
 

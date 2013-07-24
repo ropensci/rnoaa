@@ -29,3 +29,5 @@ Collate:
     'noaa_datasets.r'
     'noaa_datatypes.r'
     'noaa.r'
+    'noaa_stations.r'
+    'noaa_loc_search.r'

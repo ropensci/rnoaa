@@ -5,7 +5,8 @@
   noaa(dataset = NULL, station = NULL, datatype = NULL,
     startdate = NULL, enddate = NULL, page = NULL,
     year = NULL, month = NULL,
-    token = getOption("noaakey", stop("you need an API key NOAA data")))
+    token = getOption("noaakey", stop("you need an API key NOAA data")),
+    ...)
 }
 \arguments{
   \item{dataset}{The data set name, see datasets()}
@@ -41,6 +42,9 @@
   \item{token}{This must be a valid token token supplied to
   you by NCDC's Climate Data Online access token generator.
   Required.}
+
+  \item{callopts}{Further arguments passed on to the API
+  GET call.}
 
   \item{station}{The station, within a dataset, see
   function \code{\link{noaa_stations}}}

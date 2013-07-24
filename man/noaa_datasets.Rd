@@ -40,6 +40,9 @@
   \item{token}{This must be a valid token token supplied to
   you by NCDC's Climate Data Online access token generator.
   Required.}
+
+  \item{callopts}{Further arguments passed on to the API
+  GET call.}
 }
 \value{
   A data.frame for all datasets, or a list of length two,
