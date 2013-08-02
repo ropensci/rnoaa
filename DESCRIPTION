@@ -32,3 +32,6 @@ Collate:
     'noaa_stations.r'
     'noaa_loc_search.r'
     'seaice.r'
+    'noaa_loc_types.r'
+    'noaa_locs.r'
+    'noaa_search.r'

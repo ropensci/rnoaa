@@ -1,12 +1,10 @@
-\name{noaa}
-\alias{noaa}
-\title{Get NOAA data.}
+\name{noaa_loc_types}
+\alias{noaa_loc_types}
+\title{Get metadata about NOAA location types.}
 \usage{
-  noaa(dataset = NULL, datatype = NULL, station = NULL,
-    location = NULL, locationtype = NULL, startdate = NULL,
-    enddate = NULL, page = NULL, year = NULL, month = NULL,
-    day = NULL,
-    token = getOption("noaakey", stop("you need an API key NOAA data")),
+  noaa_loc_types(dataset = NULL, locationtype = NULL,
+    startdate = NULL, enddate = NULL, page = NULL,
+    token = getOption("noaakey", stop("you need an API key for NOAA data")),
     callopts = list())
 }
 \arguments{
@@ -47,29 +45,24 @@
   \item{callopts}{Further arguments passed on to the API
   GET call.}
 
-  \item{station}{The station, within a dataset, see
-  function \code{\link{noaa_stations}}}
-
   \item{datatype}{The data type, see function
-  \code{\link{noaa_datatypes}}}
+  \code{\link{noaa_datatypes}}.}
+
+  \item{locationtype}{A single location type code.}
 }
 \value{
-  A data.frame for all datasets, or a list of length two,
-  each with a data.frame.
+  A data.frame of metadata.
 }
 \description{
-  This is the main function to get NOAA data.
+  Get metadata about NOAA location types.
 }
 \examples{
 \dontrun{
-# January 2001 GHCN-Daily data from stations in Australia
-noaa(dataset='GHCND', location='FIPS:AS', year=2001, month=1)
+# Displays location types within GHCN-Daily data
+noaa_loc_types(dataset='GHCND')
 
-# Normals Daily GHCND:USW00014895 dly-tmax-normal data for April (the year is required, but the normals period is 1981-2010)
-noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
-
-# Hourly Precipitation data for ZIP code 28801
-noaa(dataset='PRECIP_HLY', location='ZIP:28801', datatype='HPCP', year=1980, month=7, day=17)
+# Show details of Hydrologic Cataloging Unit data
+noaa_loc_types(dataset='GHCND', locationtype='HYD_CAT')
 }
 }
 
