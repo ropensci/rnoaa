@@ -17,6 +17,9 @@ LazyData: yes
 Imports:
     httr,
     lubridate,
+    scales,
+    plyr,
+    ggplot2,
     scales
 Suggests:
     testthat,

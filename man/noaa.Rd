@@ -1,6 +1,7 @@
 \name{noaa}
 \alias{noaa}
-\title{Get NOAA data.}
+\title{Get NOAA data for any combination of dataset, datatype, station, location,
+and/or location type.}
 \usage{
   noaa(dataset = NULL, datatype = NULL, station = NULL,
     location = NULL, locationtype = NULL, startdate = NULL,
@@ -38,7 +39,9 @@
   \item{month}{Used for Annual Normals to specify which
   month to display for Annual Normals. Values include
   01-12. This is a string date mask represented by "MM"
-  where MM is the 2-digit month,}
+  where MM is the 2-digit month}
+
+  \item{day}{Day of the month, between 01 and 31}
 
   \item{token}{This must be a valid token token supplied to
   you by NCDC's Climate Data Online access token generator.
@@ -52,6 +55,10 @@
 
   \item{datatype}{The data type, see function
   \code{\link{noaa_datatypes}}}
+
+  \item{location}{A single location code.}
+
+  \item{locationtype}{A single location type code.}
 }
 \value{
   A data.frame for all datasets, or a list of length two,
@@ -62,14 +69,36 @@
 }
 \examples{
 \dontrun{
-# January 2001 GHCN-Daily data from stations in Australia
-noaa(dataset='GHCND', location='FIPS:AS', year=2001, month=1)
+# January 2001 GHCN-Daily data
+noaa(dataset='GHCND', year=2001, month=1)
 
-# Normals Daily GHCND:USW00014895 dly-tmax-normal data for April (the year is required, but the normals period is 1981-2010)
+# Normals Daily GHCND:USW00014895 dly-tmax-normal data
+noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', year=2010, month=4)
+
+# Dataset, and location in Australia
+noaa(dataset='GHCND', location='FIPS:AS', year=2001, month=4)
+
+# Dataset, location and datatype
+noaa(dataset='PRECIP_HLY', location='ZIP:28801', datatype='HPCP', year=2001, month=4)
+
+# Dataset, location, station and datatype
+noaa(dataset='PRECIP_HLY', location='ZIP:28801', station='COOP:310301', datatype='HPCP', year=2001, month=4)
+
+# Dataset, location, locationtype and datatype
+noaa(dataset='GHCND', location='FIPS:AC', locationtype='CNTRY', datatype='HPCP')
+
+# Dataset, location, locationtype and station
+noaa(dataset='PRECIP_HLY', location='FIPS:ZIP:28801', locationtype='HYD_REG', station='COOP:310301')
+
+# Normals Daily GHCND dly-tmax-normal data
+noaa(dataset='NORMAL_DLY', datatype='dly-tmax-normal', year=2010, month=4)
+
+# Normals Daily GHCND:USW00014895 dly-tmax-normal
 noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
 
 # Hourly Precipitation data for ZIP code 28801
-noaa(dataset='PRECIP_HLY', location='ZIP:28801', datatype='HPCP', year=1980, month=7, day=17)
+noaa(dataset='PRECIP_HLY', location='ZIP:28801', datatype='HPCP', year=1980,
+month=7, day=17)
 }
 }
 

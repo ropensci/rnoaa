@@ -141,3 +141,58 @@ noaa_plot(out)
 ```
 
 ![](/inst/img/plot.png)
+
+### Plot data from many stations
+
+#### Get table of all datasets
+```coffee
+noaa_datasets()
+
+           id                    name                         description    minDate    maxDate
+1      ANNUAL        Annual Summaries       Annual Climatological Summary 1831-02-01 2012-11-01
+2       GHCND         Daily Summaries                          GHCN-Daily 1763-01-01 2013-08-02
+3     GHCNDMS       Monthly Summaries             GHCND-Monthly Summaries 1763-01-01 2013-06-01
+4     NEXRAD2         Nexrad Level II  NWS Next Generation Radar Level II 1991-06-05 2013-08-02
+5     NEXRAD3        Nexrad Level III NWS Next Generation Radar Level III 1994-05-20 2013-07-31
+6  NORMAL_ANN Normals Annual/Seasonal Annual and Seasonal Climate Normals 2010-01-01 2010-01-01
+7  NORMAL_DLY           Normals Daily               Daily Climate Normals 2010-01-01 2010-12-31
+8  NORMAL_HLY          Normals Hourly              Hourly Climate Normals 2010-01-01 2010-12-31
+9  NORMAL_MLY         Normals Monthly             Monthly Climate Normals 2010-01-01 2010-12-01
+10  PRECIP_15 Precipitation 15 Minute             15 Minute Precipitation 1970-05-12 2012-08-01
+11 PRECIP_HLY    Precipitation Hourly                Hourly Precipitation 1900-01-01 2012-08-01
+```
+
+#### Search for GHCND stations within 500 km of a lat/long point, take 10 of them
+```coffee
+stations <- noaa_loc_search(dataset='GHCND', radius=500, enddate='20121201', latitude=35.59528, longitude=-82.55667)
+(res <- stations[['data']][sample.int(100,10),1])
+
+[1] GHCND:US1NCHN0016 GHCND:US1NCMS0001 GHCND:USC00314764 GHCND:USC00311624 GHCND:US1NCBC0028
+[6] GHCND:US1NCBC0062 GHCND:US1NCBC0005 GHCND:USC00315356 GHCND:USC00310724 GHCND:USC00316380
+```
+
+##### Get data for all data types for those 10 stations
+
+Some stations may not have data for a particular data type. Only using first 7 stations - the 8th had no data.
+
+```coffee
+library(doMC)
+registerDoMC(cores=4)
+dat <- llply(as.character(res)[1:7], function(x) noaa(dataset='GHCND', station=x, year=2010, month=7), .parallel=TRUE)
+```
+
+##### Plot precipitation by day for each station
+
+```coffee
+df <- ldply(dat, function(x) x$data)
+df$date <- ymd(str_replace(as.character(df$date), "T00:00:00\\.000", ''))
+df <- df[df$dataType == 'PRCP',]
+ggplot(df, aes(date, value)) +
+  theme_bw(base_size=18) + 
+  geom_line(size=2) +
+  facet_grid(station~., scales="free") +
+  scale_x_datetime(breaks = date_breaks("7 days"), labels = date_format('%d/%m/%y')) +
+  labs(y=as.character(df[1,'dataType']), x="Date") +
+  noaa_theme()
+```
+![](/inst/img/stationsplot.png)

@@ -16,7 +16,8 @@
 #'    This is a string date mask represented by "yyyy" where yyyy is a 4-digit year.
 #' @param month Used for Annual Normals to specify which month to display for Annual 
 #'    Normals. Values include 01-12. This is a string date mask represented by "MM" 
-#'    where MM is the 2-digit month,
+#'    where MM is the 2-digit month
+#' @param day Day of the month, between 01 and 31
 #' @param token This must be a valid token token supplied to you by NCDC's Climate 
 #'    Data Online access token generator. Required.
 #' @param callopts Further arguments passed on to the API GET call.

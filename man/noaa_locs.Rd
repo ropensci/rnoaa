@@ -37,7 +37,9 @@
   \item{month}{Used for Annual Normals to specify which
   month to display for Annual Normals. Values include
   01-12. This is a string date mask represented by "MM"
-  where MM is the 2-digit month,}
+  where MM is the 2-digit month}
+
+  \item{day}{Day of the month, between 01 and 31}
 
   \item{token}{This must be a valid token token supplied to
   you by NCDC's Climate Data Online access token generator.
