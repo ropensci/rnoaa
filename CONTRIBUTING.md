@@ -11,7 +11,7 @@ Please follow these guidelines so that we can create good R packages that are ea
 
 + Vignettes: Contributing to vignettes is easy! We are moving towards writing all our vignettes in R Markdown, which is easy to write. These vignettes will be parsed to html on our web site. If you want to contribute to a vignette, make changes to the current .Rmd file in /inst/doc. If you want to add a new vignette, add a new file with a .Rmd extension in /inst/doc
 
-+ Interacting with web based data: If you aren't familiar with working with web data in R, do get familiar with packages to make calls to web APIs, [RCurl][rcurl] and [httr][httr], and to parse data once its in R, mainly [RJSONIO][RJSONIO], [rjson][rjson], and [XML][XML].
++ Interacting with web based data: If you aren't familiar with working with web data in R, do get familiar with packages to make calls to web APIs, [RCurl][rcurl] and [httr][httr], and to parse data once its in R, mainly [RJSONIO][rjsonio], [rjson][rjson], and [XML][xml].
 
 + Do remember to track the upstream branch after you have forked this repo so that you can pull in any changes before you submit a pull request. 
 
@@ -28,6 +28,8 @@ Please follow these guidelines so that we can create good R packages that are ea
 ### If you have suggested changes for these contribution guidelines do let us know.
 
 [roxygen2]: https://github.com/hadley/devtools/wiki/Documenting-functions
-[RCurl]: http://cran.r-project.org/web/packages/RCurl/index.html
+[rcurl]: http://cran.r-project.org/web/packages/RCurl/index.html
 [httr]: http://cran.r-project.org/web/packages/httr/index.html
+[rjsonio]: http://cran.r-project.org/web/packages/RJSONIO/index.html
+[xml]: http://cran.r-project.org/web/packages/XML/index.html
 [wikitest]: https://github.com/hadley/devtools/wiki/Testing
