@@ -30,6 +30,7 @@ Please follow these guidelines so that we can create good R packages that are ea
 [roxygen2]: https://github.com/hadley/devtools/wiki/Documenting-functions
 [rcurl]: http://cran.r-project.org/web/packages/RCurl/index.html
 [httr]: http://cran.r-project.org/web/packages/httr/index.html
+[rjson]: http://cran.r-project.org/web/packages/rjson/index.html
 [rjsonio]: http://cran.r-project.org/web/packages/RJSONIO/index.html
 [xml]: http://cran.r-project.org/web/packages/XML/index.html
 [wikitest]: https://github.com/hadley/devtools/wiki/Testing
