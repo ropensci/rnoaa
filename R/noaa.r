@@ -8,6 +8,7 @@
 #'    \code{\link{noaa_stations}}
 #' @param datatype The data type, see function \code{\link{noaa_datatypes}}
 #' @param location A single location code.
+#' @param results The number of results to return.  The larger the number of results requested, the longer the api call will take.
 #' @param locationtype A single location type code.
 #' @return A data.frame for all datasets, or a list of length two, each with a 
 #'    data.frame.
@@ -46,8 +47,8 @@
 #' }
 #' @export
 noaa <- function(dataset=NULL, datatype=NULL, station=NULL, location=NULL, 
-  locationtype=NULL, startdate=NULL, enddate=NULL, page=NULL, year=NULL, 
-  month=NULL, day=NULL, 
+  locationtype=NULL, startdate=NULL, enddate=NULL, page=1, year=NULL, 
+  month=NULL, day=NULL,results = NULL, 
   token=getOption("noaakey", stop("you need an API key NOAA data")),
   callopts=list())
 {
@@ -65,96 +66,83 @@ noaa <- function(dataset=NULL, datatype=NULL, station=NULL, location=NULL,
   base <- 'http://www.ncdc.noaa.gov/cdo-services/services/datasets'
   params <- compact(list(dataset=dataset, datatype=datatype, station=station, 
                          location=location, locationtype=locationtype))
-  args <- compact(list(startdate=startdate,enddate=enddate,page=page,
-                       year=year,month=month,day=day,token=token))
   
   if(all(names(params) %in% 'dataset')){ # done
     url <- sprintf("%s/%s/data", base, dataset)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','station'))){ # done
+  } else if(all(names(params) %in% c('dataset','station'))){ # done
     url <- sprintf("%s/%s/stations/%s/data", base, dataset, station)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','location'))){ # done
+  } else if(all(names(params) %in% c('dataset','location'))){ # done
     url <- sprintf("%s/%s/locations/%s/data", base, dataset, location)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','datatype','station'))){ # done
+
+  } else if(all(names(params) %in% c('dataset','datatype','station'))){ # done
     url <- sprintf("%s/%s/stations/%s/datatypes/%s/data", base, dataset, 
                    station, datatype)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','datatype','location'))){ # done
+
+  } else if(all(names(params) %in% c('dataset','datatype','location'))){ # done
     url <- sprintf("%s/%s/locations/%s/datatypes/%s/data", base, dataset, 
                    location, datatype)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','datatype'))){ # done
+
+  } else if(all(names(params) %in% c('dataset','datatype'))){ # done
     url <- sprintf("%s/%s/datatypes/%s/data", base, dataset, datatype)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','datatype','location'))){ # done
+
+  } else if(all(names(params) %in% c('dataset','datatype','location'))){ # done
     url <- sprintf("%s/%s/locations/%s/datatypes/%s/data", base, dataset, 
                    location, datatype)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','station','location'))){ # done
+ } else if(all(names(params) %in% c('dataset','station','location'))){ # done
     url <- sprintf("%s/%s/locations/%s/stations/%s/data", base, dataset, 
                    location, station)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','datatype','station','location'))){#done
+
+  } else if(all(names(params) %in% c('dataset','datatype','station','location'))){#done
     url <- sprintf("%s/%s/locations/%s/stations/%s/datatypes/%s/data", base, 
                    dataset, location, station, datatype)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','locationtype'))){ # done
+  } else if(all(names(params) %in% c('dataset','locationtype'))){ # done
     url <- sprintf("%s/%s/locationtypes/%s/data", base, dataset, locationtype)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','locationtype','datatype'))){ # done
+
+  } else if(all(names(params) %in% c('dataset','locationtype','datatype'))){ # done
     url <- sprintf("%s/%s/locationtypes/%s/datatypes/%s/data", base, dataset, 
                    locationtype, datatype)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','locationtype','location'))){ # done
+
+  } else if(all(names(params) %in% c('dataset','locationtype','location'))){ # done
     url <- sprintf("%s/%s/locationtypes/%s/locations/%s/data", base, dataset, 
                    locationtype, location)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-    #not working yet below here
-  if(all(names(params) %in% c('dataset','locationtype','location','datatype'))){ # done
+
+  } else if(all(names(params) %in% c('dataset','locationtype','location','datatype'))){ # done
     url <- sprintf("%s/%s/locationtypes/%s/locations/%s/datatypes/%s/data", base, dataset, 
                    locationtype, location, datatype)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','locationtype','location','station'))){ # done
+  } else if(all(names(params) %in% c('dataset','locationtype','location','station'))){ # done
     url <- sprintf("%s/%s/locationtypes/%s/locations/%s/stations/%s/data", base, dataset, 
                    locationtype, location, station)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
-  } else
-  if(all(names(params) %in% c('dataset','locationtype','location','station','datatype'))){ # done
-    url <- sprintf("%s/%s/locationtypes/%s/locations/%s/stations/%s/datatypes/%s/data", base, dataset, 
-                   locationtype, location, station, datatype)
-    tt <- content(GET(url, query=args, callopts))
-    dat <- ldply(tt$dataCollection$data, parse_dat)
+  } else if(all(names(params) %in% c('dataset','locationtype','location','station','datatype'))){ 
+    url <- sprintf("%s/%s/locationtypes/%s/locations/%s/stations/%s/datatypes/%s/data", base, dataset, locationtype, location, station, datatype)
   } 
-
+  ## Put together arguments
+  args <- compact(list(startdate=startdate,enddate=enddate,page=page,
+                       year=year,month=month,day=day,token=token))
+  ## download data, get the number of potential results.
+  tt <- content(GET(url, query=args, callopts))
+  dat <- ldply(tt$dataCollection$data, parse_dat)
+  page_ct <- tt$dataCollection$`@pageCount`
+  
+  # check the results and loop through
+  
+   if(results > 100 && !is.null(results)){
+    
+    # We get 100 results a page, so we need to figure out how many pages
+    page_tot <- ceiling(results/100)
+    for(i in 2:page_tot){
+      args <- compact(list(startdate=startdate,enddate=enddate,page=i,
+                           year=year,month=month,day=day,token=token))
+      ## download data, get the number of potential results.
+      tt <- content(GET(url, query=args, callopts))
+      dat <- rbind(dat,ldply(tt$dataCollection$data, parse_dat))
+    }
+    
+  }
+  
+  if(results < dim(dat)[1] && !is.null(results)){
+    dat <- dat[1:results,]
+  } 
+  
   atts <- list(totalCount=as.numeric(tt$dataCollection$`@totalCount`), 
                pageCount=as.numeric(tt$dataCollection$`@pageCount`)) 
   all <- list(atts=atts, data=dat)
