@@ -3,7 +3,7 @@
 \title{Get possible data types for a particular dataset}
 \usage{
   noaa_datatypes(dataset = NULL, startdate = NULL,
-    enddate = NULL, page = NULL,
+    enddate = NULL, page = NULL, filter = NULL,
     token = getOption("noaakey", stop("you need an API key NOAA data")))
 }
 \arguments{
@@ -14,6 +14,10 @@
   \item{enddate}{foo}
 
   \item{page}{foo}
+
+  \item{filter}{a string or vector of strings used to
+  filter results.  Useful for scenarios where many possible
+  options are returned.}
 
   \item{token}{API key}
 
@@ -66,6 +70,11 @@
 \examples{
 \dontrun{
 noaa_datatypes(dataset="ANNUAL")
+ ## With a filter
+noaa_datatypes(dataset="Annual",filter="precip")
+
+### with a two filters
+ noaa_datatypes(dataset="Annual",filter = c("precip","sod"))
 }
 }
 
