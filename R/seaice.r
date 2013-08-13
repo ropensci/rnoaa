@@ -2,6 +2,8 @@
 #' 
 #' @import rgdal plyr
 #' @param url A url for a NOAA sea ice ftp file
+#' @param ... Further arguments passed on to readshpfile function, see 
+#'    ?readshpfile
 #' @return A data.frame
 #' @export
 #' @examples \dontrun{
@@ -30,9 +32,9 @@
 #'   
 #' ggplot(df, aes()) + geom_point()
 #' }
-noaa_seaice <- function(url)
+noaa_seaice <- function(url, ...)
 {
-  tt <- readshpfile(url)
+  tt <- readshpfile(url, ...)
   fortify(tt)
 }
 

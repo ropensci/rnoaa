@@ -23,8 +23,7 @@ noaa_data.noaa <- function(input = NULL, datatype="df")
     stop("Input is not of class noaa")
   
   if(datatype=="df"){
-    df_out <- ldply(input, function(x) data.frame(x))
-    return( df_out )
+    return( data.frame(input$data) )
   } else
     if(datatype=="list"){ return( input ) }
 }

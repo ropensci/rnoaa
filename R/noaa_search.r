@@ -3,6 +3,8 @@
 #' @import lubridate httr
 #' @template rnoaa 
 #' @param datatype The data type, see function \code{\link{noaa_datatypes}}.
+#' @param resulttype The type id indicating the type of result to return. One of
+#'    station, city, country, country
 #' @param location A single location code.
 #' @param locationtype A single location type code.
 #' @return A data.frame of metadata.

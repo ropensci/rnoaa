@@ -2,10 +2,13 @@
 \alias{noaa_seaice}
 \title{Get sea ice data.}
 \usage{
-  noaa_seaice(url)
+  noaa_seaice(url, ...)
 }
 \arguments{
   \item{url}{A url for a NOAA sea ice ftp file}
+
+  \item{...}{Further arguments passed on to readshpfile
+  function, see ?readshpfile}
 }
 \value{
   A data.frame
