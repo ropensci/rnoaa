@@ -8,7 +8,7 @@
   \item{url}{A url for a NOAA sea ice ftp file}
 
   \item{...}{Further arguments passed on to readshpfile
-  function, see ?readshpfile}
+  function, see \code{readshpfile}}
 }
 \value{
   A data.frame

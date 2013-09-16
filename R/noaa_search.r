@@ -12,7 +12,7 @@
 #' # Search GHCN-Daily stations which contain the label "Boulder"
 #' noaa_search(dataset='GHCND', resulttype='station', text='Boulder')
 #' 
-#' Search 15 Minute Precipitation countries labeled with "United States"
+#' # Search 15 Minute Precipitation countries labeled with "United States"
 #' noaa_search(dataset='GHCND', resulttype='station', text='United States')
 #' }
 #' @export

@@ -1,7 +1,7 @@
 #' Make map to visualize NOAA climate data.
 #'
 #' @import ggplot2
-#' @importFrom scales date_breaks
+#' @importFrom scales date_breaks date_format
 #' @param input Input noaa object.
 #' @return Plot of climate data.
 #' @examples \dontrun{
