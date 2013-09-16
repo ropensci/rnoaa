@@ -30,10 +30,7 @@
 #' noaa(dataset='PRECIP_HLY', location='ZIP:28801', station='COOP:310301', datatype='HPCP', year=2001, month=4)
 #' 
 #' # Dataset, location, locationtype and datatype
-#' noaa(dataset='GHCND', location='FIPS:AC', locationtype='CNTRY', datatype='HPCP')
-#' 
-#' # Dataset, location, locationtype and station
-#' noaa(dataset='PRECIP_HLY', location='FIPS:ZIP:28801', locationtype='HYD_REG', station='COOP:310301')
+#' noaa(dataset='GHCND', location='FIPS:BR', locationtype='CNTRY', datatype='PRCP')
 #' 
 #' # Normals Daily GHCND dly-tmax-normal data
 #' noaa(dataset='NORMAL_DLY', datatype='dly-tmax-normal', year=2010, month=4)
@@ -47,14 +44,14 @@
 #' }
 #' @export
 noaa <- function(dataset=NULL, datatype=NULL, station=NULL, location=NULL, 
-  locationtype=NULL, startdate=NULL, enddate=NULL, page=1, year=NULL, 
-  month=NULL, day=NULL,results = NULL, 
+  locationtype=NULL, startdate=NULL, enddate=NULL, page=1, year=NULL,
+  month=NULL, day=NULL, results = NULL,
   token=getOption("noaakey", stop("you need an API key NOAA data")),
   callopts=list())
 {
   parse_dat <- function(x) {
     atts <- x[names(x) %in% 'attributes'][[1]]
-    if(all(sapply(atts[[1]], nchar) == 0))
+    if(foo(sapply(atts[[1]], nchar) == 0))
       atts <- "none"
     else
       atts <- atts[[1]][!sapply(atts[[1]], nchar) == 0]
@@ -67,65 +64,64 @@ noaa <- function(dataset=NULL, datatype=NULL, station=NULL, location=NULL,
   params <- compact(list(dataset=dataset, datatype=datatype, station=station, 
                          location=location, locationtype=locationtype))
   
-  if(all(names(params) %in% 'dataset')){ # done
-    url <- sprintf("%s/%s/data", base, dataset)
-  } else if(all(names(params) %in% c('dataset','station'))){ # done
-    url <- sprintf("%s/%s/stations/%s/data", base, dataset, station)
-  } else if(all(names(params) %in% c('dataset','location'))){ # done
-    url <- sprintf("%s/%s/locations/%s/data", base, dataset, location)
+  foo <- function(x) all(x %in% names(params)) && length(x)==length(names(params))
 
-  } else if(all(names(params) %in% c('dataset','datatype','station'))){ # done
+  if(foo('dataset')){
+    url <- sprintf("%s/%s/data", base, dataset)
+  } else if(foo(c('dataset','station'))){
+    url <- sprintf("%s/%s/stations/%s/data", base, dataset, station)
+  } else if(foo(c('dataset','location'))){
+    url <- sprintf("%s/%s/locations/%s/data", base, dataset, location)
+  } else if(foo(c('dataset','datatype','station'))){
     url <- sprintf("%s/%s/stations/%s/datatypes/%s/data", base, dataset, 
                    station, datatype)
-
-  } else if(all(names(params) %in% c('dataset','datatype','location'))){ # done
+  } else if(foo(c('dataset','datatype','location'))){
     url <- sprintf("%s/%s/locations/%s/datatypes/%s/data", base, dataset, 
                    location, datatype)
-
-  } else if(all(names(params) %in% c('dataset','datatype'))){ # done
+  } else if(foo(c('dataset','datatype'))){
     url <- sprintf("%s/%s/datatypes/%s/data", base, dataset, datatype)
-
-  } else if(all(names(params) %in% c('dataset','datatype','location'))){ # done
+  } else if(foo(c('dataset','datatype','location'))){
     url <- sprintf("%s/%s/locations/%s/datatypes/%s/data", base, dataset, 
                    location, datatype)
- } else if(all(names(params) %in% c('dataset','station','location'))){ # done
+ } else if(foo(c('dataset','station','location'))){
     url <- sprintf("%s/%s/locations/%s/stations/%s/data", base, dataset, 
                    location, station)
-
-  } else if(all(names(params) %in% c('dataset','datatype','station','location'))){#done
+  } else if(foo(c('dataset','datatype','station','location'))){#done
     url <- sprintf("%s/%s/locations/%s/stations/%s/datatypes/%s/data", base, 
                    dataset, location, station, datatype)
-  } else if(all(names(params) %in% c('dataset','locationtype'))){ # done
+  } else if(foo(c('dataset','locationtype'))){
     url <- sprintf("%s/%s/locationtypes/%s/data", base, dataset, locationtype)
 
-  } else if(all(names(params) %in% c('dataset','locationtype','datatype'))){ # done
+  } else if(foo(c('dataset','locationtype','datatype'))){
     url <- sprintf("%s/%s/locationtypes/%s/datatypes/%s/data", base, dataset, 
                    locationtype, datatype)
-
-  } else if(all(names(params) %in% c('dataset','locationtype','location'))){ # done
+  } else if(foo(c('dataset','locationtype','location'))){
     url <- sprintf("%s/%s/locationtypes/%s/locations/%s/data", base, dataset, 
                    locationtype, location)
-
-  } else if(all(names(params) %in% c('dataset','locationtype','location','datatype'))){ # done
+  } else if(foo(c('dataset','locationtype','location','datatype'))){
     url <- sprintf("%s/%s/locationtypes/%s/locations/%s/datatypes/%s/data", base, dataset, 
                    locationtype, location, datatype)
-  } else if(all(names(params) %in% c('dataset','locationtype','location','station'))){ # done
+  } else if(foo(c('dataset','locationtype','location','station'))){
     url <- sprintf("%s/%s/locationtypes/%s/locations/%s/stations/%s/data", base, dataset, 
                    locationtype, location, station)
-  } else if(all(names(params) %in% c('dataset','locationtype','location','station','datatype'))){ 
+  } else if(foo(c('dataset','locationtype','location','station','datatype'))){ 
     url <- sprintf("%s/%s/locationtypes/%s/locations/%s/stations/%s/datatypes/%s/data", base, dataset, locationtype, location, station, datatype)
   } 
   ## Put together arguments
   args <- compact(list(startdate=startdate,enddate=enddate,page=page,
                        year=year,month=month,day=day,token=token))
   ## download data, get the number of potential results.
-  tt <- content(GET(url, query=args, callopts))
+  temp <- GET(url, query=args, callopts)
+  stop_for_status(temp)
+  tt <- content(temp)
+  if(class(try(tt$dataCollection$data, silent=TRUE))=="try-error")
+    stop("Sorry, no data found")
   dat <- ldply(tt$dataCollection$data, parse_dat)
   page_ct <- tt$dataCollection$`@pageCount`
   
   # check the results and loop through
   
-   if(results > 100 && !is.null(results)){
+  if(results > 100 && !is.null(results)){
     
     # We get 100 results a page, so we need to figure out how many pages
     page_tot <- ceiling(results/100)
@@ -133,7 +129,9 @@ noaa <- function(dataset=NULL, datatype=NULL, station=NULL, location=NULL,
       args <- compact(list(startdate=startdate,enddate=enddate,page=i,
                            year=year,month=month,day=day,token=token))
       ## download data, get the number of potential results.
-      tt <- content(GET(url, query=args, callopts))
+      temp <- GET(url, query=args, callopts)
+      stop_for_status(temp)
+      tt <- content(temp)
       dat <- rbind(dat,ldply(tt$dataCollection$data, parse_dat))
     }
     

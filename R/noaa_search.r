@@ -4,7 +4,7 @@
 #' @template rnoaa 
 #' @param datatype The data type, see function \code{\link{noaa_datatypes}}.
 #' @param resulttype The type id indicating the type of result to return. One of
-#'    station, city, country, country
+#'    station, city, country, country.
 #' @param location A single location code.
 #' @param locationtype A single location type code.
 #' @return A data.frame of metadata.
@@ -27,7 +27,9 @@ noaa_search <- function(dataset=NULL,resulttype=NULL,text=NULL,datatypecategory=
   args <- compact(list(resulttype=resulttype,text=text,datatypecategory=datatypecategory,
                        startdate=startdate,enddate=enddate,sort=sort,page=page,
                        pagesize=pagesize,token=token))
-  tt <- content(GET(url, query=args, callopts))
+  temp <- GET(url, query=args, callopts)
+  stop_for_status(temp)
+  tt <- content(temp)
   dat <- ldply(tt$searchResultCollection$searchResult, function(x) as.data.frame(x))
   
   atts <- list(totalCount=as.numeric(tt$searchResultCollection$`@totalCount`), 

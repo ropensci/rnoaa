@@ -26,7 +26,9 @@ noaa_loc_types <- function(dataset=NULL,locationtype=NULL,startdate=NULL,
     url <- sprintf("%s/%s/locationtypes/%s", base, dataset, locationtype)
   }
   args <- compact(list(startdate=startdate,enddate=enddate,page=page,token=token))
-  tt <- content(GET(url, query=args, callopts))
+  temp <- GET(url, query=args, callopts)
+  stop_for_status(temp)
+  tt <- content(temp)
   if(is.null(locationtype))
     dat <- ldply(tt$locationTypeCollection$locationType, function(x) as.data.frame(x))
   else

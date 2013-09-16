@@ -70,11 +70,12 @@
 \examples{
 \dontrun{
 noaa_datatypes(dataset="ANNUAL")
- ## With a filter
+
+## With a filter
 noaa_datatypes(dataset="Annual",filter="precip")
 
 ### with a two filters
- noaa_datatypes(dataset="Annual",filter = c("precip","sod"))
+noaa_datatypes(dataset="Annual",filter = c("precip","sod"))
 }
 }
 

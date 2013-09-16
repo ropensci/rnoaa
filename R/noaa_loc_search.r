@@ -37,7 +37,9 @@ noaa_loc_search <- function(dataset=NULL,radius=NULL,latitude=NULL,longitude=NUL
                        longitude=longitude,startdate=startdate,enddate=enddate,
                        sort=sort,category=category,page=page,pagesize=pagesize,
                        token=token))
-  tt <- content(GET(url, query=args, callopts))
+  temp <- GET(url, query=args, callopts)
+  stop_for_status(temp)
+  tt <- content(temp)
   dat <- ldply(tt$searchResultCollection$searchResult, function(x) as.data.frame(x))
   
   atts <- list(totalCount=as.numeric(tt$searchResultCollection$`@totalCount`), 

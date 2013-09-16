@@ -53,7 +53,8 @@
   \code{\link{noaa_datatypes}}.}
 
   \item{resulttype}{The type id indicating the type of
-  result to return. One of station, city, country, country}
+  result to return. One of station, city, country,
+  country.}
 
   \item{location}{A single location code.}
 

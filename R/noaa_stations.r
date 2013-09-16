@@ -55,38 +55,52 @@ noaa_stations <- function(dataset=NULL, station=NULL, location=NULL,
                          locationtype=locationtype))
   args <- compact(list(startdate=startdate,enddate=enddate,page=page,token=token))
   
-  if(all(names(params) %in% 'dataset')){
+  foo <- function(x) all(x %in% names(params)) && length(x)==length(names(params))
+  
+  if(foo('dataset')){
     url <- sprintf("%s/%s/stations", base, dataset)
-    tt <- content(GET(url, query=args, callopts))
+    temp <- GET(url, query=args, callopts)
+    stop_for_status(temp)
+    tt <- content(temp)
     dat <- llply(tt$stationCollection$station, parse_dat)
   } else
-    if(all(names(params) %in% c('dataset','station'))){
+    if(foo(c('dataset','station'))){
       url <- sprintf("%s/%s/stations/%s", base, dataset, station)
-      tt <- content(GET(url, query=args, callopts))
+      temp <- GET(url, query=args, callopts)
+      stop_for_status(temp)
+      tt <- content(temp)
       dat <- parse_dat(tt$stationCollection$station[[1]])
     } else
-      if(all(names(params) %in% c('dataset','location'))){
+      if(foo(c('dataset','location'))){
         url <- sprintf("%s/%s/locations/%s/stations", base, 
                        dataset, location)
-        tt <- content(GET(url, query=args, callopts))
+        temp <- GET(url, query=args, callopts)
+        stop_for_status(temp)
+        tt <- content(temp)
         dat <- llply(tt$stationCollection$station, parse_dat)
       } else
-        if(all(names(params) %in% c('dataset','location','station'))){
+        if(foo(c('dataset','location','station'))){
           url <- sprintf("%s/%s/locations/%s/stations/%s", base, dataset, 
                          location, station)
-          tt <- content(GET(url, query=args, callopts))
+          temp <- GET(url, query=args, callopts)
+          stop_for_status(temp)
+          tt <- content(temp)
           dat <- parse_dat(tt$stationCollection$station[[1]])
         } else
-          if(all(names(params) %in% c('dataset','locationtype','location'))){
+          if(foo(c('dataset','locationtype','location'))){
             url <- sprintf("%s/%s/locationtypes/%s/locations/%s/stations", 
                            base, dataset, locationtype, location)
-            tt <- content(GET(url, query=args, callopts))
+            temp <- GET(url, query=args, callopts)
+            stop_for_status(temp)
+            tt <- content(temp)
             dat <- llply(tt$stationCollection$station, parse_dat)
           } else
-            if(all(names(params) %in% c('dataset','locationtype','location','station'))){
+            if(foo(c('dataset','locationtype','location','station'))){
               url <- sprintf("%s/%s/locationtypes/%s/locations/%s/stations/%s", 
                              base, dataset, locationtype, location, station)
-              tt <- content(GET(url, query=args, callopts))
+              temp <- GET(url, query=args, callopts)
+              stop_for_status(temp)
+              tt <- content(temp)
               dat <- parse_dat(tt$stationCollection$station[[1]]) 
             }
   

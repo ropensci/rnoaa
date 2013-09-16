@@ -34,7 +34,9 @@ noaa_locs <- function(dataset=NULL,location=NULL,locationtype=NULL,
     } else
     { url <- sprintf("%s/%s/locationtypes/%s/locations", base, dataset, locationtype) }
   
-  tt <- content(GET(url, query=args, callopts))
+  temp <- GET(url, query=args, callopts)
+  stop_for_status(temp)
+  tt <- content(temp)
   temp <- ldply(tt$locationCollection$location, 
                 function(x) data.frame(x[!names(x) %in% 'locationType'], data.frame(x$locationType)))
   atts <- list(totalCount=as.numeric(tt$locationCollection$`@totalCount`), 

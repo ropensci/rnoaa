@@ -16,7 +16,9 @@ noaa_datasets <- function(dataset=NULL, startdate=NULL, enddate=NULL, page=NULL,
   if(!is.null(dataset))
     url <- paste(url, "/", dataset, sep="")
   args <- compact(list(startdate=startdate,enddate=enddate,page=page,year=year,month=month,token=token))
-  tt <- content(GET(url, query=args))
+  temp <- GET(url, query=args)
+  stop_for_status(temp)
+  tt <- content(temp)
   if(!is.null(dataset)){
     one <- data.frame(tt$dataSetCollection$dataSet[[1]][c('id','name','description','minDate','maxDate')])
     two <- ldply(tt$dataSetCollection$dataSet[[1]]$attributes$attribute, function(x) data.frame(x[c('name','defaultValue','indexNumber')]))

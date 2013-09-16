@@ -5,8 +5,8 @@ and/or location type.}
 \usage{
   noaa(dataset = NULL, datatype = NULL, station = NULL,
     location = NULL, locationtype = NULL, startdate = NULL,
-    enddate = NULL, page = NULL, year = NULL, month = NULL,
-    day = NULL,
+    enddate = NULL, page = 1, year = NULL, month = NULL,
+    day = NULL, results = NULL,
     token = getOption("noaakey", stop("you need an API key NOAA data")),
     callopts = list())
 }
@@ -58,6 +58,10 @@ and/or location type.}
 
   \item{location}{A single location code.}
 
+  \item{results}{The number of results to return.  The
+  larger the number of results requested, the longer the
+  api call will take.}
+
   \item{locationtype}{A single location type code.}
 }
 \value{
@@ -85,10 +89,7 @@ noaa(dataset='PRECIP_HLY', location='ZIP:28801', datatype='HPCP', year=2001, mon
 noaa(dataset='PRECIP_HLY', location='ZIP:28801', station='COOP:310301', datatype='HPCP', year=2001, month=4)
 
 # Dataset, location, locationtype and datatype
-noaa(dataset='GHCND', location='FIPS:AC', locationtype='CNTRY', datatype='HPCP')
-
-# Dataset, location, locationtype and station
-noaa(dataset='PRECIP_HLY', location='FIPS:ZIP:28801', locationtype='HYD_REG', station='COOP:310301')
+noaa(dataset='GHCND', location='FIPS:BR', locationtype='CNTRY', datatype='PRCP')
 
 # Normals Daily GHCND dly-tmax-normal data
 noaa(dataset='NORMAL_DLY', datatype='dly-tmax-normal', year=2010, month=4)

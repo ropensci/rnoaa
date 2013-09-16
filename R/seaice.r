@@ -3,7 +3,7 @@
 #' @import rgdal plyr
 #' @param url A url for a NOAA sea ice ftp file
 #' @param ... Further arguments passed on to readshpfile function, see 
-#'    ?readshpfile
+#'    \code{readshpfile}
 #' @return A data.frame
 #' @export
 #' @examples \dontrun{
@@ -108,7 +108,9 @@ readshpfile <- function(x, storepath="~/seaicedata")
   path_write <- paste0(storepath, '/', filename_noending)
   path <- paste0(storepath, '/', filename)
 #   path_shp <- str_replace(path, ".zip", ".shp")
-  download.file(x, path)
+  bb <- try(download.file(x, path), silent=TRUE)
+  if(class(bb) == "try-error")
+    stop('Data not available, ftp server may be down')
   dir.create(path_write, showWarnings=FALSE)
   unzip(path, exdir=path_write)
   my_layer <- ogrListLayers(path.expand(path_write))

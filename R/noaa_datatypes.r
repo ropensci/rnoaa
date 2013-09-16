@@ -10,19 +10,22 @@
 #' @return A \code{data.frame} for all datasets, or a list of length two, each with a data.frame.
 #' @examples \dontrun{
 #' noaa_datatypes(dataset="ANNUAL")
-#'  ## With a filter
+#'
+#' ## With a filter
 #' noaa_datatypes(dataset="Annual",filter="precip")
 #' 
 #' ### with a two filters
-#'  noaa_datatypes(dataset="Annual",filter = c("precip","sod"))
+#' noaa_datatypes(dataset="Annual",filter = c("precip","sod"))
 #' }
 #' @export
-noaa_datatypes <- function(dataset=NULL, startdate=NULL, enddate=NULL, page=NULL,filter=NULL ,token=getOption("noaakey", stop("you need an API key NOAA data")))
+noaa_datatypes <- function(dataset=NULL, startdate=NULL, enddate=NULL, page=NULL, 
+  filter=NULL, token=getOption("noaakey", stop("you need an API key NOAA data")))
 {
   url <- sprintf("http://www.ncdc.noaa.gov/cdo-services/services/datasets/%s/datatypes", dataset)
   args <- compact(list(startdate=startdate,enddate=enddate,page=page,token=token))
-  raw_out <- content(GET(url, query=args))
-  
+  temp <- GET(url, query=args)
+  stop_for_status(temp)
+  raw_out <- content(temp)
   
   # custom parsing function to handle the weird lists that noaa returns
   s_parse <- function(x){
@@ -53,7 +56,5 @@ noaa_datatypes <- function(dataset=NULL, startdate=NULL, enddate=NULL, page=NULL
   return(parsed_out[filt_id,])
   
 }
-
-
 
 # z <-noaa_datatypes(dataset="Annual",filter = c("precip","sod"))
