@@ -38,3 +38,4 @@ Collate:
     'noaa_loc_types.r'
     'noaa_locs.r'
     'noaa_search.r'
+    'startup.r'
