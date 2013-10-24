@@ -4,13 +4,13 @@
 #' @template datatypes
 #' @return A \code{data.frame} for all datasets, or a list of length two, each with a data.frame.
 #' @examples \dontrun{
-#' noada_datatypes(dataset="ANNUAL")
+#' noada_datatypes(datasetid="ANNUAL")
 #'
 #' ## With a filter
-#' noaa_datatypes(dataset="Annual",filter="precip")
+#' noaa_datatypes(datasetid="Annual",filter="precip")
 #' 
 #' ### with a two filters
-#' noaa_datatypes(dataset="Annual",filter = c("precip","sod"))
+#' noaa_datatypes(datasetid="Annual",filter = c("precip","sod"))
 #' }
 #' @export
 noaa_datatypes <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL, 
@@ -23,7 +23,10 @@ noaa_datatypes <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, loca
   if(any(calls_vec))
     stop("The parameters dataset, page, and filter \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa_datatypes")
   
-  url <- sprintf("http://www.ncdc.noaa.gov/cdo-services/services/datasets/%s/datatypes", dataset)
+  if(!is.null(datasetid)){
+    url <- sprintf("http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes/%s", datasetid)
+  } else { url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatype" }
+    
   args <- compact(list(datasetid=datasetid, datatypeid=datatypeid, 
                        locationid=locationid, stationid=stationid, startdate=startdate,
                        enddate=enddate, sortfield=sortfield, sortorder=sortorder, 
