@@ -1,0 +1,14 @@
+rnoaa 0.0.2
+===============
+
+NEW FEATURES 
+
+* Wrote new functions for NOAA API v2.
+
+
+rnoaa 0.0.1
+===============
+
+NEW FEATURES 
+
+* Wrappers for NOAA API v1 were written, not on CRAN at this point.

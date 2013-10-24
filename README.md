@@ -5,19 +5,19 @@ Still early days, so not much here yet, but look quick start below...
 
 ### Info
 
-[NOAA web services documentation](http://www.ncdc.noaa.gov/cdo-web/webservices)
+* The older version of the NOAA API is on the master branch of this repo for now, and the docs for that API are [here](http://www.ncdc.noaa.gov/cdo-web/webservices)
+* The docs for the new API, which this dev branch is based on are [here](http://www.ncdc.noaa.gov/cdo-web/webservices/v2)
 
 ### API key
 
 You'll need an API key to use this package (essentially a password). Go [here](http://www.ncdc.noaa.gov/cdo-web/token) to get one. 
-
 
 ### Install from Github (not on CRAN yet)
 
 ```coffee
 install.packages("devtools")
 library(devtools)
-install_github("rnoaa", "ropensci")
+install_github("rnoaa", "ropensci", ref="newapi")
 library(rnoaa)
 ```
 

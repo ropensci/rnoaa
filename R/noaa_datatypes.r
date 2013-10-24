@@ -1,15 +1,10 @@
 #' Get possible data types for a particular dataset
-#' 
-#' @param dataset foo
-#' @param  startdate foo
-#' @param  enddate foo
-#' @param  page foo
-#' @param  filter a string or vector of strings used to filter results.  Useful for scenarios where many possible options are returned.
-#' @param  token API key
+#'   
 #' @template rnoaa
+#' @template datatypes
 #' @return A \code{data.frame} for all datasets, or a list of length two, each with a data.frame.
 #' @examples \dontrun{
-#' noaa_datatypes(dataset="ANNUAL")
+#' noada_datatypes(dataset="ANNUAL")
 #'
 #' ## With a filter
 #' noaa_datatypes(dataset="Annual",filter="precip")
@@ -18,12 +13,22 @@
 #' noaa_datatypes(dataset="Annual",filter = c("precip","sod"))
 #' }
 #' @export
-noaa_datatypes <- function(dataset=NULL, startdate=NULL, enddate=NULL, page=NULL, 
-  filter=NULL, token=getOption("noaakey", stop("you need an API key NOAA data")))
+noaa_datatypes <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL, 
+  startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL, 
+  callopts=list(), token=getOption("noaakey", stop("you need an API key NOAA data")), 
+  dataset=NULL, page=NULL, filter=NULL)
 {
+  calls <- deparse(sys.calls())
+  calls_vec <- sapply(c("dataset", "page", "filter"), function(x) grepl(x, calls))
+  if(any(calls_vec))
+    stop("The parameters dataset, page, and filter \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa_datatypes")
+  
   url <- sprintf("http://www.ncdc.noaa.gov/cdo-services/services/datasets/%s/datatypes", dataset)
-  args <- compact(list(startdate=startdate,enddate=enddate,page=page,token=token))
-  temp <- GET(url, query=args)
+  args <- compact(list(datasetid=datasetid, datatypeid=datatypeid, 
+                       locationid=locationid, stationid=stationid, startdate=startdate,
+                       enddate=enddate, sortfield=sortfield, sortorder=sortorder, 
+                       limit=limit, offset=offset))
+  temp <- GET(url, query=args, config = add_headers("token" = token))
   stop_for_status(temp)
   raw_out <- content(temp)
   
