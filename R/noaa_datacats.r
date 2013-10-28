@@ -9,23 +9,34 @@
 #' noaa_datacats(limit=41)
 #'
 #' ## With a filter
-#' noaa_datacats(datasetid="ANNAGR")
+#' noaa_datacats(datacategoryid="ANNAGR")
 #' 
-#' ## With a filter
-#' noaa_datacats(locationid='CITY:US390029', locationid='FIPS:37')
+#' ## Fetch data categories for a given set of locations
+#' noaa_datacats(locationid='CITY:US390029')
+#' noaa_datacats(locationid=c('CITY:US390029', 'FIPS:37'))
 #' }
 #' @export
-noaa_datacats <- function(datasetid=NULL, stationid=NULL, locationid=NULL, 
-  startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL, 
-  callopts=list(), token=getOption("noaakey", stop("you need an API key NOAA data")))
+noaa_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
+  locationid=NULL, startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, 
+  limit=25, offset=NULL, callopts=list(), 
+  token=getOption("noaakey", stop("you need an API key NOAA data")))
 {  
-  url <- sprintf("http://www.ncdc.noaa.gov/cdo-web/api/v2/datacategories", dataset)
-  args <- compact(list(datasetid=datasetid, datatypeid=datatypeid, 
-                       locationid=locationid, stationid=stationid, startdate=startdate,
-                       enddate=enddate, sortfield=sortfield, sortorder=sortorder, 
-                       limit=limit, offset=offset))
-  temp <- GET(url, query=args, config = add_headers("token" = token))
+  url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datacategories"
+  if(!is.null(datacategoryid))
+    url <- paste(url, "/", datacategoryid, sep="")
+  args <- c(datasetid=datasetid, locationid=locationid, stationid=stationid,
+            startdate=startdate, enddate=enddate, sortfield=sortfield, 
+            sortorder=sortorder, limit=limit, offset=offset)
+  names(args) <- sapply(names(args), function(y) gsub("[0-9+]", "", y), USE.NAMES=FALSE)
+  temp <- GET(url, query=as.list(args), config = add_headers("token" = token))
   stop_for_status(temp)
-  raw_out <- content(temp)
-  
+  tt <- content(temp)
+  if(class(try(tt$results, silent=TRUE))=="try-error")
+    stop("Sorry, no data found")
+  dat <- do.call(rbind.data.frame, tt$results)
+  meta <- tt$metadata$resultset
+  atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
+  all <- list(atts=atts, data=dat)
+  class(all) <- "noaa"
+  return( all )
 }
