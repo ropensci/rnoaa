@@ -8,7 +8,7 @@
 #' @examples \dontrun{
 #' noaa_datacats(limit=41)
 #'
-#' ## With a filter
+#' ## Single data category
 #' noaa_datacats(datacategoryid="ANNAGR")
 #' 
 #' ## Fetch data categories for a given set of locations
@@ -31,12 +31,17 @@ noaa_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
   temp <- GET(url, query=as.list(args), config = add_headers("token" = token))
   stop_for_status(temp)
   tt <- content(temp)
-  if(class(try(tt$results, silent=TRUE))=="try-error")
-    stop("Sorry, no data found")
-  dat <- do.call(rbind.data.frame, tt$results)
-  meta <- tt$metadata$resultset
-  atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
-  all <- list(atts=atts, data=dat)
-  class(all) <- "noaa"
-  return( all )
+  if(!is.null(datacategoryid)){
+    data.frame(tt)
+  } else
+  {    
+    if(class(try(tt$results, silent=TRUE))=="try-error")
+      stop("Sorry, no data found")
+    dat <- do.call(rbind.data.frame, tt$results)
+    meta <- tt$metadata$resultset
+    atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
+    all <- list(atts=atts, data=dat)
+    class(all) <- "noaa"
+    return( all )
+  }
 }

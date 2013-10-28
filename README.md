@@ -198,4 +198,52 @@ ggplot(df, aes(date, value)) +
 ![](/inst/img/stationsplot.png)
 
 
+##### Get data category data and metadata
+
+```coffee
+noaa_datacats(locationid='CITY:US390029')
+
+$atts
+$atts$totalCount
+[1] 37
+
+$atts$pageCount
+[1] 25
+
+$atts$offset
+[1] 1
+
+
+$data
+              id                  name
+2         ANNAGR   Annual Agricultural
+26         ANNDD    Annual Degree Days
+3        ANNPRCP  Annual Precipitation
+4        ANNTEMP    Annual Temperature
+5          AUAGR   Autumn Agricultural
+6           AUDD    Autumn Degree Days
+7         AUPRCP  Autumn Precipitation
+8         AUTEMP    Autumn Temperature
+9           COMP              Computed
+10       COMPAGR Computed Agricultural
+11            DD           Degree Days
+12 DUALPOLMOMENT      Dual-Pol Moments
+13       ECHOTOP             Echo Tops
+14   HYDROMETEOR      Hydrometeor Type
+15         OTHER                 Other
+16       OVERLAY               Overlay
+17          PRCP         Precipitation
+18  REFLECTIVITY          Reflectivity
+19           SKY    Sky cover & clouds
+20         SPAGR   Spring Agricultural
+21          SPDD    Spring Degree Days
+22        SPPRCP  Spring Precipitation
+23        SPTEMP    Spring Temperature
+24         SUAGR   Summer Agricultural
+25          SUDD    Summer Degree Days
+
+attr(,"class")
+[1] "noaa"
+```
+
 [![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
