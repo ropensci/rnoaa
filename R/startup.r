@@ -1,3 +1,3 @@
 .onAttach <- function(...) {
-	packageStartupMessage("\n ----- \n NOAA web services are not available \n due to the Gov't shut down...check back later\n ------ \n    \\\   ^__^ \n     \\\  (oo)\\\ ________ \n        (__)\\\         )\\\ /\\\ \n             ||------w|\n             ||      ||")
+	packageStartupMessage("\n\n New to rnoaa? Tutorial at http://ropensci.org/tutorials/rnoaa_tutorial.html. \n A new NOAA API (v2) is out. Most functions have changed - some parameters are deprecated. \n Use suppressPackageStartupMessages() to suppress these startup messages in the future\n")
 } 

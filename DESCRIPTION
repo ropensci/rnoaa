@@ -39,3 +39,4 @@ Collate:
     'noaa_locs.r'
     'noaa_search.r'
     'startup.r'
+    'noaa_datacats.r'

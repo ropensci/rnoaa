@@ -81,13 +81,13 @@
 }
 \examples{
 \dontrun{
-noada_datatypes(dataset="ANNUAL")
+noada_datatypes(datasetid="ANNUAL")
 
 ## With a filter
-noaa_datatypes(dataset="Annual",filter="precip")
+noaa_datatypes(datasetid="Annual",filter="precip")
 
 ### with a two filters
-noaa_datatypes(dataset="Annual",filter = c("precip","sod"))
+noaa_datatypes(datasetid="Annual",filter = c("precip","sod"))
 }
 }
 
