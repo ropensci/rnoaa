@@ -198,7 +198,7 @@ ggplot(df, aes(date, value)) +
 ![](/inst/img/stationsplot.png)
 
 
-##### Get data category data and metadata
+### Get data category data and metadata
 
 ```coffee
 noaa_datacats(locationid='CITY:US390029')
