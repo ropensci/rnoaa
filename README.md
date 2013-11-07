@@ -1,6 +1,8 @@
 rnoaa
 ========
 
+[![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
+
 Still early days, so not much here yet, but look quick start below...
 
 ### Info
