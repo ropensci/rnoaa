@@ -1,5 +1,8 @@
 #' Search NOAA datasets
 #' 
+#' From the NOAA API docs: All of our data are in datasets. To retrieve any data 
+#' from us, you must know what dataset it is in.
+#' 
 #' @template rnoaa
 #' @template datasets
 #' @value A data.frame for all datasets, or a list of length two, each with a data.frame.
@@ -9,6 +12,16 @@
 #' 
 #' # Get details from a particular dataset
 #' noaa_datasets(datasetid='ANNUAL')
+#' 
+#' # Get datasets with Temperature at the time of observation (TOBS) data type
+#' noaa_datasets(datatypeid='TOBS')
+#' 
+#' # Get datasets with data for a series of the same parameter arg, in this case
+#' # stationid's
+#' noaa_datasets(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
+#' 
+#' # Multiple datatypeid's
+#' noaa_datasets(datatypeid=c('ACMC','ACMH','ACSC'))
 #' }
 #' @export
 noaa_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL, 
@@ -16,8 +29,8 @@ noaa_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
   callopts=list(), token=getOption("noaakey", stop("you need an API key NOAA data")),
   dataset=NULL, page=NULL, year=NULL, month=NULL)
 {
-  calls <- deparse(sys.calls())
-  calls_vec <- sapply(c("dataset", "page", "year", "month"), function(x) grepl(x, calls))
+  calls <- names(sapply(match.call(), deparse))[-1]
+  calls_vec <- c("dataset", "page", "year", "month") %in% calls
   if(any(calls_vec))
     stop("The parameters dataset, page, year, and month \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa_datasets")
   
@@ -28,17 +41,23 @@ noaa_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
                        locationid=locationid, stationid=stationid, startdate=startdate,
                        enddate=enddate, sortfield=sortfield, sortorder=sortorder, 
                        limit=limit, offset=offset))
-  
+  args <- as.list(unlist(args))
+  names(args) <- gsub("[0-9]+", "", names(args))
+    
   temp <- GET(url, query=args, config = add_headers("token" = token))
   stop_for_status(temp)
   tt <- content(temp)
   
-  if(!is.null(dataset)){
-    one <- data.frame(tt$dataSetCollection$dataSet[[1]][c('id','name','description','minDate','maxDate')])
-    two <- ldply(tt$dataSetCollection$dataSet[[1]]$attributes$attribute, function(x) data.frame(x[c('name','defaultValue','indexNumber')]))
-    list(one, two)
+  if(!is.null(datasetid)){
+    dat <- data.frame(tt, stringsAsFactors=FALSE)
+    metadat <- NULL
+    all <- list(data = dat, metadata = metadat)
   } else
   {
-    ldply(tt$dataSetCollection$dataSet, function(x) data.frame(x[c('id','name','description','minDate','maxDate')]))
+    dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
+    metadat <- data.frame(tt$metadata$resultset, stringsAsFactors=FALSE)
+    all <- list(data = dat, metadata = metadat)
   }
+  class(all) <- "noaa_datasets"
+  return( all )    
 }

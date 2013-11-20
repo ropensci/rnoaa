@@ -1,7 +1,7 @@
-#' Check if object is of class noaa
+#' Check if object is of class noaa_data
 #' @param x input
 #' @export
-is.noaa <- function(x) inherits(x, "noaa")
+is.noaa_data <- function(x) inherits(x, "noaa_data")
 
 #' Theme for plotting NOAA data
 #' @export

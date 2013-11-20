@@ -3,9 +3,10 @@
 \title{Get possible data types for a particular dataset}
 \usage{
   noaa_datatypes(datasetid = NULL, datatypeid = NULL,
-    stationid = NULL, locationid = NULL, startdate = NULL,
-    enddate = NULL, sortfield = NULL, sortorder = NULL,
-    limit = 25, offset = NULL, callopts = list(),
+    datacategoryid = NULL, stationid = NULL,
+    locationid = NULL, startdate = NULL, enddate = NULL,
+    sortfield = NULL, sortorder = NULL, limit = 25,
+    offset = NULL, callopts = list(),
     token = getOption("noaakey", stop("you need an API key NOAA data")),
     dataset = NULL, page = NULL, filter = NULL)
 }
@@ -71,6 +72,12 @@
 
   \item{filter}{THIS IS A DEPRECATED ARGUMENT. There is no
   equivalent argument in v2 of the NOAA API.}
+
+  \item{datacategoryid}{Optional. Accepts a valid data
+  category id or a chain of data category ids seperated by
+  ampersands (although it is rare to have a data type with
+  more than one data category). Data types returned will be
+  associated with the data category(ies) specified}
 }
 \value{
   A \code{data.frame} for all datasets, or a list of length
@@ -81,13 +88,17 @@
 }
 \examples{
 \dontrun{
-noada_datatypes(datasetid="ANNUAL")
+# Fetch available data types
+noaa_datatypes()
 
-## With a filter
-noaa_datatypes(datasetid="Annual",filter="precip")
+# Fetch more information about the ACMH data type id
+noaa_datatypes(datatypeid="ACMH")
 
-### with a two filters
-noaa_datatypes(datasetid="Annual",filter = c("precip","sod"))
+# Fetch data types with the air temperature data category
+noaa_datatypes(datacategoryid="TEMP", limit=56)
+
+# Fetch data types that support a given set of stations
+noaa_datatypes(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
 }
 }
 

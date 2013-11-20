@@ -1,6 +1,6 @@
 #' Get sea ice data.
 #' 
-#' @import rgdal plyr
+#' @import rgdal ggplot2
 #' @param url A url for a NOAA sea ice ftp file
 #' @param ... Further arguments passed on to readshpfile function, see 
 #'    \code{readshpfile}

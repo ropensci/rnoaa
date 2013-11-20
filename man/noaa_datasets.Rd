@@ -85,6 +85,16 @@ noaa_datasets()
 
 # Get details from a particular dataset
 noaa_datasets(datasetid='ANNUAL')
+
+# Get datasets with Temperature at the time of observation (TOBS) data type
+noaa_datasets(datatypeid='TOBS')
+
+# Get datasets with data for a series of the same parameter arg, in this case
+# stationid's
+noaa_datasets(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
+
+# Multiple datatypeid's
+noaa_datasets(datatypeid=c('ACMC','ACMH','ACSC'))
 }
 }
 

@@ -1,10 +1,11 @@
-#' Get possible data types for a particular dataset. 
+#' Get possible data categories for a particular datasetid, locationid, stationid, etc.
 #' 
-#' Data Categories represent groupings of data types.
+#' From the NOAA API docs: Data Categories represent groupings of data types.
 #'   
 #' @template rnoaa
 #' @template datacats
-#' @value A \code{data.frame} for all datasets, or a list of length two, each with a data.frame.
+#' @value A \code{data.frame} for all datasets, or a list of length two, each 
+#'    with a data.frame.
 #' @examples \dontrun{
 #' noaa_datacats(limit=41)
 #'
@@ -41,7 +42,7 @@ noaa_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
     meta <- tt$metadata$resultset
     atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
     all <- list(atts=atts, data=dat)
-    class(all) <- "noaa"
+    class(all) <- "noaa_datacats"
     return( all )
   }
 }

@@ -1,5 +1,8 @@
 #' Get metadata about NOAA locations.
 #' 
+#' From the NOAA API docs: Locations can be a specific latitude/longitude point 
+#' such as a station, or a label representing a bounding area such as a city.
+#' 
 #' @import lubridate httr
 #' @template rnoaa 
 #' @param datatype The data type, see function \code{\link{noaa_datatypes}}.

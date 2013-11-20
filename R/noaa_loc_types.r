@@ -1,5 +1,7 @@
 #' Get metadata about NOAA location types.
 #' 
+#' From the NOAA API docs: 
+#' 
 #' @import lubridate httr
 #' @template rnoaa 
 #' @param datatype The data type, see function \code{\link{noaa_datatypes}}.

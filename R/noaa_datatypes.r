@@ -1,68 +1,68 @@
 #' Get possible data types for a particular dataset
-#'   
+#' 
+#' From the NOAA API docs: Describes the type of data, acts as a label. If it's 64°f 
+#' out right now, then the data type is Air Temperature and the data is 64.
+#' 
+#' @import httr  
+#' @importFrom plyr compact rbind.fill
 #' @template rnoaa
 #' @template datatypes
-#' @return A \code{data.frame} for all datasets, or a list of length two, each with a data.frame.
+#' @param datacategoryid Optional. Accepts a valid data category id or a chain of data 
+#'    category ids seperated by ampersands (although it is rare to have a data type 
+#'    with more than one data category). Data types returned will be associated with 
+#'    the data category(ies) specified
+#' @return A \code{data.frame} for all datasets, or a list of length two, each with 
+#'    a data.frame.
 #' @examples \dontrun{
-#' noada_datatypes(datasetid="ANNUAL")
-#'
-#' ## With a filter
-#' noaa_datatypes(datasetid="Annual",filter="precip")
+#' # Fetch available data types
+#' noaa_datatypes()
 #' 
-#' ### with a two filters
-#' noaa_datatypes(datasetid="Annual",filter = c("precip","sod"))
+#' # Fetch more information about the ACMH data type id
+#' noaa_datatypes(datatypeid="ACMH")
+#'
+#' # Fetch data types with the air temperature data category
+#' noaa_datatypes(datacategoryid="TEMP", limit=56)
+#' 
+#' # Fetch data types that support a given set of stations
+#' noaa_datatypes(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
 #' }
 #' @export
-noaa_datatypes <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL, 
-  startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL, 
-  callopts=list(), token=getOption("noaakey", stop("you need an API key NOAA data")), 
+noaa_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL, 
+  stationid=NULL, locationid=NULL, startdate=NULL, enddate=NULL, sortfield=NULL, 
+  sortorder=NULL, limit=25, offset=NULL, callopts=list(), 
+  token=getOption("noaakey", stop("you need an API key NOAA data")), 
   dataset=NULL, page=NULL, filter=NULL)
 {
-  calls <- deparse(sys.calls())
-  calls_vec <- sapply(c("dataset", "page", "filter"), function(x) grepl(x, calls))
+  calls <- names(sapply(match.call(), deparse))[-1]
+  calls_vec <- c("dataset", "page", "filter") %in% calls
   if(any(calls_vec))
     stop("The parameters dataset, page, and filter \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa_datatypes")
-  
-  if(!is.null(datasetid)){
-    url <- sprintf("http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes/%s", datasetid)
-  } else { url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatype" }
+
+  if(!is.null(datatypeid)){
+    url <- sprintf("http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes/%s", datatypeid)
+  } else { url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes" }
     
-  args <- compact(list(datasetid=datasetid, datatypeid=datatypeid, 
+  args <- compact(list(datasetid=datasetid, datacategoryid=datacategoryid, 
                        locationid=locationid, stationid=stationid, startdate=startdate,
                        enddate=enddate, sortfield=sortfield, sortorder=sortorder, 
                        limit=limit, offset=offset))
+  args <- as.list(unlist(args))
+  names(args) <- gsub("[0-9]+", "", names(args))
+  
   temp <- GET(url, query=args, config = add_headers("token" = token))
   stop_for_status(temp)
-  raw_out <- content(temp)
+  out <- content(temp)
   
-  # custom parsing function to handle the weird lists that noaa returns
-  s_parse <- function(x){
-        if(length(x) == 2){
-          x <- c(x,"NA")
-        } else if(length(x) == 3){
-          
-        }
-        return(c(x[1],x[2],x[3]))
+  if(!is.null(datatypeid)){
+    dat <- data.frame(out, stringsAsFactors=FALSE)
+    metadat <- NULL
+    all <- list(data = dat, metadata = metadat)
+  } else
+  {
+    dat <- do.call(rbind.fill, lapply(out$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
+    metadat <- data.frame(out$metadata$resultset, stringsAsFactors=FALSE)
+    all <- list(data = dat, metadata = metadat)
   }
-  parsed_out <- unlist(lapply(raw_out$dataTypeCollection$dataType,s_parse))
-  parsed_out <- data.frame(matrix(parsed_out,ncol=3,nrow=(length(parsed_out)/3),byrow=T))
-  colnames(parsed_out) <- c("ID","Description","Name")
-  filt_id <- 1:dim(parsed_out)[1]
-  #filtering
-  
-  if(!is.null(filter) ){
-    filt_id <- vector()
-    for(i in 1:length(filter)){
-      ## Search both names and descriptions
-      ids <- unique(c(grep(filter[i],parsed_out[,2],ignore.case=T),grep(filter[i],parsed_out[,3],ignore.case=T)))
-      filt_id <- c(filt_id,ids)
-      
-    }
-  }
-  
-  
-  return(parsed_out[filt_id,])
-  
+  class(all) <- "noaa_datatypes"
+  return( all )
 }
-
-# z <-noaa_datatypes(dataset="Annual",filter = c("precip","sod"))

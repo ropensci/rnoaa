@@ -11,12 +11,13 @@
   Plot of climate data.
 }
 \description{
-  Make map to visualize NOAA climate data.
+  This function accepts directly output from the
+  \code{\link{noaa}} function, but not other functions.
 }
 \examples{
 \dontrun{
 # Search for data first, then plot
-out <- noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
+out <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-31')
 noaa_plot(out)
 }
 }

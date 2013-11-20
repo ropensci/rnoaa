@@ -1,7 +1,7 @@
 #' Get NOAA data for any combination of dataset, datatype, station, location, 
 #' and/or location type.
 #' 
-#' This is the main function to get NOAA data.
+#' From the NOAA API docs: The data endpoint is used for actually fetching the data.
 #' 
 #' @import httr
 #' @importFrom plyr compact round_any
@@ -13,7 +13,7 @@
 #' noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01', enddate = '2010-05-31', limit=5)
 #' 
 #' # GHCN-Daily data since Septemer 1 2013
-#' noaa(datasetid='GHCND', startdate = '2013-09-01')
+#' noaa(datasetid='GHCND', startdate = '2013-11-09')
 #' 
 #' # Normals Daily GHCND:USW00014895 dly-tmax-normal data
 #' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05-01', enddate = '2010-05-10')
@@ -40,16 +40,15 @@
 #' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', limit=5)
 #' }
 #' @export
+
 noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL, 
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL, 
   callopts=list(), token=getOption("noaakey", stop("you need an API key NOAA data")),
   dataset=NULL, datatype=NULL, station=NULL, location=NULL, locationtype=NULL, 
   page=NULL, year=NULL, month=NULL, day=NULL, results=NULL)
 {
-  calls <- deparse(sys.calls())
-  calls_vec <- sapply(c("dataset", "datatype", "station", "location", "locationtype", 
-                        "page", "year", "month", "day", "results"), 
-                      function(x) grepl(x, calls))
+  calls <- names(sapply(match.call(), deparse))[-1]
+  calls_vec <- c("dataset","datatype","station","location","locationtype","page","year","month","day","results") %in% calls
   if(any(calls_vec))
     stop("The parameters name, code, modifiedsince, startindex, and maxresults \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa")
   
@@ -88,6 +87,6 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   }
   
   all <- list(atts=atts, data=dat)
-  class(all) <- "noaa"
+  class(all) <- "noaa_data"
   return( all )
 }

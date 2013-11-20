@@ -3,8 +3,6 @@ rnoaa
 
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 
-Still early days, so not much here yet, but look quick start below...
-
 ### Info
 
 * The older version of the NOAA API is on the master branch of this repo for now, and the docs for that API are [here](http://www.ncdc.noaa.gov/cdo-web/webservices)

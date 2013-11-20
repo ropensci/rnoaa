@@ -107,7 +107,7 @@ and/or location type.}
 noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01', enddate = '2010-05-31', limit=5)
 
 # GHCN-Daily data since Septemer 1 2013
-noaa(datasetid='GHCND', startdate = '2013-09-01')
+noaa(datasetid='GHCND', startdate = '2013-11-09')
 
 # Normals Daily GHCND:USW00014895 dly-tmax-normal data
 noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05-01', enddate = '2010-05-10')

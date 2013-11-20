@@ -1,6 +1,6 @@
 \name{noaa_datacats}
 \alias{noaa_datacats}
-\title{Get possible data types for a particular dataset.}
+\title{Get possible data categories for a particular datasetid, locationid, stationid, etc.}
 \usage{
   noaa_datacats(datasetid = NULL, datacategoryid = NULL,
     stationid = NULL, locationid = NULL, startdate = NULL,
@@ -122,7 +122,7 @@
 \dontrun{
 noaa_datacats(limit=41)
 
-## With a filter
+## Single data category
 noaa_datacats(datacategoryid="ANNAGR")
 
 ## Fetch data categories for a given set of locations
