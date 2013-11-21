@@ -1,68 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  \usepackage[vmargin=1in,hmargin=1in]{geometry}
+</head>
+<body>
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{rnoaa vignette}
 -->
 
-rnoaa vignette
-======
-
-### About the package
-
-`rnoaa` is an R wrapper for the NOAA API.
-
-********************
-
-### Install `rnoaa`
-
-Install and load `rnoaa` into the R session.
-
-
-```r
-install.packages("devtools")
-library(devtools)
-install_github("rnoaa", "ropensci", ref = "newapi")
-```
-
-
-
-```r
-library(rnoaa)
-library(plyr)
-```
-
-
-#### Get info on a station by specifcying a datasetid, locationid, and stationid
-
-
-```r
-noaa_stations(datasetid = "GHCND", locationid = "FIPS:12017", stationid = "GHCND:USC00084289")
-```
-
-```
-##                  id                  name datacoverage    mindate
+<h1 id="rnoaa-vignette">rnoaa vignette</h1>
+<h3 id="about-the-package">About the package</h3>
+<p><code>rnoaa</code> is an R wrapper for the NOAA API.</p>
+<hr />
+<h3 id="install-rnoaa">Install <code>rnoaa</code></h3>
+<p>Install and load <code>rnoaa</code> into the R session.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
+<span class="kw">library</span>(devtools)
+<span class="kw">install_github</span>(<span class="st">&quot;rnoaa&quot;</span>, <span class="st">&quot;ropensci&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;newapi&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rnoaa)
+<span class="kw">library</span>(plyr)</code></pre>
+<h4 id="get-info-on-a-station-by-specifcying-a-datasetid-locationid-and-stationid">Get info on a station by specifcying a datasetid, locationid, and stationid</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">noaa_stations</span>(<span class="dt">datasetid =</span> <span class="st">&quot;GHCND&quot;</span>, <span class="dt">locationid =</span> <span class="st">&quot;FIPS:12017&quot;</span>, <span class="dt">stationid =</span> <span class="st">&quot;GHCND:USC00084289&quot;</span>)</code></pre>
+<pre><code>##                  id                  name datacoverage    mindate
 ## 1 GHCND:USC00084289 INVERNESS 3 SE, FL US            1 1899-02-01
 ##      maxdate
-## 1 2013-11-17
-```
-
-
-#### Search for data and get a data.frame or list
-
-
-```r
-out <- noaa(datasetid = "NORMAL_DLY", stationid = "GHCND:USW00014895", datatypeid = "dly-tmax-normal")
-```
-
-
-##### See a data.frame
-
-
-```r
-out$data
-```
-
-```
-##              station value attributes        datatype       date
+## 1 2013-11-17</code></pre>
+<h4 id="search-for-data-and-get-a-data.frame-or-list">Search for data and get a data.frame or list</h4>
+<pre class="sourceCode r"><code class="sourceCode r">out &lt;-<span class="st"> </span><span class="kw">noaa</span>(<span class="dt">datasetid =</span> <span class="st">&quot;NORMAL_DLY&quot;</span>, <span class="dt">stationid =</span> <span class="st">&quot;GHCND:USW00014895&quot;</span>, <span class="dt">datatypeid =</span> <span class="st">&quot;dly-tmax-normal&quot;</span>)</code></pre>
+<h5 id="see-a-data.frame">See a data.frame</h5>
+<pre class="sourceCode r"><code class="sourceCode r">out$data</code></pre>
+<pre><code>##              station value attributes        datatype       date
 ## 1  GHCND:USW00014895   334          S DLY-TMAX-NORMAL 2010-01-01
 ## 2  GHCND:USW00014895   333          S DLY-TMAX-NORMAL 2010-01-02
 ## 3  GHCND:USW00014895   332          S DLY-TMAX-NORMAL 2010-01-03
@@ -87,31 +79,17 @@ out$data
 ## 22 GHCND:USW00014895   330          S DLY-TMAX-NORMAL 2010-01-22
 ## 23 GHCND:USW00014895   331          S DLY-TMAX-NORMAL 2010-01-23
 ## 24 GHCND:USW00014895   332          S DLY-TMAX-NORMAL 2010-01-24
-## 25 GHCND:USW00014895   333          S DLY-TMAX-NORMAL 2010-01-25
-```
-
-
-#### Plot data, super simple, but it's a start
-
-
-```r
-out <- noaa(datasetid = "NORMAL_DLY", stationid = "GHCND:USW00014895", datatypeid = "dly-tmax-normal")
-noaa_plot(out)
-```
-
-![plot of chunk six](figure/six.png) 
-
-
-### Plot data from many stations
-
-#### Get table of all datasets
-
-```r
-noaa_datasets()
-```
-
-```
-## $data
+## 25 GHCND:USW00014895   333          S DLY-TMAX-NORMAL 2010-01-25</code></pre>
+<h4 id="plot-data-super-simple-but-its-a-start">Plot data, super simple, but it's a start</h4>
+<pre class="sourceCode r"><code class="sourceCode r">out &lt;-<span class="st"> </span><span class="kw">noaa</span>(<span class="dt">datasetid =</span> <span class="st">&quot;NORMAL_DLY&quot;</span>, <span class="dt">stationid =</span> <span class="st">&quot;GHCND:USW00014895&quot;</span>, <span class="dt">datatypeid =</span> <span class="st">&quot;dly-tmax-normal&quot;</span>)
+<span class="kw">noaa_plot</span>(out)</code></pre>
+<div class="figure">
+<img src="figure/six.png" alt="plot of chunk six" /><p class="caption">plot of chunk six</p>
+</div>
+<h3 id="plot-data-from-many-stations">Plot data from many stations</h3>
+<h4 id="get-table-of-all-datasets">Get table of all datasets</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">noaa_datasets</span>()</code></pre>
+<pre><code>## $data
 ##            id                    name datacoverage    mindate    maxdate
 ## 1      ANNUAL        Annual Summaries         1.00 1831-02-01 2012-11-01
 ## 2       GHCND         Daily Summaries         1.00 1763-01-01 2013-11-19
@@ -129,20 +107,11 @@ noaa_datasets()
 ##   limit count offset
 ## 1    25    11      1
 ## 
-## attr(,"class")
-## [1] "noaa_datasets"
-```
-
-
-#### Search for GHCND stations within 500 km of a lat/long point, take 10 of them
-
-
-```r
-noaa_stations(datasetid = "GHCND", locationid = "FIPS:12017")
-```
-
-```
-## $atts
+## attr(,&quot;class&quot;)
+## [1] &quot;noaa_datasets&quot;</code></pre>
+<h4 id="search-for-ghcnd-stations-within-500-km-of-a-latlong-point-take-10-of-them">Search for GHCND stations within 500 km of a lat/long point, take 10 of them</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">noaa_stations</span>(<span class="dt">datasetid =</span> <span class="st">&quot;GHCND&quot;</span>, <span class="dt">locationid =</span> <span class="st">&quot;FIPS:12017&quot;</span>)</code></pre>
+<pre><code>## $atts
 ## $atts$totalCount
 ## [1] 10
 ## 
@@ -177,20 +146,11 @@ noaa_stations(datasetid = "GHCND", locationid = "FIPS:12017")
 ## 9        0.9542    -82.62 1948-08-01    29.03 1951-09-30
 ## 10       0.7951    -82.31 1899-02-01    28.80 2013-11-17
 ## 
-## attr(,"class")
-## [1] "noaa_stations"
-```
-
-
-### Get data category data and metadata
-
-
-```r
-noaa_datacats(locationid = "CITY:US390029")
-```
-
-```
-## $atts
+## attr(,&quot;class&quot;)
+## [1] &quot;noaa_stations&quot;</code></pre>
+<h3 id="get-data-category-data-and-metadata">Get data category data and metadata</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">noaa_datacats</span>(<span class="dt">locationid =</span> <span class="st">&quot;CITY:US390029&quot;</span>)</code></pre>
+<pre><code>## $atts
 ## $atts$totalCount
 ## [1] 37
 ## 
@@ -221,7 +181,7 @@ noaa_datacats(locationid = "CITY:US390029")
 ## 16       OVERLAY               Overlay
 ## 17          PRCP         Precipitation
 ## 18  REFLECTIVITY          Reflectivity
-## 19           SKY    Sky cover & clouds
+## 19           SKY    Sky cover &amp; clouds
 ## 20         SPAGR   Spring Agricultural
 ## 21          SPDD    Spring Degree Days
 ## 22        SPPRCP  Spring Precipitation
@@ -229,7 +189,7 @@ noaa_datacats(locationid = "CITY:US390029")
 ## 24         SUAGR   Summer Agricultural
 ## 25          SUDD    Summer Degree Days
 ## 
-## attr(,"class")
-## [1] "noaa_datacats"
-```
-
+## attr(,&quot;class&quot;)
+## [1] &quot;noaa_datacats&quot;</code></pre>
+</body>
+</html>
