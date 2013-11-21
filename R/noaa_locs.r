@@ -1,46 +1,59 @@
 #' Get metadata about NOAA locations.
 #' 
-#' @import lubridate httr
-#' @template rnoaa 
-#' @param datatype The data type, see function \code{\link{noaa_datatypes}}.
-#' @param location A single location code.
-#' @param locationtype A single location type code.
-#' @return A data.frame of metadata.
+#' From the NOAA API docs: Locations can be a specific latitude/longitude point 
+#' such as a station, or a label representing a bounding area such as a city.
+#' 
+#' @import httr 
+#' @importFrom plyr compact rbind.fill
+#' @template location 
+#' @param locationid A valid location id or a chain of location ids seperated by 
+#'    ampersands. Data returned will contain data for the location(s) specified (optional)
+#' @return A list containing metadata and the data, or a single data.frame.
 #' @examples \dontrun{
-#' # Find locations within the Daily Normals dataset
-#' noaa_locs(dataset='NORMAL_DLY', startdate='20100101')
+#' # All locations, first 25 results
+#' noaa_locs()
 #' 
-#' # Displays the location CITY:CA000012 within the PRECIP_HLY dataset
-#' noaa_locs(dataset='PRECIP_HLY', location='CITY:CA000012')
+#' # Fetch more information about location id FIPS:37
+#' noaa_locs(locationid='FIPS:37')
 #' 
-#' # Displays available countries within GHCN-Daily
-#' noaa_locs(dataset='GHCND', locationtype='CNTRY')
+#' # Fetch available locations for the GHCND (Daily Summaries) dataset
+#' noaa_locs(datasetid='GHCND')
+#' 
+#' # Fetch all U.S. States
+#' noaa_locs(locationcategoryid='ST', limit=52)
+#' 
+#' # Fetch list of city locations in descending order
+#' noaa_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #' }
 #' @export
-noaa_locs <- function(dataset=NULL,location=NULL,locationtype=NULL,
-  startdate=NULL,enddate=NULL,page=NULL,
-  token=getOption("noaakey", stop("you need an API key for NOAA data")),
-  callopts=list())
+noaa_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
+  startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, 
+  limit=25, offset=NULL, callopts=list(), 
+  token=getOption("noaakey", stop("you need an API key for NOAA data")))
 {
-  base <- 'http://www.ncdc.noaa.gov/cdo-services/services/datasets'
-  args <- compact(list(startdate=startdate,enddate=enddate,page=page,token=token))
-  params <- compact(list(dataset=dataset,location=location,locationtype=locationtype))
+  url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/locations'
+  if(!is.null(locationid))
+    url <- paste(url, "/", locationid, sep="")
+  args <- compact(list(datasetid=datasetid,locationid=locationid,
+                       locationcategoryid=locationcategoryid,startdate=startdate,
+                       enddate=enddate,token=token,sortfield=sortfield,
+                       sortorder=sortorder,limit=limit,offset=offset))
   
-  if(all(names(params) %in% 'dataset')){
-    url <- sprintf("%s/%s/locations", base, dataset)
-  } else
-    if(all(names(params) %in% c('dataset','location'))){
-      url <- sprintf("%s/%s/locations/%s", base, dataset, location)
-    } else
-    { url <- sprintf("%s/%s/locationtypes/%s/locations", base, dataset, locationtype) }
-  
-  temp <- GET(url, query=args, callopts)
+  callopts <- c(add_headers("token" = token), callopts)
+  temp <- GET(url, query=as.list(args), config=callopts)
   stop_for_status(temp)
   tt <- content(temp)
-  temp <- ldply(tt$locationCollection$location, 
-                function(x) data.frame(x[!names(x) %in% 'locationType'], data.frame(x$locationType)))
-  atts <- list(totalCount=as.numeric(tt$locationCollection$`@totalCount`), 
-               pageCount=as.numeric(tt$locationCollection$`@pageCount`)) 
-  all <- list(atts=atts, data=temp)
-  return( all )
+  if(!is.null(locationid)){
+    data.frame(tt)
+  } else
+  {    
+    if(class(try(tt$results, silent=TRUE))=="try-error")
+      stop("Sorry, no data found")
+    dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
+    meta <- tt$metadata$resultset
+    atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
+    all <- list(atts=atts, data=dat)
+    class(all) <- "noaa_locs"
+    return( all )
+  }
 }

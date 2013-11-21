@@ -2,80 +2,105 @@
 \alias{noaa_datatypes}
 \title{Get possible data types for a particular dataset}
 \usage{
-  noaa_datatypes(dataset = NULL, startdate = NULL,
-    enddate = NULL, page = NULL, filter = NULL,
-    token = getOption("noaakey", stop("you need an API key NOAA data")))
+  noaa_datatypes(datasetid = NULL, datatypeid = NULL,
+    datacategoryid = NULL, stationid = NULL,
+    locationid = NULL, startdate = NULL, enddate = NULL,
+    sortfield = NULL, sortorder = NULL, limit = 25,
+    offset = NULL, callopts = list(),
+    token = getOption("noaakey", stop("you need an API key NOAA data")),
+    dataset = NULL, page = NULL, filter = NULL)
 }
 \arguments{
-  \item{dataset}{foo}
+  \item{datasetid}{Accepts a single valid dataset id. Data
+  returned will be from the dataset specified, see
+  datasets() (required)}
 
-  \item{startdate}{foo}
+  \item{datatypeid}{Accepts a valid data type id or a chain
+  of data type ids seperated by ampersands. Data returned
+  will contain all of the data type(s) specified
+  (optional)}
 
-  \item{enddate}{foo}
+  \item{locationid}{Accepts a valid location id or a chain
+  of location ids seperated by ampersands. Data returned
+  will contain data for the location(s) specified
+  (optional)}
 
-  \item{page}{foo}
+  \item{stationid}{Accepts a valid station id or a chain of
+  of station ids seperated by ampersands. Data returned
+  will contain data for the station(s) specified
+  (optional)}
 
-  \item{filter}{a string or vector of strings used to
-  filter results.  Useful for scenarios where many possible
-  options are returned.}
+  \item{startdate}{Accepts valid ISO formated date
+  (yyyy-mm-dd). Data returned will have data after the
+  specified date. Paramater can be use independently of
+  enddate (optional)}
 
-  \item{token}{API key}
+  \item{enddate}{Accepts valid ISO formated date
+  (yyyy-mm-dd). Data returned will have data before the
+  specified date. Paramater can be use independently of
+  startdate (optional)}
 
-  \item{dataset}{The data set name, see datasets()}
+  \item{sortfield}{The field to sort results by. Supports
+  id, name, mindate, maxdate, and datacoverage fields
+  (optional)}
 
-  \item{startdate}{The date format pattern to limit the
-  start date of the web service query. This is a string
-  date mask represented by "yyyyMMdd" where yyyy is a
-  4-digit year, MM is the 2-digit month, and dd is the
-  2-digit day.  Optional. (Note: not used for Normals)}
+  \item{sortorder}{Which order to sort by, asc or desc.
+  Defaults to asc (optional)}
 
-  \item{enddate}{The date format pattern to limit the end
-  date of the web service query. This is a string date mask
-  represented by "yyyyMMdd" where yyyy is a 4-digit year,
-  MM is the 2-digit month, and dd is the 2-digit day.
-  Optional. (Note: not used for Normals)}
+  \item{limit}{Defaults to 25, limits the number of results
+  in the response. Maximum is 1000 (optional)}
 
-  \item{page}{Results with over 10 items will be paginated.
-  This controls which page of data is returned from the
-  service. This variable only accepts an integer as input
-  and is optional.}
-
-  \item{year}{Used for Annual Normals to specify which
-  yearly set of normals to use. Currently only available
-  from 1981-2010, so specify 2010 as the value.  This is a
-  string date mask represented by "yyyy" where yyyy is a
-  4-digit year.}
-
-  \item{month}{Used for Annual Normals to specify which
-  month to display for Annual Normals. Values include
-  01-12. This is a string date mask represented by "MM"
-  where MM is the 2-digit month}
-
-  \item{day}{Day of the month, between 01 and 31}
+  \item{offset}{Defaults to 0, used to offset the
+  resultlist (optional)}
 
   \item{token}{This must be a valid token token supplied to
   you by NCDC's Climate Data Online access token generator.
-  Required.}
+  (required) Get an API key (=token) at
+  \url{http://www.ncdc.noaa.gov/cdo-web/token}. You can
+  pass your token in as an argument or store it in your
+  .Rprofile file with an entry like \itemize{ \item
+  options("noaakey" = "your-noaa-token") }}
 
   \item{callopts}{Further arguments passed on to the API
-  GET call.}
+  GET call. (optional)}
+
+  \item{dataset}{THIS IS A DEPRECATED ARGUMENT. See
+  datasetid.}
+
+  \item{page}{THIS IS A DEPRECATED ARGUMENT. There is no
+  equivalent argument in v2 of the NOAA API.}
+
+  \item{filter}{THIS IS A DEPRECATED ARGUMENT. There is no
+  equivalent argument in v2 of the NOAA API.}
+
+  \item{datacategoryid}{Optional. Accepts a valid data
+  category id or a chain of data category ids seperated by
+  ampersands (although it is rare to have a data type with
+  more than one data category). Data types returned will be
+  associated with the data category(ies) specified}
 }
 \value{
   A \code{data.frame} for all datasets, or a list of length
   two, each with a data.frame.
 }
 \description{
-  Get possible data types for a particular dataset
+  From the NOAA API docs: Describes the type of data, acts
+  as a label. If it's 64 degrees out right now, then the
+  data type is Air Temperature and the data is 64.
 }
 \examples{
 \dontrun{
-noaa_datatypes(dataset="ANNUAL")
+# Fetch available data types
+noaa_datatypes()
 
-## With a filter
-noaa_datatypes(dataset="Annual",filter="precip")
+# Fetch more information about the ACMH data type id
+noaa_datatypes(datatypeid="ACMH")
 
-### with a two filters
-noaa_datatypes(dataset="Annual",filter = c("precip","sod"))
+# Fetch data types with the air temperature data category
+noaa_datatypes(datacategoryid="TEMP", limit=56)
+
+# Fetch data types that support a given set of stations
+noaa_datatypes(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
 }
 }
 
