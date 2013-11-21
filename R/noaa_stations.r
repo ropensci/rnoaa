@@ -5,6 +5,7 @@
 #' station you want, you can quickly get all manner of data from it
 #' 
 #' @import httr
+#' @importFrom plyr compact 
 #' @template rnoaa 
 #' @template stations
 #' @value A list of metadata.
@@ -60,7 +61,8 @@ noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
                          extent=extent))
   }
   
-  temp <- GET(url, query=args, config = add_headers("token" = token))
+  callopts <- c(add_headers("token" = token), callopts)
+  temp <- GET(url, query=args, config=callopts)
   stop_for_status(temp)
   tt <- content(temp)
   
@@ -73,6 +75,8 @@ noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
     dat <- do.call(rbind.data.frame, tt$results)
     meta <- tt$metadata$resultset
     atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
-    list(atts=atts, data=dat)
+    all <- list(atts=atts, data=dat)
+    class(all) <- "noaa_stations"
+    return( all )
   }
 }

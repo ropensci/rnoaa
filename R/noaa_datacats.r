@@ -1,9 +1,9 @@
 #' Get possible data categories for a particular datasetid, locationid, stationid, etc.
 #' 
 #' From the NOAA API docs: Data Categories represent groupings of data types.
-#'   
-#' @template rnoaa
+#'  
 #' @template datacats
+#' @template all
 #' @value A \code{data.frame} for all datasets, or a list of length two, each 
 #'    with a data.frame.
 #' @examples \dontrun{
@@ -29,16 +29,18 @@ noaa_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
             startdate=startdate, enddate=enddate, sortfield=sortfield, 
             sortorder=sortorder, limit=limit, offset=offset)
   names(args) <- sapply(names(args), function(y) gsub("[0-9+]", "", y), USE.NAMES=FALSE)
-  temp <- GET(url, query=as.list(args), config = add_headers("token" = token))
+  
+  callopts <- c(add_headers("token" = token), callopts)
+  temp <- GET(url, query=as.list(args), config=callopts)
   stop_for_status(temp)
   tt <- content(temp)
   if(!is.null(datacategoryid)){
-    data.frame(tt)
+    data.frame(tt,stringsAsFactors=FALSE)
   } else
   {    
     if(class(try(tt$results, silent=TRUE))=="try-error")
       stop("Sorry, no data found")
-    dat <- do.call(rbind.data.frame, tt$results)
+    dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
     meta <- tt$metadata$resultset
     atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
     all <- list(atts=atts, data=dat)

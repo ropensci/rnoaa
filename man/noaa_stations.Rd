@@ -92,7 +92,11 @@
   equivalent argument in v2 of the NOAA API.}
 }
 \description{
-  Get metadata about NOAA stations.
+  From the NOAA API docs: Stations are where the data comes
+  from (for most datasets) and can be considered the
+  smallest granual of location data. If you know what
+  station you want, you can quickly get all manner of data
+  from it
 }
 \examples{
 \dontrun{

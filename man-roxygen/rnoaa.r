@@ -2,7 +2,7 @@
 #'    dataset specified, see datasets() (required)
 #' @param datatypeid Accepts a valid data type id or a chain of data type ids seperated 
 #'    by ampersands. Data returned will contain all of the data type(s) specified (optional)
-#' @param locationid	Accepts a valid location id or a chain of location ids seperated by 
+#' @param locationid Accepts a valid location id or a chain of location ids seperated by 
 #'    ampersands. Data returned will contain data for the location(s) specified (optional)
 #' @param stationid Accepts a valid station id or a chain of of station ids seperated by 
 #'    ampersands. Data returned will contain data for the station(s) specified (optional)

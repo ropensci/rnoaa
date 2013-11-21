@@ -100,7 +100,8 @@ and/or location type.}
   each with a data.frame.
 }
 \description{
-  This is the main function to get NOAA data.
+  From the NOAA API docs: The data endpoint is used for
+  actually fetching the data.
 }
 \examples{
 \dontrun{

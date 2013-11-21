@@ -4,7 +4,7 @@
 #' From the NOAA API docs: The data endpoint is used for actually fetching the data.
 #' 
 #' @import httr
-#' @importFrom plyr compact round_any
+#' @importFrom plyr compact round_any rbind.fill
 #' @template rnoaa 
 #' @template noaa
 #' @return A data.frame for all datasets, or a list of length two, each with a 
@@ -66,22 +66,24 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
     for(i in seq_along(startat)){
       args$limit <- repto[i]
       args$offset <- startat[i]
-      temp <- GET(base, query=args, config = add_headers("token" = token))
+      callopts <- c(add_headers("token" = token), callopts)
+      temp <- GET(base, query=args, config = callopts)
       stop_for_status(temp)
       tt <- content(temp)
-      out[[i]] <- do.call(rbind.data.frame, tt$results)
+      out[[i]] <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
     }
     dat <- do.call(rbind.data.frame, out)
     meta <- tt$metadata$resultset
     atts <- list(totalCount=meta$count, pageCount="none", offset="none")
   } else
   {   
-    temp <- GET(base, query=args, config = add_headers("token" = token))
+    callopts <- c(add_headers("token" = token), callopts)
+    temp <- GET(base, query=args, config = callopts)
     stop_for_status(temp)
     tt <- content(temp)
-    if(class(try(tt$results, silent=TRUE))=="try-error")
+    if( class(try(tt$results, silent=TRUE))=="try-error"|is.null(try(tt$results, silent=TRUE)) )
       stop("Sorry, no data found")
-    dat <- do.call(rbind.data.frame, tt$results)
+    dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
     meta <- tt$metadata$resultset
     atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
   }

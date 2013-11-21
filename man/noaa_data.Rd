@@ -1,8 +1,12 @@
 \name{noaa_data}
 \alias{noaa_data}
+\alias{noaa_data.noaa_data}
 \title{Get NOAA data.}
 \usage{
   noaa_data(input = NULL, datatype = "df")
+
+  \method{noaa_data}{noaa_data} (input = NULL,
+    datatype = "df")
 }
 \arguments{
   \item{input}{Output from noaa function.}
@@ -18,7 +22,7 @@
 }
 \examples{
 \dontrun{
-out <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-31')
+out <- noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
 noaa_data(input=out) # data.frame output by default
 noaa_data(input=out, datatype="list") # list if you want it
 }

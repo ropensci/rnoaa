@@ -3,6 +3,7 @@
 #' From the NOAA API docs: All of our data are in datasets. To retrieve any data 
 #' from us, you must know what dataset it is in.
 #' 
+#' @importFrom plyr compact rbind.fill
 #' @template rnoaa
 #' @template datasets
 #' @value A data.frame for all datasets, or a list of length two, each with a data.frame.
@@ -44,7 +45,8 @@ noaa_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
     
-  temp <- GET(url, query=args, config = add_headers("token" = token))
+  callopts <- c(add_headers("token" = token), callopts)
+  temp <- GET(url, query=args, config=callopts)
   stop_for_status(temp)
   tt <- content(temp)
   

@@ -1,28 +1,21 @@
 context("noaa_locs")
 
-# Find locations within the Daily Normals dataset
-tt <- noaa_locs(dataset='NORMAL_DLY', startdate='20100101')
-# Displays the location CITY:CA000012 within the PRECIP_HLY dataset
-uu <- noaa_locs(dataset='PRECIP_HLY', location='CITY:CA000012')
-# Displays available countries within GHCN-Daily
-vv <- noaa_locs(dataset='GHCND', locationtype='CNTRY')
+tt <- noaa_locs(datasetid='NORMAL_DLY', startdate='20100101')
+uu <- noaa_locs(locationcategoryid='ST', limit=52)
 
 test_that("noaa_locs returns the correct class", {
-  expect_is(tt, "list")
-  expect_is(uu, "list")
-  expect_is(vv, "list")
+  expect_is(tt, "noaa_locs")
+  expect_is(uu, "noaa_locs")
   expect_is(tt$atts, "list")
   expect_is(tt$data, "data.frame")
   expect_is(tt$atts$totalCount, "numeric")
-  expect_is(tt$data$minDate, "factor")
+  expect_is(tt$data$mindate, "character")
 })
 
 test_that("noaa_locs returns the correct dimensions", {
-  expect_equal(length(tt$atts), 2)
-  expect_equal(dim(tt$data), c(100,8))
-  expect_equal(dim(uu$data), c(1,8))
-  expect_equal(dim(vv$data), c(100,8))
+  expect_equal(length(tt$atts), 3)
+  expect_equal(dim(tt$data), c(25,5))
+  expect_equal(dim(uu$data), c(52,5))
   expect_equal(length(tt), 2)
   expect_equal(length(uu), 2)
-  expect_equal(length(vv), 2)
 })

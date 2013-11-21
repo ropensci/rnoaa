@@ -1,8 +1,11 @@
 \name{noaa_plot}
 \alias{noaa_plot}
+\alias{noaa_plot.noaa_data}
 \title{Make map to visualize NOAA climate data.}
 \usage{
   noaa_plot(input = NULL)
+
+  \method{noaa_plot}{noaa_data} (input = NULL)
 }
 \arguments{
   \item{input}{Input noaa object.}

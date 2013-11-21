@@ -15,11 +15,12 @@
 #' @export
 noaa_plot <- function(input = NULL) UseMethod("noaa_plot")
 
-#' @S3method noaa_plot noaa_data
+#' @method noaa_plot noaa_data
 #' @export
-#' @keywords internal
+#' @rdname noaa_plot
 noaa_plot.noaa_data <- function(input = NULL)
 {
+  value = NULL
   if(!is.noaa_data(input))
     stop("Input is not of class noaa_data")
   

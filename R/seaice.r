@@ -44,7 +44,7 @@ noaa_seaice <- function(url, ...)
 #' @param mo Month, as character abbrevation of a month  (character)
 #' @param Pole One of S (south) or N (north) (character)
 #' @return A list of urls
-#' @examples
+#' @examples \dontrun{
 #' # Get all urls
 #' seaiceeurls()
 #' 
@@ -56,6 +56,7 @@ noaa_seaice <- function(url, ...)
 #' 
 #' # Get urls for Feb of 1980, just S pole
 #' seaiceeurls(yr=1980, mo='Feb', pole='S')
+#' }
 #' @export
 #' @keywords internal
 seaiceeurls <- function(yr=NULL, mo=NULL, pole=NULL)

@@ -1,22 +1,13 @@
 context("noaa_datatypes")
 
-tt <- noaa_datatypes(dataset="ANNUAL")
-## With a filter
-uu <- noaa_datatypes(dataset="Annual",filter="precip")
-### with a two filters
-vv <- noaa_datatypes(dataset="Annual",filter = c("precip","sod"))
+tt <- noaa_datatypes(datasetid="ANNUAL")
 
 test_that("noaa_datatypes returns the correct class", {
-  expect_is(tt, "data.frame")
-  expect_is(uu, "data.frame")
-  expect_is(vv, "data.frame")
-  expect_is(tt$ID, "factor")
-  expect_is(uu$Description, "factor")
-  expect_is(vv$Name, "factor")
+  expect_is(tt, "noaa_datatypes")
+  expect_is(tt$data, "data.frame")
+  expect_is(tt$data$id, "character")
 })
 
 test_that("noaa_datatypes returns the correct dimensions", {
-  expect_equal(dim(tt), c(576,3))
-  expect_equal(dim(uu), c(6,3))
-  expect_equal(dim(vv), c(114,3))
+  expect_equal(dim(tt$data), c(25,5))
 })

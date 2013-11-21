@@ -1,9 +1,10 @@
-rnoaa 0.1.0
+rnoaa 0.0.8
 ===============
 
 NEW FEATURES 
 
 * Wrote new functions for NOAA API v2.
+* A working vignette now.
 
 
 rnoaa 0.0.1

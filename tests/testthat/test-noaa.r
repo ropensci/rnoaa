@@ -1,22 +1,22 @@
-context("noaa")
+context("noaa_data")
 
 # Normals Daily GHCND:USW00014895 dly-tmax-normal data
-aa <- noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', year=2010, month=4)
-# Dataset, location and datatype
-dd <- noaa(dataset='PRECIP_HLY', location='ZIP:28801', datatype='HPCP', year=2001, month=4)
-# Dataset, location, station and datatype
-ee <- noaa(dataset='PRECIP_HLY', location='ZIP:28801', station='COOP:310301', datatype='HPCP', year=2001, month=4)
+aa <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895')
+# Datasetid, locationid and datatypeid
+dd <- noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP')
+# Datasetid, locationid, stationid and datatypeid
+ee <- noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP')
 # Normals Daily GHCND dly-tmax-normal data
-gg <- noaa(dataset='NORMAL_DLY', datatype='dly-tmax-normal', year=2010, month=4)
+gg <- noaa(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal')
 # Hourly Precipitation data for ZIP code 28801
-ii <- noaa(dataset='PRECIP_HLY', location='ZIP:28801', datatype='HPCP', year=1980, month=7, day=17)
+ii <- noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP')
 
 test_that("noaa returns the correct class", {
-  expect_is(aa, "noaa")
-  expect_is(dd, "noaa")
-  expect_is(ee, "noaa")
-  expect_is(gg, "noaa")
-  expect_is(ii, "noaa")
+  expect_is(aa, "noaa_data")
+  expect_is(dd, "noaa_data")
+  expect_is(ee, "noaa_data")
+  expect_is(gg, "noaa_data")
+  expect_is(ii, "noaa_data")
   expect_is(aa$atts, "list")
   expect_is(aa$data, "data.frame")
   expect_is(aa$atts$totalCount, "numeric")
@@ -24,8 +24,8 @@ test_that("noaa returns the correct class", {
 })
 
 test_that("noaa returns the correct dimensions", {
-  expect_equal(length(aa$atts), 2)
-  expect_equal(dim(aa$data), c(100,5))
-  expect_equal(dim(ii$data), c(17,5))
-  expect_equal(length(ii$atts), 2)
+  expect_equal(length(aa$atts), 3)
+  expect_equal(dim(aa$data), c(25,5))
+  expect_equal(dim(ii$data), c(22,5))
+  expect_equal(length(ii$atts), 3)
 })

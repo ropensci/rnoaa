@@ -84,7 +84,9 @@
   two, each with a data.frame.
 }
 \description{
-  Get possible data types for a particular dataset
+  From the NOAA API docs: Describes the type of data, acts
+  as a label. If it's 64 degrees out right now, then the
+  data type is Air Temperature and the data is 64.
 }
 \examples{
 \dontrun{

@@ -1,7 +1,7 @@
 #' Get possible data types for a particular dataset
 #' 
-#' From the NOAA API docs: Describes the type of data, acts as a label. If it's 64°f 
-#' out right now, then the data type is Air Temperature and the data is 64.
+#' From the NOAA API docs: Describes the type of data, acts as a label. If it's 64 
+#' degrees out right now, then the data type is Air Temperature and the data is 64.
 #' 
 #' @import httr  
 #' @importFrom plyr compact rbind.fill
@@ -49,7 +49,8 @@ noaa_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
   
-  temp <- GET(url, query=args, config = add_headers("token" = token))
+  callopts <- c(add_headers("token" = token), callopts)
+  temp <- GET(url, query=args, config=callopts)
   stop_for_status(temp)
   out <- content(temp)
   

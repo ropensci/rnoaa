@@ -1,8 +1,8 @@
-\name{noaa_locs}
-\alias{noaa_locs}
-\title{Get metadata about NOAA locations.}
+\name{noaa_locs_cats}
+\alias{noaa_locs_cats}
+\title{Get metadata about NOAA location categories.}
 \usage{
-  noaa_locs(datasetid = NULL, locationid = NULL,
+  noaa_locs_cats(datasetid = NULL,
     locationcategoryid = NULL, startdate = NULL,
     enddate = NULL, sortfield = NULL, sortorder = NULL,
     limit = 25, offset = NULL, callopts = list(),
@@ -50,36 +50,32 @@
 
   \item{callopts}{Further arguments passed on to the API
   GET call. (optional)}
-
-  \item{locationid}{A valid location id or a chain of
-  location ids seperated by ampersands. Data returned will
-  contain data for the location(s) specified (optional)}
 }
 \value{
   A list containing metadata and the data, or a single
   data.frame.
 }
 \description{
+  Location categories are groupings of similar locations.
+}
+\details{
   From the NOAA API docs: Locations can be a specific
   latitude/longitude point such as a station, or a label
   representing a bounding area such as a city.
 }
 \examples{
 \dontrun{
-# All locations, first 25 results
-noaa_locs()
+# All location categories, first 25 results
+noaa_locs_cats()
 
-# Fetch more information about location id FIPS:37
-noaa_locs(locationid='FIPS:37')
+# Find locations with category id of CLIM_REG
+noaa_locs_cats(locationcategoryid='CLIM_REG')
 
-# Fetch available locations for the GHCND (Daily Summaries) dataset
-noaa_locs(datasetid='GHCND')
+# Displays available location categories within GHCN-Daily dataset
+noaa_locs_cats(datasetid='GHCND')
 
-# Fetch all U.S. States
-noaa_locs(locationcategoryid='ST', limit=52)
-
-# Fetch list of city locations in descending order
-noaa_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
+# Displays available location categories from start date 1970-01-01
+noaa_locs_cats(startdate='1970-01-01')
 }
 }
 

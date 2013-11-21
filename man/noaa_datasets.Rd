@@ -76,7 +76,9 @@
   combination of startdate and enddate arguments.}
 }
 \description{
-  Search NOAA datasets
+  From the NOAA API docs: All of our data are in datasets.
+  To retrieve any data from us, you must know what dataset
+  it is in.
 }
 \examples{
 \dontrun{

@@ -1,12 +1,8 @@
-#' @param datasetid Accepts a single valid dataset id. Data returned will be from the 
+#' @param datasetid A single valid dataset id. Data returned will be from the 
 #'    dataset specified, see datasets() (required)
-#' @param datacategoryid A valid data category id. Data types returned will be associated 
-#' 	  with the data category(ies) specified
-#' @param locationid Accepts a valid location id. Data returned will contain data for 
-#' 	  the location(s) specified (optional)
-#' @param stationid Accepts a valid station id. Data returned will contain data for the 
-#' 	  station(s) specified (optional)
-#' @param startdate Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have 
+#' @param locationcategoryid A valid location id or a chain of location category ids 
+#' 	  seperated by ampersands. Locations returned will be in the location category(ies) specified
+#' @param startdate A valid ISO formated date (yyyy-mm-dd). Data returned will have 
 #'    data after the specified date. Paramater can be use independently of enddate (optional)
 #' @param enddate Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have data 
 #'    before the specified date. Paramater can be use independently of startdate (optional)
