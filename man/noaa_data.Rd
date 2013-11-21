@@ -1,8 +1,12 @@
 \name{noaa_data}
 \alias{noaa_data}
+\alias{noaa_data.noaa_data}
 \title{Get NOAA data.}
 \usage{
   noaa_data(input = NULL, datatype = "df")
+
+  \method{noaa_data}{noaa_data} (input = NULL,
+    datatype = "df")
 }
 \arguments{
   \item{input}{Output from noaa function.}

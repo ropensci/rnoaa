@@ -1,4 +1,7 @@
 #' Make map to visualize NOAA climate data.
+#' 
+#' This function accepts directly output from the \code{\link{noaa}} function, but
+#' not other functions.
 #'
 #' @import ggplot2
 #' @importFrom scales date_breaks date_format
@@ -6,21 +9,22 @@
 #' @return Plot of climate data.
 #' @examples \dontrun{
 #' # Search for data first, then plot
-#' out <- noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
+#' out <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-31')
 #' noaa_plot(out)
 #' }
 #' @export
 noaa_plot <- function(input = NULL) UseMethod("noaa_plot")
 
-#' @S3method noaa_plot noaa
+#' @method noaa_plot noaa_data
 #' @export
-#' @keywords internal
-noaa_plot.noaa <- function(input = NULL)
+#' @rdname noaa_plot
+noaa_plot.noaa_data <- function(input = NULL)
 {
-  if(!is.noaa(input))
-    stop("Input is not of class noaa")
+  value = NULL
+  if(!is.noaa_data(input))
+    stop("Input is not of class noaa_data")
   
-  input <- noaa_data(input)
+  input <- input$data
   input$date <- ymd(str_replace(as.character(input$date), "T00:00:00\\.000", ''))
     
   ggplot(input, aes(date, value)) +

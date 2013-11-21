@@ -1,23 +1,23 @@
 rnoaa
 ========
 
-Still early days, so not much here yet, but look quick start below...
+[![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 
 ### Info
 
-[NOAA web services documentation](http://www.ncdc.noaa.gov/cdo-web/webservices)
+* The older version of the NOAA API is on the master branch of this repo for now, and the docs for that API are [here](http://www.ncdc.noaa.gov/cdo-web/webservices)
+* The docs for the new API, which this dev branch is based on are [here](http://www.ncdc.noaa.gov/cdo-web/webservices/v2)
 
 ### API key
 
 You'll need an API key to use this package (essentially a password). Go [here](http://www.ncdc.noaa.gov/cdo-web/token) to get one. 
-
 
 ### Install from Github (not on CRAN yet)
 
 ```coffee
 install.packages("devtools")
 library(devtools)
-install_github("rnoaa", "ropensci")
+install_github("rnoaa", "ropensci", ref="newapi")
 library(rnoaa)
 ```
 
@@ -197,5 +197,53 @@ ggplot(df, aes(date, value)) +
 ```
 ![](/inst/img/stationsplot.png)
 
+
+### Get data category data and metadata
+
+```coffee
+noaa_datacats(locationid='CITY:US390029')
+
+$atts
+$atts$totalCount
+[1] 37
+
+$atts$pageCount
+[1] 25
+
+$atts$offset
+[1] 1
+
+
+$data
+              id                  name
+2         ANNAGR   Annual Agricultural
+26         ANNDD    Annual Degree Days
+3        ANNPRCP  Annual Precipitation
+4        ANNTEMP    Annual Temperature
+5          AUAGR   Autumn Agricultural
+6           AUDD    Autumn Degree Days
+7         AUPRCP  Autumn Precipitation
+8         AUTEMP    Autumn Temperature
+9           COMP              Computed
+10       COMPAGR Computed Agricultural
+11            DD           Degree Days
+12 DUALPOLMOMENT      Dual-Pol Moments
+13       ECHOTOP             Echo Tops
+14   HYDROMETEOR      Hydrometeor Type
+15         OTHER                 Other
+16       OVERLAY               Overlay
+17          PRCP         Precipitation
+18  REFLECTIVITY          Reflectivity
+19           SKY    Sky cover & clouds
+20         SPAGR   Spring Agricultural
+21          SPDD    Spring Degree Days
+22        SPPRCP  Spring Precipitation
+23        SPTEMP    Spring Temperature
+24         SUAGR   Summer Agricultural
+25          SUDD    Summer Degree Days
+
+attr(,"class")
+[1] "noaa"
+```
 
 [![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)

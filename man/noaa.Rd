@@ -3,103 +3,136 @@
 \title{Get NOAA data for any combination of dataset, datatype, station, location,
 and/or location type.}
 \usage{
-  noaa(dataset = NULL, datatype = NULL, station = NULL,
-    location = NULL, locationtype = NULL, startdate = NULL,
-    enddate = NULL, page = 1, year = NULL, month = NULL,
-    day = NULL, results = NULL,
+  noaa(datasetid = NULL, datatypeid = NULL,
+    stationid = NULL, locationid = NULL, startdate = NULL,
+    enddate = NULL, sortfield = NULL, sortorder = NULL,
+    limit = 25, offset = NULL, callopts = list(),
     token = getOption("noaakey", stop("you need an API key NOAA data")),
-    callopts = list())
+    dataset = NULL, datatype = NULL, station = NULL,
+    location = NULL, locationtype = NULL, page = NULL,
+    year = NULL, month = NULL, day = NULL, results = NULL)
 }
 \arguments{
-  \item{dataset}{The data set name, see datasets()}
+  \item{datasetid}{Accepts a single valid dataset id. Data
+  returned will be from the dataset specified, see
+  datasets() (required)}
 
-  \item{startdate}{The date format pattern to limit the
-  start date of the web service query. This is a string
-  date mask represented by "yyyyMMdd" where yyyy is a
-  4-digit year, MM is the 2-digit month, and dd is the
-  2-digit day.  Optional. (Note: not used for Normals)}
+  \item{datatypeid}{Accepts a valid data type id or a chain
+  of data type ids seperated by ampersands. Data returned
+  will contain all of the data type(s) specified
+  (optional)}
 
-  \item{enddate}{The date format pattern to limit the end
-  date of the web service query. This is a string date mask
-  represented by "yyyyMMdd" where yyyy is a 4-digit year,
-  MM is the 2-digit month, and dd is the 2-digit day.
-  Optional. (Note: not used for Normals)}
+  \item{locationid}{Accepts a valid location id or a chain
+  of location ids seperated by ampersands. Data returned
+  will contain data for the location(s) specified
+  (optional)}
 
-  \item{page}{Results with over 10 items will be paginated.
-  This controls which page of data is returned from the
-  service. This variable only accepts an integer as input
-  and is optional.}
+  \item{stationid}{Accepts a valid station id or a chain of
+  of station ids seperated by ampersands. Data returned
+  will contain data for the station(s) specified
+  (optional)}
 
-  \item{year}{Used for Annual Normals to specify which
-  yearly set of normals to use. Currently only available
-  from 1981-2010, so specify 2010 as the value.  This is a
-  string date mask represented by "yyyy" where yyyy is a
-  4-digit year.}
+  \item{startdate}{Accepts valid ISO formated date
+  (yyyy-mm-dd). Data returned will have data after the
+  specified date. Paramater can be use independently of
+  enddate (optional)}
 
-  \item{month}{Used for Annual Normals to specify which
-  month to display for Annual Normals. Values include
-  01-12. This is a string date mask represented by "MM"
-  where MM is the 2-digit month}
+  \item{enddate}{Accepts valid ISO formated date
+  (yyyy-mm-dd). Data returned will have data before the
+  specified date. Paramater can be use independently of
+  startdate (optional)}
 
-  \item{day}{Day of the month, between 01 and 31}
+  \item{sortfield}{The field to sort results by. Supports
+  id, name, mindate, maxdate, and datacoverage fields
+  (optional)}
+
+  \item{sortorder}{Which order to sort by, asc or desc.
+  Defaults to asc (optional)}
+
+  \item{limit}{Defaults to 25, limits the number of results
+  in the response. Maximum is 1000 (optional)}
+
+  \item{offset}{Defaults to 0, used to offset the
+  resultlist (optional)}
 
   \item{token}{This must be a valid token token supplied to
   you by NCDC's Climate Data Online access token generator.
-  Required.}
+  (required) Get an API key (=token) at
+  \url{http://www.ncdc.noaa.gov/cdo-web/token}. You can
+  pass your token in as an argument or store it in your
+  .Rprofile file with an entry like \itemize{ \item
+  options("noaakey" = "your-noaa-token") }}
 
   \item{callopts}{Further arguments passed on to the API
-  GET call.}
+  GET call. (optional)}
 
-  \item{station}{The station, within a dataset, see
-  function \code{\link{noaa_stations}}}
+  \item{dataset}{THIS IS A DEPRECATED ARGUMENT. See
+  datasetid.}
 
-  \item{datatype}{The data type, see function
-  \code{\link{noaa_datatypes}}}
+  \item{datatype}{THIS IS A DEPRECATED ARGUMENT. See
+  datatypeid.}
 
-  \item{location}{A single location code.}
+  \item{station}{THIS IS A DEPRECATED ARGUMENT. See
+  stationid.}
 
-  \item{results}{The number of results to return.  The
-  larger the number of results requested, the longer the
-  api call will take.}
+  \item{location}{THIS IS A DEPRECATED ARGUMENT. See
+  locationid.}
 
-  \item{locationtype}{A single location type code.}
+  \item{locationtype}{THIS IS A DEPRECATED ARGUMENT. There
+  is no equivalent argument in v2 of the NOAA API.}
+
+  \item{page}{THIS IS A DEPRECATED ARGUMENT. There is no
+  equivalent argument in v2 of the NOAA API.}
+
+  \item{year}{THIS IS A DEPRECATED ARGUMENT. Use
+  combination of startdate and enddate arguments.}
+
+  \item{month}{THIS IS A DEPRECATED ARGUMENT. Use
+  combination of startdate and enddate arguments.}
+
+  \item{day}{THIS IS A DEPRECATED ARGUMENT. Use combination
+  of startdate and enddate arguments.}
+
+  \item{results}{THIS IS A DEPRECATED ARGUMENT. See limit.}
 }
 \value{
   A data.frame for all datasets, or a list of length two,
   each with a data.frame.
 }
 \description{
-  This is the main function to get NOAA data.
+  From the NOAA API docs: The data endpoint is used for
+  actually fetching the data.
 }
 \examples{
 \dontrun{
-# January 2001 GHCN-Daily data
-noaa(dataset='GHCND', year=2001, month=1)
+noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01', enddate = '2010-05-31', limit=5)
+
+# GHCN-Daily data since Septemer 1 2013
+noaa(datasetid='GHCND', startdate = '2013-11-09')
 
 # Normals Daily GHCND:USW00014895 dly-tmax-normal data
-noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', year=2010, month=4)
+noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05-01', enddate = '2010-05-10')
 
 # Dataset, and location in Australia
-noaa(dataset='GHCND', location='FIPS:AS', year=2001, month=4)
+noaa(datasetid='GHCND', locationid='FIPS:AS', limit=5)
 
 # Dataset, location and datatype
-noaa(dataset='PRECIP_HLY', location='ZIP:28801', datatype='HPCP', year=2001, month=4)
+noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', limit=5)
 
 # Dataset, location, station and datatype
-noaa(dataset='PRECIP_HLY', location='ZIP:28801', station='COOP:310301', datatype='HPCP', year=2001, month=4)
+noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP', limit=5)
 
-# Dataset, location, locationtype and datatype
-noaa(dataset='GHCND', location='FIPS:BR', locationtype='CNTRY', datatype='PRCP')
+# Dataset, location, and datatype
+noaa(datasetid='GHCND', locationid='FIPS:BR', datatypeid='PRCP', limit=5)
 
 # Normals Daily GHCND dly-tmax-normal data
-noaa(dataset='NORMAL_DLY', datatype='dly-tmax-normal', year=2010, month=4)
+noaa(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', limit=5)
 
 # Normals Daily GHCND:USW00014895 dly-tmax-normal
-noaa(dataset='NORMAL_DLY', station='GHCND:USW00014895', datatype='dly-tmax-normal', year=2010, month=4)
+noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal', limit=5)
 
 # Hourly Precipitation data for ZIP code 28801
-noaa(dataset='PRECIP_HLY', location='ZIP:28801', datatype='HPCP', year=1980,
-month=7, day=17)
+noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', limit=5)
 }
 }
 

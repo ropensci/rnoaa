@@ -1,15 +1,19 @@
 Package: rnoaa
+Version: 0.0.8
+Date: 2013-11-20
+License: CC0
+Title: NOAA climate data from R.
+Description: This is an R wrapper to the NOAA climate data API at
+    http://www.ncdc.noaa.gov/cdo-web/webservices/v2. There are functions for
+    each of the API endpoints: data, data categories, data sets, data types, 
+    locations, location categories, and stations. In addition, we have an 
+    interface for NOAA sea ice data that is not part of the climate data API.
 Authors@R: c(person("Hart", "Ted", role = c("aut", "cre"),
     email = "emhart@gmail.com"),
     person("Scott", "Chamberlain", role = "aut",
     email = "myrmecocystus@gmail.com"),
     person("Karthik", "Ram", role = "aut",
     email = "karthik.ram@gmail.com"))
-Version: 0.0.1
-License: CC0
-Title: NOAA climate data from R.
-Description: NOAA climate data.
-Date: 2013-07-09
 URL: https://github.com/ropensci/rnoaa
 BugReports: http://www.github.com/ropensci/rnoaa/issues
 LazyLoad: yes
@@ -17,25 +21,25 @@ LazyData: yes
 Imports:
     httr,
     lubridate,
-    scales,
     plyr,
     ggplot2,
-    scales
+    scales,
+    rgdal,
+    maptools,
+    stringr
 Suggests:
     testthat,
     roxygen2
 Collate:
-    'noaa_data.r'
     'noaa_plot.r'
-    'rnoaa2-package.r'
     'zzz.r'
     'noaa_datasets.r'
     'noaa_datatypes.r'
     'noaa.r'
     'noaa_stations.r'
-    'noaa_loc_search.r'
     'seaice.r'
-    'noaa_loc_types.r'
     'noaa_locs.r'
-    'noaa_search.r'
     'startup.r'
+    'noaa_datacats.r'
+    'rnoaa-package.r'
+    'noaa_locs_cats.r'

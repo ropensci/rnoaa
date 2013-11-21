@@ -1,2 +1,10 @@
+.gitignore
+^Makefile$
+.travis.yml
+man-roxygen
 ^.*\.Rproj$
 ^\.Rproj\.user$
+tests/test-all.R
+inst/doc
+inst/img
+CONTRIBUTING.md

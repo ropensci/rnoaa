@@ -19,6 +19,7 @@
   Make all urls for sea ice data
 }
 \examples{
+\dontrun{
 # Get all urls
 seaiceeurls()
 
@@ -30,6 +31,7 @@ seaiceeurls(mo='Feb', pole='S')
 
 # Get urls for Feb of 1980, just S pole
 seaiceeurls(yr=1980, mo='Feb', pole='S')
+}
 }
 \keyword{internal}
 
