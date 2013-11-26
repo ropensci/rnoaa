@@ -20,7 +20,7 @@ test_that("noaa returns the correct class", {
   expect_is(aa$atts, "list")
   expect_is(aa$data, "data.frame")
   expect_is(aa$atts$totalCount, "numeric")
-  expect_is(aa$data$date, "factor")
+  expect_is(aa$data$date, "character")
 })
 
 test_that("noaa returns the correct dimensions", {

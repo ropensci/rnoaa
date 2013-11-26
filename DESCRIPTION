@@ -5,8 +5,8 @@ License: CC0
 Title: NOAA climate data from R.
 Description: This is an R wrapper to the NOAA climate data API at
     http://www.ncdc.noaa.gov/cdo-web/webservices/v2. There are functions for
-    each of the API endpoints: data, data categories, data sets, data types, 
-    locations, location categories, and stations. In addition, we have an 
+    each of the API endpoints: data, data categories, data sets, data types,
+    locations, location categories, and stations. In addition, we have an
     interface for NOAA sea ice data that is not part of the climate data API.
 Authors@R: c(person("Hart", "Ted", role = c("aut", "cre"),
     email = "emhart@gmail.com"),
