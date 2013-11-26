@@ -1,8 +1,6 @@
-S3method(noaa_data,noaa_data)
 S3method(noaa_plot,noaa_data)
 export(is.noaa_data)
 export(noaa)
-export(noaa_data)
 export(noaa_datacats)
 export(noaa_datasets)
 export(noaa_datatypes)
