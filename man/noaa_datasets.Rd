@@ -6,8 +6,8 @@
     stationid = NULL, locationid = NULL, startdate = NULL,
     enddate = NULL, sortfield = NULL, sortorder = NULL,
     limit = 25, offset = NULL, callopts = list(),
-    token = getOption("noaakey", stop("you need an API key NOAA data")),
-    dataset = NULL, page = NULL, year = NULL, month = NULL)
+    token = NULL, dataset = NULL, page = NULL, year = NULL,
+    month = NULL)
 }
 \arguments{
   \item{datasetid}{Accepts a single valid dataset id. Data
@@ -15,17 +15,17 @@
   datasets() (required)}
 
   \item{datatypeid}{Accepts a valid data type id or a chain
-  of data type ids seperated by ampersands. Data returned
-  will contain all of the data type(s) specified
+  of data type ids in a comma-separated vector. Data
+  returned will contain all of the data type(s) specified
   (optional)}
 
   \item{locationid}{Accepts a valid location id or a chain
-  of location ids seperated by ampersands. Data returned
-  will contain data for the location(s) specified
+  of location ids in a comma-separated vector. Data
+  returned will contain data for the location(s) specified
   (optional)}
 
   \item{stationid}{Accepts a valid station id or a chain of
-  of station ids seperated by ampersands. Data returned
+  of station ids in a comma-separated vector. Data returned
   will contain data for the station(s) specified
   (optional)}
 
@@ -97,6 +97,7 @@ noaa_datasets(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
 
 # Multiple datatypeid's
 noaa_datasets(datatypeid=c('ACMC','ACMH','ACSC'))
+noaa_datasets(datasetid='ANNUAL', datatypeid=c('ACMC','ACMH','ACSC'))
 }
 }
 

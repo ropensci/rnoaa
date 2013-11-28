@@ -38,6 +38,9 @@
 #' 
 #' # Hourly Precipitation data for ZIP code 28801
 #' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', limit=5)
+#' 
+#' # Input many datasetid's, etc.
+#' noaa(datasetid='GHCND', datatypeid='PRCP')
 #' }
 #' @export
 
@@ -53,11 +56,15 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   
   if(is.null(token))
     token <- getOption("noaakey", stop("you need an API key NOAA data"))
+  
   base = 'http://www.ncdc.noaa.gov/cdo-web/api/v2/data'
   args <- compact(list(datasetid=datasetid, datatypeid=datatypeid, 
                          locationid=locationid, stationid=stationid, startdate=startdate,
                          enddate=enddate, sortfield=sortfield, sortorder=sortorder, 
                          limit=limit, offset=offset))
+  args <- as.list(unlist(args))
+  names(args) <- gsub("[0-9]+", "", names(args))
+  
   if(limit > 1000){
     startat <- seq(1, limit, 1000)-1
     repto <- rep(1000, length(startat))
@@ -89,7 +96,7 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
     atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
   }
   
-  all <- list(atts=atts, data=dat)
+  all <- list(meta=atts, data=dat)
   class(all) <- "noaa_data"
   return( all )
 }

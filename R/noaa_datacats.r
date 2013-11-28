@@ -43,7 +43,7 @@ noaa_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
     dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
     meta <- tt$metadata$resultset
     atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
-    all <- list(atts=atts, data=dat)
+    all <- list(meta=atts, data=dat)
     class(all) <- "noaa_datacats"
     return( all )
   }

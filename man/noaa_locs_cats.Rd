@@ -14,7 +14,7 @@
   (required)}
 
   \item{locationcategoryid}{A valid location id or a chain
-  of location category ids seperated by ampersands.
+  of location category ids in a comma-separated vector.
   Locations returned will be in the location category(ies)
   specified}
 

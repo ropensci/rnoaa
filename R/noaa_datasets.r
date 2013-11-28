@@ -23,17 +23,21 @@
 #' 
 #' # Multiple datatypeid's
 #' noaa_datasets(datatypeid=c('ACMC','ACMH','ACSC'))
+#' noaa_datasets(datasetid='ANNUAL', datatypeid=c('ACMC','ACMH','ACSC'))
 #' }
 #' @export
+
 noaa_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL, 
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL, 
-  callopts=list(), token=getOption("noaakey", stop("you need an API key NOAA data")),
-  dataset=NULL, page=NULL, year=NULL, month=NULL)
+  callopts=list(), token=NULL, dataset=NULL, page=NULL, year=NULL, month=NULL)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("dataset", "page", "year", "month") %in% calls
   if(any(calls_vec))
     stop("The parameters dataset, page, year, and month \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa_datasets")
+  
+  if(is.null(token))
+    token <- getOption("noaakey", stop("you need an API key NOAA data"))
   
   url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datasets"
   if(!is.null(datasetid))
@@ -52,13 +56,11 @@ noaa_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
   
   if(!is.null(datasetid)){
     dat <- data.frame(tt, stringsAsFactors=FALSE)
-    metadat <- NULL
-    all <- list(data = dat, metadata = metadat)
+    all <- list(meta = NULL, data = dat)
   } else
   {
     dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
-    metadat <- data.frame(tt$metadata$resultset, stringsAsFactors=FALSE)
-    all <- list(data = dat, metadata = metadat)
+    all <- list(meta = tt$metadata$resultset, data = dat)
   }
   class(all) <- "noaa_datasets"
   return( all )    

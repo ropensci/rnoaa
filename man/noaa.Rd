@@ -7,10 +7,10 @@ and/or location type.}
     stationid = NULL, locationid = NULL, startdate = NULL,
     enddate = NULL, sortfield = NULL, sortorder = NULL,
     limit = 25, offset = NULL, callopts = list(),
-    token = getOption("noaakey", stop("you need an API key NOAA data")),
-    dataset = NULL, datatype = NULL, station = NULL,
-    location = NULL, locationtype = NULL, page = NULL,
-    year = NULL, month = NULL, day = NULL, results = NULL)
+    token = NULL, dataset = NULL, datatype = NULL,
+    station = NULL, location = NULL, locationtype = NULL,
+    page = NULL, year = NULL, month = NULL, day = NULL,
+    results = NULL)
 }
 \arguments{
   \item{datasetid}{Accepts a single valid dataset id. Data
@@ -18,17 +18,17 @@ and/or location type.}
   datasets() (required)}
 
   \item{datatypeid}{Accepts a valid data type id or a chain
-  of data type ids seperated by ampersands. Data returned
-  will contain all of the data type(s) specified
+  of data type ids in a comma-separated vector. Data
+  returned will contain all of the data type(s) specified
   (optional)}
 
   \item{locationid}{Accepts a valid location id or a chain
-  of location ids seperated by ampersands. Data returned
-  will contain data for the location(s) specified
+  of location ids in a comma-separated vector. Data
+  returned will contain data for the location(s) specified
   (optional)}
 
   \item{stationid}{Accepts a valid station id or a chain of
-  of station ids seperated by ampersands. Data returned
+  of station ids in a comma-separated vector. Data returned
   will contain data for the station(s) specified
   (optional)}
 
@@ -100,8 +100,8 @@ and/or location type.}
   each with a data.frame.
 }
 \description{
-  From the NOAA API docs: The data endpoint is used for
-  actually fetching the data.
+  From the NOAA API docs: "The data endpoint is used for
+  actually fetching the data."
 }
 \examples{
 \dontrun{
@@ -133,6 +133,9 @@ noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax
 
 # Hourly Precipitation data for ZIP code 28801
 noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', limit=5)
+
+# Input many datasetid's, etc.
+noaa(datasetid='GHCND', datatypeid=c('PRCP'))
 }
 }
 

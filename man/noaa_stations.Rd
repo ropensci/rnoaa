@@ -17,17 +17,17 @@
   datasets() (required)}
 
   \item{datatypeid}{Accepts a valid data type id or a chain
-  of data type ids seperated by ampersands. Data returned
-  will contain all of the data type(s) specified
+  of data type ids in a comma-separated vector. Data
+  returned will contain all of the data type(s) specified
   (optional)}
 
   \item{locationid}{Accepts a valid location id or a chain
-  of location ids seperated by ampersands. Data returned
-  will contain data for the location(s) specified
+  of location ids in a comma-separated vector. Data
+  returned will contain data for the location(s) specified
   (optional)}
 
   \item{stationid}{Accepts a valid station id or a chain of
-  of station ids seperated by ampersands. Data returned
+  of station ids in a comma-separated vector. Data returned
   will contain data for the station(s) specified
   (optional)}
 
