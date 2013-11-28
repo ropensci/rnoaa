@@ -1,7 +1,7 @@
 #' Get NOAA data for any combination of dataset, datatype, station, location, 
 #' and/or location type.
 #' 
-#' From the NOAA API docs: The data endpoint is used for actually fetching the data.
+#' From the NOAA API docs: "The data endpoint is used for actually fetching the data."
 #' 
 #' @import httr
 #' @importFrom plyr compact round_any rbind.fill
@@ -43,15 +43,16 @@
 
 noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL, 
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL, 
-  callopts=list(), token=getOption("noaakey", stop("you need an API key NOAA data")),
-  dataset=NULL, datatype=NULL, station=NULL, location=NULL, locationtype=NULL, 
-  page=NULL, year=NULL, month=NULL, day=NULL, results=NULL)
+  callopts=list(), token=NULL, dataset=NULL, datatype=NULL, station=NULL, location=NULL, 
+  locationtype=NULL, page=NULL, year=NULL, month=NULL, day=NULL, results=NULL)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("dataset","datatype","station","location","locationtype","page","year","month","day","results") %in% calls
   if(any(calls_vec))
     stop("The parameters name, code, modifiedsince, startindex, and maxresults \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa")
   
+  if(is.null(token))
+    token <- getOption("noaakey", stop("you need an API key NOAA data"))
   base = 'http://www.ncdc.noaa.gov/cdo-web/api/v2/data'
   args <- compact(list(datasetid=datasetid, datatypeid=datatypeid, 
                          locationid=locationid, stationid=stationid, startdate=startdate,

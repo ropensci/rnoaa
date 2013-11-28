@@ -1,6 +1,6 @@
 Package: rnoaa
 Version: 0.0.8
-Date: 2013-11-20
+Date: 2013-11-27
 License: CC0
 Title: NOAA climate data from R.
 Description: This is an R wrapper to the NOAA climate data API at
