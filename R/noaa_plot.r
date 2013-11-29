@@ -42,7 +42,7 @@
 #' df <- noaa_combine(out1, out2)
 #' noaa_plot(df)
 #' ## or pass in each element separately
-#' noaa_plot.noaa_data(out1, out2, breaks="45 days")
+#' noaa_plot(out1, out2, breaks="45 days")
 #' }
 #' @export
 noaa_plot <- function(..., breaks="7 days", dateformat='%d/%m/%y') UseMethod("noaa_plot")

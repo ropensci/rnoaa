@@ -85,7 +85,7 @@ noaa_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 1 GHCND:USC00084289 INVERNESS 3 SE, FL US            1 1899-02-01 2013-11-17
 ```
 
-#### Search for data and get a data.frame or list
+#### Search for data
 
 ```coffee
 out <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal')
@@ -110,15 +110,26 @@ head( out$data )
 #### Plot data, super simple, but it's a start
 
 ```coffee
-out <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal')
-noaa_plot(out)
+out <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
+noaa_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
-![](/inst/img/plot.png)
+![](inst/img/plot.png)
 
-### Plot data from many stations
+#### More plotting
 
-#### Get table of all datasets
+You can pass many outputs from calls to the `noaa` function in to the `noaa_plot` function.
+
+```coffee
+out1 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-03-01', enddate = '2010-05-31', limit=500)
+out2 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-09-01', enddate = '2010-10-31', limit=500)
+noaa_plot(out1, out2, breaks="45 days")
+```
+
+![](inst/img/plot1.png)
+
+### Get table of all datasets
+
 ```coffee
 noaa_datasets()
 ```
