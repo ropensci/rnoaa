@@ -38,9 +38,6 @@
 #' 
 #' # Hourly Precipitation data for ZIP code 28801
 #' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', limit=5)
-#' 
-#' # Input many datasetid's, etc.
-#' noaa(datasetid='GHCND', datatypeid='PRCP')
 #' }
 #' @export
 

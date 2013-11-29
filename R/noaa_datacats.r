@@ -35,7 +35,10 @@ noaa_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
   stop_for_status(temp)
   tt <- content(temp)
   if(!is.null(datacategoryid)){
-    data.frame(tt,stringsAsFactors=FALSE)
+    dat <- data.frame(tt,stringsAsFactors=FALSE)
+    all <- list(meta=NULL, data=dat)
+    class(all) <- "noaa_datacats"
+    return( all )
   } else
   {    
     if(class(try(tt$results, silent=TRUE))=="try-error")

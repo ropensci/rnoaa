@@ -44,7 +44,10 @@ noaa_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
   stop_for_status(temp)
   tt <- content(temp)
   if(!is.null(locationid)){
-    data.frame(tt)
+    dat <- data.frame(tt, stringsAsFactors=FALSE)
+    all <- list(meta=NULL, data=dat)
+    class(all) <- "noaa_locs"
+    return( all )
   } else
   {    
     if(class(try(tt$results, silent=TRUE))=="try-error")
@@ -52,7 +55,7 @@ noaa_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
     dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
     meta <- tt$metadata$resultset
     atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
-    all <- list(atts=atts, data=dat)
+    all <- list(meta=atts, data=dat)
     class(all) <- "noaa_locs"
     return( all )
   }

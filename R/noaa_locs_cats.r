@@ -39,7 +39,10 @@ noaa_locs_cats <- function(datasetid=NULL, locationcategoryid=NULL,
   stop_for_status(temp)
   tt <- content(temp)
   if(!is.null(locationcategoryid)){
-    data.frame(tt,stringsAsFactors=FALSE)
+    dat <- data.frame(tt,stringsAsFactors=FALSE)
+    all <- list(meta=NULL, data=dat)
+    class(all) <- "noaa_locs_cats"
+    return( all )
   } else
   {    
     if(class(try(tt$results, silent=TRUE))=="try-error")
