@@ -207,4 +207,30 @@ attr(,"class")
 [1] "noaa_datacats"
 ```
 
+[Please report any issues or bugs](https://github.com/ropensci/rnoaa/issues).
+
+License: CC0
+
+This package is part of the [rOpenSci](http://ropensci.org/packages) project.
+
+To cite package `rnoaa` in publications use:
+
+```coffee
+  Hart Ted, Scott Chamberlain and Karthik Ram (2013). rnoaa: NOAA
+  climate data from R.. R package version 0.0.8.
+  https://github.com/ropensci/rnoaa
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {rnoaa: NOAA climate data from R.},
+    author = {Hart Ted and Scott Chamberlain and Karthik Ram},
+    year = {2013},
+    note = {R package version 0.0.8},
+    url = {https://github.com/ropensci/rnoaa},
+  }
+```
+
+Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
+
 [![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
