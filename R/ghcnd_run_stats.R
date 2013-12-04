@@ -5,7 +5,7 @@
 # July 29, 2013
 #=====================================================================================================================================================================
 
-ghcndStatsData <- function(v,w,x,y,z){
+ghcndRunStats <- function(v,w,x,y,z){
   # IMPORTANT: The extended range must be a multiple of the desired range
   # v=Integer multiple of year range (+-) for extended temporal averaging; Set to 0 to disable; 1=(Range*3), 2=(Range*5), 3=(Range*7)
   # w=Statistical function(s) to apply to each daily element value across stations; MEDIAN IS AUTOMATICALLY COMPUTED FOR EXTENDED RANGE
