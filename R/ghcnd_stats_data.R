@@ -13,6 +13,14 @@ ghcndStatsData <- function(v,w,x,y,z){
   # y=Element(s) by which to subset data for processing
   # z=Year range of interest
   
+  # Data packages
+  library(zoo)             # For working with irregular time-series data
+  library(plyr)            # For working with lists of matrices
+  library(foreach)         # For parallel processing with plyr, setup_parallel() must be performed
+  library(doSNOW)          # For a parallel backend to foreach
+  library(data.table)      # For faster aggregation functions
+  library(FastImputation)  # For fast imputation; replace with mtsdi to improve imputation performance
+  
   # Setup the parallel backend for foreach using doSNOW
   clust <- makeCluster(6,type="SOCK")
   registerDoSNOW(clust)
