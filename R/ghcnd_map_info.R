@@ -13,6 +13,13 @@ ghcndMapInfo <- function(w,x,y,z){
   # y=Background shapefile for cartography
   # z=ghcnd data frame to use
   
+  # Spatial packages
+  library(sp)              # For working with spatial data
+  library(maptools)        # For working with ESRI shapefiles
+  library(rgdal)           # For basic mapping functions
+  library(RColorBrewer)    # For generating colours
+  library(scales)          # For transparencies
+  
   w <- paste(w,"Spatial/",sep="")
   
   # Import an ESRI polygon shapefile with rgdal to store the map projection and/or use to clip the weather station data
