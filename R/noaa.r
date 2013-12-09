@@ -7,8 +7,13 @@
 #' @importFrom plyr compact round_any rbind.fill
 #' @template rnoaa 
 #' @template noaa
-#' @return A data.frame for all datasets, or a list of length two, each with a 
-#'    data.frame.
+#' @details 
+#' Note that NOAA API calls can take a long time depending on the call. If you get a 
+#' error try setting startdate and enddate explicitly. The NOAA API doesn't perform 
+#' well with very long timespans, and will time out and make you angry - beware.
+#' @return A list of length two, a slot of metadata (meta), and a slot for data (data). 
+#' The meta slot is a list of metadata elements, and the data slot is a data.frame, 
+#' possibly of length zero if no data is found.
 #' @examples \dontrun{
 #' noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01', enddate = '2010-05-31', limit=5)
 #' 

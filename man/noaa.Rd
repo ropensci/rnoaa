@@ -4,13 +4,13 @@
 and/or location type.}
 \usage{
   noaa(datasetid = NULL, datatypeid = NULL,
-    stationid = NULL, locationid = NULL, startdate = NULL,
-    enddate = NULL, sortfield = NULL, sortorder = NULL,
-    limit = 25, offset = NULL, callopts = list(),
-    token = NULL, dataset = NULL, datatype = NULL,
-    station = NULL, location = NULL, locationtype = NULL,
-    page = NULL, year = NULL, month = NULL, day = NULL,
-    results = NULL)
+    stationid = NULL, locationid = NULL,
+    startdate = "2013-05-01", enddate = "2013-05-31",
+    sortfield = NULL, sortorder = NULL, limit = 25,
+    offset = NULL, callopts = list(), token = NULL,
+    dataset = NULL, datatype = NULL, station = NULL,
+    location = NULL, locationtype = NULL, page = NULL,
+    year = NULL, month = NULL, day = NULL, results = NULL)
 }
 \arguments{
   \item{datasetid}{Accepts a single valid dataset id. Data
