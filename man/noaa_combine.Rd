@@ -2,16 +2,16 @@
 \alias{noaa_combine}
 \title{Coerce multiple outputs to a single data.frame object.}
 \usage{
-  noaa_combine(...)
+noaa_combine(...)
 }
 \arguments{
   \item{...}{Objects from another noaa_* function.}
 }
 \value{
-  A data.frame
+A data.frame
 }
 \description{
-  Coerce multiple outputs to a single data.frame object.
+Coerce multiple outputs to a single data.frame object.
 }
 \examples{
 \dontrun{

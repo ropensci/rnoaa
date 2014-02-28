@@ -2,10 +2,10 @@
 \alias{noaa_theme}
 \title{Theme for plotting NOAA data}
 \usage{
-  noaa_theme()
+noaa_theme()
 }
 \description{
-  Theme for plotting NOAA data
+Theme for plotting NOAA data
 }
 \keyword{internal}
 

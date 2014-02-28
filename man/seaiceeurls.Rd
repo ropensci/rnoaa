@@ -2,7 +2,7 @@
 \alias{seaiceeurls}
 \title{Make all urls for sea ice data}
 \usage{
-  seaiceeurls(yr = NULL, mo = NULL, pole = NULL)
+seaiceeurls(yr = NULL, mo = NULL, pole = NULL)
 }
 \arguments{
   \item{yr}{Year (numeric)}
@@ -13,10 +13,10 @@
   \item{Pole}{One of S (south) or N (north) (character)}
 }
 \value{
-  A list of urls
+A list of urls
 }
 \description{
-  Make all urls for sea ice data
+Make all urls for sea ice data
 }
 \examples{
 \dontrun{

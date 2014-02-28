@@ -4,6 +4,6 @@
 \alias{rnoaa-package}
 \title{rnoaa}
 \description{
-  rnoaa
+rnoaa
 }
 

@@ -3,14 +3,12 @@
 \title{Get NOAA data for any combination of dataset, datatype, station, location,
 and/or location type.}
 \usage{
-  noaa(datasetid = NULL, datatypeid = NULL,
-    stationid = NULL, locationid = NULL,
-    startdate = "2013-05-01", enddate = "2013-05-31",
-    sortfield = NULL, sortorder = NULL, limit = 25,
-    offset = NULL, callopts = list(), token = NULL,
-    dataset = NULL, datatype = NULL, station = NULL,
-    location = NULL, locationtype = NULL, page = NULL,
-    year = NULL, month = NULL, day = NULL, results = NULL)
+noaa(datasetid = NULL, datatypeid = NULL, stationid = NULL,
+  locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
+  sortorder = NULL, limit = 25, offset = NULL, callopts = list(),
+  token = NULL, dataset = NULL, datatype = NULL, station = NULL,
+  location = NULL, locationtype = NULL, page = NULL, year = NULL,
+  month = NULL, day = NULL, results = NULL)
 }
 \arguments{
   \item{datasetid}{Accepts a single valid dataset id. Data
@@ -96,12 +94,21 @@ and/or location type.}
   \item{results}{THIS IS A DEPRECATED ARGUMENT. See limit.}
 }
 \value{
-  A data.frame for all datasets, or a list of length two,
-  each with a data.frame.
+A list of length two, a slot of metadata (meta), and a slot
+for data (data). The meta slot is a list of metadata
+elements, and the data slot is a data.frame, possibly of
+length zero if no data is found.
 }
 \description{
-  From the NOAA API docs: "The data endpoint is used for
-  actually fetching the data."
+From the NOAA API docs: "The data endpoint is used for
+actually fetching the data."
+}
+\details{
+Note that NOAA API calls can take a long time depending on
+the call. If you get a error try setting startdate and
+enddate explicitly. The NOAA API doesn't perform well with
+very long timespans, and will time out and make you angry -
+beware.
 }
 \examples{
 \dontrun{

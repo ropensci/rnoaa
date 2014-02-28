@@ -1,6 +1,6 @@
 Package: rnoaa
-Version: 0.0.8
-Date: 2013-11-28
+Version: 0.0.9
+Date: 2014-02-28
 License: CC0
 Title: NOAA climate data from R.
 Description: This is an R wrapper to the NOAA climate data API at
@@ -26,21 +26,9 @@ Imports:
     scales,
     rgdal,
     maptools,
-    stringr
+    stringr,
+    XML,
+    data.table
 Suggests:
     testthat,
     roxygen2
-Collate:
-    'noaa_plot.r'
-    'zzz.r'
-    'noaa_datasets.r'
-    'noaa_datatypes.r'
-    'noaa.r'
-    'noaa_stations.r'
-    'seaice.r'
-    'noaa_locs.r'
-    'startup.r'
-    'noaa_datacats.r'
-    'rnoaa-package.r'
-    'noaa_locs_cats.r'
-    'noaa_combine.r'

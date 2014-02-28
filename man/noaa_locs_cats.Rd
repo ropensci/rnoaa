@@ -2,11 +2,10 @@
 \alias{noaa_locs_cats}
 \title{Get metadata about NOAA location categories.}
 \usage{
-  noaa_locs_cats(datasetid = NULL,
-    locationcategoryid = NULL, startdate = NULL,
-    enddate = NULL, sortfield = NULL, sortorder = NULL,
-    limit = 25, offset = NULL, callopts = list(),
-    token = getOption("noaakey", stop("you need an API key for NOAA data")))
+noaa_locs_cats(datasetid = NULL, locationcategoryid = NULL,
+  startdate = NULL, enddate = NULL, sortfield = NULL, sortorder = NULL,
+  limit = 25, offset = NULL, callopts = list(),
+  token = getOption("noaakey", stop("you need an API key for NOAA data")))
 }
 \arguments{
   \item{datasetid}{A single valid dataset id. Data returned
@@ -52,16 +51,16 @@
   GET call. (optional)}
 }
 \value{
-  A list containing metadata and the data, or a single
-  data.frame.
+A list containing metadata and the data, or a single
+data.frame.
 }
 \description{
-  Location categories are groupings of similar locations.
+Location categories are groupings of similar locations.
 }
 \details{
-  From the NOAA API docs: Locations can be a specific
-  latitude/longitude point such as a station, or a label
-  representing a bounding area such as a city.
+From the NOAA API docs: Locations can be a specific
+latitude/longitude point such as a station, or a label
+representing a bounding area such as a city.
 }
 \examples{
 \dontrun{

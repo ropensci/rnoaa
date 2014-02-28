@@ -2,14 +2,12 @@
 \alias{noaa_stations}
 \title{Get metadata about NOAA stations.}
 \usage{
-  noaa_stations(stationid = NULL, datasetid = NULL,
-    datatypeid = NULL, locationid = NULL, startdate = NULL,
-    enddate = NULL, sortfield = NULL, sortorder = NULL,
-    limit = 25, offset = NULL, datacategoryid = NULL,
-    extent = NULL,
-    token = getOption("noaakey", stop("you need an API key NOAA data")),
-    callopts = list(), dataset = NULL, station = NULL,
-    location = NULL, locationtype = NULL, page = NULL)
+noaa_stations(stationid = NULL, datasetid = NULL, datatypeid = NULL,
+  locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
+  sortorder = NULL, limit = 25, offset = NULL, datacategoryid = NULL,
+  extent = NULL, token = getOption("noaakey",
+  stop("you need an API key NOAA data")), callopts = list(), dataset = NULL,
+  station = NULL, location = NULL, locationtype = NULL, page = NULL)
 }
 \arguments{
   \item{datasetid}{Accepts a single valid dataset id. Data
@@ -92,11 +90,10 @@
   equivalent argument in v2 of the NOAA API.}
 }
 \description{
-  From the NOAA API docs: Stations are where the data comes
-  from (for most datasets) and can be considered the
-  smallest granual of location data. If you know what
-  station you want, you can quickly get all manner of data
-  from it
+From the NOAA API docs: Stations are where the data comes
+from (for most datasets) and can be considered the smallest
+granual of location data. If you know what station you
+want, you can quickly get all manner of data from it
 }
 \examples{
 \dontrun{

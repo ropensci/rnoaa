@@ -2,11 +2,10 @@
 \alias{noaa_datacats}
 \title{Get possible data categories for a particular datasetid, locationid, stationid, etc.}
 \usage{
-  noaa_datacats(datasetid = NULL, datacategoryid = NULL,
-    stationid = NULL, locationid = NULL, startdate = NULL,
-    enddate = NULL, sortfield = NULL, sortorder = NULL,
-    limit = 25, offset = NULL, callopts = list(),
-    token = getOption("noaakey", stop("you need an API key NOAA data")))
+noaa_datacats(datasetid = NULL, datacategoryid = NULL, stationid = NULL,
+  locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
+  sortorder = NULL, limit = 25, offset = NULL, callopts = list(),
+  token = getOption("noaakey", stop("you need an API key NOAA data")))
 }
 \arguments{
   \item{datasetid}{Accepts a single valid dataset id. Data
@@ -60,8 +59,8 @@
   GET call. (optional)}
 }
 \description{
-  From the NOAA API docs: Data Categories represent
-  groupings of data types.
+From the NOAA API docs: Data Categories represent groupings
+of data types.
 }
 \examples{
 \dontrun{
@@ -76,7 +75,7 @@ noaa_datacats(locationid=c('CITY:US390029', 'FIPS:37'))
 }
 }
 \references{
-  Vignette at
-  \url{http://ropensci.org/tutorials/rnoaa_tutorial.html}
+Vignette at
+\url{http://ropensci.org/tutorials/rnoaa_tutorial.html}
 }
 

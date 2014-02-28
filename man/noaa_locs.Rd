@@ -2,11 +2,10 @@
 \alias{noaa_locs}
 \title{Get metadata about NOAA locations.}
 \usage{
-  noaa_locs(datasetid = NULL, locationid = NULL,
-    locationcategoryid = NULL, startdate = NULL,
-    enddate = NULL, sortfield = NULL, sortorder = NULL,
-    limit = 25, offset = NULL, callopts = list(),
-    token = getOption("noaakey", stop("you need an API key for NOAA data")))
+noaa_locs(datasetid = NULL, locationid = NULL, locationcategoryid = NULL,
+  startdate = NULL, enddate = NULL, sortfield = NULL, sortorder = NULL,
+  limit = 25, offset = NULL, callopts = list(),
+  token = getOption("noaakey", stop("you need an API key for NOAA data")))
 }
 \arguments{
   \item{datasetid}{A single valid dataset id. Data returned
@@ -56,13 +55,13 @@
   contain data for the location(s) specified (optional)}
 }
 \value{
-  A list containing metadata and the data, or a single
-  data.frame.
+A list containing metadata and the data, or a single
+data.frame.
 }
 \description{
-  From the NOAA API docs: Locations can be a specific
-  latitude/longitude point such as a station, or a label
-  representing a bounding area such as a city.
+From the NOAA API docs: Locations can be a specific
+latitude/longitude point such as a station, or a label
+representing a bounding area such as a city.
 }
 \examples{
 \dontrun{

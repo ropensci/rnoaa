@@ -2,13 +2,12 @@
 \alias{noaa_datatypes}
 \title{Get possible data types for a particular dataset}
 \usage{
-  noaa_datatypes(datasetid = NULL, datatypeid = NULL,
-    datacategoryid = NULL, stationid = NULL,
-    locationid = NULL, startdate = NULL, enddate = NULL,
-    sortfield = NULL, sortorder = NULL, limit = 25,
-    offset = NULL, callopts = list(),
-    token = getOption("noaakey", stop("you need an API key NOAA data")),
-    dataset = NULL, page = NULL, filter = NULL)
+noaa_datatypes(datasetid = NULL, datatypeid = NULL, datacategoryid = NULL,
+  stationid = NULL, locationid = NULL, startdate = NULL, enddate = NULL,
+  sortfield = NULL, sortorder = NULL, limit = 25, offset = NULL,
+  callopts = list(), token = getOption("noaakey",
+  stop("you need an API key NOAA data")), dataset = NULL, page = NULL,
+  filter = NULL)
 }
 \arguments{
   \item{datasetid}{Accepts a single valid dataset id. Data
@@ -80,13 +79,13 @@
   associated with the data category(ies) specified}
 }
 \value{
-  A \code{data.frame} for all datasets, or a list of length
-  two, each with a data.frame.
+A \code{data.frame} for all datasets, or a list of length
+two, each with a data.frame.
 }
 \description{
-  From the NOAA API docs: Describes the type of data, acts
-  as a label. If it's 64 degrees out right now, then the
-  data type is Air Temperature and the data is 64.
+From the NOAA API docs: Describes the type of data, acts as
+a label. If it's 64 degrees out right now, then the data
+type is Air Temperature and the data is 64.
 }
 \examples{
 \dontrun{

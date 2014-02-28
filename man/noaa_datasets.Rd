@@ -2,12 +2,11 @@
 \alias{noaa_datasets}
 \title{Search NOAA datasets}
 \usage{
-  noaa_datasets(datasetid = NULL, datatypeid = NULL,
-    stationid = NULL, locationid = NULL, startdate = NULL,
-    enddate = NULL, sortfield = NULL, sortorder = NULL,
-    limit = 25, offset = NULL, callopts = list(),
-    token = NULL, dataset = NULL, page = NULL, year = NULL,
-    month = NULL)
+noaa_datasets(datasetid = NULL, datatypeid = NULL, stationid = NULL,
+  locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
+  sortorder = NULL, limit = 25, offset = NULL, callopts = list(),
+  token = NULL, dataset = NULL, page = NULL, year = NULL,
+  month = NULL)
 }
 \arguments{
   \item{datasetid}{Accepts a single valid dataset id. Data
@@ -76,9 +75,9 @@
   combination of startdate and enddate arguments.}
 }
 \description{
-  From the NOAA API docs: All of our data are in datasets.
-  To retrieve any data from us, you must know what dataset
-  it is in.
+From the NOAA API docs: All of our data are in datasets. To
+retrieve any data from us, you must know what dataset it is
+in.
 }
 \examples{
 \dontrun{
