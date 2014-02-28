@@ -1,6 +1,7 @@
 .gitignore
 ^Makefile$
 .travis.yml
+.appveyor.yml
 man-roxygen
 ^.*\.Rproj$
 ^\.Rproj\.user$
