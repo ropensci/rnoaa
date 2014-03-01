@@ -8,8 +8,8 @@ Description: This is an R wrapper to the NOAA climate data API at
     each of the API endpoints: data, data categories, data sets, data types,
     locations, location categories, and stations. In addition, we have an
     interface for NOAA sea ice data that is not part of the climate data API.
-Authors@R: c(person("Hart", "Ted", role = c("aut", "cre"),
-    email = "emhart@gmail.com"),
+Authors@R: c(person("Hart", "Ted", role = c("aut","cre"),
+    email = "Edmund.m.hart@gmail.com"),
     person("Scott", "Chamberlain", role = "aut",
     email = "myrmecocystus@gmail.com"),
     person("Karthik", "Ram", role = "aut",
