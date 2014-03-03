@@ -15,13 +15,15 @@
 #' The meta slot is a list of metadata elements, and the data slot is a data.frame, 
 #' possibly of length zero if no data is found.
 #' @examples \dontrun{
-#' noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01', enddate = '2010-05-31', limit=5)
+#' noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01', 
+#' enddate = '2010-05-31', limit=5)
 #' 
 #' # GHCN-Daily data since Septemer 1 2013
 #' noaa(datasetid='GHCND', startdate = '2013-11-09')
 #' 
 #' # Normals Daily GHCND:USW00014895 dly-tmax-normal data
-#' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05-01', enddate = '2010-05-10')
+#' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05-01', 
+#' enddate = '2010-05-10')
 #' 
 #' # Dataset, and location in Australia
 #' noaa(datasetid='GHCND', locationid='FIPS:AS', limit=5)
@@ -30,7 +32,8 @@
 #' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', limit=5)
 #' 
 #' # Dataset, location, station and datatype
-#' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP', limit=5)
+#' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', 
+#' datatypeid='HPCP', limit=5)
 #' 
 #' # Dataset, location, and datatype
 #' noaa(datasetid='GHCND', locationid='FIPS:BR', datatypeid='PRCP', limit=5)
@@ -39,7 +42,8 @@
 #' noaa(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', limit=5)
 #' 
 #' # Normals Daily GHCND:USW00014895 dly-tmax-normal
-#' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal', limit=5)
+#' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', 
+#' datatypeid='dly-tmax-normal', limit=5)
 #' 
 #' # Hourly Precipitation data for ZIP code 28801
 #' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', limit=5)

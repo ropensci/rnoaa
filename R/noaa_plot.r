@@ -27,18 +27,22 @@
 #'    
 #' @examples \dontrun{
 #' # Search for data first, then plot
-#' out <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
+#' out <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', 
+#' startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
 #' noaa_plot(out)
 #' noaa_plot(out, breaks="14 days")
 #' noaa_plot(out, breaks="1 month", dateformat="%d/%m")
 #' noaa_plot(out, breaks="1 month", dateformat="%d/%m")
 #' 
-#' out2 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-05-03', limit=100)
+#' out2 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', 
+#' startdate = '2010-05-01', enddate = '2010-05-03', limit=100)
 #' noaa_plot(out2, breaks="6 hours", dateformat="%H")
 #' 
 #' # Combine many calls to noaa function
-#' out1 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-03-01', enddate = '2010-05-31', limit=500)
-#' out2 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-09-01', enddate = '2010-10-31', limit=500)
+#' out1 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', 
+#' startdate = '2010-03-01', enddate = '2010-05-31', limit=500)
+#' out2 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', 
+#' startdate = '2010-09-01', enddate = '2010-10-31', limit=500)
 #' df <- noaa_combine(out1, out2)
 #' noaa_plot(df)
 #' ## or pass in each element separately

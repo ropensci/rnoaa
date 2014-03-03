@@ -88,27 +88,32 @@ output data are in the WGS84 datum.
 noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 
 # Get all 'nx3tvs' within 15 miles of latitude = 32.7 and longitude = -102.0
-noaa_swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', radius=15, center=c(-102.0,32.7))
+noaa_swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507',
+radius=15, center=c(-102.0,32.7))
 
 # Get the warning text for the warning with id=533623
 noaa_swdi(dataset='warn', id=533623)
 
 # Get all 'plsr' within the bounding box (-91,30,-90,31)
-noaa_swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90,31))
+noaa_swdi(dataset='plsr', startdate='20060505', enddate='20060510',
+bbox=c(-91,30,-90,31))
 
 # Get all 'nx3tvs' within the tile -102.1/32.6 (-102.15,32.55,-102.25,32.65)
-noaa_swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,32.62))
-
+noaa_swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507',
+tile=c(-102.12,32.62))
 
 # Counts
 ## Note: stat='count' will only return metadata, nothing in the data or shape slots
 ## Note: stat='tilesum:...' returns counts in the data slot for each date for that tile,
 ##   and shape data
 ## Get number of 'nx3tvs' within 15 miles of latitude = 32.7 and longitude = -102.0
-noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060516', radius=15, center=c(-102.0,32.7), stat='count')
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060516', radius=15,
+center=c(-102.0,32.7), stat='count')
 
-## Get daily count nx3tvs features on .1 degree grid centered at latitude = 32.7 and longitude = -102.0
-noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-102.0,32.7')
+## Get daily count nx3tvs features on .1 degree grid centered at latitude = 32.7
+## and longitude = -102.0
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516',
+stat='tilesum:-102.0,32.7')
 }
 }
 

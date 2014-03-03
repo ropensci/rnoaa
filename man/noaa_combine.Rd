@@ -16,8 +16,10 @@ Coerce multiple outputs to a single data.frame object.
 \examples{
 \dontrun{
 # data
-out1 <- noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01', enddate = '2010-05-31', limit=10)
-out2 <- noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-07-01', enddate = '2010-07-31', limit=10)
+out1 <- noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01',
+enddate = '2010-05-31', limit=10)
+out2 <- noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-07-01',
+enddate = '2010-07-31', limit=10)
 noaa_combine(out1, out2)
 
 # data sets
@@ -46,9 +48,11 @@ out2 <- noaa_locs_cats(locationcategoryid='CLIM_REG')
 noaa_combine(out1, out2)
 
 # stations
-out1 <- noaa_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
+out1 <- noaa_stations(datasetid='GHCND', locationid='FIPS:12017',
+stationid='GHCND:USC00084289')
 out2 <- noaa_stations(stationid='COOP:010008')
-out3 <- noaa_stations(datasetid='PRECIP_HLY', startdate='19900101', enddate='19901231')
+out3 <- noaa_stations(datasetid='PRECIP_HLY', startdate='19900101',
+enddate='19901231')
 out4 <- noaa_stations(datasetid='GHCND', locationid='FIPS:12017')
 noaa_combine(out1, out2, out3, out4)
 
