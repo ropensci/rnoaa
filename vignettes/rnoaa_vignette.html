@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }
+  </style>
+  \usepackage[vmargin=1in,hmargin=1in]{geometry}
+</head>
+<body>
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{rnoaa vignette}
+-->
+
+<h1 id="rnoaa-vignette">rnoaa vignette</h1>
+<h3 id="about-the-package">About the package</h3>
+<p><code>rnoaa</code> is an R wrapper for the NOAA API.</p>
+<hr />
+<h3 id="install-rnoaa">Install <code>rnoaa</code></h3>
+<p>Install and load <code>rnoaa</code> into the R session.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
+<span class="kw">library</span>(devtools)
+<span class="kw">install_github</span>(<span class="st">&quot;rnoaa&quot;</span>, <span class="st">&quot;ropensci&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;newapi&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rnoaa)
+<span class="kw">library</span>(plyr)</code></pre>
+<h4 id="get-info-on-a-station-by-specifying-a-datasetid-locationid-and-stationid">Get info on a station by specifying a datasetid, locationid, and stationid</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">noaa_stations</span>(<span class="dt">datasetid =</span> <span class="st">&quot;GHCND&quot;</span>, <span class="dt">locationid =</span> <span class="st">&quot;FIPS:12017&quot;</span>, <span class="dt">stationid =</span> <span class="st">&quot;GHCND:USC00084289&quot;</span>)</code></pre>
+<pre><code>## $meta
+## NULL
+## 
+## $data
+##                  id                  name datacoverage    mindate
+## 1 GHCND:USC00084289 INVERNESS 3 SE, FL US            1 1899-02-01
+##      maxdate
+## 1 2014-02-26
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;noaa_stations&quot;</code></pre>
+<h4 id="search-for-data-and-get-a-data.frame-or-list">Search for data and get a data.frame or list</h4>
+<pre class="sourceCode r"><code class="sourceCode r">out &lt;-<span class="st"> </span><span class="kw">noaa</span>(<span class="dt">datasetid =</span> <span class="st">&quot;NORMAL_DLY&quot;</span>, <span class="dt">stationid =</span> <span class="st">&quot;GHCND:USW00014895&quot;</span>, <span class="dt">datatypeid =</span> <span class="st">&quot;dly-tmax-normal&quot;</span>)</code></pre>
+<p>See a data.frame</p>
+<pre class="sourceCode r"><code class="sourceCode r">out$data</code></pre>
+<pre><code>##              station value attributes        datatype                date
+## 1  GHCND:USW00014895   334          S DLY-TMAX-NORMAL 2010-01-01T00:00:00
+## 2  GHCND:USW00014895   333          S DLY-TMAX-NORMAL 2010-01-02T00:00:00
+## 3  GHCND:USW00014895   332          S DLY-TMAX-NORMAL 2010-01-03T00:00:00
+## 4  GHCND:USW00014895   331          S DLY-TMAX-NORMAL 2010-01-04T00:00:00
+## 5  GHCND:USW00014895   331          S DLY-TMAX-NORMAL 2010-01-05T00:00:00
+## 6  GHCND:USW00014895   330          S DLY-TMAX-NORMAL 2010-01-06T00:00:00
+## 7  GHCND:USW00014895   329          S DLY-TMAX-NORMAL 2010-01-07T00:00:00
+## 8  GHCND:USW00014895   329          S DLY-TMAX-NORMAL 2010-01-08T00:00:00
+## 9  GHCND:USW00014895   329          S DLY-TMAX-NORMAL 2010-01-09T00:00:00
+## 10 GHCND:USW00014895   328          S DLY-TMAX-NORMAL 2010-01-10T00:00:00
+## 11 GHCND:USW00014895   328          S DLY-TMAX-NORMAL 2010-01-11T00:00:00
+## 12 GHCND:USW00014895   328          S DLY-TMAX-NORMAL 2010-01-12T00:00:00
+## 13 GHCND:USW00014895   328          S DLY-TMAX-NORMAL 2010-01-13T00:00:00
+## 14 GHCND:USW00014895   328          S DLY-TMAX-NORMAL 2010-01-14T00:00:00
+## 15 GHCND:USW00014895   328          S DLY-TMAX-NORMAL 2010-01-15T00:00:00
+## 16 GHCND:USW00014895   328          S DLY-TMAX-NORMAL 2010-01-16T00:00:00
+## 17 GHCND:USW00014895   328          S DLY-TMAX-NORMAL 2010-01-17T00:00:00
+## 18 GHCND:USW00014895   329          S DLY-TMAX-NORMAL 2010-01-18T00:00:00
+## 19 GHCND:USW00014895   329          S DLY-TMAX-NORMAL 2010-01-19T00:00:00
+## 20 GHCND:USW00014895   329          S DLY-TMAX-NORMAL 2010-01-20T00:00:00
+## 21 GHCND:USW00014895   330          S DLY-TMAX-NORMAL 2010-01-21T00:00:00
+## 22 GHCND:USW00014895   330          S DLY-TMAX-NORMAL 2010-01-22T00:00:00
+## 23 GHCND:USW00014895   331          S DLY-TMAX-NORMAL 2010-01-23T00:00:00
+## 24 GHCND:USW00014895   332          S DLY-TMAX-NORMAL 2010-01-24T00:00:00
+## 25 GHCND:USW00014895   333          S DLY-TMAX-NORMAL 2010-01-25T00:00:00</code></pre>
+<h4 id="plot-data-super-simple-but-its-a-start">Plot data, super simple, but it's a start</h4>
+<pre class="sourceCode r"><code class="sourceCode r">out &lt;-<span class="st"> </span><span class="kw">noaa</span>(<span class="dt">datasetid =</span> <span class="st">&quot;NORMAL_DLY&quot;</span>, <span class="dt">stationid =</span> <span class="st">&quot;GHCND:USW00014895&quot;</span>, <span class="dt">datatypeid =</span> <span class="st">&quot;dly-tmax-normal&quot;</span>)
+<span class="kw">noaa_plot</span>(out)</code></pre>
+<div class="figure">
+<img src="figure/six.png" alt="plot of chunk six" /><p class="caption">plot of chunk six</p>
+</div>
+<h3 id="more-on-plotting">More on plotting</h3>
+<h4 id="example-1">Example 1</h4>
+<p>Search for data first, then plot</p>
+<pre class="sourceCode r"><code class="sourceCode r">out &lt;-<span class="st"> </span><span class="kw">noaa</span>(<span class="dt">datasetid =</span> <span class="st">&quot;GHCND&quot;</span>, <span class="dt">stationid =</span> <span class="st">&quot;GHCND:USW00014895&quot;</span>, <span class="dt">datatypeid =</span> <span class="st">&quot;PRCP&quot;</span>, 
+    <span class="dt">startdate =</span> <span class="st">&quot;2010-05-01&quot;</span>, <span class="dt">enddate =</span> <span class="st">&quot;2010-10-31&quot;</span>, <span class="dt">limit =</span> <span class="dv">500</span>)</code></pre>
+<p>Default plot</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">noaa_plot</span>(out)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-2.png" alt="plot of chunk unnamed-chunk-2" /><p class="caption">plot of chunk unnamed-chunk-2</p>
+</div>
+<p>Create 14 day breaks</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">noaa_plot</span>(out, <span class="dt">breaks =</span> <span class="st">&quot;14 days&quot;</span>)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-3.png" alt="plot of chunk unnamed-chunk-3" /><p class="caption">plot of chunk unnamed-chunk-3</p>
+</div>
+<p>One month breaks</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">noaa_plot</span>(out, <span class="dt">breaks =</span> <span class="st">&quot;1 month&quot;</span>, <span class="dt">dateformat =</span> <span class="st">&quot;%d/%m&quot;</span>)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-4.png" alt="plot of chunk unnamed-chunk-4" /><p class="caption">plot of chunk unnamed-chunk-4</p>
+</div>
+<h4 id="example-2">Example 2</h4>
+<p>Search for data</p>
+<pre class="sourceCode r"><code class="sourceCode r">out2 &lt;-<span class="st"> </span><span class="kw">noaa</span>(<span class="dt">datasetid =</span> <span class="st">&quot;GHCND&quot;</span>, <span class="dt">stationid =</span> <span class="st">&quot;GHCND:USW00014895&quot;</span>, <span class="dt">datatypeid =</span> <span class="st">&quot;PRCP&quot;</span>, 
+    <span class="dt">startdate =</span> <span class="st">&quot;2010-05-01&quot;</span>, <span class="dt">enddate =</span> <span class="st">&quot;2010-05-03&quot;</span>, <span class="dt">limit =</span> <span class="dv">100</span>)</code></pre>
+<p>Make a plot, with 6 hour breaks, and date format with only hour</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">noaa_plot</span>(out2, <span class="dt">breaks =</span> <span class="st">&quot;6 hours&quot;</span>, <span class="dt">dateformat =</span> <span class="st">&quot;%H&quot;</span>)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-6.png" alt="plot of chunk unnamed-chunk-6" /><p class="caption">plot of chunk unnamed-chunk-6</p>
+</div>
+<h4 id="combine-many-calls-to-noaa-function">Combine many calls to noaa function</h4>
+<p>Search for two sets of data</p>
+<pre class="sourceCode r"><code class="sourceCode r">out1 &lt;-<span class="st"> </span><span class="kw">noaa</span>(<span class="dt">datasetid =</span> <span class="st">&quot;GHCND&quot;</span>, <span class="dt">stationid =</span> <span class="st">&quot;GHCND:USW00014895&quot;</span>, <span class="dt">datatypeid =</span> <span class="st">&quot;PRCP&quot;</span>, 
+    <span class="dt">startdate =</span> <span class="st">&quot;2010-03-01&quot;</span>, <span class="dt">enddate =</span> <span class="st">&quot;2010-05-31&quot;</span>, <span class="dt">limit =</span> <span class="dv">500</span>)
+
+out2 &lt;-<span class="st"> </span><span class="kw">noaa</span>(<span class="dt">datasetid =</span> <span class="st">&quot;GHCND&quot;</span>, <span class="dt">stationid =</span> <span class="st">&quot;GHCND:USW00014895&quot;</span>, <span class="dt">datatypeid =</span> <span class="st">&quot;PRCP&quot;</span>, 
+    <span class="dt">startdate =</span> <span class="st">&quot;2010-09-01&quot;</span>, <span class="dt">enddate =</span> <span class="st">&quot;2010-10-31&quot;</span>, <span class="dt">limit =</span> <span class="dv">500</span>)</code></pre>
+<p>Then combine with a call to <code>noaa_combine</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">noaa_combine</span>(out1, out2)
+<span class="kw">head</span>(df[[<span class="dv">1</span>]])</code></pre>
+<pre><code>##             station value attributes datatype                date
+## 1 GHCND:USW00014895     0  T,,0,2400     PRCP 2010-03-01T00:00:00
+## 2 GHCND:USW00014895     0  T,,0,2400     PRCP 2010-03-02T00:00:00
+## 3 GHCND:USW00014895     0  T,,0,2400     PRCP 2010-03-03T00:00:00
+## 4 GHCND:USW00014895     0   ,,0,2400     PRCP 2010-03-04T00:00:00
+## 5 GHCND:USW00014895     0   ,,0,2400     PRCP 2010-03-05T00:00:00
+## 6 GHCND:USW00014895     0   ,,0,2400     PRCP 2010-03-06T00:00:00</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(df[[<span class="dv">1</span>]])</code></pre>
+<pre><code>##               station value attributes datatype                date
+## 148 GHCND:USW00014895   221   ,,0,2400     PRCP 2010-10-26T00:00:00
+## 149 GHCND:USW00014895     0   ,,0,2400     PRCP 2010-10-27T00:00:00
+## 150 GHCND:USW00014895     0  T,,0,2400     PRCP 2010-10-28T00:00:00
+## 151 GHCND:USW00014895     0  T,,0,2400     PRCP 2010-10-29T00:00:00
+## 152 GHCND:USW00014895     0   ,,0,2400     PRCP 2010-10-30T00:00:00
+## 153 GHCND:USW00014895     0   ,,0,2400     PRCP 2010-10-31T00:00:00</code></pre>
+<p>Then plot - the default passing in the combined plot plots the data together. In this case it looks kind of weird since a straight line combines two distant dates.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">noaa_plot</span>(df)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-9.png" alt="plot of chunk unnamed-chunk-9" /><p class="caption">plot of chunk unnamed-chunk-9</p>
+</div>
+<p>But we can pass in each separately, which uses <code>facet_wrap</code> in <code>ggplot2</code> to plot each set of data in its own panel.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">noaa_plot</span>(out1, out2, <span class="dt">breaks =</span> <span class="st">&quot;45 days&quot;</span>)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-10.png" alt="plot of chunk unnamed-chunk-10" /><p class="caption">plot of chunk unnamed-chunk-10</p>
+</div>
+</body>
+</html>

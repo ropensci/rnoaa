@@ -8,4 +8,5 @@ man-roxygen
 tests/test-all.R
 inst/img
 inst/ignore
+vignettes/margins.sty
 CONTRIBUTING.md

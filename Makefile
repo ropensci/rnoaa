@@ -1,7 +1,8 @@
 all: move pandoc rmd2md
 
 move:
-		cp inst/vign/rnoaa_vignette.md vignettes
+		cp inst/vign/rnoaa_vignette.md vignettes;\
+		cp -r inst/vign/figure/* vignettes/figure
 
 pandoc:
 		cd vignettes;\
