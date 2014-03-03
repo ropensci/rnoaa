@@ -9,6 +9,7 @@
 #' @template rnoaa 
 #' @template stations
 #' @value A list of metadata.
+#' @export
 #' @examples \dontrun{
 #' # Get metadata on all stations
 #' noaa_stations()
@@ -41,7 +42,7 @@
 #' # Displays list of Hourly Precipitation locationids between 01/01/1990 and 12/31/1990
 #' noaa_stations(datasetid='PRECIP_HLY', startdate='19900101', enddate='19901231')
 #' }
-#' @export
+
 noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locationid=NULL, 
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
   datacategoryid=NULL, extent=NULL,
