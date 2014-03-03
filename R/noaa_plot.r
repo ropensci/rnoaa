@@ -59,7 +59,7 @@ noaa_plot.noaa_data <- function(..., breaks="7 days", dateformat='%d/%m/%y')
   
   if(length(input) == 1){
     df <- input[[1]]$data
-    df$date <- ymd(str_replace(as.character(df$date), "T00:00:00\\.000", ''))
+    df$date <- ymd(str_replace(as.character(df$date), 'T00:00:00\\.000|T00:00:00', ''))
     ggplot(df, aes(date, value)) +
       theme_bw(base_size=18) + 
       geom_line(size=2) +
@@ -69,7 +69,7 @@ noaa_plot.noaa_data <- function(..., breaks="7 days", dateformat='%d/%m/%y')
   } else {
     df <- do.call(rbind.fill, lapply(input, function(x) x$data))
     df$facet <- rep(paste("input", 1:length(input)), times=sapply(input, function(x) nrow(x$data)))
-    df$date <- ymd(str_replace(as.character(df$date), "T00:00:00\\.000", ''))
+    df$date <- ymd(str_replace(as.character(df$date), "T00:00:00\\.000|T00:00:00", ''))
     ggplot(df, aes(date, value)) +
       theme_bw(base_size=18) + 
       geom_line(size=2) +

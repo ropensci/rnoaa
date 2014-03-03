@@ -6,6 +6,6 @@ man-roxygen
 ^.*\.Rproj$
 ^\.Rproj\.user$
 tests/test-all.R
-inst/doc
 inst/img
+inst/ignore
 CONTRIBUTING.md

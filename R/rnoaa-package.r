@@ -11,8 +11,8 @@
 #' to get an API key.
 #' 
 #' 
-#' @name noaa-package
-#' @aliases noaa
+#' @name rnoaa-package
+#' @alias rnoaa
 #' @docType package
 #' @title General purpose R interface to noaa.
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}

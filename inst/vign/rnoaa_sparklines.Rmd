@@ -1,0 +1,75 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{rnoaa sparklines}
+-->
+
+rnoaa sparklines example
+======
+
+### Plot data from many stations
+
+Load some libraries
+
+```{r}
+library(rnoaa)
+library(scales)
+library(lubridate)
+library(maptools)
+library(ggplot2)
+library(doMC)
+library(ggsubplot)
+library(maps)
+library(plyr)
+library(stringr)
+```
+
+Find stations to get data from
+
+```{r}
+stations <- noaa_stations(datasetid = "GHCND", enddate = "2012-12-01", limit = 120)
+res <- stations$data$id
+```
+
+Get data from stations. Note in the code below that we are using parallelization. You do not have to do this, you can simply set `.parallel=FALSE`, or equivalently, use `lapply` instead of `llply` (`llply` is from the `plyr` package).
+
+```{r}
+noaa_fw <- failwith(NULL, noaa)
+registerDoMC(cores = 4)
+dat <- llply(res, function(x) noaa_fw(datasetid = "GHCND", datatypeid = 'PRCP', stationid = x, startdate = '2010-06-01', enddate = '2010-09-30'), .parallel = TRUE)
+dat <- compact(dat)
+length(dat)
+```
+
+Make a `data.frame` and fix dates. 
+
+```{r}
+df <- ldply(dat, function(x) x$data)
+df$date <- ymd(str_replace(as.character(df$date), "T00:00:00\\.000|T00:00:00", ""))
+```
+
+Get station lat and long data so that we can put data on a map.
+
+```{r}
+latlongs <- llply(res, function(x) 
+  noaa_stations(x, datasetid = "GHCND")$data$meta[c("id", "latitude", "longitude")])
+latlongs <- ldply(latlongs, function(x) as.data.frame(x))
+df2 <- merge(df, latlongs, by.x = "station", by.y = "id")
+head(df2)
+```
+
+Make a map
+
+```{r}
+world_map <- map_data("world")
+p <- ggplot() + 
+  geom_polygon(data = world_map, aes(x = long, y = lat, group = group), 
+               fill = "white", color = "gray40", size = 0.2) + 
+  annotate(geom = "text", x = -155, y = -55, 
+           label = sprintf("Max value is\n %s mm", max(df2$value)/10))
+p + 
+  geom_subplot(aes(longitude, latitude, group = station, 
+                   subplot = geom_line(aes(date, value)), size = 1), 
+               ref = ref_vline(aes(fill = length(value)), thickness = 0.1), 
+               width = rel(2), height = rel(5), data = df2) + 
+  theme(legend.position = "none")
+```

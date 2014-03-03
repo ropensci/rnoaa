@@ -1,0 +1,124 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{rnoaa vignette}
+-->
+
+rnoaa vignette
+======
+
+### About the package
+
+`rnoaa` is an R wrapper for the NOAA API.
+
+********************
+
+### Install `rnoaa`
+
+Install and load `rnoaa` into the R session.
+
+```{r install, eval=FALSE}
+install.packages("devtools")
+library(devtools)
+install_github("rnoaa", "ropensci", ref="newapi")
+```
+
+```{r load, message=FALSE, warning=FALSE}
+library(rnoaa)
+library(plyr)
+```
+
+#### Get info on a station by specifying a datasetid, locationid, and stationid
+
+```{r two, message=FALSE, warning=FALSE, cache=FALSE}
+noaa_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
+```
+
+#### Search for data and get a data.frame or list
+
+```{r three, message=FALSE, warning=FALSE, cache=FALSE}
+out <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal')
+```
+
+See a data.frame
+
+```{r four, message=FALSE, warning=FALSE, cache=FALSE}
+out$data
+```
+
+#### Plot data, super simple, but it's a start
+
+```{r six, message=FALSE, warning=FALSE, cache=FALSE}
+out <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal')
+noaa_plot(out)
+```
+
+### More on plotting
+
+#### Example 1
+
+Search for data first, then plot
+
+```{r}
+out <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
+```
+
+Default plot
+
+```{r}
+noaa_plot(out)
+```
+
+Create 14 day breaks
+
+```{r}
+noaa_plot(out, breaks="14 days")
+```
+
+One month breaks
+
+```{r}
+noaa_plot(out, breaks="1 month", dateformat="%d/%m")
+```
+
+#### Example 2
+
+Search for data
+
+```{r}
+out2 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-05-03', limit=100)
+```
+
+Make a plot, with 6 hour breaks, and date format with only hour
+
+```{r}
+noaa_plot(out2, breaks="6 hours", dateformat="%H")
+```
+
+#### Combine many calls to noaa function
+
+Search for two sets of data
+
+```{r}
+out1 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-03-01', enddate = '2010-05-31', limit=500)
+
+out2 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-09-01', enddate = '2010-10-31', limit=500)
+```
+
+Then combine with a call to `noaa_combine`
+
+```{r}
+df <- noaa_combine(out1, out2)
+head(df[[1]]); tail(df[[1]])
+```
+
+Then plot - the default passing in the combined plot plots the data together. In this case it looks kind of weird since a straight line combines two distant dates.
+
+```{r}
+noaa_plot(df)
+```
+
+But we can pass in each separately, which uses `facet_wrap` in `ggplot2` to plot each set of data in its own panel.
+
+```{r}
+noaa_plot(out1, out2, breaks="45 days")
+```
