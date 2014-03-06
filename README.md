@@ -29,7 +29,15 @@ options(noaakey = "KEY_EMAILED_TO_YOU")
 ```
 
 
-### Install from Github (not on CRAN yet)
+### Installation
+
+__Stable version from CRAN__
+
+```coffee
+install.packages("rnoaa")
+```
+
+__or development version from GitHub__
 
 ```coffee
 install.packages("devtools")
