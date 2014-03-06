@@ -14,6 +14,14 @@ rnoaa
 
 You'll need an API key to use this package (essentially a password). Go [here](http://www.ncdc.noaa.gov/cdo-web/token) to get one. *You can't use this package without an API key.*
 
+Once you get your key, add this to the top of a script or your `.rprofile`
+
+```coffee
+options(noaakey = "KEY_EMAILED_TO_YOU")
+```
+
+alternatively, pass it as an optional argument to a function call
+
 ### Install from Github (not on CRAN yet)
 
 ```coffee
