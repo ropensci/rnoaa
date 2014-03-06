@@ -2,7 +2,7 @@
 
 #' Search station list by extent
 #'
-#' @param extent The extent to search
+#' @param extent The extent to search.  Order is min Longitude , min Latitude , max Longitude , max Latitude 
 #' @param foptions (optional) additional arguments to httr for diagnostic purposes.
 #' @param token This must be a valid token token supplied to you by NCDC's Climate 
 #' @export

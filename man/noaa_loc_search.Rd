@@ -6,7 +6,8 @@ noaa_loc_search(extent = NULL, foptions = list(),
   token = getOption("noaakey", stop("you need an API key for NOAA data")))
 }
 \arguments{
-  \item{extent}{The extent to search}
+  \item{extent}{The extent to search.  Order is min
+  Longitude , min Latitude , max Longitude , max Latitude}
 
   \item{foptions}{(optional) additional arguments to httr
   for diagnostic purposes.}
