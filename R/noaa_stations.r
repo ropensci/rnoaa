@@ -43,7 +43,10 @@
 #' noaa_stations(datasetid='PRECIP_HLY', startdate='19900101', enddate='19901231')
 #' 
 #' # Search for stations by spatial extent
-#' 
+#' ## Search using a single point, given by a lat long pair
+#' noaa_stations(extent=c(33.95,-118.40))
+#' ## Search using a bounding box, w/ lat/long of the SW corner, then of NE corner
+#' noaa_stations(extent=c(47.5204,-122.2047,47.6139,-122.1065))
 #' }
 
 noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locationid=NULL, 
@@ -57,7 +60,11 @@ noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
     args <- list()
   } else
   {
-    url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/stations'  
+    url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/stations'
+    if(length(extent) == 4){ extent <- paste0(extent, collapse = ",") } else
+    {
+      extent <- latlong2bbox(lat=extent[1], lon=extent[2])
+    }
     args <- compact(list(datasetid=datasetid, datatypeid=datatypeid, 
                          locationid=locationid, startdate=startdate,
                          enddate=enddate, sortfield=sortfield, sortorder=sortorder, 

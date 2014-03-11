@@ -139,7 +139,10 @@ noaa_stations(datasetid='GHCND', locationid='FIPS:12017')
 noaa_stations(datasetid='PRECIP_HLY', startdate='19900101', enddate='19901231')
 
 # Search for stations by spatial extent
-
+## Search using a single point, given by a lat long pair
+noaa_stations(extent=c(33.95,-118.40))
+## Search using a bounding box, w/ lat/long of the SW corner, then of NE corner
+noaa_stations(extent=c(47.5204,-122.2047,47.6139,-122.1065))
 }
 }
 

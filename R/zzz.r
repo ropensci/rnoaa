@@ -60,6 +60,9 @@ long2utm <- function(lon, lat) {
 }
 
 #' Function to calculate bounding box for the extent parameter in noaa_stations function.
+#' @import assertthat rgeos
+#' @export
+#' @keywords internal
 #' @examples
 #' latlong2bbox(lat=33.95, lon=-118.40) # radius of 10 km
 #' latlong2bbox(lat=33.95, lon=-118.40, radius=2) # radius of 2 km
@@ -84,6 +87,6 @@ latlong2bbox <- function(lat, lon, radius=10)
   
   # get bounding box, put in a vector of length 4, and return
   box <- ff@bbox
-  geometry <- sprintf('c(%s,%s,%s,%s)', box[2,1], box[1,1], box[2,2], box[1,2])
+  geometry <- sprintf('%s,%s,%s,%s', box[2,1], box[1,1], box[2,2], box[1,2])
   return( geometry )
 }

@@ -14,4 +14,5 @@ latlong2bbox(lat=33.95, lon=-118.40, radius=2) # radius of 2 km
 latlong2bbox(lat=33.95, lon=-118.40, radius=200) # radius of 200 km
 latlong2bbox(lat=33.95, lon=-118.40, radius=0.02) # radius of 20 meters
 }
+\keyword{internal}
 
