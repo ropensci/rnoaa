@@ -12,7 +12,7 @@
 #' 
 #' 
 #' @name rnoaa-package
-#' @alias rnoaa
+#' @aliases rnoaa
 #' @docType package
 #' @title General purpose R interface to noaa.
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}

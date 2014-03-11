@@ -4,7 +4,7 @@
 #'  
 #' @template datacats
 #' @template all
-#' @value A \code{data.frame} for all datasets, or a list of length two, each 
+#' @return A \code{data.frame} for all datasets, or a list of length two, each 
 #'    with a data.frame.
 #' @examples \dontrun{
 #' noaa_datacats(limit=41)

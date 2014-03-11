@@ -42,3 +42,48 @@ noaa_theme <- function(){
              legend.key = element_blank()),
        guides(col = guide_legend(nrow=1)))
 }
+
+#' Function to get UTM zone from a single longitude and latitude pair
+#' originally from David LeBauer I think
+long2utm <- function(lon, lat) {
+  if(56 <= lat & lat < 64){
+    if(0 <= lon & lon < 3){ 31 } else 
+      if(3 <= lon & lon < 12) { 32 } else { NULL }
+  } else 
+  if(72 <= lat) {
+    if(0 <= lon & lon < 9){ 31 } else 
+      if(9 <= lon & lon < 21) { 33 } else 
+        if(21 <= lon & lon < 33) { 35 } else 
+          if(33 <= lon & lon < 42) { 37 } else { NULL }
+  }
+  (floor((lon + 180)/6) %% 60) + 1
+}
+
+#' Function to calculate bounding box for the extent parameter in noaa_stations function.
+#' @examples
+#' latlong2bbox(lat=33.95, lon=-118.40) # radius of 10 km
+#' latlong2bbox(lat=33.95, lon=-118.40, radius=2) # radius of 2 km
+#' latlong2bbox(lat=33.95, lon=-118.40, radius=200) # radius of 200 km
+#' latlong2bbox(lat=33.95, lon=-118.40, radius=0.02) # radius of 20 meters
+latlong2bbox <- function(lat, lon, radius=10)
+{
+  assert_that(is.numeric(lat), is.numeric(lon))
+  assert_that(abs(lat)<=90, abs(lon)<=180)
+  
+  # Make a spatialpoints obj, do settings, transform to UTM with zone
+  d <- SpatialPoints(cbind(lon, lat), proj4string = CRS("+proj=longlat +datum=WGS84"))
+  zone <- long2utm(lon=lon, lat=lat)
+  dd <- spTransform(d, CRS(sprintf("+proj=utm +zone=%s +datum=WGS84 +units=m", zone)))
+  
+  # give buffer around point given radius
+  inmeters <- radius*1000
+  ee <- gBuffer(dd, width = inmeters)
+  
+  # transform back to decimal degree
+  ff <- spTransform(ee, CRS("+proj=longlat +datum=WGS84"))
+  
+  # get bounding box, put in a vector of length 4, and return
+  box <- ff@bbox
+  geometry <- sprintf('c(%s,%s,%s,%s)', box[2,1], box[1,1], box[2,2], box[1,2])
+  return( geometry )
+}

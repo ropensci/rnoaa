@@ -4,11 +4,11 @@
 #' and can be considered the smallest granual of location data. If you know what 
 #' station you want, you can quickly get all manner of data from it
 #' 
-#' @import httr
+#' @import httr rgeos rgdal sp
 #' @importFrom plyr compact 
 #' @template rnoaa 
 #' @template stations
-#' @value A list of metadata.
+#' @return A list of metadata.
 #' @export
 #' @examples \dontrun{
 #' # Get metadata on all stations
@@ -41,11 +41,14 @@
 #'
 #' # Displays list of Hourly Precipitation locationids between 01/01/1990 and 12/31/1990
 #' noaa_stations(datasetid='PRECIP_HLY', startdate='19900101', enddate='19901231')
+#' 
+#' # Search for stations by spatial extent
+#' 
 #' }
 
 noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locationid=NULL, 
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
-  datacategoryid=NULL, extent=NULL,
+  datacategoryid=NULL, extent=NULL, radius=10,
   token=getOption("noaakey", stop("you need an API key NOAA data")), callopts=list(),
   dataset=NULL, station=NULL, location=NULL, locationtype=NULL, page=NULL)
 {  
