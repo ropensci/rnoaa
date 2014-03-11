@@ -62,7 +62,7 @@ noaa_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   {
     dat <- do.call(rbind.fill, lapply(out$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
     metadat <- data.frame(out$metadata$resultset, stringsAsFactors=FALSE)
-    all <- list(data = dat, meta = metadat)
+    all <- list(meta = metadat, data = dat)
   }
   class(all) <- "noaa_datatypes"
   return( all )

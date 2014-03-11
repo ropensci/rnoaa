@@ -24,6 +24,7 @@ Imports:
     plyr,
     ggplot2,
     scales,
+    sp,
     rgdal,
     rgeos,
     maptools,

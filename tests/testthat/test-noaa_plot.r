@@ -1,6 +1,7 @@
 context("noaa_plot")
 
-out <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal')
+out <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
+            startdate = '2010-05-01', enddate = '2010-10-31', limit=200)
 p <- noaa_plot(out)
 
 test_that("noaa_plot returns the correct class", {

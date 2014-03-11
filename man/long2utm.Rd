@@ -6,6 +6,11 @@ originally from David LeBauer I think}
 \usage{
 long2utm(lon, lat)
 }
+\arguments{
+  \item{lon}{Longitude, in decimal degree style}
+
+  \item{lat}{Latitude, in decimal degree style}
+}
 \description{
 Function to get UTM zone from a single longitude and latitude pair
 originally from David LeBauer I think

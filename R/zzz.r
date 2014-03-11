@@ -45,6 +45,8 @@ noaa_theme <- function(){
 
 #' Function to get UTM zone from a single longitude and latitude pair
 #' originally from David LeBauer I think
+#' @param lon Longitude, in decimal degree style
+#' @param lat Latitude, in decimal degree style
 long2utm <- function(lon, lat) {
   if(56 <= lat & lat < 64){
     if(0 <= lon & lon < 3){ 31 } else 
@@ -62,6 +64,9 @@ long2utm <- function(lon, lat) {
 #' Function to calculate bounding box for the extent parameter in noaa_stations function.
 #' @import assertthat rgeos
 #' @export
+#' @param lat Latitude, in decimal degree style
+#' @param lon Longitude, in decimal degree style
+#' @param radius Amount to create buffer by, in km
 #' @keywords internal
 #' @examples
 #' latlong2bbox(lat=33.95, lon=-118.40) # radius of 10 km

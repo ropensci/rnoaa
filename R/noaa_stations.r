@@ -61,9 +61,11 @@ noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
   } else
   {
     url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/stations'
-    if(length(extent) == 4){ extent <- paste0(extent, collapse = ",") } else
-    {
-      extent <- latlong2bbox(lat=extent[1], lon=extent[2])
+    if(!is.null(extent)){
+      if(length(extent) == 4){ extent <- paste0(extent, collapse = ",") } else
+      {
+        extent <- latlong2bbox(lat=extent[1], lon=extent[2])
+      }
     }
     args <- compact(list(datasetid=datasetid, datatypeid=datatypeid, 
                          locationid=locationid, startdate=startdate,
@@ -90,7 +92,7 @@ noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
     dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
     meta <- tt$metadata$resultset
     atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
-    all <- list(atts=atts, data=dat)
+    all <- list(meta=atts, data=dat)
     class(all) <- "noaa_stations"
     return( all )
   }
