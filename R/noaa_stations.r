@@ -64,7 +64,7 @@ noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
     if(!is.null(extent)){
       if(length(extent) == 4){ extent <- paste0(extent, collapse = ",") } else
       {
-        extent <- latlong2bbox(lat=extent[1], lon=extent[2])
+        extent <- latlong2bbox(lat=extent[1], lon=extent[2], radius=radius)
       }
     }
     args <- compact(list(datasetid=datasetid, datatypeid=datatypeid, 
