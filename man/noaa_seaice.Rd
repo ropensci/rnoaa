@@ -21,7 +21,7 @@ Get sea ice data.
 \dontrun{
 # Look at data.frame's for a series of years for Feb, South pole
 urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x, mo='Feb', pole='S'))
-out <- llply(urls, noaa_seaice)
+out <- lapply(urls, noaa_seaice)
 lapply(out, head)
 
 # Map a single year/month/pole combo
@@ -32,6 +32,8 @@ ggplot(out, aes(long, lat, group=group)) +
    theme_ice()
 
 # Map all years for April only for North pole
+library(plyr)
+library(doMC)
 urls <- seaiceeurls(mo='Apr', pole='N')
 registerDoMC(cores=4)
 out <- llply(urls, noaa_seaice, .parallel=TRUE)

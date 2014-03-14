@@ -9,7 +9,7 @@
 #' @examples \dontrun{
 #' # Look at data.frame's for a series of years for Feb, South pole
 #' urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x, mo='Feb', pole='S'))
-#' out <- llply(urls, noaa_seaice)
+#' out <- lapply(urls, noaa_seaice)
 #' lapply(out, head)
 #' 
 #' # Map a single year/month/pole combo
@@ -20,6 +20,8 @@
 #'    theme_ice()
 #' 
 #' # Map all years for April only for North pole
+#' library(plyr)
+#' library(doMC)
 #' urls <- seaiceeurls(mo='Apr', pole='N')
 #' registerDoMC(cores=4)
 #' out <- llply(urls, noaa_seaice, .parallel=TRUE)
@@ -95,17 +97,18 @@ seaiceeurls <- function(yr=NULL, mo=NULL, pole=NULL)
   return( ss )
 }
 
-#' Function to read shapefile and 
+#' Function to read shapefiles
 #' @import maptools
 #' @param x A url
 #' @param storepath Path to store data in
 #' @return An object of class sp
 #' @export
 #' @keywords internal
-readshpfile <- function(x, storepath="~/seaicedata")
+readshpfile <- function(x, storepath=NULL)
 {
   filename <- str_split(x, '/')[[1]][length(str_split(x, '/')[[1]])]
   filename_noending <- str_split(filename, "\\.")[[1]][[1]]
+  if(is.null(storepath)){ storepath <- tempdir() }
   path_write <- paste0(storepath, '/', filename_noending)
   path <- paste0(storepath, '/', filename)
 #   path_shp <- str_replace(path, ".zip", ".shp")

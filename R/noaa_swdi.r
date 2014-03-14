@@ -1,4 +1,4 @@
-#' Get NOAA data for the sever weather data inventory (swdi).
+#' Get NOAA data for the severe weather data inventory (swdi).
 #' 
 #' @import httr XML
 #' @importFrom plyr compact

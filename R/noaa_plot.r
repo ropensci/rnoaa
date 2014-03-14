@@ -80,6 +80,6 @@ noaa_plot.noaa_data <- function(..., breaks="7 days", dateformat='%d/%m/%y')
       scale_x_datetime(breaks = date_breaks(breaks), labels = date_format(dateformat)) +
       labs(y=as.character(df[1,'dataType']), x="Date") +
       noaa_theme() +
-      facet_wrap(~ facet)
+      facet_wrap(~ facet, scales="free")
   } 
 }
