@@ -4,6 +4,7 @@
 #' from us, you must know what dataset it is in.
 #' 
 #' @importFrom plyr compact rbind.fill
+#' @template rnoaa
 #' @template rnoaa2
 #' @template datasets
 #' @return A data.frame for all datasets, or a list of length two, each with a data.frame.

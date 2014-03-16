@@ -6,6 +6,7 @@
 #' 
 #' @import httr rgeos rgdal sp
 #' @importFrom plyr compact 
+#' @template rnoaa
 #' @template rnoaa2
 #' @template stations
 #' @return A list of metadata.
