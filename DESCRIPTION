@@ -34,4 +34,5 @@ Imports:
     assertthat
 Suggests:
     testthat,
-    roxygen2
+    roxygen2,
+    rjson

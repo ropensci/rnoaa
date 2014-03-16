@@ -82,14 +82,16 @@
 #' noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='csv')
 #' 
 #' # SHP format
-#' noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp')
+#' noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp', 
+#'    filepath='myfile')
 #' 
 #' # KMZ format
-#' noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz')
+#' noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz', 
+#'    radius=15, filepath='myfile.kmz')
 #' }
 
 noaa_swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit=25, 
-  offset=NULL, radius=NULL, center=NULL, bbox=NULL, tile=NULL, stat=NULL, id=NULL, 
+  offset=NULL, radius=NULL, center=NULL, bbox=NULL, tile=NULL, stat=NULL, id=NULL, filepath=NULL,
   callopts=list())
 {
   format <- match.arg(format, choices = c('xml','csv','shp','kmz'))
@@ -108,34 +110,43 @@ noaa_swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, 
   }
   args <- compact(list(radius=radius, center=center, bbox=bbox, tile=tile, stat=stat))
   
-  temp <- GET(url, query=args, config = callopts)
-  stop_for_status(temp)
-  tt <- content(temp)
-  
-  if(format == 'csv'){
-    init <- read.csv(text=tt)
-    meta <- list(totalCount=as.numeric(as.character(init[ grep('totalCount', init$ZTIME), 'WSR_ID'])),
-                 totalTimeInSeconds=as.numeric(as.character(init[ grep('totalTimeInSeconds', init$ZTIME), 'WSR_ID'])))
-    dat <- init[1:grep('summary', init$ZTIME)-1,]
-    shp <- NULL
-  } else if(format == 'xml'){
-    res <- xpathSApply(tt, "//result")
-    aslist <- lapply(res, xmlToList)
-    dat <- data.frame(rbindlist(aslist), stringsAsFactors = FALSE)
-    shp <- data.frame(shape=dat[, names(dat) %in% 'shape'], stringsAsFactors = FALSE)
-    dat <- dat[, !names(dat) %in% c('shape','rownumber')]
+  if(format %in% c('kmz','shp')){
+    make_key <- function(url, args)
+    {
+      tmp <- parse_url(url)
+      tmp$query <- args
+      build_url(tmp)
+    }
+    url <- make_key(url, args)
+    if(format == 'shp'){
+      filepath <- paste0(filepath, ".zip")
+      download.file(url, destfile = filepath)
+    } else if(format == 'kmz'){
+      download.file(url, destfile = filepath)
+    }
+  } else {
+    temp <- GET(url, query=args, config = callopts)
+    stop_for_status(temp)
+    tt <- content(temp)
     
-    meta <- list(totalCount=as.numeric(xpathSApply(tt, "//summary/totalCount", xmlValue)),
-                 totalTimeInSeconds=as.numeric(xpathSApply(tt, "//summary/totalTimeInSeconds", xmlValue)))
-  } else if(format == 'shp'){
-    
-    
-  } else if(format == 'kmz'){
-    
-    
+    if(format == 'csv'){
+      init <- read.csv(text=tt)
+      meta <- list(totalCount=as.numeric(as.character(init[ grep('totalCount', init$ZTIME), 'WSR_ID'])),
+                   totalTimeInSeconds=as.numeric(as.character(init[ grep('totalTimeInSeconds', init$ZTIME), 'WSR_ID'])))
+      dat <- init[1:grep('summary', init$ZTIME)-1,]
+      shp <- NULL
+    } else if(format == 'xml'){
+      res <- xpathSApply(tt, "//result")
+      aslist <- lapply(res, xmlToList)
+      dat <- data.frame(rbindlist(aslist), stringsAsFactors = FALSE)
+      shp <- data.frame(shape=dat[, names(dat) %in% 'shape'], stringsAsFactors = FALSE)
+      dat <- dat[, !names(dat) %in% c('shape','rownumber')]
+      
+      meta <- list(totalCount=as.numeric(xpathSApply(tt, "//summary/totalCount", xmlValue)),
+                   totalTimeInSeconds=as.numeric(xpathSApply(tt, "//summary/totalTimeInSeconds", xmlValue)))
+    }
+    all <- list(meta=meta, data=dat, shape=shp)
+    class(all) <- "noaa_swdi"
+    return( all )
   }
-  
-  all <- list(meta=meta, data=dat, shape=shp)
-  class(all) <- "noaa_swdi"
-  return( all )
 }

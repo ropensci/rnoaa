@@ -7,8 +7,9 @@ rnoaa
 
 
 * We are using the NOAA API version 2. A previous version of this software was using their V1 API - older versions of this software use the old API - let us know if you want to use that. 
-* The docs for the API are [here](http://www.ncdc.noaa.gov/cdo-web/webservices/v2)
+* The docs for the NCDC data API are [here](http://www.ncdc.noaa.gov/cdo-web/webservices/v2)
 * GCHN Daily data is available [here](http://www.ncdc.noaa.gov/oa/climate/ghcn-daily/) via FTP and HTTP
+* Severe weather data docs are [here](http://www.ncdc.noaa.gov/swdiws/)
 
 ### API key
 
