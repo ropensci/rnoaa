@@ -1,3 +1,9 @@
+#' @param datasetid (required) Accepts a single valid dataset id. Data returned will be from the 
+#'    dataset specified, see datasets()
+#' @param startdate (required) Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have 
+#'    data after the specified date. Paramater can be use independently of enddate
+#' @param enddate (required) Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have data
+#'    before the specified date. Paramater can be use independently of startdate
 #' @param dataset THIS IS A DEPRECATED ARGUMENT. See datasetid.
 #' @param datatype THIS IS A DEPRECATED ARGUMENT. See datatypeid.
 #' @param station THIS IS A DEPRECATED ARGUMENT. See stationid.

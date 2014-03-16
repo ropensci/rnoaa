@@ -1,54 +1,60 @@
-#' Get NOAA data for any combination of dataset, datatype, station, location, 
-#' and/or location type.
-#' 
-#' From the NOAA API docs: "The data endpoint is used for actually fetching the data."
+#' Get NOAA data. 
 #' 
 #' @import httr
 #' @importFrom plyr compact round_any rbind.fill
-#' @template rnoaa 
+#' @export
+#' @template rnoaa
 #' @template noaa
+#' 
 #' @details 
 #' Note that NOAA API calls can take a long time depending on the call. If you get a 
 #' error try setting startdate and enddate explicitly. The NOAA API doesn't perform 
 #' well with very long timespans, and will time out and make you angry - beware.
-#' @return A list of length two, a slot of metadata (meta), and a slot for data (data). 
+#' 
+#' Keep in mind that three parameters, datasetid, startdate, and enddate are required. 
+#' 
+#' @return An S3 list of length two, a slot of metadata (meta), and a slot for data (data). 
 #' The meta slot is a list of metadata elements, and the data slot is a data.frame, 
 #' possibly of length zero if no data is found.
+#' 
 #' @examples \dontrun{
 #' noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01', 
-#' enddate = '2010-05-31', limit=5)
+#'    enddate = '2010-05-31', limit=15)
 #' 
-#' # GHCN-Daily data since Septemer 1 2013
-#' noaa(datasetid='GHCND', startdate = '2013-11-09')
+#' # GHCN-Daily data from October 1 2013 to December 1 2013
+#' noaa(datasetid='GHCND', startdate = '2013-10-01', enddate = '2013-12-01')
 #' 
 #' # Normals Daily GHCND:USW00014895 dly-tmax-normal data
 #' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05-01', 
-#' enddate = '2010-05-10')
+#'    enddate = '2010-05-10')
 #' 
 #' # Dataset, and location in Australia
-#' noaa(datasetid='GHCND', locationid='FIPS:AS', limit=5)
+#' noaa(datasetid='GHCND', locationid='FIPS:AS', startdate = '2010-05-01', enddate = '2010-05-31')
 #' 
-#' # Dataset, location and datatype
-#' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', limit=5)
+#' # Dataset, location and datatype for PRECIP_HLY
+#' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', startdate = '2010-05-01',
+#'    enddate = '2010-05-10')
 #' 
 #' # Dataset, location, station and datatype
-#' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', 
-#' datatypeid='HPCP', limit=5)
+#' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP',
+#'    startdate = '2010-05-01', enddate = '2010-05-10')
 #' 
-#' # Dataset, location, and datatype
-#' noaa(datasetid='GHCND', locationid='FIPS:BR', datatypeid='PRCP', limit=5)
+#' # Dataset, location, and datatype for GHCND
+#' noaa(datasetid='GHCND', locationid='FIPS:BR', datatypeid='PRCP', startdate = '2010-05-01', 
+#'    enddate = '2010-05-10')
 #' 
 #' # Normals Daily GHCND dly-tmax-normal data
-#' noaa(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', limit=5)
+#' noaa(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', startdate = '2010-05-01', 
+#'    enddate = '2010-05-10')
 #' 
 #' # Normals Daily GHCND:USW00014895 dly-tmax-normal
-#' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', 
-#' datatypeid='dly-tmax-normal', limit=5)
+#' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal', 
+#'    startdate = '2010-05-01', enddate = '2010-05-10')
 #' 
 #' # Hourly Precipitation data for ZIP code 28801
-#' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', limit=5)
+#' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', startdate = '2010-05-01',
+#'    enddate = '2010-05-10')
 #' }
-#' @export
 
 noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL, 
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL, 
@@ -93,7 +99,14 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   {   
     callopts <- c(add_headers("token" = token), callopts)
     temp <- GET(base, query=args, config = callopts)
-    stop_for_status(temp)
+    if(!temp$status_code == 200){
+      stnames <- names(content(temp))
+      if(!is.null(stnames)){
+        if('developerMessage' %in% stnames){
+          stop(sprintf("Error: (%s) - %s", temp$status_code, content(temp)$developerMessage))
+        } else { stop(sprintf("Error: (%s) - %s", temp$status_code)) }
+      } else { stop_for_status(temp) }
+    }
     tt <- content(temp)
     if( class(try(tt$results, silent=TRUE))=="try-error"|is.null(try(tt$results, silent=TRUE)) )
       stop("Sorry, no data found")

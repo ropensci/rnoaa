@@ -5,7 +5,7 @@
 #' 
 #' @import httr  
 #' @importFrom plyr compact rbind.fill
-#' @template rnoaa
+#' @template rnoaa2
 #' @template datatypes
 #' @param datacategoryid Optional. Accepts a valid data category id or a chain of data 
 #'    category ids seperated by ampersands (although it is rare to have a data type 

@@ -9,6 +9,4 @@ before_script:
 - ./travis-tool.sh install_deps
 - ./travis-tool.sh github_package assertthat
 notifications:
-  hipchat:
-    rooms:
-      secure: prqT/tKBBCYofA9PPkg/A8P4WmElKO6bByoy2BuCceRI5XRMlB1LeHmFJs/VPWowVXrvPqQgV/x6+d9cBw6ADEzq3nEFq+ULTstShqK+Qum2VJVtUjyz6pAI+EfcUZvD66XZNqOQ2CiWuRH3CCeQ6cFV39ElXSEW9JlExVuQaRs=
+ slack: ropensci:wh30e1MP9Am3wXb2wJx1ZRFi

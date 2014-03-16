@@ -1,5 +1,3 @@
-#' @param datasetid Accepts a single valid dataset id. Data returned will be from the 
-#'    dataset specified, see datasets() (required)
 #' @param datatypeid Accepts a valid data type id or a chain of data type ids in a 
 #' 	  comma-separated vector. Data returned will contain all of the data type(s) specified 
 #'    (optional)
@@ -7,10 +5,6 @@
 #' 	  comma-separated vector. Data returned will contain data for the location(s) specified (optional)
 #' @param stationid Accepts a valid station id or a chain of of station ids in a 
 #' 	  comma-separated vector. Data returned will contain data for the station(s) specified (optional)
-#' @param startdate Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have 
-#'    data after the specified date. Paramater can be use independently of enddate (optional)
-#' @param enddate Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have data 
-#'    before the specified date. Paramater can be use independently of startdate (optional)
 #' @param sortfield The field to sort results by. Supports id, name, mindate, maxdate, and 
 #'    datacoverage fields (optional)
 #' @param sortorder Which order to sort by, asc or desc. Defaults to asc (optional)
