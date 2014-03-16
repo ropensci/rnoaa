@@ -1,13 +1,15 @@
 context("noaa")
 
+key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+
 # Normals Daily GHCND:USW00014895 dly-tmax-normal data
-aa <- noaa(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-10')
+aa <- noaa(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-10', token=key)
 # Datasetid, locationid and datatypeid
 # dd <- noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP')
 # Datasetid, locationid, stationid and datatypeid
 # ee <- noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP')
 # Normals Daily GHCND dly-tmax-normal data
-gg <- noaa(datasetid='GHCND', datatypeid = 'PRCP', stationid='GHCND:USC00200230', startdate = "2013-09-03", enddate = "2013-09-30", limit=30)
+gg <- noaa(datasetid='GHCND', datatypeid = 'PRCP', stationid='GHCND:USC00200230', startdate = "2013-09-03", enddate = "2013-09-30", limit=30, token=key)
 # Hourly Precipitation data for ZIP code 28801
 # ii <- noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', startdate='2012-03-01', enddate='2013-03-15')
 

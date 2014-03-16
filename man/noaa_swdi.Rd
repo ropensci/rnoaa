@@ -112,6 +112,15 @@ center=c(-102.0,32.7), stat='count')
 ## and longitude = -102.0
 noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516',
 stat='tilesum:-102.0,32.7')
+
+# CSV format
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='csv')
+
+# SHP format
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp')
+
+# KMZ format
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz')
 }
 }
 

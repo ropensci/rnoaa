@@ -1,8 +1,10 @@
 context("noaa_locs_cats")
 
-tt <- noaa_locs_cats()
-uu <- noaa_locs_cats(locationcategoryid='CLIM_REG')
-vv <- noaa_locs_cats(startdate='1970-01-01')
+key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+
+tt <- noaa_locs_cats(token=key)
+uu <- noaa_locs_cats(locationcategoryid='CLIM_REG', token=key)
+vv <- noaa_locs_cats(startdate='1970-01-01', token=key)
 
 test_that("noaa_locs_cats returns the correct class", {
   expect_is(tt, "noaa_locs_cats")

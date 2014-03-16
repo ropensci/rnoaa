@@ -1,7 +1,9 @@
 context("noaa_locs")
 
-tt <- noaa_locs(datasetid='NORMAL_DLY', startdate='20100101')
-uu <- noaa_locs(locationcategoryid='ST', limit=52)
+key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+
+tt <- noaa_locs(datasetid='NORMAL_DLY', startdate='20100101', token=key)
+uu <- noaa_locs(locationcategoryid='ST', limit=52, token=key)
 
 test_that("noaa_locs returns the correct class", {
   expect_is(tt, "noaa_locs")

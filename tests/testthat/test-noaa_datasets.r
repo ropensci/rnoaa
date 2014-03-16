@@ -1,7 +1,9 @@
 context("noaa_datasets")
 
-tt <- noaa_datasets()
-uu <- noaa_datasets(datasetid='ANNUAL')
+key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+
+tt <- noaa_datasets(token=key)
+uu <- noaa_datasets(datasetid='ANNUAL', token=key)
 
 test_that("noaa_datasets returns the correct class", {
   expect_is(tt, "noaa_datasets")

@@ -1,7 +1,9 @@
 context("noaa_datacats")
 
-tt <- noaa_datacats()
-uu <- noaa_datacats(datacategoryid="ANNAGR")
+key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+
+tt <- noaa_datacats(token=key)
+uu <- noaa_datacats(datacategoryid="ANNAGR", token=key)
 
 test_that("noaa_datacats returns the correct class", {
   expect_is(tt, "noaa_datacats")

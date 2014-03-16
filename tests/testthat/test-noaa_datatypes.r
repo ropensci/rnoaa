@@ -1,6 +1,8 @@
 context("noaa_datatypes")
 
-tt <- noaa_datatypes(datasetid="ANNUAL")
+key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+
+tt <- noaa_datatypes(datasetid="ANNUAL", token=key)
 
 test_that("noaa_datatypes returns the correct class", {
   expect_is(tt, "noaa_datatypes")

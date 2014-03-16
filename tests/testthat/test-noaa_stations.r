@@ -1,8 +1,10 @@
 context("noaa_stations")
 
-bb <- noaa_stations(stationid='COOP:010008')
-cc <- noaa_stations(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895')
-dd <- noaa_stations(datasetid='GHCND', locationid='FIPS:12017')
+key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+
+bb <- noaa_stations(stationid='COOP:010008', token=key)
+cc <- noaa_stations(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', token=key)
+dd <- noaa_stations(datasetid='GHCND', locationid='FIPS:12017', token=key)
 
 test_that("noaa_stations returns the correct class", {
   expect_is(bb$data, "data.frame")
