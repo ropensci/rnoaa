@@ -77,12 +77,22 @@
 #' ## and longitude = -102.0
 #' noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', 
 #' stat='tilesum:-102.0,32.7')
+#' 
+#' # CSV format
+#' noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='csv')
+#' 
+#' # SHP format
+#' noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp')
+#' 
+#' # KMZ format
+#' noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz')
 #' }
 
 noaa_swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit=25, 
   offset=NULL, radius=NULL, center=NULL, bbox=NULL, tile=NULL, stat=NULL, id=NULL, 
   callopts=list())
 {
+  format <- match.arg(format, choices = c('xml','csv','shp','kmz'))
   if(is.null(enddate)){
     daterange <- startdate
   } else {
@@ -102,14 +112,28 @@ noaa_swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, 
   stop_for_status(temp)
   tt <- content(temp)
   
-  res <- xpathSApply(tt, "//result")
-  aslist <- lapply(res, xmlToList)
-  dat <- data.frame(rbindlist(aslist), stringsAsFactors = FALSE)
-  shp <- data.frame(shape=dat[, names(dat) %in% 'shape'], stringsAsFactors = FALSE)
-  dat <- dat[, !names(dat) %in% c('shape','rownumber')]
-  
-  meta <- list(totalCount=as.numeric(xpathSApply(tt, "//summary/totalCount", xmlValue)),
-               totalTimeInSeconds=as.numeric(xpathSApply(tt, "//summary/totalTimeInSeconds", xmlValue)))
+  if(format == 'csv'){
+    init <- read.csv(text=tt)
+    meta <- list(totalCount=as.numeric(as.character(init[ grep('totalCount', init$ZTIME), 'WSR_ID'])),
+                 totalTimeInSeconds=as.numeric(as.character(init[ grep('totalTimeInSeconds', init$ZTIME), 'WSR_ID'])))
+    dat <- init[1:grep('summary', init$ZTIME)-1,]
+    shp <- NULL
+  } else if(format == 'xml'){
+    res <- xpathSApply(tt, "//result")
+    aslist <- lapply(res, xmlToList)
+    dat <- data.frame(rbindlist(aslist), stringsAsFactors = FALSE)
+    shp <- data.frame(shape=dat[, names(dat) %in% 'shape'], stringsAsFactors = FALSE)
+    dat <- dat[, !names(dat) %in% c('shape','rownumber')]
+    
+    meta <- list(totalCount=as.numeric(xpathSApply(tt, "//summary/totalCount", xmlValue)),
+                 totalTimeInSeconds=as.numeric(xpathSApply(tt, "//summary/totalTimeInSeconds", xmlValue)))
+  } else if(format == 'shp'){
+    
+    
+  } else if(format == 'kmz'){
+    
+    
+  }
   
   all <- list(meta=meta, data=dat, shape=shp)
   class(all) <- "noaa_swdi"
