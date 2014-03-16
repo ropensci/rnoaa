@@ -6,7 +6,7 @@
 noaa_swdi(dataset = NULL, format = "xml", startdate = NULL,
   enddate = NULL, limit = 25, offset = NULL, radius = NULL,
   center = NULL, bbox = NULL, tile = NULL, stat = NULL, id = NULL,
-  callopts = list())
+  filepath = NULL, callopts = list())
 }
 \arguments{
   \item{dataset}{Dataset to query. See below for details.}
@@ -49,14 +49,20 @@ noaa_swdi(dataset = NULL, format = "xml", startdate = NULL,
   \item{id}{An identifier, e.g., 533623. Not sure how you
   find these ids?}
 
+  \item{filepath}{If kmz or shp chosen the file name and
+  optionally path to write to. Ignored format=xml or
+  format=csv (optional)}
+
   \item{callopts}{Further arguments passed on to the API
   GET call. (optional)}
 }
 \value{
-A list of length three, a slot of metadata (meta), a slot for data (data),
-and a slot for shape file data with a single column 'shape'. The meta slot is a
-list of metadata elements, and the data slot is a data.frame, possibly of length zero
+If xml or csv chosen, a list of length three, a slot of metadata (meta), a slot
+for data (data), and a slot for shape file data with a single column 'shape'. The meta slot
+is a list of metadata elements, and the data slot is a data.frame, possibly of length zero
 if no data is found.
+
+If kmz or shp chosen, the file is downloaded to your machine and a message is printed.
 }
 \description{
 Get NOAA data for the severe weather data inventory (swdi).
@@ -117,10 +123,12 @@ stat='tilesum:-102.0,32.7')
 noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='csv')
 
 # SHP format
-noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp')
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp',
+   filepath='myfile')
 
 # KMZ format
-noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz')
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz',
+   radius=15, filepath='myfile.kmz')
 }
 }
 

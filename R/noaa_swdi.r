@@ -20,6 +20,8 @@
 #'    daily feature counts for a tenth of a degree grid centered at the nearest tenth of a 
 #'    degree to the supplied values. 
 #' @param id An identifier, e.g., 533623. Not sure how you find these ids?
+#' @param filepath If kmz or shp chosen the file name and optionally path to write to. Ignored
+#'    format=xml or format=csv (optional)
 #' @param callopts Further arguments passed on to the API GET call. (optional)
 #' @details
 #' Options for the dataset parameter. One of (and their data formats): 
@@ -40,10 +42,12 @@
 #' All latitude and longitude values for input parameters and output data are in the 
 #' WGS84 datum.
 #' 
-#' @return A list of length three, a slot of metadata (meta), a slot for data (data), 
-#' and a slot for shape file data with a single column 'shape'. The meta slot is a 
-#' list of metadata elements, and the data slot is a data.frame, possibly of length zero 
+#' @return If xml or csv chosen, a list of length three, a slot of metadata (meta), a slot 
+#' for data (data), and a slot for shape file data with a single column 'shape'. The meta slot 
+#' is a list of metadata elements, and the data slot is a data.frame, possibly of length zero 
 #' if no data is found.
+#' 
+#' If kmz or shp chosen, the file is downloaded to your machine and a message is printed.
 #' 
 #' @export
 #' @examples \dontrun{
@@ -121,8 +125,10 @@ noaa_swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, 
     if(format == 'shp'){
       filepath <- paste0(filepath, ".zip")
       download.file(url, destfile = filepath)
+      message(sprintf("Zip file downloaded to %s", filepath))
     } else if(format == 'kmz'){
       download.file(url, destfile = filepath)
+      message(sprintf("kmz file downloaded to %s", filepath))
     }
   } else {
     temp <- GET(url, query=args, config = callopts)
