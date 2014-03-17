@@ -21,8 +21,14 @@
 #' noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01', 
 #'    enddate = '2010-05-31', limit=15)
 #' 
-#' # GHCN-Daily data from October 1 2013 to December 1 2013
+#' # GHCN-Daily (or GHCND) data from October 1 2013 to December 1 2013
 #' noaa(datasetid='GHCND', startdate = '2013-10-01', enddate = '2013-12-01')
+#' 
+#' # GHCN-Monthly (or GHCND) data from October 1 2013 to December 1 2013
+#' noaa(datasetid='GHCNDMS', startdate = '2013-10-01', enddate = '2013-12-01')
+#' 
+#' # NEXRAD2 data
+#' noaa(datasetid='NEXRAD2', startdate = '2013-10-01', enddate = '2013-12-01')
 #' 
 #' # Normals Daily GHCND:USW00014895 dly-tmax-normal data
 #' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05-01', 
@@ -54,6 +60,12 @@
 #' # Hourly Precipitation data for ZIP code 28801
 #' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', startdate = '2010-05-01',
 #'    enddate = '2010-05-10')
+#'    
+#' # Search the NORMAL_HLY dataset
+#' noaa(datasetid='NORMAL_HLY', stationid = 'GHCND:USW00003812', startdate = '2010-05-01', enddate = '2010-05-10')
+#'    
+#' # Search the ANNUAL dataset
+#' noaa(datasetid='ANNUAL', locationid='ZIP:28801', startdate = '2010-05-01', enddate = '2010-05-10')
 #' }
 
 noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL, 

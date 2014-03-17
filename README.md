@@ -11,6 +11,26 @@ rnoaa
 * GCHN Daily data is available [here](http://www.ncdc.noaa.gov/oa/climate/ghcn-daily/) via FTP and HTTP
 * Severe weather data docs are [here](http://www.ncdc.noaa.gov/swdiws/)
 
+### Attributes
+
+There are many NOAA NCDC datasets: 
+
+| Dataset | Description | Start date | End date |
+|---------|-------------|------------|----------|
+| ANNUAL | Annual Summaries | 1831-02-01 | 2013-11-01 |
+| GHCND | Daily Summaries | 1763-01-01 | 2014-03-15 |
+| GHCNDMS | Monthly Summaries | 1763-01-01 | 2014-01-01 |
+| NEXRAD2 | Nexrad Level II | 1991-06-05 | 2014-03-14 |
+| NEXRAD3 | Nexrad Level III | 1994-05-20 | 2014-03-11 |
+| NORMAL_ANN | Normals Annual/Seasonal | 2010-01-01 | 2010-01-01 |
+| NORMAL_DLY | Normals Daily | 2010-01-01 | 2010-12-31 |
+| NORMAL_HLY | Normals Hourly | 2010-01-01 | 2010-12-31 |
+| NORMAL_MLY | Normals Monthly | 2010-01-01 | 2010-12-01 |
+| PRECIP_15 | Precipitation 15 Minute | 1970-05-12 | 2013-03-01 |
+| PRECIP_HLY | Precipitation Hourly | 1900-01-01 | 2013-03-01 |
+
+Each NOAA dataset has different set of attributes that you can potentially get back in your search. See [the docs](http://www.ncdc.noaa.gov/cdo-web/datasets) for detailed info on each dataset. We provide some information on the attributes in this package. 
+
 ### API key
 
 You'll need an API key to use this package (essentially a password). Go [here](http://www.ncdc.noaa.gov/cdo-web/token) to get one. *You can't use this package without an API key.*
