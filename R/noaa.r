@@ -2,35 +2,38 @@
 #' 
 #' @import httr
 #' @importFrom plyr compact round_any rbind.fill
+#' @importFrom RJSONIO fromJSON
 #' @export
 #' @template rnoaa
 #' @template noaa
 #' 
 #' @details 
-#' Note that NOAA API calls can take a long time depending on the call. If you get a 
-#' error try setting startdate and enddate explicitly. The NOAA API doesn't perform 
-#' well with very long timespans, and will time out and make you angry - beware.
+#' Note that NOAA API calls can take a long time depending on the call. The NOAA API doesn't 
+#' perform well with very long timespans, and will time out and make you angry - beware.
 #' 
-#' Keep in mind that three parameters, datasetid, startdate, and enddate are required. 
+#' Keep in mind that three parameters, datasetid, startdate, and enddate are required.
+#' 
+#' Note that the default limit (no. records returned) is 25.
 #' 
 #' @return An S3 list of length two, a slot of metadata (meta), and a slot for data (data). 
 #' The meta slot is a list of metadata elements, and the data slot is a data.frame, 
 #' possibly of length zero if no data is found.
 #' 
 #' @examples \dontrun{
-#' noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01', 
-#'    enddate = '2010-05-31', limit=15)
+#' # GHCN-Daily (or GHCND) data, for a specific station
+#' noaa(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01', enddate = '2013-12-01')
 #' 
-#' # GHCN-Daily (or GHCND) data from October 1 2013 to December 1 2013
+#' # GHCND data, for a location by FIPS code
+#' noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01', 
+#'    enddate = '2010-05-10')
+#' 
+#' # GHCND data from October 1 2013 to December 1 2013
 #' noaa(datasetid='GHCND', startdate = '2013-10-01', enddate = '2013-12-01')
 #' 
-#' # GHCN-Monthly (or GHCND) data from October 1 2013 to December 1 2013
+#' # GHCN-Monthly (or GHCNDMS) data from October 1 2013 to December 1 2013
 #' noaa(datasetid='GHCNDMS', startdate = '2013-10-01', enddate = '2013-12-01')
 #' 
-#' # NEXRAD2 data
-#' noaa(datasetid='NEXRAD2', startdate = '2013-10-01', enddate = '2013-12-01')
-#' 
-#' # Normals Daily GHCND:USW00014895 dly-tmax-normal data
+#' # Normals Daily (or NORMAL_DLY) GHCND:USW00014895 dly-tmax-normal data
 #' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05-01', 
 #'    enddate = '2010-05-10')
 #' 
@@ -67,6 +70,12 @@
 #' # Search the ANNUAL dataset
 #' noaa(datasetid='ANNUAL', locationid='ZIP:28801', startdate = '2010-05-01', enddate = '2010-05-10')
 #' }
+#' 
+#' \donttest{
+#' # NEXRAD2 data
+#' ## doesn't work yet
+#' noaa(datasetid='NEXRAD2', startdate = '2013-10-01', enddate = '2013-12-01')
+#' }
 
 noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL, 
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL, 
@@ -101,7 +110,9 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
       callopts <- c(add_headers("token" = token), callopts)
       temp <- GET(base, query=args, config = callopts)
       stop_for_status(temp)
-      tt <- content(temp)
+      assert_that(temp$headers$`content-type`=='application/json;charset=UTF-8')
+      res <- content(temp, as = 'text', encoding = "UTF-8")
+      tt <- RJSONIO::fromJSON(res, simplifyWithNames = FALSE)
       out[[i]] <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
     }
     dat <- do.call(rbind.data.frame, out)
@@ -119,7 +130,10 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
         } else { stop(sprintf("Error: (%s) - %s", temp$status_code)) }
       } else { stop_for_status(temp) }
     }
-    tt <- content(temp)
+    assert_that(temp$headers$`content-type`=='application/json;charset=UTF-8')
+    res <- content(temp, as = 'text', encoding = "UTF-8")
+    tt <- RJSONIO::fromJSON(res, simplifyWithNames = FALSE)
+#     tt <- content(temp)
     if( class(try(tt$results, silent=TRUE))=="try-error"|is.null(try(tt$results, silent=TRUE)) )
       stop("Sorry, no data found")
     dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))

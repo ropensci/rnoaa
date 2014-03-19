@@ -31,8 +31,9 @@ Imports:
     stringr,
     XML,
     data.table,
-    assertthat
+    assertthat,
+    RJSONIO
 Suggests:
     testthat,
     roxygen2,
-    rjson
+    jsonlite
