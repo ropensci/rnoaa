@@ -55,14 +55,14 @@ noaa_stations(stationid = NULL, datasetid = NULL, datatypeid = NULL,
   specified, see datasets()}
 
   \item{startdate}{(optional) Accepts valid ISO formated
-  date (yyyy-mm-dd). Data returned will have data after the
-  specified date. Paramater can be use independently of
-  enddate}
+  date (yyyy-mm-dd) or date time (YYYY-MM-DDThh:mm:ss).
+  Data returned will have data after the specified date.
+  The date range must be less than 1 year.}
 
   \item{enddate}{(optional) Accepts valid ISO formated date
-  (yyyy-mm-dd). Data returned will have data before the
-  specified date. Paramater can be use independently of
-  startdate}
+  (yyyy-mm-dd) or date time (YYYY-MM-DDThh:mm:ss). Data
+  returned will have data before the specified date. The
+  date range must be less than 1 year.}
 
   \item{datacategoryid}{(character, optional) Accepts a
   valid data category id or an array of data category ids.

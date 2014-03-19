@@ -55,14 +55,14 @@ noaa(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   specified, see datasets()}
 
   \item{startdate}{(required) Accepts valid ISO formated
-  date (yyyy-mm-dd). Data returned will have data after the
-  specified date. Paramater can be use independently of
-  enddate}
+  date (yyyy-mm-dd) or date time (YYYY-MM-DDThh:mm:ss).
+  Data returned will have data after the specified date.
+  The date range must be less than 1 year.}
 
   \item{enddate}{(required) Accepts valid ISO formated date
-  (yyyy-mm-dd). Data returned will have data before the
-  specified date. Paramater can be use independently of
-  startdate}
+  (yyyy-mm-dd) or date time (YYYY-MM-DDThh:mm:ss). Data
+  returned will have data before the specified date. The
+  date range must be less than 1 year.}
 
   \item{dataset}{THIS IS A DEPRECATED ARGUMENT. See
   datasetid.}
@@ -131,7 +131,7 @@ noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05
 # Dataset, and location in Australia
 noaa(datasetid='GHCND', locationid='FIPS:AS', startdate = '2010-05-01', enddate = '2010-05-31')
 
-# Dataset, location and datatype for PRECIP_HLY
+# Dataset, location and datatype for PRECIP_HLY data
 noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', startdate = '2010-05-01',
    enddate = '2010-05-10')
 

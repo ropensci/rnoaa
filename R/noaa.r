@@ -40,7 +40,7 @@
 #' # Dataset, and location in Australia
 #' noaa(datasetid='GHCND', locationid='FIPS:AS', startdate = '2010-05-01', enddate = '2010-05-31')
 #' 
-#' # Dataset, location and datatype for PRECIP_HLY
+#' # Dataset, location and datatype for PRECIP_HLY data
 #' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', startdate = '2010-05-01',
 #'    enddate = '2010-05-10')
 #' 
@@ -109,10 +109,7 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
       args$offset <- startat[i]
       callopts <- c(add_headers("token" = token), callopts)
       temp <- GET(base, query=args, config = callopts)
-      stop_for_status(temp)
-      assert_that(temp$headers$`content-type`=='application/json;charset=UTF-8')
-      res <- content(temp, as = 'text', encoding = "UTF-8")
-      tt <- RJSONIO::fromJSON(res, simplifyWithNames = FALSE)
+      tt <- check_response(temp)
       out[[i]] <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
     }
     dat <- do.call(rbind.data.frame, out)
@@ -122,20 +119,7 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   {   
     callopts <- c(add_headers("token" = token), callopts)
     temp <- GET(base, query=args, config = callopts)
-    if(!temp$status_code == 200){
-      stnames <- names(content(temp))
-      if(!is.null(stnames)){
-        if('developerMessage' %in% stnames){
-          stop(sprintf("Error: (%s) - %s", temp$status_code, content(temp)$developerMessage))
-        } else { stop(sprintf("Error: (%s) - %s", temp$status_code)) }
-      } else { stop_for_status(temp) }
-    }
-    assert_that(temp$headers$`content-type`=='application/json;charset=UTF-8')
-    res <- content(temp, as = 'text', encoding = "UTF-8")
-    tt <- RJSONIO::fromJSON(res, simplifyWithNames = FALSE)
-#     tt <- content(temp)
-    if( class(try(tt$results, silent=TRUE))=="try-error"|is.null(try(tt$results, silent=TRUE)) )
-      stop("Sorry, no data found")
+    tt <- check_response(temp)
     dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
     meta <- tt$metadata$resultset
     atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
@@ -144,4 +128,21 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   all <- list(meta=atts, data=dat)
   class(all) <- "noaa_data"
   return( all )
+}
+
+check_response <- function(x){
+  if(!x$status_code == 200){
+    stnames <- names(content(x))
+    if(!is.null(stnames)){
+      if('developerMessage' %in% stnames){
+        stop(sprintf("Error: (%s) - %s", x$status_code, content(x)$developerMessage))
+      } else { stop(sprintf("Error: (%s) - %s", x$status_code)) }
+    } else { stop_for_status(x) }
+  }
+  assert_that(x$headers$`content-type`=='application/json;charset=UTF-8')
+  res <- content(x, as = 'text', encoding = "UTF-8")
+  out <- RJSONIO::fromJSON(res, simplifyWithNames = FALSE)
+  if( class(try(out$results, silent=TRUE))=="try-error" | is.null(try(out$results, silent=TRUE)) )
+    stop("Sorry, no data found")
+  return( out )
 }
