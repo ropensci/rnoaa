@@ -5,6 +5,7 @@
 #' 
 #' @import httr  
 #' @importFrom plyr compact rbind.fill
+#' @export
 #' @template rnoaa
 #' @template rnoaa2
 #' @template datatypes
@@ -27,11 +28,10 @@
 #' # Fetch data types that support a given set of stations
 #' noaa_datatypes(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
 #' }
-#' @export
+
 noaa_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL, 
   stationid=NULL, locationid=NULL, startdate=NULL, enddate=NULL, sortfield=NULL, 
-  sortorder=NULL, limit=25, offset=NULL, callopts=list(), 
-  token=getOption("noaakey", stop("you need an API key NOAA data")), 
+  sortorder=NULL, limit=25, offset=NULL, callopts=list(), token=NULL,  
   dataset=NULL, page=NULL, filter=NULL)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
@@ -39,6 +39,9 @@ noaa_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   if(any(calls_vec))
     stop("The parameters dataset, page, and filter \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa_datatypes")
 
+  if(is.null(token))
+    token <- getOption("noaakey", stop("you need an API key NOAA data"))
+  
   if(!is.null(datatypeid)){
     url <- sprintf("http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes/%s", datatypeid)
   } else { url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes" }
@@ -52,8 +55,7 @@ noaa_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   
   callopts <- c(add_headers("token" = token), callopts)
   temp <- GET(url, query=args, config=callopts)
-  stop_for_status(temp)
-  out <- content(temp)
+  out <- check_response(temp)
   
   if(!is.null(datatypeid)){
     dat <- data.frame(out, stringsAsFactors=FALSE)

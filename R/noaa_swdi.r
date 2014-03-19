@@ -133,17 +133,21 @@ noaa_swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, 
   } else {
     temp <- GET(url, query=args, config = callopts)
     stop_for_status(temp)
-    tt <- content(temp)
     
     if(format == 'csv'){
+      assert_that(temp$headers$`content-type`=='text/plain; charset=UTF-8')
+      tt <- content(temp, as = 'text', encoding = "UTF-8")
       init <- read.csv(text=tt)
       meta <- list(totalCount=as.numeric(as.character(init[ grep('totalCount', init$ZTIME), 'WSR_ID'])),
                    totalTimeInSeconds=as.numeric(as.character(init[ grep('totalTimeInSeconds', init$ZTIME), 'WSR_ID'])))
       dat <- init[1:grep('summary', init$ZTIME)-1,]
       shp <- NULL
     } else if(format == 'xml'){
-      res <- xpathSApply(tt, "//result")
-      aslist <- lapply(res, xmlToList)
+      assert_that(temp$headers$`content-type`=='text/xml')
+      res <- content(temp, as = 'text', encoding = "UTF-8")
+      tt <- xmlParse(res)
+      xml <- xpathSApply(tt, "//result")
+      aslist <- lapply(xml, xmlToList)
       dat <- data.frame(rbindlist(aslist), stringsAsFactors = FALSE)
       shp <- data.frame(shape=dat[, names(dat) %in% 'shape'], stringsAsFactors = FALSE)
       dat <- dat[, !names(dat) %in% c('shape','rownumber')]

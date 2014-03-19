@@ -5,8 +5,7 @@
 \usage{
 noaa_locs(datasetid = NULL, locationid = NULL, locationcategoryid = NULL,
   startdate = NULL, enddate = NULL, sortfield = NULL, sortorder = NULL,
-  limit = 25, offset = NULL, callopts = list(),
-  token = getOption("noaakey", stop("you need an API key for NOAA data")))
+  limit = 25, offset = NULL, callopts = list(), token = NULL)
 }
 \arguments{
   \item{datasetid}{A single valid dataset id. Data returned

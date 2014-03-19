@@ -6,8 +6,7 @@
 noaa_datatypes(datasetid = NULL, datatypeid = NULL, datacategoryid = NULL,
   stationid = NULL, locationid = NULL, startdate = NULL, enddate = NULL,
   sortfield = NULL, sortorder = NULL, limit = 25, offset = NULL,
-  callopts = list(), token = getOption("noaakey",
-  stop("you need an API key NOAA data")), dataset = NULL, page = NULL,
+  callopts = list(), token = NULL, dataset = NULL, page = NULL,
   filter = NULL)
 }
 \arguments{

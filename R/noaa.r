@@ -129,20 +129,3 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   class(all) <- "noaa_data"
   return( all )
 }
-
-check_response <- function(x){
-  if(!x$status_code == 200){
-    stnames <- names(content(x))
-    if(!is.null(stnames)){
-      if('developerMessage' %in% stnames){
-        stop(sprintf("Error: (%s) - %s", x$status_code, content(x)$developerMessage))
-      } else { stop(sprintf("Error: (%s) - %s", x$status_code)) }
-    } else { stop_for_status(x) }
-  }
-  assert_that(x$headers$`content-type`=='application/json;charset=UTF-8')
-  res <- content(x, as = 'text', encoding = "UTF-8")
-  out <- RJSONIO::fromJSON(res, simplifyWithNames = FALSE)
-  if( class(try(out$results, silent=TRUE))=="try-error" | is.null(try(out$results, silent=TRUE)) )
-    stop("Sorry, no data found")
-  return( out )
-}

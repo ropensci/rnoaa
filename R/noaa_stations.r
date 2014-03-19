@@ -52,10 +52,12 @@
 
 noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locationid=NULL, 
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
-  datacategoryid=NULL, extent=NULL, radius=10,
-  token=getOption("noaakey", stop("you need an API key NOAA data")), callopts=list(),
-  dataset=NULL, station=NULL, location=NULL, locationtype=NULL, page=NULL)
-{  
+  datacategoryid=NULL, extent=NULL, radius=10, callopts=list(), token=NULL, dataset=NULL, 
+  station=NULL, location=NULL, locationtype=NULL, page=NULL)
+{ 
+  if(is.null(token))
+    token <- getOption("noaakey", stop("you need an API key NOAA data"))
+  
   if(!is.null(stationid)){
     url <- sprintf('http://www.ncdc.noaa.gov/cdo-web/api/v2/stations/%s', stationid)
     args <- list()
@@ -77,8 +79,7 @@ noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
   
   callopts <- c(add_headers("token" = token), callopts)
   temp <- GET(url, query=args, config=callopts)
-  stop_for_status(temp)
-  tt <- content(temp)
+  tt <- check_response(temp)
   
   if(!is.null(stationid)){
     dat <- data.frame(tt, stringsAsFactors=FALSE)
@@ -86,10 +87,7 @@ noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
     class(all) <- "noaa_stations"
     return( all )
   } else
-  {  
-    if(class(try(tt$results, silent=TRUE))=="try-error")
-      stop("Sorry, no data found")
-    # dat <- do.call(rbind.data.frame, tt$results)
+  {
     dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
     meta <- tt$metadata$resultset
     atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)

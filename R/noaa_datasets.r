@@ -4,6 +4,7 @@
 #' from us, you must know what dataset it is in.
 #' 
 #' @importFrom plyr compact rbind.fill
+#' @export
 #' @template rnoaa
 #' @template rnoaa2
 #' @template datasets
@@ -26,7 +27,6 @@
 #' noaa_datasets(datatypeid=c('ACMC','ACMH','ACSC'))
 #' noaa_datasets(datasetid='ANNUAL', datatypeid=c('ACMC','ACMH','ACSC'))
 #' }
-#' @export
 
 noaa_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL, 
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL, 
@@ -52,8 +52,9 @@ noaa_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
     
   callopts <- c(add_headers("token" = token), callopts)
   temp <- GET(url, query=args, config=callopts)
-  stop_for_status(temp)
-  tt <- content(temp)
+  tt <- check_response(temp)
+#   stop_for_status(temp)
+#   tt <- content(temp)
   
   if(!is.null(datasetid)){
     dat <- data.frame(tt, stringsAsFactors=FALSE)

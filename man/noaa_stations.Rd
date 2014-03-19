@@ -6,9 +6,9 @@
 noaa_stations(stationid = NULL, datasetid = NULL, datatypeid = NULL,
   locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
   sortorder = NULL, limit = 25, offset = NULL, datacategoryid = NULL,
-  extent = NULL, radius = 10, token = getOption("noaakey",
-  stop("you need an API key NOAA data")), callopts = list(), dataset = NULL,
-  station = NULL, location = NULL, locationtype = NULL, page = NULL)
+  extent = NULL, radius = 10, callopts = list(), token = NULL,
+  dataset = NULL, station = NULL, location = NULL, locationtype = NULL,
+  page = NULL)
 }
 \arguments{
   \item{datatypeid}{Accepts a valid data type id or a chain
