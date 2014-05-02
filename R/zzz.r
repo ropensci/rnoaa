@@ -1,9 +1,9 @@
 #' Check object class
-#' 
-#' Check if an object is of class noaa_data, noaa_datasets, 
-#' noaa_datatypes, noaa_datacats, noaa_locs, noaa_locs_cats, 
+#'
+#' Check if an object is of class noaa_data, noaa_datasets,
+#' noaa_datatypes, noaa_datacats, noaa_locs, noaa_locs_cats,
 #' or noaa_stations
-#' 
+#'
 #' @param x input
 #' @export
 is.noaa_data <- function(x) inherits(x, "noaa_data")
@@ -49,13 +49,13 @@ noaa_theme <- function(){
 #' @param lat Latitude, in decimal degree style
 long2utm <- function(lon, lat) {
   if(56 <= lat & lat < 64){
-    if(0 <= lon & lon < 3){ 31 } else 
+    if(0 <= lon & lon < 3){ 31 } else
       if(3 <= lon & lon < 12) { 32 } else { NULL }
-  } else 
+  } else
   if(72 <= lat) {
-    if(0 <= lon & lon < 9){ 31 } else 
-      if(9 <= lon & lon < 21) { 33 } else 
-        if(21 <= lon & lon < 33) { 35 } else 
+    if(0 <= lon & lon < 9){ 31 } else
+      if(9 <= lon & lon < 21) { 33 } else
+        if(21 <= lon & lon < 33) { 35 } else
           if(33 <= lon & lon < 42) { 37 } else { NULL }
   }
   (floor((lon + 180)/6) %% 60) + 1
@@ -77,19 +77,19 @@ latlong2bbox <- function(lat, lon, radius=10)
 {
   assert_that(is.numeric(lat), is.numeric(lon))
   assert_that(abs(lat)<=90, abs(lon)<=180)
-  
+
   # Make a spatialpoints obj, do settings, transform to UTM with zone
   d <- SpatialPoints(cbind(lon, lat), proj4string = CRS("+proj=longlat +datum=WGS84"))
   zone <- long2utm(lon=lon, lat=lat)
   dd <- spTransform(d, CRS(sprintf("+proj=utm +zone=%s +datum=WGS84 +units=m", zone)))
-  
+
   # give buffer around point given radius
   inmeters <- radius*1000
   ee <- gBuffer(dd, width = inmeters)
-  
+
   # transform back to decimal degree
   ff <- spTransform(ee, CRS("+proj=longlat +datum=WGS84"))
-  
+
   # get bounding box, put in a vector of length 4, and return
   box <- ff@bbox
   geometry <- sprintf('%s,%s,%s,%s', box[2,1], box[1,1], box[2,2], box[1,2])
@@ -104,7 +104,7 @@ check_response <- function(x){
     if(!is.null(stnames)){
       if('developerMessage' %in% stnames){
         stop(sprintf("Error: (%s) - %s", x$status_code, content(x)$developerMessage))
-      } else { stop(sprintf("Error: (%s) - %s", x$status_code)) }
+      } else { stop(sprintf("Error: (%s)", x$status_code)) }
     } else { stop_for_status(x) }
   }
   assert_that(x$headers$`content-type`=='application/json;charset=UTF-8')
