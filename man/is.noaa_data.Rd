@@ -24,7 +24,7 @@ is.noaa_locs_cats(x)
 is.noaa_stations(x)
 }
 \arguments{
-  \item{x}{input}
+\item{x}{input}
 }
 \description{
 Check if an object is of class noaa_data, noaa_datasets,

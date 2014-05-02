@@ -6,7 +6,7 @@
 noaa_combine(...)
 }
 \arguments{
-  \item{...}{Objects from another noaa_* function.}
+\item{...}{Objects from another noaa_* function.}
 }
 \value{
 A data.frame

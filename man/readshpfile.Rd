@@ -6,9 +6,9 @@
 readshpfile(x, storepath = NULL)
 }
 \arguments{
-  \item{x}{A url}
+\item{x}{A url}
 
-  \item{storepath}{Path to store data in}
+\item{storepath}{Path to store data in}
 }
 \value{
 An object of class sp

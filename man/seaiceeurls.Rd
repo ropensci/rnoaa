@@ -6,12 +6,11 @@
 seaiceeurls(yr = NULL, mo = NULL, pole = NULL)
 }
 \arguments{
-  \item{yr}{Year (numeric)}
+\item{yr}{Year (numeric)}
 
-  \item{mo}{Month, as character abbrevation of a month
-  (character)}
+\item{mo}{Month, as character abbrevation of a month  (character)}
 
-  \item{Pole}{One of S (south) or N (north) (character)}
+\item{Pole}{One of S (south) or N (north) (character)}
 }
 \value{
 A list of urls

@@ -10,14 +10,12 @@ noaa_plot(..., breaks = "7 days", dateformat = "\%d/\%m/\%y")
   dateformat = "\%d/\%m/\%y")
 }
 \arguments{
-  \item{...}{Input noaa object or objects.}
+\item{...}{Input noaa object or objects.}
 
-  \item{breaks}{Regularly spaced date breaks for x-axis.
-  See \code{\link{date_breaks}}}
+\item{breaks}{Regularly spaced date breaks for x-axis. See \code{\link{date_breaks}}}
 
-  \item{dateformat}{Date format using standard POSIX
-  specification for labels on x-axis. See
-  \code{\link{date_format}}}
+\item{dateformat}{Date format using standard POSIX specification for labels on
+x-axis. See \code{\link{date_format}}}
 }
 \value{
 Plot of climate data.

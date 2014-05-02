@@ -18,6 +18,7 @@ URL: https://github.com/ropensci/rnoaa
 BugReports: http://www.github.com/ropensci/rnoaa/issues
 LazyLoad: yes
 LazyData: yes
+Roxygen: list(wrap = FALSE)
 Imports:
     httr,
     lubridate,

@@ -6,11 +6,11 @@
 latlong2bbox(lat, lon, radius = 10)
 }
 \arguments{
-  \item{lat}{Latitude, in decimal degree style}
+\item{lat}{Latitude, in decimal degree style}
 
-  \item{lon}{Longitude, in decimal degree style}
+\item{lon}{Longitude, in decimal degree style}
 
-  \item{radius}{Amount to create buffer by, in km}
+\item{radius}{Amount to create buffer by, in km}
 }
 \description{
 Function to calculate bounding box for the extent parameter in noaa_stations function.

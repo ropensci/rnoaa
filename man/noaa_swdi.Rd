@@ -9,52 +9,39 @@ noaa_swdi(dataset = NULL, format = "xml", startdate = NULL,
   filepath = NULL, callopts = list())
 }
 \arguments{
-  \item{dataset}{Dataset to query. See below for details.}
+\item{dataset}{Dataset to query. See below for details.}
 
-  \item{format}{File format to download. One of xml, csv,
-  shp, or kmz.}
+\item{format}{File format to download. One of xml, csv, shp, or kmz.}
 
-  \item{startdate}{Start date. See details.}
+\item{startdate}{Start date. See details.}
 
-  \item{enddate}{End date. See details.}
+\item{enddate}{End date. See details.}
 
-  \item{limit}{Number of results to return. Defaults to 25.
-  Any number from 1 to 10000000.}
+\item{limit}{Number of results to return. Defaults to 25. Any number from 1 to 10000000.}
 
-  \item{offset}{Any number from 1 to 10000000. Default is
-  NULL, no offset, start from 1.}
+\item{offset}{Any number from 1 to 10000000. Default is NULL, no offset, start from 1.}
 
-  \item{radius}{Search radius in miles (current limit is 15
-  miles)}
+\item{radius}{Search radius in miles (current limit is 15 miles)}
 
-  \item{center}{Center coordinate in lon,lat decimal degree
-  format, e.g.: c(-95.45,36.88)}
+\item{center}{Center coordinate in lon,lat decimal degree format, e.g.: c(-95.45,36.88)}
 
-  \item{bbox}{Bounding box in format of
-  minLon,minLat,maxLon,maxLat, e.g.: c(-91,30,-90,31)}
+\item{bbox}{Bounding box in format of minLon,minLat,maxLon,maxLat, e.g.: c(-91,30,-90,31)}
 
-  \item{tile}{Coordinate in lon,lat decimal degree format,
-  e.g.: c(-95.45,36.88) The lat/lon values are rounded to
-  the nearest tenth of degree. For the above example, the
-  matching tile would contain values from -95.4500 to
-  -95.5499 and 36.8500 to 36.9499}
+\item{tile}{Coordinate in lon,lat decimal degree format, e.g.: c(-95.45,36.88)
+The lat/lon values are rounded to the nearest tenth of degree. For the above example,
+the matching tile would contain values from -95.4500 to -95.5499 and 36.8500 to 36.9499}
 
-  \item{stat}{One of count or tilesum:$longitude,$latitude.
-  Setting stat='count' returns number of results only (no
-  actual data). stat='tilesum:$longitude,$latitude' returns
-  daily feature counts for a tenth of a degree grid
-  centered at the nearest tenth of a degree to the supplied
-  values.}
+\item{stat}{One of count or tilesum:$longitude,$latitude. Setting stat='count' returns
+number of results only (no actual data). stat='tilesum:$longitude,$latitude' returns
+daily feature counts for a tenth of a degree grid centered at the nearest tenth of a
+degree to the supplied values.}
 
-  \item{id}{An identifier, e.g., 533623. Not sure how you
-  find these ids?}
+\item{id}{An identifier, e.g., 533623. Not sure how you find these ids?}
 
-  \item{filepath}{If kmz or shp chosen the file name and
-  optionally path to write to. Ignored format=xml or
-  format=csv (optional)}
+\item{filepath}{If kmz or shp chosen the file name and optionally path to write to. Ignored
+format=xml or format=csv (optional)}
 
-  \item{callopts}{Further arguments passed on to the API
-  GET call. (optional)}
+\item{callopts}{Further arguments passed on to the API GET call. (optional)}
 }
 \value{
 If xml or csv chosen, a list of length three, a slot of metadata (meta), a slot

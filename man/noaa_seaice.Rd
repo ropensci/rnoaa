@@ -6,10 +6,10 @@
 noaa_seaice(url, ...)
 }
 \arguments{
-  \item{url}{A url for a NOAA sea ice ftp file}
+\item{url}{A url for a NOAA sea ice ftp file}
 
-  \item{...}{Further arguments passed on to readshpfile
-  function, see \code{readshpfile}}
+\item{...}{Further arguments passed on to readshpfile function, see
+\code{readshpfile}}
 }
 \value{
 A data.frame
