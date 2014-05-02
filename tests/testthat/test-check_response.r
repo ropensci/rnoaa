@@ -38,5 +38,5 @@ test_that("check_response returns the correct error messages", {
   # bad key
   expect_output(error2character(noaa_datacats(datacategoryid="ANNAGR", token = "asdfs")), "400")
   # invalid longitude value
-  expect_output(error2character(noaa_stations(extent=c(47.5204,-122.2047,47.6139,-192.1065))), "no data found")
+  expect_output(error2character(noaa_stations(extent=c(47.5204,-122.2047,47.6139,-192.1065), token=key)), "no data found")
 })
