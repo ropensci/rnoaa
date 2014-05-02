@@ -28,7 +28,7 @@
 #'    enddate = '2010-05-10')
 #' 
 #' # GHCND data from October 1 2013 to December 1 2013
-#' noaa(datasetid='GHCND', startdate = '2013-10-01', enddate = '2013-12-01')
+#' noaa(datasetid='GHCND', startdate = '2013-10-01', enddate = '2013-10-05')
 #' 
 #' # GHCN-Monthly (or GHCNDMS) data from October 1 2013 to December 1 2013
 #' noaa(datasetid='GHCNDMS', startdate = '2013-10-01', enddate = '2013-12-01')
