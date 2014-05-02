@@ -96,7 +96,8 @@ Note that the default limit (no. records returned) is 25.
 \examples{
 \dontrun{
 # GHCN-Daily (or GHCND) data, for a specific station
-noaa(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01', enddate = '2013-12-01')
+noaa(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
+   enddate = '2013-12-01')
 
 # GHCND data, for a location by FIPS code
 noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01',
@@ -116,8 +117,8 @@ noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05
 noaa(datasetid='GHCND', locationid='FIPS:AS', startdate = '2010-05-01', enddate = '2010-05-31')
 
 # Dataset, location and datatype for PRECIP_HLY data
-noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', startdate = '2010-05-01',
-   enddate = '2010-05-10')
+noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
+   startdate = '2010-05-01', enddate = '2010-05-10')
 
 # Dataset, location, station and datatype
 noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP',
@@ -136,14 +137,16 @@ noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax
    startdate = '2010-05-01', enddate = '2010-05-10')
 
 # Hourly Precipitation data for ZIP code 28801
-noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', startdate = '2010-05-01',
-   enddate = '2010-05-10')
+noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
+   startdate = '2010-05-01', enddate = '2010-05-10')
 
 # Search the NORMAL_HLY dataset
-noaa(datasetid='NORMAL_HLY', stationid = 'GHCND:USW00003812', startdate = '2010-05-01', enddate = '2010-05-10')
+noaa(datasetid='NORMAL_HLY', stationid = 'GHCND:USW00003812', startdate = '2010-05-01',
+   enddate = '2010-05-10')
 
 # Search the ANNUAL dataset
-noaa(datasetid='ANNUAL', locationid='ZIP:28801', startdate = '2010-05-01', enddate = '2010-05-10')
+noaa(datasetid='ANNUAL', locationid='ZIP:28801', startdate = '2010-05-01',
+   enddate = '2010-05-10')
 }
 
 \donttest{
