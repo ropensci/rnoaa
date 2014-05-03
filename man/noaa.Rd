@@ -140,6 +140,9 @@ noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax
 noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
    startdate = '2010-05-01', enddate = '2010-05-10')
 
+# 15 min Precipitation data for ZIP code 28801
+noaa(datasetid='PRECIP_15', datatypeid='QPCP', startdate = '2010-05-01', enddate = '2010-05-02')
+
 # Search the NORMAL_HLY dataset
 noaa(datasetid='NORMAL_HLY', stationid = 'GHCND:USW00003812', startdate = '2010-05-01',
    enddate = '2010-05-10')
@@ -147,6 +150,10 @@ noaa(datasetid='NORMAL_HLY', stationid = 'GHCND:USW00003812', startdate = '2010-
 # Search the ANNUAL dataset
 noaa(datasetid='ANNUAL', locationid='ZIP:28801', startdate = '2010-05-01',
    enddate = '2010-05-10')
+
+# Search the NORMAL_ANN dataset
+noaa(datasetid='NORMAL_ANN', datatypeid='ANN-DUTR-NORMAL', startdate = '2010-01-01',
+   enddate = '2010-01-01')
 }
 
 \donttest{

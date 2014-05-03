@@ -118,3 +118,5 @@ check_response <- function(x){
   }
   return( out )
 }
+
+noaa_compact <- function (l) Filter(Negate(is.null), l)
