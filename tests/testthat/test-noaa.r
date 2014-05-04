@@ -35,7 +35,7 @@ test_that("noaa returns the correct dimensions", {
   expect_equal(dim(aa$data), c(25,5))
   
   expect_equal(length(gg$meta), 3)
-  expect_equal(dim(gg$data), c(28,5))
+  expect_equal(dim(gg$data), c(28,8))
 #   expect_equal(dim(ii$data), c(22,5))
 #   expect_equal(length(ii$atts), 3)
 })
