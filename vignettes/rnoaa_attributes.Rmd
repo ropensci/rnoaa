@@ -6,13 +6,42 @@
 NOAA NCDC dataset attributes
 ======
 
-## Notes on attributes for each dataset
+The attributes, or "flags", for each row of the output for data may have a flag with it.
+Each `datasetid` has it's own set of flags. The following are flag columns, and what they
+stand are. `fl_` is the beginning of each flag column name, then one or more characters
+to describe the flag, keeping it short to maintain a compact data frame. Some of these
+fields are the same across datasetids, but they may have different possible values. See
+below details on each dataset.
 
-### Dataset: ANNUAL
+* _fl_c_ = completeness
+* _fl_m_ = measurement
+* _fl_d_ =  day
+* _fl_q_ = quality
+* _fl_s_ = source
+* _fl_t_ = time
+* _fl_cmiss_ = consecutive missing
+* _fl_miss_ = missing
+* _fl_u_ units
+
+__Datasets__
+
+* [ANNUAL](#annual)
+* [GHCND](#ghcnd)
+* [GHCNDMS](#ghcndms)
+* [NORMAL_ANN](#normalann)
+* [NORMAL_DLY](#normaldly)
+* [NORMAL_HLY](#normalhly)
+* [NORMAL_MLY](#normalmly)
+* [PRECIP_HLY](#preciphly)
+* [PRECIP_15](#precip15)
+* NEXRAD2 - not working yet
+* NEXRAD3 - not working yet
+
+### <a href="#annual" name="annual"/>#</a> Dataset: ANNUAL
 
 More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/ANNUAL_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/ANNUAL_documentation.pdf)
 
-#### First flag (Measurement Flag)
+#### fl_m (Measurement Flag)
 
 A - Accumulated amount. This value is a total that may include data from a previous month or months
 (TPCP).
@@ -50,19 +79,19 @@ subsequent value (TPCP).
 
  (blank) No report
 
-#### Second flag (Quality Flag)
+#### fl_q (Quality Flag)
 
 A – Accumulated amount
 E – Estimated value
 + - Value occurred on more than one day – last date of occurrence is used
 
-#### Third flag  (Number of Days flag )
+#### fl_d (Number of Days flag )
 
 Number of days is given as 00 when all days in the month are considered in
 computing data value or otherwise the maximum number of consecutive days in the month considered
 in computing the data value.
 
-#### Fourth flag (Units)
+#### fl_u (Units)
 
 C -Whole degree Celsius
 D - Whole Fahrenheit Degree Day
@@ -83,9 +112,9 @@ TM – Tenths of millimeters
 4 – Soils – degrees Fahrenheit, soil depth in whole centimeters
 5 – Soils – If the soil station closed during the current month, “5” indicates the station has closed.
 
-### Dataset: GHCND
+### <a href="#ghcnd" name="ghcnd"/>#</a> Dataset: GHCND
 
-#### Measurement Flag (Attribute)
+#### flm_m (Measurement Flag)
  Blank = no measurement information applicable
  A = value in precipitation or snow is a multi-day total, accumulated since last measurement
  (used on Daily Form pdf file)
@@ -99,7 +128,7 @@ TM – Tenths of millimeters
  T = trace of precipitation, snowfall, or snow depth
  W = converted from 16-point WBAN code (for wind direction)
 
-#### Quality Flag (Attribute)
+#### fl_q (Quality Flag)
 
 Blank = did not fail any quality assurance check
  D = failed duplicate check
@@ -117,7 +146,7 @@ Blank = did not fail any quality assurance check
  X = failed bounds check
  Z = flagged as a result of an official Datzilla investigation
 
-#### Source Flag (Attribute)
+#### fl_s (Source Flag)
 
 Blank = No source (i.e., data value missing)
  0 = U.S. Cooperative Summary of the Day (NCDC DSI-3200)
@@ -154,42 +183,39 @@ Blank = No source (i.e., data value missing)
  Z = Datzilla official additions or replacements
  z = Uzbekistan update
 
-#### Time of Observation is the (2 digit hour, 2 digit minute) 24 hour clock time of the observation given as
-the local time at the station of record.
+#### fl_t (Time of Observation)
 
-### Dataset: GHCNDMS
+Is the (2 digit hour, 2 digit minute) 24 hour clock time of the observation given as the
+local time at the station of record.
+
+### <a href="#ghcndms" name="ghcndms"/>#</a> Dataset: GHCNDMS
 
 Observation(s) is/are synonymous with elements or values, and defined in Table A below. 9’s in a field
 (e.g.9999) indicate missing data or data that has not been received.
 
 Flags: Missing Flag , Consecutive Missing Flag
 
-#### Missing Flag
+#### fl_miss (Missing Flag)
 
 Defined as total number of days observation/element is missing in that month. This can  be taken as a measure of quality or completeness as the higher the number of days sampled in the month, the more representative the value is for the entire month.
 
-#### Consecutive Missing Flag
+#### fl_cmiss (Consecutive Missing Flag)
 
 Defined as the maximum number of consecutive days in the month that an  observation/element is missing.
 
 
-### Dataset: NORMAL_ANN
+### <a href="#normalann" name="normalann"/>#</a> Dataset: NORMAL_ANN
 
-XXXXX
+More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_ANN_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_ANN_documentation.pdf)
 
-### ANNUAL
+#### Description
+The 1981-2010 Normals comprise all climate normals using the thirty year period of temperature,
+degree days, precipitation, snowfall, snow depth, wind, etc. Data is organized into hourly, daily,
+monthly, seasonal and annual. This document describes the elements and layout of the Seasonal and
+Annual Normals which are derived from a composite of climate records from numerous sources that
+were merged and then subjected to a suite of quality assurance reviews.
 
-### ANNUAL
-
-### ANNUAL
-
-### ANNUAL
-
-### Dataset: NORMAL_DLY
-
-More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_DLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_DLY_documentation.pdf)
-
-#### Completeness Flag (Attribute)
+#### <a name="completenessflag"></a> fl_c (Completeness Flag)
 
 Flags accompany every Normals value and indicate the completeness of the data record used to
 compute each value, accounting for methodological differences for different product classes. There are
@@ -200,6 +226,7 @@ independently for each normals value reported based on number of years available
 calculation. For temperature-based normals, strong precedence is given to the monthly normals of
 maximum and minimum temperature or derived from the flags for these two variables.
 
+Table 1 (CompletenessFlag/Attribute)
 C = complete (all 30 years used)
 S = standard (no more than 5 years missing and no more than 3 consecutive
  years missing among the sufficiently complete years)
@@ -213,43 +240,105 @@ Q = quasi-normal (at least 2 years per month, but not sufficiently complete to
  be labeled as provisional or any other higher flag code. The associated
  value was computed using a pseudonormals approach or derived from monthly
  pseudonormals.
-Blank = the data value is reported as a special value, such as 9999 (special values given in section B of III.
-Additional Information below)
+Blank = the data value is reported as a special value (see section B under III. Additional Information
+below).
 
-Note: Flags Q and R also aren't applicable to daily precipitation/snowfall/snow depth
-percentiles. Further, Q flags are not applicable for standard deviations.
+Note: Flags Q and R aren't applicable to average number of days with different precipitation,
+snowfall, and snow depth threshold exceedance; precipitation/snowfall/snow
+probabilities of occurrence. Further, Q flags are not applicable for standard deviations.
+
+### <a href="#normaldly" name="normaldly"/>#</a> Dataset: NORMAL_DLY
+
+More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_DLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_DLY_documentation.pdf)
+
+#### Description
+The 1981-2010 Normals comprise all climate normals using the thirty year period of temperature,
+degree days, precipitation, snowfall, snow depth, wind, etc. Data is organized into hourly, daily,
+monthly, seasonal and annual. This document describes the elements and layout of the Daily Normals
+which are derived from a composite of climate records from numerous sources that were merged and
+then subjected to a suite of quality assurance reviews.
 
 
-### Dataset: NORMAL_HLY
+#### fl_c (Completeness Flag)
+
+Same as NORMAL_ANN, see the description above at [Completeness Flag](#completenessflag).
+
+
+### <a href="#normalhly" name="normalhly"/>#</a> Dataset: NORMAL_HLY
 
 More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_HLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_HLY_documentation.pdf)
 
-#### Completeness Flag (Attribute)
+#### Description
+The 1981-2010 Normals comprise all climate normals using the thirty year period of temperature,
+degree days, precipitation, snowfall, snow depth, wind, etc. Data is organized into hourly, daily,
+monthly, seasonal and annual normals. This document describes the elements and layout of the Hourly
+Normals which are derived from a composite of climate records from numerous sources that were
+merged and then subjected to a suite of quality assurance reviews.
+The hourly normals provide a suite of descriptive statistics based on hourly observations at a few
+hundred stations from across the United States and its Pacific territories. Statistics are provided as 30-
+year averages, frequencies of occurrence, and percentiles for each hour and day of the year. These
+products are useful in examination of the diurnal change of a particular variable.
 
-Flags accompany every Normals value and indicate the completeness of the data record used to
-compute each value, accounting for methodological differences for different product classes. There are
-six flag options described generally in Table 1 below. Due to methodological differences, the flags are
-applied somewhat differently between the temperature-based normals and the precipitation-based
-normals. For the precipitation-based and hourly normals, the following flags were assigned
-independently for each normals value reported based on number of years available for that individual
-calculation. For temperature-based normals, strong precedence is given to the monthly normals of
-maximum and minimum temperature or derived from the flags for these two variables.
+For temperature, dew point and mean sea level pressure an average hourly value as well as a 10th and
+90th percentile of hourly values is given. For heating and cooling degree hours, an average hourly value is
+given using a 65 degree F base. Average hourly values are also given for heat index and wind chill. Cloud
+cover statistics include percent frequency of clear, few, scattered, broken and overcast conditions. Wind
+statistics include prevailing and secondary wind direction and percent frequency, average wind speed,
+percentage of calm winds and mean wind vector direction and magnitude.
 
-C = complete (all 30 years used)
-S = standard (no more than 5 years missing and no more than 3 consecutive
- years missing among the sufficiently complete years)
-P = provisional (at least 10 years used, but not sufficiently complete to be
- labeled as standard or representative). Also used for parameter values on
- February 29 as well as for interpolated daily precipitation, snowfall, and
- snow depth percentiles.
-Blank = the data value is reported as a special value such as 9999 (see section B in III. Additional
-Information below for more information on Special Values)
+The statistics are computed from the ISD-lite dataset for which more information can be found at
+http://www.ncdc.noaa.gov/oa/climate/isd/index.php?name=isd-lite. 262 stations were selected from
+the ISD-lite data, based on their completeness and membership in a list of what were known as "first
+order stations." These are typically airport locations with the needed 24 hours/day observations to
+make hourly normals meaningful. All stations had at least 27 of the 30 years represented.
 
-### Dataset: PRECIP_HLY
+Each hourly normal is computed on the basis of 450 possible values. This is the aggregation of the value
+for a particular date and time, plus and minus 7 days, over each of 30 years. If fewer than 350 valid
+values are present, the output is given as the special value 9999. No normals are computed for February
+29, but data for February 29 is included in the 15 day window for leap years. The original data has been
+shifted from Greenwich Mean Time to an end product in local standard time.
+
+#### fl_c (Completeness Flag)
+
+Same as NORMAL_ANN, see the description above at [Completeness Flag](#completenessflag).
+
+### <a href="#normalmly" name="normalmly"/>#</a> Dataset: NORMAL_MLY
+
+More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_MLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_MLY_documentation.pdf)
+
+#### Description
+The 1981-2010 Normals comprise all climate normals using the thirty year period of temperature,
+degree days, precipitation, snowfall, snow depth, wind, etc. Data are organized into hourly, daily,
+monthly, seasonal and annual. This document describes the elements and layout of the Monthly
+Normals which are derived from a composite of climate records from numerous sources that were
+merged and then subjected to a suite of quality assurance reviews.
+
+#### fl_c (Completeness Flag)
+
+Same as NORMAL_ANN, see the description above at [Completeness Flag](#completenessflag).
+
+### <a href="#preciphly" name="preciphly"/>#</a> Dataset: PRECIP_HLY
 
 More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf)
 
-#### Data Measurement Flag (Attribute)
+#### Description
+Hourly Precipitation Data (labeled Precipitation Hourly in Climate Data Online system) is
+a database that gives time-sequenced hourly precipitation amounts for a network of
+over 7000 reporting station located primarily in the United States. Data is collected from
+a variety of sources including National Weather Service reporting stations, volunteer
+cooperative observers, Federal Aviation Administration (FAA), utility companies, etc.
+
+Concerning rain gages/data processing: Data from weighing rain gages, Fischer-Porter
+gages, Universal rain gages and in recent years, more modern measuring equipment in
+conjunction with automated recording sites, etc. have been used in this dataset over the
+period. Precipitation values have been checked and edited as necessary by both
+automated and manual methods. Because of some inconsistencies identified with the
+earlier data (prior to 1996), historical data were reprocessed in 1997. This rehabilitated
+data covered 53 million observations between 1900 and 1995. Similar quality control
+checks are in place that maintain consistency between the historical and operationally
+received data.
+
+#### fl_m (Measurement Flag)
 
 Note: This field is left blank when no flag is needed.
 
@@ -295,7 +384,7 @@ National Weather Service data only since July 1996.
 
 M: Missing data. No data available for this period.
 
-#### Data Quality Flag (Attribute)
+#### fl_q (Data Quality)
 
 Z: Indicates probable amounts as a result of melting frozen precipitation. This flag may
 be used to identify those sites that are deficient in the manner the snow shields are  employed.
@@ -316,3 +405,109 @@ used since 1996.
 
 q: An hourly value excludes one or more 15 minute periods. Lowest data resolution is
 15 minutes. Used since January 1996.
+
+
+### <a href="#precip15" name="precip15"/>#</a> Dataset: PRECIP_15
+
+More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_15_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_15_documentation.pdf)
+
+#### Description
+15 Minute Precipitation Data (labeled Precipitation 15 Minute in Climate Data Online
+system) is a database that gives time-sequenced quarter-hour precipitation amounts for
+a network of over 3600 reporting station located primarily in the United States. Data is
+collected from a variety of sources including National Weather Service reporting
+stations, volunteer cooperative observers, Federal Aviation Administration (FAA), utility
+companies, etc.
+
+Concerning rain gages/data processing: Data from Fischer-Porter gages between May
+1971 and December 1983 have been used in this dataset. Precipitation values have
+been checked and edited as necessary by both automated and manual methods. Data
+processing procedures were updated in January 1984 to produce the element
+structured data base files and further enhanced beginning with the January 1996 data
+month. Currently, interactive quality control procedures are in place that has added
+many checks and features and data are subjected to automated editing procedures that
+reduce the manual handling of the data.
+
+#### fl_m (Data Measurement)
+
+__QPCP__
+
+Note: This field is left blank when no flag is needed.
+
+a: Begin accumulation. A data value of 99999 accompanies this flag. It indicates that the
+accumulation has begun at some time during the 15 minute period.
+
+A: End accumulation (an amount is associated with this flag). It indicates that
+accumulation has ended sometime during the 15 minute period. Accumulated period
+indicates that the precipitation amount is correct, but only the exact beginning and
+ending times are known. A data value of 99999 occurring on the last day and hour of a
+month indicates the accumulation continues into the next month.
+
+, (comma): Used at the beginning of a data month when an accumulation is in progress.
+This flag is used prior to 1984.
+
+{ : Begin deleted period during the hour (inclusive).
+
+}: End deleted period during the hour (inclusive).
+
+[: Begin missing period during the hour (inclusive).
+
+]: End missing period during the hour (inclusive).
+
+E: Evaporation may have occurred. Data may or may not be reliable. This flag was used
+during the period 1984-1993.
+
+g: Only used on day 1 when precipitation amount is zero.
+
+T: Indicates a "trace" amount. Data value with this will be zero. "T" flags appear on
+National Weather Service data only.
+
+M: Missing data. No data available for this period.
+
+__QGAG__
+
+a: begin accumulation (indicates measurement periods overlapped)
+A: end accumulation
+[: begin missing
+]: end missing
+{: begin delete
+}: end delete
+S: gage reset
+
+#### fl_q (Data Quality)
+
+__QPCP__
+
+X: Used for data prior to 1996 as part of a 1997 data rehabilitation effort. Indicates value
+failed an extreme value test; data are to be used with caution. Extreme tests were: 1) if
+the value was not an accumulated precipitation total, the value failed the one hour
+statewide 100 year return period precipitation and 2) if the value was an accumulated
+precipitation total, the value failed the 24 hour statewide extreme precipitation total.
+
+Z: Indicates probable amounts as a result of melting frozen precipitation. This flag may
+be used to identify those sites that are deficient in the manner the snow shields are
+employed. Used since January 1996.
+
+R: This data value failed one of NCDC's quality control tests.
+
+Q: A single erroneous value (value will be present). Used since January 1996.
+
+q: An hourly value excludes one or more 15 minute periods. Lowest data resolution is
+15 minutes. Used since January 1996.
+
+A: Accumulated period and amount. An accumulated period indicates that the
+precipitation amount is correct, but the exact beginning and ending times are only
+known to the extent that the precipitation occurred sometime within the accumulation
+period.
+
+__QGAG__
+
+Q: Questionable value. Data not used.
+P: Punched mechanism failure, missing punch assumed. Assumed punch value being
+used.
+V: Evaporation likely. Gage value has dropped. Data are being used.
+
+
+#### fl_u (Units Flag)
+
+HI indicates data values (QGAG or QPCP) are in hundredths of inches. HT indicates data values (QGAG or QPCP) are in tenths of inches.

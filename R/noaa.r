@@ -27,12 +27,14 @@
 #'
 #' \itemize{
 #'  \item fl_c completeness
+#'  \item fl_d day
 #'  \item fl_m measurement
 #'  \item fl_q quality
 #'  \item fl_s source
 #'  \item fl_t time
 #'  \item fl_cmiss consecutive missing
 #'  \item fl_miss missing
+#'  \item fl_u units
 #' }
 #'
 #' @return An S3 list of length two, a slot of metadata (meta), and a slot for data (data).
