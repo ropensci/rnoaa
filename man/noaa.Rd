@@ -92,6 +92,24 @@ perform well with very long timespans, and will time out and make you angry - be
 Keep in mind that three parameters, datasetid, startdate, and enddate are required.
 
 Note that the default limit (no. records returned) is 25.
+
+The attributes, or "flags", for each row of the output for data may have a flag
+with it. Each \code{datasetid} has it's own set of flags. The following are flag
+columns, and what they stand for. \code{fl_} is the beginning of each flag
+column name, then one or more characters to describe the flag, keeping it short
+to maintain a compact data frame. Some of these fields are the same across
+datasetids. See the vignette rnoaa_attributes for description of possible values
+for each flag.
+
+\itemize{
+ \item fl_c completeness
+ \item fl_m measurement
+ \item fl_q quality
+ \item fl_s source
+ \item fl_t time
+ \item fl_cmiss consecutive missing
+ \item fl_miss missing
+}
 }
 \examples{
 \dontrun{

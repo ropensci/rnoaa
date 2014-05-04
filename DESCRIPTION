@@ -1,6 +1,6 @@
 Package: rnoaa
-Version: 0.1.2
-Date: 2014-03-19
+Version: 0.1.4
+Date: 2014-05-03
 License: MIT + file LICENSE
 Title: NOAA climate data from R.
 Description: This is an R wrapper to the NOAA climate data API at
@@ -19,6 +19,7 @@ BugReports: http://www.github.com/ropensci/rnoaa/issues
 LazyLoad: yes
 LazyData: yes
 Roxygen: list(wrap = FALSE)
+VignetteBuilder: knitr
 Imports:
     httr,
     lubridate,

@@ -20,8 +20,8 @@
 #' columns, and what they stand for. \code{fl_} is the beginning of each flag
 #' column name, then one or more characters to describe the flag, keeping it short
 #' to maintain a compact data frame. Some of these fields are the same across
-#' datasetids. See the vignette rnoaa_attributes for description of possible values 
-#' for each flag.
+#' datasetids. See the vignette \code{vignette("rnoaa_attributes", "rnoaa")} for 
+#' description of possible values for each flag.
 #'
 #' \itemize{
 #'  \item fl_c completeness
