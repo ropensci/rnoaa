@@ -1,4 +1,4 @@
-#' Get NOAA data.
+#' Search for and get NOAA data.
 #'
 #' @import httr
 #' @importFrom plyr round_any rbind.fill
@@ -13,7 +13,9 @@
 #'
 #' Keep in mind that three parameters, datasetid, startdate, and enddate are required.
 #'
-#' Note that the default limit (no. records returned) is 25.
+#' Note that the default limit (no. records returned) is 25. Look at the metadata in \code{$meta} 
+#' to see how many records were found. If more were found than 25, you could set the parameter 
+#' \code{limit} to something higher than 25. 
 #'
 #' The attributes, or "flags", for each row of the output for data may have a flag
 #' with it. Each \code{datasetid} has it's own set of flags. The following are flag

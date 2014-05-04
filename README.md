@@ -6,14 +6,14 @@ rnoaa
 ### Info
 
 
-* We are using the NOAA API version 2. A previous version of this software was using their V1 API - older versions of this software use the old API - let us know if you want to use that. 
+* We are using the NOAA API version 2. A previous version of this software was using their V1 API - older versions of this software use the old API - let us know if you want to use that.
 * The docs for the NCDC data API are [here](http://www.ncdc.noaa.gov/cdo-web/webservices/v2)
 * GCHN Daily data is available [here](http://www.ncdc.noaa.gov/oa/climate/ghcn-daily/) via FTP and HTTP
 * Severe weather data docs are [here](http://www.ncdc.noaa.gov/swdiws/)
 
-### Attributes
+### Datasets
 
-There are many NOAA NCDC datasets: 
+There are many NOAA NCDC datasets:
 
 | Dataset | Description | Start date | End date |
 |---------|-------------|------------|----------|
@@ -29,9 +29,11 @@ There are many NOAA NCDC datasets:
 | PRECIP_15 | Precipitation 15 Minute | 1970-05-12 | 2013-03-01 |
 | PRECIP_HLY | Precipitation Hourly | 1900-01-01 | 2013-03-01 |
 
-Each NOAA dataset has different set of attributes that you can potentially get back in your search. See [the docs](http://www.ncdc.noaa.gov/cdo-web/datasets) for detailed info on each dataset. We provide some information on the attributes in this package. 
+### Attributes
 
-### API key
+Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See [the NOAA docs](http://www.ncdc.noaa.gov/cdo-web/datasets) for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](vignettes/rnoaa_attributes.md) to find out more
+
+### Authentication
 
 You'll need an API key to use this package (essentially a password). Go [here](http://www.ncdc.noaa.gov/cdo-web/token) to get one. *You can't use this package without an API key.*
 
@@ -133,7 +135,8 @@ noaa_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #### Search for data
 
 ```coffee
-out <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal')
+noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal',
+   startdate = '2010-05-01', enddate = '2010-05-10')
 ```
 
 ##### See a data.frame
@@ -143,13 +146,13 @@ head( out$data )
 ```
 
 ```coffee
-            station value attributes        datatype       date
-1 GHCND:USW00014895   334          S DLY-TMAX-NORMAL 2010-01-01
-2 GHCND:USW00014895   333          S DLY-TMAX-NORMAL 2010-01-02
-3 GHCND:USW00014895   332          S DLY-TMAX-NORMAL 2010-01-03
-4 GHCND:USW00014895   331          S DLY-TMAX-NORMAL 2010-01-04
-5 GHCND:USW00014895   331          S DLY-TMAX-NORMAL 2010-01-05
-6 GHCND:USW00014895   330          S DLY-TMAX-NORMAL 2010-01-06
+             station value        datatype                date fl_c
+1  GHCND:USW00014895   652 DLY-TMAX-NORMAL 2010-05-01T00:00:00    S
+2  GHCND:USW00014895   655 DLY-TMAX-NORMAL 2010-05-02T00:00:00    S
+3  GHCND:USW00014895   658 DLY-TMAX-NORMAL 2010-05-03T00:00:00    S
+4  GHCND:USW00014895   661 DLY-TMAX-NORMAL 2010-05-04T00:00:00    S
+5  GHCND:USW00014895   663 DLY-TMAX-NORMAL 2010-05-05T00:00:00    S
+6  GHCND:USW00014895   666 DLY-TMAX-NORMAL 2010-05-06T00:00:00    S
 ```
 
 #### Plot data, super simple, but it's a start
@@ -180,23 +183,30 @@ noaa_datasets()
 ```
 
 ```coffee
-$data
-           id                    name datacoverage    mindate    maxdate
-1      ANNUAL        Annual Summaries         1.00 1831-02-01 2012-11-01
-2       GHCND         Daily Summaries         1.00 1763-01-01 2013-11-19
-3     GHCNDMS       Monthly Summaries         1.00 1763-01-01 2013-10-01
-4     NEXRAD2         Nexrad Level II         0.95 1991-06-05 2013-11-19
-5     NEXRAD3        Nexrad Level III         0.95 1994-05-20 2013-11-17
-6  NORMAL_ANN Normals Annual/Seasonal         1.00 2010-01-01 2010-01-01
-7  NORMAL_DLY           Normals Daily         1.00 2010-01-01 2010-12-31
-8  NORMAL_HLY          Normals Hourly         1.00 2010-01-01 2010-12-31
-9  NORMAL_MLY         Normals Monthly         1.00 2010-01-01 2010-12-01
-10  PRECIP_15 Precipitation 15 Minute         0.25 1970-05-12 2013-03-01
-11 PRECIP_HLY    Precipitation Hourly         1.00 1900-01-01 2013-03-01
+$meta
+$meta$limit
+[1] 25
 
-$metadata
-  limit count offset
-1    25    11      1
+$meta$count
+[1] 11
+
+$meta$offset
+[1] 1
+
+
+$data
+                    uid         id                    name datacoverage    mindate    maxdate
+1  gov.noaa.ncdc:C00040     ANNUAL        Annual Summaries         1.00 1831-02-01 2013-12-01
+2  gov.noaa.ncdc:C00861      GHCND         Daily Summaries         1.00 1763-01-01 2014-05-02
+3  gov.noaa.ncdc:C00841    GHCNDMS       Monthly Summaries         1.00 1763-01-01 2014-03-01
+4  gov.noaa.ncdc:C00345    NEXRAD2         Nexrad Level II         0.95 1991-06-05 2014-04-22
+5  gov.noaa.ncdc:C00708    NEXRAD3        Nexrad Level III         0.95 1994-05-20 2014-04-19
+6  gov.noaa.ncdc:C00821 NORMAL_ANN Normals Annual/Seasonal         1.00 2010-01-01 2010-01-01
+7  gov.noaa.ncdc:C00823 NORMAL_DLY           Normals Daily         1.00 2010-01-01 2010-12-31
+8  gov.noaa.ncdc:C00824 NORMAL_HLY          Normals Hourly         1.00 2010-01-01 2010-12-31
+9  gov.noaa.ncdc:C00822 NORMAL_MLY         Normals Monthly         1.00 2010-01-01 2010-12-01
+10 gov.noaa.ncdc:C00505  PRECIP_15 Precipitation 15 Minute         0.25 1970-05-12 2013-05-01
+11 gov.noaa.ncdc:C00313 PRECIP_HLY    Precipitation Hourly         1.00 1900-01-01 2013-05-01
 
 attr(,"class")
 [1] "noaa_datasets"
@@ -209,14 +219,14 @@ noaa_datacats(locationid='CITY:US390029')
 ```
 
 ```coffee
-$atts
-$atts$totalCount
+$meta
+$meta$totalCount
 [1] 37
 
-$atts$pageCount
+$meta$pageCount
 [1] 25
 
-$atts$offset
+$meta$offset
 [1] 1
 
 
@@ -254,24 +264,25 @@ attr(,"class")
 
 [Please report any issues or bugs](https://github.com/ropensci/rnoaa/issues).
 
-License: CC0
+License: MIT
 
 This package is part of the [rOpenSci](http://ropensci.org/packages) project.
 
 To cite package `rnoaa` in publications use:
 
 ```coffee
-  Hart Ted, Scott Chamberlain and Karthik Ram (2013). rnoaa: NOAA
-  climate data from R.. R package version 0.0.8.
-  https://github.com/ropensci/rnoaa
+  Hart Edmund, Scott Chamberlain and Karthik Ram (2014). rnoaa: NOAA climate data
+  from R.. R package version 0.1.4. https://github.com/ropensci/rnoaa
+```
 
 A BibTeX entry for LaTeX users is
 
+```coffee
   @Manual{,
     title = {rnoaa: NOAA climate data from R.},
-    author = {Hart Ted and Scott Chamberlain and Karthik Ram},
-    year = {2013},
-    note = {R package version 0.0.8},
+    author = {Hart Edmund and Scott Chamberlain and Karthik Ram},
+    year = {2014},
+    note = {R package version 0.1.4},
     url = {https://github.com/ropensci/rnoaa},
   }
 ```
