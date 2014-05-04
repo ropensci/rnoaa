@@ -15,6 +15,24 @@
 #'
 #' Note that the default limit (no. records returned) is 25.
 #'
+#' The attributes, or "flags", for each row of the output for data may have a flag
+#' with it. Each \code{datasetid} has it's own set of flags. The following are flag
+#' columns, and what they stand for. \code{fl_} is the beginning of each flag
+#' column name, then one or more characters to describe the flag, keeping it short
+#' to maintain a compact data frame. Some of these fields are the same across
+#' datasetids. See the vignette rnoaa_attributes for description of possible values 
+#' for each flag.
+#'
+#' \itemize{
+#'  \item fl_c completeness
+#'  \item fl_m measurement
+#'  \item fl_q quality
+#'  \item fl_s source
+#'  \item fl_t time
+#'  \item fl_cmiss consecutive missing
+#'  \item fl_miss missing
+#' }
+#'
 #' @return An S3 list of length two, a slot of metadata (meta), and a slot for data (data).
 #' The meta slot is a list of metadata elements, and the data slot is a data.frame,
 #' possibly of length zero if no data is found.
@@ -64,7 +82,7 @@
 #' # Hourly Precipitation data for ZIP code 28801
 #' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
 #'    startdate = '2010-05-01', enddate = '2010-05-10')
-#'    
+#'
 #' # 15 min Precipitation data for ZIP code 28801
 #' noaa(datasetid='PRECIP_15', datatypeid='QPCP', startdate = '2010-05-01', enddate = '2010-05-02')
 #'
@@ -75,7 +93,7 @@
 #' # Search the ANNUAL dataset
 #' noaa(datasetid='ANNUAL', locationid='ZIP:28801', startdate = '2010-05-01',
 #'    enddate = '2010-05-10')
-#'    
+#'
 #' # Search the NORMAL_ANN dataset
 #' noaa(datasetid='NORMAL_ANN', datatypeid='ANN-DUTR-NORMAL', startdate = '2010-01-01',
 #'    enddate = '2010-01-01')
@@ -143,18 +161,18 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
 
 split_atts <- function(x, ds="GHCNDMS"){
   tmp <- x$attributes
-  out <- switch(ds, 
-         ANNUAL = parse_noaa(tmp,c('fl_measurement','fl_quality','fl_no_days','fl_units')),
-         GHCND = parse_noaa(tmp,c('fl_measurement','fl_quality','fl_source','fl_time')),
-         GHCNDMS = parse_noaa(tmp,c('fl_missing','fl_consecutive_missing')),
+  out <- switch(ds,
+         ANNUAL = parse_noaa(tmp,c('fl_m','fl_q','fl_d','fl_u')),
+         GHCND = parse_noaa(tmp,c('fl_m','fl_q','fl_so','fl_t')),
+         GHCNDMS = parse_noaa(tmp,c('fl_miss','fl_cmiss')),
          NEXRAD2 = parse_noaa(tmp,c('x','x')), # no data returned, fix when data returned
          NEXRAD3 = parse_noaa(tmp,c('x','x')), # no data returned, fix when data returned
-         NORMAL_ANN = parse_noaa(tmp,'fl_completeness'),
-         NORMAL_DLY = parse_noaa(tmp,'fl_completeness'),
-         NORMAL_HLY = parse_noaa(tmp,'fl_completeness'),
-         NORMAL_MLY = parse_noaa(tmp,'fl_completeness'),
-         PRECIP_15 = parse_noaa(tmp,c('fl_measurement','fl_quality','fl_units')),
-         PRECIP_HLY = parse_noaa(tmp,c('fl_measurement','fl_quality')))
+         NORMAL_ANN = parse_noaa(tmp,'fl_c'),
+         NORMAL_DLY = parse_noaa(tmp,'fl_c'),
+         NORMAL_HLY = parse_noaa(tmp,'fl_c'),
+         NORMAL_MLY = parse_noaa(tmp,'fl_c'),
+         PRECIP_15 = parse_noaa(tmp,c('fl_m','fl_q','fl_u')),
+         PRECIP_HLY = parse_noaa(tmp,c('fl_m','fl_q')))
   notatts <- x[!names(x)=="attributes"]
   c(notatts, out)
 }
@@ -167,3 +185,4 @@ parse_noaa <- function(y, headings){
   names(res) <- headings
   as.list(res)
 }
+  

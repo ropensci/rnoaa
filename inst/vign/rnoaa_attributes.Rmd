@@ -8,7 +8,7 @@ NOAA NCDC dataset attributes
 
 ## Notes on attributes for each dataset
 
-### ANNUAL
+### Dataset: ANNUAL
 
 More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/ANNUAL_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/ANNUAL_documentation.pdf)
 
@@ -83,7 +83,7 @@ TM – Tenths of millimeters
 4 – Soils – degrees Fahrenheit, soil depth in whole centimeters
 5 – Soils – If the soil station closed during the current month, “5” indicates the station has closed.
 
-### GHCND
+### Dataset: GHCND
 
 #### Measurement Flag (Attribute)
  Blank = no measurement information applicable
@@ -157,7 +157,7 @@ Blank = No source (i.e., data value missing)
 #### Time of Observation is the (2 digit hour, 2 digit minute) 24 hour clock time of the observation given as
 the local time at the station of record.
 
-### GHCNDMS
+### Dataset: GHCNDMS
 
 Observation(s) is/are synonymous with elements or values, and defined in Table A below. 9’s in a field
 (e.g.9999) indicate missing data or data that has not been received.
@@ -173,11 +173,9 @@ Defined as total number of days observation/element is missing in that month. Th
 Defined as the maximum number of consecutive days in the month that an  observation/element is missing.
 
 
-### NORMAL_ANN
+### Dataset: NORMAL_ANN
 
-
-
-### ANNUAL
+XXXXX
 
 ### ANNUAL
 
@@ -185,7 +183,9 @@ Defined as the maximum number of consecutive days in the month that an  observat
 
 ### ANNUAL
 
-### NORMAL_DLY
+### ANNUAL
+
+### Dataset: NORMAL_DLY
 
 More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_DLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_DLY_documentation.pdf)
 
@@ -220,7 +220,7 @@ Note: Flags Q and R also aren't applicable to daily precipitation/snowfall/snow 
 percentiles. Further, Q flags are not applicable for standard deviations.
 
 
-### NORMAL_HLY
+### Dataset: NORMAL_HLY
 
 More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_HLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_HLY_documentation.pdf)
 
@@ -245,7 +245,7 @@ P = provisional (at least 10 years used, but not sufficiently complete to be
 Blank = the data value is reported as a special value such as 9999 (see section B in III. Additional
 Information below for more information on Special Values)
 
-### PRECIP_HLY
+### Dataset: PRECIP_HLY
 
 More info: [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf)
 
