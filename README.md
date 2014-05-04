@@ -3,7 +3,7 @@ rnoaa
 
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 
-### Info
+### General Info
 
 
 * We are using the NOAA API version 2. A previous version of this software was using their V1 API - older versions of this software use the old API - let us know if you want to use that.
@@ -13,21 +13,21 @@ rnoaa
 
 ### Datasets
 
-There are many NOAA NCDC datasets:
+There are many NOAA NCDC datasets. Each is available throughout most functions in this package by using the `datasetid` parameter, except `NEXRAD2` and `NEXRAD3`, which don't work.
 
 | Dataset | Description | Start date | End date |
 |---------|-------------|------------|----------|
 | ANNUAL | Annual Summaries | 1831-02-01 | 2013-11-01 |
 | GHCND | Daily Summaries | 1763-01-01 | 2014-03-15 |
 | GHCNDMS | Monthly Summaries | 1763-01-01 | 2014-01-01 |
-| NEXRAD2 | Nexrad Level II | 1991-06-05 | 2014-03-14 |
-| NEXRAD3 | Nexrad Level III | 1994-05-20 | 2014-03-11 |
 | NORMAL_ANN | Normals Annual/Seasonal | 2010-01-01 | 2010-01-01 |
 | NORMAL_DLY | Normals Daily | 2010-01-01 | 2010-12-31 |
 | NORMAL_HLY | Normals Hourly | 2010-01-01 | 2010-12-31 |
 | NORMAL_MLY | Normals Monthly | 2010-01-01 | 2010-12-01 |
 | PRECIP_15 | Precipitation 15 Minute | 1970-05-12 | 2013-03-01 |
 | PRECIP_HLY | Precipitation Hourly | 1900-01-01 | 2013-03-01 |
+| NEXRAD2 | Nexrad Level II | 1991-06-05 | 2014-03-14 |
+| NEXRAD3 | Nexrad Level III | 1994-05-20 | 2014-03-11 |
 
 ### Attributes
 
