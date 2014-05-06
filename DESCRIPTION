@@ -38,4 +38,5 @@ Imports:
 Suggests:
     testthat,
     roxygen2,
-    jsonlite
+    jsonlite,
+    knitr
