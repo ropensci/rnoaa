@@ -3,6 +3,8 @@ rnoaa
 
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 
+__Note: Builds are failing because Travis has been blocked by NOAA for some reason.__
+
 ### General Info
 
 
