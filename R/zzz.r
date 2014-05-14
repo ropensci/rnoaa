@@ -109,7 +109,8 @@ check_response <- function(x){
   }
   assert_that(x$headers$`content-type`=='application/json;charset=UTF-8')
   res <- content(x, as = 'text', encoding = "UTF-8")
-  out <- RJSONIO::fromJSON(res, simplifyWithNames = FALSE)
+  # out <- jsonlite::fromJSON(res, simplifyWithNames = FALSE)
+  out <- jsonlite::fromJSON(res, simplifyVector = FALSE)
   if(!'results' %in% names(out)){
     if(length(out)==0){ stop("Sorry, no data found") }
   } else {

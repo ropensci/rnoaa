@@ -2,7 +2,6 @@
 #'
 #' @import httr
 #' @importFrom plyr round_any rbind.fill
-#' @importFrom RJSONIO fromJSON
 #' @export
 #' @template rnoaa
 #' @template noaa
@@ -13,16 +12,16 @@
 #'
 #' Keep in mind that three parameters, datasetid, startdate, and enddate are required.
 #'
-#' Note that the default limit (no. records returned) is 25. Look at the metadata in \code{$meta} 
-#' to see how many records were found. If more were found than 25, you could set the parameter 
-#' \code{limit} to something higher than 25. 
+#' Note that the default limit (no. records returned) is 25. Look at the metadata in \code{$meta}
+#' to see how many records were found. If more were found than 25, you could set the parameter
+#' \code{limit} to something higher than 25.
 #'
 #' The attributes, or "flags", for each row of the output for data may have a flag
 #' with it. Each \code{datasetid} has it's own set of flags. The following are flag
 #' columns, and what they stand for. \code{fl_} is the beginning of each flag
 #' column name, then one or more characters to describe the flag, keeping it short
 #' to maintain a compact data frame. Some of these fields are the same across
-#' datasetids. See the vignette \code{vignette("rnoaa_attributes", "rnoaa")} for 
+#' datasetids. See the vignette \code{vignette("rnoaa_attributes", "rnoaa")} for
 #' description of possible values for each flag.
 #'
 #' \itemize{
@@ -189,4 +188,3 @@ parse_noaa <- function(y, headings){
   names(res) <- headings
   as.list(res)
 }
-  

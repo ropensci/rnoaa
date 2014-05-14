@@ -34,9 +34,8 @@ Imports:
     XML,
     data.table,
     assertthat,
-    RJSONIO
+    jsonlite
 Suggests:
     testthat,
     roxygen2,
-    jsonlite,
     knitr
