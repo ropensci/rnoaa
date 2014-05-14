@@ -10,12 +10,16 @@ erddap_data(datasetid, fields = NULL, ..., callopts = list())
 
 \item{fields}{Columns to return, as a character vector}
 
-\item{...}{Any numbe rof key-value pairs in quotes. See examples}
+\item{...}{Any numbe rof key-value pairs in quotes as query constraints. See Details and examples}
 
 \item{callopts}{Further args passed on to httr::GET (must be a named parameter)}
 }
 \description{
 Get ERDDAP data.
+}
+\details{
+For key-value pair query constraints, the valid operators are =, != (not equals), =~ (a regular
+expression test), <, <=, >, and >= .
 }
 \examples{
 \dontrun{
@@ -31,6 +35,11 @@ id <- out$info$dataset_id[1]
 erddap_info(datasetid=id)$variables
 erddap_data(datasetid = id, fields = c('latitude','longitude','scientific_name'),
    'time>=' = '2001-07-14')
+# NA's
+erddap_data(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
+   'time>=' = '2014-05-14T15:15:00Z')
+erddap_data(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
+   'sea_water_temperature>=' = '25')
 }
 }
 

@@ -1,6 +1,6 @@
 context("noaa_stations")
 
-key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
 bb <- noaa_stations(stationid='COOP:010008', token=key)
 cc <- noaa_stations(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', token=key)

@@ -24,8 +24,11 @@
 #' erddap_info(datasetid=id)$variables
 #' erddap_data(datasetid = id, fields = c('latitude','longitude','scientific_name'),
 #'    'time>=' = '2001-07-14')
+#' # NA's
 #' erddap_data(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
-#'    'time>=' = '2014-05-12', 'sea_water_temperature!=' = 'NaN')
+#'    'time>=' = '2014-05-14T15:15:00Z')
+#' erddap_data(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
+#'    'sea_water_temperature>=' = '25')
 #' }
 
 erddap_data <- function(datasetid, fields=NULL, ..., callopts=list()){

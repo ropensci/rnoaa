@@ -120,4 +120,31 @@ check_response <- function(x){
   return( out )
 }
 
+#' Check response from NOAA, including status codes, server error messages, mime-type, etc.
+#' @keywords internal
+check_response_erdddap <- function(x){
+  if(!x$status_code == 200){
+    html <- content(x)
+    values <- xpathApply(html, "//u", xmlValue)
+    grep("Error", values, value = TRUE)
+    
+    if(!is.null(stnames)){
+      if('developerMessage' %in% stnames){
+        stop(sprintf("Error: (%s) - %s", x$status_code, content(x)$developerMessage))
+      } else { stop(sprintf("Error: (%s)", x$status_code)) }
+    } else { stop_for_status(x) }
+  }
+  assert_that(x$headers$`content-type`=='application/json;charset=UTF-8')
+  res <- content(x, as = 'text', encoding = "UTF-8")
+  # out <- jsonlite::fromJSON(res, simplifyWithNames = FALSE)
+  out <- jsonlite::fromJSON(res, simplifyVector = FALSE)
+  if(!'results' %in% names(out)){
+    if(length(out)==0){ stop("Sorry, no data found") }
+  } else {
+    if( class(try(out$results, silent=TRUE))=="try-error" | is.null(try(out$results, silent=TRUE)) )
+      stop("Sorry, no data found")
+  }
+  return( out )
+}
+
 noaa_compact <- function (l) Filter(Negate(is.null), l)

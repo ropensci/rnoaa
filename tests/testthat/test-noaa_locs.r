@@ -1,6 +1,6 @@
 context("noaa_locs")
 
-key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
 tt <- noaa_locs(datasetid='NORMAL_DLY', startdate='20100101', token=key)
 uu <- noaa_locs(locationcategoryid='ST', limit=52, token=key)

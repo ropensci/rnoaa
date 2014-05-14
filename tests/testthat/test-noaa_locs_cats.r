@@ -1,6 +1,6 @@
 context("noaa_locs_cats")
 
-key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
 tt <- noaa_locs_cats(token=key)
 uu <- noaa_locs_cats(locationcategoryid='CLIM_REG', token=key)

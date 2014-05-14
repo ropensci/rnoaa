@@ -1,6 +1,6 @@
 context("noaa_datasets")
 
-key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
 tt <- noaa_datasets(token=key)
 uu <- noaa_datasets(datasetid='ANNUAL', token=key)

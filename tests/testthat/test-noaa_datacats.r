@@ -1,6 +1,6 @@
 context("noaa_datacats")
 
-key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
 tt <- noaa_datacats(token=key)
 uu <- noaa_datacats(datacategoryid="ANNAGR", token=key)

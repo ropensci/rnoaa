@@ -1,6 +1,6 @@
 context("noaa_datatypes")
 
-key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
 tt <- noaa_datatypes(datasetid="ANNUAL", token=key)
 

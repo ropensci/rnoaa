@@ -1,17 +1,17 @@
 context("check_response")
 
-key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
 # function to pull error out and convert to character class for checking
 error2character <- function(express){
-  tryCatch(express, error=function(x) as.character(x)) 
+  tryCatch(express, error=function(x) as.character(x))
 }
 
 test_that("check_response returns an error", {
   expect_error(noaa_locs_cats(startdate='2100-01-01', token=key))
   expect_error(noaa_locs_cats(startdate='1990-01-0', token=key))
   expect_error(
-    noaa(datasetid='GHCNDS', locationid='FIPS:BR', datatypeid='PRCP', 
+    noaa(datasetid='GHCNDS', locationid='FIPS:BR', datatypeid='PRCP',
          startdate = '2010-05-01', enddate = '2010-05-10', token=key)
   )
   expect_error(
@@ -29,8 +29,8 @@ test_that("check_response returns the correct error messages", {
   # internal server error
   expect_output(
     error2character(
-      noaa(datasetid='GHCNDS', locationid='FIPS:BR', datatypeid='PRCP', 
-           startdate = '2010-05-01', enddate = '2010-05-10', token=key)), 
+      noaa(datasetid='GHCNDS', locationid='FIPS:BR', datatypeid='PRCP',
+           startdate = '2010-05-01', enddate = '2010-05-10', token=key)),
     "Internal Server Error"
   )
   # no data found

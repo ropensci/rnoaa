@@ -1,6 +1,6 @@
 context("noaa")
 
-key='hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ'
+key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
 # Normals Daily GHCND:USW00014895 dly-tmax-normal data
 aa <- noaa(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-10', token=key)
@@ -33,7 +33,7 @@ test_that("noaa returns the correct class", {
 test_that("noaa returns the correct dimensions", {
   expect_equal(length(aa$meta), 3)
   expect_equal(dim(aa$data), c(25,5))
-  
+
   expect_equal(length(gg$meta), 3)
   expect_equal(dim(gg$data), c(28,8))
 #   expect_equal(dim(ii$data), c(22,5))
