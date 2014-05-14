@@ -1,7 +1,7 @@
 #' ERDDAP searches and data retrieval
 #' 
 #' @export
-#' @import httr jsonlite assertthat
+#' @import httr assertthat
 #' @param datasetid Dataset id
 #' @param fields Columns to return, as a character vector
 #' @param ... 
