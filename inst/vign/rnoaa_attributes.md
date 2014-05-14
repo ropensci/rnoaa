@@ -13,15 +13,15 @@ to describe the flag, keeping it short to maintain a compact data frame. Some of
 fields are the same across datasetids, but they may have different possible values. See
 below details on each dataset.
 
-* _fl_c_ = completeness
-* _fl_m_ = measurement
-* _fl_d_ =  day
-* _fl_q_ = quality
-* _fl_s_ = source
-* _fl_t_ = time
-* _fl_cmiss_ = consecutive missing
-* _fl_miss_ = missing
-* _fl_u_ = units
+* fl_c = completeness
+* fl_m = measurement
+* fl_d =  day
+* fl_q = quality
+* fl_s = source
+* fl_t = time
+* fl_cmiss = consecutive missing
+* fl_miss = missing
+* fl_u = units
 
 __Datasets__
 
