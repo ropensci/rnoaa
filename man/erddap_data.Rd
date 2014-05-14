@@ -25,7 +25,7 @@ expression test), <, <=, >, and >= .
 \dontrun{
 erddap_data(datasetid='erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'),
    'time>=' = '2001-07-07','time<=' = '2001-07-10')
-erddap_data(datasetid='erdCinpKfmBT', fields=c('latitude','longitude',
+erddap_data(datasetid='erdCinpKfmBT', fields=c(p'latitude','longitude',
    'Aplysia_californica_Mean_Density','Muricea_californica_Mean_Density'),
    'time>=' = '2007-06-24','time<=' = '2007-07-01')
 

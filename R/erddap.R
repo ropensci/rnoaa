@@ -14,7 +14,7 @@
 #' @examples \dontrun{
 #' erddap_data(datasetid='erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'),
 #'    'time>=' = '2001-07-07','time<=' = '2001-07-10')
-#' erddap_data(datasetid='erdCinpKfmBT', fields=c('latitude','longitude',
+#' erddap_data(datasetid='erdCinpKfmBT', fields=c(p'latitude','longitude',
 #'    'Aplysia_californica_Mean_Density','Muricea_californica_Mean_Density'),
 #'    'time>=' = '2007-06-24','time<=' = '2007-07-01')
 #'
@@ -41,9 +41,7 @@ erddap_data <- function(datasetid, fields=NULL, ..., callopts=list()){
     url <- paste0(url, '&', args)
   }
   tt <- GET(url, list(), callopts)
-  warn_for_status(tt)
-  assert_that(tt$headers$`content-type` == 'text/csv;charset=UTF-8')
-  out <- content(tt, as = "text")
+  out <- check_response_erdddap(tt)
   df <- read.delim(text=out, sep=",")[-1,]
   return( df )
 }
