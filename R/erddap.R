@@ -4,8 +4,13 @@
 #' @import httr assertthat
 #' @param datasetid Dataset id
 #' @param fields Columns to return, as a character vector
-#' @param ... Any numbe rof key-value pairs in quotes. See examples
+#' @param ... Any numbe rof key-value pairs in quotes as query constraints. See Details and examples
 #' @param callopts Further args passed on to httr::GET (must be a named parameter)
+#' @details
+#' For key-value pair query constraints, the valid operators are =, != (not equals), =~ (a regular 
+#' expression test), <, <=, >, and >= . 
+#' 
+#' 
 #' @examples \dontrun{
 #' erddap_data(datasetid='erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'),
 #'    'time>=' = '2001-07-07','time<=' = '2001-07-10')
@@ -19,6 +24,8 @@
 #' erddap_info(datasetid=id)$variables
 #' erddap_data(datasetid = id, fields = c('latitude','longitude','scientific_name'),
 #'    'time>=' = '2001-07-14')
+#' erddap_data(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
+#'    'time>=' = '2014-05-12', 'sea_water_temperature!=' = 'NaN')
 #' }
 
 erddap_data <- function(datasetid, fields=NULL, ..., callopts=list()){
