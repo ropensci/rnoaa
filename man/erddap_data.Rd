@@ -3,14 +3,44 @@
 \alias{erddap_data}
 \title{Get ERDDAP data.}
 \usage{
-erddap_data(datasetid, fields = NULL, ..., callopts = list())
+erddap_data(datasetid, fields = NULL, ..., distinct = FALSE,
+  orderby = NULL, orderbymax = NULL, orderbymin = NULL,
+  orderbyminmax = NULL, units = NULL, callopts = list())
 }
 \arguments{
 \item{datasetid}{Dataset id}
 
 \item{fields}{Columns to return, as a character vector}
 
-\item{...}{Any numbe rof key-value pairs in quotes as query constraints. See Details and examples}
+\item{...}{Any number of key-value pairs in quotes as query constraints. See Details and examples}
+
+\item{distinct}{If TRUE ERDDAP will sort all of the rows in the results table (starting with the
+first requested variable, then using the second requested variable if the first variable has a
+tie, ...), then remove all non-unique rows of data. In many situations, ERDDAP can return
+distinct values quickly and efficiently. But in some cases, ERDDAP must look through all rows
+of the source dataset.}
+
+\item{orderby}{If used, ERDDAP will sort all of the rows in the results table (starting with the
+first variable, then using the second variable if the first variable has a tie, ...). Normally,
+the rows of data in the response table are in the order they arrived from the data source.
+orderBy allows you to request that the results table be sorted in a specific way. For example,
+use \code{orderby=c("stationID,time")} to get the results sorted by stationID, then time. The
+orderby variables MUST be included in the list of requested variables in the fields parameter.}
+
+\item{orderbymax}{Give a vector of one or more fields, that must be included in the fields
+parameter as well. Gives back data given constraints. ERDDAP will sort all of the rows in the
+results table (starting with the first variable, then using the second variable if the first
+variable has a tie, ...) and then just keeps the rows where the value of the last sort variable
+is highest (for each combination of other values).}
+
+\item{orderbymin}{Same as \code{orderbymax} parameter, except returns minimum value.}
+
+\item{orderbyminmax}{Same as \code{orderbymax} parameter, except returns two rows for every
+combination of the n-1 variables: one row with the minimum value, and one row with the maximum
+value.}
+
+\item{units}{One of 'udunits' (units will be described via the UDUNITS standard (e.g.,degrees_C))
+or 'ucum' (units will be described via the UCUM standard (e.g., Cel)).}
 
 \item{callopts}{Further args passed on to httr::GET (must be a named parameter)}
 }
@@ -20,26 +50,64 @@ Get ERDDAP data.
 \details{
 For key-value pair query constraints, the valid operators are =, != (not equals), =~ (a regular
 expression test), <, <=, >, and >= .
+
+Server-side functionality: Some tasks are done server side. You don't have to worry about what
+that means. They are provided via parameters in this function. See \code{distinct}, \code{}
 }
 \examples{
 \dontrun{
 erddap_data(datasetid='erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'),
    'time>=' = '2001-07-07','time<=' = '2001-07-10')
-erddap_data(datasetid='erdCinpKfmBT', fields=c(p'latitude','longitude',
+erddap_data(datasetid='erdCinpKfmBT', fields=c('latitude','longitude',
    'Aplysia_californica_Mean_Density','Muricea_californica_Mean_Density'),
    'time>=' = '2007-06-24','time<=' = '2007-07-01')
+
+erddap_info('erdCalCOFIlrvsiz')$variables
+erddap_data(datasetid='erdCalCOFIlrvsiz', fields=c('latitude','longitude','larvae_size',
+   'itis_tsn'), 'time>=' = '2011-10-25','time<=' = '2011-10-31')
 
 # An example workflow
 (out <- erddap_search(query='fish size'))
 id <- out$info$dataset_id[1]
 erddap_info(datasetid=id)$variables
+
+# Time constraint
+## Limit by time with date only
 erddap_data(datasetid = id, fields = c('latitude','longitude','scientific_name'),
    'time>=' = '2001-07-14')
-# NA's
+## Limit by time with hours and date
 erddap_data(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
    'time>=' = '2014-05-14T15:15:00Z')
+
+# Example error response, warning thrown and give back NA
 erddap_data(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
    'sea_water_temperature>=' = '25')
+
+# Use distinct parameter
+erddap_data(datasetid='erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'),
+   'time>=' = '2001-07-07','time<=' = '2001-07-10', distinct=TRUE)
+
+# Use units parameter
+erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+   'time>=' = '2007-09-19', 'time<=' = '2007-09-21', units='udunits')
+erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+   'time>=' = '2007-09-19', 'time<=' = '2007-09-21', units='ucum')
+
+# Use orderby parameter
+erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+   'time>=' = '2007-09-19', 'time<=' = '2007-09-21', orderby='temperature')
+# Use orderbymax parameter
+erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+   'time>=' = '2007-09-19', 'time<=' = '2007-09-21', orderbymax='temperature')
+# Use orderbymin parameter
+erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+   'time>=' = '2007-09-19', 'time<=' = '2007-09-21', orderbymin='temperature')
+# Use orderbyminmax parameter
+erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+   'time>=' = '2007-09-19', 'time<=' = '2007-09-21', orderbyminmax='temperature')
+# Use orderbymin parameter with multiple values
+erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','depth','temperature'),
+   'time>=' = '2007-06-10', 'time<=' = '2007-09-21', orderbymax=c('depth','temperature'))
 }
 }
 

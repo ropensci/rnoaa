@@ -122,20 +122,21 @@ check_response <- function(x){
 
 #' Check response from NOAA, including status codes, server error messages, mime-type, etc.
 #' @keywords internal
-check_response_erdddap <- function(x){
+check_response_erddap <- function(x){
   if(!x$status_code == 200){
     html <- content(x)
     values <- xpathApply(html, "//u", xmlValue)
     error <- grep("Error", values, value = TRUE)
     
     if(!is.null(error)){
-      if('Error' %in% error){
+      if(grepl('Error', error)){
         warning(sprintf("(%s) - %s", x$status_code, error))
       } else { warning(sprintf("Error: (%s)", x$status_code)) }
     } else { warn_for_status(x) }
+  } else {
+    assert_that(x$headers$`content-type`=='text/csv;charset=UTF-8')
+    content(x, as = 'text', encoding = "UTF-8")
   }
-  assert_that(x$headers$`content-type`=='text/csv;charset=UTF-8')
-  content(x, as = 'text', encoding = "UTF-8")
 }
 
 noaa_compact <- function (l) Filter(Negate(is.null), l)

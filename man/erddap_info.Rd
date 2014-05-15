@@ -10,8 +10,16 @@ erddap_info(datasetid, callopts = list())
 
 \item{callopts}{Further args passed on to httr::GET (must be a named parameter)}
 }
+\value{
+A list of length two
+\itemize{
+ \item variables Data.frame of variables and their types
+ \item alldata List of data variables and their full attributes
+}
+}
 \description{
-Get information on an ERDDAP dataset.
+Gives back a brief data.frame for quick inspection and a list of more complete
+metadata on the dataset.
 }
 \examples{
 \dontrun{
