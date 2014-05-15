@@ -3,8 +3,8 @@
 #' @export
 #' @import httr assertthat
 #' @param datasetid Dataset id
+#' @param ... Any number of key-value pairs in quotes as query constraints. See Details & examples
 #' @param fields Columns to return, as a character vector
-#' @param ... Any number of key-value pairs in quotes as query constraints. See Details and examples
 #' @param distinct If TRUE ERDDAP will sort all of the rows in the results table (starting with the 
 #' first requested variable, then using the second requested variable if the first variable has a 
 #' tie, ...), then remove all non-unique rows of data. In many situations, ERDDAP can return 
@@ -28,31 +28,38 @@
 #' @param units One of 'udunits' (units will be described via the UDUNITS standard (e.g.,degrees_C))
 #' or 'ucum' (units will be described via the UCUM standard (e.g., Cel)). 
 #' @param callopts Further args passed on to httr::GET (must be a named parameter)
+#' 
 #' @details
 #' For key-value pair query constraints, the valid operators are =, != (not equals), =~ (a regular 
-#' expression test), <, <=, >, and >= . 
+#' expression test), <, <=, >, and >= . For regular expressions you need to add a regular 
+#' expression. For others, nothing more is needed. Construct the entry like 
+#' \code{'time>=2001-07-07'} with the parameter on the left, value on the right, and the operator
+#' in the middle, all within a set of quotes. Since ERDDAP accepts values other than \code{=}, we 
+#' can't simply do \code{time = '2001-07-07'} as we normally would.
 #' 
 #' Server-side functionality: Some tasks are done server side. You don't have to worry about what 
-#' that means. They are provided via parameters in this function. See \code{distinct}, \code{}
+#' that means. They are provided via parameters in this function. See \code{distinct}, 
+#' \code{orderby}, \code{orderbymax}, \code{orderbymin}, \code{orderbyminmax}, and \code{units}.
+#' 
 #' @examples \dontrun{
 #' # Just passing the datasetid without fields gives all columns back
 #' out <- erddap_data(datasetid='erdCalCOFIfshsiz')
 #' nrow(out)
 #' 
 #' # Pass time constraints
-#' erddap_data(datasetid='erdCalCOFIfshsiz', 'time>=' = '2001-07-07','time<=' = '2001-07-08')
+#' erddap_data(datasetid='erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08')
 #' 
 #' # Pass in fields (i.e., columns to retrieve) & time constraints
 #' erddap_data(datasetid='erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'),
-#'    'time>=' = '2001-07-07','time<=' = '2001-07-10')
+#'    'time>=2001-07-07','time<=2001-07-10')
 #' erddap_data(datasetid='erdCinpKfmBT', fields=c('latitude','longitude',
 #'    'Aplysia_californica_Mean_Density','Muricea_californica_Mean_Density'),
-#'    'time>=' = '2007-06-24','time<=' = '2007-07-01')
+#'    'time>=2007-06-24','time<=2007-07-01')
 #' 
 #' # Get info on a datasetid, then get data given information learned
 #' erddap_info('erdCalCOFIlrvsiz')$variables   
 #' erddap_data(datasetid='erdCalCOFIlrvsiz', fields=c('latitude','longitude','larvae_size',
-#'    'itis_tsn'), 'time>=' = '2011-10-25','time<=' = '2011-10-31')
+#'    'itis_tsn'), 'time>=2011-10-25', 'time<=2011-10-31')
 #'
 #' # An example workflow
 #' ## Search for data
@@ -66,44 +73,42 @@
 #' # Time constraint
 #' ## Limit by time with date only
 #' erddap_data(datasetid = id, fields = c('latitude','longitude','scientific_name'),
-#'    'time>=' = '2001-07-14')
+#'    'time>=2001-07-14')
 #' ## Limit by time with hours and date
 #' erddap_data(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
-#'    'time>=' = '2014-05-14T15:15:00Z')
-#'    
-#' # Example error response, warning thrown and give back NA
-#' erddap_data(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
-#'    'sea_water_temperature>=' = '25')
+#'    'time>=2014-05-14T15:15:00Z')
 #'    
 #' # Use distinct parameter
-#' erddap_data(datasetid='erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'),
-#'    'time>=' = '2001-07-07','time<=' = '2001-07-10', distinct=TRUE)
+#' erddap_data(datasetid='erdCalCOFIfshsiz',fields=c('longitude','latitude','fish_size','itis_tsn'),
+#'    'time>=2001-07-07','time<=2001-07-10', distinct=TRUE)
 #'    
 #' # Use units parameter
+#' ## In this example, values are the same, but sometimes they can be different given the units
+#' ## value passed
 #' erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
-#'    'time>=' = '2007-09-19', 'time<=' = '2007-09-21', units='udunits')
+#'    'time>=2007-09-19', 'time<=2007-09-21', units='udunits')
 #' erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
-#'    'time>=' = '2007-09-19', 'time<=' = '2007-09-21', units='ucum')
+#'    'time>=2007-09-19', 'time<=2007-09-21', units='ucum')
 #'    
 #' # Use orderby parameter
 #' erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
-#'    'time>=' = '2007-09-19', 'time<=' = '2007-09-21', orderby='temperature')
+#'    'time>=2007-09-19', 'time<=2007-09-21', orderby='temperature')
 #' # Use orderbymax parameter
 #' erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
-#'    'time>=' = '2007-09-19', 'time<=' = '2007-09-21', orderbymax='temperature')
+#'    'time>=2007-09-19', 'time<=2007-09-21', orderbymax='temperature')
 #' # Use orderbymin parameter
 #' erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
-#'    'time>=' = '2007-09-19', 'time<=' = '2007-09-21', orderbymin='temperature')
+#'    'time>=2007-09-19', 'time<=2007-09-21', orderbymin='temperature')
 #' # Use orderbyminmax parameter
 #' erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
-#'    'time>=' = '2007-09-19', 'time<=' = '2007-09-21', orderbyminmax='temperature')
+#'    'time>=2007-09-19', 'time<=2007-09-21', orderbyminmax='temperature')
 #' # Use orderbymin parameter with multiple values
 #' erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','depth','temperature'),
-#'    'time>=' = '2007-06-10', 'time<=' = '2007-09-21', orderbymax=c('depth','temperature'))
+#'    'time>=2007-06-10', 'time<=2007-09-21', orderbymax=c('depth','temperature'))
 #'    
 #' # Spatial delimitation
 #' erddap_data(datasetid = 'erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name'),
-#'  'latitude>=' = 33, 'latitude<=' = 35, 'longitude>=' = -126, 'longitude<=' = -124)
+#'  'latitude>=34.8', 'latitude<=35', 'longitude>=-125', 'longitude<=-124')
 #'    
 #' # Integrate with taxize
 #' out <- erddap_data(datasetid = 'erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name','itis_tsn'))
@@ -113,7 +118,7 @@
 #' head(rbind(classif)); tail(rbind(classif))
 #' }
 
-erddap_data <- function(datasetid, fields=NULL, ..., distinct=FALSE, orderby=NULL, 
+erddap_data <- function(datasetid, ..., fields=NULL, distinct=FALSE, orderby=NULL, 
   orderbymax=NULL, orderbymin=NULL, orderbyminmax=NULL, units=NULL, callopts=list())
 {
   fields <- paste(fields, collapse = ",")
@@ -121,14 +126,14 @@ erddap_data <- function(datasetid, fields=NULL, ..., distinct=FALSE, orderby=NUL
   url <- sprintf(url, datasetid, fields)
   args <- list(...)
   distinct <- if(distinct) 'distinct()' else NULL
-  units <- makevar(units, 'units("%s")')
+  units <- if(!is.null(units)) makevar(toupper(units), 'units("%s")') else units
   orderby <- makevar(orderby, 'orderBy("%s")')
   orderbymax <- makevar(orderbymax, 'orderByMax("%s")')
   orderbymin <- makevar(orderbymin, 'orderByMin("%s")')
   orderbyminmax <- makevar(orderbyminmax, 'orderByMinMax("%s")')
   moreargs <- noaa_compact(list(distinct, orderby, orderbymax, orderbymin, orderbyminmax, units))
   args <- c(args, moreargs)
-  args <- collapse_args(args)
+  args <- paste0(args, collapse = "&")
   if(!nchar(args[[1]]) == 0){
     url <- paste0(url, '&', args)
   }
@@ -142,14 +147,21 @@ erddap_data <- function(datasetid, fields=NULL, ..., distinct=FALSE, orderby=NUL
   }
 }
 
-collapse_args <- function(x){
-  outout <- list()
-  for(i in seq_along(x)){
-    tmp <- paste(names(x[i]), x[i], sep="")
-    outout[[i]] <- tmp
-  }
-  paste0(outout, collapse = "&")
-}
+# parse_dot_args <- function(x){
+#   splitem <- function(y){
+#     strsplit(y, '=|!=|=~|<|<=|>|>=')[[1]]
+#   }
+#   vapply(x, splitem, "", USE.NAMES = FALSE)
+# }
+
+# collapse_args <- function(x){
+# #   outout <- list()
+# #   for(i in seq_along(x)){
+# #     tmp <- paste(names(x[i]), x[i], sep="")
+# #     outout[[i]] <- tmp
+# #   }
+#   paste0(x, collapse = "&")
+# }
 
 makevar <- function(x, y){
   if(!is.null(x)){

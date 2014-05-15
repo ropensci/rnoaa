@@ -126,7 +126,10 @@ check_response_erddap <- function(x){
   if(!x$status_code == 200){
     html <- content(x)
     values <- xpathApply(html, "//u", xmlValue)
-    error <- grep("Error", values, value = TRUE)
+    error <- grep("Error", values, ignore.case = TRUE, value = TRUE)
+    if(length(error) > 1) error <- error[1]
+    #check specifically for no matching results error
+    if(grepl("no matching results", error)) error <- 'Error: Your query produced no matching results.'
     
     if(!is.null(error)){
       if(grepl('Error', error)){
