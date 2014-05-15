@@ -122,6 +122,10 @@ erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','tem
 erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','depth','temperature'),
    'time>=' = '2007-06-10', 'time<=' = '2007-09-21', orderbymax=c('depth','temperature'))
 
+# Spatial delimitation
+erddap_data(datasetid = 'erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name'),
+ 'latitude>=' = 33, 'latitude<=' = 35, 'longitude>=' = -126, 'longitude<=' = -124)
+
 # Integrate with taxize
 out <- erddap_data(datasetid = 'erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name','itis_tsn'))
 tsns <- unique(out$itis_tsn[1:100])
