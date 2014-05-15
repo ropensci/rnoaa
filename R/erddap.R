@@ -35,20 +35,33 @@
 #' Server-side functionality: Some tasks are done server side. You don't have to worry about what 
 #' that means. They are provided via parameters in this function. See \code{distinct}, \code{}
 #' @examples \dontrun{
+#' # Just passing the datasetid without fields gives all columns back
+#' out <- erddap_data(datasetid='erdCalCOFIfshsiz')
+#' nrow(out)
+#' 
+#' # Pass time constraints
+#' erddap_data(datasetid='erdCalCOFIfshsiz', 'time>=' = '2001-07-07','time<=' = '2001-07-08')
+#' 
+#' # Pass in fields (i.e., columns to retrieve) & time constraints
 #' erddap_data(datasetid='erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'),
 #'    'time>=' = '2001-07-07','time<=' = '2001-07-10')
 #' erddap_data(datasetid='erdCinpKfmBT', fields=c('latitude','longitude',
 #'    'Aplysia_californica_Mean_Density','Muricea_californica_Mean_Density'),
 #'    'time>=' = '2007-06-24','time<=' = '2007-07-01')
 #' 
+#' # Get info on a datasetid, then get data given information learned
 #' erddap_info('erdCalCOFIlrvsiz')$variables   
 #' erddap_data(datasetid='erdCalCOFIlrvsiz', fields=c('latitude','longitude','larvae_size',
 #'    'itis_tsn'), 'time>=' = '2011-10-25','time<=' = '2011-10-31')
 #'
 #' # An example workflow
+#' ## Search for data
 #' (out <- erddap_search(query='fish size'))
+#' ## Using a datasetid, search for information on a datasetid
 #' id <- out$info$dataset_id[1]
 #' erddap_info(datasetid=id)$variables
+#' ## Get data from the dataset
+#' head(erddap_data(datasetid = id, fields = c('latitude','longitude','scientific_name')))
 #' 
 #' # Time constraint
 #' ## Limit by time with date only
@@ -87,6 +100,13 @@
 #' # Use orderbymin parameter with multiple values
 #' erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','depth','temperature'),
 #'    'time>=' = '2007-06-10', 'time<=' = '2007-09-21', orderbymax=c('depth','temperature'))
+#'    
+#' # Integrate with taxize
+#' out <- erddap_data(datasetid = 'erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name','itis_tsn'))
+#' tsns <- unique(out$itis_tsn[1:100])
+#' library("taxize")
+#' classif <- classification(tsns, db = "itis")
+#' head(rbind(classif)); tail(rbind(classif))
 #' }
 
 erddap_data <- function(datasetid, fields=NULL, ..., distinct=FALSE, orderby=NULL, 
@@ -113,7 +133,7 @@ erddap_data <- function(datasetid, fields=NULL, ..., distinct=FALSE, orderby=NUL
   if(grepl("Error", out)){
     return( NA )
   } else {
-    df <- read.delim(text=out, sep=",")[-1,]
+    df <- read.delim(text=out, sep=",", stringsAsFactors=FALSE)[-1,]
     df
   }
 }
@@ -180,15 +200,6 @@ erddap_info <- function(datasetid, callopts=list()){
   class(res) <- "erddap_info"
   return( res )
 }
-
-# print.erddap_info <- function(x, ...){
-#   x <- x[ x$row_type == 'variable', names(x) %in% c('row_type','variable_name','data_type')]
-#   print(x)
-# }
-#   cutlength <- vapply(x[apply(x, c(1,2), nchar) > 25], substr, "", start=1, stop=25, USE.NAMES = FALSE)
-#   cutlength <- paste0(cutlength, "...")
-#   x[apply(x, c(1,2), nchar) > 25] <- cutlength
-#   x <- data.frame(x, stringsAsFactors = FALSE)
 
 #' Search for ERDDAP datasets.
 #'
