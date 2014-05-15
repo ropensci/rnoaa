@@ -147,22 +147,6 @@ erddap_data <- function(datasetid, ..., fields=NULL, distinct=FALSE, orderby=NUL
   }
 }
 
-# parse_dot_args <- function(x){
-#   splitem <- function(y){
-#     strsplit(y, '=|!=|=~|<|<=|>|>=')[[1]]
-#   }
-#   vapply(x, splitem, "", USE.NAMES = FALSE)
-# }
-
-# collapse_args <- function(x){
-# #   outout <- list()
-# #   for(i in seq_along(x)){
-# #     tmp <- paste(names(x[i]), x[i], sep="")
-# #     outout[[i]] <- tmp
-# #   }
-#   paste0(x, collapse = "&")
-# }
-
 makevar <- function(x, y){
   if(!is.null(x)){
     x <- paste0(x, collapse = ",")
@@ -190,6 +174,12 @@ makevar <- function(x, y){
 #' @examples \dontrun{
 #' erddap_info(datasetid='erdCalCOFIfshsiz')
 #' out <- erddap_info(datasetid='erdCinpKfmBT')
+#' ## See brief overview of the variables and range of possible values, if given
+#' out$variables
+#' ## all information on longitude
+#' out$alldata$longitude
+#' ## all information on Haliotis_corrugata_Mean_Density
+#' out$alldata$Haliotis_corrugata_Mean_Density
 #' }
 
 erddap_info <- function(datasetid, callopts=list()){
@@ -200,7 +190,7 @@ erddap_info <- function(datasetid, callopts=list()){
   assert_that(tt$headers$`content-type` == 'application/json;charset=UTF-8')
   out <- content(tt, as = "text")
   json <- jsonlite::fromJSON(out, simplifyVector = FALSE)
-  colnames <- sapply(tolower(json$table$columnNames), function(z) gsub("\\s", "_", z))
+  colnames <- vapply(tolower(json$table$columnNames), function(z) gsub("\\s", "_", z), "", USE.NAMES = FALSE)
   dfs <- lapply(json$table$rows, function(x){
     tmp <- data.frame(x, stringsAsFactors = FALSE)
     names(tmp) <- colnames
@@ -210,9 +200,21 @@ erddap_info <- function(datasetid, callopts=list()){
     names(x) <- colnames
     x
   })
+  names(lists) <- vapply(lists, function(b) b$variable_name, "", USE.NAMES = FALSE)
+  outout <- list()
+  for(i in seq_along(lists)){
+    outout[[names(lists[i])]] <- unname(lists[ names(lists) %in% names(lists)[i] ])
+  }
+  
   df <- data.frame(rbindlist(dfs))
-  vars <- df[ df$row_type == 'variable', names(df) %in% c('row_type','variable_name','data_type')]
-  res <- list(variables=vars, alldata=lists)
+  vars <- df[ df$row_type == 'variable', names(df) %in% c('variable_name','data_type')]
+  actual <- vapply(split(df, df$variable_name), function(z){ 
+    tmp <- z[ z$attribute_name %in% 'actual_range' , "value"]
+    if(length(tmp)==0) "" else tmp
+  }, "")
+  actualdf <- data.frame(variable_name=names(actual), actual_range=unname(actual))
+  vars <- merge(vars, actualdf, by="variable_name")
+  res <- list(variables=vars, alldata=outout)
   class(res) <- "erddap_info"
   return( res )
 }
