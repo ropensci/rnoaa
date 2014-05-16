@@ -102,21 +102,23 @@ check_response <- function(x){
   if(!x$status_code == 200){
     stnames <- names(content(x))
     if(!is.null(stnames)){
-      if('developerMessage' %in% stnames){
-        warning(sprintf("Error: (%s) - %s", x$status_code, content(x)$developerMessage))
+      if('developerMessage' %in% stnames|'message' %in% stnames){
+        warning(sprintf("Error: (%s) - %s", x$status_code, 
+                        noaa_compact(list(content(x)$developerMessage, content(x)$message))))
       } else { warning(sprintf("Error: (%s)", x$status_code)) }
     } else { warn_for_status(x) }
-  }
-  assert_that(x$headers$`content-type`=='application/json;charset=UTF-8')
-  res <- content(x, as = 'text', encoding = "UTF-8")
-  out <- jsonlite::fromJSON(res, simplifyVector = FALSE)
-  if(!'results' %in% names(out)){
-    if(length(out)==0){ warning("Sorry, no data found") }
   } else {
-    if( class(try(out$results, silent=TRUE))=="try-error" | is.null(try(out$results, silent=TRUE)) )
-      warning("Sorry, no data found")
+    assert_that(x$headers$`content-type`=='application/json;charset=UTF-8')
+    res <- content(x, as = 'text', encoding = "UTF-8")
+    out <- jsonlite::fromJSON(res, simplifyVector = FALSE)
+    if(!'results' %in% names(out)){
+      if(length(out)==0){ warning("Sorry, no data found") }
+    } else {
+      if( class(try(out$results, silent=TRUE))=="try-error" | is.null(try(out$results, silent=TRUE)) )
+        warning("Sorry, no data found")
+    }
+    return( out )
   }
-  return( out )
 }
 
 #' Check response from NOAA, including status codes, server error messages, mime-type, etc.

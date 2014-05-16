@@ -53,14 +53,17 @@ noaa_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
   callopts <- c(add_headers("token" = token), callopts)
   temp <- GET(url, query=args, config=callopts)
   tt <- check_response(temp)
-  
-  if(!is.null(datasetid)){
-    dat <- data.frame(tt, stringsAsFactors=FALSE)
-    all <- list(meta = NULL, data = dat)
-  } else
-  {
-    dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
-    all <- list(meta = tt$metadata$resultset, data = dat)
+  if(is(tt, "character")){
+    all <- list(meta=NULL, data=NULL)
+  } else {  
+    if(!is.null(datasetid)){
+      dat <- data.frame(tt, stringsAsFactors=FALSE)
+      all <- list(meta = NULL, data = dat)
+    } else
+    {
+      dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
+      all <- list(meta = tt$metadata$resultset, data = dat)
+    }
   }
   class(all) <- "noaa_datasets"
   return( all )    

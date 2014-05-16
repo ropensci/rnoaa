@@ -141,8 +141,11 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
       callopts <- c(add_headers("token" = token), callopts)
       temp <- GET(base, query=args, config = callopts)
       tt <- check_response(temp)
-      out[[i]] <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
+      if(is(tt, "character")){all <- NULL} else {
+        out[[i]] <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
+      }
     }
+    out <- noaa_compact(out)
     dat <- do.call(rbind.data.frame, out)
     meta <- tt$metadata$resultset
     atts <- list(totalCount=meta$count, pageCount="none", offset="none")
@@ -151,13 +154,15 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
     callopts <- c(add_headers("token" = token), callopts)
     temp <- GET(base, query=args, config = callopts)
     tt <- check_response(temp)
-    tt$results <- lapply(tt$results, split_atts, ds=datasetid)
-    dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
-    meta <- tt$metadata$resultset
-    atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
+    if(is(tt, "character")){all <- list(meta=NA, data=NA)} else {
+      tt$results <- lapply(tt$results, split_atts, ds=datasetid)
+      dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
+      meta <- tt$metadata$resultset
+      atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
+      all <- list(meta=atts, data=dat)
+    }
   }
 
-  all <- list(meta=atts, data=dat)
   class(all) <- "noaa_data"
   return( all )
 }

@@ -56,16 +56,19 @@ noaa_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   callopts <- c(add_headers("token" = token), callopts)
   temp <- GET(url, query=args, config=callopts)
   out <- check_response(temp)
-  
-  if(!is.null(datatypeid)){
-    dat <- data.frame(out, stringsAsFactors=FALSE)
-    metadat <- NULL
-    all <- list(data = dat, meta = metadat)
-  } else
-  {
-    dat <- do.call(rbind.fill, lapply(out$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
-    metadat <- data.frame(out$metadata$resultset, stringsAsFactors=FALSE)
-    all <- list(meta = metadat, data = dat)
+  if(is(out, "character")){
+    all <- list(meta=NULL, data=NULL)
+  } else {  
+    if(!is.null(datatypeid)){
+      dat <- data.frame(out, stringsAsFactors=FALSE)
+      metadat <- NULL
+      all <- list(data = dat, meta = metadat)
+    } else
+    {
+      dat <- do.call(rbind.fill, lapply(out$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
+      metadat <- data.frame(out$metadata$resultset, stringsAsFactors=FALSE)
+      all <- list(meta = metadat, data = dat)
+    }
   }
   class(all) <- "noaa_datatypes"
   return( all )

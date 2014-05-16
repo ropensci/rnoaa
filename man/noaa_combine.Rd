@@ -61,7 +61,7 @@ noaa_combine(out1, out2, out3, out4)
 out1 <- noaa_locs_cats(startdate='1970-01-01')
 out2 <- noaa_stations(stationid='COOP:010008')
 out3 <- noaa_locs_cats(locationcategoryid='CLIM_REG')
-noaa_combine(out1, out2)
+noaa_combine(out1, out2, out3)
 }
 }
 

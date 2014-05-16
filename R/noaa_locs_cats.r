@@ -32,26 +32,27 @@ noaa_locs_cats <- function(datasetid=NULL, locationcategoryid=NULL,
   url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories'
   if(!is.null(locationcategoryid))
     url <- paste(url, "/", locationcategoryid, sep="")
-  args <- compact(list(datasetid=datasetid,locationcategoryid=locationcategoryid,
+  args <- noaa_compact(list(datasetid=datasetid,locationcategoryid=locationcategoryid,
     startdate=startdate, enddate=enddate,token=token,sortfield=sortfield,
     sortorder=sortorder,limit=limit,offset=offset))
   
   callopts <- c(add_headers("token" = token), callopts)
   temp <- GET(url, query=as.list(args), config=callopts)
   tt <- check_response(temp)
-  
-  if(!is.null(locationcategoryid)){
-    dat <- data.frame(tt,stringsAsFactors=FALSE)
-    all <- list(meta=NULL, data=dat)
-    class(all) <- "noaa_locs_cats"
-    return( all )
-  } else
-  {
-    dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
-    meta <- tt$metadata$resultset
-    atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
-    all <- list(meta=atts, data=dat)
-    class(all) <- "noaa_locs_cats"
-    return( all )
+  if(is(tt, "character")){
+    all <- list(meta=NULL, data=NULL)
+  } else {  
+    if(!is.null(locationcategoryid)){
+      dat <- data.frame(tt,stringsAsFactors=FALSE)
+      all <- list(meta=NULL, data=dat)
+    } else
+    {
+      dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
+      meta <- tt$metadata$resultset
+      atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
+      all <- list(meta=atts, data=dat)
+    }
   }
+  class(all) <- "noaa_locs_cats"
+  return( all )
 }

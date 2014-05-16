@@ -2,19 +2,14 @@ context("check_response_erddap")
 
 key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
-# function to pull error out and convert to character class for checking
-error2character <- function(express){
-  tryCatch(express, error=function(x) as.character(x))
-}
-
 test_that("", {
-  erddap_data(datasetid = 'erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name'),
-              'latitude>=34.9', 'latitude<=35', 'longitude>=-125', 'longitude<=-124')
+  expect_warning(erddap_data(datasetid = 'erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name'),
+              'latitude>=34.9', 'latitude<=35', 'longitude>=-125', 'longitude<=-124'), "Your query produced no matching results")
   # Example error response, warning thrown and give back NA
-  erddap_data(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
-    'sea_water_temperature>=25')
+  expect_warning(erddap_data(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
+    'sea_water_temperature>=25'), "unexpected XML content")
 })
-# 
+
 # test_that("check_response returns an error", {
 #   expect_error(noaa_locs_cats(startdate='2100-01-01', token=key))
 #   expect_error(noaa_locs_cats(startdate='1990-01-0', token=key))

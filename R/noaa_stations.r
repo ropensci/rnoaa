@@ -80,19 +80,20 @@ noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
   callopts <- c(add_headers("token" = token), callopts)
   temp <- GET(url, query=args, config=callopts)
   tt <- check_response(temp)
-  
-  if(!is.null(stationid)){
-    dat <- data.frame(tt, stringsAsFactors=FALSE)
-    all <- list(meta=NULL, data=dat)
-    class(all) <- "noaa_stations"
-    return( all )
-  } else
-  {
-    dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
-    meta <- tt$metadata$resultset
-    atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
-    all <- list(meta=atts, data=dat)
-    class(all) <- "noaa_stations"
-    return( all )
+  if(is(temp, "character")){
+    all <- list(meta=NULL, data=NULL)
+  } else {  
+    if(!is.null(stationid)){
+      dat <- data.frame(tt, stringsAsFactors=FALSE)
+      all <- list(meta=NULL, data=dat)
+    } else
+    {
+      dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
+      meta <- tt$metadata$resultset
+      atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
+      all <- list(meta=atts, data=dat)
+    }
   }
+  class(all) <- "noaa_stations"
+  return( all )
 }

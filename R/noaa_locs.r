@@ -44,21 +44,25 @@ noaa_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
   callopts <- c(add_headers("token" = token), callopts)
   temp <- GET(url, query=as.list(args), config=callopts)
   tt <- check_response(temp)
-  
-  if(!is.null(locationid)){
-    dat <- data.frame(tt, stringsAsFactors=FALSE)
-    all <- list(meta=NULL, data=dat)
-    class(all) <- "noaa_locs"
-    return( all )
-  } else
-  {    
-    if(class(try(tt$results, silent=TRUE))=="try-error")
-      stop("Sorry, no data found")
-    dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
-    meta <- tt$metadata$resultset
-    atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
-    all <- list(meta=atts, data=dat)
-    class(all) <- "noaa_locs"
-    return( all )
+  if(is(tt, "character")){
+    all <- list(meta=NULL, data=NULL)
+  } else {  
+    if(!is.null(locationid)){
+      dat <- data.frame(tt, stringsAsFactors=FALSE)
+      all <- list(meta=NULL, data=dat)
+    } else
+    {    
+      if(class(try(tt$results, silent=TRUE))=="try-error"){
+        all <- list(meta=NULL, data=NULL)
+        warning("Sorry, no data found")
+      } else {
+        dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
+        meta <- tt$metadata$resultset
+        atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
+        all <- list(meta=atts, data=dat)
+      }
+    }
   }
+  class(all) <- "noaa_locs"
+  return( all )
 }
