@@ -103,19 +103,18 @@ check_response <- function(x){
     stnames <- names(content(x))
     if(!is.null(stnames)){
       if('developerMessage' %in% stnames){
-        stop(sprintf("Error: (%s) - %s", x$status_code, content(x)$developerMessage))
-      } else { stop(sprintf("Error: (%s)", x$status_code)) }
-    } else { stop_for_status(x) }
+        warning(sprintf("Error: (%s) - %s", x$status_code, content(x)$developerMessage))
+      } else { warning(sprintf("Error: (%s)", x$status_code)) }
+    } else { warn_for_status(x) }
   }
   assert_that(x$headers$`content-type`=='application/json;charset=UTF-8')
   res <- content(x, as = 'text', encoding = "UTF-8")
-  # out <- jsonlite::fromJSON(res, simplifyWithNames = FALSE)
   out <- jsonlite::fromJSON(res, simplifyVector = FALSE)
   if(!'results' %in% names(out)){
-    if(length(out)==0){ stop("Sorry, no data found") }
+    if(length(out)==0){ warning("Sorry, no data found") }
   } else {
     if( class(try(out$results, silent=TRUE))=="try-error" | is.null(try(out$results, silent=TRUE)) )
-      stop("Sorry, no data found")
+      warning("Sorry, no data found")
   }
   return( out )
 }
@@ -140,6 +139,38 @@ check_response_erddap <- function(x){
     assert_that(x$headers$`content-type`=='text/csv;charset=UTF-8')
     content(x, as = 'text', encoding = "UTF-8")
   }
+}
+
+#' Check response from NOAA SWDI service, including status codes, server error messages, 
+#' mime-type, etc.
+#' @keywords internal
+check_response_swdi <- function(x, format){
+  if(!x$status_code == 200){
+    res <- content(x)
+    err <- gsub("\n", "", xpathApply(res, "//error", xmlValue)[[1]])
+    if(!is.null(err)){
+      if(grepl('ERROR', err, ignore.case = TRUE)){
+        warning(sprintf("(%s) - %s", x$status_code, err))
+      } else { warn_for_status(x) }
+    } else { warn_for_status(x) }
+  } else {
+    if(format=='csv'){
+      assert_that(x$headers$`content-type`=='text/plain; charset=UTF-8')
+      uu <- content(x, as = 'text', encoding = "UTF-8")
+      read.delim(text=uu, sep = ",")
+    } else {
+      assert_that(x$headers$`content-type`=='text/xml')
+      res <- content(x, as = 'text', encoding = "UTF-8")
+      xmlParse(res)
+    }
+  }
+  
+#   if(!'results' %in% names(tt)){
+#     if(length(out)==0){ warning("Sorry, no data found") }
+#   } else {
+#     if( class(try(out$results, silent=TRUE))=="try-error" | is.null(try(out$results, silent=TRUE)) )
+#       warning("Sorry, no data found")
+#   }
 }
 
 noaa_compact <- function (l) Filter(Negate(is.null), l)

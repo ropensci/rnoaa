@@ -25,6 +25,8 @@ metadata on the dataset.
 \dontrun{
 erddap_info(datasetid='erdCalCOFIfshsiz')
 out <- erddap_info(datasetid='erdCinpKfmBT')
+## See brief overview of the variables and range of possible values, if given
+out$variables
 ## all information on longitude
 out$alldata$longitude
 ## all information on Haliotis_corrugata_Mean_Density

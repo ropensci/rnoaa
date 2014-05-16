@@ -3,7 +3,7 @@
 #' From the NOAA API docs: All of our data are in datasets. To retrieve any data 
 #' from us, you must know what dataset it is in.
 #' 
-#' @importFrom plyr compact rbind.fill
+#' @importFrom plyr rbind.fill
 #' @export
 #' @template rnoaa
 #' @template rnoaa2
@@ -43,7 +43,7 @@ noaa_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
   url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datasets"
   if(!is.null(datasetid))
     url <- paste(url, "/", datasetid, sep="")
-  args <- compact(list(datasetid=datasetid, datatypeid=datatypeid, 
+  args <- noaa_compact(list(datatypeid=datatypeid, 
                        locationid=locationid, stationid=stationid, startdate=startdate,
                        enddate=enddate, sortfield=sortfield, sortorder=sortorder, 
                        limit=limit, offset=offset))
@@ -53,8 +53,6 @@ noaa_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
   callopts <- c(add_headers("token" = token), callopts)
   temp <- GET(url, query=args, config=callopts)
   tt <- check_response(temp)
-#   stop_for_status(temp)
-#   tt <- content(temp)
   
   if(!is.null(datasetid)){
     dat <- data.frame(tt, stringsAsFactors=FALSE)

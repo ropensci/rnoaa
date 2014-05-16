@@ -82,8 +82,8 @@ noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 noaa_swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507',
 radius=15, center=c(-102.0,32.7))
 
-# Get the warning text for the warning with id=533623
-noaa_swdi(dataset='warn', id=533623)
+# use an id
+noaa_swdi(dataset='warn', startdate='20060506', enddate='20060507', id=533623)
 
 # Get all 'plsr' within the bounding box (-91,30,-90,31)
 noaa_swdi(dataset='plsr', startdate='20060505', enddate='20060510',
