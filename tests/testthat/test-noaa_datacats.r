@@ -2,7 +2,9 @@ context("noaa_datacats")
 
 key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
+Sys.sleep(time = 0.5)
 tt <- noaa_datacats(token=key)
+Sys.sleep(time = 0.5)
 uu <- noaa_datacats(datacategoryid="ANNAGR", token=key)
 
 test_that("noaa_datacats returns the correct class", {

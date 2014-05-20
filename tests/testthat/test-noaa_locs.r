@@ -2,7 +2,9 @@ context("noaa_locs")
 
 key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
+Sys.sleep(time = 0.5)
 tt <- noaa_locs(datasetid='NORMAL_DLY', startdate='20100101', token=key)
+Sys.sleep(time = 0.5)
 uu <- noaa_locs(locationcategoryid='ST', limit=52, token=key)
 
 test_that("noaa_locs returns the correct class", {

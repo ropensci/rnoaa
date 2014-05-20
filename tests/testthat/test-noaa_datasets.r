@@ -2,7 +2,9 @@ context("noaa_datasets")
 
 key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
+Sys.sleep(time = 0.5)
 tt <- noaa_datasets(token=key)
+Sys.sleep(time = 0.5)
 uu <- noaa_datasets(datasetid='ANNUAL', token=key)
 
 test_that("noaa_datasets returns the correct class", {

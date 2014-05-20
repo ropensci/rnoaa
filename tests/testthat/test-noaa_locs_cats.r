@@ -2,8 +2,11 @@ context("noaa_locs_cats")
 
 key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
+Sys.sleep(time = 0.5)
 tt <- noaa_locs_cats(token=key)
+Sys.sleep(time = 0.5)
 uu <- noaa_locs_cats(locationcategoryid='CLIM_REG', token=key)
+Sys.sleep(time = 0.5)
 vv <- noaa_locs_cats(startdate='1970-01-01', token=key)
 
 test_that("noaa_locs_cats returns the correct class", {

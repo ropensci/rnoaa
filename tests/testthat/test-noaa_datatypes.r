@@ -2,6 +2,7 @@ context("noaa_datatypes")
 
 key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
+Sys.sleep(time = 0.5)
 tt <- noaa_datatypes(datasetid="ANNUAL", token=key)
 
 test_that("noaa_datatypes returns the correct class", {
