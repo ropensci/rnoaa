@@ -1,0 +1,112 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{SWDI vignette}
+-->
+
+SWDI vignette
+======
+
+`SWDI` is the Severe Weather Data Inventory. SWDI is an
+
+> integrated database of severe weather records for the United States. The records in SWDI come from a variety of sources in the NCDC archive. SWDI provides the ability to search through all of these data to find records covering a particular time period and geographic region, and to download the results of your search in a variety of formats. The formats currently supported are Shapefile (for GIS), KMZ (for Google Earth), CSV (comma-separated), and XML.
+
+Data available in SWDI are:
+
+* Storm Cells from NEXRAD (Level-III Storm Structure Product)
+* Hail Signatures from NEXRAD (Level-III Hail Product)
+* Mesocyclone Signatures from NEXRAD (Level-III Meso Product)
+* Digital Mesocyclone Detection Algorithm from NEXRAD (Level-III MDA Product)
+* Tornado Signatures from NEXRAD (Level-III TVS Product)
+* Preliminary Local Storm Reports from the NOAA National Weather Service
+* Lightning Strikes from Vaisala NLDN
+
+Find out more about SWDI at [http://www.ncdc.noaa.gov/swdi/#Intro](http://www.ncdc.noaa.gov/swdi/#Intro) and the API at [http://www.ncdc.noaa.gov/swdiws/](http://www.ncdc.noaa.gov/swdiws/).
+
+********************
+
+### Install `rnoaa`
+
+Install and load `rnoaa` into the R session.
+
+If you're on Windows, you may have to install Rtools. Run `devtools::has_devel()`. If you get a `TRUE`, you're okay. If not, [install Rtools](http://cran.r-project.org/bin/windows/Rtools/).
+
+```{r install, eval=FALSE}
+install.packages("devtools")
+library(devtools)
+ropensci::install_github("ropensci/rnoaa")
+```
+
+```{r load, message=FALSE, warning=FALSE}
+library('rnoaa')
+library('plyr')
+```
+
+### Search for nx3tvs data from 5 May 2006 to 6 May 2006
+
+```{r}
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
+```
+
+### Get all 'nx3tvs' within 15 miles of latitude = 32.7 and longitude = -102.0
+
+```{r}
+out <- noaa_swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', radius=15, center=c(-102.0,32.7))
+list(out$meta, head(out$data), head(out$shape))
+```
+
+### Use an id
+
+```{r}
+out <- noaa_swdi(dataset='warn', startdate='20060506', enddate='20060507', id=533623)
+list(out$meta, head(out$data), head(out$shape))
+```
+
+### Get all 'plsr' within the bounding box (-91,30,-90,31)
+
+```{r}
+noaa_swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90,31))
+```
+
+### Get all 'nx3tvs' within the tile -102.1/32.6 (-102.15,32.55,-102.25,32.65)
+
+```{r}
+noaa_swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,32.62))
+```
+
+### Counts
+
+Notes: 
+
+* stat='count' will only return metadata, nothing in the data or shape slots
+* stat='tilesum:...' returns counts in the data slot for each date for that tile, and shape data
+* Get number of 'nx3tvs' within 15 miles of latitude = 32.7 and longitude = -102.0
+
+```{r}
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060516', radius=15, center=c(-102.0,32.7), stat='count')
+```
+
+Get daily count nx3tvs features on .1 degree grid centered at `latitude = 32.7` and `longitude = -102.0`
+
+```{r}
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-102.0,32.7')
+```
+
+### Get data in different formats
+
+#### CSV format
+
+```{r}
+head(noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='csv')$data)
+```
+
+#### SHP format
+
+```{r}
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp', filepath='myfile')
+```
+
+#### KMZ format
+
+```{r}
+noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz', radius=15, filepath='myfile.kmz')
+```
