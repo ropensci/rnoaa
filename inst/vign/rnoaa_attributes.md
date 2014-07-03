@@ -52,7 +52,7 @@ __More info:__ [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/ANNUAL_docu
 MMXT, MNTM, TPCP, TSNW)
 * __M:__ used to indicate data element missing.
 * __S:__ Precipitation for the amount is continuing to be accumulated. Total will be included in a
-__subsequent value (TPCP). Exam* ple:__ Days 1-20 had 1.35 inches of precipitation, then a period of accumulation began. The element TPCP would then be 00135S and the total accumulated amount value appears in a subsequent monthly value. If TPCP = 0 there was no precipitation measured during the month. flag 1 is set to "S" and the total accumulated amount appears in a subsequent monthly value.
+__subsequent value (TPCP). Example:__ Days 1-20 had 1.35 inches of precipitation, then a period of accumulation began. The element TPCP would then be 00135S and the total accumulated amount value appears in a subsequent monthly value. If TPCP = 0 there was no precipitation measured during the month. flag 1 is set to "S" and the total accumulated amount appears in a subsequent monthly value.
 * __T:__ Trace of precipitation, snowfall, or snow depth. The precipitation data value will = "00000".
 (EMXP, MXSD, TPCP, TSNW)
 * __+:__ The phenomena in question occurred on several days. The date in the DAY field is the last day
@@ -63,7 +63,7 @@ of occurrence.
 
 * __A:__ Accumulated amount
 * __E:__ Estimated value
-* __+:__ Value occurred on more than one day – last date of occurrence is used
+* __+:__ Value occurred on more than one day, last date of occurrence is used
 
 #### fl_d (Number of days flag )
 
@@ -86,11 +86,11 @@ in computing the data value.
 * __TF:__ Tenths of degrees Fahrenheit
 * __TI:__ Tenths of inches
 * __TM:__ Tenths of millimeters
-* __1:__ Soils – degrees Fahrenheit, soil depths in inches and hundredths
-* __2:__ Soils – degrees Celsius, soil depth in whole centimeters
-* __3:__ Soils – degrees Celsius, soil, soil depth in inches and hundredths
-* __4:__ Soils – degrees Fahrenheit, soil depth in whole centimeters
-* __5:__ Soils – If the soil station closed during the current month, “5” indicates the station has closed.
+* __1:__ Soils, degrees Fahrenheit, soil depths in inches and hundredths
+* __2:__ Soils, degrees Celsius, soil depth in whole centimeters
+* __3:__ Soils, degrees Celsius, soil, soil depth in inches and hundredths
+* __4:__ Soils, degrees Fahrenheit, soil depth in whole centimeters
+* __5:__ Soils, If the soil station closed during the current month, '5' indicates the station has closed.
 
 ### <a href="#ghcnd" name="ghcnd"/>#</a> Dataset: GHCND
 
@@ -130,7 +130,7 @@ in computing the data value.
 * __Blank:__ No source (i.e., data value missing)
 * __0:__ U.S. Cooperative Summary of the Day (NCDC DSI-3200)
 * __6:__ CDMP Cooperative Summary of the Day (NCDC DSI-3206)
-* __7:__ U.S. Cooperative Summary of the Day -- Transmitted via WxCoder3 (NCDC DSI-3207)
+* __7:__ U.S. Cooperative Summary of the Day, Transmitted via WxCoder3 (NCDC DSI-3207)
 * __A:__ U.S. Automated Surface Observing System (ASOS) real-time data (since January 1, 2006)
 * __a:__ Australian data from the Australian Bureau of Meteorology
 * __B:__ U.S. ASOS data for October 2000-December 2005 (NCDC DSI-3211)
@@ -160,8 +160,7 @@ local time at the station of record.
 
 ### <a href="#ghcndms" name="ghcndms"/>#</a> Dataset: GHCNDMS
 
-Observation(s) is/are synonymous with elements or values, and defined in Table A below. 9’s in a field
-(e.g.9999) indicate missing data or data that has not been received.
+Observations are synonymous with elements or values, and defined in Table A below. 9999 indicates missing data or data that has not been received.
 
 __flags:__ Missing flag , Consecutive Missing flag
 
@@ -185,7 +184,7 @@ monthly, seasonal and annual. This document describes the elements and layout of
 Annual Normals which are derived from a composite of climate records from numerous sources that
 were merged and then subjected to a suite of quality assurance reviews.
 
-#### <a name="completenessflag"></a> fl_c (Completeness flag)
+#### fl_c (Completeness flag)
 
 flags accompany every Normals value and indicate the completeness of the data record used to
 compute each value, accounting for methodological differences for different product classes. There are
@@ -276,6 +275,7 @@ Same as NORMAL_ANN, see the description above at [Completeness flag](#completene
 __More info:__ [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_MLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_MLY_documentation.pdf)
 
 #### Description
+
 The 1981-2010 Normals comprise all climate normals using the thirty year period of temperature,
 degree days, precipitation, snowfall, snow depth, wind, etc. Data are organized into hourly, daily,
 monthly, seasonal and annual. This document describes the elements and layout of the Monthly
@@ -360,12 +360,12 @@ National Weather Service data only since July 1996.
 be used to identify those sites that are deficient in the manner the snow shields are  employed.
 Used since January 1996.
 * __R:__ This data value failed one of the NCDC's quality control tests.
-* __Q:__ Pre 1996 usage - Indicates value failed an extreme value test (value will be present).
+* __Q:__ Pre 1996 usage, Indicates value failed an extreme value test (value will be present).
 Data are to be used with caution. Extreme tests used are 1) value was not an accumulated amount and was higher than
 the one-hour statewide 100 year return period precipitation amount or 2) if they value
 was an accumulated amount and was higher than the 24 hour statewide extreme
 precipitation total.
-* __Q:__ 1996 to present usage - A single erroneous value (value will be present). Rarely
+* __Q:__ 1996 to present usage. A single erroneous value (value will be present). Rarely
 used since 1996.
 * __q:__ An hourly value excludes one or more 15 minute periods. Lowest data resolution is
 15 minutes. Used since January 1996.
