@@ -1,0 +1,61 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Sea ice vignette}
+-->
+
+Sea ice vignette
+======
+
+Get sea ice data at [ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles).
+
+********************
+
+### Install `rnoaa`
+
+Install and load `rnoaa` into the R session.
+
+If you're on Windows, you may have to install Rtools. Run `devtools::has_devel()`. If you get a `TRUE`, you're okay. If not, [install Rtools](http://cran.r-project.org/bin/windows/Rtools/).
+
+```{r install, eval=FALSE}
+install.packages("devtools")
+library(devtools)
+ropensci::install_github("ropensci/rnoaa")
+```
+
+```{r load, message=FALSE, warning=FALSE}
+library('rnoaa')
+library('plyr')
+```
+
+### Look at data.frame's for a series of years for Feb, South pole
+
+```{r message=FALSE, warning=FALSE}
+urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x, mo='Feb', pole='S'))
+out <- lapply(urls, noaa_seaice)
+head(out[[1]])
+```
+
+### Map a single year/month/pole combo
+
+```{r}
+urls <- seaiceeurls(mo='Apr', pole='N', yr=1990)
+out <- noaa_seaice(urls)
+library('ggplot2')
+ggplot(out, aes(long, lat, group=group)) +
+   geom_polygon(fill="steelblue") +
+   theme_ice()
+```
+
+### Map all years for April only for North pole
+
+```{r message=FALSE, warning=FALSE}
+urls <- seaiceeurls(mo='Apr', pole='N')[1:10]
+out <- lapply(urls, noaa_seaice)
+names(out) <- seq(1979,1988,1)
+df <- ldply(out)
+library('ggplot2')
+ggplot(df, aes(long, lat, group=group)) +
+  geom_polygon(fill="steelblue") +
+  theme_ice() +
+  facet_wrap(~ .id)
+```

@@ -5,6 +5,7 @@ move:
 		cp inst/vign/rnoaa_attributes.md vignettes;\
 		cp inst/vign/erddap_vignette.md vignettes;\
 		cp inst/vign/swdi_vignette.md vignettes;\
+		cp inst/vign/seaice_vignette.md vignettes;\
 		cp -r inst/vign/figure/* vignettes/figure
 
 pandoc:
@@ -20,6 +21,7 @@ rmd2md:
 		cp rnoaa_vignette.md rnoaa_vignette.Rmd;\
 		cp rnoaa_attributes.md rnoaa_attributes.Rmd;\
 		cp erddap_vignette.md erddap_vignette.Rmd;\
+		cp seaice_vignette.md seaice_vignette.Rmd;\
 		cp swdi_vignette.md swdi_vignette.Rmd
 
 cleanup:

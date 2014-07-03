@@ -1,0 +1,194 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Sea ice vignette}
+-->
+
+Sea ice vignette
+======
+
+Get sea ice data at [ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles).
+
+********************
+
+### Install `rnoaa`
+
+Install and load `rnoaa` into the R session.
+
+If you're on Windows, you may have to install Rtools. Run `devtools::has_devel()`. If you get a `TRUE`, you're okay. If not, [install Rtools](http://cran.r-project.org/bin/windows/Rtools/).
+
+
+```r
+install.packages("devtools")
+library(devtools)
+ropensci::install_github("ropensci/rnoaa")
+```
+
+
+```r
+library('rnoaa')
+library('plyr')
+```
+
+### Look at data.frame's for a series of years for Feb, South pole
+
+
+```r
+urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x, mo='Feb', pole='S'))
+out <- lapply(urls, noaa_seaice)
+```
+
+```
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_197902_polygon", layer: "extent_S_197902_polygon"
+## with 35 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_198002_polygon", layer: "extent_S_198002_polygon"
+## with 44 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_198102_polygon", layer: "extent_S_198102_polygon"
+## with 28 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_198202_polygon", layer: "extent_S_198202_polygon"
+## with 41 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_198302_polygon", layer: "extent_S_198302_polygon"
+## with 52 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_198402_polygon", layer: "extent_S_198402_polygon"
+## with 25 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_198502_polygon", layer: "extent_S_198502_polygon"
+## with 31 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_198602_polygon", layer: "extent_S_198602_polygon"
+## with 33 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_198702_polygon", layer: "extent_S_198702_polygon"
+## with 41 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_198802_polygon", layer: "extent_S_198802_polygon"
+## with 38 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_198902_polygon", layer: "extent_S_198902_polygon"
+## with 41 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_S_199002_polygon", layer: "extent_S_199002_polygon"
+## with 29 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+```
+
+```r
+head(out[[1]])
+```
+
+```
+##       long     lat order  hole piece group id
+## 1 -2125000 1950000     1 FALSE     1   0.1  0
+## 2 -2050000 1950000     2 FALSE     1   0.1  0
+## 3 -2050000 1925000     3 FALSE     1   0.1  0
+## 4 -1950000 1925000     4 FALSE     1   0.1  0
+## 5 -1950000 1900000     5 FALSE     1   0.1  0
+## 6 -1875000 1900000     6 FALSE     1   0.1  0
+```
+
+### Map a single year/month/pole combo
+
+
+```r
+urls <- seaiceeurls(mo='Apr', pole='N', yr=1990)
+out <- noaa_seaice(urls)
+```
+
+```
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_N_199004_polygon", layer: "extent_N_199004_polygon"
+## with 130 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+```
+
+```
+## Regions defined for each Polygons
+```
+
+```r
+library('ggplot2')
+ggplot(out, aes(long, lat, group=group)) +
+   geom_polygon(fill="steelblue") +
+   theme_ice()
+```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+
+### Map all years for April only for North pole
+
+
+```r
+urls <- seaiceeurls(mo='Apr', pole='N')[1:10]
+out <- lapply(urls, noaa_seaice)
+```
+
+```
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_N_197904_polygon", layer: "extent_N_197904_polygon"
+## with 117 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_N_198004_polygon", layer: "extent_N_198004_polygon"
+## with 86 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_N_198104_polygon", layer: "extent_N_198104_polygon"
+## with 118 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_N_198204_polygon", layer: "extent_N_198204_polygon"
+## with 92 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_N_198304_polygon", layer: "extent_N_198304_polygon"
+## with 92 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_N_198404_polygon", layer: "extent_N_198404_polygon"
+## with 103 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_N_198504_polygon", layer: "extent_N_198504_polygon"
+## with 89 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_N_198604_polygon", layer: "extent_N_198604_polygon"
+## with 123 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_N_198704_polygon", layer: "extent_N_198704_polygon"
+## with 92 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmplWU7t4/extent_N_198804_polygon", layer: "extent_N_198804_polygon"
+## with 127 features and 1 fields
+## Feature type: wkbPolygon with 2 dimensions
+```
+
+```r
+names(out) <- seq(1979,1988,1)
+df <- ldply(out)
+library('ggplot2')
+ggplot(df, aes(long, lat, group=group)) +
+  geom_polygon(fill="steelblue") +
+  theme_ice() +
+  facet_wrap(~ .id)
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
