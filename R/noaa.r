@@ -5,6 +5,10 @@
 #' @export
 #' @template rnoaa
 #' @template noaa
+#' @param includemetadata Used to improve response time by preventing the calculation of 
+#' result metadata. Default: TRUE. This does not affect the return object, in that the named part 
+#' of the output list called "meta' is still returned, but is NULL. In practice, I haven't seen 
+#' response time's improve, but perhaps they will for you.
 #'
 #' @details
 #' Note that NOAA API calls can take a long time depending on the call. The NOAA API doesn't
@@ -100,6 +104,12 @@
 #' # Search the NORMAL_ANN dataset
 #' noaa(datasetid='NORMAL_ANN', datatypeid='ANN-DUTR-NORMAL', startdate = '2010-01-01',
 #'    enddate = '2010-01-01')
+#'    
+#' # Include metadata or not
+#' noaa(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
+#'    enddate = '2013-12-01')
+#' noaa(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
+#'    enddate = '2013-12-01', includemetadata=FALSE)
 #' }
 #'
 #' \donttest{
@@ -111,7 +121,8 @@
 noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL,
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
   callopts=list(), token=NULL, dataset=NULL, datatype=NULL, station=NULL, location=NULL,
-  locationtype=NULL, page=NULL, year=NULL, month=NULL, day=NULL, results=NULL)
+  locationtype=NULL, page=NULL, year=NULL, month=NULL, day=NULL, includemetadata=TRUE, 
+  results=NULL)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("dataset","datatype","station","location","locationtype","page","year","month","day","results") %in% calls
@@ -125,7 +136,7 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   args <- noaa_compact(list(datasetid=datasetid, datatypeid=datatypeid,
                          locationid=locationid, stationid=stationid, startdate=startdate,
                          enddate=enddate, sortfield=sortfield, sortorder=sortorder,
-                         limit=limit, offset=offset))
+                         limit=limit, offset=offset, includemetadata=includemetadata))
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
 
