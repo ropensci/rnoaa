@@ -20,6 +20,7 @@ LazyLoad: yes
 LazyData: yes
 Roxygen: list(wrap = FALSE)
 VignetteBuilder: knitr
+SystemRequirements: netcdf library version 4.1 or later
 Imports:
     httr,
     lubridate,
@@ -34,7 +35,8 @@ Imports:
     XML,
     data.table,
     assertthat,
-    jsonlite
+    jsonlite,
+    ncdf4
 Suggests:
     testthat,
     roxygen2,
