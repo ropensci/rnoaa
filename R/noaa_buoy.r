@@ -51,6 +51,7 @@ noaa_buoy <- function(dataset=NULL, buoyid=NULL, datatype=NULL, year=NULL, ...)
 
 #' Get NOAA buoy data from the National Buoy Data Center
 #' 
+#' @export
 #' @keywords internal
 #' @param dataset Dataset to query. See below for details. (required)
 #' @param ... Further arguments passed on to the API GET call. (optional)
@@ -73,6 +74,7 @@ noaa_buoy_buoys <- function(dataset=NULL, ...)
 
 #' Get NOAA buoy data from the National Buoy Data Center
 #' 
+#' @export
 #' @keywords internal
 #' @param path Path to a single buoy data file
 #' @param buoyid Buoy id. (optional)
@@ -90,6 +92,7 @@ noaa_buoy_files <- function(path, buoyid, ...){
 
 #' Make url for a single NOAA buoy data file
 #' 
+#' @export
 #' @keywords internal
 #' @param dataset Dataset to query. See below for details. (required)
 #' @param buoyid Buoy id. (optional)
@@ -101,6 +104,7 @@ noaa_buoy_single_file_url <- function(dataset, buoyid, file){
 
 #' Download a single ncdf file
 #' 
+#' @export
 #' @keywords internal
 #' @param path Path to a single buoy data file
 #' @param buoyid Buoy id. (optional)
@@ -115,6 +119,7 @@ get_ncdf_file <- function(path, buoyid, file, output){
 
 #' Download a single ncdf file
 #' 
+#' @export
 #' @keywords internal
 #' @param path Path to a single buoy data file on local system
 buoy_collect_data <- function(path){
