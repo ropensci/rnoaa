@@ -19,6 +19,8 @@ noaa_buoy(dataset = NULL, buoyid = NULL, datatype = NULL, year = NULL,
 \item{year}{Year of data collection. (optional)}
 
 \item{...}{Further arguments passed on to the API GET call. (optional)}
+
+\item{x}{Input to print, output from noaa_buoy function.}
 }
 \value{
 A data.frame

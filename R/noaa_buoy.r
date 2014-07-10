@@ -8,6 +8,7 @@
 #' @param datatype Data type, one of 'c', 'cc', 'p'. (optional)
 #' @param year Year of data collection. (optional)
 #' @param ... Further arguments passed on to the API GET call. (optional)
+#' @param x Input to print, output from noaa_buoy function.
 #' 
 #' @details
 #' Options for the dataset parameter. One of: 
