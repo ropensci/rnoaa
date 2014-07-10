@@ -53,4 +53,8 @@ noaa_buoy(dataset = 'cwind', config=verbose())
 \references{
 \url{http://www.ndbc.noaa.gov/} and \url{http://dods.ndbc.noaa.gov/}
 }
+\seealso{
+\link{noaa_buoy_buoys}, \link{noaa_buoy_files}, \link{noaa_buoy_single_file_url},
+\link{get_ncdf_file}, \link{buoy_collect_data}
+}
 

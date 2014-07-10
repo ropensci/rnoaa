@@ -25,6 +25,8 @@
 #' }
 #' @references \url{http://www.ndbc.noaa.gov/} and \url{http://dods.ndbc.noaa.gov/}
 #' @return A data.frame
+#' @seealso \link{noaa_buoy_buoys}, \link{noaa_buoy_files}, \link{noaa_buoy_single_file_url},
+#' \link{get_ncdf_file}, \link{buoy_collect_data}
 #' 
 #' @examples \dontrun{
 #' noaa_buoy(dataset = 'cwind', buoyid = 46085)
@@ -47,6 +49,11 @@ noaa_buoy <- function(dataset=NULL, buoyid=NULL, datatype=NULL, year=NULL, ...)
   buoy_collect_data(path=ncfile)
 }
 
+#' Get NOAA buoy data from the National Buoy Data Center
+#' 
+#' @keywords internal
+#' @param dataset Dataset to query. See below for details. (required)
+#' @param ... Further arguments passed on to the API GET call. (optional)
 noaa_buoy_buoys <- function(dataset=NULL, ...)
 {
   if(is.null(dataset)) stop("You must supply a dataset")  
@@ -64,6 +71,12 @@ noaa_buoy_buoys <- function(dataset=NULL, ...)
   return( tmp )
 }
 
+#' Get NOAA buoy data from the National Buoy Data Center
+#' 
+#' @keywords internal
+#' @param path Path to a single buoy data file
+#' @param buoyid Buoy id. (optional)
+#' @param ... Further arguments passed on to the API GET call. (optional)
 noaa_buoy_files <- function(path, buoyid, ...){
   singlebuoy_files <- GET(path, ...)
   tt_sbf <- content(singlebuoy_files, as="text")
@@ -75,11 +88,24 @@ noaa_buoy_files <- function(path, buoyid, ...){
   return( availfiles )
 }
 
+#' Make url for a single NOAA buoy data file
+#' 
+#' @keywords internal
+#' @param dataset Dataset to query. See below for details. (required)
+#' @param buoyid Buoy id. (optional)
+#' @param file Output file name
 noaa_buoy_single_file_url <- function(dataset, buoyid, file){
   sprintf('http://dods.ndbc.noaa.gov/thredds/fileServer/data/%s/%s/%s%s', 
           dataset, buoyid, buoyid, file)
 }
 
+#' Download a single ncdf file
+#' 
+#' @keywords internal
+#' @param path Path to a single buoy data file
+#' @param buoyid Buoy id. (optional)
+#' @param file XX
+#' @param output XX
 get_ncdf_file <- function(path, buoyid, file, output){
   res <- GET(path)
   outpath <- sprintf("%s/%s%s", output, buoyid, file)
@@ -87,6 +113,10 @@ get_ncdf_file <- function(path, buoyid, file, output){
   return(outpath)
 }
 
+#' Download a single ncdf file
+#' 
+#' @keywords internal
+#' @param path Path to a single buoy data file on local system
 buoy_collect_data <- function(path){
   dat <- nc_open(path)
   variables <- names(dat$var)
