@@ -19,7 +19,7 @@ Install and load `rnoaa` into the R session.
 ```{r install, eval=FALSE}
 install.packages("devtools")
 library(devtools)
-install_github("rnoaa", "ropensci", ref="newapi")
+install_github("rnoaa", "ropensci")
 ```
 
 ```{r load, message=FALSE, warning=FALSE}

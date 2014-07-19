@@ -6,6 +6,7 @@ move:
 		cp inst/vign/erddap_vignette.md vignettes;\
 		cp inst/vign/swdi_vignette.md vignettes;\
 		cp inst/vign/seaice_vignette.md vignettes;\
+		cp inst/vign/buoy_vignette.md vignettes;\
 		cp -r inst/vign/figure/* vignettes/figure
 
 pandoc:
@@ -22,8 +23,9 @@ rmd2md:
 		cp rnoaa_attributes.md rnoaa_attributes.Rmd;\
 		cp erddap_vignette.md erddap_vignette.Rmd;\
 		cp seaice_vignette.md seaice_vignette.Rmd;\
-		cp swdi_vignette.md swdi_vignette.Rmd
+		cp swdi_vignette.md swdi_vignette.Rmd;\
+		cp buoy_vignette.md buoy_vignette.Rmd
 
 cleanup:
 		cd vignettes;\
-		rm rnoaa_vignette.md rnoaa_attributes.md erddap_vignette.md swdi_vignette.md
+		rm rnoaa_vignette.md rnoaa_attributes.md erddap_vignette.md swdi_vignette.md buoy_vignette.md
