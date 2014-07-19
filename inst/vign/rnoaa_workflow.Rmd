@@ -6,17 +6,17 @@
 rnoaa workflow
 ======
 
-This vignette is intended to demonstrate a workflow for using the NOAA NCDC data. It can be confusing to understand how to get at data you want - that's why this vignette is needed. Other vignettes show more thorough and different examples.
+This vignette is intended to demonstrate a workflow for using the NOAA NCDC data. It can be confusing to understand how to get at data you want - that's the motivation for this vignette. Other vignettes show more thorough and different examples for specific data sources.
 
 ********************
 
 Load `rnoaa` into the R session.
 
 ```{r load, message=FALSE, warning=FALSE}
-library(rnoaa)
+library('rnoaa')
 ```
 
-### Workflow 1: XXX
+### The workflow
 
 * Look for weather stations & get station id(s)
 * Find out what type of data is available for those stations
@@ -24,7 +24,6 @@ library(rnoaa)
 
 #### Look for weather stations & get station id(s)
 
-XXXX
 
 ```{r two, message=FALSE, warning=FALSE, cache=FALSE}
 ids <- noaa_stations(locationid='FIPS:12017')$data$id[1:13]
