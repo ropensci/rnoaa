@@ -31,7 +31,7 @@ library('plyr')
 
 ```{r message=FALSE, warning=FALSE}
 urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x, mo='Feb', pole='S'))
-out <- lapply(urls, noaa_seaice)
+out <- lapply(urls, seaice)
 head(out[[1]])
 ```
 
@@ -39,7 +39,7 @@ head(out[[1]])
 
 ```{r}
 urls <- seaiceeurls(mo='Apr', pole='N', yr=1990)
-out <- noaa_seaice(urls)
+out <- seaice(urls)
 library('ggplot2')
 ggplot(out, aes(long, lat, group=group)) +
    geom_polygon(fill="steelblue") +
@@ -50,7 +50,7 @@ ggplot(out, aes(long, lat, group=group)) +
 
 ```{r message=FALSE, warning=FALSE}
 urls <- seaiceeurls(mo='Apr', pole='N')[1:10]
-out <- lapply(urls, noaa_seaice)
+out <- lapply(urls, seaice)
 names(out) <- seq(1979,1988,1)
 df <- ldply(out)
 library('ggplot2')
