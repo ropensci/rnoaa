@@ -47,7 +47,7 @@ library('plyr')
 
 
 ```r
-noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
+swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 ```
 
 ```
@@ -56,7 +56,7 @@ noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 ## [1] 25
 ## 
 ## $meta$totalTimeInSeconds
-## [1] 0.007
+## [1] 0.069
 ## 
 ## 
 ## $data
@@ -142,14 +142,14 @@ noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 ## 25 POINT (-102.504158884526 32.7162751126854)
 ## 
 ## attr(,"class")
-## [1] "noaa_swdi"
+## [1] "swdi"
 ```
 
 ### Get all 'nx3tvs' within 15 miles of latitude = 32.7 and longitude = -102.0
 
 
 ```r
-out <- noaa_swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', radius=15, center=c(-102.0,32.7))
+out <- swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', radius=15, center=c(-102.0,32.7))
 list(out$meta, head(out$data), head(out$shape))
 ```
 
@@ -159,7 +159,7 @@ list(out$meta, head(out$data), head(out$shape))
 ## [1] 25
 ## 
 ## [[1]]$totalTimeInSeconds
-## [1] 0.038
+## [1] 0.169
 ## 
 ## 
 ## [[2]]
@@ -192,7 +192,7 @@ list(out$meta, head(out$data), head(out$shape))
 
 
 ```r
-out <- noaa_swdi(dataset='warn', startdate='20060506', enddate='20060507', id=533623)
+out <- swdi(dataset='warn', startdate='20060506', enddate='20060507', id=533623)
 list(out$meta, head(out$data), head(out$shape))
 ```
 
@@ -202,7 +202,7 @@ list(out$meta, head(out$data), head(out$shape))
 ## [1] 25
 ## 
 ## [[1]]$totalTimeInSeconds
-## [1] 0.258
+## [1] 2.405
 ## 
 ## 
 ## [[2]]
@@ -235,7 +235,7 @@ list(out$meta, head(out$data), head(out$shape))
 
 
 ```r
-noaa_swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90,31))
+swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90,31))
 ```
 
 ```
@@ -244,7 +244,7 @@ noaa_swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,3
 ## [1] 5
 ## 
 ## $meta$totalTimeInSeconds
-## [1] 0.021
+## [1] 0.276
 ## 
 ## 
 ## $data
@@ -270,14 +270,14 @@ noaa_swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,3
 ## 5 POINT (-90.14 30.78)
 ## 
 ## attr(,"class")
-## [1] "noaa_swdi"
+## [1] "swdi"
 ```
 
 ### Get all 'nx3tvs' within the tile -102.1/32.6 (-102.15,32.55,-102.25,32.65)
 
 
 ```r
-noaa_swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,32.62))
+swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,32.62))
 ```
 
 ```
@@ -286,7 +286,7 @@ noaa_swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-10
 ## [1] 5
 ## 
 ## $meta$totalTimeInSeconds
-## [1] 0.012
+## [1] 0.014
 ## 
 ## 
 ## $data
@@ -312,12 +312,12 @@ noaa_swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-10
 ## 5 POINT (-102.076389686189 32.6209390786829)
 ## 
 ## attr(,"class")
-## [1] "noaa_swdi"
+## [1] "swdi"
 ```
 
 ### Counts
 
-Notes: 
+Notes:
 
 * stat='count' will only return metadata, nothing in the data or shape slots
 * stat='tilesum:...' returns counts in the data slot for each date for that tile, and shape data
@@ -325,7 +325,7 @@ Notes:
 
 
 ```r
-noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060516', radius=15, center=c(-102.0,32.7), stat='count')
+swdi(dataset='nx3tvs', startdate='20060505', enddate='20060516', radius=15, center=c(-102.0,32.7), stat='count')
 ```
 
 ```
@@ -334,7 +334,7 @@ noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060516', radius=15,
 ## [1] 1
 ## 
 ## $meta$totalTimeInSeconds
-## [1] 0.069
+## [1] 0.092
 ## 
 ## 
 ## $data
@@ -344,14 +344,14 @@ noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060516', radius=15,
 ## data frame with 0 columns and 1 rows
 ## 
 ## attr(,"class")
-## [1] "noaa_swdi"
+## [1] "swdi"
 ```
 
 Get daily count nx3tvs features on .1 degree grid centered at `latitude = 32.7` and `longitude = -102.0`
 
 
 ```r
-noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-102.0,32.7')
+swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-102.0,32.7')
 ```
 
 ```
@@ -360,7 +360,7 @@ noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tile
 ## [1] 5
 ## 
 ## $meta$totalTimeInSeconds
-## [1] 0.037
+## [1] 0.139
 ## 
 ## 
 ## $data
@@ -380,7 +380,7 @@ noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tile
 ## 5 POLYGON ((-102.05 32.65, -102.05 32.75, -101.95 32.75, -101.95 32.65, -102.05 32.65))
 ## 
 ## attr(,"class")
-## [1] "noaa_swdi"
+## [1] "swdi"
 ```
 
 ### Get data in different formats
@@ -389,7 +389,7 @@ noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tile
 
 
 ```r
-head(noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='csv')$data)
+head(swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='csv')$data)
 ```
 
 ```
@@ -413,7 +413,7 @@ head(noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', forma
 
 
 ```r
-noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp', filepath='myfile')
+swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp', filepath='myfile')
 ```
 
 ```
@@ -424,7 +424,7 @@ noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='sh
 
 
 ```r
-noaa_swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz', radius=15, filepath='myfile.kmz')
+swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz', radius=15, filepath='myfile.kmz')
 ```
 
 ```
