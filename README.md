@@ -3,17 +3,33 @@ rnoaa
 
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 
-__Note: Builds are failing because Travis has been blocked by NOAA for some reason.__
 
-### General Info
+### Help
 
+There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.r-project.org/web/packages/rnoaa/index.html). The tutorials:
 
-* We are using the NOAA API version 2. A previous version of this software was using their V1 API - older versions of this software use the old API - let us know if you want to use that.
-* The docs for the NCDC data API are [here](http://www.ncdc.noaa.gov/cdo-web/webservices/v2)
-* GCHN Daily data is available [here](http://www.ncdc.noaa.gov/oa/climate/ghcn-daily/) via FTP and HTTP
+* NOAA Buoy vignette
+* NOAA ERDDAP vignette
+* NOAA NCDC vignette (examples)
+* NOAA NCDC attributes vignette
+* NOAA NCDC workflow vignette
+* Sea ice vignette
+* Severe Weather Data Inventory vignette
+
+### Data sources used in rnoaa
+
+The majority of functions in this package work with NOAA NCDC data.
+
+* NOAA NCDC climate data:
+    * We are using the NOAA API version 2. A previous version of this software was using their V1 API - older versions of this software use the old API - let us know if you want to use that.
+    * The docs for the NCDC data API are [here](http://www.ncdc.noaa.gov/cdo-web/webservices/v2)
+    * GCHN Daily data is available [here](http://www.ncdc.noaa.gov/oa/climate/ghcn-daily/) via FTP and HTTP
 * Severe weather data docs are [here](http://www.ncdc.noaa.gov/swdiws/)
+* Sea ice data [ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
+* NOAA buoy data [http://www.ndbc.noaa.gov/](http://www.ndbc.noaa.gov/)
+* ERDDAP data [http://coastwatch.pfeg.noaa.gov/erddap/index.html](http://coastwatch.pfeg.noaa.gov/erddap/index.html)
 
-### Datasets
+### NOAA NCDC Datasets
 
 There are many NOAA NCDC datasets. Each is available throughout most functions in this package by using the `datasetid` parameter, except `NEXRAD2` and `NEXRAD3`, which don't work.
 
@@ -31,13 +47,13 @@ There are many NOAA NCDC datasets. Each is available throughout most functions i
 | NEXRAD2 | Nexrad Level II | 1991-06-05 | 2014-03-14 |
 | NEXRAD3 | Nexrad Level III | 1994-05-20 | 2014-03-11 |
 
-### Attributes
+### NOAA NCDC Attributes
 
 Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See [the NOAA docs](http://www.ncdc.noaa.gov/cdo-web/datasets) for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](vignettes/rnoaa_attributes.md) to find out more
 
 ### Authentication
 
-You'll need an API key to use this package (essentially a password). Go [here](http://www.ncdc.noaa.gov/cdo-web/token) to get one. *You can't use this package without an API key.*
+You'll need an API key to use the NOAA NCDC functions (those starting with `noaa*`) in this package (essentially a password). Go [here](http://www.ncdc.noaa.gov/cdo-web/token) to get one. *You can't use this package without an API key.*
 
 Once you obtain a key, there are two ways to use it.
 
@@ -53,6 +69,8 @@ b) Alternatively, you might find it easier to set this as an option, either by a
 options(noaakey = "KEY_EMAILED_TO_YOU")
 ```
 
+c) You can always store in permamently in your `.Rprofile` file.
+
 
 ### Installation
 
@@ -66,9 +84,9 @@ __or development version from GitHub__
 
 ```coffee
 install.packages("devtools")
-library(devtools)
+library('devtools')
 install_github("rnoaa", "ropensci")
-library(rnoaa)
+library('rnoaa')
 ```
 
 ### Quick start
@@ -137,8 +155,7 @@ noaa_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #### Search for data
 
 ```coffee
-noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal',
-   startdate = '2010-05-01', enddate = '2010-05-10')
+out <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-10')
 ```
 
 ##### See a data.frame
@@ -274,7 +291,7 @@ To cite package `rnoaa` in publications use:
 
 ```coffee
   Hart Edmund, Scott Chamberlain and Karthik Ram (2014). rnoaa: NOAA climate data
-  from R.. R package version 0.1.4. https://github.com/ropensci/rnoaa
+  from R.. R package version 0.1.9.99. https://github.com/ropensci/rnoaa
 ```
 
 A BibTeX entry for LaTeX users is
@@ -284,7 +301,7 @@ A BibTeX entry for LaTeX users is
     title = {rnoaa: NOAA climate data from R.},
     author = {Hart Edmund and Scott Chamberlain and Karthik Ram},
     year = {2014},
-    note = {R package version 0.1.4},
+    note = {R package version 0.1.9.99},
     url = {https://github.com/ropensci/rnoaa},
   }
 ```
