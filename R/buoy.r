@@ -1,17 +1,17 @@
 #' Get NOAA buoy data from the National Buoy Data Center
-#' 
+#'
 #' @import httr XML ncdf4
 #' @export
-#' 
+#'
 #' @param dataset Dataset to query. See below for details. (required)
 #' @param buoyid Buoy id. (optional)
 #' @param datatype Data type, one of 'c', 'cc', 'p'. (optional)
 #' @param year Year of data collection. (optional)
 #' @param ... Further arguments passed on to the API GET call. (optional)
-#' @param x Input to print, output from noaa_buoy function.
-#' 
+#' @param x Input to print, output from buoy function.
+#'
 #' @details
-#' Options for the dataset parameter. One of: 
+#' Options for the dataset parameter. One of:
 #' \itemize{
 #'  \item adcp - Acoustic Doppler Current Profiler data
 #'  \item adcp2 - MMS Acoustic Doppler Current Profiler data
@@ -26,39 +26,39 @@
 #' }
 #' @references \url{http://www.ndbc.noaa.gov/} and \url{http://dods.ndbc.noaa.gov/}
 #' @return A data.frame
-#' @seealso \link{noaa_buoy_buoys}, \link{noaa_buoy_files}, \link{noaa_buoy_single_file_url},
+#' @seealso \link{buoy_buoys}, \link{buoy_files}, \link{buoy_single_file_url},
 #' \link{get_ncdf_file}, \link{buoy_collect_data}
-#' 
+#'
 #' @examples \dontrun{
-#' noaa_buoy(dataset = 'cwind', buoyid = 46085)
-#' noaa_buoy(dataset = 'pwind', buoyid = 41021)
-#' 
+#' buoy(dataset = 'cwind', buoyid = 46085)
+#' buoy(dataset = 'pwind', buoyid = 41021)
+#'
 #' #curl debugging
-#' noaa_buoy(dataset = 'cwind', config=verbose())
+#' buoy(dataset = 'cwind', config=verbose())
 #' }
 
-noaa_buoy <- function(dataset=NULL, buoyid=NULL, datatype=NULL, year=NULL, ...)
+buoy <- function(dataset=NULL, buoyid=NULL, datatype=NULL, year=NULL, ...)
 {
   if(is.null(dataset)) stop("You must supply a dataset")
-  
-  availbuoys <- noaa_buoy_buoys(dataset, ...)
+
+  availbuoys <- buoy_buoys(dataset, ...)
   page <- availbuoys[grep(buoyid, names(availbuoys))][[1]]
-  files <- noaa_buoy_files(page, buoyid, ...)
-  toget <- noaa_buoy_single_file_url(dataset, buoyid, files[[1]])
+  files <- buoy_files(page, buoyid, ...)
+  toget <- buoy_single_file_url(dataset, buoyid, files[[1]])
   output <- tempdir()
   ncfile <- get_ncdf_file(toget, buoyid, files[[1]], output)
   buoy_collect_data(path=ncfile)
 }
 
 #' Get NOAA buoy data from the National Buoy Data Center
-#' 
+#'
 #' @export
 #' @keywords internal
 #' @param dataset Dataset to query. See below for details. (required)
 #' @param ... Further arguments passed on to the API GET call. (optional)
-noaa_buoy_buoys <- function(dataset=NULL, ...)
+buoy_buoys <- function(dataset=NULL, ...)
 {
-  if(is.null(dataset)) stop("You must supply a dataset")  
+  if(is.null(dataset)) stop("You must supply a dataset")
   url <- sprintf('http://dods.ndbc.noaa.gov/thredds/catalog/data/%s/catalog.html', dataset)
   res <- GET(url, ...)
   tt <- content(res, as="text")
@@ -74,13 +74,13 @@ noaa_buoy_buoys <- function(dataset=NULL, ...)
 }
 
 #' Get NOAA buoy data from the National Buoy Data Center
-#' 
+#'
 #' @export
 #' @keywords internal
 #' @param path Path to a single buoy data file
 #' @param buoyid Buoy id. (optional)
 #' @param ... Further arguments passed on to the API GET call. (optional)
-noaa_buoy_files <- function(path, buoyid, ...){
+buoy_files <- function(path, buoyid, ...){
   singlebuoy_files <- GET(path, ...)
   tt_sbf <- content(singlebuoy_files, as="text")
   html_sbf <- htmlParse(tt_sbf)
@@ -92,19 +92,19 @@ noaa_buoy_files <- function(path, buoyid, ...){
 }
 
 #' Make url for a single NOAA buoy data file
-#' 
+#'
 #' @export
 #' @keywords internal
 #' @param dataset Dataset to query. See below for details. (required)
 #' @param buoyid Buoy id. (optional)
 #' @param file Output file name
-noaa_buoy_single_file_url <- function(dataset, buoyid, file){
-  sprintf('http://dods.ndbc.noaa.gov/thredds/fileServer/data/%s/%s/%s%s', 
+buoy_single_file_url <- function(dataset, buoyid, file){
+  sprintf('http://dods.ndbc.noaa.gov/thredds/fileServer/data/%s/%s/%s%s',
           dataset, buoyid, buoyid, file)
 }
 
 #' Download a single ncdf file
-#' 
+#'
 #' @export
 #' @keywords internal
 #' @param path Path to a single buoy data file
@@ -119,7 +119,7 @@ get_ncdf_file <- function(path, buoyid, file, output){
 }
 
 #' Download a single ncdf file
-#' 
+#'
 #' @export
 #' @keywords internal
 #' @param path Path to a single buoy data file on local system
@@ -130,20 +130,20 @@ buoy_collect_data <- function(path){
   df <- data.frame(do.call(cbind, data), stringsAsFactors = FALSE)
   names(df) <- variables
   head(df)
-  
+
   meta <- lapply(variables, function(x) dat$var[[x]][names(dat$var[[x]]) %in% c('name','prec','units','longname','missval','hasAddOffset','hasScaleFact')])
   names(meta) <- variables
   nc_close( dat )
 
   all <- list(metadata=meta, data=df)
-  class(all) <- "noaa_buoy"
+  class(all) <- "buoy"
   return( all )
 }
 
-#' @method print noaa_buoy
+#' @method print buoy
 #' @export
-#' @rdname noaa_buoy
-print.noaa_buoy <- function(x, ...)
+#' @rdname buoy
+print.buoy <- function(x, ...)
 {
   cat("\n")
   vars <- names(x$metadata)
