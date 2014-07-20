@@ -1,5 +1,8 @@
 all: move rmd2md cleanup
 
+knit:
+	Rscript --vanilla -e 'library(knitr); setwd("inst/vign"); knit("ncdc_vignette.Rmd"); knit("ncdc_workflow.Rmd"); knit("ncdc_attributes.Rmd")'
+
 move:
 		cp inst/vign/rnoaa_vignette.md vignettes;\
 		cp inst/vign/rnoaa_attributes.md vignettes;\

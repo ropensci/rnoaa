@@ -1,12 +1,12 @@
 <!--
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{rnoaa workflow}
+%\VignetteIndexEntry{ncdc workflow vignette}
 -->
 
-rnoaa workflow
+NCDC workflow vignette
 ======
 
-This vignette is intended to demonstrate a workflow for using the NOAA NCDC data. It can be confusing to understand how to get at data you want - that's the motivation for this vignette. Other vignettes show more thorough and different examples for specific data sources.
+This vignette is intended to demonstrate a workflow for using the NOAA NCDC data using the `ncdc*` functions. It can be confusing to understand how to get at data you want - that's the motivation for this vignette. Other vignettes show more thorough and different examples for specific data sources.
 
 ********************
 
@@ -28,7 +28,7 @@ library('rnoaa')
 
 
 ```r
-ids <- noaa_stations(locationid='FIPS:12017')$data$id[1:13]
+ids <- ncdc_stations(locationid='FIPS:12017')$data$id[1:13]
 # ids[3]
 id <- "GHCND:US1FLCT0002"
 ```
@@ -37,7 +37,7 @@ Just information for one station
 
 
 ```r
-noaa_stations(stationid = id)
+ncdc_stations(stationid = id)
 ```
 
 ```
@@ -51,7 +51,7 @@ noaa_stations(stationid = id)
 ## 1       0.9995    -82.37 2007-09-01    28.83 2012-10-24
 ## 
 ## attr(,"class")
-## [1] "noaa_stations"
+## [1] "ncdc_stations"
 ```
 
 
@@ -61,7 +61,7 @@ There are various ways to look for data types available. First, __data categorie
 
 
 ```r
-noaa_datacats(stationid = id)
+ncdc_datacats(stationid = id)
 ```
 
 ```
@@ -82,14 +82,14 @@ noaa_datacats(stationid = id)
 ## 2 PRCP Precipitation
 ## 
 ## attr(,"class")
-## [1] "noaa_datacats"
+## [1] "ncdc_datacats"
 ```
 
 Another way is looking for __data sets__:
 
 
 ```r
-noaa_datasets(stationid = id)
+ncdc_datasets(stationid = id)
 ```
 
 ```
@@ -109,18 +109,18 @@ noaa_datasets(stationid = id)
 ## 1 gov.noaa.ncdc:C00861   GHCND   Daily Summaries            1 1763-01-01
 ## 2 gov.noaa.ncdc:C00841 GHCNDMS Monthly Summaries            1 1763-01-01
 ##      maxdate
-## 1 2014-07-16
+## 1 2014-07-19
 ## 2 2014-06-01
 ## 
 ## attr(,"class")
-## [1] "noaa_datasets"
+## [1] "ncdc_datasets"
 ```
 
 Yet another way is looking for __data types__:
 
 
 ```r
-noaa_datatypes(datasetid = "GHCND", stationid = id)
+ncdc_datatypes(datasetid = "GHCND", stationid = id)
 ```
 
 ```
@@ -130,18 +130,18 @@ noaa_datatypes(datasetid = "GHCND", stationid = id)
 ## 
 ## $data
 ##     id                         name datacoverage    mindate    maxdate
-## 1 PRCP Precipitation (tenths of mm)            1 1781-01-01 2014-07-16
-## 2 SNOW                Snowfall (mm)            1 1846-11-25 2014-07-16
+## 1 PRCP Precipitation (tenths of mm)            1 1781-01-01 2014-07-19
+## 2 SNOW                Snowfall (mm)            1 1846-11-25 2014-07-19
 ## 
 ## attr(,"class")
-## [1] "noaa_datatypes"
+## [1] "ncdc_datatypes"
 ```
 
 #### Search for climate data for stations (optionally specify type of data to get)
 
 Now that you know what kinds of data categories, data sets, and data types are available for your station you can search for data with any of those as filters.
 
-Importantly, note that you have to specify three things in a call to the `noaa` function:
+Importantly, note that you have to specify three things in a call to the `ncdc` function:
 
 * `datasetid`
 * `startdate`
@@ -151,7 +151,7 @@ Here, we are specifying the `datasetid`, `stationid`, `datatypeid`, `startdate`,
 
 
 ```r
-noaa(datasetid = "GHCND", stationid = id, datatypeid = "PRCP", startdate = "2012-10-01", enddate = "2013-01-01")
+ncdc(datasetid = "GHCND", stationid = id, datatypeid = "PRCP", startdate = "2012-10-01", enddate = "2013-01-01")
 ```
 
 ```
@@ -215,5 +215,5 @@ noaa(datasetid = "GHCND", stationid = id, datatypeid = "PRCP", startdate = "2012
 ## 22     
 ## 
 ## attr(,"class")
-## [1] "noaa_data"
+## [1] "ncdc_data"
 ```

@@ -1,6 +1,6 @@
 <!--
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{NOAA dataset attributes}
+%\VignetteIndexEntry{NOAA NCDC dataset attributes}
 -->
 
 NOAA NCDC dataset attributes
