@@ -33,4 +33,4 @@ rmd2md:
 
 cleanup:
 		cd vignettes;\
-		rm ncdc_vignette.md ncdc_attributes.md ncdc_workflow.md erddap_vignette.md swdi_vignette.md buoy_vignette.md
+		rm ncdc_vignette.md ncdc_attributes.md ncdc_workflow.md erddap_vignette.md swdi_vignette.md seaice_vignette.md buoy_vignette.md
