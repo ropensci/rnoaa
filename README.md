@@ -49,7 +49,7 @@ There are many NOAA NCDC datasets. Each is available throughout most functions i
 
 ### NOAA NCDC Attributes
 
-Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See [the NOAA docs](http://www.ncdc.noaa.gov/cdo-web/datasets) for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](vignettes/rnoaa_attributes.md) to find out more
+Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See [the NOAA docs](http://www.ncdc.noaa.gov/cdo-web/datasets) for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](inst/vign/rnoaa_attributes.md) to find out more
 
 ### Authentication
 
