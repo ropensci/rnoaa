@@ -1,17 +1,17 @@
-#' Search for and get NOAA data.
+#' Search for and get NOAA NCDC data.
 #'
 #' @import httr
 #' @importFrom plyr round_any rbind.fill
 #' @export
 #' @template rnoaa
 #' @template noaa
-#' @param includemetadata Used to improve response time by preventing the calculation of 
-#' result metadata. Default: TRUE. This does not affect the return object, in that the named part 
-#' of the output list called "meta' is still returned, but is NULL. In practice, I haven't seen 
+#' @param includemetadata Used to improve response time by preventing the calculation of
+#' result metadata. Default: TRUE. This does not affect the return object, in that the named part
+#' of the output list called "meta' is still returned, but is NULL. In practice, I haven't seen
 #' response time's improve, but perhaps they will for you.
 #'
 #' @details
-#' Note that NOAA API calls can take a long time depending on the call. The NOAA API doesn't
+#' Note that NOAA NCDC API calls can take a long time depending on the call. The NOAA API doesn't
 #' perform well with very long timespans, and will time out and make you angry - beware.
 #'
 #' Keep in mind that three parameters, datasetid, startdate, and enddate are required.
@@ -46,82 +46,82 @@
 #'
 #' @examples \dontrun{
 #' # GHCN-Daily (or GHCND) data, for a specific station
-#' noaa(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
+#' ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
 #'    enddate = '2013-12-01')
 #'
 #' # GHCND data, for a location by FIPS code
-#' noaa(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01',
+#' ncdc(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01',
 #'    enddate = '2010-05-10')
 #'
 #' # GHCND data from October 1 2013 to December 1 2013
-#' noaa(datasetid='GHCND', startdate = '2013-10-01', enddate = '2013-10-05')
+#' ncdc(datasetid='GHCND', startdate = '2013-10-01', enddate = '2013-10-05')
 #'
 #' # GHCN-Monthly (or GHCNDMS) data from October 1 2013 to December 1 2013
-#' noaa(datasetid='GHCNDMS', startdate = '2013-10-01', enddate = '2013-12-01')
+#' ncdc(datasetid='GHCNDMS', startdate = '2013-10-01', enddate = '2013-12-01')
 #'
 #' # Normals Daily (or NORMAL_DLY) GHCND:USW00014895 dly-tmax-normal data
-#' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05-01',
+#' ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05-01',
 #'    enddate = '2010-05-10')
 #'
 #' # Dataset, and location in Australia
-#' noaa(datasetid='GHCND', locationid='FIPS:AS', startdate = '2010-05-01', enddate = '2010-05-31')
+#' ncdc(datasetid='GHCND', locationid='FIPS:AS', startdate = '2010-05-01', enddate = '2010-05-31')
 #'
 #' # Dataset, location and datatype for PRECIP_HLY data
-#' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
+#' ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
 #'    startdate = '2010-05-01', enddate = '2010-05-10')
 #'
 #' # Dataset, location, station and datatype
-#' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP',
+#' ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP',
 #'    startdate = '2010-05-01', enddate = '2010-05-10')
 #'
 #' # Dataset, location, and datatype for GHCND
-#' noaa(datasetid='GHCND', locationid='FIPS:BR', datatypeid='PRCP', startdate = '2010-05-01',
+#' ncdc(datasetid='GHCND', locationid='FIPS:BR', datatypeid='PRCP', startdate = '2010-05-01',
 #'    enddate = '2010-05-10')
 #'
 #' # Normals Daily GHCND dly-tmax-normal data
-#' noaa(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', startdate = '2010-05-01',
+#' ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', startdate = '2010-05-01',
 #'    enddate = '2010-05-10')
 #'
 #' # Normals Daily GHCND:USW00014895 dly-tmax-normal
-#' noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal',
+#' ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal',
 #'    startdate = '2010-05-01', enddate = '2010-05-10')
 #'
 #' # Hourly Precipitation data for ZIP code 28801
-#' noaa(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
+#' ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
 #'    startdate = '2010-05-01', enddate = '2010-05-10')
 #'
 #' # 15 min Precipitation data for ZIP code 28801
-#' noaa(datasetid='PRECIP_15', datatypeid='QPCP', startdate = '2010-05-01', enddate = '2010-05-02')
+#' ncdc(datasetid='PRECIP_15', datatypeid='QPCP', startdate = '2010-05-01', enddate = '2010-05-02')
 #'
 #' # Search the NORMAL_HLY dataset
-#' noaa(datasetid='NORMAL_HLY', stationid = 'GHCND:USW00003812', startdate = '2010-05-01',
+#' ncdc(datasetid='NORMAL_HLY', stationid = 'GHCND:USW00003812', startdate = '2010-05-01',
 #'    enddate = '2010-05-10')
 #'
 #' # Search the ANNUAL dataset
-#' noaa(datasetid='ANNUAL', locationid='ZIP:28801', startdate = '2010-05-01',
+#' ncdc(datasetid='ANNUAL', locationid='ZIP:28801', startdate = '2010-05-01',
 #'    enddate = '2010-05-10')
 #'
 #' # Search the NORMAL_ANN dataset
-#' noaa(datasetid='NORMAL_ANN', datatypeid='ANN-DUTR-NORMAL', startdate = '2010-01-01',
+#' ncdc(datasetid='NORMAL_ANN', datatypeid='ANN-DUTR-NORMAL', startdate = '2010-01-01',
 #'    enddate = '2010-01-01')
-#'    
+#'
 #' # Include metadata or not
-#' noaa(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
+#' ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
 #'    enddate = '2013-12-01')
-#' noaa(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
+#' ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
 #'    enddate = '2013-12-01', includemetadata=FALSE)
 #' }
 #'
 #' \donttest{
 #' # NEXRAD2 data
 #' ## doesn't work yet
-#' noaa(datasetid='NEXRAD2', startdate = '2013-10-01', enddate = '2013-12-01')
+#' ncdc(datasetid='NEXRAD2', startdate = '2013-10-01', enddate = '2013-12-01')
 #' }
 
-noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL,
+ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL,
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
   callopts=list(), token=NULL, dataset=NULL, datatype=NULL, station=NULL, location=NULL,
-  locationtype=NULL, page=NULL, year=NULL, month=NULL, day=NULL, includemetadata=TRUE, 
+  locationtype=NULL, page=NULL, year=NULL, month=NULL, day=NULL, includemetadata=TRUE,
   results=NULL)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
@@ -174,29 +174,29 @@ noaa <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
     }
   }
 
-  class(all) <- "noaa_data"
+  class(all) <- "ncdc_data"
   return( all )
 }
 
 split_atts <- function(x, ds="GHCNDMS"){
   tmp <- x$attributes
   out <- switch(ds,
-         ANNUAL = parse_noaa(tmp,c('fl_m','fl_q','fl_d','fl_u')),
-         GHCND = parse_noaa(tmp,c('fl_m','fl_q','fl_so','fl_t')),
-         GHCNDMS = parse_noaa(tmp,c('fl_miss','fl_cmiss')),
-         NEXRAD2 = parse_noaa(tmp,c('x','x')), # no data returned, fix when data returned
-         NEXRAD3 = parse_noaa(tmp,c('x','x')), # no data returned, fix when data returned
-         NORMAL_ANN = parse_noaa(tmp,'fl_c'),
-         NORMAL_DLY = parse_noaa(tmp,'fl_c'),
-         NORMAL_HLY = parse_noaa(tmp,'fl_c'),
-         NORMAL_MLY = parse_noaa(tmp,'fl_c'),
-         PRECIP_15 = parse_noaa(tmp,c('fl_m','fl_q','fl_u')),
-         PRECIP_HLY = parse_noaa(tmp,c('fl_m','fl_q')))
+         ANNUAL = parse_ncdc(tmp,c('fl_m','fl_q','fl_d','fl_u')),
+         GHCND = parse_ncdc(tmp,c('fl_m','fl_q','fl_so','fl_t')),
+         GHCNDMS = parse_ncdc(tmp,c('fl_miss','fl_cmiss')),
+         NEXRAD2 = parse_ncdc(tmp,c('x','x')), # no data returned, fix when data returned
+         NEXRAD3 = parse_ncdc(tmp,c('x','x')), # no data returned, fix when data returned
+         NORMAL_ANN = parse_ncdc(tmp,'fl_c'),
+         NORMAL_DLY = parse_ncdc(tmp,'fl_c'),
+         NORMAL_HLY = parse_ncdc(tmp,'fl_c'),
+         NORMAL_MLY = parse_ncdc(tmp,'fl_c'),
+         PRECIP_15 = parse_ncdc(tmp,c('fl_m','fl_q','fl_u')),
+         PRECIP_HLY = parse_ncdc(tmp,c('fl_m','fl_q')))
   notatts <- x[!names(x)=="attributes"]
   c(notatts, out)
 }
 
-parse_noaa <- function(y, headings){
+parse_ncdc <- function(y, headings){
   res <- strsplit(y, ',')[[1]]
   if(grepl(",$", y)){
     res <- c(res, "")

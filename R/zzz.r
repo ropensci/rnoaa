@@ -1,41 +1,41 @@
 #' Check object class
 #'
-#' Check if an object is of class noaa_data, noaa_datasets,
-#' noaa_datatypes, noaa_datacats, noaa_locs, noaa_locs_cats,
-#' or noaa_stations
+#' Check if an object is of class ncdc_data, ncdc_datasets,
+#' ncdc_datatypes, ncdc_datacats, ncdc_locs, ncdc_locs_cats,
+#' or ncdc_stations
 #'
 #' @param x input
 #' @export
-is.noaa_data <- function(x) inherits(x, "noaa_data")
+is.ncdc_data <- function(x) inherits(x, "ncdc_data")
 
-#' @rdname is.noaa_data
+#' @rdname is.ncdc_data
 #' @export
-is.noaa_datasets <- function(x) inherits(x, "noaa_datasets")
+is.ncdc_datasets <- function(x) inherits(x, "ncdc_datasets")
 
-#' @rdname is.noaa_data
+#' @rdname is.ncdc_data
 #' @export
-is.noaa_datatypes <- function(x) inherits(x, "noaa_datatypes")
+is.ncdc_datatypes <- function(x) inherits(x, "ncdc_datatypes")
 
-#' @rdname is.noaa_data
+#' @rdname is.ncdc_data
 #' @export
-is.noaa_datacats <- function(x) inherits(x, "noaa_datacats")
+is.ncdc_datacats <- function(x) inherits(x, "ncdc_datacats")
 
-#' @rdname is.noaa_data
+#' @rdname is.ncdc_data
 #' @export
-is.noaa_locs <- function(x) inherits(x, "noaa_locs")
+is.ncdc_locs <- function(x) inherits(x, "ncdc_locs")
 
-#' @rdname is.noaa_data
+#' @rdname is.ncdc_data
 #' @export
-is.noaa_locs_cats <- function(x) inherits(x, "noaa_locs_cats")
+is.ncdc_locs_cats <- function(x) inherits(x, "ncdc_locs_cats")
 
-#' @rdname is.noaa_data
+#' @rdname is.ncdc_data
 #' @export
-is.noaa_stations <- function(x) inherits(x, "noaa_stations")
+is.ncdc_stations <- function(x) inherits(x, "ncdc_stations")
 
 #' Theme for plotting NOAA data
 #' @export
 #' @keywords internal
-noaa_theme <- function(){
+ncdc_theme <- function(){
   list(theme(panel.grid.major = element_blank(),
              panel.grid.minor = element_blank(),
              legend.position = c(0.7,0.6),
@@ -61,7 +61,7 @@ long2utm <- function(lon, lat) {
   (floor((lon + 180)/6) %% 60) + 1
 }
 
-#' Function to calculate bounding box for the extent parameter in noaa_stations function.
+#' Function to calculate bounding box for the extent parameter in ncdc_stations function.
 #' @import assertthat rgeos
 #' @export
 #' @param lat Latitude, in decimal degree style
@@ -103,8 +103,8 @@ check_response <- function(x){
     stnames <- names(content(x))
     if(!is.null(stnames)){
       if('developerMessage' %in% stnames|'message' %in% stnames){
-        warning(sprintf("Error: (%s) - %s", x$status_code, 
-                        noaa_compact(list(content(x)$developerMessage, content(x)$message))))
+        warning(sprintf("Error: (%s) - %s", x$status_code,
+                        ncdc_compact(list(content(x)$developerMessage, content(x)$message))))
       } else { warning(sprintf("Error: (%s)", x$status_code)) }
     } else { warn_for_status(x) }
   } else {
@@ -131,7 +131,7 @@ check_response_erddap <- function(x){
     if(length(error) > 1) error <- error[1]
     #check specifically for no matching results error
     if(grepl("no matching results", error)) error <- 'Error: Your query produced no matching results.'
-    
+
     if(!is.null(error)){
       if(grepl('Error', error)){
         warning(sprintf("(%s) - %s", x$status_code, error))
@@ -143,7 +143,7 @@ check_response_erddap <- function(x){
   }
 }
 
-#' Check response from NOAA SWDI service, including status codes, server error messages, 
+#' Check response from NOAA SWDI service, including status codes, server error messages,
 #' mime-type, etc.
 #' @keywords internal
 check_response_swdi <- function(x, format){
@@ -166,7 +166,7 @@ check_response_swdi <- function(x, format){
       xmlParse(res)
     }
   }
-  
+
 #   if(!'results' %in% names(tt)){
 #     if(length(out)==0){ warning("Sorry, no data found") }
 #   } else {

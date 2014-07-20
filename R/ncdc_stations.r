@@ -1,11 +1,11 @@
-#' Get metadata about NOAA stations.
-#' 
-#' From the NOAA API docs: Stations are where the data comes from (for most datasets) 
-#' and can be considered the smallest granual of location data. If you know what 
+#' Get metadata about NOAA NCDC stations.
+#'
+#' From the NOAA NCDC API docs: Stations are where the data comes from (for most datasets)
+#' and can be considered the smallest granual of location data. If you know what
 #' station you want, you can quickly get all manner of data from it
-#' 
+#'
 #' @import httr rgeos rgdal sp
-#' @importFrom plyr compact 
+#' @importFrom plyr compact
 #' @template rnoaa
 #' @template rnoaa2
 #' @template stations
@@ -13,51 +13,51 @@
 #' @export
 #' @examples \dontrun{
 #' # Get metadata on all stations
-#' noaa_stations()
-#' noaa_stations(limit=5)
-#' 
+#' ncdc_stations()
+#' ncdc_stations(limit=5)
+#'
 #' # Get metadata on a single station
-#' noaa_stations(stationid='COOP:010008')
-#' 
+#' ncdc_stations(stationid='COOP:010008')
+#'
 #' # Displays all stations within GHCN-Daily (100 Stations per page limit)
-#' noaa_stations(datasetid='GHCND')
-#' 
-#' # Station 
-#' noaa_stations(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895')
+#' ncdc_stations(datasetid='GHCND')
+#'
+#' # Station
+#' ncdc_stations(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895')
 #'
 #' # Displays all stations within GHCN-Daily (Displaying page 10 of the results)
-#' noaa_stations(datasetid='GHCND')
-#' 
+#' ncdc_stations(datasetid='GHCND')
+#'
 #' # Specify datasetid and locationid
-#' noaa_stations(datasetid='GHCND', locationid='FIPS:12017')
-#' 
+#' ncdc_stations(datasetid='GHCND', locationid='FIPS:12017')
+#'
 #' # Specify datasetid, locationid, and station
-#' noaa_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
-#' 
+#' ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
+#'
 #' # Specify datasetid, locationidtype, locationid, and station
-#' noaa_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
-#' 
+#' ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
+#'
 #' # Displays list of stations within the specified county
-#' noaa_stations(datasetid='GHCND', locationid='FIPS:12017')
+#' ncdc_stations(datasetid='GHCND', locationid='FIPS:12017')
 #'
 #' # Displays list of Hourly Precipitation locationids between 01/01/1990 and 12/31/1990
-#' noaa_stations(datasetid='PRECIP_HLY', startdate='19900101', enddate='19901231')
-#' 
+#' ncdc_stations(datasetid='PRECIP_HLY', startdate='19900101', enddate='19901231')
+#'
 #' # Search for stations by spatial extent
 #' ## Search using a single point, given by a lat long pair
-#' noaa_stations(extent=c(33.95,-118.40))
+#' ncdc_stations(extent=c(33.95,-118.40))
 #' ## Search using a bounding box, w/ lat/long of the SW corner, then of NE corner
-#' noaa_stations(extent=c(47.5204,-122.2047,47.6139,-122.1065))
+#' ncdc_stations(extent=c(47.5204,-122.2047,47.6139,-122.1065))
 #' }
 
-noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locationid=NULL, 
+ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locationid=NULL,
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
-  datacategoryid=NULL, extent=NULL, radius=10, callopts=list(), token=NULL, dataset=NULL, 
+  datacategoryid=NULL, extent=NULL, radius=10, callopts=list(), token=NULL, dataset=NULL,
   station=NULL, location=NULL, locationtype=NULL, page=NULL)
-{ 
+{
   if(is.null(token))
     token <- getOption("noaakey", stop("you need an API key NOAA data"))
-  
+
   if(!is.null(stationid)){
     url <- sprintf('http://www.ncdc.noaa.gov/cdo-web/api/v2/stations/%s', stationid)
     args <- list()
@@ -70,19 +70,19 @@ noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
         extent <- latlong2bbox(lat=extent[1], lon=extent[2], radius=radius)
       }
     }
-    args <- compact(list(datasetid=datasetid, datatypeid=datatypeid, 
+    args <- compact(list(datasetid=datasetid, datatypeid=datatypeid,
                          locationid=locationid, startdate=startdate,
-                         enddate=enddate, sortfield=sortfield, sortorder=sortorder, 
-                         limit=limit, offset=offset, datacategoryid=datacategoryid, 
+                         enddate=enddate, sortfield=sortfield, sortorder=sortorder,
+                         limit=limit, offset=offset, datacategoryid=datacategoryid,
                          extent=extent))
   }
-  
+
   callopts <- c(add_headers("token" = token), callopts)
   temp <- GET(url, query=args, config=callopts)
   tt <- check_response(temp)
   if(is(temp, "character")){
     all <- list(meta=NULL, data=NULL)
-  } else {  
+  } else {
     if(!is.null(stationid)){
       dat <- data.frame(tt, stringsAsFactors=FALSE)
       all <- list(meta=NULL, data=dat)
@@ -94,6 +94,6 @@ noaa_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
       all <- list(meta=atts, data=dat)
     }
   }
-  class(all) <- "noaa_stations"
+  class(all) <- "ncdc_stations"
   return( all )
 }
