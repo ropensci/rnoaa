@@ -1,7 +1,32 @@
+rnoaa 0.2.0
+===============
+
+NEW FEATURES
+
+* New package imports: `sp`, `rgeos`, `assertthat`, `jsonlite`, and `ncdf4`, and new package Suggests: `knitr`, `taxize`
+* Most function names changed. All `noaa*()` functions for NCDC data changed to `ncdc*()`. `noaa_buoy()` changed to `buoy()`. `noaa_seaice()` changed to `seaice()`. When you call the old versions an error is thrown, with a message pointing you to the new function name. See ?rnoaa-defunct.
+* New vignettes: NCDC attributes, NCDC workflow, Seaice vignette, SWDI vignette, ERDDAP vignette, NOAA buoy vignette.
+* New functions to interact with NOAA ERDDAP data: `erddap_info()`, `erddap_data()`, and `erddap_search()`.
+* New functions to interact with NOAA buoy data: `buoy()`, including a number of helper functions.
+* `ncdc()` now splits apart attributes. Previously, the attributes were returned as a single column, but now there is column for each attribute so data can be easily retrieved. Attribute columns differ for each different `datasetid`.
+
+MINOR IMPROVEMENTS
+
+* `noaa_swdi()` (function changed to `swdi()`) gains new parameter `filepath` to specify path to write a file to if `format=kmz` or `format=shp`. Examples added for using `format=` csv, shp, and kmz.
+* Now using internal version of `plyr::compact`.
+* Added API response checker/handler to all functions to pass on helpful messages on server errors.
+* `ncdc()` gains new parameter `includemetadata`. If TRUE, includes metadata, if not, does not, and response should be faster as does not take time to calculate metadata.
+* `noaa_stations()` gains new parameter `radius`. If `extent` is a vector of length 4 (for a bounding box) then radius is ignored, but if you pass in two points to `extent`, it is interpreted as a point, and then `radius` is used as the distance upon which to construct a bounding box. `radius` default is 10 km.
+
+BUG FIXES
+
+* `datasetid`, `startdate`, and `enddate` are often required parameters, and changes were made to help users with this.
+
+
 rnoaa 0.1.0
 ===============
 
-NEW FEATURES 
+NEW FEATURES
 
 * Submitted to CRAN.
 
@@ -9,7 +34,7 @@ NEW FEATURES
 rnoaa 0.0.8
 ===============
 
-NEW FEATURES 
+NEW FEATURES
 
 * Wrote new functions for NOAA API v2.
 * A working vignette now.
@@ -18,6 +43,6 @@ NEW FEATURES
 rnoaa 0.0.1
 ===============
 
-NEW FEATURES 
+NEW FEATURES
 
 * Wrappers for NOAA API v1 were written, not on CRAN at this point.
