@@ -4,9 +4,27 @@ rnoaa
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 
 
+### IMPORTANT - BUOY DATA
+
+NOAA buoy data requires an R pacakage `ncdf4` that is difficult to use on Windows. Therefore, we have moved functions for working with buoy data into a separate branch called `buoy`, and the `CRAN` version does not include buoy functions. Thus, if you're on a Linux machine or on OSX you should be able to use the `buoy` branch just fine after installing the `netcdf` as:
+
+OSX
+
+```
+brew install netcdf
+```
+
+Linux (Ubuntu)
+
+```
+sudo apt-get install netcdf*
+```
+
+Then `rnoaa` with the buoy functions should install and load correctly. See [this stackoverflow post](http://stackoverflow.com/questions/22805123/netcdf-make-command-test/22806048#22806048) and [this blog post](http://mazamascience.com/WorkingWithData/?p=1429) for more Linux/OSX `netcdf` installation help.
+
 ### Help
 
-There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.r-project.org/web/packages/rnoaa/index.html). The tutorials:
+There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rncdc_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.r-project.org/web/packages/rnoaa/index.html). The tutorials:
 
 * NOAA Buoy vignette
 * NOAA ERDDAP vignette
@@ -49,7 +67,7 @@ There are many NOAA NCDC datasets. Each is available throughout most functions i
 
 ### NOAA NCDC Attributes
 
-Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See [the NOAA docs](http://www.ncdc.noaa.gov/cdo-web/datasets) for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](inst/vign/rnoaa_attributes.md) to find out more
+Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See [the NOAA docs](http://www.ncdc.noaa.gov/cdo-web/datasets) for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](inst/vign/rncdc_attributes.md) to find out more
 
 ### Authentication
 
@@ -60,7 +78,7 @@ Once you obtain a key, there are two ways to use it.
 a) Pass it inline with each function call (somewhat cumbersome)  
 
 ```coffee
-noaa(datasetid = 'PRECIP_HLY', locationid = 'ZIP:28801', datatypeid = 'HPCP', limit = 5, token =  "YOUR_TOKEN")
+ncdc(datasetid = 'PRECIP_HLY', locationid = 'ZIP:28801', datatypeid = 'HPCP', limit = 5, token =  "YOUR_TOKEN")
 ```
 
 b) Alternatively, you might find it easier to set this as an option, either by adding this line to the top of a script or somewhere in your `.rprofile`
@@ -84,8 +102,15 @@ __or development version from GitHub__
 
 ```coffee
 install.packages("devtools")
-library('devtools')
-install_github("rnoaa", "ropensci")
+devtools::install_github("rnoaa", "ropensci")
+library('rnoaa')
+```
+
+__or version with buoy functions on Github__
+
+```coffee
+install.packages("devtools")
+devtools::install_github("rnoaa", "ropensci", ref="buoy")
 library('rnoaa')
 ```
 
@@ -94,7 +119,7 @@ library('rnoaa')
 ####  Fetch list of city locations in descending order
 
 ```coffee
-noaa_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
+ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 ```
 
 ```coffee
@@ -138,13 +163,13 @@ $data
 25 CITY:US460009        Yankton, SD US       1.0000 1932-01-01 2013-11-19
 
 attr(,"class")
-[1] "noaa_locs"
+[1] "ncdc_locs"
 ```
 
 #### Get info on a station by specifcying a dataset, locationtype, location, and station
 
 ```coffee
-noaa_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
+ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
 ```
 
 ```coffee
@@ -155,7 +180,7 @@ noaa_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #### Search for data
 
 ```coffee
-out <- noaa(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-10')
+out <- ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-10')
 ```
 
 ##### See a data.frame
@@ -177,20 +202,20 @@ head( out$data )
 #### Plot data, super simple, but it's a start
 
 ```coffee
-out <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
-noaa_plot(out, breaks="1 month", dateformat="%d/%m")
+out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
+ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
 ![](inst/img/plot.png)
 
 #### More plotting
 
-You can pass many outputs from calls to the `noaa` function in to the `noaa_plot` function.
+You can pass many outputs from calls to the `noaa` function in to the `ncdc_plot` function.
 
 ```coffee
-out1 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-03-01', enddate = '2010-05-31', limit=500)
-out2 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-09-01', enddate = '2010-10-31', limit=500)
-noaa_plot(out1, out2, breaks="45 days")
+out1 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-03-01', enddate = '2010-05-31', limit=500)
+out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-09-01', enddate = '2010-10-31', limit=500)
+ncdc_plot(out1, out2, breaks="45 days")
 ```
 
 ![](inst/img/plot1.png)
@@ -198,7 +223,7 @@ noaa_plot(out1, out2, breaks="45 days")
 ### Get table of all datasets
 
 ```coffee
-noaa_datasets()
+ncdc_datasets()
 ```
 
 ```coffee
@@ -228,13 +253,13 @@ $data
 11 gov.noaa.ncdc:C00313 PRECIP_HLY    Precipitation Hourly         1.00 1900-01-01 2013-05-01
 
 attr(,"class")
-[1] "noaa_datasets"
+[1] "ncdc_datasets"
 ```
 
 ### Get data category data and metadata
 
 ```coffee
-noaa_datacats(locationid='CITY:US390029')
+ncdc_datacats(locationid='CITY:US390029')
 ```
 
 ```coffee
@@ -278,7 +303,7 @@ $data
 25          SUDD    Summer Degree Days
 
 attr(,"class")
-[1] "noaa_datacats"
+[1] "ncdc_datacats"
 ```
 
 [Please report any issues or bugs](https://github.com/ropensci/rnoaa/issues).
