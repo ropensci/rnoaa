@@ -69,7 +69,7 @@ nrow(out)
 head(erddap_data(datasetid='erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08'))
 
 # Pass in fields (i.e., columns to retrieve) & time constraints
-erddap_data(datasetid='erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'),
+erddap_data(datasetid='erdCalCOFIfshsiz',fields=c('longitude','latitude','fish_size','itis_tsn'),
    'time>=2001-07-07','time<=2001-07-10')
 erddap_data(datasetid='erdCinpKfmBT', fields=c('latitude','longitude',
    'Aplysia_californica_Mean_Density','Muricea_californica_Mean_Density'),
@@ -122,7 +122,7 @@ erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','tem
 erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
    'time>=2007-09-19', 'time<=2007-09-21', orderbyminmax='temperature')
 # Use orderbymin parameter with multiple values
-erddap_data(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','depth','temperature'),
+erddap_data(datasetid='erdCinpKfmT',fields=c('longitude','latitude','time','depth','temperature'),
    'time>=2007-06-10', 'time<=2007-09-21', orderbymax=c('depth','temperature'))
 
 # Spatial delimitation
@@ -130,7 +130,8 @@ erddap_data(datasetid = 'erdCalCOFIfshsiz', fields = c('latitude','longitude','s
  'latitude>=34.8', 'latitude<=35', 'longitude>=-125', 'longitude<=-124')
 
 # Integrate with taxize
-out <- erddap_data(datasetid = 'erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name','itis_tsn'))
+out <- erddap_data(datasetid = 'erdCalCOFIfshsiz',
+   fields = c('latitude','longitude','scientific_name','itis_tsn'))
 tsns <- unique(out$itis_tsn[1:100])
 library("taxize")
 classif <- classification(tsns, db = "itis")
