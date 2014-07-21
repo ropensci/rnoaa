@@ -34,7 +34,8 @@
 #' buoy(dataset = 'pwind', buoyid = 41021)
 #'
 #' #curl debugging
-#' buoy(dataset = 'cwind', config=verbose())
+#' library('httr')
+#' buoy(dataset = 'cwind', buoyid = 46085, config=verbose())
 #' }
 
 buoy <- function(dataset=NULL, buoyid=NULL, datatype=NULL, year=NULL, ...)
