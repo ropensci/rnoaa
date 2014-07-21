@@ -9,6 +9,7 @@ NEW FEATURES
 * New functions to interact with NOAA ERDDAP data: `erddap_info()`, `erddap_data()`, and `erddap_search()`.
 * New functions to interact with NOAA buoy data: `buoy()`, including a number of helper functions.
 * `ncdc()` now splits apart attributes. Previously, the attributes were returned as a single column, but now there is column for each attribute so data can be easily retrieved. Attribute columns differ for each different `datasetid`.
+* `buoy()` function has been removed from the CRAN version of `rnoaa`. Install the version with `buoy()` and associated functions via `devtools::install_github("ropensci/rnoaa", ref="buoy")`
 
 MINOR IMPROVEMENTS
 
