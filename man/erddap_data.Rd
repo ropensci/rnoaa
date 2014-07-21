@@ -66,7 +66,7 @@ out <- erddap_data(datasetid='erdCalCOFIfshsiz')
 nrow(out)
 
 # Pass time constraints
-erddap_data(datasetid='erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08')
+head(erddap_data(datasetid='erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08'))
 
 # Pass in fields (i.e., columns to retrieve) & time constraints
 erddap_data(datasetid='erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'),

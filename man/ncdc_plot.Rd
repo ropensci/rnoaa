@@ -41,21 +41,21 @@ ggplot(input, aes(date, value)) +
 \examples{
 \dontrun{
 # Search for data first, then plot
-out <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
+out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
 ncdc_plot(out)
 ncdc_plot(out, breaks="14 days")
 ncdc_plot(out, breaks="1 month", dateformat="\%d/\%m")
 ncdc_plot(out, breaks="1 month", dateformat="\%d/\%m")
 
-out2 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
+out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 startdate = '2010-05-01', enddate = '2010-05-03', limit=100)
 ncdc_plot(out2, breaks="6 hours", dateformat="\%H")
 
-# Combine many calls to noaa function
-out1 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
+# Combine many calls to ncdc function
+out1 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 startdate = '2010-03-01', enddate = '2010-05-31', limit=500)
-out2 <- noaa(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
+out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 startdate = '2010-09-01', enddate = '2010-10-31', limit=500)
 df <- ncdc_combine(out1, out2)
 ncdc_plot(df)

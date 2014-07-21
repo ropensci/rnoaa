@@ -2,6 +2,7 @@
 #'
 #' @import httr XML
 #' @importFrom data.table rbindlist
+#' 
 #' @param dataset Dataset to query. See below for details.
 #' @param format File format to download. One of xml, csv, shp, or kmz.
 #' @param startdate Start date. See details.
@@ -22,6 +23,7 @@
 #' @param filepath If kmz or shp chosen the file name and optionally path to write to. Ignored
 #'    format=xml or format=csv (optional)
 #' @param callopts Further arguments passed on to the API GET call. (optional)
+#' 
 #' @details
 #' Options for the dataset parameter. One of (and their data formats):
 #' \itemize{

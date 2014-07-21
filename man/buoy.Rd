@@ -48,7 +48,8 @@ buoy(dataset = 'cwind', buoyid = 46085)
 buoy(dataset = 'pwind', buoyid = 41021)
 
 #curl debugging
-buoy(dataset = 'cwind', config=verbose())
+library('httr')
+buoy(dataset = 'cwind', buoyid = 46085, config=verbose())
 }
 }
 \references{

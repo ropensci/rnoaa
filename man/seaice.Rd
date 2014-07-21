@@ -27,13 +27,14 @@ lapply(out, head)
 # Map a single year/month/pole combo
 urls <- seaiceeurls(mo='Apr', pole='N', yr=1990)
 out <- seaice(urls)
+library('ggplot2')
 ggplot(out, aes(long, lat, group=group)) +
    geom_polygon(fill="steelblue") +
    theme_ice()
 
 # Map all years for April only for North pole
-library(plyr)
-library(doMC)
+library('plyr')
+library('doMC')
 urls <- seaiceeurls(mo='Apr', pole='N')
 registerDoMC(cores=4)
 out <- llply(urls, seaice, .parallel=TRUE)
@@ -43,8 +44,6 @@ ggplot(df, aes(long, lat, group=group)) +
   geom_polygon(fill="steelblue") +
   theme_ice() +
   facet_wrap(~ .id)
-
-ggplot(df, aes()) + geom_point()
 }
 }
 
