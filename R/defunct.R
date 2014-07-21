@@ -72,14 +72,6 @@ noaa_combine <- function(...){
 
 #' This function is defunct.
 #' @export
-#' @rdname noaa_buoy-defunct
-#' @keywords internal
-noaa_buoy <- function(...){
-  .Defunct(new = "buoy", package = "rnoaa", msg = "the noaa_buoy() function name has been changed to buoy()")
-}
-
-#' This function is defunct.
-#' @export
 #' @rdname noaa_seaice-defunct
 #' @keywords internal
 noaa_seaice <- function(...){
@@ -98,7 +90,6 @@ noaa_seaice <- function(...){
 #'  \item \code{\link{noaa_stations}}: Function name changed, prefixed with ncdc now
 #'  \item \code{\link{noaa_plot}}: Function name changed, prefixed with ncdc now
 #'  \item \code{\link{noaa_combine}}: Function name changed, prefixed with ncdc now
-#'  \item \code{\link{noaa_buoy}}: Function name changed to buoy
 #'  \item \code{\link{noaa_seaice}}: Function name changed to seaice
 #' }
 #'

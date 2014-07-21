@@ -35,8 +35,7 @@ Imports:
     XML,
     data.table,
     assertthat,
-    jsonlite,
-    ncdf4
+    jsonlite
 Suggests:
     testthat,
     roxygen2,
