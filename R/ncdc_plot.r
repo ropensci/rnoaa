@@ -1,6 +1,6 @@
 #' Plot NOAA climate data.
 #'
-#' This function accepts directly output from the \code{\link[rnoaa]{noaa}} function,
+#' This function accepts directly output from the \code{\link[rnoaa]{ncdc}} function,
 #' not other functions.
 #'
 #' @import ggplot2
@@ -14,7 +14,7 @@
 #' @details
 #' This is a simple wrapper function around some ggplot2 code. There is indeed a lot you
 #' can modify in your plots, so this function just does some basic stuff. Here's the
-#' code within this function, where input is the output from a \code{\link[rnoaa]{noaa}}
+#' code within this function, where input is the output from a \code{\link[rnoaa]{ncdc}}
 #' call - go crazy:
 #'
 #' input <- input$data
