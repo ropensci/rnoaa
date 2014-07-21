@@ -4,7 +4,7 @@ before_script:
 - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
 - chmod 755 ./travis-tool.sh
 - sudo apt-get update -qq
-- sudo apt-get install -y gdal-bin libgdal-dev libgdal1-dev netcdf-bin libproj-dev libgdal1h
+- sudo apt-get install -y gdal-bin libgdal-dev libgdal1-dev libproj-dev libgdal1h
 - ./travis-tool.sh bootstrap
 - ./travis-tool.sh install_deps
 notifications:
