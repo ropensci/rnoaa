@@ -1,7 +1,23 @@
+init:
+  ps: |
+        $ErrorActionPreference = "Stop"
+        Invoke-WebRequest http://raw.github.com/krlmlr/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
+        Import-Module '..\appveyor-tool.ps1'
+
+install:
+  ps: Bootstrap
+
 build_script:
-  - cmd: build.cmd %fakeargs%
-test: off
-artifacts:
-  - path: bin\*.nupkg
-environment:
-  fakeargs: clean
+  - travis-tool.sh install_deps
+
+test_script:
+  - travis-tool.sh run_tests
+
+on_failure:
+  - travis-tool.sh dump_logs
+
+notifications:
+  - provider: Slack
+    auth_token:
+      secure: S3AcHEoJHUtahR5N8ConStS8oV/+x34tS1bDGM3OD0QxDKBBxufeiMmXQsId1gZu
+    channel: package-development
