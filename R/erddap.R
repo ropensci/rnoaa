@@ -124,7 +124,7 @@ erddap_data <- function(datasetid, ..., fields=NULL, distinct=FALSE, orderby=NUL
   orderbymax=NULL, orderbymin=NULL, orderbyminmax=NULL, units=NULL, callopts=list())
 {
   fields <- paste(fields, collapse = ",")
-  url <- "http://coastwatch.pfeg.noaa.gov/erddap/tabledap/%s.csv?%s"
+  url <- "http://oceanview.pfeg.noaa.gov/erddap/tabledap/%s.csv?%s"
   url <- sprintf(url, datasetid, fields)
   args <- list(...)
   distinct <- if(distinct) 'distinct()' else NULL
