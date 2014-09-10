@@ -1,11 +1,12 @@
 language: c
-script: ./travis-tool.sh run_tests
+script: "./travis-tool.sh run_tests"
 before_script:
 - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
 - chmod 755 ./travis-tool.sh
 - sudo apt-get update -qq
 - sudo apt-get install -y gdal-bin libgdal-dev libgdal1-dev libproj-dev libgdal1h
-- ./travis-tool.sh bootstrap
-- ./travis-tool.sh install_deps
+- "./travis-tool.sh bootstrap"
+- "./travis-tool.sh install_deps"
 notifications:
- slack: ropensci:wh30e1MP9Am3wXb2wJx1ZRFi
+  slack:
+    secure: H3QWDw6XLsD/Tpdt/bEvvEKickYyMCo/u/kopyrACMd0iLs5Mh54/sw7R2dhBuvjctw0wgzv0UwKswttICKQxCMuY1yjrEcp/uuIYQfLk4k2xyz5a+DssWHzk9i/jsH1FOPADOJVZEFvlnluyE/kRpGtLXDFAJ1ZcHl1CbA+OfA=
