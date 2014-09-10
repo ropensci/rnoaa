@@ -9,4 +9,4 @@ before_script:
 - "./travis-tool.sh install_deps"
 notifications:
   slack:
-    secure: H3QWDw6XLsD/Tpdt/bEvvEKickYyMCo/u/kopyrACMd0iLs5Mh54/sw7R2dhBuvjctw0wgzv0UwKswttICKQxCMuY1yjrEcp/uuIYQfLk4k2xyz5a+DssWHzk9i/jsH1FOPADOJVZEFvlnluyE/kRpGtLXDFAJ1ZcHl1CbA+OfA=
+    secure: fee+yd3SW53ASTFm0ZH3/HKD7wUn1zJL+LHbwJErIMhAemo2FcNaLDGF5TXLuVCSMMnIE+rc8c8NEH0Mf+Jw4+EiZEfEsbu4Ai5xxx81jCJV3sCRAQZG+Tpes+zR3rnxxs7LyM9EcVGf/ypMCLREdAM1rluNrbAe14DZI0b4pjw=
