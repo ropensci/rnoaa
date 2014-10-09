@@ -3,3 +3,4 @@
 .RData
 rnoaa.Rproj
 .DS_Store
+inst/ignore/bath.r
