@@ -7,7 +7,7 @@
 #'
 #' @examples \donttest{
 #' shp <- tornadoes()
-#' plot(shp)
+#' plot(shp) # may take 10 sec or so to render
 #' }
 
 tornadoes <- function(path="~/.tornadoes", overwrite = TRUE)
