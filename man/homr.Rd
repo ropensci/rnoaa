@@ -3,64 +3,74 @@
 \alias{homr}
 \title{Historical Observing Metadata Repository (HOMR) station metadata}
 \usage{
-homr(qid = NULL, qidMod = NULL, state = NULL, county = NULL,
-  country = NULL, name = NULL, nameMod = NULL, platform = NULL,
-  date = NULL, begindate = NULL, enddate = NULL, headersOnly = NULL,
-  phrData = NULL, definitions = NULL, ...)
+homr(qid = NULL, qidMod = NULL, station = NULL, state = NULL,
+  county = NULL, country = NULL, name = NULL, nameMod = NULL,
+  platform = NULL, date = NULL, begindate = NULL, enddate = NULL,
+  headersOnly = FALSE, phrData = NULL, combine = FALSE, ...)
 }
 \arguments{
 \item{qid}{One of COOP, FAA, GHCND, ICAO, NCDCSTNID, NWSLI, TRANS, WBAN, or WMO, or any
 of those plus \code{[a-z0-9]}, or just \code{[a-z0-9]}.}
 
-\item{qidMod}{One of is, starts, ends, contains. Specifies how the ID portion of the qid
-parameter should be applied within the search. If a qid is passed but the qidMod parameter
-is not used, qidMod is assumed to be IS.}
+\item{qidMod}{(character) One of: is, starts, ends, contains. Specifies how the ID portion of
+the qid parameter should be applied within the search. If a qid is passed but the qidMod
+parameter is not used, qidMod is assumed to be IS.}
 
-\item{state}{A two-letter state abbreviation. Two-letter code for US states, Canadian
-provinces, and other Island areas.}
+\item{station}{(character) A station id.}
 
-\item{county}{A two letter county code. US county names, best used with a state identifier.}
+\item{state}{(character) A two-letter state abbreviation. Two-letter code for US states,
+Canadian provinces, and other Island areas.}
 
-\item{country}{A two letter country code. See here for a list of valid country names.}
+\item{county}{(character) A two letter county code. US county names, best used with a state
+identifier.}
 
-\item{name}{One of name=[0-9A-Z]+. Searches on any type of name we have for the station.}
+\item{country}{(character) A two letter country code. See here for a list of valid country
+names.}
 
-\item{nameMod}{[is|starts|ends|contains]. Specifies how the name parameter should be applied
-within the search. If a name is passed but the nameMod parameter is not used, nameMod is assumed
-to be IS.}
+\item{name}{(character) One of name=[0-9A-Z]+. Searches on any type of name we have for the
+station.}
 
-\item{platform}{(aka network) [ASOS|USCRN|USHCN|NEXRAD|AL USRCRN|USRCRN|COOP]. Limit the
-search to stations of a certain platform/network type.}
+\item{nameMod}{(character) [is|starts|ends|contains]. Specifies how the name parameter should
+be applied within the search. If a name is passed but the nameMod parameter is not used,
+nameMod is assumed to be IS.}
 
-\item{date}{[YYYY-MM-DD|all] Limits values to only those that occurred on a specific date.
-Alternatively, date=all will return all values for matched stations. If this field is omitted,
-the search will return only the most recent values for each field.}
+\item{platform}{(character) (aka network) [ASOS|USCRN|USHCN|NEXRAD|AL USRCRN|USRCRN|COOP].
+Limit the search to stations of a certain platform/network type.}
+
+\item{date}{(character) [YYYY-MM-DD|all] Limits values to only those that occurred on a
+specific date. Alternatively, date=all will return all values for matched stations. If this
+field is omitted, the search will return only the most recent values for each field.}
 
 \item{begindate,enddate}{[YYYY-MM-DD]. Limits values to only those that occurred within a
 date range.}
 
-\item{headersOnly}{true Returns only minimal information for each station found (NCDC Station
-ID, Preferred Name, Station Begin Date, and Station End Date), but is much quicker than a
+\item{headersOnly}{(logical) Returns only minimal information for each station found (NCDC
+Station ID, Preferred Name, Station Begin Date, and Station End Date), but is much quicker than a
 full query. If you are performing a search that returns a large number of stations and intend
 to choose only one from that list to examine in detail, headersOnly may give you enough
 information to find the NCDC Station ID for the station that you actually want.}
 
-\item{phrData}{false The HOMR web service now includes PHR (element-level) data when
+\item{phrData}{(logical) The HOMR web service now includes PHR (element-level) data when
 available, in an elements section. Because of how this data is structured, it can substantially
 increase the size of any result which includes it. If you don't need this data you can omit it
 by including phrData=false. If the parameter is not set, it will default to phrData=true.}
 
-\item{definitions}{false The HOMR web service includes a list of definitions with every result.
-These are meant to serve as a reference for some of the more cryptic variable values, and are
-identical for every request. You can omit these from your result by setting
-\code{definitions=FALSE}.}
+\item{combine}{(logical) Combine station metadata or not.}
 
 \item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
 \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
 \code{\link[httr]{config}}.}
 }
+\value{
+A list, with elements named by the station ids.
+}
 \description{
 Historical Observing Metadata Repository (HOMR) station metadata
+}
+\details{
+Since the definitions for variables are always the same, we don't include the ability
+to get description data in this function. Use \code{link[rnoaa]{homr_descriptions}} to get
+descriptions information.
 }
 \examples{
 \donttest{
@@ -70,16 +80,20 @@ homr(qid = ':046742')
 homr(qid = 'FAA:')
 homr(qidMod='starts', qid='COOP:0467')
 homr(headersOnly=TRUE, state='DE')
-homr(headersOnly=TRUE, state='NC', county='BUNCOMBE')
 homr(headersOnly=TRUE, country='GHANA')
+homr(headersOnly=TRUE, state='NC', county='BUNCOMBE')
 homr(name='CLAYTON')
+res <- homr(name='CLAYTON', combine=TRUE)
+res$id
+res$head
+res$updates
 homr(nameMod='starts', name='CLAY')
 homr(headersOnly=TRUE, platform='ASOS')
 homr(qid='COOP:046742', date='2011-01-01')
 homr(qid='COOP:046742', begindate='2005-01-01', enddate='2011-01-01')
 homr(state='DE', headersOnly=TRUE)
+homr(station=20002078)
 homr(station=20002078, date='all', phrData=FALSE)
-homr(station=20002078, date='all', definitions=FALSE)
 }
 }
 
