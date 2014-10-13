@@ -25,7 +25,7 @@
 
 ncdc_locs_cats <- function(datasetid=NULL, locationcategoryid=NULL,
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL,
-  limit=25, offset=NULL, callopts=list(), token=NULL)
+  limit=25, offset=NULL, token=NULL, ...)
 {
   if(is.null(token))
     token <- getOption("noaakey", stop("you need an API key NOAA data"))
@@ -36,8 +36,7 @@ ncdc_locs_cats <- function(datasetid=NULL, locationcategoryid=NULL,
     startdate=startdate, enddate=enddate,token=token,sortfield=sortfield,
     sortorder=sortorder,limit=limit,offset=offset))
 
-  callopts <- c(add_headers("token" = token), callopts)
-  temp <- GET(url, query=as.list(args), config=callopts)
+  temp <- GET(url, query=args, add_headers("token" = token), ...)
   tt <- check_response(temp)
   if(is(tt, "character")){
     all <- list(meta=NULL, data=NULL)

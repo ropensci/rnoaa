@@ -5,8 +5,7 @@
 \usage{
 ncdc_datacats(datasetid = NULL, datacategoryid = NULL, stationid = NULL,
   locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
-  sortorder = NULL, limit = 25, offset = NULL, callopts = list(),
-  token = NULL)
+  sortorder = NULL, limit = 25, offset = NULL, token = NULL, ...)
 }
 \arguments{
 \item{datasetid}{Accepts a single valid dataset id. Data returned will be from the
@@ -37,8 +36,6 @@ datacoverage fields (optional)}
 
 \item{offset}{Defaults to 0, used to offset the resultlist (optional)}
 
-\item{callopts}{Further arguments passed on to the API GET call. (optional)}
-
 \item{token}{This must be a valid token token supplied to you by NCDC's Climate
 Data Online access token generator. (required) Get an API key (=token) at
 \url{http://www.ncdc.noaa.gov/cdo-web/token}. You can pass your token in as
@@ -46,6 +43,10 @@ an argument or store it in your .Rprofile file with an entry like
 \itemize{
   \item options("noaakey" = "your-noaa-token")
 }}
+
+\item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
+\code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
+\code{\link[httr]{config}}.}
 }
 \value{
 A \code{data.frame} for all datasets, or a list of length two, each
@@ -60,8 +61,8 @@ Note that calls with both startdate and enddate don't seem to work, though speci
 }
 \examples{
 \dontrun{
-## Limit to 41 results
-ncdc_datacats(limit=41)
+## Limit to 10 results
+ncdc_datacats(limit=10)
 
 ## Single data category
 ncdc_datacats(datacategoryid="ANNAGR")
@@ -72,6 +73,10 @@ ncdc_datacats(locationid=c('CITY:US390029', 'FIPS:37'))
 
 ## Data categories for a given date
 ncdc_datacats(startdate = '2013-10-01')
+
+## Curl debugging
+ncdc_datacats(limit=10, config=verbose())
+out <- ncdc_datacats(limit=10, config=progress())
 }
 }
 \references{

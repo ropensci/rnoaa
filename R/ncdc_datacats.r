@@ -10,8 +10,8 @@
 #' @details Note that calls with both startdate and enddate don't seem to work, though specifying
 #'    one or the other mostly works.
 #' @examples \dontrun{
-#' ## Limit to 41 results
-#' ncdc_datacats(limit=41)
+#' ## Limit to 10 results
+#' ncdc_datacats(limit=10)
 #'
 #' ## Single data category
 #' ncdc_datacats(datacategoryid="ANNAGR")
@@ -22,11 +22,15 @@
 #'
 #' ## Data categories for a given date
 #' ncdc_datacats(startdate = '2013-10-01')
+#' 
+#' ## Curl debugging
+#' ncdc_datacats(limit=10, config=verbose())
+#' out <- ncdc_datacats(limit=10, config=progress())
 #' }
 
 ncdc_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
   locationid=NULL, startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL,
-  limit=25, offset=NULL, callopts=list(), token=NULL)
+  limit=25, offset=NULL, token=NULL, ...)
 {
   if(is.null(token))
     token <- getOption("noaakey", stop("you need an API key NOAA data"))
@@ -38,8 +42,7 @@ ncdc_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
             sortorder=sortorder, limit=limit, offset=offset)
   names(args) <- sapply(names(args), function(y) gsub("[0-9+]", "", y), USE.NAMES=FALSE)
 
-  callopts <- c(add_headers("token" = token), callopts)
-  temp <- GET(url, query=as.list(args), config=callopts)
+  temp <- GET(url, query=as.list(args), add_headers("token" = token), ...)
   tt <- check_response(temp)
   if(is(tt, "character")){
     all <- list(meta=NULL, data=NULL)

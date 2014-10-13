@@ -30,7 +30,7 @@
 
 ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL,
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
-  callopts=list(), token=NULL, dataset=NULL, page=NULL, year=NULL, month=NULL)
+  token=NULL, dataset=NULL, page=NULL, year=NULL, month=NULL, ...)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("dataset", "page", "year", "month") %in% calls
@@ -50,8 +50,7 @@ ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
 
-  callopts <- c(add_headers("token" = token), callopts)
-  temp <- GET(url, query=args, config=callopts)
+  temp <- GET(url, query=args, add_headers("token" = token), ...)
   tt <- check_response(temp)
   if(is(tt, "character")){
     all <- list(meta=NULL, data=NULL)

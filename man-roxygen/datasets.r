@@ -5,3 +5,4 @@
 #'    arguments.
 #' @param month THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
 #'    arguments.
+

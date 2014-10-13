@@ -31,8 +31,8 @@
 
 ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   stationid=NULL, locationid=NULL, startdate=NULL, enddate=NULL, sortfield=NULL,
-  sortorder=NULL, limit=25, offset=NULL, callopts=list(), token=NULL,
-  dataset=NULL, page=NULL, filter=NULL)
+  sortorder=NULL, limit=25, offset=NULL, token=NULL,
+  dataset=NULL, page=NULL, filter=NULL, ...)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("dataset", "page", "filter") %in% calls
@@ -53,8 +53,7 @@ ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
 
-  callopts <- c(add_headers("token" = token), callopts)
-  temp <- GET(url, query=args, config=callopts)
+  temp <- GET(url, query=args, add_headers("token" = token), ...)
   out <- check_response(temp)
   if(is(out, "character")){
     all <- list(meta=NULL, data=NULL)

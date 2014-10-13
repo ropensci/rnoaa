@@ -6,9 +6,9 @@
 ncdc_stations(stationid = NULL, datasetid = NULL, datatypeid = NULL,
   locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
   sortorder = NULL, limit = 25, offset = NULL, datacategoryid = NULL,
-  extent = NULL, radius = 10, callopts = list(), token = NULL,
-  dataset = NULL, station = NULL, location = NULL, locationtype = NULL,
-  page = NULL)
+  extent = NULL, radius = 10, token = NULL, dataset = NULL,
+  station = NULL, location = NULL, locationtype = NULL, page = NULL,
+  ...)
 }
 \arguments{
 \item{stationid}{Accepts a valid station id or a chain of of station ids in a
@@ -53,8 +53,6 @@ minlong, maxlat, maxlong)}.}
 \item{radius}{(numeric) If a single latitude/longitude pair is given to the extent parameter, the radius to
 create around the point. Ignored if a vector of appropriate structure is passed to the  extent parameter.}
 
-\item{callopts}{Further arguments passed on to the API GET call. (optional)}
-
 \item{token}{This must be a valid token token supplied to you by NCDC's Climate
 Data Online access token generator. (required) Get an API key (=token) at
 \url{http://www.ncdc.noaa.gov/cdo-web/token}. You can pass your token in as
@@ -74,6 +72,10 @@ of the NOAA API.}
 
 \item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
 of the NOAA API.}
+
+\item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
+\code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
+\code{\link[httr]{config}}.}
 }
 \value{
 A list of metadata.

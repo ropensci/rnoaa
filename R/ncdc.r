@@ -120,9 +120,9 @@
 
 ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL,
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
-  callopts=list(), token=NULL, dataset=NULL, datatype=NULL, station=NULL, location=NULL,
+  token=NULL, dataset=NULL, datatype=NULL, station=NULL, location=NULL,
   locationtype=NULL, page=NULL, year=NULL, month=NULL, day=NULL, includemetadata=TRUE,
-  results=NULL)
+  results=NULL, ...)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("dataset","datatype","station","location","locationtype","page","year","month","day","results") %in% calls
@@ -139,7 +139,7 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
                          limit=limit, offset=offset, includemetadata=includemetadata))
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
-
+  
   if(limit > 1000){
     startat <- seq(1, limit, 1000)-1
     repto <- rep(1000, length(startat))
@@ -149,8 +149,7 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
     for(i in seq_along(startat)){
       args$limit <- repto[i]
       args$offset <- startat[i]
-      callopts <- c(add_headers("token" = token), callopts)
-      temp <- GET(base, query=args, config = callopts)
+      temp <- GET(base, query=args, add_headers("token" = token), ...)
       tt <- check_response(temp)
       if(is(tt, "character")){all <- NULL} else {
         out[[i]] <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
@@ -162,8 +161,7 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
     atts <- list(totalCount=meta$count, pageCount="none", offset="none")
   } else
   {
-    callopts <- c(add_headers("token" = token), callopts)
-    temp <- GET(base, query=args, config = callopts)
+    temp <- GET(base, query=args, add_headers("token" = token), ...)
     tt <- check_response(temp)
     if(is(tt, "character")){all <- list(meta=NA, data=NA)} else {
       tt$results <- lapply(tt$results, split_atts, ds=datasetid)
@@ -174,8 +172,7 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
     }
   }
 
-  class(all) <- "ncdc_data"
-  return( all )
+  structure(all, class="ncdc_data")
 }
 
 split_atts <- function(x, ds="GHCNDMS"){

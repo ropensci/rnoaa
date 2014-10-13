@@ -5,10 +5,10 @@
 \usage{
 ncdc(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
-  sortorder = NULL, limit = 25, offset = NULL, callopts = list(),
-  token = NULL, dataset = NULL, datatype = NULL, station = NULL,
-  location = NULL, locationtype = NULL, page = NULL, year = NULL,
-  month = NULL, day = NULL, includemetadata = TRUE, results = NULL)
+  sortorder = NULL, limit = 25, offset = NULL, token = NULL,
+  dataset = NULL, datatype = NULL, station = NULL, location = NULL,
+  locationtype = NULL, page = NULL, year = NULL, month = NULL,
+  day = NULL, includemetadata = TRUE, results = NULL, ...)
 }
 \arguments{
 \item{datasetid}{(required) Accepts a single valid dataset id. Data returned will be from the
@@ -41,8 +41,6 @@ datacoverage fields (optional)}
 1000 (optional)}
 
 \item{offset}{Defaults to 0, used to offset the resultlist (optional)}
-
-\item{callopts}{Further arguments passed on to the API GET call. (optional)}
 
 \item{token}{This must be a valid token token supplied to you by NCDC's Climate
 Data Online access token generator. (required) Get an API key (=token) at
@@ -81,6 +79,10 @@ of the output list called "meta' is still returned, but is NULL. In practice, I 
 response time's improve, but perhaps they will for you.}
 
 \item{results}{THIS IS A DEPRECATED ARGUMENT. See limit.}
+
+\item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
+\code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
+\code{\link[httr]{config}}.}
 }
 \value{
 An S3 list of length two, a slot of metadata (meta), and a slot for data (data).

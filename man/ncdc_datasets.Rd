@@ -5,9 +5,8 @@
 \usage{
 ncdc_datasets(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
-  sortorder = NULL, limit = 25, offset = NULL, callopts = list(),
-  token = NULL, dataset = NULL, page = NULL, year = NULL,
-  month = NULL)
+  sortorder = NULL, limit = 25, offset = NULL, token = NULL,
+  dataset = NULL, page = NULL, year = NULL, month = NULL, ...)
 }
 \arguments{
 \item{datasetid}{(optional) Accepts a single valid dataset id. Data returned will be from the
@@ -41,8 +40,6 @@ datacoverage fields (optional)}
 
 \item{offset}{Defaults to 0, used to offset the resultlist (optional)}
 
-\item{callopts}{Further arguments passed on to the API GET call. (optional)}
-
 \item{token}{This must be a valid token token supplied to you by NCDC's Climate
 Data Online access token generator. (required) Get an API key (=token) at
 \url{http://www.ncdc.noaa.gov/cdo-web/token}. You can pass your token in as
@@ -61,6 +58,10 @@ arguments.}
 
 \item{month}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
 arguments.}
+
+\item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
+\code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
+\code{\link[httr]{config}}.}
 }
 \value{
 A data.frame for all datasets, or a list of length two, each with a data.frame.

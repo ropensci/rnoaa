@@ -23,4 +23,6 @@
 #'    \itemize{
 #'      \item options("noaakey" = "your-noaa-token")
 #'    }
-#' @param callopts Further arguments passed on to the API GET call. (optional)
+#' @param ... Further named parameters, such as \code{query}, \code{path}, etc, passed on to 
+#' \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with 
+#' \code{\link[httr]{config}}. 
