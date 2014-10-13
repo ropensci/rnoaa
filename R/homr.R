@@ -20,7 +20,7 @@
 #' @param date [YYYY-MM-DD|all] Limits values to only those that occurred on a specific date.
 #' Alternatively, date=all will return all values for matched stations. If this field is omitted,
 #' the search will return only the most recent values for each field.
-#' @param begindate/enddate [YYYY-MM-DD]. Limits values to only those that occurred within a
+#' @param begindate,enddate [YYYY-MM-DD]. Limits values to only those that occurred within a
 #' date range.
 #' @param headersOnly true Returns only minimal information for each station found (NCDC Station
 #' ID, Preferred Name, Station Begin Date, and Station End Date), but is much quicker than a
@@ -35,6 +35,9 @@
 #' These are meant to serve as a reference for some of the more cryptic variable values, and are
 #' identical for every request. You can omit these from your result by setting 
 #' \code{definitions=FALSE}.
+#' @param ... Further named parameters, such as \code{query}, \code{path}, etc, passed on to 
+#' \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with 
+#' \code{\link[httr]{config}}. 
 #'
 #' @examples \donttest{
 #' homr(qid = 'COOP:046742')

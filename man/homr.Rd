@@ -36,6 +36,9 @@ search to stations of a certain platform/network type.}
 Alternatively, date=all will return all values for matched stations. If this field is omitted,
 the search will return only the most recent values for each field.}
 
+\item{begindate,enddate}{[YYYY-MM-DD]. Limits values to only those that occurred within a
+date range.}
+
 \item{headersOnly}{true Returns only minimal information for each station found (NCDC Station
 ID, Preferred Name, Station Begin Date, and Station End Date), but is much quicker than a
 full query. If you are performing a search that returns a large number of stations and intend
@@ -52,8 +55,9 @@ These are meant to serve as a reference for some of the more cryptic variable va
 identical for every request. You can omit these from your result by setting
 \code{definitions=FALSE}.}
 
-\item{begindate/enddate}{[YYYY-MM-DD]. Limits values to only those that occurred within a
-date range.}
+\item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
+\code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
+\code{\link[httr]{config}}.}
 }
 \description{
 Historical Observing Metadata Repository (HOMR) station metadata
