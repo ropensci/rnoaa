@@ -10,7 +10,7 @@
 #' plot(shp) # may take 10 sec or so to render
 #' }
 
-tornadoes <- function(path="~/.tornadoes", overwrite = TRUE)
+tornadoes <- function(path="~/.rnoaa/tornadoes", overwrite = TRUE)
 {
   if(!is_tornadoes(path.expand(file.path(path, "tornadoes")))){
     url <- 'http://spc.noaa.gov/gis/svrgis/zipped/tornado.zip'

@@ -176,3 +176,16 @@ check_response_swdi <- function(x, format){
 }
 
 noaa_compact <- function (l) Filter(Negate(is.null), l)
+
+fread_csv <- function(x){ 
+  tmp <- data.frame(suppressWarnings(fread(x)))
+  names(tmp) <- tolower(names(tmp))
+  tmp
+}
+
+read_csv <- function(x){
+  tmp <- read.csv(x, header = FALSE, sep = ",", stringsAsFactors=FALSE, skip = 3)
+  nmz <- names(read.csv(x, header = TRUE, sep = ",", stringsAsFactors=FALSE, skip = 1, nrows=1))
+  names(tmp) <- tolower(nmz)
+  tmp
+}

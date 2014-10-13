@@ -3,7 +3,7 @@
 \alias{tornadoes}
 \title{Get NOAA tornado data.}
 \usage{
-tornadoes(path = "~/.tornadoes", overwrite = TRUE)
+tornadoes(path = "~/.rnoaa/tornadoes", overwrite = TRUE)
 }
 \arguments{
 \item{path}{A path to store the files, Default: \code{~/.ots/kelp}}
