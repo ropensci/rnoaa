@@ -1,6 +1,8 @@
 #' Get NOAA wind storm metadata.
 #' 
 #' @export
+#' 
+#' @param what (character) One of storm_columns or storm_names.
 #'
 #' @examples \donttest{
 #' head( storm_meta() )

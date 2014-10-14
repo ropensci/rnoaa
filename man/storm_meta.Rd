@@ -5,6 +5,9 @@
 \usage{
 storm_meta(what = "storm_columns")
 }
+\arguments{
+\item{what}{(character) One of storm_columns or storm_names.}
+}
 \description{
 Get NOAA wind storm metadata.
 }

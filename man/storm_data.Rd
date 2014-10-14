@@ -4,7 +4,7 @@
 \title{Get NOAA wind storm data from International Best Track Archive for Climate Stewardship (IBTrACS)}
 \usage{
 storm_data(basin = NULL, storm = NULL, year = NULL,
-  path = "~/.rnoaa/storms", overwrite = TRUE, read = TRUE)
+  path = "~/.rnoaa/storms", overwrite = TRUE)
 }
 \arguments{
 \item{basin}{(character) A basin name, one of EP, NA, NI, SA, SI, SP, or WP.}

@@ -45,6 +45,8 @@
 #' descriptions information.
 #' 
 #' @return A list, with elements named by the station ids.
+#' 
+#' @references \url{http://www.ncdc.noaa.gov/homr/api}
 #'
 #' @examples \donttest{
 #' homr(qid = 'COOP:046742')
@@ -56,7 +58,7 @@
 #' homr(headersOnly=TRUE, country='GHANA')
 #' homr(headersOnly=TRUE, state='NC', county='BUNCOMBE')
 #' homr(name='CLAYTON')
-#' res <- homr(name='CLAYTON', combine=TRUE)
+#' res <- homr(state='NC', county='BUNCOMBE', combine=TRUE)
 #' res$id
 #' res$head
 #' res$updates

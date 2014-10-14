@@ -22,6 +22,8 @@
 #' May 23, 1970 near 19°N 91°E
 #' 
 #' See \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering} for more.
+#' 
+#' @references \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data}
 #'
 #' @examples \donttest{
 #' storm_data(basin='WP')
@@ -36,7 +38,7 @@
 #' }
 
 storm_data <- function(basin=NULL, storm=NULL, year=NULL, path="~/.rnoaa/storms", 
-                       overwrite = TRUE, read = TRUE){
+                       overwrite = TRUE){
   
   csvpath <- csv_local(basin, storm, year, path)
   if(!is_storm(x = csvpath)){
