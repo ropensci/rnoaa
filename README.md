@@ -46,6 +46,9 @@ The majority of functions in this package work with NOAA NCDC data.
 * Sea ice data [ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
 * NOAA buoy data [http://www.ndbc.noaa.gov/](http://www.ndbc.noaa.gov/)
 * ERDDAP data [http://coastwatch.pfeg.noaa.gov/erddap/index.html](http://coastwatch.pfeg.noaa.gov/erddap/index.html)
+* Tornadoes! Data from the NOAA Storm Prediction Center [http://www.spc.noaa.gov/gis/svrgis/]()
+* HOMR - Historical Observing Metadata Repository - from the NOAA NCDC  [http://www.ncdc.noaa.gov/homr/api]()
+* Storm data - from the International Best Track Archive for Climate Stewardship (IBTrACS)   [http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data]()
 
 ### NOAA NCDC Datasets
 
@@ -306,31 +309,68 @@ attr(,"class")
 [1] "ncdc_datacats"
 ```
 
-[Please report any issues or bugs](https://github.com/ropensci/rnoaa/issues).
+### Tornado data
 
-License: MIT
-
-This package is part of the [rOpenSci](http://ropensci.org/packages) project.
-
-To cite package `rnoaa` in publications use:
-
-```coffee
-  Hart Edmund, Scott Chamberlain and Karthik Ram (2014). rnoaa: NOAA climate data
-  from R.. R package version 0.1.9.99. https://github.com/ropensci/rnoaa
+```r
+shp <- tornadoes()
+library('sp')
+plot(shp)
 ```
 
-A BibTeX entry for LaTeX users is
+![](inst/img/tornadoes.png)
 
-```coffee
-  @Manual{,
-    title = {rnoaa: NOAA climate data from R.},
-    author = {Hart Edmund and Scott Chamberlain and Karthik Ram},
-    year = {2014},
-    note = {R package version 0.1.9.99},
-    url = {https://github.com/ropensci/rnoaa},
-  }
+### HOMR metadata
+
+```r
+res <- homr(state='NC', county='BUNCOMBE', combine=TRUE)
+head( res$head )
 ```
 
-Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
+```r
+        id         preferredName latitude_dec longitude_dec precision           por.beginDate por.endDate
+1 20013756 ASHEVILLE AIRPORT, NC     35.43194      -82.5375    DDMMSS 1961-01-01T00:00:00.000     Present
+2 20013790        BENT CREEK, NC      35.5044      -82.5966    DDMMSS 1933-01-07T00:00:00.000     Present
+3 20013791        CANDLER 1W, NC      35.5452      -82.6986    DDMMSS 1972-05-01T00:00:00.000     Present
+4 20013802              ENKA, NC      35.5405       -82.653    DDMMSS 1948-08-01T00:00:00.000     Present
+5 20013821         ASHEVILLE, NC      35.5954      -82.5568    DDMMSS 1857-08-01T00:00:00.000     Present
+6 20013836      NORTH FORK 2, NC      35.6625      -82.3469    DDMMSS 1948-08-01T00:00:00.000     Present
+```
+
+### Storm data
+
+```r
+storm_data(year=2010)
+```
+
+```r
+<NOAA Storm Data>
+Size: 2855 X 195
+
+      serial_num season num basin sub_basin name            iso_time nature latitude longitude wind.wmo. pres.wmo.  center
+1  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 06:00:00     TS     -9.5      72.5         0      1006 reunion
+2  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 12:00:00     TS    -10.2      71.9         0      1004 reunion
+3  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 18:00:00     TS    -11.1      71.4        25      1002 reunion
+4  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 00:00:00     TS    -11.9      71.1        28       999 reunion
+5  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 06:00:00     TS    -12.5      70.9        33       996 reunion
+6  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 12:00:00     TS    -12.8      70.7        40       992 reunion
+7  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 18:00:00     TS    -12.9      70.6        50       985 reunion
+8  2009317S10073   2010   1    SI        MM ANJA 2009-11-15 00:00:00     TS    -12.9      70.5        60       975 reunion
+9  2009317S10073   2010   1    SI        MM ANJA 2009-11-15 06:00:00     TS    -13.0      70.2        80       960 reunion
+10 2009317S10073   2010   1    SI        MM ANJA 2009-11-15 12:00:00     TS    -13.1      69.9        90       950 reunion
+..           ...    ... ...   ...       ...  ...                 ...    ...      ...       ...       ...       ...     ...
+Variables not shown: wind.wmo..percentile (dbl), pres.wmo..percentile (dbl), track_type (chr), latitude_for_mapping (dbl),
+     longitude_for_mapping (dbl), current.basin (chr), hurdat_atl_lat (dbl), hurdat_atl_lon (dbl), hurdat_atl_grade (dbl),
+     hurdat_atl_wind (dbl), hurdat_atl_pres (dbl), td9636_lat (dbl), td9636_lon (dbl), td9636_grade (dbl), td9636_wind (dbl),
+     td9636_pres (dbl), reunion_lat (dbl), reunion_lon (dbl), reunion_grade (dbl), reunion_wind (dbl), reunion_pres (dbl), atcf_lat
+     (dbl), atcf_lon (dbl), atcf_grade (dbl), atcf_wind (dbl), atcf_pres (dbl), ds824_sh_lat (dbl), ds824_sh_lon (dbl),
+
+...cutoff
+```
+
+## Meta
+
+* [Please report any issues or bugs](https://github.com/ropensci/rnoaa/issues).
+* License: MIT
+* Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
 
 [![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
