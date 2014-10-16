@@ -9,5 +9,4 @@ inst/img
 inst/ignore
 vignettes/margins.sty
 CONTRIBUTING.md
-tests/testthat.R
 ^appveyor\.yml$

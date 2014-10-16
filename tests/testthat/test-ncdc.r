@@ -23,12 +23,10 @@ test_that("ncdc returns the correct class", {
 #   expect_is(ii, "noaa_data")
   expect_is(aa$meta, "list")
   expect_is(aa$data, "data.frame")
-  expect_is(aa$meta$totalCount, "numeric")
   expect_is(aa$data$date, "character")
 
   expect_is(gg$meta, "list")
   expect_is(gg$data, "data.frame")
-  expect_is(gg$meta$totalCount, "numeric")
   expect_is(gg$data$date, "character")
 })
 

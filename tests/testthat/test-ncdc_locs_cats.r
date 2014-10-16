@@ -15,15 +15,15 @@ test_that("ncdc_locs_cats returns the correct class", {
   expect_is(vv, "ncdc_locs_cats")
   expect_is(tt$meta, "list")
   expect_is(tt$data, "data.frame")
-  expect_is(tt$meta$totalCount, "numeric")
+  expect_is(tt$meta$totalCount, "integer")
   expect_is(tt$data$id, "character")
 })
 
 test_that("ncdc_locs_cats returns the correct dimensions", {
   expect_equal(length(tt$meta), 3)
-  expect_equal(dim(tt$data), c(11,2))
+  expect_equal(NCOL(tt$data), 2)
   expect_equal(dim(uu$data), c(1,2))
-  expect_equal(dim(vv$data), c(11,2))
+  expect_equal(NCOL(vv$data), 2)
   expect_equal(length(tt), 2)
   expect_equal(length(uu), 2)
   expect_equal(length(vv), 2)

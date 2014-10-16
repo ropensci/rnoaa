@@ -11,7 +11,7 @@ test_that("check_response returns an error", {
   expect_warning(
     ncdc(datasetid='GHCNDS', locationid='FIPS:BR', datatypeid='PRCP',
          startdate = '2010-05-01', enddate = '2010-05-10', token=key)
-  , "server error")
+  , "Error:.+")
   Sys.sleep(time = 0.5)
   expect_warning(
     ncdc(datasetid='GHCND', token=key)
@@ -33,7 +33,7 @@ test_that("check_response returns the correct error messages", {
   expect_warning(
       ncdc(datasetid='GHCNDS', locationid='FIPS:BR', datatypeid='PRCP',
            startdate = '2010-05-01', enddate = '2010-05-10', token=key),
-    "Internal Server Error"
+    "Error:.+"
   )
   # no data found
   Sys.sleep(time = 0.5)
