@@ -33,6 +33,7 @@ There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rncd
 * NOAA NCDC workflow vignette
 * Sea ice vignette
 * Severe Weather Data Inventory vignette
+* Historical Observing Metadata Repository (HOMR) vignette
 
 ### Data sources used in rnoaa
 

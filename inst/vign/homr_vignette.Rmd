@@ -1,0 +1,99 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{HOMR metadata}
+-->
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>", 
+  warning = FALSE, 
+  message = FALSE,
+  cache = TRUE
+)
+```
+
+
+HOMR metadata
+======
+
+`HOMR` (Historical Observing Metadata Repository) provides climate station metadata. It's a NOAA service.
+
+Find out more about HOMR at [http://www.ncdc.noaa.gov/homr/]() and the HOMR API at [http://www.ncdc.noaa.gov/homr/api]().
+
+## Load rnoaa
+
+```{r load}
+library('rnoaa')
+```
+
+## Search by station identifier
+
+You can do this in various ways. Using the `qid` parameter (stands or qualified ID, as far as I know), you can search by suffix (e.g., `046742`), or both separated by a colon (e.g., `COOP:046742`). 
+
+By station suffix
+
+```{r}
+res <- homr(qid = ':046742')
+names(res)
+names(res[['20002078']])
+res$`20002078`[1:3]
+```
+
+By both
+
+```{r}
+res <- homr(qid = 'COOP:046742')
+names(res)
+names(res[['20002078']])
+res$`20002078`[1:5]
+```
+
+## Search by station parameter
+
+You can also search by station identifier, which is different from the `qid` above. 
+
+```{r}
+res <- homr(station=20002078)
+names(res)
+names(res[['20002078']])
+res$`20002078`[4:6]
+```
+
+## Search by state and county
+
+By state
+
+```{r}
+res <- homr(state='DE', begindate='2005-01-01', enddate='2005-02-01')
+names(res)
+```
+
+By country
+
+```{r}
+res <- homr(country='GHANA', begindate='2005-01-01', enddate='2005-02-01')
+library(plyr)
+ldply(res, function(x) x$location$latlon)
+```
+
+By state and county
+
+```{r}
+res <- homr(state='NC', county='BUNCOMBE', headersOnly = TRUE)
+head( ldply(res, "[[", "head") )
+```
+
+## Get header information only
+
+```{r}
+res <- homr(headersOnly=TRUE, state='DE')
+head( ldply(res, "[[", "head") )
+```
+
+## Data definitions
+
+The data returned is the same format for all, so a separate function is provided to get metadata. The function `homr_definitions()` does query the HOMR API, so does get updated metadata - i.e., it's not a static dataset stored locally. 
+
+```{r}
+head( homr_definitions() )
+```

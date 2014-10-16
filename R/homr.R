@@ -3,7 +3,7 @@
 #' @export
 #'
 #' @param qid One of COOP, FAA, GHCND, ICAO, NCDCSTNID, NWSLI, TRANS, WBAN, or WMO, or any
-#' of those plus \code{[a-z0-9]}, or just \code{[a-z0-9]}.
+#' of those plus \code{[a-z0-9]}, or just \code{[a-z0-9]}. (qid = qualified ID)
 #' @param qidMod  (character) One of: is, starts, ends, contains. Specifies how the ID portion of 
 #' the qid parameter should be applied within the search. If a qid is passed but the qidMod 
 #' parameter is not used, qidMod is assumed to be IS.
