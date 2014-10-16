@@ -50,10 +50,10 @@ ncdc_theme <- function(){
        guides(col = guide_legend(nrow=1)))
 }
 
-#' Function to get UTM zone from a single longitude and latitude pair
-#' originally from David LeBauer I think
-#' @param lon Longitude, in decimal degree style
-#' @param lat Latitude, in decimal degree style
+# Function to get UTM zone from a single longitude and latitude pair
+# originally from David LeBauer I think
+# @param lon Longitude, in decimal degree style
+# @param lat Latitude, in decimal degree style
 long2utm <- function(lon, lat) {
   if(56 <= lat & lat < 64){
     if(0 <= lon & lon < 3){ 31 } else
