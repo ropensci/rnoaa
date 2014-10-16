@@ -10,3 +10,6 @@ before_script:
 notifications:
   slack:
     secure: fee+yd3SW53ASTFm0ZH3/HKD7wUn1zJL+LHbwJErIMhAemo2FcNaLDGF5TXLuVCSMMnIE+rc8c8NEH0Mf+Jw4+EiZEfEsbu4Ai5xxx81jCJV3sCRAQZG+Tpes+zR3rnxxs7LyM9EcVGf/ypMCLREdAM1rluNrbAe14DZI0b4pjw=
+env:
+  global:
+    secure: cgAtrSgJVgVNr3+6D4pg4R3rA4Nb0n2rmlHzqVaC/8EvkTGbUZ5qQxc5SFaYAAwm02UQQUodgztzhgAe4BYi4YIdzb4sYh+YbBgug1MABGKY4IDswanvYqA3IAcjiwbHVYpYiQgl/nt/qqQXoD0d29XRQXN0puf+Aw6Y7uMQIyA=
