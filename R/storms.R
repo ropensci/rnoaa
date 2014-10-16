@@ -7,6 +7,7 @@
 #' @param year (numeric) One of the years from 1842 to 2014
 #' @param path (character) A path to store the files, Default: \code{~/.rnoaa/storms}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
+#' @param what (character) One of storm_columns or storm_names.
 #' 
 #' @details Details for storm serial numbers:
 #' \itemize{
@@ -24,8 +25,14 @@
 #' See \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering} for more.
 #' 
 #' @references \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data}
-#'
+#' @rdname storms
 #' @examples \donttest{
+#' # Metadata
+#' head( storm_meta() )
+#' head( storm_meta("storm_columns") )
+#' head( storm_meta("storm_names") )
+#' 
+#' # Tabular data
 #' storm_data(basin='WP')
 #' storm_data(storm='1970143N19091')
 #' storm_data(year=1940)
@@ -56,7 +63,7 @@ print.storm_data <- function(x, ..., n = 10){
 }
 
 storm_GET <- function(bp, basin, storm, year, overwrite){
-  dir.create(csv_local_base(basin, storm, year, bp), showWarnings = FALSE, recursive = TRUE)
+  dir.create(local_base(basin, storm, year, bp), showWarnings = FALSE, recursive = TRUE)
   fp <- csv_local(basin, storm, year, bp)
   res <- suppressWarnings(GET(csv_remote(basin, storm, year), write_disk(fp, overwrite)))
   res$request$writer[[1]]
@@ -86,7 +93,7 @@ fileext <- function(basin, storm, year){
 csv_remote <- function(basin, storm, year) file.path(stormurl(), fileext(basin, storm, year))
 csv_local <- function(basin, storm, year, path) file.path(path, fileext(basin, storm, year))
 
-csv_local_base <- function(basin, storm, year, path){
+local_base <- function(basin, storm, year, path){
   tt <- filecheck(basin, storm, year)
   if(names(tt)=="all") path else file.path(path, names(tt))
 }
