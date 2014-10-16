@@ -8,6 +8,7 @@
 #' @param path (character) A path to store the files, Default: \code{~/.rnoaa/storms}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
 #' @param what (character) One of storm_columns or storm_names.
+#' @param type (character) One of points or lines. This gives shp files with points, or with lines.
 #' @param x Output from \code{storm_shp}, a path to shp file to read in.
 #' 
 #' @details International Best Track Archive for Climate Stewardship (IBTrACS)
@@ -23,7 +24,7 @@
 #' } 
 #' 
 #' For example: \code{1970143N19091} is a storm in the North Atlantic which started on 
-#' May 23, 1970 near 19°N 91°E
+#' May 23, 1970 near 19N 91E
 #' 
 #' See \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering} for more.
 #' 
