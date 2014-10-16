@@ -49,4 +49,7 @@ res <- storm_data(read=FALSE) # just get path
 head()
 }
 }
+\references{
+\url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data}
+}
 

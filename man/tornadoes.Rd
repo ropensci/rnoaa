@@ -19,7 +19,11 @@ Get NOAA tornado data.
 \examples{
 \donttest{
 shp <- tornadoes()
+library('sp')
 plot(shp) # may take 10 sec or so to render
 }
+}
+\references{
+\url{http://www.spc.noaa.gov/gis/svrgis/}
 }
 

@@ -83,7 +83,7 @@ homr(headersOnly=TRUE, state='DE')
 homr(headersOnly=TRUE, country='GHANA')
 homr(headersOnly=TRUE, state='NC', county='BUNCOMBE')
 homr(name='CLAYTON')
-res <- homr(name='CLAYTON', combine=TRUE)
+res <- homr(state='NC', county='BUNCOMBE', combine=TRUE)
 res$id
 res$head
 res$updates
@@ -95,5 +95,8 @@ homr(state='DE', headersOnly=TRUE)
 homr(station=20002078)
 homr(station=20002078, date='all', phrData=FALSE)
 }
+}
+\references{
+\url{http://www.ncdc.noaa.gov/homr/api}
 }
 
