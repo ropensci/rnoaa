@@ -8,15 +8,25 @@
 rnoaa is an R interface to NOAA climate data.
 }
 \details{
-Specifically, most functions in this package interact
-with the National Climatic Data Center application
-programming interface (API) at
-\url{http://www.ncdc.noaa.gov/cdo-web/webservices/v2}.
+Many functions in this package interact with the National Climatic Data Center application
+programming interface (API) at \url{http://www.ncdc.noaa.gov/cdo-web/webservices/v2}, all of
+which functions start with \code{ncdc_}. An access token, or API key, is required to use all
+the \code{ncdc_} functions. The key is required by NOAA, not the creators of this R package.
+Go to the link given above to get an API key.
 
-An access token, or API key, is required to use this
-R package. The key is required by NOAA, not the
-creators of this R package. Go to the link given above
-to get an API key.
+More NOAA data sources are being added through time. Data sources and their function prefixes
+are:
+
+\itemize{
+ \item \code{buoy_*} - NOAA Buoy data, only on buoy branch in Github repo
+ \item \code{erddap_*} - NOAA ERDDAP vignette
+ \item \code{ncdc_*} - NOAA National Climatic Data Center (NCDC) vignette (examples)
+ \item \code{seaice} - Sea ice vignette
+ \item \code{swdi} - Severe Weather Data Inventory (SWDI) vignette
+ \item \code{homr_*} - Historical Observing Metadata Repository (HOMR) vignette
+ \item \code{storm_} - Storms (IBTrACS) vignette
+ \item \code{tornadoes} - From the NOAA Storm Prediction Center
+}
 }
 \author{
 Scott Chamberlain \email{myrmecocystus@gmail.com}
