@@ -6,30 +6,37 @@
 #'
 #' @param x input
 #' @export
+#' @keywords internal
 is.ncdc_data <- function(x) inherits(x, "ncdc_data")
 
 #' @rdname is.ncdc_data
 #' @export
+#' @keywords internal 
 is.ncdc_datasets <- function(x) inherits(x, "ncdc_datasets")
 
 #' @rdname is.ncdc_data
 #' @export
+#' @keywords internal
 is.ncdc_datatypes <- function(x) inherits(x, "ncdc_datatypes")
 
 #' @rdname is.ncdc_data
 #' @export
+#' @keywords internal
 is.ncdc_datacats <- function(x) inherits(x, "ncdc_datacats")
 
 #' @rdname is.ncdc_data
 #' @export
+#' @keywords internal
 is.ncdc_locs <- function(x) inherits(x, "ncdc_locs")
 
 #' @rdname is.ncdc_data
 #' @export
+#' @keywords internal
 is.ncdc_locs_cats <- function(x) inherits(x, "ncdc_locs_cats")
 
 #' @rdname is.ncdc_data
 #' @export
+#' @keywords internal
 is.ncdc_stations <- function(x) inherits(x, "ncdc_stations")
 
 #' Theme for plotting NOAA data

@@ -31,4 +31,5 @@ Check if an object is of class ncdc_data, ncdc_datasets,
 ncdc_datatypes, ncdc_datacats, ncdc_locs, ncdc_locs_cats,
 or ncdc_stations
 }
+\keyword{internal}
 

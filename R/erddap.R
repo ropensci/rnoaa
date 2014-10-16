@@ -262,9 +262,7 @@ erddap_search <- function(query, page=NULL, page_size=NULL, callopts=list()){
   return( res )
 }
 
-#' @method print erddap_search
 #' @export
-#' @rdname erddap_search
 print.erddap_search <- function(x, ...){
   cat(sprintf("%s results, showing first 20", nrow(x$info)), "\n")
   print(head(x$info, n = 20))
