@@ -31,8 +31,7 @@ ncdc_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL,
   limit=25, offset=NULL, token=NULL, ...)
 {
-  if(is.null(token))
-    token <- getOption("noaakey", stop("you need an API key NOAA data"))
+  token <- check_key(token)
   url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/locations'
   if(!is.null(locationid))
     url <- paste(url, "/", locationid, sep="")

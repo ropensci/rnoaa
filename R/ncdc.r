@@ -129,8 +129,7 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   if(any(calls_vec))
     stop("The parameters name, code, modifiedsince, startindex, and maxresults \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa")
 
-  if(is.null(token))
-    token <- getOption("noaakey", stop("you need an API key NOAA data"))
+  token <- check_key(token)
 
   base = 'http://www.ncdc.noaa.gov/cdo-web/api/v2/data'
   args <- noaa_compact(list(datasetid=datasetid, datatypeid=datatypeid,

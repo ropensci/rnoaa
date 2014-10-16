@@ -55,8 +55,7 @@ ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
   datacategoryid=NULL, extent=NULL, radius=10, token=NULL, dataset=NULL,
   station=NULL, location=NULL, locationtype=NULL, page=NULL, ...)
 {
-  if(is.null(token))
-    token <- getOption("noaakey", stop("you need an API key NOAA data"))
+  token <- check_key(token)
 
   if(!is.null(stationid)){
     url <- sprintf('http://www.ncdc.noaa.gov/cdo-web/api/v2/stations/%s', stationid)

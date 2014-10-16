@@ -37,8 +37,7 @@ ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
   if(any(calls_vec))
     stop("The parameters dataset, page, year, and month \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?ncdc_datasets")
 
-  if(is.null(token))
-    token <- getOption("noaakey", stop("you need an API key NOAA data"))
+  token <- check_key(token)
 
   url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datasets"
   if(!is.null(datasetid))

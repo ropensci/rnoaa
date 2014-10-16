@@ -39,8 +39,7 @@ ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   if(any(calls_vec))
     stop("The parameters dataset, page, and filter \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?ncdc_datatypes")
 
-  if(is.null(token))
-    token <- getOption("noaakey", stop("you need an API key NOAA data"))
+  token <- check_key(token)
 
   if(!is.null(datatypeid)){
     url <- sprintf("http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes/%s", datatypeid)

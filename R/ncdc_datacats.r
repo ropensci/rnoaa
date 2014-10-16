@@ -32,8 +32,7 @@ ncdc_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
   locationid=NULL, startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL,
   limit=25, offset=NULL, token=NULL, ...)
 {
-  if(is.null(token))
-    token <- getOption("noaakey", stop("you need an API key NOAA data"))
+  token <- check_key(token)
   url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datacategories"
   if(!is.null(datacategoryid))
     url <- paste(url, "/", datacategoryid, sep="")
