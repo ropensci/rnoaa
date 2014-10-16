@@ -28,12 +28,13 @@ There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rncd
 
 * NOAA Buoy vignette
 * NOAA ERDDAP vignette
-* NOAA NCDC vignette (examples)
+* NOAA National Climatic Data Center (NCDC) vignette (examples)
 * NOAA NCDC attributes vignette
 * NOAA NCDC workflow vignette
 * Sea ice vignette
-* Severe Weather Data Inventory vignette
+* Severe Weather Data Inventory (SWDI) vignette
 * Historical Observing Metadata Repository (HOMR) vignette
+* Storms (IBTrACS) vignette
 
 ### Data sources used in rnoaa
 
