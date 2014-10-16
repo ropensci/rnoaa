@@ -38,7 +38,7 @@ NULL
 #' @name fipscodes
 NULL
 
-#' NOAA storm data from International Best Track Archive for Climate Stewardship (IBTrACS).
+#' NOAA storm column descriptions for data from IBTrACS
 #' 
 #' This dataset includes description of the columns of each dataset acquired using 
 #' \code{\link[rnoaa]{storm_data}}
@@ -49,7 +49,7 @@ NULL
 #' @name storm_columns
 NULL
 
-#' NOAA storm data from International Best Track Archive for Climate Stewardship (IBTrACS).
+#' NOAA storm names from IBTrACS
 #' 
 #' This dataset includes a crosswalk from storm serial numbers to their names. Storm serial numbers
 #' are used to search for storms in the \code{\link[rnoaa]{storm_data}} function.

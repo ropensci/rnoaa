@@ -1,4 +1,4 @@
-#' Get NOAA wind storm data from International Best Track Archive for Climate Stewardship (IBTrACS)
+#' Get NOAA wind storm tabular data, metadata, or shp files from IBTrACS
 #' 
 #' @export
 #' 
@@ -8,8 +8,11 @@
 #' @param path (character) A path to store the files, Default: \code{~/.rnoaa/storms}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
 #' @param what (character) One of storm_columns or storm_names.
+#' @param x Output from \code{storm_shp}, a path to shp file to read in.
 #' 
-#' @details Details for storm serial numbers:
+#' @details International Best Track Archive for Climate Stewardship (IBTrACS)
+#' 
+#' Details for storm serial numbers:
 #' \itemize{
 #'  \item YYYY is the corresponding year of the first recorded observation of the storm
 #'  \item JJJ is the day of year of the first recorded observation of the storm
@@ -24,7 +27,11 @@
 #' 
 #' See \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering} for more.
 #' 
+#' The datasets included in the package \code{\link[rnoaa]{storm_names}}, and 
+#' \code{\link[rnoaa]{storm_columns}} may help in using these storm functions.
+#' 
 #' @references \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data}
+#' 
 #' @rdname storms
 #' @examples \donttest{
 #' # Metadata
@@ -33,15 +40,43 @@
 #' head( storm_meta("storm_names") )
 #' 
 #' # Tabular data
+#' ## Get tabular data for basins, storms, or years
 #' storm_data(basin='WP')
 #' storm_data(storm='1970143N19091')
 #' storm_data(year=1940)
 #' storm_data(year=1941)
 #' storm_data(year=2010)
 #' 
-#' # Or get all data, simply don't specify a value for basin, storm, or year
+#' ## Or get all data, simply don't specify a value for basin, storm, or year
 #' res <- storm_data(read=FALSE) # just get path
 #' head()
+#' 
+#' # shp files
+#' ## storm_shp downloads data and gives a path back
+#' ## to read in, use storm_shp_read
+#' res <- storm_shp(basin='EP')
+#' storm_shp_read(res)
+#' 
+#' ## Get shp file for a storm
+#' (res2 <- storm_shp(storm='1970143N19091'))
+#' 
+#' ## Plot shp file data, we'll need sp library
+#' library('sp')
+#' 
+#' ### for year 1940, points
+#' (res3 <- storm_shp(year=1940))
+#' res3shp <- storm_shp_read(res3)
+#' plot(res3shp)
+#' 
+#' ### for year 1940, lines
+#' (res3_lines <- storm_shp(year=1940, type="lines"))
+#' res3_linesshp <- storm_shp_read(res3_lines)
+#' plot(res3_linesshp)
+#' 
+#' ### for year 2010, points
+#' (res4 <- storm_shp(year=2010))
+#' res4shp <- storm_shp_read(res4)
+#' plot(res4shp)
 #' }
 
 storm_data <- function(basin=NULL, storm=NULL, year=NULL, path="~/.rnoaa/storms", 

@@ -1,27 +1,5 @@
 #' @export
 #' @rdname storms
-#' @examples \donttest{
-#' res <- storm_shp(basin='EP')
-#' storm_shp_read(res)
-#' 
-#' (res2 <- storm_shp(storm='1970143N19091'))
-#' 
-#' # Plot results
-#' library('sp')
-#' 
-#' (res3 <- storm_shp(year=1940))
-#' res3shp <- storm_shp_read(res3)
-#' plot(res3shp)
-#' 
-#' (res3_lines <- storm_shp(year=1940, type="lines"))
-#' res3_linesshp <- storm_shp_read(res3_lines)
-#' plot(res3_linesshp)
-#' 
-#' (res4 <- storm_shp(year=2010))
-#' res4shp <- storm_shp_read(res4)
-#' plot(res4shp)
-#' }
-
 storm_shp <- function(basin=NULL, storm=NULL, year=NULL, type="points", path="~/.rnoaa/storms",
   overwrite = TRUE)
 {
