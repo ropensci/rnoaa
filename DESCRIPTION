@@ -20,8 +20,7 @@ Authors@R: c(person("Hart", "Edmund", role = c("aut","cre"),
     email = "karthik.ram@gmail.com"))
 URL: https://github.com/ropensci/rnoaa
 BugReports: http://www.github.com/ropensci/rnoaa/issues
-LazyLoad: yes
-LazyData: yes
+LazyData: true
 Roxygen: list(wrap = FALSE)
 VignetteBuilder: knitr
 Imports:
