@@ -1,33 +1,41 @@
 <!--
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{ncdc workflow vignette}
+%\VignetteIndexEntry{ncdc workflow}
 -->
 
-NCDC workflow vignette
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>", 
+  collapse = TRUE,
+  warning = FALSE, 
+  message = FALSE,
+  cache = TRUE
+)
+```
+
+NCDC workflow
 ======
 
-This vignette is intended to demonstrate a workflow for using the NOAA NCDC data using the `ncdc*` functions. It can be confusing to understand how to get at data you want - that's the motivation for this vignette. Other vignettes show more thorough and different examples for specific data sources.
+This vignette is intended to demonstrate a workflow for using the NOAA NCDC data using the `ncdc*()` functions. It can be confusing to understand how to get at data you want - that's the motivation for this vignette. Other vignettes show more thorough and different examples for specific data sources.
 
-********************
 
-Load `rnoaa` into the R session.
+## Load rnoaa
 
-```{r load, message=FALSE, warning=FALSE}
+```{r load}
 library('rnoaa')
 ```
 
-### The workflow
+## The workflow
 
 * Look for weather stations & get station id(s)
 * Find out what type of data is available for those stations
 * Search for climate data for stations (optionally specify type of data to get)
 
-#### Look for weather stations & get station id(s)
+### Look for weather stations & get station id(s)
 
 
 ```{r two, message=FALSE, warning=FALSE, cache=FALSE}
 ids <- ncdc_stations(locationid='FIPS:12017')$data$id[1:13]
-# ids[3]
 id <- "GHCND:US1FLCT0002"
 ```
 
@@ -38,7 +46,7 @@ ncdc_stations(stationid = id)
 ```
 
 
-#### Find out what type of data is available for those stations
+### Find out what type of data is available for those stations
 
 There are various ways to look for data types available. First, __data categories__:
 
@@ -58,7 +66,7 @@ Yet another way is looking for __data types__:
 ncdc_datatypes(datasetid = "GHCND", stationid = id)
 ```
 
-#### Search for climate data for stations (optionally specify type of data to get)
+### Search for climate data for stations (optionally specify type of data to get)
 
 Now that you know what kinds of data categories, data sets, and data types are available for your station you can search for data with any of those as filters.
 

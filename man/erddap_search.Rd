@@ -13,10 +13,6 @@ erddap_search(query, page = NULL, page_size = NULL, callopts = list())
 \item{page_size}{Results per page}
 
 \item{callopts}{Further args passed on to httr::GET (must be a named parameter)}
-
-\item{x}{Input to print method for class erddap_search}
-
-\item{...}{Further args to print, ignored.}
 }
 \description{
 Search for ERDDAP datasets.

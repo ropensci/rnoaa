@@ -229,8 +229,6 @@ erddap_info <- function(datasetid, callopts=list()){
 #' @param page Page number
 #' @param page_size Results per page
 #' @param callopts Further args passed on to httr::GET (must be a named parameter)
-#' @param x Input to print method for class erddap_search
-#' @param ... Further args to print, ignored.
 #' @examples \dontrun{
 #' (out <- erddap_search(query='fish size'))
 #' out$alldata

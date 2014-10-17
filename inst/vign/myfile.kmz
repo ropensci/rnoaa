@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<swdiXmlResponse>
+    <error> 
+Syntax Error in 'radius' query.  'center' parameter must exist and be lon/lat, such as -90.4,35.6
+    </error> 
+
+</swdiXmlResponse>

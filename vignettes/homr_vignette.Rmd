@@ -4,8 +4,6 @@
 -->
 
 
-
-
 HOMR metadata
 ======
 
@@ -22,7 +20,7 @@ library('rnoaa')
 
 ## Search by station identifier
 
-You can do this in various ways. Using the `qid` parameter (stands or qualified ID, as far as I know), you can search by suffix (e.g., `046742`), or both separated by a colon (e.g., `COOP:046742`). 
+You can do this in various ways. Using the `qid` parameter (stands or qualified ID, as far as I know), you can search by suffix (e.g., `046742`), or both separated by a colon (e.g., `COOP:046742`).
 
 By station suffix
 
@@ -41,8 +39,8 @@ names(res[['20002078']])
 ```
 
 ```
-#>  [1] "id"          "head"        "namez"       "identifiers" "status"     
-#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"   
+#>  [1] "id"          "head"        "namez"       "identifiers" "status"
+#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"
 #> [11] "location"
 ```
 
@@ -53,13 +51,13 @@ res$`20002078`[1:3]
 ```
 #> $id
 #> [1] "20002078"
-#> 
+#>
 #> $head
 #>                  preferredName latitude_dec longitude_dec precision
 #> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283    DDMMSS
 #>             por.beginDate por.endDate
 #> 1 1949-10-05T00:00:00.000     Present
-#> 
+#>
 #> $namez
 #>                         name  nameType
 #> 1   PASO ROBLES MUNICIPAL AP      COOP
@@ -84,8 +82,8 @@ names(res[['20002078']])
 ```
 
 ```
-#>  [1] "id"          "head"        "namez"       "identifiers" "status"     
-#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"   
+#>  [1] "id"          "head"        "namez"       "identifiers" "status"
+#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"
 #> [11] "location"
 ```
 
@@ -96,19 +94,19 @@ res$`20002078`[1:5]
 ```
 #> $id
 #> [1] "20002078"
-#> 
+#>
 #> $head
 #>                  preferredName latitude_dec longitude_dec precision
 #> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283    DDMMSS
 #>             por.beginDate por.endDate
 #> 1 1949-10-05T00:00:00.000     Present
-#> 
+#>
 #> $namez
 #>                         name  nameType
 #> 1   PASO ROBLES MUNICIPAL AP      COOP
 #> 2   PASO ROBLES MUNICIPAL AP PRINCIPAL
 #> 3 PASO ROBLES MUNICIPAL ARPT       PUB
-#> 
+#>
 #> $identifiers
 #>      idType          id
 #> 1     GHCND USW00093209
@@ -119,14 +117,14 @@ res$`20002078`[1:5]
 #> 6      ICAO        KPRB
 #> 7     NWSLI         PRB
 #> 8 NCDCSTNID    20002078
-#> 
+#>
 #> $status
 #> NULL
 ```
 
 ## Search by station parameter
 
-You can also search by station identifier, which is different from the `qid` above. 
+You can also search by station identifier, which is different from the `qid` above.
 
 
 ```r
@@ -143,8 +141,8 @@ names(res[['20002078']])
 ```
 
 ```
-#>  [1] "id"          "head"        "namez"       "identifiers" "status"     
-#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"   
+#>  [1] "id"          "head"        "namez"       "identifiers" "status"
+#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"
 #> [11] "location"
 ```
 
@@ -163,10 +161,10 @@ res$`20002078`[4:6]
 #> 6      ICAO        KPRB
 #> 7     NWSLI         PRB
 #> 8 NCDCSTNID    20002078
-#> 
+#>
 #> $status
 #> NULL
-#> 
+#>
 #> $platform
 #> [1] "COOP"
 ```
@@ -273,7 +271,7 @@ head( ldply(res, "[[", "head") )
 
 ## Data definitions
 
-The data returned is the same format for all, so a separate function is provided to get metadata. The function `homr_definitions()` does query the HOMR API, so does get updated metadata - i.e., it's not a static dataset stored locally. 
+The data returned is the same format for all, so a separate function is provided to get metadata. The function `homr_definitions()` does query the HOMR API, so does get updated metadata - i.e., it's not a static dataset stored locally.
 
 
 ```r
