@@ -3,24 +3,17 @@ rnoaa 0.3.0
 
 NEW FEATURES
 
-* 
-*
-* 
-* 
++ New data source added (NOAA torndoes data) via function `tornadoes()`. (#56)
++ New data source added (NOAA storm data from IBTrACS) via functions `storm_*()`. (#57) 
++ New data source added (NOAA weather station metadata from HOMR) via functions `homr_*()` (#59)
++ New vignettes for storm data and homr data.
++ Some functions in rnoaa now print data.frame outputs as `dplyr`-like outputs with a summary of the data.frame, as appropriate.
 
 MINOR IMPROVEMENTS
 
-* 
-* 
-* 
-* 
-
-BUG FIXES
-
-* 
-* 
-* 
-* 
++ Across all `ncdc_*` functions changed `callopts` parameter to `...`. This parameter allow you to pass in options to `httr::GET` to modify curl requests. (#61)
++ A new helper function `check_key()` looks for one of two stored keys, as an environment variable under the name `NOAA_KEY`, or an option variable under the name `noaakey`. Environment variables can be set during session like `Sys.setenv(VAR = "...")`, or stored long term in your `.Renviron` file. Option variables can be set during session like `options(var = "...")`, or stored long term in your `.Rprofile` file. 
++ `is.*` and `print.*` functions no longer have public man files, but can be seen via `rnoaa:::` if needed.
 
 rnoaa 0.2.0
 ===============

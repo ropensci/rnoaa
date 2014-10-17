@@ -3,12 +3,13 @@ Version: 0.2.9.99
 Date: 2014-10-16
 License: MIT + file LICENSE
 Title: NOAA climate data from R.
-Description: This is an R wrapper to many NOAA APIs including the NCDC climate
-    API at http://www.ncdc.noaa.gov/cdo-web/webservices/v2. There are functions
+Description: This is an R wrapper to many NOAA data sources including the NCDC climate
+    API at http://www.ncdc.noaa.gov/cdo-web/webservices/v2, with functions
     for each of the API endpoints: data, data categories, data sets, data
     types, locations, location categories, and stations. In addition, we have
-    an interface for NOAA sea ice data that is not part of the climate data
-    API, the NOAA severe weather inventory, and ERDDAP data. NOAA buoy data is
+    an interface for NOAA sea ice data, the NOAA severe weather inventory, ERDDAP data, 
+    NOAA Historical Observing Metadata Repository (HOMR) data, NOAA storm data via 
+    IBTrACS, and tornado data via the NOAA storm prediction center. NOAA buoy data is
     only on the buoy branch in the Github repository for this package (see url
     below).
 Authors@R: c(person("Hart", "Edmund", role = c("aut","cre"),
