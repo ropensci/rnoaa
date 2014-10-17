@@ -12,9 +12,9 @@ Description: This is an R wrapper to many NOAA data sources including the NCDC
     NOAA storm data via IBTrACS, and tornado data via the NOAA storm prediction
     center. NOAA buoy data is only on the buoy branch in the Github repository
     for this package (see url below).
-Authors@R: c(person("Hart", "Edmund", role = c("aut","cre"),
+Authors@R: c(person("Hart", "Edmund", role = "aut",
     email = "Edmund.m.hart@gmail.com"),
-    person("Scott", "Chamberlain", role = "aut",
+    person("Scott", "Chamberlain", role = c("aut","cre"),
     email = "myrmecocystus@gmail.com"),
     person("Karthik", "Ram", role = "aut",
     email = "karthik.ram@gmail.com"))
