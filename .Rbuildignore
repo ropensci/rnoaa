@@ -12,3 +12,4 @@ CONTRIBUTING.md
 ^appveyor\.yml$
 cran-comments.md
 tests/testthat.R
+.Rhistory
