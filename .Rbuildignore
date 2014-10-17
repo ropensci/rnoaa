@@ -11,3 +11,4 @@ vignettes/margins.sty
 CONTRIBUTING.md
 ^appveyor\.yml$
 cran-comments.md
+tests/testthat.R
