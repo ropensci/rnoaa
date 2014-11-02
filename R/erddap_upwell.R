@@ -302,6 +302,10 @@ foo <- function(x, y){
 #' out$alldata[[1]]
 #' (out <- erddap_search(query='size'))
 #' out$info
+#' 
+#' # List datasets
+#' head( erddap_datasets('table') )
+#' head( erddap_datasets('grid') )
 #' }
 
 erddap_search <- function(query, page=NULL, page_size=NULL, which='griddap', ...){
@@ -335,4 +339,34 @@ erdddap_GET <- function(url, args, ...){
   assert_that(tt$headers$`content-type` == 'application/json;charset=UTF-8')
   out <- content(tt, as = "text")
   jsonlite::fromJSON(out, FALSE)
+}
+
+table_or_grid <- function(datasetid){
+  table_url <- 'http://upwell.pfeg.noaa.gov/erddap/tabledap/index.json'
+  grid_url <- 'http://upwell.pfeg.noaa.gov/erddap/griddap/index.json'
+  tab <- toghelper(table_url)
+#   grd <- toghelper(grid_url)
+  if(datasetid %in% tab) "tabledap" else "griddap"
+#   if(datasetid %in% grd) "griddap"
+}
+
+toghelper <- function(url){
+  out <- erdddap_GET(url, list(page=1, itemsPerPage=10000L))
+  nms <- out$table$columnNames
+  lists <- lapply(out$table$rows, setNames, nm=nms)
+  vapply(lists, "[[", "", "Dataset ID")
+}
+
+
+#' List datasets for either tabledap or griddap
+#' @export
+#' @param which One of tabledap or griddap
+#' @rdname  erddap_search
+erddap_datasets <- function(which = 'tabledap'){
+  which <- match.arg(which, c("tabledap","griddap"), FALSE)
+  url <- sprintf('http://upwell.pfeg.noaa.gov/erddap/%s/index.json', which)
+  out <- erdddap_GET(url, list(page=1, itemsPerPage=10000L))
+  nms <- out$table$columnNames
+  lists <- lapply(out$table$rows, setNames, nm=nms)
+  data.frame(rbindlist(lapply(lists, data.frame)), stringsAsFactors = FALSE)
 }
