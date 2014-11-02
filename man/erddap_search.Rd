@@ -19,8 +19,6 @@ erddap_datasets(which = "tabledap")
 \item{which}{(character) One of tabledep or griddap.}
 
 \item{...}{Further args passed on to \code{\link[httr]{GET}} (must be a named parameter)}
-
-\item{which}{One of tabledap or griddap}
 }
 \description{
 Search for ERDDAP tabledep or griddap datasets.

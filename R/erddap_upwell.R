@@ -1,12 +1,14 @@
 #' Get ERDDAP UPWELL data.
 #'
 #' @export
-#' @param time
-#' @param altitude
-#' @param latitude
-#' @param longitude
+#' @param .info Output.
+#' @param ... Dimension arguments.
+#' @param fields Fields to return, a character vector.
 #' @param stride (integer) How many values to get. 1 = get every value, 2 = get every other value,
 #' etc. Default: 1 (i.e., get every value)
+#' @param path Path to store files in. Default: ~/.rnoaa/upwell
+#' @param overwrite (logical) Overwrite an existing file of the same name? Default: TRUE
+#' @param callopts Pass on curl options to \code{\link[httr]{GET}}
 #'
 #' @details Some details:
 #'
@@ -389,8 +391,7 @@ toghelper <- function(url){
 
 #' List datasets for either tabledap or griddap
 #' @export
-#' @param which One of tabledap or griddap
-#' @rdname  erddap_search
+#' @rdname erddap_search
 erddap_datasets <- function(which = 'tabledap'){
   which <- match.arg(which, c("tabledap","griddap"), FALSE)
   url <- sprintf('http://upwell.pfeg.noaa.gov/erddap/%s/index.json', which)

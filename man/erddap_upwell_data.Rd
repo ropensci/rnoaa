@@ -7,16 +7,20 @@ erddap_upwell_data(.info, ..., fields = "all", stride = 1,
   path = "~/.rnoaa/upwell", overwrite = TRUE, callopts = list())
 }
 \arguments{
+\item{.info}{Output.}
+
+\item{...}{Dimension arguments.}
+
+\item{fields}{Fields to return, a character vector.}
+
 \item{stride}{(integer) How many values to get. 1 = get every value, 2 = get every other value,
 etc. Default: 1 (i.e., get every value)}
 
-\item{time}{}
+\item{path}{Path to store files in. Default: ~/.rnoaa/upwell}
 
-\item{altitude}{}
+\item{overwrite}{(logical) Overwrite an existing file of the same name? Default: TRUE}
 
-\item{latitude}{}
-
-\item{longitude}{}
+\item{callopts}{Pass on curl options to \code{\link[httr]{GET}}}
 }
 \description{
 Get ERDDAP UPWELL data.
