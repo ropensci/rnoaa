@@ -1,6 +1,6 @@
 Package: rnoaa
-Version: 0.3.0
-Date: 2014-10-17
+Version: 0.3.0.99
+Date: 2014-11-02
 License: MIT + file LICENSE
 Title: NOAA Climate Data from R.
 Description: This is an R wrapper to many NOAA data sources including the NCDC
