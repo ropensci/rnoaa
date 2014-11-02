@@ -288,22 +288,24 @@ foo <- function(x, y){
   x[ x$attribute_name == y, "value"]
 }
 
-#' Search for ERDDAP UPWELL datasets.
+#' Search for ERDDAP tabledep or griddap datasets.
 #'
 #' @export
 #' 
-#' @param query Search terms
-#' @param page Page number
-#' @param page_size Results per page
+#' @param query (character) Search terms
+#' @param page (integer) Page number
+#' @param page_size (integer) Results per page
+#' @param which (character) One of tabledep or griddap.
 #' @param ... Further args passed on to \code{\link[httr]{GET}} (must be a named parameter)
 #' @examples \dontrun{
-#' (out <- erddap_upwell_search(query='temperature'))
+#' (out <- erddap_search(query='temperature'))
 #' out$alldata[[1]]
-#' (out <- erddap_upwell_search(query='size'))
+#' (out <- erddap_search(query='size'))
 #' out$info
 #' }
 
-erddap_upwell_search <- function(query, page=NULL, page_size=NULL, ...){
+erddap_search <- function(query, page=NULL, page_size=NULL, which='griddap', ...){
+  which <- match.arg(which, c("tabledap","griddap"), FALSE)
   url <- 'http://upwell.pfeg.noaa.gov/erddap/search/index.json'
   args <- noaa_compact(list(searchFor=query, page=page, itemsPerPage=page_size))
   json <- erdddap_GET(url, args, ...)
@@ -315,14 +317,14 @@ erddap_upwell_search <- function(query, page=NULL, page_size=NULL, ...){
   })
   df <- data.frame(rbindlist(dfs))
   lists <- lapply(json$table$rows, setNames, nm=colnames)
-  df$gd <- vapply(lists, function(x) if(x$griddap == "") FALSE else TRUE, logical(1))
-  df <- df[ df$gd == TRUE, -3 ]
+  df$gd <- vapply(lists, function(x) if(x$griddap == "") "tabledap" else "griddap", character(1))
+  df <- df[ df$gd == which, -3 ]
   res <- list(info=df, alldata=lists)
-  structure(res, class="erddap_upwell_search")
+  structure(res, class="erddap_search")
 }
 
 #' @export
-print.erddap_upwell_search <- function(x, ...){
+print.erddap_search <- function(x, ...){
   cat(sprintf("%s results, showing first 20", nrow(x$info)), "\n")
   print(head(x$info, n = 20))
 }
