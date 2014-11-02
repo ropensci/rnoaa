@@ -191,6 +191,13 @@ read_csv <- function(x){
   tmp
 }
 
+read_upwell <- function(x){
+  tmp <- read.csv(x, header = FALSE, sep = ",", stringsAsFactors=FALSE, skip = 2)
+  nmz <- names(read.csv(x, header = TRUE, sep = ",", stringsAsFactors=FALSE, nrows=1))
+  names(tmp) <- tolower(nmz)
+  tmp
+}
+
 check_key <- function(x){
   tmp <- if(is.null(x)) Sys.getenv("NOAA_KEY", "") else x
   if(tmp == "") getOption("noaakey", stop("need an API key for NOAA data")) else tmp

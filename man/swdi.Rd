@@ -116,6 +116,13 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp',
 # KMZ format
 swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz',
    radius=15, filepath='myfile.kmz')
+
+# csv output to SpatialPointsDataFrame
+res <- swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format="csv")
+library('sp')
+coordinates(res$data) <- ~lon + lat
+res$data
+class(res$data)
 }
 }
 
