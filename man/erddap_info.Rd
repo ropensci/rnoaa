@@ -3,26 +3,67 @@
 \alias{erddap_info}
 \title{Get information on an ERDDAP dataset.}
 \usage{
-erddap_info(datasetid, callopts = list())
+erddap_info(datasetid, ...)
 }
 \arguments{
 \item{datasetid}{Dataset id}
 
-\item{callopts}{Further args passed on to httr::GET (must be a named parameter)}
+\item{...}{Further args passed on to \code{\link[httr]{GET}} (must be a named parameter)}
 }
 \value{
-A list of length two
+Prints a summary of the data on return, but you can index to various information.
+
+The data is a list of length two with:
 \itemize{
- \item variables Data.frame of variables and their types
- \item alldata List of data variables and their full attributes
+ \item variables - Data.frame of variables and their types
+ \item alldata - List of data variables and their full attributes
+}
+Where \code{alldata} element has many data.frame's, one for each variable, with metadata
+for that variable. E.g., for griddap dataset \code{noaa_pfeg_696e_ec99_6fa6}, \code{alldata}
+has:
+\itemize{
+ \item NC_GLOBAL
+ \item time
+ \item latitude
+ \item longitude
+ \item sss
 }
 }
 \description{
-Gives back a brief data.frame for quick inspection and a list of more complete
-metadata on the dataset.
+Get information on an ERDDAP dataset.
 }
 \examples{
 \dontrun{
+# grid dap datasets
+erddap_info('noaa_pfeg_696e_ec99_6fa6')
+erddap_info('noaa_ngdc_34bf_a95c_7e28')
+
+(out <- erddap_search(query='temperature'))
+erddap_info(out$info$dataset_id[5])
+erddap_info(out$info$dataset_id[15])
+erddap_info(out$info$dataset_id[25])
+erddap_info(out$info$dataset_id[33])
+erddap_info(out$info$dataset_id[65])
+erddap_info(out$info$dataset_id[150])
+erddap_info(out$info$dataset_id[400])
+erddap_info(out$info$dataset_id[678])
+
+out <- erddap_info(datasetid='noaa_ngdc_34bf_a95c_7e28')
+## See brief overview of the variables and range of possible values, if given
+out$variables
+## all information on longitude
+out$alldata$longitude
+## all information on Climatological_Temperature
+out$alldata$Climatological_Temperature
+
+# table dap datasets
+(out <- erddap_search(query='temperature', which = "table"))
+erddap_info(out$info$dataset_id[1])
+erddap_info(out$info$dataset_id[2])
+erddap_info(out$info$dataset_id[3])
+erddap_info(out$info$dataset_id[4])
+erddap_info(out$info$dataset_id[54])
+
 erddap_info(datasetid='erdCalCOFIfshsiz')
 out <- erddap_info(datasetid='erdCinpKfmBT')
 ## See brief overview of the variables and range of possible values, if given

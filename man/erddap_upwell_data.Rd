@@ -39,7 +39,7 @@ you want returned via the \code{fields} parameter. If you don't pass in options 
 \code{fields} parameter, you get all variables back.
 
 To get the dimensions and variables, along with other metadata for a dataset, run
-\code{erddap_upwell_info}, and each will be shown, with their min and max values, and some
+\code{erddap_info}, and each will be shown, with their min and max values, and some
 other metadata.
 }
 
@@ -55,7 +55,7 @@ to various SQL DB options though.
 \examples{
 \dontrun{
 # single variable dataset
-out <- erddap_upwell_info('noaa_esrl_027d_0fb5_5d38')
+out <- erddap_info('noaa_esrl_027d_0fb5_5d38')
 summary(out)
 (res <- erddap_upwell_data(out,
  time = c('2012-01-01','2012-06-12'),
@@ -64,7 +64,7 @@ summary(out)
 ))
 
 # multi-variable dataset
-out <- erddap_upwell_info('noaa_gfdl_5081_7d4a_7570')
+out <- erddap_info('noaa_gfdl_5081_7d4a_7570')
 summary(out)
 (res <- erddap_upwell_data(out,
  time = c('2005-11-01','2006-01-01'),
@@ -82,7 +82,7 @@ longitude = c(10, 11), fields = 'none'))
 
 # multi-variable dataset
 ## this one also has a 0-360 longitude system, BLARGH!!!
-out <- erddap_upwell_info('noaa_gfdl_3c96_7879_a9d3')
+out <- erddap_info('noaa_gfdl_3c96_7879_a9d3')
 summary(out)
 (res <- erddap_upwell_data(out,
  time = c('2005-11-01','2006-01-01'),
@@ -97,7 +97,7 @@ summary(out)
 ))
 
 # single variable dataset
-out <- erddap_upwell_info('noaa_pfeg_e9ae_3356_22f8')
+out <- erddap_info('noaa_pfeg_e9ae_3356_22f8')
 summary(out)
 (res <- erddap_upwell_data(out,
  time = c('2012-06-01','2012-06-12'),
