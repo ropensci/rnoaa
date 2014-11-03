@@ -11,7 +11,7 @@
 #' @param overwrite (logical) Overwrite an existing file of the same name? Default: TRUE
 #' @param callopts Pass on curl options to \code{\link[httr]{GET}}
 #'
-#' @details Some details:
+#' @details Details:
 #'
 #' @section Dimensions and Variables:
 #' ERDDAP grid dap data has this concept of dimenions vs. variables. So, dimensions are things
@@ -40,8 +40,15 @@
 #'
 #' @examples \dontrun{
 #' # single variable dataset
+#' ## You can pass in the outpu of a call to erddap_info
 #' (out <- erddap_info('noaa_esrl_027d_0fb5_5d38'))
 #' (res <- erddap_grid(out,
+#'  time = c('2012-01-01','2012-06-12'),
+#'  latitude = c(21, 18),
+#'  longitude = c(-80, -75)
+#' ))
+#' ## Or, pass in a dataset id
+#' (res <- erddap_grid('noaa_esrl_027d_0fb5_5d38',
 #'  time = c('2012-01-01','2012-06-12'),
 #'  latitude = c(21, 18),
 #'  longitude = c(-80, -75)
@@ -90,10 +97,9 @@
 erddap_grid <- function(x, ..., fields = 'all', stride = 1, path = "~/.rnoaa/upwell",
   overwrite = TRUE, callopts = list())
 {
-  x <- as.erddap(x)
+  x <- as.erddap_info(x)
   dimargs <- list(...)
   d <- attr(x, "datasetid")
-  url <- sprintf("http://upwell.pfeg.noaa.gov/erddap/griddap/%s.csv", d)
   var <- field_handler(fields, x$variables$variable_name)
   dims <- dimvars(x)
   if(all(var == "none")){
@@ -102,7 +108,7 @@ erddap_grid <- function(x, ..., fields = 'all', stride = 1, path = "~/.rnoaa/upw
     pargs <- sapply(dims, function(y) parse_args(x, y, stride, dimargs))
     args <- paste0(lapply(var, function(y) paste0(y, paste0(pargs, collapse = ""))), collapse = ",")
   }
-  csvpath <- erd_up_GET(url, dset=d, args, bp=path, overwrite, callopts)
+  csvpath <- erd_up_GET(sprintf("%sgriddap/%s.csv", eurl(), d), d, args, path, overwrite, callopts)
   structure(list(data=read_upwell(csvpath)), class="upwell_data", datasetid=d, path=csvpath)
 }
 

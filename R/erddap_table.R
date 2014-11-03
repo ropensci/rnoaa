@@ -46,7 +46,7 @@
 #' @examples \dontrun{
 #' # Just passing the datasetid without fields gives all columns back
 #' out <- erddap_table('erdCalCOFIfshsiz')
-#' nrow(out)
+#' nrow(out); head(out)
 #'
 #' # Pass time constraints
 #' head(erddap_table('erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08'))
@@ -122,10 +122,9 @@
 erddap_table <- function(x, ..., fields=NULL, distinct=FALSE, orderby=NULL,
   orderbymax=NULL, orderbymin=NULL, orderbyminmax=NULL, units=NULL, callopts=list())
 {
-  x <- as.erddap(x)
+  x <- as.erddap_info(x)
   fields <- paste(fields, collapse = ",")
-  url <- "http://coastwatch.pfeg.noaa.gov/erddap/tabledap/%s.csv?%s"
-  url <- sprintf(url, attr(x, "datasetid"), fields)
+  url <- sprintf(paste0(eurl(), "tabledap/%s.csv?%s"), attr(x, "datasetid"), fields)
   args <- list(...)
   distinct <- if(distinct) 'distinct()' else NULL
   units <- if(!is.null(units)) makevar(toupper(units), 'units("%s")') else units
@@ -157,3 +156,5 @@ makevar <- function(x, y){
     NULL
   }
 }
+
+eurl <- function() "http://upwell.pfeg.noaa.gov/erddap/"

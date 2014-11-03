@@ -27,7 +27,7 @@ etc. Default: 1 (i.e., get every value)}
 Get ERDDAP griddap data.
 }
 \details{
-Some details:
+Details:
 }
 \section{Dimensions and Variables}{
 
@@ -60,8 +60,15 @@ to various SQL DB options though.
 \examples{
 \dontrun{
 # single variable dataset
+## You can pass in the outpu of a call to erddap_info
 (out <- erddap_info('noaa_esrl_027d_0fb5_5d38'))
 (res <- erddap_grid(out,
+ time = c('2012-01-01','2012-06-12'),
+ latitude = c(21, 18),
+ longitude = c(-80, -75)
+))
+## Or, pass in a dataset id
+(res <- erddap_grid('noaa_esrl_027d_0fb5_5d38',
  time = c('2012-01-01','2012-06-12'),
  latitude = c(21, 18),
  longitude = c(-80, -75)

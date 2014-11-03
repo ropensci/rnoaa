@@ -125,7 +125,7 @@ foo <- function(x, y){
 
 #' @export
 #' @rdname erddap_info
-as.erddap_info <- function(x) UseMethod("as.erddap")
+as.erddap_info <- function(x) UseMethod("as.erddap_info")
 
 #' @export
 as.erddap_info.erddap_info <- function(x) x
