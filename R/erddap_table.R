@@ -1,9 +1,8 @@
 #' Get ERDDAP tabledap data.
 #'
 #' @export
-#' @import httr assertthat
 #'
-#' @param x Anything coercable to an object of class erddap_info. So the output of a call to 
+#' @param x Anything coercable to an object of class erddap_info. So the output of a call to
 #' \code{erddap_info}, or a datasetid, which will internally be passed through \code{erddap_info}.
 #' @param ... Any number of key-value pairs in quotes as query constraints. See Details & examples
 #' @param fields Columns to return, as a character vector
@@ -75,7 +74,7 @@
 #' # Time constraint
 #' ## Limit by time with date only
 #' (info <- erddap_info('erdCalCOFIfshsiz'))
-#' erddap_table(info, fields = c('latitude','longitude','scientific_name'), 
+#' erddap_table(info, fields = c('latitude','longitude','scientific_name'),
 #'    'time>=2001-07-14')
 #'
 #' # Use distinct parameter

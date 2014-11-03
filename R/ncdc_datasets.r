@@ -2,9 +2,9 @@
 #'
 #' From the NOAA API docs: All of our data are in datasets. To retrieve any data
 #' from us, you must know what dataset it is in.
-#'
-#' @importFrom plyr rbind.fill
+#' 
 #' @export
+#'
 #' @template rnoaa
 #' @template rnoaa2
 #' @template datasets

@@ -1,6 +1,6 @@
 #' Get NOAA data for the severe weather data inventory (swdi).
 #'
-#' @import httr XML
+#' @import XML
 #' @importFrom data.table rbindlist
 #' 
 #' @param dataset Dataset to query. See below for details.
@@ -106,7 +106,8 @@ swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit
   offset=NULL, radius=NULL, center=NULL, bbox=NULL, tile=NULL, stat=NULL, id=NULL, filepath=NULL,
   callopts=list())
 {
-  assert_that(!is.null(startdate), !is.null(enddate))
+  stopifnot(!is.null(startdate))
+  stopifnot(!is.null(enddate))
 
   format <- match.arg(format, choices = c('xml','csv','shp','kmz'))
   if(is.null(enddate)){

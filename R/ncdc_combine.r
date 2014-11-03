@@ -1,6 +1,7 @@
 #' Coerce multiple outputs to a single data.frame object.
 #'
-#' @importFrom plyr rbind.fill
+#' @export
+#' 
 #' @param ... Objects from another ncdc_* function.
 #' @return A data.frame
 #' @examples \dontrun{
@@ -51,7 +52,7 @@
 #' out3 <- ncdc_locs_cats(locationcategoryid='CLIM_REG')
 #' ncdc_combine(out1, out2, out3)
 #' }
-#' @export
+
 ncdc_combine <- function(...)
 {
   classes <- c("ncdc_data","ncdc_datasets","ncdc_datatypes","ncdc_datacats",

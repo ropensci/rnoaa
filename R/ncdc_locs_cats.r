@@ -5,8 +5,8 @@
 #' Locations can be a specific latitude/longitude point such as a station, or a
 #' label representing a bounding area such as a city.
 #'
-#' @import httr
 #' @export
+#' 
 #' @template location
 #' @return A list containing metadata and the data, or a single data.frame.
 #' @examples \dontrun{

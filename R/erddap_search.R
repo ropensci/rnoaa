@@ -45,7 +45,7 @@ print.erddap_search <- function(x, ...){
 erdddap_GET <- function(url, args, ...){
   tt <- GET(url, query=args, ...)
   warn_for_status(tt)
-  assert_that(tt$headers$`content-type` == 'application/json;charset=UTF-8')
+  stopifnot(tt$headers$`content-type` == 'application/json;charset=UTF-8')
   out <- content(tt, as = "text")
   jsonlite::fromJSON(out, FALSE)
 }

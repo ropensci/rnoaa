@@ -2,10 +2,11 @@
 #'
 #' This function accepts directly output from the \code{\link[rnoaa]{ncdc}} function,
 #' not other functions.
-#'
-#' @import ggplot2
-#' @import lubridate
+#' 
+#' @export
+#' @import ggplot2 lubridate
 #' @importFrom scales date_breaks date_format
+#' 
 #' @param ... Input noaa object or objects.
 #' @param breaks Regularly spaced date breaks for x-axis. See \code{\link{date_breaks}}
 #' @param dateformat Date format using standard POSIX specification for labels on
@@ -48,7 +49,6 @@
 #' ## or pass in each element separately
 #' ncdc_plot(out1, out2, breaks="45 days")
 #' }
-#' @export
 ncdc_plot <- function(..., breaks="7 days", dateformat='%d/%m/%y') UseMethod("ncdc_plot")
 
 #' @method ncdc_plot ncdc_data

@@ -1,8 +1,8 @@
 #' Get information on an ERDDAP dataset.
 #'
 #' @export
-#' @import httr assertthat
 #' @importFrom jsonlite fromJSON
+#' 
 #' @param datasetid Dataset id
 #' @param ... Further args passed on to \code{\link[httr]{GET}} (must be a named parameter)
 #' @param x A datasetid or the output of \code{erddap_info}
@@ -78,7 +78,7 @@ erddap_info <- function(datasetid, ...){
   for(i in seq_along(lists)){
     outout[[names(lists[i])]] <- unname(lists[ names(lists) %in% names(lists)[i] ])
   }
-  
+
   df <- data.frame(rbindlist(dfs))
   vars <- df[ df$row_type == 'variable', names(df) %in% c('variable_name','data_type')]
   actual <- vapply(split(df, df$variable_name), function(z){

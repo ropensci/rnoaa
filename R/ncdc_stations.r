@@ -4,13 +4,13 @@
 #' and can be considered the smallest granual of location data. If you know what
 #' station you want, you can quickly get all manner of data from it
 #'
-#' @import httr rgeos rgdal sp
-#' @importFrom plyr compact
+#' @export
+#' @import rgeos rgdal sp
+#' 
 #' @template rnoaa
 #' @template rnoaa2
 #' @template stations
 #' @return A list of metadata.
-#' @export
 #' @examples \dontrun{
 #' # Get metadata on all stations
 #' ncdc_stations()

@@ -36,7 +36,6 @@ Imports:
     stringr,
     XML,
     data.table,
-    assertthat,
     jsonlite
 Suggests:
     testthat,

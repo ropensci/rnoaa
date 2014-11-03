@@ -69,7 +69,7 @@ long2utm <- function(lon, lat) {
 }
 
 #' Function to calculate bounding box for the extent parameter in ncdc_stations function.
-#' @import assertthat rgeos
+#' @import rgeos
 #' @export
 #' @param lat Latitude, in decimal degree style
 #' @param lon Longitude, in decimal degree style
@@ -82,8 +82,8 @@ long2utm <- function(lon, lat) {
 #' latlong2bbox(lat=33.95, lon=-118.40, radius=0.02) # radius of 20 meters
 latlong2bbox <- function(lat, lon, radius=10)
 {
-  assert_that(is.numeric(lat), is.numeric(lon))
-  assert_that(abs(lat)<=90, abs(lon)<=180)
+  stopifnot(is.numeric(lat), is.numeric(lon))
+  stopifnot(abs(lat)<=90, abs(lon)<=180)
 
   # Make a spatialpoints obj, do settings, transform to UTM with zone
   d <- SpatialPoints(cbind(lon, lat), proj4string = CRS("+proj=longlat +datum=WGS84"))
@@ -115,7 +115,7 @@ check_response <- function(x){
       } else { warning(sprintf("Error: (%s)", x$status_code)) }
     } else { warn_for_status(x) }
   } else {
-    assert_that(x$headers$`content-type`=='application/json;charset=UTF-8')
+    stopifnot(x$headers$`content-type`=='application/json;charset=UTF-8')
     res <- content(x, as = 'text', encoding = "UTF-8")
     out <- jsonlite::fromJSON(res, simplifyVector = FALSE)
     if(!'results' %in% names(out)){
@@ -145,7 +145,7 @@ check_response_erddap <- function(x){
       } else { warning(sprintf("Error: (%s)", x$status_code)) }
     } else { warn_for_status(x) }
   } else {
-    assert_that(x$headers$`content-type`=='text/csv;charset=UTF-8')
+    stopifnot(x$headers$`content-type`=='text/csv;charset=UTF-8')
     content(x, as = 'text', encoding = "UTF-8")
   }
 }
@@ -164,11 +164,11 @@ check_response_swdi <- function(x, format){
     } else { warn_for_status(x) }
   } else {
     if(format=='csv'){
-      assert_that(x$headers$`content-type`=='text/plain; charset=UTF-8')
+      stopifnot(x$headers$`content-type`=='text/plain; charset=UTF-8')
       uu <- content(x, as = 'text', encoding = "UTF-8")
       read.delim(text=uu, sep = ",")
     } else {
-      assert_that(x$headers$`content-type`=='text/xml')
+      stopifnot(x$headers$`content-type`=='text/xml')
       res <- content(x, as = 'text', encoding = "UTF-8")
       xmlParse(res)
     }

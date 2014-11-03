@@ -2,10 +2,9 @@
 #'
 #' From the NOAA NCDC API docs: Locations can be a specific latitude/longitude point
 #' such as a station, or a label representing a bounding area such as a city.
-#'
-#' @import httr
-#' @importFrom plyr compact rbind.fill
+#' 
 #' @export
+#' 
 #' @template location
 #' @param locationid A valid location id or a chain of location ids seperated by
 #'    ampersands. Data returned will contain data for the location(s) specified (optional)

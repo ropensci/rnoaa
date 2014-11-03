@@ -4,7 +4,7 @@
 #' degrees out right now, then the data type is Air Temperature and the data is 64.
 #'
 #' @import httr
-#' @importFrom plyr compact rbind.fill
+#' @importFrom plyr compact
 #' @export
 #' @template rnoaa
 #' @template rnoaa2

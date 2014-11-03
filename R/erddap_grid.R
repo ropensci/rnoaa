@@ -1,6 +1,7 @@
 #' Get ERDDAP griddap data.
 #'
 #' @export
+#' 
 #' @param x Anything coercable to an object of class erddap_info. So the output of a call to 
 #' \code{erddap_info}, or a datasetid, which will internally be passed through \code{erddap_info}.
 #' @param ... Dimension arguments.
