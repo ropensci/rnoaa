@@ -22,8 +22,6 @@ erddap_datasets(which = "tabledap")
 }
 \description{
 Search for ERDDAP tabledep or griddap datasets.
-
-List datasets for either tabledap or griddap
 }
 \examples{
 \dontrun{

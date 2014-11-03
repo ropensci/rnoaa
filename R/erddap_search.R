@@ -20,9 +20,8 @@
 
 erddap_search <- function(query, page=NULL, page_size=NULL, which='griddap', ...){
   which <- match.arg(which, c("tabledap","griddap"), FALSE)
-  url <- 'http://upwell.pfeg.noaa.gov/erddap/search/index.json'
   args <- noaa_compact(list(searchFor=query, page=page, itemsPerPage=page_size))
-  json <- erdddap_GET(url, args, ...)
+  json <- erdddap_GET(paste0(eurl(), 'search/index.json'), args, ...)
   colnames <- vapply(tolower(json$table$columnNames), function(z) gsub("\\s", "_", z), "", USE.NAMES = FALSE)
   dfs <- lapply(json$table$rows, function(x){
     names(x) <- colnames
@@ -52,12 +51,9 @@ erdddap_GET <- function(url, args, ...){
 }
 
 table_or_grid <- function(datasetid){
-  table_url <- 'http://upwell.pfeg.noaa.gov/erddap/tabledap/index.json'
-  grid_url <- 'http://upwell.pfeg.noaa.gov/erddap/griddap/index.json'
+  table_url <- paste0(eurl(), 'tabledap/index.json')
   tab <- toghelper(table_url)
-  #   grd <- toghelper(grid_url)
   if(datasetid %in% tab) "tabledap" else "griddap"
-  #   if(datasetid %in% grd) "griddap"
 }
 
 toghelper <- function(url){
@@ -67,13 +63,11 @@ toghelper <- function(url){
   vapply(lists, "[[", "", "Dataset ID")
 }
 
-
-#' List datasets for either tabledap or griddap
 #' @export
 #' @rdname erddap_search
 erddap_datasets <- function(which = 'tabledap'){
   which <- match.arg(which, c("tabledap","griddap"), FALSE)
-  url <- sprintf('http://upwell.pfeg.noaa.gov/erddap/%s/index.json', which)
+  url <- sprintf('%s%s/index.json', eurl(), which)
   out <- erdddap_GET(url, list(page=1, itemsPerPage=10000L))
   nms <- out$table$columnNames
   lists <- lapply(out$table$rows, setNames, nm=nms)

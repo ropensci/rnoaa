@@ -64,8 +64,7 @@
 #' }
 
 erddap_info <- function(datasetid, ...){
-  url <- 'http://upwell.pfeg.noaa.gov/erddap/info/%s/index.json'
-  json <- erdddap_GET(sprintf(url, datasetid), list(), ...)
+  json <- erdddap_GET(sprintf(paste0(eurl(), 'info/%s/index.json'), datasetid), list(), ...)
   colnames <- vapply(tolower(json$table$columnNames), function(z) gsub("\\s", "_", z), "", USE.NAMES = FALSE)
   dfs <- lapply(json$table$rows, function(x){
     tmp <- data.frame(x, stringsAsFactors = FALSE)
