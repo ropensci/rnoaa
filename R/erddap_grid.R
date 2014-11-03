@@ -1,7 +1,8 @@
 #' Get ERDDAP griddap data.
 #'
 #' @export
-#' @param .info Output.
+#' @param x Anything coercable to an object of class erddap_info. So the output of a call to 
+#' \code{erddap_info}, or a datasetid, which will internally be passed through \code{erddap_info}.
 #' @param ... Dimension arguments.
 #' @param fields Fields to return, a character vector.
 #' @param stride (integer) How many values to get. 1 = get every value, 2 = get every other value,
@@ -39,8 +40,7 @@
 #'
 #' @examples \dontrun{
 #' # single variable dataset
-#' out <- erddap_info('noaa_esrl_027d_0fb5_5d38')
-#' summary(out)
+#' (out <- erddap_info('noaa_esrl_027d_0fb5_5d38'))
 #' (res <- erddap_grid(out,
 #'  time = c('2012-01-01','2012-06-12'),
 #'  latitude = c(21, 18),
@@ -48,8 +48,7 @@
 #' ))
 #'
 #' # multi-variable dataset
-#' out <- erddap_info('noaa_gfdl_5081_7d4a_7570')
-#' summary(out)
+#' (out <- erddap_info('noaa_gfdl_5081_7d4a_7570'))
 #' (res <- erddap_grid(out,
 #'  time = c('2005-11-01','2006-01-01'),
 #'  latitude = c(20, 21),
@@ -66,8 +65,7 @@
 #'
 #' # multi-variable dataset
 #' ## this one also has a 0-360 longitude system, BLARGH!!!
-#' out <- erddap_info('noaa_gfdl_3c96_7879_a9d3')
-#' summary(out)
+#' (out <- erddap_info('noaa_gfdl_3c96_7879_a9d3'))
 #' (res <- erddap_grid(out,
 #'  time = c('2005-11-01','2006-01-01'),
 #'  latitude = c(20, 22),
@@ -81,30 +79,28 @@
 #' ))
 #'
 #' # single variable dataset
-#' out <- erddap_info('noaa_pfeg_e9ae_3356_22f8')
-#' summary(out)
+#' (out <- erddap_info('noaa_pfeg_e9ae_3356_22f8'))
 #' (res <- erddap_grid(out,
 #'  time = c('2012-06-01','2012-06-12'),
 #'  latitude = c(20, 21),
 #'  longitude = c(-80, -75)
 #' ))
-#'
-#' dimargs <- list(time=c('2012-06-01','2012-06-12'), latitude=c(20, 21), longitude=c(-80, -75))
 #' }
 
-erddap_grid <- function(.info, ..., fields = 'all', stride = 1, path = "~/.rnoaa/upwell",
+erddap_grid <- function(x, ..., fields = 'all', stride = 1, path = "~/.rnoaa/upwell",
   overwrite = TRUE, callopts = list())
 {
+  x <- as.erddap(x)
   dimargs <- list(...)
-  d <- attr(.info, "datasetid")
+  d <- attr(x, "datasetid")
   url <- sprintf("http://upwell.pfeg.noaa.gov/erddap/griddap/%s.csv", d)
-  var <- field_handler(fields, .info$variables$variable_name)
-  dims <- dimvars(.info)
+  var <- field_handler(fields, x$variables$variable_name)
+  dims <- dimvars(x)
   if(all(var == "none")){
-    args <- paste0(sapply(dims, function(x) parse_args(.info, x, stride, dimargs, wname = TRUE)), collapse = ",")
+    args <- paste0(sapply(dims, function(y) parse_args(x, y, stride, dimargs, wname = TRUE)), collapse = ",")
   } else {
-    pargs <- sapply(dims, function(x) parse_args(.info, x, stride, dimargs))
-    args <- paste0(lapply(var, function(x) paste0(x, paste0(pargs, collapse = ""))), collapse = ",")
+    pargs <- sapply(dims, function(y) parse_args(x, y, stride, dimargs))
+    args <- paste0(lapply(var, function(y) paste0(y, paste0(pargs, collapse = ""))), collapse = ",")
   }
   csvpath <- erd_up_GET(url, dset=d, args, bp=path, overwrite, callopts)
   structure(list(data=read_upwell(csvpath)), class="upwell_data", datasetid=d, path=csvpath)
@@ -114,9 +110,7 @@ field_handler <- function(x, y){
   x <- match.arg(x, c(y, "none", "all"), TRUE)
   if(length(x) == 1 && x == "all"){
     y
-  } else if(all(x %in% y)) {
-    x
-  } else if(x == "none") {
+  } else if(all(x %in% y) || x == "none") {
     x
   }
 }

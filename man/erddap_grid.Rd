@@ -3,11 +3,12 @@
 \alias{erddap_grid}
 \title{Get ERDDAP griddap data.}
 \usage{
-erddap_grid(.info, ..., fields = "all", stride = 1,
-  path = "~/.rnoaa/upwell", overwrite = TRUE, callopts = list())
+erddap_grid(x, ..., fields = "all", stride = 1, path = "~/.rnoaa/upwell",
+  overwrite = TRUE, callopts = list())
 }
 \arguments{
-\item{.info}{Output.}
+\item{x}{Anything coercable to an object of class erddap_info. So the output of a call to
+\code{erddap_info}, or a datasetid, which will internally be passed through \code{erddap_info}.}
 
 \item{...}{Dimension arguments.}
 
@@ -59,8 +60,7 @@ to various SQL DB options though.
 \examples{
 \dontrun{
 # single variable dataset
-out <- erddap_info('noaa_esrl_027d_0fb5_5d38')
-summary(out)
+(out <- erddap_info('noaa_esrl_027d_0fb5_5d38'))
 (res <- erddap_grid(out,
  time = c('2012-01-01','2012-06-12'),
  latitude = c(21, 18),
@@ -68,8 +68,7 @@ summary(out)
 ))
 
 # multi-variable dataset
-out <- erddap_info('noaa_gfdl_5081_7d4a_7570')
-summary(out)
+(out <- erddap_info('noaa_gfdl_5081_7d4a_7570'))
 (res <- erddap_grid(out,
  time = c('2005-11-01','2006-01-01'),
  latitude = c(20, 21),
@@ -86,8 +85,7 @@ longitude = c(10, 11), fields = 'none'))
 
 # multi-variable dataset
 ## this one also has a 0-360 longitude system, BLARGH!!!
-out <- erddap_info('noaa_gfdl_3c96_7879_a9d3')
-summary(out)
+(out <- erddap_info('noaa_gfdl_3c96_7879_a9d3'))
 (res <- erddap_grid(out,
  time = c('2005-11-01','2006-01-01'),
  latitude = c(20, 22),
@@ -101,15 +99,12 @@ summary(out)
 ))
 
 # single variable dataset
-out <- erddap_info('noaa_pfeg_e9ae_3356_22f8')
-summary(out)
+(out <- erddap_info('noaa_pfeg_e9ae_3356_22f8'))
 (res <- erddap_grid(out,
  time = c('2012-06-01','2012-06-12'),
  latitude = c(20, 21),
  longitude = c(-80, -75)
 ))
-
-dimargs <- list(time=c('2012-06-01','2012-06-12'), latitude=c(20, 21), longitude=c(-80, -75))
 }
 }
 
