@@ -12,6 +12,8 @@ as.erddap_info(x)
 \item{datasetid}{Dataset id}
 
 \item{...}{Further args passed on to \code{\link[httr]{GET}} (must be a named parameter)}
+
+\item{x}{A datasetid or the output of \code{erddap_info}}
 }
 \value{
 Prints a summary of the data on return, but you can index to various information.

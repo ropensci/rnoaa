@@ -5,6 +5,7 @@
 #' @importFrom jsonlite fromJSON
 #' @param datasetid Dataset id
 #' @param ... Further args passed on to \code{\link[httr]{GET}} (must be a named parameter)
+#' @param x A datasetid or the output of \code{erddap_info}
 #' @return Prints a summary of the data on return, but you can index to various information.
 #'
 #' The data is a list of length two with:
