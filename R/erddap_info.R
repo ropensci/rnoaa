@@ -122,3 +122,13 @@ print.erddap_info <- function(x, ...){
 foo <- function(x, y){
   x[ x$attribute_name == y, "value"]
 }
+
+#' @export
+#' @rdname erddap_info
+as.erddap_info <- function(x) UseMethod("as.erddap")
+
+#' @export
+as.erddap_info.erddap_info <- function(x) x
+
+#' @export
+as.erddap_info.character <- function(x) erddap_info(x)
