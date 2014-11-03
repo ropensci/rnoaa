@@ -3,12 +3,13 @@
 \alias{erddap_table}
 \title{Get ERDDAP tabledap data.}
 \usage{
-erddap_table(datasetid, ..., fields = NULL, distinct = FALSE,
-  orderby = NULL, orderbymax = NULL, orderbymin = NULL,
-  orderbyminmax = NULL, units = NULL, callopts = list())
+erddap_table(x, ..., fields = NULL, distinct = FALSE, orderby = NULL,
+  orderbymax = NULL, orderbymin = NULL, orderbyminmax = NULL,
+  units = NULL, callopts = list())
 }
 \arguments{
-\item{datasetid}{Dataset id}
+\item{x}{Anything coercable to an object of class erddap_info. So the output of a call to
+\code{erddap_info}, or a datasetid, which will internally be passed through \code{erddap_info}.}
 
 \item{...}{Any number of key-value pairs in quotes as query constraints. See Details & examples}
 
@@ -62,75 +63,73 @@ that means. They are provided via parameters in this function. See \code{distinc
 \examples{
 \dontrun{
 # Just passing the datasetid without fields gives all columns back
-out <- erddap_table(datasetid='erdCalCOFIfshsiz')
+out <- erddap_table('erdCalCOFIfshsiz')
 nrow(out)
 
 # Pass time constraints
-head(erddap_table(datasetid='erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08'))
+head(erddap_table('erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08'))
 
 # Pass in fields (i.e., columns to retrieve) & time constraints
-erddap_table(datasetid='erdCalCOFIfshsiz',fields=c('longitude','latitude','fish_size','itis_tsn'),
+erddap_table('erdCalCOFIfshsiz',fields=c('longitude','latitude','fish_size','itis_tsn'),
    'time>=2001-07-07','time<=2001-07-10')
-erddap_table(datasetid='erdCinpKfmBT', fields=c('latitude','longitude',
+erddap_table('erdCinpKfmBT', fields=c('latitude','longitude',
    'Aplysia_californica_Mean_Density','Muricea_californica_Mean_Density'),
    'time>=2007-06-24','time<=2007-07-01')
 
 # Get info on a datasetid, then get data given information learned
 erddap_info('erdCalCOFIlrvsiz')$variables
-erddap_table(datasetid='erdCalCOFIlrvsiz', fields=c('latitude','longitude','larvae_size',
+erddap_table('erdCalCOFIlrvsiz', fields=c('latitude','longitude','larvae_size',
    'itis_tsn'), 'time>=2011-10-25', 'time<=2011-10-31')
 
 # An example workflow
 ## Search for data
-(out <- erddap_search(query='fish size'))
+(out <- erddap_search(query='fish', which = 'table'))
 ## Using a datasetid, search for information on a datasetid
-id <- out$info$dataset_id[1]
-erddap_info(datasetid=id)$variables
+id <- out$info$dataset_id[6]
+erddap_info(id)$variables
 ## Get data from the dataset
-head(erddap_table(datasetid = id, fields = c('latitude','longitude','scientific_name')))
+head(erddap_table(id, fields = c('life_stage','scientific_name','absolute_max_temp')))
 
 # Time constraint
 ## Limit by time with date only
-erddap_table(datasetid = id, fields = c('latitude','longitude','scientific_name'),
+(info <- erddap_info('erdCalCOFIfshsiz'))
+erddap_table(info, fields = c('latitude','longitude','scientific_name'),
    'time>=2001-07-14')
-## Limit by time with hours and date
-erddap_table(datasetid='ndbcSosWTemp', fields=c('latitude','longitude','sea_water_temperature'),
-   'time>=2014-05-14T15:15:00Z')
 
 # Use distinct parameter
-erddap_table(datasetid='erdCalCOFIfshsiz',fields=c('longitude','latitude','fish_size','itis_tsn'),
+erddap_table('erdCalCOFIfshsiz',fields=c('longitude','latitude','fish_size','itis_tsn'),
    'time>=2001-07-07','time<=2001-07-10', distinct=TRUE)
 
 # Use units parameter
 ## In this example, values are the same, but sometimes they can be different given the units
 ## value passed
-erddap_table(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
    'time>=2007-09-19', 'time<=2007-09-21', units='udunits')
-erddap_table(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
    'time>=2007-09-19', 'time<=2007-09-21', units='ucum')
 
 # Use orderby parameter
-erddap_table(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
    'time>=2007-09-19', 'time<=2007-09-21', orderby='temperature')
 # Use orderbymax parameter
-erddap_table(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
    'time>=2007-09-19', 'time<=2007-09-21', orderbymax='temperature')
 # Use orderbymin parameter
-erddap_table(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
    'time>=2007-09-19', 'time<=2007-09-21', orderbymin='temperature')
 # Use orderbyminmax parameter
-erddap_table(datasetid='erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
+erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
    'time>=2007-09-19', 'time<=2007-09-21', orderbyminmax='temperature')
 # Use orderbymin parameter with multiple values
-erddap_table(datasetid='erdCinpKfmT',fields=c('longitude','latitude','time','depth','temperature'),
+erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','depth','temperature'),
    'time>=2007-06-10', 'time<=2007-09-21', orderbymax=c('depth','temperature'))
 
 # Spatial delimitation
-erddap_table(datasetid = 'erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name'),
+erddap_table('erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name'),
  'latitude>=34.8', 'latitude<=35', 'longitude>=-125', 'longitude<=-124')
 
 # Integrate with taxize
-out <- erddap_table(datasetid = 'erdCalCOFIfshsiz',
+out <- erddap_table('erdCalCOFIfshsiz',
    fields = c('latitude','longitude','scientific_name','itis_tsn'))
 tsns <- unique(out$itis_tsn[1:100])
 library("taxize")
