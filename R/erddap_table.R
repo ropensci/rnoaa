@@ -143,7 +143,7 @@ erddap_table <- function(x, ..., fields=NULL, distinct=FALSE, orderby=NULL,
     return( NA )
   } else {
     df <- read.delim(text=out, sep=",", stringsAsFactors=FALSE)[-1,]
-    df
+    structure(list(data=df), class="erddap_table", datasetid=attr(x, "datasetid"), path="memory")
   }
 }
 
@@ -157,3 +157,12 @@ makevar <- function(x, y){
 }
 
 eurl <- function() "http://upwell.pfeg.noaa.gov/erddap/"
+
+#' @export
+print.erddap_table <- function(x, ..., n = 10){
+  finfo <- file_info(attr(x, "path"))
+  cat(sprintf("<NOAA ERDDAP tabledap> %s", attr(x, "datasetid")), sep = "\n")
+  cat(sprintf("   Path: [%s]", attr(x, "path")), sep = "\n")
+  cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x$data), NCOL(x$data)), sep = "\n")
+  trunc_mat(x$data, n = n)
+}

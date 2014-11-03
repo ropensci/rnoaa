@@ -110,7 +110,7 @@ erddap_grid <- function(x, ..., fields = 'all', stride = 1, path = "~/.rnoaa/upw
     args <- paste0(lapply(var, function(y) paste0(y, paste0(pargs, collapse = ""))), collapse = ",")
   }
   csvpath <- erd_up_GET(sprintf("%sgriddap/%s.csv", eurl(), d), d, args, path, overwrite, callopts)
-  structure(list(data=read_upwell(csvpath)), class="upwell_data", datasetid=d, path=csvpath)
+  structure(list(data=read_upwell(csvpath)), class="erddap_grid", datasetid=d, path=csvpath)
 }
 
 field_handler <- function(x, y){
@@ -171,9 +171,9 @@ erd_up_GET <- function(url, dset, args, bp, overwrite, ...){
 }
 
 #' @export
-print.upwell_data <- function(x, ..., n = 10){
+print.erddap_grid <- function(x, ..., n = 10){
   finfo <- file_info(attr(x, "path"))
-  cat(sprintf("<NOAA ERDDAP Data> %s", attr(x, "datasetid")), sep = "\n")
+  cat(sprintf("<NOAA ERDDAP griddap> %s", attr(x, "datasetid")), sep = "\n")
   cat(sprintf("   Path: [%s]", attr(x, "path")), sep = "\n")
   cat(sprintf("   Last updated: [%s]", finfo$mtime), sep = "\n")
   cat(sprintf("   File size:    [%s mb]", finfo$size), sep = "\n")
