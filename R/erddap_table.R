@@ -41,7 +41,8 @@
 #' Server-side functionality: Some tasks are done server side. You don't have to worry about what
 #' that means. They are provided via parameters in this function. See \code{distinct},
 #' \code{orderby}, \code{orderbymax}, \code{orderbymin}, \code{orderbyminmax}, and \code{units}.
-#'
+#' @references  \url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+#' @author Scott Chamberlain <myrmecocystus@@gmail.com>
 #' @examples \dontrun{
 #' # Just passing the datasetid without fields gives all columns back
 #' out <- erddap_table('erdCalCOFIfshsiz')

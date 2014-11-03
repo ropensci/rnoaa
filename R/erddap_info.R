@@ -23,6 +23,8 @@
 #'  \item longitude
 #'  \item sss
 #' }
+#' @references  \url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+#' @author Scott Chamberlain <myrmecocystus@@gmail.com>
 #' @examples \dontrun{
 #' # grid dap datasets
 #' erddap_info('noaa_pfeg_696e_ec99_6fa6')

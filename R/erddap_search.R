@@ -7,6 +7,8 @@
 #' @param page_size (integer) Results per page
 #' @param which (character) One of tabledep or griddap.
 #' @param ... Further args passed on to \code{\link[httr]{GET}} (must be a named parameter)
+#' @references  \url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+#' @author Scott Chamberlain <myrmecocystus@@gmail.com>
 #' @examples \dontrun{
 #' (out <- erddap_search(query='temperature'))
 #' out$alldata[[1]]

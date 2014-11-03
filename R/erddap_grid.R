@@ -38,7 +38,8 @@
 #' pass \dQuote{disk} if you want to store on disk in a file. Possibly will add other options,
 #' like \dQuote{sql} for storing in a SQL database, though that option would need to be expanded
 #' to various SQL DB options though.
-#'
+#' @references  \url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+#' @author Scott Chamberlain <myrmecocystus@@gmail.com>
 #' @examples \dontrun{
 #' # single variable dataset
 #' ## You can pass in the outpu of a call to erddap_info

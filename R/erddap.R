@@ -28,5 +28,7 @@
 #'  \item \code{\link{erddap_grid}}
 #' }
 #' 
+#' @references  \url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+#' @author Scott Chamberlain <myrmecocystus@@gmail.com>
 #' @name erddap
 NULL

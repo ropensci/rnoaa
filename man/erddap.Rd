@@ -32,4 +32,10 @@ The following are the ERDDAP functions:
  \item \code{\link{erddap_grid}}
 }
 }
+\author{
+Scott Chamberlain <myrmecocystus@gmail.com>
+}
+\references{
+\url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+}
 

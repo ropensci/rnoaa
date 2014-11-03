@@ -79,4 +79,10 @@ out$alldata$longitude
 out$alldata$Haliotis_corrugata_Mean_Density
 }
 }
+\author{
+Scott Chamberlain <myrmecocystus@gmail.com>
+}
+\references{
+\url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+}
 

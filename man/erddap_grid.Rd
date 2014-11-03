@@ -114,4 +114,10 @@ longitude = c(10, 11), fields = 'none'))
 ))
 }
 }
+\author{
+Scott Chamberlain <myrmecocystus@gmail.com>
+}
+\references{
+\url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+}
 

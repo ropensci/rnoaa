@@ -137,4 +137,10 @@ classif <- classification(tsns, db = "itis")
 head(rbind(classif)); tail(rbind(classif))
 }
 }
+\author{
+Scott Chamberlain <myrmecocystus@gmail.com>
+}
+\references{
+\url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+}
 
