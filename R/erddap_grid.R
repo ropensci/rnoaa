@@ -1,4 +1,4 @@
-#' Get ERDDAP UPWELL data.
+#' Get ERDDAP griddap data.
 #'
 #' @export
 #' @param .info Output.

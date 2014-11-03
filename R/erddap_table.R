@@ -1,4 +1,4 @@
-#' Get ERDDAP data.
+#' Get ERDDAP tabledap data.
 #'
 #' @export
 #' @import httr assertthat
