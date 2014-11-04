@@ -3,8 +3,8 @@
 \alias{erddap_grid}
 \title{Get ERDDAP griddap data.}
 \usage{
-erddap_grid(x, ..., fields = "all", stride = 1, path = "~/.rnoaa/upwell",
-  overwrite = TRUE, callopts = list())
+erddap_grid(x, ..., fields = "all", stride = 1, store = disk(),
+  callopts = list())
 }
 \arguments{
 \item{x}{Anything coercable to an object of class erddap_info. So the output of a call to
@@ -17,11 +17,11 @@ erddap_grid(x, ..., fields = "all", stride = 1, path = "~/.rnoaa/upwell",
 \item{stride}{(integer) How many values to get. 1 = get every value, 2 = get every other value,
 etc. Default: 1 (i.e., get every value)}
 
+\item{callopts}{Pass on curl options to \code{\link[httr]{GET}}}
+
 \item{path}{Path to store files in. Default: ~/.rnoaa/upwell}
 
 \item{overwrite}{(logical) Overwrite an existing file of the same name? Default: TRUE}
-
-\item{callopts}{Pass on curl options to \code{\link[httr]{GET}}}
 }
 \description{
 Get ERDDAP griddap data.
@@ -105,12 +105,22 @@ longitude = c(10, 11), fields = 'none'))
  depth = c(5, 50)
 ))
 
-# single variable dataset
+# Write to memory (within R), or to disk
 (out <- erddap_info('noaa_pfeg_e9ae_3356_22f8'))
+## disk, by default (to prevent bogging down system w/ large datasets)
+## you can also pass in path and overwrite options to disk()
 (res <- erddap_grid(out,
  time = c('2012-06-01','2012-06-12'),
  latitude = c(20, 21),
- longitude = c(-80, -75)
+ longitude = c(-80, -75),
+ store = disk()
+))
+## memory
+(res <- erddap_grid(out,
+ time = c('2012-06-01','2012-06-12'),
+ latitude = c(20, 21),
+ longitude = c(-80, -75),
+ store = memory()
 ))
 }
 }

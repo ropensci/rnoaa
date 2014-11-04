@@ -87,17 +87,26 @@
 #'  depth = c(5, 50)
 #' ))
 #'
-#' # single variable dataset
+#' # Write to memory (within R), or to disk
 #' (out <- erddap_info('noaa_pfeg_e9ae_3356_22f8'))
+#' ## disk, by default (to prevent bogging down system w/ large datasets)
+#' ## you can also pass in path and overwrite options to disk()
 #' (res <- erddap_grid(out,
 #'  time = c('2012-06-01','2012-06-12'),
 #'  latitude = c(20, 21),
-#'  longitude = c(-80, -75)
+#'  longitude = c(-80, -75),
+#'  store = disk()
+#' ))
+#' ## memory
+#' (res <- erddap_grid(out,
+#'  time = c('2012-06-01','2012-06-12'),
+#'  latitude = c(20, 21),
+#'  longitude = c(-80, -75),
+#'  store = memory()
 #' ))
 #' }
 
-erddap_grid <- function(x, ..., fields = 'all', stride = 1, path = "~/.rnoaa/upwell",
-  overwrite = TRUE, callopts = list())
+erddap_grid <- function(x, ..., fields = 'all', stride = 1, store = disk(), callopts = list())
 {
   x <- as.erddap_info(x)
   dimargs <- list(...)
@@ -110,8 +119,9 @@ erddap_grid <- function(x, ..., fields = 'all', stride = 1, path = "~/.rnoaa/upw
     pargs <- sapply(dims, function(y) parse_args(x, y, stride, dimargs))
     args <- paste0(lapply(var, function(y) paste0(y, paste0(pargs, collapse = ""))), collapse = ",")
   }
-  csvpath <- erd_up_GET(sprintf("%sgriddap/%s.csv", eurl(), d), d, args, path, overwrite, callopts)
-  structure(list(data=read_upwell(csvpath)), class="erddap_grid", datasetid=d, path=csvpath)
+  resp <- erd_up_GET(sprintf("%sgriddap/%s.csv", eurl(), d), d, args, store, callopts)
+  loc <- if(store$store == "disk") resp else "memory"
+  structure(list(data=read_upwell(resp)), class="erddap_grid", datasetid=d, path=loc)
 }
 
 field_handler <- function(x, y){
@@ -165,10 +175,22 @@ dimvars <- function(x){
   vars[ !vars %in% c("NC_GLOBAL", x$variables$variable_name) ]
 }
 
-erd_up_GET <- function(url, dset, args, bp, overwrite, ...){
-  dir.create(bp, showWarnings = FALSE, recursive = TRUE)
-  res <- GET(url, query=args, write_disk(writepath(bp, dset), overwrite), ...)
-  res$request$writer[[1]]
+erd_up_GET <- function(url, dset, args, store, ...){
+  if(store$store == "disk"){
+    dir.create(store$path, showWarnings = FALSE, recursive = TRUE)
+    res <- GET(url, query=args, write_disk(writepath(store$path, dset), store$overwrite), ...)
+    res$request$writer[[1]]
+  } else {
+    GET(url, query=args, ...)
+  }
+}
+
+memory <- function(){
+  list(store="memory")
+}
+
+disk <- function(path = "~/.rnoaa/erddap", overwrite = TRUE){
+  list(store="disk", path = path, overwrite = overwrite)
 }
 
 #' @export
@@ -176,8 +198,10 @@ print.erddap_grid <- function(x, ..., n = 10){
   finfo <- file_info(attr(x, "path"))
   cat(sprintf("<NOAA ERDDAP griddap> %s", attr(x, "datasetid")), sep = "\n")
   cat(sprintf("   Path: [%s]", attr(x, "path")), sep = "\n")
-  cat(sprintf("   Last updated: [%s]", finfo$mtime), sep = "\n")
-  cat(sprintf("   File size:    [%s mb]", finfo$size), sep = "\n")
+  if(attr(x, "path") != "memory"){
+    cat(sprintf("   Last updated: [%s]", finfo$mtime), sep = "\n")
+    cat(sprintf("   File size:    [%s mb]", finfo$size), sep = "\n")
+  }
   cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x$data), NCOL(x$data)), sep = "\n")
   trunc_mat(x$data, n = n)
 }
