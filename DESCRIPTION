@@ -41,4 +41,5 @@ Suggests:
     testthat,
     roxygen2,
     knitr,
-    taxize
+    taxize,
+    dplyr
