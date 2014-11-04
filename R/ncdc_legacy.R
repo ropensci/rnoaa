@@ -8,6 +8,7 @@
 #' @param state_abbrev State abbreviation
 #' @param country_id Country id
 #' @param country_abbrev Country abbreviation
+#' @param ... Further args passed to \code{\link[httr]{GET}}
 #' @examples \donttest{
 #' ncdc_leg_variables()
 #' ncdc_leg_variables(variable = 'TMP')

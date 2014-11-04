@@ -18,6 +18,8 @@ ncdc_leg_sites(dataset = "isd", state_id = NULL, state_abbrev = NULL,
 \item{token}{Your token. Store as environment variable as NOAA_LEG_TOKEN or option variable
 as noaalegtoken.}
 
+\item{...}{Further args passed to \code{\link[httr]{GET}}}
+
 \item{state_id}{State ID}
 
 \item{state_abbrev}{State abbreviation}
