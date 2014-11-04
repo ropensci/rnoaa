@@ -17,11 +17,9 @@ erddap_grid(x, ..., fields = "all", stride = 1, store = disk(),
 \item{stride}{(integer) How many values to get. 1 = get every value, 2 = get every other value,
 etc. Default: 1 (i.e., get every value)}
 
+\item{store}{One of \code{disk} (default) or \code{memory}. You can pass options to \code{disk}}
+
 \item{callopts}{Pass on curl options to \code{\link[httr]{GET}}}
-
-\item{path}{Path to store files in. Default: ~/.rnoaa/upwell}
-
-\item{overwrite}{(logical) Overwrite an existing file of the same name? Default: TRUE}
 }
 \description{
 Get ERDDAP griddap data.

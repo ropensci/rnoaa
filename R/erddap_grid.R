@@ -8,8 +8,7 @@
 #' @param fields Fields to return, a character vector.
 #' @param stride (integer) How many values to get. 1 = get every value, 2 = get every other value,
 #' etc. Default: 1 (i.e., get every value)
-#' @param path Path to store files in. Default: ~/.rnoaa/upwell
-#' @param overwrite (logical) Overwrite an existing file of the same name? Default: TRUE
+#' @param store One of \code{disk} (default) or \code{memory}. You can pass options to \code{disk}
 #' @param callopts Pass on curl options to \code{\link[httr]{GET}}
 #'
 #' @details Details:
@@ -183,14 +182,6 @@ erd_up_GET <- function(url, dset, args, store, ...){
   } else {
     GET(url, query=args, ...)
   }
-}
-
-memory <- function(){
-  list(store="memory")
-}
-
-disk <- function(path = "~/.rnoaa/erddap", overwrite = TRUE){
-  list(store="disk", path = path, overwrite = overwrite)
 }
 
 #' @export
