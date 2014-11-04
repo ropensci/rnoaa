@@ -5,7 +5,7 @@
 \usage{
 erddap_table(x, ..., fields = NULL, distinct = FALSE, orderby = NULL,
   orderbymax = NULL, orderbymin = NULL, orderbyminmax = NULL,
-  units = NULL, callopts = list())
+  units = NULL, store = disk(), callopts = list())
 }
 \arguments{
 \item{x}{Anything coercable to an object of class erddap_info. So the output of a call to
@@ -63,11 +63,10 @@ that means. They are provided via parameters in this function. See \code{distinc
 \examples{
 \dontrun{
 # Just passing the datasetid without fields gives all columns back
-out <- erddap_table('erdCalCOFIfshsiz')
-nrow(out); head(out)
+erddap_table('erdCalCOFIfshsiz')
 
 # Pass time constraints
-head(erddap_table('erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08'))
+erddap_table('erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08')
 
 # Pass in fields (i.e., columns to retrieve) & time constraints
 erddap_table('erdCalCOFIfshsiz',fields=c('longitude','latitude','fish_size','itis_tsn'),
@@ -135,6 +134,14 @@ tsns <- unique(out$itis_tsn[1:100])
 library("taxize")
 classif <- classification(tsns, db = "itis")
 head(rbind(classif)); tail(rbind(classif))
+
+# Write to memory (within R), or to disk
+(out <- erddap_info('erdCalCOFIfshsiz'))
+## disk, by default (to prevent bogging down system w/ large datasets)
+## you can also pass in path and overwrite options to disk()
+erddap_table('erdCalCOFIfshsiz', store = disk())
+## memory
+erddap_table(x='erdCalCOFIfshsiz', store = memory())
 }
 }
 \author{

@@ -146,7 +146,8 @@ check_response_erddap <- function(x){
     } else { warn_for_status(x) }
   } else {
     stopifnot(x$headers$`content-type`=='text/csv;charset=UTF-8')
-    content(x, as = 'text', encoding = "UTF-8")
+    x
+#     content(x, as = 'text', encoding = "UTF-8")
   }
 }
 
@@ -202,6 +203,14 @@ read_upwell <- function(x){
   }
   names(tmp) <- tolower(nmz)
   tmp
+}
+
+read_table <- function(x){
+  if(is(x, "response")) {
+    tmp <- read.csv(text = content(x, "text"), header = FALSE, sep = ",", stringsAsFactors=FALSE, skip = 2)
+  } else {  
+    read.delim(x, sep=",", stringsAsFactors=FALSE)[-1,]
+  }
 }
 
 check_key <- function(x){

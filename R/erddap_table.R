@@ -45,11 +45,10 @@
 #' @author Scott Chamberlain <myrmecocystus@@gmail.com>
 #' @examples \dontrun{
 #' # Just passing the datasetid without fields gives all columns back
-#' out <- erddap_table('erdCalCOFIfshsiz')
-#' nrow(out); head(out)
+#' erddap_table('erdCalCOFIfshsiz')
 #'
 #' # Pass time constraints
-#' head(erddap_table('erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08'))
+#' erddap_table('erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08')
 #'
 #' # Pass in fields (i.e., columns to retrieve) & time constraints
 #' erddap_table('erdCalCOFIfshsiz',fields=c('longitude','latitude','fish_size','itis_tsn'),
@@ -117,10 +116,19 @@
 #' library("taxize")
 #' classif <- classification(tsns, db = "itis")
 #' head(rbind(classif)); tail(rbind(classif))
+#' 
+#' # Write to memory (within R), or to disk
+#' (out <- erddap_info('erdCalCOFIfshsiz'))
+#' ## disk, by default (to prevent bogging down system w/ large datasets)
+#' ## you can also pass in path and overwrite options to disk()
+#' erddap_table('erdCalCOFIfshsiz', store = disk())
+#' ## memory
+#' erddap_table(x='erdCalCOFIfshsiz', store = memory())
 #' }
 
 erddap_table <- function(x, ..., fields=NULL, distinct=FALSE, orderby=NULL,
-  orderbymax=NULL, orderbymin=NULL, orderbyminmax=NULL, units=NULL, callopts=list())
+  orderbymax=NULL, orderbymin=NULL, orderbyminmax=NULL, units=NULL, 
+  store = disk(), callopts=list())
 {
   x <- as.erddap_info(x)
   fields <- paste(fields, collapse = ",")
@@ -138,24 +146,35 @@ erddap_table <- function(x, ..., fields=NULL, distinct=FALSE, orderby=NULL,
   if(!nchar(args[[1]]) == 0){
     url <- paste0(url, '&', args)
   }
-  tt <- GET(url, list(), callopts)
-  out <- check_response_erddap(tt)
-  if(grepl("Error", out)){
-    return( NA )
-  } else {
-    df <- read.delim(text=out, sep=",", stringsAsFactors=FALSE)[-1,]
-    structure(df, class=c("erddap_table","data.frame"), datasetid=attr(x, "datasetid"), path="memory")
-  }
+  resp <- erd_tab_GET(url, dset=attr(x, "datasetid"), store, callopts)
+  loc <- if(store$store == "disk") resp else "memory"
+  structure(read_table(resp), class=c("erddap_table","data.frame"), datasetid=attr(x, "datasetid"), path=loc)
 }
-
 
 #' @export
 print.erddap_table <- function(x, ..., n = 10){
   finfo <- file_info(attr(x, "path"))
   cat(sprintf("<NOAA ERDDAP tabledap> %s", attr(x, "datasetid")), sep = "\n")
   cat(sprintf("   Path: [%s]", attr(x, "path")), sep = "\n")
+  if(attr(x, "path") != "memory"){
+    cat(sprintf("   Last updated: [%s]", finfo$mtime), sep = "\n")
+    cat(sprintf("   File size:    [%s mb]", finfo$size), sep = "\n")
+  }
   cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x), NCOL(x$data)), sep = "\n")
   trunc_mat(x, n = n)
+}
+
+erd_tab_GET <- function(url, dset, store, ...){
+  if(store$store == "disk"){
+    dir.create(store$path, showWarnings = FALSE, recursive = TRUE)
+    res <- GET(url, write_disk(writepath(store$path, dset), store$overwrite), ...)
+    out <- check_response_erddap(res)
+    if(grepl("Error", out)) NA else res$request$writer[[1]]
+  } else {
+    res <- GET(url, ...)
+    out <- check_response_erddap(res)
+    if(grepl("Error", out)) NA else res
+  }
 }
 
 makevar <- function(x, y){
