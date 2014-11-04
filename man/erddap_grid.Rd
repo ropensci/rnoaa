@@ -113,6 +113,20 @@ longitude = c(10, 11), fields = 'none'))
  longitude = c(-80, -75),
  store = disk()
 ))
+## the 2nd call is much faster as it's mostly just the time of reading in the table from disk
+system.time( erddap_grid(out,
+ time = c('2012-06-01','2012-06-12'),
+ latitude = c(20, 21),
+ longitude = c(-80, -75),
+ store = disk()
+) )
+system.time( erddap_grid(out,
+ time = c('2012-06-01','2012-06-12'),
+ latitude = c(20, 21),
+ longitude = c(-80, -75),
+ store = disk()
+) )
+
 ## memory
 (res <- erddap_grid(out,
  time = c('2012-06-01','2012-06-12'),

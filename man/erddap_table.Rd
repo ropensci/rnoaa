@@ -140,6 +140,9 @@ head(rbind(classif)); tail(rbind(classif))
 ## disk, by default (to prevent bogging down system w/ large datasets)
 ## you can also pass in path and overwrite options to disk()
 erddap_table('erdCalCOFIfshsiz', store = disk())
+## the 2nd call is much faster as it's mostly just the time of reading in the table from disk
+system.time( erddap_table('erdCalCOFIfshsiz', store = disk()) )
+system.time( erddap_table('erdCalCOFIfshsiz', store = disk()) )
 ## memory
 erddap_table(x='erdCalCOFIfshsiz', store = memory())
 }

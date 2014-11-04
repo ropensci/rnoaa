@@ -96,6 +96,20 @@
 #'  longitude = c(-80, -75),
 #'  store = disk()
 #' ))
+#' ## the 2nd call is much faster as it's mostly just the time of reading in the table from disk
+#' system.time( erddap_grid(out,
+#'  time = c('2012-06-01','2012-06-12'),
+#'  latitude = c(20, 21),
+#'  longitude = c(-80, -75),
+#'  store = disk()
+#' ) )
+#' system.time( erddap_grid(out,
+#'  time = c('2012-06-01','2012-06-12'),
+#'  latitude = c(20, 21),
+#'  longitude = c(-80, -75),
+#'  store = disk()
+#' ) )
+#' 
 #' ## memory
 #' (res <- erddap_grid(out,
 #'  time = c('2012-06-01','2012-06-12'),
@@ -193,9 +207,12 @@ dimvars <- function(x){
 
 erd_up_GET <- function(url, dset, args, store, ...){
   if(store$store == "disk"){
-    dir.create(store$path, showWarnings = FALSE, recursive = TRUE)
-    res <- GET(url, query=args, write_disk(writepath(store$path, dset), store$overwrite), ...)
-    res$request$writer[[1]]
+    fpath <- path.expand(file.path(store$path, paste0(dset, ".csv")))
+    if( file.exists( fpath ) ){ fpath } else {
+      dir.create(store$path, showWarnings = FALSE, recursive = TRUE)
+      res <- GET(url, query=args, write_disk(writepath(store$path, dset), store$overwrite), ...)
+      res$request$writer[[1]]
+    }
   } else {
     GET(url, query=args, ...)
   }

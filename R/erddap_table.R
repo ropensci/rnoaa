@@ -122,6 +122,9 @@
 #' ## disk, by default (to prevent bogging down system w/ large datasets)
 #' ## you can also pass in path and overwrite options to disk()
 #' erddap_table('erdCalCOFIfshsiz', store = disk())
+#' ## the 2nd call is much faster as it's mostly just the time of reading in the table from disk
+#' system.time( erddap_table('erdCalCOFIfshsiz', store = disk()) )
+#' system.time( erddap_table('erdCalCOFIfshsiz', store = disk()) )
 #' ## memory
 #' erddap_table(x='erdCalCOFIfshsiz', store = memory())
 #' }
@@ -160,16 +163,19 @@ print.erddap_table <- function(x, ..., n = 10){
     cat(sprintf("   Last updated: [%s]", finfo$mtime), sep = "\n")
     cat(sprintf("   File size:    [%s mb]", finfo$size), sep = "\n")
   }
-  cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x), NCOL(x$data)), sep = "\n")
+  cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x), NCOL(x)), sep = "\n")
   trunc_mat(x, n = n)
 }
 
 erd_tab_GET <- function(url, dset, store, ...){
   if(store$store == "disk"){
-    dir.create(store$path, showWarnings = FALSE, recursive = TRUE)
-    res <- GET(url, write_disk(writepath(store$path, dset), store$overwrite), ...)
-    out <- check_response_erddap(res)
-    if(grepl("Error", out)) NA else res$request$writer[[1]]
+    fpath <- path.expand(file.path(store$path, paste0(dset, ".csv")))
+    if( file.exists( fpath ) ){ fpath } else {
+      dir.create(store$path, showWarnings = FALSE, recursive = TRUE)
+      res <- GET(url, write_disk(writepath(store$path, dset), store$overwrite), ...)
+      out <- check_response_erddap(res)
+      if(grepl("Error", out)) NA else res$request$writer[[1]]
+    }
   } else {
     res <- GET(url, ...)
     out <- check_response_erddap(res)
