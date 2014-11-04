@@ -4,3 +4,4 @@
 rnoaa.Rproj
 .DS_Store
 inst/ignore/bath.r
+inst/cache/
