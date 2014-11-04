@@ -123,6 +123,20 @@ erddap_grid <- function(x, ..., fields = 'all', stride = 1, store = disk(), call
   structure(list(data=read_upwell(resp)), class="erddap_grid", datasetid=d, path=loc)
 }
 
+
+#' @export
+print.erddap_grid <- function(x, ..., n = 10){
+  finfo <- file_info(attr(x, "path"))
+  cat(sprintf("<NOAA ERDDAP griddap> %s", attr(x, "datasetid")), sep = "\n")
+  cat(sprintf("   Path: [%s]", attr(x, "path")), sep = "\n")
+  if(attr(x, "path") != "memory"){
+    cat(sprintf("   Last updated: [%s]", finfo$mtime), sep = "\n")
+    cat(sprintf("   File size:    [%s mb]", finfo$size), sep = "\n")
+  }
+  cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x$data), NCOL(x$data)), sep = "\n")
+  trunc_mat(x$data, n = n)
+}
+
 field_handler <- function(x, y){
   x <- match.arg(x, c(y, "none", "all"), TRUE)
   if(length(x) == 1 && x == "all"){
@@ -159,14 +173,18 @@ parse_args <- function(.info, dim, s, dimargs, wname=FALSE){
   }
 }
 
-getallvars <- function(x){
-  vars <- names(x$alldata)
-  vars[ !vars %in% "NC_GLOBAL" ]
+getvar <- function(x, y){
+  x$alldata$NC_GLOBAL[ x$alldata$NC_GLOBAL$attribute_name == y, "value"]
 }
 
 getvars <- function(x){
   vars <- names(x$alldata)
   vars[ !vars %in% c("NC_GLOBAL","time", x$variables$variable_name) ]
+}
+
+getallvars <- function(x){
+  vars <- names(x$alldata)
+  vars[ !vars %in% "NC_GLOBAL" ]
 }
 
 dimvars <- function(x){
@@ -183,19 +201,7 @@ erd_up_GET <- function(url, dset, args, store, ...){
     GET(url, query=args, ...)
   }
 }
-
-#' @export
-print.erddap_grid <- function(x, ..., n = 10){
-  finfo <- file_info(attr(x, "path"))
-  cat(sprintf("<NOAA ERDDAP griddap> %s", attr(x, "datasetid")), sep = "\n")
-  cat(sprintf("   Path: [%s]", attr(x, "path")), sep = "\n")
-  if(attr(x, "path") != "memory"){
-    cat(sprintf("   Last updated: [%s]", finfo$mtime), sep = "\n")
-    cat(sprintf("   File size:    [%s mb]", finfo$size), sep = "\n")
-  }
-  cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x$data), NCOL(x$data)), sep = "\n")
-  trunc_mat(x$data, n = n)
-}
+writepath <- function(path, d) file.path(path, paste0(d, ".csv"))
 
 file_info <- function(x){
   tmp <- file.info(x)
@@ -203,10 +209,4 @@ file_info <- function(x){
   tmp2 <- tmp[,c('mtime','size')]
   tmp2$size <- round(tmp2$size/1000000L, 2)
   tmp2
-}
-
-writepath <- function(path, d) file.path(path, paste0(d, ".csv"))
-
-getvar <- function(x, y){
-  x$alldata$NC_GLOBAL[ x$alldata$NC_GLOBAL$attribute_name == y, "value"]
 }
