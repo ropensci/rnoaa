@@ -85,10 +85,10 @@ erddap_table('erdCalCOFIlrvsiz', fields=c('latitude','longitude','larvae_size',
 ## Search for data
 (out <- erddap_search(query='fish', which = 'table'))
 ## Using a datasetid, search for information on a datasetid
-id <- out$info$dataset_id[6]
+id <- out$info$dataset_id[7]
 erddap_info(id)$variables
 ## Get data from the dataset
-head(erddap_table(id, fields = c('life_stage','scientific_name','absolute_max_temp')))
+erddap_table(id, fields = c('fish','landings','year'))
 
 # Time constraint
 ## Limit by time with date only

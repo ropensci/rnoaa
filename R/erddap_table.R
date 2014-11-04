@@ -67,10 +67,10 @@
 #' ## Search for data
 #' (out <- erddap_search(query='fish', which = 'table'))
 #' ## Using a datasetid, search for information on a datasetid
-#' id <- out$info$dataset_id[6]
+#' id <- out$info$dataset_id[7]
 #' erddap_info(id)$variables
 #' ## Get data from the dataset
-#' head(erddap_table(id, fields = c('life_stage','scientific_name','absolute_max_temp')))
+#' erddap_table(id, fields = c('fish','landings','year'))
 #'
 #' # Time constraint
 #' ## Limit by time with date only
@@ -144,8 +144,18 @@ erddap_table <- function(x, ..., fields=NULL, distinct=FALSE, orderby=NULL,
     return( NA )
   } else {
     df <- read.delim(text=out, sep=",", stringsAsFactors=FALSE)[-1,]
-    structure(list(data=df), class="erddap_table", datasetid=attr(x, "datasetid"), path="memory")
+    structure(df, class=c("erddap_table","data.frame"), datasetid=attr(x, "datasetid"), path="memory")
   }
+}
+
+
+#' @export
+print.erddap_table <- function(x, ..., n = 10){
+  finfo <- file_info(attr(x, "path"))
+  cat(sprintf("<NOAA ERDDAP tabledap> %s", attr(x, "datasetid")), sep = "\n")
+  cat(sprintf("   Path: [%s]", attr(x, "path")), sep = "\n")
+  cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x), NCOL(x$data)), sep = "\n")
+  trunc_mat(x, n = n)
 }
 
 makevar <- function(x, y){
@@ -158,12 +168,3 @@ makevar <- function(x, y){
 }
 
 eurl <- function() "http://upwell.pfeg.noaa.gov/erddap/"
-
-#' @export
-print.erddap_table <- function(x, ..., n = 10){
-  finfo <- file_info(attr(x, "path"))
-  cat(sprintf("<NOAA ERDDAP tabledap> %s", attr(x, "datasetid")), sep = "\n")
-  cat(sprintf("   Path: [%s]", attr(x, "path")), sep = "\n")
-  cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x$data), NCOL(x$data)), sep = "\n")
-  trunc_mat(x$data, n = n)
-}

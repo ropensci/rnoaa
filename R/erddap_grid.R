@@ -120,9 +120,8 @@ erddap_grid <- function(x, ..., fields = 'all', stride = 1, store = disk(), call
   }
   resp <- erd_up_GET(sprintf("%sgriddap/%s.csv", eurl(), d), d, args, store, callopts)
   loc <- if(store$store == "disk") resp else "memory"
-  structure(list(data=read_upwell(resp)), class="erddap_grid", datasetid=d, path=loc)
+  structure(read_upwell(resp), class=c("erddap_grid","data.frame"), datasetid=d, path=loc)
 }
-
 
 #' @export
 print.erddap_grid <- function(x, ..., n = 10){
@@ -133,8 +132,8 @@ print.erddap_grid <- function(x, ..., n = 10){
     cat(sprintf("   Last updated: [%s]", finfo$mtime), sep = "\n")
     cat(sprintf("   File size:    [%s mb]", finfo$size), sep = "\n")
   }
-  cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x$data), NCOL(x$data)), sep = "\n")
-  trunc_mat(x$data, n = n)
+  cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x), NCOL(x)), sep = "\n")
+  trunc_mat(x, n = n)
 }
 
 field_handler <- function(x, y){
