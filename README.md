@@ -462,6 +462,77 @@ storm_data(year=2010)
 
 ERDDAP is a server built on top of OPenDAP, which serves some NOAA data. You can get gridded data ([griddap](http://upwell.pfeg.noaa.gov/erddap/griddap/documentation.html)), which lets you query from gridded datasets, or table data ([tabledap](http://upwell.pfeg.noaa.gov/erddap/tabledap/documentation.html)) which lets you query from tabular datasets. In terms of how we interface with them, there are similarties, but some differences too. We try to make a similar interface to both data types in `rnoaa`.
 
+First, you likely want to search for data, specify either `griddadp` or `tabledap`
+
+
+```r
+erddap_search(query='size', which = "table")
+#> 11 results, showing first 20 
+#>                                                                                         title
+#> 1                                                                          CalCOFI Fish Sizes
+#> 2                                                                        CalCOFI Larvae Sizes
+#> 3                Channel Islands, Kelp Forest Monitoring, Size and Frequency, Natural Habitat
+#> 4                             NWFSC Observer Fixed Gear Data, off West Coast of US, 2002-2006
+#> 5                                  NWFSC Observer Trawl Data, off West Coast of US, 2002-2006
+#> 6                                                         CalCOFI Larvae Counts Positive Tows
+#> 7                                                                                CalCOFI Tows
+#> 8                                                     GLOBEC NEP MOCNESS Plankton (MOC1) Data
+#> 9                                                 GLOBEC NEP Vertical Plankton Tow (VPT) Data
+#> 10                                                 OBIS - ARGOS Satellite Tracking of Animals
+#> 16 AN EXPERIMENTAL DATASET: Underway Sea Surface Temperature and Salinity Aboard the Oleander
+#>             dataset_id
+#> 1     erdCalCOFIfshsiz
+#> 2     erdCalCOFIlrvsiz
+#> 3       erdCinpKfmSFNH
+#> 4   nwioosObsFixed2002
+#> 5   nwioosObsTrawl2002
+#> 6  erdCalCOFIlrvcntpos
+#> 7       erdCalCOFItows
+#> 8        erdGlobecMoc1
+#> 9         erdGlobecVpt
+#> 10           aadcArgos
+#> 16            nodcPJJU
+```
+
+
+```r
+erddap_search(query='size', which = "grid")
+#> 5 results, showing first 20 
+#>                                                            title
+#> 11               NOAA Global Coral Bleaching Monitoring Products
+#> 12            Coawst 4 use, Best Time Series [time][eta_u][xi_u]
+#> 13            Coawst 4 use, Best Time Series [time][eta_v][xi_v]
+#> 14 Coawst 4 use, Best Time Series [time][s_rho][eta_rho][xi_rho]
+#> 15  Coawst 4 use, Best Time Series [time][Nbed][eta_rho][xi_rho]
+#>               dataset_id
+#> 11 hawaii_3b41_0c0b_72bc
+#> 12   whoi_61c3_0b5d_cd61
+#> 13   whoi_62d0_9d64_c8ff
+#> 14   whoi_7dd7_db97_4bbe
+#> 15   whoi_a4fb_2c9c_16a7
+```
+
+Then you can get information on a single dataset
+
+
+```r
+erddap_info('hawaii_3b41_0c0b_72bc')
+#> <ERDDAP Dataset> hawaii_3b41_0c0b_72bc 
+#>  Dimensions (range):  
+#>      time: (2000-11-28T00:00:00Z, 2014-10-27T00:00:00Z) 
+#>      latitude: (85.0, -80.0) 
+#>      longitude: (-180.0, 179.5) 
+#>  Variables:  
+#>      CRW_DHW: 
+#>          Units: Celsius weeks 
+#>      CRW_HOTSPOT: 
+#>          Units: Celsius 
+#>      CRW_SST: 
+#>          Units: Celsius 
+#>      CRW_SSTANOMALY: 
+#>          Units: Celsius
+```
+
 __griddap data__
 
 

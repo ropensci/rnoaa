@@ -215,6 +215,22 @@ storm_data(year=2010)
 
 ERDDAP is a server built on top of OPenDAP, which serves some NOAA data. You can get gridded data ([griddap](http://upwell.pfeg.noaa.gov/erddap/griddap/documentation.html)), which lets you query from gridded datasets, or table data ([tabledap](http://upwell.pfeg.noaa.gov/erddap/tabledap/documentation.html)) which lets you query from tabular datasets. In terms of how we interface with them, there are similarties, but some differences too. We try to make a similar interface to both data types in `rnoaa`.
 
+First, you likely want to search for data, specify either `griddadp` or `tabledap`
+
+```{r erddap_search_table}
+erddap_search(query='size', which = "table")
+```
+
+```{r erddap_search_grid}
+erddap_search(query='size', which = "grid")
+```
+
+Then you can get information on a single dataset
+
+```{r erddap_info}
+erddap_info('hawaii_3b41_0c0b_72bc')
+```
+
 __griddap data__
 
 ```{r griddap_info}
