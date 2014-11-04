@@ -43,6 +43,8 @@ value.}
 \item{units}{One of 'udunits' (units will be described via the UDUNITS standard (e.g.,degrees_C))
 or 'ucum' (units will be described via the UCUM standard (e.g., Cel)).}
 
+\item{store}{One of \code{disk} (default) or \code{memory}. You can pass options to \code{disk}}
+
 \item{callopts}{Further args passed on to httr::GET (must be a named parameter)}
 }
 \description{
