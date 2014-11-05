@@ -6,7 +6,7 @@ rnoaa
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 [![Build status](https://ci.appveyor.com/api/projects/status/8daqtllo2sg6me07/branch/master)](https://ci.appveyor.com/project/sckott/rnoaa/branch/master)
 
-### IMPORTANT - BUOY DATA
+## IMPORTANT - BUOY DATA
 
 NOAA buoy data requires an R pacakage `ncdf4` that is difficult to use on Windows. Therefore, we have moved functions for working with buoy data into a separate branch called `buoy`, and the `CRAN` version does not include buoy functions. Thus, if you're on a Linux machine or on OSX you should be able to use the `buoy` branch just fine after installing the `netcdf` as:
 
@@ -24,7 +24,7 @@ sudo apt-get install netcdf*
 
 Then `rnoaa` with the buoy functions should install and load correctly. See [this stackoverflow post](http://stackoverflow.com/questions/22805123/netcdf-make-command-test/22806048#22806048) and [this blog post](http://mazamascience.com/WorkingWithData/?p=1429) for more Linux/OSX `netcdf` installation help.
 
-### Help
+## Help
 
 There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rncdc_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.r-project.org/web/packages/rnoaa/index.html). The tutorials:
 
@@ -38,7 +38,7 @@ There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rncd
 * Historical Observing Metadata Repository (HOMR) vignette
 * Storms (IBTrACS) vignette
 
-### Data sources used in rnoaa
+## Data sources used in rnoaa
 
 The majority of functions in this package work with NOAA NCDC data.
 
@@ -49,14 +49,16 @@ The majority of functions in this package work with NOAA NCDC data.
 * Severe weather data docs are [here](http://www.ncdc.noaa.gov/swdiws/)
 * Sea ice data [ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
 * NOAA buoy data [http://www.ndbc.noaa.gov/](http://www.ndbc.noaa.gov/)
-* ERDDAP data [http://coastwatch.pfeg.noaa.gov/erddap/index.html](http://coastwatch.pfeg.noaa.gov/erddap/index.html)
+* ERDDAP data [http://upwell.pfeg.noaa.gov/erddap/index.html](http://upwell.pfeg.noaa.gov/erddap/index.html)
+  * griddap - gridded data
+  * tabledap - tablular data
 * Tornadoes! Data from the NOAA Storm Prediction Center [http://www.spc.noaa.gov/gis/svrgis/]()
 * HOMR - Historical Observing Metadata Repository - from the NOAA NCDC  [http://www.ncdc.noaa.gov/homr/api]()
 * Storm data - from the International Best Track Archive for Climate Stewardship (IBTrACS)   [http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data]()
 
-### NOAA NCDC Datasets
+## NOAA NCDC Datasets
 
-There are many NOAA NCDC datasets. Each is available throughout most functions in this package by using the `datasetid` parameter, except `NEXRAD2` and `NEXRAD3`, which don't work.
+There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unkown reason.
 
 | Dataset | Description | Start date | End date |
 |---------|-------------|------------|----------|
@@ -72,13 +74,13 @@ There are many NOAA NCDC datasets. Each is available throughout most functions i
 | NEXRAD2 | Nexrad Level II | 1991-06-05 | 2014-03-14 |
 | NEXRAD3 | Nexrad Level III | 1994-05-20 | 2014-03-11 |
 
-### NOAA NCDC Attributes
+## NOAA NCDC Attributes
 
 Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See [the NOAA docs](http://www.ncdc.noaa.gov/cdo-web/datasets) for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](inst/vign/rncdc_attributes.md) to find out more
 
-### Authentication
+## Authentication
 
-You'll need an API key to use the NOAA NCDC functions (those starting with `noaa*`) in this package (essentially a password). Go [here](http://www.ncdc.noaa.gov/cdo-web/token) to get one. *You can't use this package without an API key.*
+You'll need an API key to use the NOAA NCDC functions (those starting with `ncdc*()`) in this package (essentially a password). Go [here](http://www.ncdc.noaa.gov/cdo-web/token) to get one. *You can't use this package without an API key.*
 
 Once you obtain a key, there are two ways to use it.
 
@@ -99,7 +101,7 @@ options(noaakey = "KEY_EMAILED_TO_YOU")
 c) You can always store in permamently in your `.Rprofile` file.
 
 
-### Installation
+## Installation
 
 __Stable version from CRAN__
 
@@ -130,9 +132,9 @@ devtools::install_github("ropensci/rnoaa", ref="buoy")
 library('rnoaa')
 ```
 
-### Quick start
+## NCDC v2 API data
 
-####  Fetch list of city locations in descending order
+###  Fetch list of city locations in descending order
 
 
 ```r
@@ -180,7 +182,7 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> [1] "ncdc_locs"
 ```
 
-#### Get info on a station by specifcying a dataset, locationtype, location, and station
+### Get info on a station by specifcying a dataset, locationtype, location, and station
 
 
 ```r
@@ -199,14 +201,14 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 ```
 
 
-#### Search for data
+### Search for data
 
 
 ```r
 out <- ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-10')
 ```
 
-##### See a data.frame
+### See a data.frame
 
 
 ```r
@@ -220,7 +222,7 @@ head( out$data )
 #> 6 GHCND:USW00014895   666 DLY-TMAX-NORMAL 2010-05-06T00:00:00    S
 ```
 
-#### Plot data, super simple, but it's a start
+### Plot data, super simple, but it's a start
 
 
 ```r
@@ -230,7 +232,7 @@ ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 
 ![plot of chunk unnamed-chunk-12](inst/img/unnamed-chunk-12-1.png) 
 
-#### More plotting
+### More plotting
 
 You can pass many outputs from calls to the `noaa` function in to the `ncdc_plot` function.
 
@@ -337,7 +339,7 @@ ncdc_datacats(locationid='CITY:US390029')
 #> [1] "ncdc_datacats"
 ```
 
-### Tornado data
+## Tornado data
 
 
 ```r
@@ -352,7 +354,7 @@ plot(shp)
 
 ![plot of chunk unnamed-chunk-16](inst/img/unnamed-chunk-16-1.png) 
 
-### HOMR metadata
+## HOMR metadata
 
 
 ```r
@@ -374,7 +376,7 @@ head( res$head )
 #> 6 1948-08-01T00:00:00.000     Present
 ```
 
-### Storm data
+## Storm data
 
 
 ```r
@@ -458,7 +460,7 @@ storm_data(year=2010)
 #>      jtwc_.._wrad64_rad3 (dbl), jtwc_.._wrad64_rad4 (dbl)
 ```
 
-### ERDDAP data
+## ERDDAP data
 
 ERDDAP is a server built on top of OPenDAP, which serves some NOAA data. You can get gridded data ([griddap](http://upwell.pfeg.noaa.gov/erddap/griddap/documentation.html)), which lets you query from gridded datasets, or table data ([tabledap](http://upwell.pfeg.noaa.gov/erddap/tabledap/documentation.html)) which lets you query from tabular datasets. In terms of how we interface with them, there are similarties, but some differences too. We try to make a similar interface to both data types in `rnoaa`.
 
@@ -472,26 +474,26 @@ erddap_search(query='size', which = "table")
 #> 1                                                                          CalCOFI Fish Sizes
 #> 2                                                                        CalCOFI Larvae Sizes
 #> 3                Channel Islands, Kelp Forest Monitoring, Size and Frequency, Natural Habitat
-#> 4                             NWFSC Observer Fixed Gear Data, off West Coast of US, 2002-2006
-#> 5                                  NWFSC Observer Trawl Data, off West Coast of US, 2002-2006
-#> 6                                                         CalCOFI Larvae Counts Positive Tows
-#> 7                                                                                CalCOFI Tows
-#> 8                                                     GLOBEC NEP MOCNESS Plankton (MOC1) Data
-#> 9                                                 GLOBEC NEP Vertical Plankton Tow (VPT) Data
-#> 10                                                 OBIS - ARGOS Satellite Tracking of Animals
-#> 16 AN EXPERIMENTAL DATASET: Underway Sea Surface Temperature and Salinity Aboard the Oleander
+#> 4                                                         CalCOFI Larvae Counts Positive Tows
+#> 5                                                                                CalCOFI Tows
+#> 6                                                     GLOBEC NEP MOCNESS Plankton (MOC1) Data
+#> 7                                                 GLOBEC NEP Vertical Plankton Tow (VPT) Data
+#> 8                                                  OBIS - ARGOS Satellite Tracking of Animals
+#> 10                            NWFSC Observer Fixed Gear Data, off West Coast of US, 2002-2006
+#> 11                                 NWFSC Observer Trawl Data, off West Coast of US, 2002-2006
+#> 12 AN EXPERIMENTAL DATASET: Underway Sea Surface Temperature and Salinity Aboard the Oleander
 #>             dataset_id
 #> 1     erdCalCOFIfshsiz
 #> 2     erdCalCOFIlrvsiz
 #> 3       erdCinpKfmSFNH
-#> 4   nwioosObsFixed2002
-#> 5   nwioosObsTrawl2002
-#> 6  erdCalCOFIlrvcntpos
-#> 7       erdCalCOFItows
-#> 8        erdGlobecMoc1
-#> 9         erdGlobecVpt
-#> 10           aadcArgos
-#> 16            nodcPJJU
+#> 4  erdCalCOFIlrvcntpos
+#> 5       erdCalCOFItows
+#> 6        erdGlobecMoc1
+#> 7         erdGlobecVpt
+#> 8            aadcArgos
+#> 10  nwioosObsFixed2002
+#> 11  nwioosObsTrawl2002
+#> 12            nodcPJJU
 ```
 
 
@@ -499,17 +501,17 @@ erddap_search(query='size', which = "table")
 erddap_search(query='size', which = "grid")
 #> 5 results, showing first 20 
 #>                                                            title
-#> 11               NOAA Global Coral Bleaching Monitoring Products
-#> 12            Coawst 4 use, Best Time Series [time][eta_u][xi_u]
-#> 13            Coawst 4 use, Best Time Series [time][eta_v][xi_v]
-#> 14 Coawst 4 use, Best Time Series [time][s_rho][eta_rho][xi_rho]
-#> 15  Coawst 4 use, Best Time Series [time][Nbed][eta_rho][xi_rho]
+#> 9                NOAA Global Coral Bleaching Monitoring Products
+#> 13            Coawst 4 use, Best Time Series [time][eta_u][xi_u]
+#> 14            Coawst 4 use, Best Time Series [time][eta_v][xi_v]
+#> 15 Coawst 4 use, Best Time Series [time][s_rho][eta_rho][xi_rho]
+#> 16  Coawst 4 use, Best Time Series [time][Nbed][eta_rho][xi_rho]
 #>               dataset_id
-#> 11 hawaii_3b41_0c0b_72bc
-#> 12   whoi_61c3_0b5d_cd61
-#> 13   whoi_62d0_9d64_c8ff
-#> 14   whoi_7dd7_db97_4bbe
-#> 15   whoi_a4fb_2c9c_16a7
+#> 9  hawaii_3b41_0c0b_72bc
+#> 13   whoi_61c3_0b5d_cd61
+#> 14   whoi_62d0_9d64_c8ff
+#> 15   whoi_7dd7_db97_4bbe
+#> 16   whoi_a4fb_2c9c_16a7
 ```
 
 Then you can get information on a single dataset
@@ -646,7 +648,6 @@ erddap_table(out, fields=c('longitude','latitude','fish_size','itis_tsn'),
 #> 11 -118.10667 32.738335      20.0   162221
 #> ..        ...       ...       ...      ...
 ```
-
 
 ## Meta
 
