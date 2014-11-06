@@ -150,6 +150,7 @@ erddap_table <- function(x, ..., fields=NULL, distinct=FALSE, orderby=NULL,
   if(!nchar(args[[1]]) == 0){
     url <- paste0(url, '&', args)
   }
+  url <- gsub(' ', '%20', url)
   resp <- erd_tab_GET(url, dset=attr(x, "datasetid"), store, callopts)
   loc <- if(store$store == "disk") resp else "memory"
   structure(read_table(resp), class=c("erddap_table","data.frame"), datasetid=attr(x, "datasetid"), path=loc)
