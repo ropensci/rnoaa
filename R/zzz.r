@@ -207,7 +207,8 @@ read_upwell <- function(x){
 
 read_table <- function(x){
   if(is(x, "response")) {
-    read.csv(text = content(x, "text"), sep = ",", stringsAsFactors=FALSE,
+    txt <- gsub('\n$', '', content(x, "text"))
+    read.csv(text = txt, sep = ",", stringsAsFactors=FALSE,
              blank.lines.skip=FALSE)[-1, , drop=FALSE]
   } else {  
     read.delim(x, sep=",", stringsAsFactors=FALSE,
