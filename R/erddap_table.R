@@ -146,11 +146,11 @@ erddap_table <- function(x, ..., fields=NULL, distinct=FALSE, orderby=NULL,
   orderbyminmax <- makevar(orderbyminmax, 'orderByMinMax("%s")')
   moreargs <- noaa_compact(list(distinct, orderby, orderbymax, orderbymin, orderbyminmax, units))
   args <- c(args, moreargs)
+  args <- lapply(args, function(x) RCurl::curlEscape(x))
   args <- paste0(args, collapse = "&")
   if(!nchar(args[[1]]) == 0){
     url <- paste0(url, '&', args)
   }
-  url <- gsub(' ', '%20', url)
   resp <- erd_tab_GET(url, dset=attr(x, "datasetid"), store, callopts)
   loc <- if(store$store == "disk") resp else "memory"
   structure(read_table(resp), class=c("erddap_table","data.frame"), datasetid=attr(x, "datasetid"), path=loc)

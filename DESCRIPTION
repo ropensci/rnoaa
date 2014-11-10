@@ -30,6 +30,7 @@ Imports:
     ggplot2,
     scales,
     sp,
+    RCurl,
     rgdal,
     rgeos,
     maptools,
