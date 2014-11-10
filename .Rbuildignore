@@ -13,3 +13,7 @@ CONTRIBUTING.md
 cran-comments.md
 tests/testthat.R
 .Rhistory
+inst/cache
+inst/vign/cache
+README.Rmd
+figure
