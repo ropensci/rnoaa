@@ -9,6 +9,7 @@
 #' @param country_id Country id
 #' @param country_abbrev Country abbreviation
 #' @param ... Further args passed to \code{\link[httr]{GET}}
+#' @references \url{http://www7.ncdc.noaa.gov/rest/}
 #' @examples \donttest{
 #' ncdc_leg_variables()
 #' ncdc_leg_variables(variable = 'TMP')

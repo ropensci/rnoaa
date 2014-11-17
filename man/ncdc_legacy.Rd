@@ -45,4 +45,7 @@ ncdc_leg_sites(state_id = 11)
 ncdc_leg_sites(state_abbrev = 'HI')
 }
 }
+\references{
+\url{http://www7.ncdc.noaa.gov/rest/}
+}
 
