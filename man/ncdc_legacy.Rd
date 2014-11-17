@@ -12,7 +12,7 @@ ncdc_leg_variables(dataset = "isd", variable = NULL, token = NULL, ...)
 ncdc_leg_sites(dataset = "isd", state_id = NULL, state_abbrev = NULL,
   country_id = NULL, country_abbrev = NULL, token = NULL, ...)
 
-ncdc_leg_site_info(dataset = "isd", station, ...)
+ncdc_leg_site_info(dataset = "isd", station, token = NULL, ...)
 
 ncdc_leg_data(dataset = "isd", station, variable, start_date, end_date,
   token = NULL, ...)
@@ -74,6 +74,8 @@ ncdc_leg_data('isd', 71238099999, 'TMP', 200101, 200201)
 }
 }
 \references{
-\url{http://www7.ncdc.noaa.gov/rest/}
+\url{http://www7.ncdc.noaa.gov/wsregistration/ws_home.html},
+\url{http://www7.ncdc.noaa.gov/rest/},
+\url{http://www7.ncdc.noaa.gov/wsregistration/CDOServices.html}
 }
 

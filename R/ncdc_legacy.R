@@ -12,7 +12,9 @@
 #' @param start_date,end_date Date to start and end search for. Valid formats include, YYYY, 
 #' YYYYMM, YYYYMMDD, YYYYMMDDhh, and YYYYMMDDhhmm. 
 #' @param ... Further args passed to \code{\link[httr]{GET}}
-#' @references \url{http://www7.ncdc.noaa.gov/rest/}
+#' @references \url{http://www7.ncdc.noaa.gov/wsregistration/ws_home.html}, 
+#' \url{http://www7.ncdc.noaa.gov/rest/}, 
+#' \url{http://www7.ncdc.noaa.gov/wsregistration/CDOServices.html}
 #' @details BEWARE: this service is down a lot. For example, you could make a call, its fine, then 
 #' make a another 5 seconds later, it will be down (giving a 503 HTTP error), then call again and
 #' it's fine. So anyway, take note.
@@ -63,7 +65,7 @@ ncdc_leg_sites <- function(dataset = "isd", state_id = NULL, state_abbrev = NULL
 
 #' @export
 #' @rdname ncdc_legacy
-ncdc_leg_site_info <- function(dataset = "isd", station, ...)
+ncdc_leg_site_info <- function(dataset = "isd", station, token = NULL, ...)
 {
   url <- file.path(paste0(ncdclb(), "siteinfo"), dataset, station)
   args <- list(output = "csv", token = check_token_leg(token))
