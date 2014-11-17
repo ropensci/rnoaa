@@ -15,9 +15,8 @@
 #' @references \url{http://www7.ncdc.noaa.gov/wsregistration/ws_home.html}, 
 #' \url{http://www7.ncdc.noaa.gov/rest/}, 
 #' \url{http://www7.ncdc.noaa.gov/wsregistration/CDOServices.html}
-#' @details BEWARE: this service is down a lot. For example, you could make a call, its fine, then 
-#' make a another 5 seconds later, it will be down (giving a 503 HTTP error), then call again and
-#' it's fine. So anyway, take note.
+#' @details BEWARE: This service, as far as I can tell, enforces a wait time between successive 
+#' data requests of 60 seconds. This is indeed a long time.
 #' @examples \donttest{
 #' # Variables
 #' ## All variables

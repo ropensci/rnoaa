@@ -44,9 +44,8 @@ YYYYMM, YYYYMMDD, YYYYMMDDhh, and YYYYMMDDhhmm.}
 Search the NOAA NCDC legacy API - main purpose to get ISD daily data.
 }
 \details{
-BEWARE: this service is down a lot. For example, you could make a call, its fine, then
-make a another 5 seconds later, it will be down (giving a 503 HTTP error), then call again and
-it's fine. So anyway, take note.
+BEWARE: This service, as far as I can tell, enforces a wait time between successive
+data requests of 60 seconds. This is indeed a long time.
 }
 \examples{
 \donttest{
