@@ -15,6 +15,8 @@
  \item \code{\link{noaa_plot}}: Function name changed, prefixed with ncdc now
  \item \code{\link{noaa_combine}}: Function name changed, prefixed with ncdc now
  \item \code{\link{noaa_seaice}}: Function name changed to seaice
+ \item \code{\link{erddap_data}}: See the function \code{\link{erddap_grid}} for getting
+ griddap data and code{\link{erddap_table}} for getting tabledap data.
 }
 }
 

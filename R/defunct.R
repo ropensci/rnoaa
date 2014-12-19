@@ -78,6 +78,15 @@ noaa_seaice <- function(...){
   .Defunct(new = "seaice", package = "rnoaa", msg = "the noaa_seaice() function name has been changed to seaice()")
 }
 
+#' This function is defunct.
+#' @export
+#' @rdname erddap_data-defunct
+#' @keywords internal
+erddap_data <- function()
+{
+  .Defunct(msg = "See functions erddap_grid and erddap_table for griddap and tabledap data, respectively")
+}
+
 #' Defunct functions in rnoaa
 #'
 #' \itemize{
@@ -91,6 +100,8 @@ noaa_seaice <- function(...){
 #'  \item \code{\link{noaa_plot}}: Function name changed, prefixed with ncdc now
 #'  \item \code{\link{noaa_combine}}: Function name changed, prefixed with ncdc now
 #'  \item \code{\link{noaa_seaice}}: Function name changed to seaice
+#'  \item \code{\link{erddap_data}}: See the function \code{\link{erddap_grid}} for getting
+#'  griddap data and code{\link{erddap_table}} for getting tabledap data.
 #' }
 #'
 #' @name rnoaa-defunct
