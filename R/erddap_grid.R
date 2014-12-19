@@ -42,7 +42,7 @@
 #' @examples \dontrun{
 #' # single variable dataset
 #' ## You can pass in the outpu of a call to erddap_info
-#' (out <- erddap_info('noaa_esrl_027d_0fb5_5d38'))
+#' (out <- erddap_info('noaa_pfeg_50de_033f_d076'))
 #' (res <- erddap_grid(out,
 #'  time = c('2012-01-01','2012-06-12'),
 #'  latitude = c(21, 18),
@@ -119,7 +119,7 @@
 #' ))
 #' }
 
-erddap_grid <- function(x, ..., fields = 'all', stride = 1, store = disk(), callopts = list())
+erddap_grid <- function(x, ..., fields = 'all', stride = 1, store = memory(), callopts = list())
 {
   x <- as.erddap_info(x)
   dimargs <- list(...)
@@ -132,7 +132,7 @@ erddap_grid <- function(x, ..., fields = 'all', stride = 1, store = disk(), call
     pargs <- sapply(dims, function(y) parse_args(x, y, stride, dimargs))
     args <- paste0(lapply(var, function(y) paste0(y, paste0(pargs, collapse = ""))), collapse = ",")
   }
-  resp <- erd_up_GET(sprintf("%sgriddap/%s.csv", eurl(), d), d, args, store, callopts)
+  resp <- erd_up_GET(url = sprintf("%sgriddap/%s.csv", eurl(), d), d, args, store, callopts)
   loc <- if(store$store == "disk") resp else "memory"
   structure(read_upwell(resp), class=c("erddap_grid","data.frame"), datasetid=d, path=loc)
 }
@@ -208,13 +208,16 @@ dimvars <- function(x){
 erd_up_GET <- function(url, dset, args, store, ...){
   if(store$store == "disk"){
     fpath <- path.expand(file.path(store$path, paste0(dset, ".csv")))
-    if( file.exists( fpath ) ){ fpath } else {
+    if( file.exists( fpath ) && !store$overwrite ){ fpath } else {
       dir.create(store$path, showWarnings = FALSE, recursive = TRUE)
       res <- GET(url, query=args, write_disk(writepath(store$path, dset), store$overwrite), ...)
-      res$request$writer[[1]]
+      out <- check_response_erddap(res)
+      if(grepl("Error", out, ignore.case = TRUE)) NA else res$request$writer[[1]]
     }
   } else {
-    GET(url, query=args, ...)
+    res <- GET(url, query=args, ...)
+    out <- check_response_erddap(res)
+    if(grepl("Error", out, ignore.case = TRUE)) NA else res
   }
 }
 writepath <- function(path, d) file.path(path, paste0(d, ".csv"))

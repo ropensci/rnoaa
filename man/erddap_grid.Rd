@@ -4,7 +4,7 @@
 \alias{erddap_grid}
 \title{Get ERDDAP griddap data.}
 \usage{
-erddap_grid(x, ..., fields = "all", stride = 1, store = disk(),
+erddap_grid(x, ..., fields = "all", stride = 1, store = memory(),
   callopts = list())
 }
 \arguments{
@@ -60,7 +60,7 @@ to various SQL DB options though.
 \dontrun{
 # single variable dataset
 ## You can pass in the outpu of a call to erddap_info
-(out <- erddap_info('noaa_esrl_027d_0fb5_5d38'))
+(out <- erddap_info('noaa_pfeg_50de_033f_d076'))
 (res <- erddap_grid(out,
  time = c('2012-01-01','2012-06-12'),
  latitude = c(21, 18),

@@ -6,7 +6,7 @@
 \usage{
 erddap_table(x, ..., fields = NULL, distinct = FALSE, orderby = NULL,
   orderbymax = NULL, orderbymin = NULL, orderbyminmax = NULL,
-  units = NULL, store = disk(), callopts = list())
+  units = NULL, store = memory(), callopts = list())
 }
 \arguments{
 \item{x}{Anything coercable to an object of class erddap_info. So the output of a call to
@@ -44,9 +44,15 @@ value.}
 \item{units}{One of 'udunits' (units will be described via the UDUNITS standard (e.g.,degrees_C))
 or 'ucum' (units will be described via the UCUM standard (e.g., Cel)).}
 
-\item{store}{One of \code{disk} (default) or \code{memory}. You can pass options to \code{disk}}
+\item{store}{One of \code{disk} or \code{memory} (default). You can pass options to \code{disk}.
+Beware: Since v0.3.3 changed the default to \code{memory} The problem with disk is that it
+caches files based on the dataset name, so that if you refine a query by certain fields, etc.,
+you will get your cached file from a previous query on the same dataset. So if you refine a
+query, and \code{store=disk()}, then make sure to pick \code{overwrite=TRUE} within the
+\code{disk()} function so that you don't get the cached file. When you use \code{memory()},
+this isn't a problem as there is no cached object in memory.}
 
-\item{callopts}{Further args passed on to httr::GET (must be a named parameter)}
+\item{callopts}{Further args passed on to \code{\link[httr]{GET}}}
 }
 \description{
 Get ERDDAP tabledap data.
