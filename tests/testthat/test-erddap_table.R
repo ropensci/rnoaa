@@ -1,7 +1,9 @@
 context("testing erddap_table")
 
 a <- erddap_table('erdCalCOFIfshsiz')
-b <- erddap_table('erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08')
+a_mem <- erddap_table('erdCalCOFIfshsiz', store = memory())
+b <- erddap_table(x='erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name'),
+                  'latitude>=34.8', 'latitude<=35', 'longitude>=-125', 'longitude<=-124')
 c <- erddap_info('erdCalCOFIlrvsiz')$variables
 d <- erddap_table("erdCAMarCatSM", fields = c('fish','landings','year'))
   
@@ -13,6 +15,31 @@ test_that("erddap_table returns the right classes", {
   
   expect_is(a$tow_type, "character")
   expect_is(d$landings, "character")
+})
+
+test_that("erddap_table lat/long query returns correct results", {
+  lat <- as.numeric(b$latitude)
+  expect_less_than(34.8, min(lat))
+  expect_less_than(max(lat), 35)
+  expect_equal(names(c), c('variable_name','data_type','actual_range'))
+})
+
+test_that("erddap_table variables returned are correct", {
+  expect_equal(c$variable_name[[1]], "calcofi_species_code")
+  expect_equal(names(c), c('variable_name','data_type','actual_range'))
+})
+
+test_that("erddap_table fields query returns the right fields", {
+  expect_equal(names(d), c('fish','landings','year'))
+})
+
+test_that("erddap_table memory and disk give the same results", {
+  expect_equal(erddap_table('erdCalCOFIfshsiz', store = memory())$cruise, erddap_table('erdCalCOFIfshsiz')$cruise)
+})
+  
+test_that("erddap_table caching works", {
+  expect_equal(erddap_table('erdCalCOFIfshsiz'), a)
+  expect_equal(erddap_table('erdCalCOFIfshsiz', store = memory()), a_mem)
 })
 
 test_that("erddap_table fails correctly", {
