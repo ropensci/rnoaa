@@ -1,8 +1,9 @@
 #' Get ERDDAP griddap data.
 #'
 #' @export
-#' 
-#' @param x Anything coercable to an object of class erddap_info. So the output of a call to 
+#' @import digest
+#'
+#' @param x Anything coercable to an object of class erddap_info. So the output of a call to
 #' \code{erddap_info}, or a datasetid, which will internally be passed through \code{erddap_info}.
 #' @param ... Dimension arguments.
 #' @param fields Fields to return, a character vector.
@@ -31,13 +32,16 @@
 #' other metadata.
 #'
 #' @section Where does the data go?:
-#' You can choose where data is stored. Be careful though. You can easily get a single file of
-#' hundreds of MB's or GB's in size with a single request. To the store parameter, pass
-#' \dQuote{memory} if you want to store the data in memory (saved as a data.frame), or
-#' pass \dQuote{disk} if you want to store on disk in a file. Possibly will add other options,
-#' like \dQuote{sql} for storing in a SQL database, though that option would need to be expanded
-#' to various SQL DB options though.
-#' @references  \url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+#' You can choose where data is stored. Be careful though. With griddap data, you can easily get a
+#' single file of hundreds of MB's or GB's in size with a single request. Using \code{disk()}
+#' caches files based on the URL of the request you perform, which is the combination of all
+#' parameters passed in, so if you refine a query by certain fields, etc., you will cach a
+#' different file.  If you choose \code{overwrite=TRUE} within the \code{disk()} function then
+#' you'll force writing a new file to disk. When you use \code{memory()}, no files are cached,
+#' data is stored in R's memory.
+#'
+#' @references \url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+#' @seealso \code{\link{erddap_table}} \code{\link{erddap_clear_cache}}
 #' @author Scott Chamberlain <myrmecocystus@@gmail.com>
 #' @examples \dontrun{
 #' # single variable dataset
@@ -49,7 +53,7 @@
 #'  longitude = c(-80, -75)
 #' ))
 #' ## Or, pass in a dataset id
-#' (res <- erddap_grid('noaa_esrl_027d_0fb5_5d38',
+#' (res <- erddap_grid(x='noaa_esrl_027d_0fb5_5d38',
 #'  time = c('2012-01-01','2012-06-12'),
 #'  latitude = c(21, 18),
 #'  longitude = c(-80, -75)
@@ -63,13 +67,13 @@
 #'  longitude = c(10, 11)
 #' ))
 #' (res <- erddap_grid(out, time = c('2005-11-01','2006-01-01'), latitude = c(20, 21),
-#' longitude = c(10, 11), fields = 'uo'))
+#'    longitude = c(10, 11), fields = 'uo'))
 #' (res <- erddap_grid(out, time = c('2005-11-01','2006-01-01'), latitude = c(20, 21),
-#' longitude = c(10, 11), fields = 'uo', stride=c(1,2,1,2)))
+#'    longitude = c(10, 11), fields = 'uo', stride=c(1,2,1,2)))
 #' (res <- erddap_grid(out, time = c('2005-11-01','2006-01-01'), latitude = c(20, 21),
-#' longitude = c(10, 11), fields = c('uo','so')))
+#'    longitude = c(10, 11), fields = c('uo','so')))
 #' (res <- erddap_grid(out, time = c('2005-09-01','2006-01-01'), latitude = c(20, 21),
-#' longitude = c(10, 11), fields = 'none'))
+#'    longitude = c(10, 11), fields = 'none'))
 #'
 #' # multi-variable dataset
 #' ## this one also has a 0-360 longitude system, BLARGH!!!
@@ -109,7 +113,7 @@
 #'  longitude = c(-80, -75),
 #'  store = disk()
 #' ) )
-#' 
+#'
 #' ## memory
 #' (res <- erddap_grid(out,
 #'  time = c('2012-06-01','2012-06-12'),
@@ -119,7 +123,7 @@
 #' ))
 #' }
 
-erddap_grid <- function(x, ..., fields = 'all', stride = 1, store = memory(), callopts = list())
+erddap_grid <- function(x, ..., fields = 'all', stride = 1, store = disk(), callopts = list())
 {
   x <- as.erddap_info(x)
   dimargs <- list(...)
@@ -132,19 +136,19 @@ erddap_grid <- function(x, ..., fields = 'all', stride = 1, store = memory(), ca
     pargs <- sapply(dims, function(y) parse_args(x, y, stride, dimargs))
     args <- paste0(lapply(var, function(y) paste0(y, paste0(pargs, collapse = ""))), collapse = ",")
   }
-  resp <- erd_up_GET(url = sprintf("%sgriddap/%s.csv", eurl(), d), d, args, store, callopts)
+  resp <- erd_up_GET(url = sprintf("%sgriddap/%s.csv", eurl(), d), dset = d, args, store, callopts)
   loc <- if(store$store == "disk") resp else "memory"
   structure(read_upwell(resp), class=c("erddap_grid","data.frame"), datasetid=d, path=loc)
 }
 
 #' @export
 print.erddap_grid <- function(x, ..., n = 10){
-  finfo <- file_info(attr(x, "path"))
   cat(sprintf("<NOAA ERDDAP griddap> %s", attr(x, "datasetid")), sep = "\n")
   cat(sprintf("   Path: [%s]", attr(x, "path")), sep = "\n")
   if(attr(x, "path") != "memory"){
+    finfo <- file_info(attr(x, "path"))
     cat(sprintf("   Last updated: [%s]", finfo$mtime), sep = "\n")
-    cat(sprintf("   File size:    [%s mb]", finfo$size), sep = "\n")
+    cat(sprintf("   File size:    [%s]", finfo$size), sep = "\n")
   }
   cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x), NCOL(x)), sep = "\n")
   trunc_mat(x, n = n)
@@ -207,10 +211,12 @@ dimvars <- function(x){
 
 erd_up_GET <- function(url, dset, args, store, ...){
   if(store$store == "disk"){
-    fpath <- path.expand(file.path(store$path, paste0(dset, ".csv")))
-    if( file.exists( fpath ) && !store$overwrite ){ fpath } else {
+    out <- suppressWarnings(cache_get(cache = TRUE, url = url, args = args, path = store$path))
+
+    # fpath <- path.expand(file.path(store$path, paste0(dset, ".csv")))
+    if( !is.null( out ) && !store$overwrite ){ out } else {
       dir.create(store$path, showWarnings = FALSE, recursive = TRUE)
-      res <- GET(url, query=args, write_disk(writepath(store$path, dset), store$overwrite), ...)
+      res <- GET(url, query=args, write_disk(write_path(store$path, url, args), store$overwrite), ...)
       out <- check_response_erddap(res)
       if(grepl("Error", out, ignore.case = TRUE)) NA else res$request$writer[[1]]
     }
@@ -220,12 +226,11 @@ erd_up_GET <- function(url, dset, args, store, ...){
     if(grepl("Error", out, ignore.case = TRUE)) NA else res
   }
 }
-writepath <- function(path, d) file.path(path, paste0(d, ".csv"))
 
 file_info <- function(x){
   tmp <- file.info(x)
   row.names(tmp) <- NULL
   tmp2 <- tmp[,c('mtime','size')]
-  tmp2$size <- round(tmp2$size/1000000L, 2)
+  tmp2$size <- if(tmp2$size < 10000) paste0(round(tmp2$size/1000L, 2), " KB") else paste0(round(tmp2$size/1000000L, 2), " MB")
   tmp2
 }

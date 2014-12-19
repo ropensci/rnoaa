@@ -6,7 +6,7 @@
 \usage{
 erddap_table(x, ..., fields = NULL, distinct = FALSE, orderby = NULL,
   orderbymax = NULL, orderbymin = NULL, orderbyminmax = NULL,
-  units = NULL, store = memory(), callopts = list())
+  units = NULL, store = disk(), callopts = list())
 }
 \arguments{
 \item{x}{Anything coercable to an object of class erddap_info. So the output of a call to
@@ -44,13 +44,8 @@ value.}
 \item{units}{One of 'udunits' (units will be described via the UDUNITS standard (e.g.,degrees_C))
 or 'ucum' (units will be described via the UCUM standard (e.g., Cel)).}
 
-\item{store}{One of \code{disk} or \code{memory} (default). You can pass options to \code{disk}.
-Beware: Since v0.3.3 changed the default to \code{memory} The problem with disk is that it
-caches files based on the dataset name, so that if you refine a query by certain fields, etc.,
-you will get your cached file from a previous query on the same dataset. So if you refine a
-query, and \code{store=disk()}, then make sure to pick \code{overwrite=TRUE} within the
-\code{disk()} function so that you don't get the cached file. When you use \code{memory()},
-this isn't a problem as there is no cached object in memory.}
+\item{store}{One of \code{disk} (default) or \code{memory}. You can pass options to \code{disk}.
+See Details.}
 
 \item{callopts}{Further args passed on to \code{\link[httr]{GET}}}
 }
@@ -58,16 +53,34 @@ this isn't a problem as there is no cached object in memory.}
 Get ERDDAP tabledap data.
 }
 \details{
+Details:
+}
+\section{Variables}{
+
 For key-value pair query constraints, the valid operators are =, != (not equals), =~ (a regular
 expression test), <, <=, >, and >= . For regular expressions you need to add a regular
 expression. For others, nothing more is needed. Construct the entry like
 \code{'time>=2001-07-07'} with the parameter on the left, value on the right, and the operator
 in the middle, all within a set of quotes. Since ERDDAP accepts values other than \code{=}, we
 can't simply do \code{time = '2001-07-07'} as we normally would.
+}
 
-Server-side functionality: Some tasks are done server side. You don't have to worry about what
+\section{Server-side functionality}{
+
+Some tasks are done server side. You don't have to worry about what
 that means. They are provided via parameters in this function. See \code{distinct},
 \code{orderby}, \code{orderbymax}, \code{orderbymin}, \code{orderbyminmax}, and \code{units}.
+}
+
+\section{Where does the data go?}{
+
+You can choose where data is stored. Be careful though. With griddap data, you can easily get a
+single file of hundreds of MB's or GB's in size with a single request. Using \code{disk()}
+caches files based on the URL of the request you perform, which is the combination of all
+parameters passed in, so if you refine a query by certain fields, etc., you will cach a
+different file.  If you choose \code{overwrite=TRUE} within the \code{disk()} function then
+you'll force writing a new file to disk. When you use \code{memory()}, no files are cached,
+data is stored in R's memory.
 }
 \examples{
 \dontrun{
@@ -78,8 +91,8 @@ erddap_table('erdCalCOFIfshsiz')
 erddap_table('erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08')
 
 # Pass in fields (i.e., columns to retrieve) & time constraints
-erddap_table('erdCalCOFIfshsiz',fields=c('longitude','latitude','fish_size','itis_tsn'),
-   'time>=2001-07-07','time<=2001-07-10')
+erddap_table('erdCalCOFIfshsiz','time>=2001-07-07','time<=2001-07-10',
+   fields=c('longitude','latitude','fish_size','itis_tsn'))
 erddap_table('erdCinpKfmBT', fields=c('latitude','longitude',
    'Aplysia_californica_Mean_Density','Muricea_californica_Mean_Density'),
    'time>=2007-06-24','time<=2007-07-01')
@@ -111,10 +124,10 @@ erddap_table('erdCalCOFIfshsiz',fields=c('longitude','latitude','fish_size','iti
 # Use units parameter
 ## In this example, values are the same, but sometimes they can be different given the units
 ## value passed
-erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
-   'time>=2007-09-19', 'time<=2007-09-21', units='udunits')
-erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
-   'time>=2007-09-19', 'time<=2007-09-21', units='ucum')
+erddap_table('erdCinpKfmT', 'time>=2007-09-19', 'time<=2007-09-21',
+   fields=c('longitude','latitude','time','temperature'), units='udunits')
+erddap_table('erdCinpKfmT', 'time>=2007-09-19', 'time<=2007-09-21',
+   fields=c('longitude','latitude','time','temperature'), units='ucum')
 
 # Use orderby parameter
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'),
@@ -161,5 +174,8 @@ Scott Chamberlain <myrmecocystus@gmail.com>
 }
 \references{
 \url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+}
+\seealso{
+\code{\link{erddap_grid}} \code{\link{erddap_clear_cache}}
 }
 

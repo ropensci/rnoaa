@@ -4,7 +4,7 @@
 \alias{erddap_grid}
 \title{Get ERDDAP griddap data.}
 \usage{
-erddap_grid(x, ..., fields = "all", stride = 1, store = memory(),
+erddap_grid(x, ..., fields = "all", stride = 1, store = disk(),
   callopts = list())
 }
 \arguments{
@@ -49,25 +49,26 @@ other metadata.
 
 \section{Where does the data go?}{
 
-You can choose where data is stored. Be careful though. You can easily get a single file of
-hundreds of MB's or GB's in size with a single request. To the store parameter, pass
-\dQuote{memory} if you want to store the data in memory (saved as a data.frame), or
-pass \dQuote{disk} if you want to store on disk in a file. Possibly will add other options,
-like \dQuote{sql} for storing in a SQL database, though that option would need to be expanded
-to various SQL DB options though.
+You can choose where data is stored. Be careful though. With griddap data, you can easily get a
+single file of hundreds of MB's or GB's in size with a single request. Using \code{disk()}
+caches files based on the URL of the request you perform, which is the combination of all
+parameters passed in, so if you refine a query by certain fields, etc., you will cach a
+different file.  If you choose \code{overwrite=TRUE} within the \code{disk()} function then
+you'll force writing a new file to disk. When you use \code{memory()}, no files are cached,
+data is stored in R's memory.
 }
 \examples{
 \dontrun{
 # single variable dataset
 ## You can pass in the outpu of a call to erddap_info
-(out <- erddap_info('noaa_pfeg_50de_033f_d076'))
+(out <- erddap_info('noaa_esrl_027d_0fb5_5d38'))
 (res <- erddap_grid(out,
  time = c('2012-01-01','2012-06-12'),
  latitude = c(21, 18),
  longitude = c(-80, -75)
 ))
 ## Or, pass in a dataset id
-(res <- erddap_grid('noaa_esrl_027d_0fb5_5d38',
+(res <- erddap_grid(x='noaa_esrl_027d_0fb5_5d38',
  time = c('2012-01-01','2012-06-12'),
  latitude = c(21, 18),
  longitude = c(-80, -75)
@@ -81,13 +82,13 @@ to various SQL DB options though.
  longitude = c(10, 11)
 ))
 (res <- erddap_grid(out, time = c('2005-11-01','2006-01-01'), latitude = c(20, 21),
-longitude = c(10, 11), fields = 'uo'))
+   longitude = c(10, 11), fields = 'uo'))
 (res <- erddap_grid(out, time = c('2005-11-01','2006-01-01'), latitude = c(20, 21),
-longitude = c(10, 11), fields = 'uo', stride=c(1,2,1,2)))
+   longitude = c(10, 11), fields = 'uo', stride=c(1,2,1,2)))
 (res <- erddap_grid(out, time = c('2005-11-01','2006-01-01'), latitude = c(20, 21),
-longitude = c(10, 11), fields = c('uo','so')))
+   longitude = c(10, 11), fields = c('uo','so')))
 (res <- erddap_grid(out, time = c('2005-09-01','2006-01-01'), latitude = c(20, 21),
-longitude = c(10, 11), fields = 'none'))
+   longitude = c(10, 11), fields = 'none'))
 
 # multi-variable dataset
 ## this one also has a 0-360 longitude system, BLARGH!!!
@@ -142,5 +143,8 @@ Scott Chamberlain <myrmecocystus@gmail.com>
 }
 \references{
 \url{http://upwell.pfeg.noaa.gov/erddap/index.html}
+}
+\seealso{
+\code{\link{erddap_table}} \code{\link{erddap_clear_cache}}
 }
 
