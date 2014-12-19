@@ -42,7 +42,7 @@
 #' @examples \dontrun{
 #' # single variable dataset
 #' ## You can pass in the outpu of a call to erddap_info
-#' (out <- erddap_info('noaa_pfeg_50de_033f_d076'))
+#' (out <- erddap_info('noaa_esrl_027d_0fb5_5d38'))
 #' (res <- erddap_grid(out,
 #'  time = c('2012-01-01','2012-06-12'),
 #'  latitude = c(21, 18),
