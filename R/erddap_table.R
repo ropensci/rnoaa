@@ -172,16 +172,16 @@ print.erddap_table <- function(x, ..., n = 10){
 erd_tab_GET <- function(url, dset, store, ...){
   if(store$store == "disk"){
     fpath <- path.expand(file.path(store$path, paste0(dset, ".csv")))
-    if( file.exists( fpath ) & store$overwrite == FALSE){ fpath } else {
+    if( file.exists( fpath ) && !store$overwrite ){ fpath } else {
       dir.create(store$path, showWarnings = FALSE, recursive = TRUE)
       res <- GET(url, write_disk(writepath(store$path, dset), store$overwrite), ...)
       out <- check_response_erddap(res)
-      if(grepl("Error", out)) NA else res$request$writer[[1]]
+      if(grepl("Error", out, ignore.case = TRUE)) NA else res$request$writer[[1]]
     }
   } else {
     res <- GET(url, ...)
     out <- check_response_erddap(res)
-    if(grepl("Error", out)) NA else res
+    if(grepl("Error", out, ignore.case = TRUE)) NA else res
   }
 }
 

@@ -5,7 +5,7 @@
 \alias{memory}
 \title{Options for saving ERDDAP datasets.}
 \usage{
-disk(path = "~/.rnoaa/erddap", overwrite = TRUE)
+disk(path = "~/.rnoaa/erddap", overwrite = FALSE)
 
 memory()
 }
