@@ -169,31 +169,31 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 
 #> $data
 #>               id                  name datacoverage    mindate    maxdate
-#> 1  CITY:NL000012            Zwolle, NL       1.0000 1892-08-01 2014-09-30
-#> 2  CITY:SZ000007            Zurich, SZ       1.0000 1901-01-01 2014-10-28
+#> 1  CITY:NL000012            Zwolle, NL       1.0000 1892-08-01 2014-11-30
+#> 2  CITY:SZ000007            Zurich, SZ       1.0000 1901-01-01 2014-12-16
 #> 3  CITY:NG000004            Zinder, NG       0.8678 1906-01-01 1980-12-31
-#> 4  CITY:UP000025         Zhytomyra, UP       0.9729 1938-01-01 2014-10-28
-#> 5  CITY:KZ000017        Zhezkazgan, KZ       0.9286 1948-03-01 2014-10-28
-#> 6  CITY:CH000045         Zhengzhou, CH       1.0000 1951-01-01 2014-10-28
+#> 4  CITY:UP000025         Zhytomyra, UP       0.9729 1938-01-01 2014-12-16
+#> 5  CITY:KZ000017        Zhezkazgan, KZ       0.9288 1948-03-01 2014-12-16
+#> 6  CITY:CH000045         Zhengzhou, CH       1.0000 1951-01-01 2014-12-16
 #> 7  CITY:SP000021          Zaragoza, SP       1.0000 1941-01-01 2012-08-31
 #> 8  CITY:UP000024      Zaporiyhzhya, UP       0.9739 1936-01-01 2009-06-16
-#> 9  CITY:US390029     Zanesville, OH US       1.0000 1893-01-01 2014-10-31
+#> 9  CITY:US390029     Zanesville, OH US       1.0000 1893-01-01 2014-12-18
 #> 10 CITY:LE000004             Zahle, LE       0.7811 1912-01-01 1971-12-31
 #> 11 CITY:IR000019           Zahedan, IR       0.9930 1951-01-01 2010-05-19
 #> 12 CITY:HR000002            Zagreb, HR       1.0000 1860-12-01 2013-12-31
-#> 13 CITY:RS000081 Yuzhno-Sakhalinsk, RS       1.0000 1947-01-01 2014-10-27
-#> 14 CITY:US040015           Yuma, AZ US       1.0000 1893-01-01 2014-10-31
-#> 15 CITY:US060048   Yucca Valley, CA US       1.0000 1942-02-01 2014-10-31
-#> 16 CITY:US060047      Yuba City, CA US       1.0000 1893-01-01 2014-10-31
-#> 17 CITY:US390028     Youngstown, OH US       1.0000 1893-01-01 2014-10-31
-#> 18 CITY:US420024           York, PA US       1.0000 1941-01-01 2014-10-31
-#> 19 CITY:US360031        Yonkers, NY US       1.0000 1876-01-01 2014-10-31
-#> 20 CITY:JA000017          Yokohama, JA       1.0000 1949-01-01 2014-10-28
-#> 21 CITY:CH000044          Yinchuan, CH       1.0000 1951-01-01 2014-10-28
-#> 22 CITY:AM000001           Yerevan, AM       0.9751 1885-06-01 2014-10-28
-#> 23 CITY:US280020     Yazoo City, MS US       1.0000 1948-01-01 2014-10-31
+#> 13 CITY:RS000081 Yuzhno-Sakhalinsk, RS       1.0000 1947-01-01 2014-12-16
+#> 14 CITY:US040015           Yuma, AZ US       1.0000 1893-01-01 2014-12-18
+#> 15 CITY:US060048   Yucca Valley, CA US       1.0000 1942-02-01 2014-12-18
+#> 16 CITY:US060047      Yuba City, CA US       1.0000 1893-01-01 2014-12-18
+#> 17 CITY:US390028     Youngstown, OH US       1.0000 1893-01-01 2014-12-18
+#> 18 CITY:US420024           York, PA US       1.0000 1941-01-01 2014-12-18
+#> 19 CITY:US360031        Yonkers, NY US       1.0000 1876-01-01 2014-12-18
+#> 20 CITY:JA000017          Yokohama, JA       1.0000 1949-01-01 2014-12-16
+#> 21 CITY:CH000044          Yinchuan, CH       1.0000 1951-01-01 2014-12-16
+#> 22 CITY:AM000001           Yerevan, AM       0.9751 1885-06-01 2014-12-16
+#> 23 CITY:US280020     Yazoo City, MS US       1.0000 1948-01-01 2014-12-18
 #> 24 CITY:RS000080         Yaroslavl, RS       0.9850 1959-07-01 1987-05-20
-#> 25 CITY:US460009        Yankton, SD US       1.0000 1932-01-01 2014-10-31
+#> 25 CITY:US460009        Yankton, SD US       1.0000 1932-01-01 2014-12-18
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -211,7 +211,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #>                  id elevation                  name elevationUnit
 #> 1 GHCND:USC00084289      12.2 INVERNESS 3 SE, FL US        METERS
 #>   datacoverage longitude    mindate latitude    maxdate
-#> 1            1  -82.3126 1899-02-01  28.8029 2014-10-30
+#> 1            1  -82.3126 1899-02-01  28.8029 2014-12-17
 #> 
 #> attr(,"class")
 #> [1] "ncdc_stations"
@@ -292,17 +292,17 @@ ncdc_datasets()
 #> 10 gov.noaa.ncdc:C00505  PRECIP_15   Precipitation 15 Minute         0.25
 #> 11 gov.noaa.ncdc:C00313 PRECIP_HLY      Precipitation Hourly         1.00
 #>       mindate    maxdate
-#> 1  1831-02-01 2014-05-01
-#> 2  1763-01-01 2014-10-31
-#> 3  1763-01-01 2014-09-01
-#> 4  1991-06-05 2014-10-31
-#> 5  1994-05-20 2014-10-28
+#> 1  1831-02-01 2014-07-01
+#> 2  1763-01-01 2014-12-18
+#> 3  1763-01-01 2014-11-01
+#> 4  1991-06-05 2014-12-18
+#> 5  1994-05-20 2014-12-14
 #> 6  2010-01-01 2010-01-01
 #> 7  2010-01-01 2010-12-31
 #> 8  2010-01-01 2010-12-31
 #> 9  2010-01-01 2010-12-01
 #> 10 1970-05-12 2013-07-01
-#> 11 1900-01-01 2013-09-01
+#> 11 1900-01-01 2013-10-01
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datasets"
@@ -358,6 +358,8 @@ ncdc_datacats(locationid='CITY:US390029')
 
 ## Tornado data
 
+The function `tornadoes()` simply gets __all the data__. So the call takes a while, but once done, is fun to play with.
+
 
 ```r
 shp <- tornadoes()
@@ -373,27 +375,142 @@ plot(shp)
 
 ## HOMR metadata
 
+In this example, search for metadata for a single station ID
+
 
 ```r
-res <- homr(state='NC', county='BUNCOMBE', combine=TRUE)
-head( res$head )
-#>         id         preferredName latitude_dec longitude_dec precision
-#> 1 20013756 ASHEVILLE AIRPORT, NC     35.43194      -82.5375    DDMMSS
-#> 2 20013790        BENT CREEK, NC      35.5044      -82.5966    DDMMSS
-#> 3 20013791        CANDLER 1W, NC      35.5452      -82.6986    DDMMSS
-#> 4 20013802              ENKA, NC      35.5405       -82.653    DDMMSS
-#> 5 20013821         ASHEVILLE, NC      35.5954      -82.5568    DDMMSS
-#> 6 20013836      NORTH FORK 2, NC      35.6625      -82.3469    DDMMSS
+homr(qid = 'COOP:046742')
+#> $`20002078`
+#> $`20002078`$id
+#> [1] "20002078"
+#> 
+#> $`20002078`$head
+#>                  preferredName latitude_dec longitude_dec precision
+#> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283    DDMMSS
 #>             por.beginDate por.endDate
-#> 1 1961-01-01T00:00:00.000     Present
-#> 2 1933-01-07T00:00:00.000     Present
-#> 3 1972-05-01T00:00:00.000     Present
-#> 4 1948-08-01T00:00:00.000     Present
-#> 5 1857-08-01T00:00:00.000     Present
-#> 6 1948-08-01T00:00:00.000     Present
+#> 1 1949-10-05T00:00:00.000     Present
+#> 
+#> $`20002078`$namez
+#>                         name  nameType
+#> 1   PASO ROBLES MUNICIPAL AP      COOP
+#> 2   PASO ROBLES MUNICIPAL AP PRINCIPAL
+#> 3 PASO ROBLES MUNICIPAL ARPT       PUB
+#> 
+#> $`20002078`$identifiers
+#>      idType          id
+#> 1     GHCND USW00093209
+#> 2   GHCNMLT USW00093209
+#> 3      COOP      046742
+#> 4      WBAN       93209
+#> 5       FAA         PRB
+#> 6      ICAO        KPRB
+#> 7     NWSLI         PRB
+#> 8 NCDCSTNID    20002078
+#> 
+#> $`20002078`$status
+#> NULL
+#> 
+#> $`20002078`$platform
+#> [1] "COOP"
+#> 
+#> $`20002078`$relocations
+#>   relocation                    date
+#> 1 5.1 mi NNE 1949-10-05T00:00:00.000
+#> 
+#> $`20002078`$remarks
+#>                         type
+#> 1            NWS COOP INGEST
+#> 2                    GENERAL
+#> 3 RIVER BASIN (COOP NETWORK)
+#>                                                                                                                                                                                                                                                                                remark
+#> 1                                                                                                                                                                          REQUIRED 5 YEAR UPDATE\r\nASOS COMMISSIONED 01/18/2001\r\nSERVICE LEVEL "D" ASOS MAINTAINED BY LOX NWS ETS
+#> 2 PHOTOS ADDED FOR ASOS EXPOSURE DOCUMENTATION EFFORT (CIRCA 1999+) WHICH TOOK PHOTOS OF THE AREA SURROUNDING COASTAL AND INLAND ASOS SITES IN AREAS SUBJECT TO HURRICANES. THE PHOTOS HELP DOCUMENT STATION EXPOSURE AND IDENTIFY OBSTACLES THAT COULD REDUCE THE WINDS AT THE SITE.
+#> 3                                                                                                                                                                                                                                                                             SALINAS
+#> 
+#> $`20002078`$updates
+#>             effectiveDate    providedBy updateSource version
+#> 1 2014-08-14T00:00:00.000 NCDC\\KTHOMAS       AD HOC    NONE
+#>                                                                                       description
+#> 1 ADDING ANEMOMETER HEIGHTS FROM NWS SURFACE OBSERVATIONS PROGRAM LISTING DATED FEBRUARY 11, 2009
+#>   enteredBy               enteredDate modifiedBy              modifiedDate
+#> 1   KTHOMAS 2014-08-14T10:07:52-04:00   SMCNEILL 2014-09-24T14:56:23-04:00
+#> 
+#> $`20002078`$elements
+#>   dataProgram element frequency observationTime publishedFlag receiver
+#> 1    COOP HPD  PRECIP    HOURLY            2400           HPD     NCDC
+#> 2    COOP SOD  PRECIP     DAILY            2400            CD     NCDC
+#> 3    COOP SOD    TEMP     DAILY            2400            CD     NCDC
+#> 4    COOP SOD    WIND    HOURLY            UNKN          <NA>     <NA>
+#>   reportingMethod equipment.equipment equipment.equipmentMods
+#> 1             ADP                AHTB                RCRD;HTD
+#> 2             ADP               PCPNX                    <NA>
+#> 3             ADP               TEMPX                    <NA>
+#> 4            <NA>                <NA>                    <NA>
+#>   equipment.equipmentAzimuth equipment.equipmentDistance
+#> 1                        000                           0
+#> 2                        000                           0
+#> 3                        090                           4
+#> 4                       <NA>                        <NA>
+#>   equipment.equipmentDistanceUnits          date.beginDate date.endDate
+#> 1                               ft 2010-02-11T00:00:00.000      Present
+#> 2                               ft 2010-02-11T00:00:00.000      Present
+#> 3                               ft 2010-02-11T00:00:00.000      Present
+#> 4                             <NA> 2010-02-11T00:00:00.000      Present
+#>   equipment
+#> 1      <NA>
+#> 2      <NA>
+#> 3      <NA>
+#> 4 ANEMSONIC
+#> 
+#> $`20002078`$location
+#> $`20002078`$location$id
+#> [1] "20002078"
+#> 
+#> $`20002078`$location$description
+#>                                                                    description
+#> 1 PASO ROBLES MUNICIPAL AIRPORT OUTSIDE AND 5 MILES NE OF PO AT PASO ROBLES CA
+#> 
+#> $`20002078`$location$latlon
+#>   latitude_dec longitude_dec latitude_dms longitude_dms precision
+#> 1      35.6697     -120.6283   35,40,11,N   120,37,42,W    DDMMSS
+#>   datum_horiz           source
+#> 1       NAD83 ASOS SITE SURVEY
+#> 
+#> $`20002078`$location$elevation
+#>   elevationType elevationFeet elevationMeters groundElevDatum
+#> 1        GROUND           810           246.9          NAVD88
+#> 
+#> $`20002078`$location$topography
+#>                   description 
+#> "LEVEL VALLEY LOCATION (S-N)" 
+#> 
+#> $`20002078`$location$obstructions
+#>                   description
+#> 1 HYGR 090/04 NO OBSTRUCTIONS
+#> 
+#> $`20002078`$location$geoinfo
+#>   ncdstnId       country state          county utcoffset
+#> 1 20002078 UNITED STATES    CA SAN LUIS OBISPO        -8
+#> 
+#> $`20002078`$location$nwsinfo
+#>   ncdstnId climateDivisions.stateProvince climateDivisions.climateDivision
+#> 1 20002078                             CA                               04
+#>   climateDivisions.displayName nwsRegion nwsWfos.nwsWfo
+#> 1       Central Coast Drainage   WESTERN            LOX
+#>   nwsWfos.displayName
+#> 1     LOS ANGELES, CA
+#> 
+#> 
+#> 
+#> attr(,"class")
+#> [1] "homr"
+#> attr(,"combined")
+#> [1] FALSE
 ```
 
 ## Storm data
+
+Get storm data for the year 2010
 
 
 ```r
@@ -488,29 +605,29 @@ First, you likely want to search for data, specify either `griddadp` or `tableda
 erddap_search(query='size', which = "table")
 #> 11 results, showing first 20 
 #>                                                                                         title
-#> 1                                                                          CalCOFI Fish Sizes
-#> 2                                                                        CalCOFI Larvae Sizes
-#> 3                Channel Islands, Kelp Forest Monitoring, Size and Frequency, Natural Habitat
-#> 4                                                         CalCOFI Larvae Counts Positive Tows
-#> 5                                                                                CalCOFI Tows
-#> 6                                                     GLOBEC NEP MOCNESS Plankton (MOC1) Data
-#> 7                                                 GLOBEC NEP Vertical Plankton Tow (VPT) Data
-#> 8                                                  OBIS - ARGOS Satellite Tracking of Animals
-#> 10                            NWFSC Observer Fixed Gear Data, off West Coast of US, 2002-2006
-#> 11                                 NWFSC Observer Trawl Data, off West Coast of US, 2002-2006
-#> 12 AN EXPERIMENTAL DATASET: Underway Sea Surface Temperature and Salinity Aboard the Oleander
+#> 1                Channel Islands, Kelp Forest Monitoring, Size and Frequency, Natural Habitat
+#> 2                                                                          CalCOFI Fish Sizes
+#> 3                                                                        CalCOFI Larvae Sizes
+#> 4                                                  OBIS - ARGOS Satellite Tracking of Animals
+#> 5                                                     GLOBEC NEP MOCNESS Plankton (MOC1) Data
+#> 6                                                 GLOBEC NEP Vertical Plankton Tow (VPT) Data
+#> 7                             NWFSC Observer Fixed Gear Data, off West Coast of US, 2002-2006
+#> 8                                  NWFSC Observer Trawl Data, off West Coast of US, 2002-2006
+#> 9                                                         CalCOFI Larvae Counts Positive Tows
+#> 10                                                                               CalCOFI Tows
+#> 16 AN EXPERIMENTAL DATASET: Underway Sea Surface Temperature and Salinity Aboard the Oleander
 #>             dataset_id
-#> 1     erdCalCOFIfshsiz
-#> 2     erdCalCOFIlrvsiz
-#> 3       erdCinpKfmSFNH
-#> 4  erdCalCOFIlrvcntpos
-#> 5       erdCalCOFItows
-#> 6        erdGlobecMoc1
-#> 7         erdGlobecVpt
-#> 8            aadcArgos
-#> 10  nwioosObsFixed2002
-#> 11  nwioosObsTrawl2002
-#> 12            nodcPJJU
+#> 1       erdCinpKfmSFNH
+#> 2     erdCalCOFIfshsiz
+#> 3     erdCalCOFIlrvsiz
+#> 4            aadcArgos
+#> 5        erdGlobecMoc1
+#> 6         erdGlobecVpt
+#> 7   nwioosObsFixed2002
+#> 8   nwioosObsTrawl2002
+#> 9  erdCalCOFIlrvcntpos
+#> 10      erdCalCOFItows
+#> 16            nodcPJJU
 ```
 
 
@@ -518,17 +635,17 @@ erddap_search(query='size', which = "table")
 erddap_search(query='size', which = "grid")
 #> 5 results, showing first 20 
 #>                                                            title
-#> 9                NOAA Global Coral Bleaching Monitoring Products
-#> 13            Coawst 4 use, Best Time Series [time][eta_u][xi_u]
-#> 14            Coawst 4 use, Best Time Series [time][eta_v][xi_v]
-#> 15 Coawst 4 use, Best Time Series [time][s_rho][eta_rho][xi_rho]
-#> 16  Coawst 4 use, Best Time Series [time][Nbed][eta_rho][xi_rho]
+#> 11               NOAA Global Coral Bleaching Monitoring Products
+#> 12            Coawst 4 use, Best Time Series [time][eta_u][xi_u]
+#> 13            Coawst 4 use, Best Time Series [time][eta_v][xi_v]
+#> 14 Coawst 4 use, Best Time Series [time][s_rho][eta_rho][xi_rho]
+#> 15  Coawst 4 use, Best Time Series [time][Nbed][eta_rho][xi_rho]
 #>               dataset_id
-#> 9  hawaii_3b41_0c0b_72bc
-#> 13   whoi_61c3_0b5d_cd61
-#> 14   whoi_62d0_9d64_c8ff
-#> 15   whoi_7dd7_db97_4bbe
-#> 16   whoi_a4fb_2c9c_16a7
+#> 11 hawaii_3b41_0c0b_72bc
+#> 12   whoi_61c3_0b5d_cd61
+#> 13   whoi_62d0_9d64_c8ff
+#> 14   whoi_7dd7_db97_4bbe
+#> 15   whoi_a4fb_2c9c_16a7
 ```
 
 Then you can get information on a single dataset
@@ -538,7 +655,7 @@ Then you can get information on a single dataset
 erddap_info('hawaii_3b41_0c0b_72bc')
 #> <ERDDAP Dataset> hawaii_3b41_0c0b_72bc 
 #>  Dimensions (range):  
-#>      time: (2000-11-28T00:00:00Z, 2014-10-27T00:00:00Z) 
+#>      time: (2000-11-28T00:00:00Z, 2014-12-04T00:00:00Z) 
 #>      latitude: (85.0, -80.0) 
 #>      longitude: (-180.0, 179.5) 
 #>  Variables:  
@@ -647,8 +764,8 @@ __tabledap data__
 erddap_table(out, fields=c('longitude','latitude','fish_size','itis_tsn'),
     'time>=2001-07-07','time<=2001-07-10')
 #> <NOAA ERDDAP tabledap> erdCalCOFIfshsiz
-#>    Path: [/Users/sacmac/.rnoaa/erddap/erdCalCOFIfshsiz.csv]
-#>    Last updated: [2014-11-04 10:37:13]
+#>    Path: [~/.rnoaa/erddap/erdCalCOFIfshsiz.csv]
+#>    Last updated: [2014-12-19 09:14:01]
 #>    File size:    [0.02 mb]
 #>    Dimensions:   [558 X 4]
 #> 
@@ -672,4 +789,4 @@ erddap_table(out, fields=c('longitude','latitude','fish_size','itis_tsn'),
 * License: MIT
 * Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
 
-[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![rofooter](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)

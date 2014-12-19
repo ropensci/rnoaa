@@ -1,4 +1,4 @@
-rnoaa 0.x
+rnoaa 0.3.3
 ===============
 
 NEW FEATURES
@@ -13,10 +13,10 @@ for tabledap and griddap datasets. (#63)
 
 MINOR IMPROVEMENTS
 
-+ `erddap_data()`, now as functions `erddap_table()` and `erddap_grid()`, uses new
++ `erddap_data()` defunct, now as functions `erddap_table()` and `erddap_grid()`, uses new
 `store` parameter which takes a function, either `disk(path, overwrite)` to store 
 on disk or `memory()` to store in R memory. 
-+ `assertthat`
++ `assertthat` library removed, replaced with `stopifnot()`
 
 rnoaa 0.3.0
 ===============

@@ -210,6 +210,8 @@ ncdc_datacats(locationid='CITY:US390029')
 
 ## Tornado data
 
+The function `tornadoes()` simply gets __all the data__. So the call takes a while, but once done, is fun to play with.
+
 ```{r cache=TRUE}
 shp <- tornadoes()
 library('sp')
@@ -218,12 +220,15 @@ plot(shp)
 
 ## HOMR metadata
 
+In this example, search for metadata for a single station ID
+
 ```{r}
-res <- homr(state='NC', county='BUNCOMBE', combine=TRUE)
-head( res$head )
+homr(qid = 'COOP:046742')
 ```
 
 ## Storm data
+
+Get storm data for the year 2010
 
 ```{r}
 storm_data(year=2010)
@@ -280,4 +285,4 @@ erddap_table(out, fields=c('longitude','latitude','fish_size','itis_tsn'),
 * License: MIT
 * Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
 
-[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![rofooter](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
