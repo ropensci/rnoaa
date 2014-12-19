@@ -30,7 +30,7 @@
 
 ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL,
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
-  token=NULL, dataset=NULL, page=NULL, year=NULL, month=NULL, ...)
+  token=NULL, dataset=NULL, page=NULL, year=NULL, month=NULL, handle_reset=FALSE, ...)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("dataset", "page", "year", "month") %in% calls
@@ -63,6 +63,5 @@ ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
       all <- list(meta = tt$metadata$resultset, data = dat)
     }
   }
-  class(all) <- "ncdc_datasets"
-  return( all )
+  structure(all, class="ncdc_datasets")
 }
