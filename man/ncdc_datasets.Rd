@@ -7,8 +7,7 @@
 ncdc_datasets(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
   sortorder = NULL, limit = 25, offset = NULL, token = NULL,
-  dataset = NULL, page = NULL, year = NULL, month = NULL,
-  handle_reset = FALSE, ...)
+  dataset = NULL, page = NULL, year = NULL, month = NULL, ...)
 }
 \arguments{
 \item{datasetid}{(optional) Accepts a single valid dataset id. Data returned will be from the
