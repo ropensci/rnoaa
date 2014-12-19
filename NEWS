@@ -5,6 +5,7 @@ NEW FEATURES
 
 + New data source NOAA legacy API with ISD, daily, and ish data via function 
 `ncdc_legacy()`. (#54)
++ New function `isd()` to get ISD data from NOAA FTP server. (#76)
 + ERDDAP gridded data sets added. Now tabledap datasets are accessible via 
 `erddap_table()`, while gridded datasets are available via `erddap_grid()`. Helper
 function `erddap_search()` was modified to search for either tabledap or griddap 
