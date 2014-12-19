@@ -37,7 +37,8 @@ Imports:
     stringr,
     XML,
     data.table,
-    jsonlite
+    jsonlite,
+    digest
 Suggests:
     testthat,
     roxygen2,
