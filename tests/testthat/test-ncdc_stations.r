@@ -22,7 +22,7 @@ test_that("ncdc_stations returns the correct class", {
 test_that("ncdc_stations returns the correct dimensions", {
   expect_equal(length(bb), 2)
   expect_equal(length(dd$meta), 3)
-  expect_equal(dim(dd$data), c(11,9))
+  expect_equal(NCOL(dd$data), 9)
   expect_equal(length(dd), 2)
-  expect_equal(dim(cc$data), c(1,9))
+  expect_equal(NCOL(cc$data), 9)
 })

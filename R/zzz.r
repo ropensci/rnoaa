@@ -140,14 +140,13 @@ check_response_erddap <- function(x){
     if(grepl("no matching results", error)) error <- 'Error: Your query produced no matching results.'
 
     if(!is.null(error)){
-      if(grepl('Error', error)){
-        warning(sprintf("(%s) - %s", x$status_code, error))
-      } else { warning(sprintf("Error: (%s)", x$status_code)) }
-    } else { warn_for_status(x) }
+      if(grepl('Error', error, ignore.case = TRUE)){
+        stop(sprintf("(%s) - %s", x$status_code, error), call. = FALSE)
+      } else { stop(sprintf("Error: (%s)", x$status_code), call. = FALSE) }
+    } else { stop_for_status(x) }
   } else {
     stopifnot(x$headers$`content-type`=='text/csv;charset=UTF-8')
-    x
-#     content(x, as = 'text', encoding = "UTF-8")
+    return( x )
   }
 }
 
