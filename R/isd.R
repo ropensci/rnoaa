@@ -1,19 +1,19 @@
 #' Get NOAA ISD/ISH data from NOAA FTP server.
-#' 
+#'
 #' @export
 #' @name isd
-#' 
+#'
 #' @param usaf USAF code
 #' @param wban WBAN code
 #' @param year (numeric) One of the years from 1901 to the current year
 #' @param path (character) A path to store the files, Default: \code{~/.rnoaa/isd}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
-#' @examples \donttest{
+#' @examples \dontrun{
 #' # Get station table
 #' stations <- isd_stations()
 #' head(stations)
-#' 
+#'
 #' # Get data
 #' (res <- isd(usaf="010230", wban="99999", year=1986))
 #' (res <- isd(usaf="992230", wban="99999", year=1986))
@@ -22,7 +22,7 @@
 #' @export
 #' @rdname isd
 isd <- function(usaf=NULL, wban=NULL, year=NULL, path="~/.rnoaa/isd", overwrite = TRUE)
-{  
+{
   csvpath <- isd_local(usaf, wban, year, path)
   if(!is_isd(x = csvpath)){
     csvpath <- isd_GET(path, usaf, wban, year, overwrite)
@@ -33,14 +33,14 @@ isd <- function(usaf=NULL, wban=NULL, year=NULL, path="~/.rnoaa/isd", overwrite 
 
 #' @export
 #' @rdname isd
-isd_stations <- function(...){  
+isd_stations <- function(...){
   res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-history.csv", ...))
   df <- read.csv(text=content(res, "text"), header = TRUE)
   df <- setNames(df, gsub("_$", "", gsub("\\.", "_", tolower(names(df)))))
   head(df)
 }
 
-#' @export 
+#' @export
 print.isd <- function(x, ..., n = 10){
   cat("<ISD Data>", sep = "\n")
   cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
@@ -155,8 +155,8 @@ str_pieces <- function(z, pieces, nms=NULL){
 # sa1(x)
 sa1 <- function(x){
   str_pieces(
-    str_match_len(x, "SA1", 8), 
-    list(c(1,3),c(4,7),c(8,8)), 
+    str_match_len(x, "SA1", 8),
+    list(c(1,3),c(4,7),c(8,8)),
     c('sea_surface','temp','quality')
   )
 }
@@ -165,8 +165,8 @@ sa1 <- function(x){
 # rem(x)
 rem <- function(x){
   str_pieces(
-    str_match_len(x, "REM", nchar(x)), 
-    list(c(1,3),c(4,6),c(7,9),c(10,999)), 
+    str_match_len(x, "REM", nchar(x)),
+    list(c(1,3),c(4,6),c(7,9),c(10,999)),
     c('remarks','identifier','length_quantity','comment')
   )
 }
@@ -175,8 +175,8 @@ rem <- function(x){
 # ay1(x)
 ay1 <- function(x){
   str_pieces(
-    str_match_len(x, "AY1", 8), 
-    list(c(1,3),c(4,4),c(5,5),c(6,7),c(8,8)), 
+    str_match_len(x, "AY1", 8),
+    list(c(1,3),c(4,4),c(5,5),c(6,7),c(8,8)),
     c('manual_occurrence','condition_code','condition_quality','period','period_quality')
   )
 }
@@ -185,8 +185,8 @@ ay1 <- function(x){
 # ay2(x)
 ay2 <- function(x){
   str_pieces(
-    str_match_len(x, "AY2", 8), 
-    list(c(1,3),c(4,4),c(5,5),c(6,7),c(8,8)), 
+    str_match_len(x, "AY2", 8),
+    list(c(1,3),c(4,4),c(5,5),c(6,7),c(8,8)),
     c('manual_occurrence','condition_code','condition_quality','period','period_quality')
   )
 }
@@ -195,8 +195,8 @@ ay2 <- function(x){
 # ag1(x)
 ag1 <- function(x){
   str_pieces(
-    str_match_len(x, "AG1", 7), 
-    list(c(1,3),c(4,4),c(5,7)), 
+    str_match_len(x, "AG1", 7),
+    list(c(1,3),c(4,4),c(5,7)),
     c('precipitation','discrepancy','est_water_depth')
   )
 }
@@ -205,7 +205,7 @@ ag1 <- function(x){
 # gf1(x)
 gf1 <- function(x){
   str_pieces(
-    str_match_len(x, "GF1", 26), 
+    str_match_len(x, "GF1", 26),
     list(c(1,3),c(4,5),c(6,7),c(8,8),c(9,10),c(11,11),c(12,13),c(14,14),c(15,19),c(20,20),c(21,22),c(23,23),c(24,25),c(26,26)),
     c('sky_condition','coverage','opaque_coverage','coverage_quality','lowest_cover','lowest_cover_quality',
       'low_cloud_genus','low_cloud_genus_quality','lowest_cloud_base_height','lowest_cloud_base_height_quality',
@@ -217,7 +217,7 @@ gf1 <- function(x){
 # ka1(x)
 ka1 <- function(x){
   str_pieces(
-    str_match_len(x, "KA1", 13), 
+    str_match_len(x, "KA1", 13),
     list(c(1,3),c(4,6),c(7,7),c(8,12),c(13,13)),
     c('extreme_temp','period_quantity','max_min','temp','temp_quality')
   )
@@ -229,7 +229,7 @@ eqd <- function(x){
   eqdtmp <- str_match_len(x, "EQD", nchar(x))
   eqdmtchs <- gregexpr("Q[0-9]{2}", eqdtmp)
   segments <- str_from_to(eqdtmp, eqdmtchs[[1]], 13)
-  lapply(segments, function(m){ 
+  lapply(segments, function(m){
     str_pieces(m,
                list(c(1,3),c(4,9),c(10,10),c(11,16)),
                c('observation_identifier','observation_text','reason_code','parameter')
@@ -241,7 +241,7 @@ eqd <- function(x){
 # md1(x)
 md1 <- function(x){
   str_pieces(
-    str_match_len(x, "MD1", 14), 
+    str_match_len(x, "MD1", 14),
     list(c(1,3),c(4,4),c(5,5),c(6,8),c(9,9),c(10,13),c(14,14)),
     c('atmospheric_change','tendency','tendency_quality','three_hr','three_hr_quality',
       'twentyfour_hr','twentyfour_hr_quality')
@@ -252,7 +252,7 @@ md1 <- function(x){
 # mw1(x)
 mw1 <- function(x){
   str_pieces(
-    str_match_len(x, "MW1", 6), 
+    str_match_len(x, "MW1", 6),
     list(c(1,3),c(4,5),c(6,6)),
     c('first_weather_reported','condition','condition_quality')
   )

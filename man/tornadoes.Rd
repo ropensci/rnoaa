@@ -18,7 +18,7 @@ A Spatial object is returned of class SpatialLinesDataFrame.
 Get NOAA tornado data.
 }
 \examples{
-\donttest{
+\dontrun{
 shp <- tornadoes()
 library('sp')
 plot(shp) # may take 10 sec or so to render

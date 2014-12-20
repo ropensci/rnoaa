@@ -3,21 +3,21 @@
 #' @param dataset Dataset id, one of isd (default), ish, or daily.
 #' @param variable A variable id.
 #' @param station A station id.
-#' @param token Your token. Store as environment variable as NOAA_LEG_TOKEN or option variable 
+#' @param token Your token. Store as environment variable as NOAA_LEG_TOKEN or option variable
 #' as noaalegtoken.
 #' @param state_id State ID
 #' @param state_abbrev State abbreviation
 #' @param country_id Country id
 #' @param country_abbrev Country abbreviation
-#' @param start_date,end_date Date to start and end search for. Valid formats include, YYYY, 
-#' YYYYMM, YYYYMMDD, YYYYMMDDhh, and YYYYMMDDhhmm. 
+#' @param start_date,end_date Date to start and end search for. Valid formats include, YYYY,
+#' YYYYMM, YYYYMMDD, YYYYMMDDhh, and YYYYMMDDhhmm.
 #' @param ... Further args passed to \code{\link[httr]{GET}}
-#' @references \url{http://www7.ncdc.noaa.gov/wsregistration/ws_home.html}, 
-#' \url{http://www7.ncdc.noaa.gov/rest/}, 
+#' @references \url{http://www7.ncdc.noaa.gov/wsregistration/ws_home.html},
+#' \url{http://www7.ncdc.noaa.gov/rest/},
 #' \url{http://www7.ncdc.noaa.gov/wsregistration/CDOServices.html}
-#' @details BEWARE: This service, as far as I can tell, enforces a wait time between successive 
+#' @details BEWARE: This service, as far as I can tell, enforces a wait time between successive
 #' data requests of 60 seconds. This is indeed a long time.
-#' @examples \donttest{
+#' @examples \dontrun{
 #' # Variables
 #' ## All variables
 #' ncdc_leg_variables()
@@ -26,7 +26,7 @@
 #' ncdc_leg_variables(variable = "TMP")
 #' ### Snow Accumulation For The Month
 #' ncdc_leg_variables(variable = "AN1")
-#' 
+#'
 #' # Sites
 #' head( ncdc_leg_sites() )
 #' ncdc_leg_sites(country_id = 1)
@@ -35,7 +35,7 @@
 #' ncdc_leg_sites(state_abbrev = 'HI')
 #' ## site info
 #' ncdc_leg_site_info(stationid=71238099999)
-#' 
+#'
 #' # Data
 #' ncdc_leg_data('isd', 71238099999, 'TMP', 200101010000, 200101312359)
 #' ncdc_leg_data('isd', 71238099999, 'TMP', 200101, 200201)
@@ -51,11 +51,11 @@ ncdc_leg_variables <- function(dataset = "isd", variable = NULL, token = NULL, .
 
 #' @export
 #' @rdname ncdc_legacy
-ncdc_leg_sites <- function(dataset = "isd", state_id = NULL, state_abbrev = NULL, 
+ncdc_leg_sites <- function(dataset = "isd", state_id = NULL, state_abbrev = NULL,
   country_id = NULL, country_abbrev = NULL, token = NULL, ...)
 {
   base <- paste0(ncdclb(), "sites/")
-  param <- noaa_compact(list(state_id=state_id, state_abbrev=state_abbrev, 
+  param <- noaa_compact(list(state_id=state_id, state_abbrev=state_abbrev,
                     country_id=country_id, country_abbrev=country_abbrev))
   url <- if(length(param) == 0) paste0(base, dataset) else paste0(base, dataset, '/', switch_name(names(param)), '/', param[[1]])
   args <- list(output = "csv", token = check_token_leg(token))
@@ -81,7 +81,7 @@ ncdc_leg_data <- function(dataset = "isd", station, variable, start_date, end_da
 }
 
 switch_name <- function(x){
-  switch(x, state_id='stateId', state_abbrev='stateAbbrev', 
+  switch(x, state_id='stateId', state_abbrev='stateAbbrev',
          country_id='countryId', country_abbrev='countryAbbrev')
 }
 

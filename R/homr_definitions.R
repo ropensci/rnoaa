@@ -2,11 +2,11 @@
 #'
 #' @export
 #'
-#' @param ... Named parameters, such as \code{query}, \code{path}, etc, passed on to 
-#' \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with 
-#' \code{\link[httr]{config}}. 
+#' @param ... Named parameters, such as \code{query}, \code{path}, etc, passed on to
+#' \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
+#' \code{\link[httr]{config}}.
 #'
-#' @examples \donttest{
+#' @examples \dontrun{
 #' head( homr_definitions() )
 #' }
 

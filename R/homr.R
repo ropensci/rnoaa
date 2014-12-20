@@ -4,29 +4,29 @@
 #'
 #' @param qid One of COOP, FAA, GHCND, ICAO, NCDCSTNID, NWSLI, TRANS, WBAN, or WMO, or any
 #' of those plus \code{[a-z0-9]}, or just \code{[a-z0-9]}. (qid = qualified ID)
-#' @param qidMod  (character) One of: is, starts, ends, contains. Specifies how the ID portion of 
-#' the qid parameter should be applied within the search. If a qid is passed but the qidMod 
+#' @param qidMod  (character) One of: is, starts, ends, contains. Specifies how the ID portion of
+#' the qid parameter should be applied within the search. If a qid is passed but the qidMod
 #' parameter is not used, qidMod is assumed to be IS.
-#' @param station  (character) A station id. 
-#' @param state  (character) A two-letter state abbreviation. Two-letter code for US states, 
+#' @param station  (character) A station id.
+#' @param state  (character) A two-letter state abbreviation. Two-letter code for US states,
 #' Canadian provinces, and other Island areas.
-#' @param county  (character) A two letter county code. US county names, best used with a state 
+#' @param county  (character) A two letter county code. US county names, best used with a state
 #' identifier.
-#' @param country  (character) A two letter country code. See here for a list of valid country 
+#' @param country  (character) A two letter country code. See here for a list of valid country
 #' names.
-#' @param name  (character) One of name=[0-9A-Z]+. Searches on any type of name we have for the 
+#' @param name  (character) One of name=[0-9A-Z]+. Searches on any type of name we have for the
 #' station.
-#' @param nameMod  (character) [is|starts|ends|contains]. Specifies how the name parameter should 
-#' be applied within the search. If a name is passed but the nameMod parameter is not used, 
+#' @param nameMod  (character) [is|starts|ends|contains]. Specifies how the name parameter should
+#' be applied within the search. If a name is passed but the nameMod parameter is not used,
 #' nameMod is assumed to be IS.
-#' @param platform  (character) (aka network) [ASOS|USCRN|USHCN|NEXRAD|AL USRCRN|USRCRN|COOP]. 
+#' @param platform  (character) (aka network) [ASOS|USCRN|USHCN|NEXRAD|AL USRCRN|USRCRN|COOP].
 #' Limit the search to stations of a certain platform/network type.
-#' @param date  (character) [YYYY-MM-DD|all] Limits values to only those that occurred on a 
-#' specific date. Alternatively, date=all will return all values for matched stations. If this 
+#' @param date  (character) [YYYY-MM-DD|all] Limits values to only those that occurred on a
+#' specific date. Alternatively, date=all will return all values for matched stations. If this
 #' field is omitted, the search will return only the most recent values for each field.
 #' @param begindate,enddate [YYYY-MM-DD]. Limits values to only those that occurred within a
 #' date range.
-#' @param headersOnly (logical) Returns only minimal information for each station found (NCDC 
+#' @param headersOnly (logical) Returns only minimal information for each station found (NCDC
 #' Station ID, Preferred Name, Station Begin Date, and Station End Date), but is much quicker than a
 #' full query. If you are performing a search that returns a large number of stations and intend
 #' to choose only one from that list to examine in detail, headersOnly may give you enough
@@ -35,20 +35,20 @@
 #' available, in an elements section. Because of how this data is structured, it can substantially
 #' increase the size of any result which includes it. If you don't need this data you can omit it
 #' by including phrData=false. If the parameter is not set, it will default to phrData=true.
-#' @param combine (logical) Combine station metadata or not. 
-#' @param ... Further named parameters, such as \code{query}, \code{path}, etc, passed on to 
-#' \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with 
-#' \code{\link[httr]{config}}. 
-#' 
+#' @param combine (logical) Combine station metadata or not.
+#' @param ... Further named parameters, such as \code{query}, \code{path}, etc, passed on to
+#' \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
+#' \code{\link[httr]{config}}.
+#'
 #' @details Since the definitions for variables are always the same, we don't include the ability
 #' to get description data in this function. Use \code{link[rnoaa]{homr_descriptions}} to get
 #' descriptions information.
-#' 
+#'
 #' @return A list, with elements named by the station ids.
-#' 
+#'
 #' @references \url{http://www.ncdc.noaa.gov/homr/api}
 #'
-#' @examples \donttest{
+#' @examples \dontrun{
 #' homr(qid = 'COOP:046742')
 #' homr(headersOnly=TRUE, qid='TRANS:')
 #' homr(qid = ':046742')
@@ -71,7 +71,7 @@
 #' homr(station=20002078, date='all', phrData=FALSE)
 #' }
 
-homr <- function(qid=NULL, qidMod=NULL, station=NULL, state=NULL, county=NULL, country=NULL, 
+homr <- function(qid=NULL, qidMod=NULL, station=NULL, state=NULL, county=NULL, country=NULL,
   name=NULL, nameMod=NULL, platform=NULL, date=NULL, begindate=NULL, enddate=NULL, headersOnly=FALSE,
   phrData=NULL, combine=FALSE, ...)
 {
@@ -100,8 +100,8 @@ parse_stations <- function(x, headersOnly) {
     updates <- todf(x$updates)[[1]]
     elements <- rbf(todf(x$elements))
     location <- parse_loc(x$location)
-    list(id=id, head=head, namez=namez, identifiers=identifiers, 
-         status=status, platform=platform, relocations=relocations, 
+    list(id=id, head=head, namez=namez, identifiers=identifiers,
+         status=status, platform=platform, relocations=relocations,
          remarks=remarks, updates=updates, elements=elements, location=location)
   }
 }
@@ -113,7 +113,7 @@ parse_loc <- function(y){
   elev <- todf(y$elevations)[[1]]
   topography <- unlist(y$topography)
   obstructions <- rbf(todf(y$obstructions))
-  geoinfo <- data.frame(ncdstnId=ifn_na(y$geoInfo$ncdcstnId), 
+  geoinfo <- data.frame(ncdstnId=ifn_na(y$geoInfo$ncdcstnId),
              country=ifn_na(y$geoInfo$countries[[1]]$country),
              state=ifn_na(y$geoInfo$stateProvinces[[1]]$stateProvince),
              county=ifn_na(y$geoInfo$counties[[1]]$county),
@@ -125,7 +125,7 @@ parse_loc <- function(y){
              nwsWfos=ifn_na(todf(y$nwsInfo$nwsWfos)[[1]]),
              stringsAsFactors = FALSE)
   list(id=id, description=descriptions, latlon=latlon, elevation=elev,
-       topography=topography, obstructions=obstructions, 
+       topography=topography, obstructions=obstructions,
        geoinfo=na2null(geoinfo), nwsinfo=na2null(nwsinfo))
 }
 
@@ -142,7 +142,7 @@ combine_stations <- function(w){
   elements <- rbf(x=lapply(w, "[[", "elements"), TRUE)
   location <- lapply(w, "[[", "location")
   list(id=ids, head=head, namez=namez, identifiers=identifiers,
-       status=status, platform=platform, relocations=relocations, 
+       status=status, platform=platform, relocations=relocations,
        remarks=remarks, updates=updates, elements=elements, location=location)
 }
 

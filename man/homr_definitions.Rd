@@ -15,7 +15,7 @@ homr_definitions(...)
 Historical Observing Metadata Repository (HOMR) station metadata - definitions
 }
 \examples{
-\donttest{
+\dontrun{
 head( homr_definitions() )
 }
 }

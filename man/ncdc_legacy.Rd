@@ -49,7 +49,7 @@ BEWARE: This service, as far as I can tell, enforces a wait time between success
 data requests of 60 seconds. This is indeed a long time.
 }
 \examples{
-\donttest{
+\dontrun{
 # Variables
 ## All variables
 ncdc_leg_variables()

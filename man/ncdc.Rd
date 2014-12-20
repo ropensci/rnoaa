@@ -192,7 +192,7 @@ ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
    enddate = '2013-12-01', includemetadata=FALSE)
 }
 
-\donttest{
+\dontrun{
 # NEXRAD2 data
 ## doesn't work yet
 ncdc(datasetid='NEXRAD2', startdate = '2013-10-01', enddate = '2013-12-01')

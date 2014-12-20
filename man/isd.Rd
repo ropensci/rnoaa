@@ -27,7 +27,7 @@ isd_stations(...)
 Get NOAA ISD/ISH data from NOAA FTP server.
 }
 \examples{
-\donttest{
+\dontrun{
 # Get station table
 stations <- isd_stations()
 head(stations)

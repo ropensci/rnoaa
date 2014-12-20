@@ -1,13 +1,13 @@
 #' Get NOAA tornado data.
-#' 
+#'
 #' @export
 #' @param path A path to store the files, Default: \code{~/.ots/kelp}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
-#' 
+#'
 #' @return A Spatial object is returned of class SpatialLinesDataFrame.
 #' @references \url{http://www.spc.noaa.gov/gis/svrgis/}
 #'
-#' @examples \donttest{
+#' @examples \dontrun{
 #' shp <- tornadoes()
 #' library('sp')
 #' plot(shp) # may take 10 sec or so to render
@@ -38,5 +38,5 @@ is_tornadoes <- function(x){
 
 readshp <- function(x) readOGR(dsn = path.expand(x), layer = "tornado", stringsAsFactors = FALSE)
 
-tornadoes_files <- 
+tornadoes_files <-
   c("tornado.dbf","tornado.prj","tornado.sbn","tornado.sbx","tornado.shp","tornado.shx")

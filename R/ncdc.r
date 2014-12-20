@@ -112,7 +112,7 @@
 #'    enddate = '2013-12-01', includemetadata=FALSE)
 #' }
 #'
-#' \donttest{
+#' \dontrun{
 #' # NEXRAD2 data
 #' ## doesn't work yet
 #' ncdc(datasetid='NEXRAD2', startdate = '2013-10-01', enddate = '2013-12-01')
@@ -138,7 +138,7 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
                          limit=limit, offset=offset, includemetadata=includemetadata))
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
-  
+
   if(limit > 1000){
     startat <- seq(1, limit, 1000)-1
     repto <- rep(1000, length(startat))

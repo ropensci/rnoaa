@@ -74,7 +74,7 @@ to get description data in this function. Use \code{link[rnoaa]{homr_description
 descriptions information.
 }
 \examples{
-\donttest{
+\dontrun{
 homr(qid = 'COOP:046742')
 homr(headersOnly=TRUE, qid='TRANS:')
 homr(qid = ':046742')

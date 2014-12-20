@@ -59,7 +59,7 @@ The datasets included in the package \code{\link[rnoaa]{storm_names}}, and
 \code{\link[rnoaa]{storm_columns}} may help in using these storm functions.
 }
 \examples{
-\donttest{
+\dontrun{
 # Metadata
 head( storm_meta() )
 head( storm_meta("storm_columns") )
