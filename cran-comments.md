@@ -1,6 +1,6 @@
 R CMD CHECK passed on my local OS X install on R 3.1.2 and R development version, Ubuntu running on Travis-CI, and Win builder.
 
-The maintainer has changed from Edmund Hart (also known as Ted) to me (Scott Chamberlain). Edmund emailed Brian Ripley on 2014-11-11 stating that he agreed to this change. Please let me know if you want another email from him. His email from 2014-11-11 is:
+The maintainer has changed from Edmund Hart (also known as Ted) to me (Scott Chamberlain). Edmund emailed Brian Ripley on 2014-11-11 stating that he agreed to this change. Please let me know if you want another email from him. CRAN policies state that "When a new maintainer wishes to take over a package, this should be accompanied by the written agreement of the previous maintainer (unless the package has been formally orphaned)." His email from 2014-11-11 was:
 
 -------
 Hi Brian,
