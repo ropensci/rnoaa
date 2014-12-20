@@ -16,3 +16,4 @@ inst/cache
 inst/vign/cache
 README.Rmd
 figure
+testthat.R
