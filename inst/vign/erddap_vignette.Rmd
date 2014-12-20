@@ -16,31 +16,29 @@ knitr::opts_chunk$set(
 ERDDAP vignette
 ======
 
-### ERDDAP vignette
-
 ERDDAP gives a simple, consistent way to download subsets of gridded and tabular scientific datasets in common file formats and make graphs and maps. This ERDDAP installation has oceanographic data (for example, data from satellites and buoys).
 
 Find out more about ERDDAP at [http://coastwatch.pfeg.noaa.gov/erddap/index.html](http://coastwatch.pfeg.noaa.gov/erddap/index.html).
 
-### Load rnoaa
+## Load rnoaa
 
 ```{r}
 library('rnoaa')
 ```
 
-#### Passing the datasetid without fields gives all columns back
+## Passing the datasetid without fields gives all columns back
 
 ```{r one}
 erddap_table('erdCalCOFIfshsiz')
 ```
 
-#### Pass time constraints
+## Pass time constraints
 
 ```{r two}
 erddap_table('erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08')
 ```
 
-#### Pass in fields (i.e., columns to retrieve) & time constraints
+## Pass in fields (i.e., columns to retrieve) & time constraints
 
 ```{r three}
 erddap_table('erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'), 'time>=2001-07-07','time<=2001-07-10')
@@ -50,7 +48,7 @@ erddap_table('erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','it
 erddap_table('erdCinpKfmBT', fields=c('latitude','longitude','Aplysia_californica_Mean_Density','Muricea_californica_Mean_Density'), 'time>=2007-06-24','time<=2007-07-01')
 ```
 
-#### An example workflow
+## An example workflow
 
 Search for data
 
@@ -77,7 +75,7 @@ Get data from the dataset
 erddap_table(id, fields = c('latitude','longitude'))
 ```
 
-#### Time constraint
+## Time constraint
 
 Limit by time with date only
 
@@ -85,13 +83,13 @@ Limit by time with date only
 erddap_table(id, fields = c('latitude','longitude','time'), 'time>=2001-07-14', 'time<=2001-09-14')
 ```
 
-#### Use distinct parameter
+## Use distinct parameter
 
 ```{r}
 erddap_table('erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'), 'time>=2001-07-07','time<=2001-07-10', distinct=TRUE)
 ```
 
-#### The units parameter
+## The units parameter
 
 In this example, values are the same, but sometimes they can be different given the units value passed
 
@@ -103,43 +101,43 @@ erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'), 'time>=2007-09-19', 'time<=2007-09-21', units='ucum')
 ```
 
-#### The orderby parameter
+## The orderby parameter
 
 ```{r}
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'), 'time>=2007-09-19', 'time<=2007-09-21', orderby='temperature')
 ```
 
-#### The orderbymax parameter
+## The orderbymax parameter
 
 ```{r}
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'), 'time>=2007-09-19', 'time<=2007-09-21', orderbymax='temperature')
 ```
 
-#### The orderbymin parameter
+## The orderbymin parameter
 
 ```{r}
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'), 'time>=2007-09-19', 'time<=2007-09-21', orderbymin='temperature')
 ```
 
-#### The orderbyminmax parameter
+## The orderbyminmax parameter
 
 ```{r}
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'), 'time>=2007-09-19', 'time<=2007-09-21', orderbyminmax='temperature')
 ```
 
-#### The orderbymin parameter with multiple values
+## The orderbymin parameter with multiple values
 
 ```{r}
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','depth','temperature'), 'time>=2007-06-10', 'time<=2007-09-21', orderbymax=c('depth','temperature'))
 ```
 
-#### Spatial delimitation
+## Spatial delimitation
 
 ```{r}
 erddap_table('erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name'), 'latitude>=34.8', 'latitude<=35', 'longitude>=-125', 'longitude<=-124')
 ```
 
-#### Integrate with taxize
+## Integrate with taxize
 
 ```{r}
 out <- erddap_table('erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name','itis_tsn'))

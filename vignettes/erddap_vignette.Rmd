@@ -8,27 +8,22 @@
 ERDDAP vignette
 ======
 
-### ERDDAP vignette
-
 ERDDAP gives a simple, consistent way to download subsets of gridded and tabular scientific datasets in common file formats and make graphs and maps. This ERDDAP installation has oceanographic data (for example, data from satellites and buoys).
 
 Find out more about ERDDAP at [http://coastwatch.pfeg.noaa.gov/erddap/index.html](http://coastwatch.pfeg.noaa.gov/erddap/index.html).
 
-### Load rnoaa
+## Load rnoaa
 
 
 ```r
 library('rnoaa')
 ```
 
-#### Passing the datasetid without fields gives all columns back
+## Passing the datasetid without fields gives all columns back
 
 
 ```r
 erddap_table('erdCalCOFIfshsiz')
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCalCOFIfshsiz
 #>    Path: [/Users/sacmac/.rnoaa/erddap/f18cc75d8bf5ca831a96f42486a7bd5d.csv]
 #>    Last updated: [2014-12-19 15:47:55]
@@ -55,14 +50,11 @@ erddap_table('erdCalCOFIfshsiz')
 #>      fish_count (dbl), fish_1000m3 (chr)
 ```
 
-#### Pass time constraints
+## Pass time constraints
 
 
 ```r
 erddap_table('erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08')
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCalCOFIfshsiz
 #>    Path: [/Users/sacmac/.rnoaa/erddap/9e5119eb5c8ed63b9619be1367b0344c.csv]
 #>    Last updated: [2014-12-19 18:07:32]
@@ -89,14 +81,11 @@ erddap_table('erdCalCOFIfshsiz', 'time>=2001-07-07', 'time<=2001-07-08')
 #>      fish_count (dbl), fish_1000m3 (chr)
 ```
 
-#### Pass in fields (i.e., columns to retrieve) & time constraints
+## Pass in fields (i.e., columns to retrieve) & time constraints
 
 
 ```r
 erddap_table('erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'), 'time>=2001-07-07','time<=2001-07-10')
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCalCOFIfshsiz
 #>    Path: [/Users/sacmac/.rnoaa/erddap/7b04d4ddfe4ad3540ec6213129fa050c.csv]
 #>    Last updated: [2014-12-19 18:07:47]
@@ -120,9 +109,6 @@ erddap_table('erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','it
 
 ```r
 erddap_table('erdCinpKfmBT', fields=c('latitude','longitude','Aplysia_californica_Mean_Density','Muricea_californica_Mean_Density'), 'time>=2007-06-24','time<=2007-07-01')
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCinpKfmBT
 #>    Path: [/Users/sacmac/.rnoaa/erddap/681451f3fee8ee9e426012609975a89e.csv]
 #>    Last updated: [2014-12-19 18:08:22]
@@ -144,16 +130,13 @@ erddap_table('erdCinpKfmBT', fields=c('latitude','longitude','Aplysia_californic
 #> Variables not shown: Muricea_californica_Mean_Density (chr)
 ```
 
-#### An example workflow
+## An example workflow
 
 Search for data
 
 
 ```r
 (out <- erddap_search(query='size'))
-```
-
-```
 #> 6 results, showing first 20 
 #>                                                            title
 #> 11               NOAA Global Coral Bleaching Monitoring Products
@@ -184,9 +167,6 @@ Using a datasetid, search for information on a datasetid
 ```r
 id <- as.character(tdp$Dataset.ID[8])
 erddap_info(id)$variables
-```
-
-```
 #>               variable_name data_type     actual_range
 #> 1                      cndc     float                 
 #> 2             cndc_adjusted     float                 
@@ -229,9 +209,6 @@ Get data from the dataset
 
 ```r
 erddap_table(id, fields = c('latitude','longitude'))
-```
-
-```
 #> <NOAA ERDDAP tabledap> apdrcArgoAll
 #>    Path: [/Users/sacmac/.rnoaa/erddap/7b238871e478bf43df2e1f703e6e85e5.csv]
 #>    Last updated: [2014-12-19 18:15:39]
@@ -252,16 +229,13 @@ erddap_table(id, fields = c('latitude','longitude'))
 #> ..      ...       ...
 ```
 
-#### Time constraint
+## Time constraint
 
 Limit by time with date only
 
 
 ```r
 erddap_table(id, fields = c('latitude','longitude','time'), 'time>=2001-07-14', 'time<=2001-09-14')
-```
-
-```
 #> <NOAA ERDDAP tabledap> apdrcArgoAll
 #>    Path: [/Users/sacmac/.rnoaa/erddap/d449b321be463619aab879c8ca2e40e7.csv]
 #>    Last updated: [2014-12-19 18:22:51]
@@ -282,14 +256,11 @@ erddap_table(id, fields = c('latitude','longitude','time'), 'time>=2001-07-14', 
 #> ..      ...       ...                  ...
 ```
 
-#### Use distinct parameter
+## Use distinct parameter
 
 
 ```r
 erddap_table('erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','itis_tsn'), 'time>=2001-07-07','time<=2001-07-10', distinct=TRUE)
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCalCOFIfshsiz
 #>    Path: [/Users/sacmac/.rnoaa/erddap/e05d5adb0fecd3bb2276c920e1bd2457.csv]
 #>    Last updated: [2014-12-19 18:16:09]
@@ -310,16 +281,13 @@ erddap_table('erdCalCOFIfshsiz', fields=c('longitude','latitude','fish_size','it
 #> ..        ...       ...       ...      ...
 ```
 
-#### The units parameter
+## The units parameter
 
 In this example, values are the same, but sometimes they can be different given the units value passed
 
 
 ```r
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'), 'time>=2007-09-19', 'time<=2007-09-21', units='udunits')
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCinpKfmT
 #>    Path: [/Users/sacmac/.rnoaa/erddap/d1aaf6eca896d080b1c2251f7a8cec17.csv]
 #>    Last updated: [2014-12-19 18:16:21]
@@ -343,9 +311,6 @@ erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'
 
 ```r
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'), 'time>=2007-09-19', 'time<=2007-09-21', units='ucum')
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCinpKfmT
 #>    Path: [/Users/sacmac/.rnoaa/erddap/a53175d2b882b8054906b46d4efe8218.csv]
 #>    Last updated: [2014-12-19 18:16:34]
@@ -366,14 +331,11 @@ erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'
 #> ..       ...       ...                  ...         ...
 ```
 
-#### The orderby parameter
+## The orderby parameter
 
 
 ```r
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'), 'time>=2007-09-19', 'time<=2007-09-21', orderby='temperature')
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCinpKfmT
 #>    Path: [/Users/sacmac/.rnoaa/erddap/9339183f5e454127988667d44e8fb0ca.csv]
 #>    Last updated: [2014-12-19 18:16:44]
@@ -394,14 +356,11 @@ erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'
 #> ..       ...       ...                  ...         ...
 ```
 
-#### The orderbymax parameter
+## The orderbymax parameter
 
 
 ```r
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'), 'time>=2007-09-19', 'time<=2007-09-21', orderbymax='temperature')
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCinpKfmT
 #>    Path: [/Users/sacmac/.rnoaa/erddap/e6e6116b3870afc9c093f6dab56ce6ba.csv]
 #>    Last updated: [2014-12-19 18:16:53]
@@ -412,14 +371,11 @@ erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'
 #> 2    -120.1 33.883335 2007-09-19T03:13:00Z       16.38
 ```
 
-#### The orderbymin parameter
+## The orderbymin parameter
 
 
 ```r
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'), 'time>=2007-09-19', 'time<=2007-09-21', orderbymin='temperature')
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCinpKfmT
 #>    Path: [/Users/sacmac/.rnoaa/erddap/04557d97f6ecec410b114fc90da503d1.csv]
 #>    Last updated: [2014-12-19 18:17:12]
@@ -430,14 +386,11 @@ erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'
 #> 2    -120.1 33.883335 2007-09-20T12:13:00Z        12.0
 ```
 
-#### The orderbyminmax parameter
+## The orderbyminmax parameter
 
 
 ```r
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'), 'time>=2007-09-19', 'time<=2007-09-21', orderbyminmax='temperature')
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCinpKfmT
 #>    Path: [/Users/sacmac/.rnoaa/erddap/4bd33e3b4de0d050b250fbccfd436ab7.csv]
 #>    Last updated: [2014-12-19 18:17:15]
@@ -449,14 +402,11 @@ erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','temperature'
 #> 3    -120.1 33.883335 2007-09-19T03:13:00Z       16.38
 ```
 
-#### The orderbymin parameter with multiple values
+## The orderbymin parameter with multiple values
 
 
 ```r
 erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','depth','temperature'), 'time>=2007-06-10', 'time<=2007-09-21', orderbymax=c('depth','temperature'))
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCinpKfmT
 #>    Path: [/Users/sacmac/.rnoaa/erddap/e84ec03c5003845e4df2208ae39a975a.csv]
 #>    Last updated: [2014-12-19 18:17:24]
@@ -477,14 +427,11 @@ erddap_table('erdCinpKfmT', fields=c('longitude','latitude','time','depth','temp
 #> ..         ...       ...                  ...   ...         ...
 ```
 
-#### Spatial delimitation
+## Spatial delimitation
 
 
 ```r
 erddap_table('erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_name'), 'latitude>=34.8', 'latitude<=35', 'longitude>=-125', 'longitude<=-124')
-```
-
-```
 #> <NOAA ERDDAP tabledap> erdCalCOFIfshsiz
 #>    Path: [/Users/sacmac/.rnoaa/erddap/8137b5814735d58e2d939b33a975c1a9.csv]
 #>    Last updated: [2014-12-19 15:48:00]
@@ -505,7 +452,7 @@ erddap_table('erdCalCOFIfshsiz', fields = c('latitude','longitude','scientific_n
 #> ..       ...       ...                    ...
 ```
 
-#### Integrate with taxize
+## Integrate with taxize
 
 
 ```r
@@ -514,9 +461,6 @@ tsns <- unique(out$itis_tsn[1:100])
 library("taxize")
 classif <- classification(tsns, db = "itis")
 head(rbind(classif)); tail(rbind(classif))
-```
-
-```
 #>            name         rank     id  query   db
 #> 1      Animalia      Kingdom 202423 172887 itis
 #> 2     Bilateria   Subkingdom 914154 172887 itis
@@ -524,9 +468,6 @@ head(rbind(classif)); tail(rbind(classif))
 #> 4      Chordata       Phylum 158852 172887 itis
 #> 5    Vertebrata    Subphylum 331030 172887 itis
 #> 6 Gnathostomata  Infraphylum 914179 172887 itis
-```
-
-```
 #>                   name     rank     id  query   db
 #> 161       Stomiiformes    Order 553138 162167 itis
 #> 162    Gonostomatoidei Suborder 553151 162167 itis
