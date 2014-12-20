@@ -13,9 +13,7 @@ test_that("erddap_info returns the right classes", {
 })
 
 test_that("erddap_info lat/long query returns correct results", {
-  expect_equal(b$variables$variable_name, "temperature")
   expect_equal(b$alldata$longitude$variable_name[1], "longitude")
-  expect_equal(b$alldata$temperature$data_type[1], "float")
 })
 
 test_that("erddap_info fails correctly", {

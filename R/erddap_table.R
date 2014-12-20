@@ -192,6 +192,7 @@ erd_tab_GET <- function(url, dset, store, ...){
       dir.create(store$path, showWarnings = FALSE, recursive = TRUE)
       res <- GET(url, write_disk(write_path(store$path, url), store$overwrite), ...)
       out <- check_response_erddap(res)
+      if(res$status_code != 200) unlink(res$request$writer[[1]])
       if(grepl("Error", out, ignore.case = TRUE)) NA else res$request$writer[[1]]
     }
   } else {
