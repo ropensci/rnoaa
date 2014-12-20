@@ -77,7 +77,7 @@ You can easily read in the data (or do it on your own), then do stuff with the d
 
 ```{r}
 resshp <- storm_shp_read(res)
-library(maps)
+library("maps")
 map()
 points(resshp)
 ```

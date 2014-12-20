@@ -72,7 +72,7 @@ By country
 
 ```{r}
 res <- homr(country='GHANA', begindate='2005-01-01', enddate='2005-02-01')
-library(plyr)
+library("plyr")
 ldply(res, function(x) x$location$latlon)
 ```
 
