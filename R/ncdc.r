@@ -130,7 +130,6 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
     stop("The parameters name, code, modifiedsince, startindex, and maxresults \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa")
 
   token <- check_key(token)
-
   base = 'http://www.ncdc.noaa.gov/cdo-web/api/v2/data'
   args <- noaa_compact(list(datasetid=datasetid, datatypeid=datatypeid,
                          locationid=locationid, stationid=stationid, startdate=startdate,
@@ -138,37 +137,16 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
                          limit=limit, offset=offset, includemetadata=includemetadata))
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
-
-  if(limit > 1000){
-    startat <- seq(1, limit, 1000)-1
-    repto <- rep(1000, length(startat))
-    repto[length(repto)] <- limit-round_any(limit, 1000, floor)
-
-    out <- list()
-    for(i in seq_along(startat)){
-      args$limit <- repto[i]
-      args$offset <- startat[i]
-      temp <- GET(base, query=args, add_headers("token" = token), ...)
-      tt <- check_response(temp)
-      if(is(tt, "character")){all <- NULL} else {
-        out[[i]] <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
-      }
-    }
-    out <- noaa_compact(out)
-    dat <- do.call(rbind.data.frame, out)
+  temp <- GET(base, query=args, add_headers("token" = token), ...)
+  tt <- check_response(temp)
+  if(is(tt, "character")){
+    all <- list(meta=NA, data=NA)
+  } else {
+    tt$results <- lapply(tt$results, split_atts, ds=datasetid)
+    dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
     meta <- tt$metadata$resultset
-    atts <- list(totalCount=meta$count, pageCount="none", offset="none")
-  } else
-  {
-    temp <- GET(base, query=args, add_headers("token" = token), ...)
-    tt <- check_response(temp)
-    if(is(tt, "character")){all <- list(meta=NA, data=NA)} else {
-      tt$results <- lapply(tt$results, split_atts, ds=datasetid)
-      dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
-      meta <- tt$metadata$resultset
-      atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
-      all <- list(meta=atts, data=dat)
-    }
+    atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
+    all <- list(meta=atts, data=dat)
   }
 
   structure(all, class="ncdc_data")
