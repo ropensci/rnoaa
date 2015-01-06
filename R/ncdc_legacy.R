@@ -1,4 +1,5 @@
 #' Search the NOAA NCDC legacy API - main purpose to get ISD daily data.
+#'
 #' @name ncdc_legacy
 #' @param dataset Dataset id, one of isd (default), ish, or daily.
 #' @param variable A variable id.
@@ -34,7 +35,7 @@
 #' ncdc_leg_sites(state_id = 11)
 #' ncdc_leg_sites(state_abbrev = 'HI')
 #' ## site info
-#' ncdc_leg_site_info(stationid=71238099999)
+#' ncdc_leg_site_info(station=71238099999)
 #'
 #' # Data
 #' ncdc_leg_data('isd', 71238099999, 'TMP', 200101010000, 200101312359)
