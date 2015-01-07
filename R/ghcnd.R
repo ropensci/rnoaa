@@ -1,27 +1,27 @@
 #' Get GHCND daily data from NOAA FTP server
-#' 
+#'
 #' @export
-#' 
+#'
 #' @param stationid Stationid to get
 #' @param path (character) A path to store the files, Default: \code{~/.rnoaa/isd}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
-#' 
+#'
 #' @examples \dontrun{
 #' # Get stations
 #' stations <- ghcnd_stations()
 #' head(stations)
-#' 
+#'
 #' # Get data
 #' ghcnd(stationid="AGE00147704")
 #' ghcnd(stations$id[40])
 #' ghcnd(stations$id[4000])
 #' ghcnd(stations$id[10000])
 #' ghcnd(stations$id[80000])
-#' 
+#'
 #' library("dplyr")
 #' dat <- ghcnd(stations$id[10000])
-#' dat$data %>% 
+#' dat$data %>%
 #'    filter(element == "PRCP", year == 1884)
 #' }
 
@@ -45,7 +45,7 @@ ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...)
 print.ghcnd <- function(x, ..., n = 10){
   cat("<GHCND Data>", sep = "\n")
   cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
-  rnoaa::trunc_mat(x$data, n = n)
+  rnoaa::trunc_mat_(x$data, n = n)
 }
 
 #' @export

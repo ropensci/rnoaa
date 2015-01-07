@@ -95,7 +95,7 @@ storm_data <- function(basin=NULL, storm=NULL, year=NULL, path="~/.rnoaa/storms"
 print.storm_data <- function(x, ..., n = 10){
   cat("<NOAA Storm Data>", sep = "\n")
   cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
-  trunc_mat(x$data, n = n)
+  trunc_mat_(x$data, n = n)
 }
 
 storm_GET <- function(bp, basin, storm, year, overwrite){

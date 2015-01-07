@@ -181,7 +181,7 @@ print.erddap_table <- function(x, ..., n = 10){
     cat(sprintf("   File size:    [%s]", finfo$size), sep = "\n")
   }
   cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x), NCOL(x)), sep = "\n")
-  trunc_mat(x, n = n)
+  trunc_mat_(x, n = n)
 }
 
 erd_tab_GET <- function(url, dset, store, ...){

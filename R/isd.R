@@ -43,7 +43,7 @@ isd_stations <- function(...){
 print.isd <- function(x, ..., n = 10){
   cat("<ISD Data>", sep = "\n")
   cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
-  trunc_mat(x$data, n = n)
+  trunc_mat_(x$data, n = n)
 }
 
 isd_GET <- function(bp, usaf, wban, year, overwrite){

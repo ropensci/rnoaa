@@ -151,7 +151,7 @@ print.erddap_grid <- function(x, ..., n = 10){
     cat(sprintf("   File size:    [%s]", finfo$size), sep = "\n")
   }
   cat(sprintf("   Dimensions:   [%s X %s]\n", NROW(x), NCOL(x)), sep = "\n")
-  trunc_mat(x, n = n)
+  trunc_mat_(x, n = n)
 }
 
 field_handler <- function(x, y){
