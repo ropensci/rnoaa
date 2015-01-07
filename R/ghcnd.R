@@ -1,7 +1,7 @@
 #' Get GHCND daily data from NOAA FTP server
 #' 
 #' @importFrom tidyr gather
-#' @importFrom dplyr tbl_df mutate rename select %>%
+#' @importFrom dplyr tbl_df mutate rename select
 #' @export
 #'
 #' @param stationid Stationid to get
@@ -27,9 +27,14 @@
 #' ghcnd(stations$data$id[4000])
 #' ghcnd(stations$data$id[10000])
 #' ghcnd(stations$data$id[80000])
+#' ghcnd(stations$data$id[80300])
+#' 
+#' library("dplyr")
+#' ghcnd(stations$data$id[80300])$data %>% select(id, element) %>% head
 #'
 #' # manipulate data
 #' ## using built in fxns
+#' dat <- ghcnd(stationid="AGE00147704")
 #' (alldat <- ghcnd_splitvars(dat))
 #' library("ggplot2")
 #' ggplot(subset(alldat$tmax, tmax >= 0), aes(date, tmax)) + geom_point()
