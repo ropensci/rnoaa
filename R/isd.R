@@ -36,8 +36,7 @@ isd <- function(usaf=NULL, wban=NULL, year=NULL, path="~/.rnoaa/isd", overwrite 
 isd_stations <- function(...){
   res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-history.csv", ...))
   df <- read.csv(text=content(res, "text"), header = TRUE)
-  df <- setNames(df, gsub("_$", "", gsub("\\.", "_", tolower(names(df)))))
-  head(df)
+  setNames(df, gsub("_$", "", gsub("\\.", "_", tolower(names(df)))))
 }
 
 #' @export
