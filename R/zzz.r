@@ -69,7 +69,7 @@ long2utm <- function(lon, lat) {
 }
 
 #' Function to calculate bounding box for the extent parameter in ncdc_stations function.
-#' @import rgeos
+#' @importFrom rgeos gBuffer
 #' @export
 #' @param lat Latitude, in decimal degree style
 #' @param lon Longitude, in decimal degree style

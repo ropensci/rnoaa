@@ -1,11 +1,16 @@
 #' Get GHCND daily data from NOAA FTP server
-#'
+#' 
+#' @importFrom tidyr gather
+#' @importFrom dplyr tbl_df mutate rename select %>%
 #' @export
 #'
 #' @param stationid Stationid to get
 #' @param path (character) A path to store the files, Default: \code{~/.rnoaa/isd}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
+#' @param n Number of rows to print
+#' @param x Input object to print methods. For \code{ghcnd_splitvars()}, the output of a call 
+#' to \code{ghcnd()}.
 #'
 #' @examples \dontrun{
 #' # Get metadata
@@ -23,12 +28,17 @@
 #' ghcnd(stations$id[10000])
 #' ghcnd(stations$id[80000])
 #'
+#' # manipulate data
+#' ## using built in fxns
+#' (alldat <- ghcnd_splitvars(dat))
+#' library("ggplot2")
+#' ggplot(subset(alldat$tmax, tmax >= 0), aes(date, tmax)) + geom_point()
+#' 
+#' ## using dplyr
 #' library("dplyr")
-#' dat <- ghcnd(stations$data$id[10000])
+#' dat <- ghcnd(stationid="AGE00147704")
 #' dat$data %>%
-#'  filter(element == "PRCP", year == 1884)
-#'    
-#' ghcnd_splitvars(dat)
+#'  filter(element == "PRCP", year == 1909)
 #' }
 
 ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
@@ -53,16 +63,47 @@ print.ghcnd <- function(x, ..., n = 10){
 ghcnd_splitvars <- function(x){
   tmp <- x$data
   tmp <- tmp[!is.na(tmp$id),]
-  tmp$date <- as.Date(sprintf("%s-%s-01", tmp$year, tmp$month), "%Y-%m-%d")
-  tmp2 <- tmp %>% tbl_df() %>% select(-contains("FLAG"))
-  out <- lapply(as.character(unique(tmp2$element)), function(y){
-    dd <- tmp2[ tmp2$element == y, ] %>% 
-      gather(var, value, -id, -year, -month, -element, -date) %>%
-      select(-element, -var, -year, -month)
-    setNames(dd, c("id","date",tolower(y)))
+  # tmp$date <- as.Date(sprintf("%s-%s-01", tmp$year, tmp$month), "%Y-%m-%d")
+  # tmp2 <- tmp %>% tbl_df() %>% select(-contains("FLAG"))
+  out <- lapply(as.character(unique(tmp$element)), function(y){
+    dd <- tmp[ tmp$element == y, ] %>% 
+      select(-contains("FLAG")) %>% 
+      gather(var, value, -id, -year, -month, -element) %>%
+      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>% 
+      filter(!is.na(date)) %>% 
+      select(-element, -var, -year, -month, -day)
+    dd <- setNames(dd, c("id",tolower(y),"date"))
+    
+    mflag <- tmp[ tmp$element == y, ] %>% 
+      select(-contains("VALUE"), -contains("QFLAG"), -contains("SFLAG")) %>% 
+      gather(var, value, -id, -year, -month, -element) %>%
+      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>% 
+      filter(!is.na(date)) %>% 
+      select(value) %>% 
+      rename(mflag = value)
+    
+    qflag <- tmp[ tmp$element == y, ] %>% 
+      select(-contains("VALUE"), -contains("MFLAG"), -contains("SFLAG")) %>% 
+      gather(var, value, -id, -year, -month, -element) %>%
+      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>% 
+      filter(!is.na(date)) %>% 
+      select(value) %>% 
+      rename(qflag = value)
+      
+    sflag <- tmp[ tmp$element == y, ] %>% 
+      select(-contains("VALUE"), -contains("QFLAG"), -contains("MFLAG")) %>% 
+      gather(var, value, -id, -year, -month, -element) %>%
+      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>% 
+      filter(!is.na(date)) %>% 
+      select(value) %>% 
+      rename(sflag = value)
+    
+    tbl_df(cbind(dd, mflag, qflag, sflag))
   })
-  setNames(out, tolower(unique(tmp2$element)))
+  setNames(out, tolower(unique(tmp$element)))
 }
+
+strex <- function(x) str_extract_(x, "[0-9]+")
 
 # ghcnd_mergevars <- function(x){
 #   merge(x[[2]], x[[3]] %>% select(-id), by='date')
@@ -137,3 +178,4 @@ ghcnd_remote <- function(stationid) file.path(ghcndbase(), paste0(stationid, ".d
 ghcnd_local <- function(stationid, path) file.path(path, paste0(stationid, ".dly"))
 is_ghcnd <- function(x) if(file.exists(x)) TRUE else FALSE
 ghcndbase <- function() "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all"
+str_extract_ <- function(string, pattern) regmatches(string, regexpr(pattern, string))

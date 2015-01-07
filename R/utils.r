@@ -118,3 +118,12 @@ obj_type <- function (x)
     paste0("<S4:", paste0(is(x), collapse = ", "), ">")
   }
 }
+
+contains <- function(vars, match, ignore.case = TRUE){
+  stopifnot(is.string(match), nchar(match) > 0)
+  if (ignore.case) {
+    vars <- tolower(vars)
+    match <- tolower(match)
+  }
+  grep(match, vars, fixed = TRUE)
+}

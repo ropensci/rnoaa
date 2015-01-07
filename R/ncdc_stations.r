@@ -5,7 +5,7 @@
 #' station you want, you can quickly get all manner of data from it
 #'
 #' @export
-#' @import rgeos rgdal sp
+#' @import rgdal sp
 #' 
 #' @template rnoaa
 #' @template rnoaa2

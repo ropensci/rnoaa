@@ -27,6 +27,8 @@ Imports:
     httr,
     lubridate,
     plyr,
+    dplyr,
+    tidyr,
     ggplot2,
     scales,
     sp,
@@ -43,5 +45,4 @@ Suggests:
     testthat,
     roxygen2,
     knitr,
-    taxize,
-    dplyr
+    taxize

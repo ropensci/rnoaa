@@ -29,6 +29,11 @@ ghcnd_version(...)
 \item{overwrite}{(logical) To overwrite the path to store files in or not, Default: TRUE.}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}}
+
+\item{x}{Input object to print methods. For \code{ghcnd_splitvars()}, the output of a call
+to \code{ghcnd()}.}
+
+\item{n}{Number of rows to print}
 }
 \description{
 Get GHCND daily data from NOAA FTP server
@@ -50,12 +55,17 @@ ghcnd(stations$id[4000])
 ghcnd(stations$id[10000])
 ghcnd(stations$id[80000])
 
-library("dplyr")
-dat <- ghcnd(stations$data$id[10000])
-dat$data \%>\%
- filter(element == "PRCP", year == 1884)
+# manipulate data
+## using built in fxns
+(alldat <- ghcnd_splitvars(dat))
+library("ggplot2")
+ggplot(subset(alldat$tmax, tmax >= 0), aes(date, tmax)) + geom_point()
 
-ghcnd_splitvars(dat)
+## using dplyr
+library("dplyr")
+dat <- ghcnd(stationid="AGE00147704")
+dat$data \%>\%
+ filter(element == "PRCP", year == 1909)
 }
 }
 

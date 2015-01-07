@@ -40,7 +40,8 @@ seaice <- function(url, ...)
 }
 
 #' Make all urls for sea ice data
-#' @import lubridate stringr
+#' @import stringr
+#' @importFrom lubridate year today month
 #' @param yr Year (numeric)
 #' @param mo Month, as character abbrevation of a month  (character)
 #' @param Pole One of S (south) or N (north) (character)

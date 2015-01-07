@@ -2,11 +2,12 @@
 #'
 #' This function accepts directly output from the \code{\link[rnoaa]{ncdc}} function,
 #' not other functions.
-#' 
+#'
 #' @export
-#' @import ggplot2 lubridate
+#' @import ggplot2
+#' @importFrom lubridate ymd
 #' @importFrom scales date_breaks date_format
-#' 
+#'
 #' @param ... Input noaa object or objects.
 #' @param breaks Regularly spaced date breaks for x-axis. See \code{\link{date_breaks}}
 #' @param dateformat Date format using standard POSIX specification for labels on
