@@ -24,27 +24,49 @@
 #' ghcnd(stations$id[80000])
 #'
 #' library("dplyr")
-#' dat <- ghcnd(stations$id[10000])
+#' dat <- ghcnd(stations$data$id[10000])
 #' dat$data %>%
-#'    filter(element == "PRCP", year == 1884)
+#'  filter(element == "PRCP", year == 1884)
+#'    
+#' ghcnd_splitvars(dat)
 #' }
 
-ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...)
-{
+ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
   csvpath <- ghcnd_local(stationid, path)
   if(!is_ghcnd(x = csvpath)){
-    structure(list(data=ghcnd_GET(path, stationid, overwrite, ...)), class="ghcnd")
+    structure(list(data=ghcnd_GET(path, stationid, overwrite, ...)), class="ghcnd", source=csvpath)
   } else {
-    structure(list(data=read.csv(csvpath, stringsAsFactors = FALSE)), class="ghcnd")
+    structure(list(data=read.csv(csvpath, stringsAsFactors = FALSE)), class="ghcnd", source=csvpath)
   }
 }
 
 #' @export
 print.ghcnd <- function(x, ..., n = 10){
   cat("<GHCND Data>", sep = "\n")
-  cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
+  cat(sprintf("Size: %s X %s", NROW(x$data), NCOL(x$data)), sep = "\n")
+  cat(sprintf("Source: %s\n", attr(x, "source")), sep = "\n")
   trunc_mat_(x$data, n = n)
 }
+
+#' @export
+#' @rdname ghcnd
+ghcnd_splitvars <- function(x){
+  tmp <- x$data
+  tmp <- tmp[!is.na(tmp$id),]
+  tmp$date <- as.Date(sprintf("%s-%s-01", tmp$year, tmp$month), "%Y-%m-%d")
+  tmp2 <- tmp %>% tbl_df() %>% select(-contains("FLAG"))
+  out <- lapply(as.character(unique(tmp2$element)), function(y){
+    dd <- tmp2[ tmp2$element == y, ] %>% 
+      gather(var, value, -id, -year, -month, -element, -date) %>%
+      select(-element, -var, -year, -month)
+    setNames(dd, c("id","date",tolower(y)))
+  })
+  setNames(out, tolower(unique(tmp2$element)))
+}
+
+# ghcnd_mergevars <- function(x){
+#   merge(x[[2]], x[[3]] %>% select(-id), by='date')
+# }
 
 #' @export
 #' @rdname ghcnd
@@ -104,7 +126,7 @@ ghcnd_GET <- function(bp, stationid, overwrite, ...){
   res <- suppressWarnings(GET(ghcnd_remote(stationid), ...))
   tt <- content(res, "text")
   vars <- c("id","year","month","element",do.call("c", lapply(1:31, function(x) paste0(c("VALUE","MFLAG","QFLAG","SFLAG"), x))))
-  df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)))
+  df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)), stringsAsFactorse = FALSE)
   dat <- setNames(df, vars)
   write.csv(dat, fp, row.names = FALSE)
   return(dat)

@@ -3,12 +3,15 @@
 \name{ghcnd}
 \alias{ghcnd}
 \alias{ghcnd_countries}
+\alias{ghcnd_splitvars}
 \alias{ghcnd_states}
 \alias{ghcnd_stations}
 \alias{ghcnd_version}
 \title{Get GHCND daily data from NOAA FTP server}
 \usage{
 ghcnd(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...)
+
+ghcnd_splitvars(x)
 
 ghcnd_stations(..., n = 10)
 
@@ -48,9 +51,11 @@ ghcnd(stations$id[10000])
 ghcnd(stations$id[80000])
 
 library("dplyr")
-dat <- ghcnd(stations$id[10000])
+dat <- ghcnd(stations$data$id[10000])
 dat$data \%>\%
-   filter(element == "PRCP", year == 1884)
+ filter(element == "PRCP", year == 1884)
+
+ghcnd_splitvars(dat)
 }
 }
 
