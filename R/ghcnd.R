@@ -8,9 +8,13 @@
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #'
 #' @examples \dontrun{
-#' # Get stations
-#' stations <- ghcnd_stations()
-#' head(stations)
+#' # Get metadata
+#' ghcnd_states()
+#' ghcnd_countries()
+#' ghcnd_version()
+#' 
+#' # Get stations, ghcnd-stations and ghcnd-inventory merged
+#' (stations <- ghcnd_stations())
 #'
 #' # Get data
 #' ghcnd(stationid="AGE00147704")
@@ -35,27 +39,63 @@ ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...)
   }
 }
 
-# ghcnd_list_files <- function(x){
-#   url <- 'ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all'
-#   res <- curl(url, "rb")
-#   res <- getURL(url)
-# }
-
 #' @export
 print.ghcnd <- function(x, ..., n = 10){
   cat("<GHCND Data>", sep = "\n")
   cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
-  rnoaa::trunc_mat_(x$data, n = n)
+  trunc_mat_(x$data, n = n)
 }
 
 #' @export
-#' @rdname isd
-ghcnd_stations <- function(...){
-  tfile <- "~/.rnoaa/ghcnd-stations.txt"
-  res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt", write_disk(tfile, TRUE), ...))
-  df <- read.fwf(res$request$writer[[1]], widths = c(11, 9, 11, 7, 33, 5, 10), header = FALSE, strip.white=TRUE, comment.char="", stringsAsFactors=FALSE)
+#' @rdname ghcnd
+ghcnd_stations <- function(..., n = 10){
+  sta <- get_stations(...)
+  inv <- get_inventory(...)
+  structure(list(data=merge(sta, inv[,-c(2,3)], by = "id")), class = "ghcnd_stations")
+}
+
+#' @export
+print.ghcnd_stations <- function(x, ..., n = 10){
+  cat("<GHCND Station Data>", sep = "\n")
+  cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
+  trunc_mat_(x$data, n = n)
+}
+
+get_stations <- function(...){
+  res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt", ...))
+  df <- read.fwf(textConnection(content(res, "text")), widths = c(11, 9, 11, 7, 33, 5, 10), header = FALSE, strip.white=TRUE, comment.char="", stringsAsFactors=FALSE)
   nms <- c("id","latitude", "longitude", "elevation", "name", "gsn_flag", "wmo_id")
   setNames(df, nms)
+}
+
+get_inventory <- function(...){
+  res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt", ...))
+  df <- read.fwf(textConnection(content(res, "text")), widths = c(11, 9, 10, 5, 5, 5), header = FALSE, strip.white=TRUE, comment.char="", stringsAsFactors=FALSE)
+  nms <- c("id","latitude", "longitude", "element", "first_year", "last_year")
+  setNames(df, nms)
+}
+
+#' @export
+#' @rdname ghcnd
+ghcnd_states <- function(...){
+  res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-states.txt", ...))
+  df <- read.fwf(textConnection(content(res, "text")), widths = c(2, 27), header = FALSE, strip.white=TRUE, comment.char="", stringsAsFactors=FALSE, col.names = c("code","name"))
+  df[ -NROW(df) ,]
+}
+
+#' @export
+#' @rdname ghcnd
+ghcnd_countries <- function(...){
+  res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-countries.txt", ...))
+  df <- read.fwf(textConnection(content(res, "text")), widths = c(2, 47), header = FALSE, strip.white=TRUE, comment.char="", stringsAsFactors=FALSE, col.names = c("code","name"))
+  df[ -NROW(df) ,]
+}
+
+#' @export
+#' @rdname ghcnd
+ghcnd_version <- function(...){
+  res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-version.txt", ...))
+  content(res, "text")
 }
 
 ghcnd_GET <- function(bp, stationid, overwrite, ...){

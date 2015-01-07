@@ -2,9 +2,21 @@
 % Please edit documentation in R/ghcnd.R
 \name{ghcnd}
 \alias{ghcnd}
+\alias{ghcnd_countries}
+\alias{ghcnd_states}
+\alias{ghcnd_stations}
+\alias{ghcnd_version}
 \title{Get GHCND daily data from NOAA FTP server}
 \usage{
 ghcnd(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...)
+
+ghcnd_stations(..., n = 10)
+
+ghcnd_states(...)
+
+ghcnd_countries(...)
+
+ghcnd_version(...)
 }
 \arguments{
 \item{stationid}{Stationid to get}
@@ -20,9 +32,13 @@ Get GHCND daily data from NOAA FTP server
 }
 \examples{
 \dontrun{
-# Get stations
-stations <- ghcnd_stations()
-head(stations)
+# Get metadata
+ghcnd_states()
+ghcnd_countries()
+ghcnd_version()
+
+# Get stations, ghcnd-stations and ghcnd-inventory merged
+(stations <- ghcnd_stations())
 
 # Get data
 ghcnd(stationid="AGE00147704")
