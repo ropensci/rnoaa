@@ -11,7 +11,12 @@
 #' @param n Number of rows to print
 #' @param x Input object to print methods. For \code{ghcnd_splitvars()}, the output of a call 
 #' to \code{ghcnd()}.
-#'
+#' @param date_min,date_max (character) Minimum and maximum dates. Use together to get a 
+#' date range
+#' @param var (character) Variable to get, defaults to "all", which gives back all variables 
+#' in a list. To see what variables are available for a dataset, look at the dataset returned
+#' from \code{ghcnd()}.
+#' 
 #' @examples \dontrun{
 #' # Get metadata
 #' ghcnd_states()
@@ -44,6 +49,13 @@
 #' dat <- ghcnd(stationid="AGE00147704")
 #' dat$data %>%
 #'  filter(element == "PRCP", year == 1909)
+#'  
+#' # Search based on variable and/or date
+#' ghcnd_search("AGE00147704", var = "PRCP")
+#' ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01")
+#' ghcnd_search("AGE00147704", var = "PRCP", date_max = "1915-01-01")
+#' ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01", date_max = "1925-01-01")
+#' ghcnd_search("AGE00147704", date_min = "1920-01-01", date_max = "1925-01-01")
 #' }
 
 ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
@@ -53,6 +65,32 @@ ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
   } else {
     structure(list(data=read.csv(csvpath, stringsAsFactors = FALSE)), class="ghcnd", source=csvpath)
   }
+}
+
+#' @export
+#' @rdname ghcnd
+ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all", path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
+  dat <- ghcnd_splitvars(ghcnd(stationid, path=path, overwrite=overwrite))
+  
+  if(var != "all") dat <- dat[[tolower(var)]]
+  
+  if(!is.null(date_min)) {
+    if(var != "all"){
+      dat <- dat %>% filter(date > date_min)
+    } else {
+      dat <- lapply(dat, function(z) z %>% filter(date > date_min))
+    }
+  }
+  
+  if(!is.null(date_max)) {
+    if(var != "all"){
+      dat <- dat %>% filter(date < date_max)
+    } else {
+      dat <- lapply(dat, function(z) z %>% filter(date < date_max))
+    }
+  }
+  
+  dat
 }
 
 #' @export
