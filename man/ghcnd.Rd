@@ -50,10 +50,10 @@ ghcnd_version()
 
 # Get data
 ghcnd(stationid="AGE00147704")
-ghcnd(stations$id[40])
-ghcnd(stations$id[4000])
-ghcnd(stations$id[10000])
-ghcnd(stations$id[80000])
+ghcnd(stations$data$id[40])
+ghcnd(stations$data$id[4000])
+ghcnd(stations$data$id[10000])
+ghcnd(stations$data$id[80000])
 
 # manipulate data
 ## using built in fxns

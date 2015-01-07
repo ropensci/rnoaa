@@ -23,10 +23,10 @@
 #'
 #' # Get data
 #' ghcnd(stationid="AGE00147704")
-#' ghcnd(stations$id[40])
-#' ghcnd(stations$id[4000])
-#' ghcnd(stations$id[10000])
-#' ghcnd(stations$id[80000])
+#' ghcnd(stations$data$id[40])
+#' ghcnd(stations$data$id[4000])
+#' ghcnd(stations$data$id[10000])
+#' ghcnd(stations$data$id[80000])
 #'
 #' # manipulate data
 #' ## using built in fxns
@@ -167,7 +167,7 @@ ghcnd_GET <- function(bp, stationid, overwrite, ...){
   res <- suppressWarnings(GET(ghcnd_remote(stationid), ...))
   tt <- content(res, "text")
   vars <- c("id","year","month","element",do.call("c", lapply(1:31, function(x) paste0(c("VALUE","MFLAG","QFLAG","SFLAG"), x))))
-  df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)), stringsAsFactorse = FALSE)
+  df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)))
   dat <- setNames(df, vars)
   write.csv(dat, fp, row.names = FALSE)
   return(dat)
