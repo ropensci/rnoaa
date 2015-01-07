@@ -127,3 +127,7 @@ contains <- function(vars, match, ignore.case = TRUE){
   }
   grep(match, vars, fixed = TRUE)
 }
+
+is.string <- function(x){
+  is.character(x) && length(x) == 1
+}
