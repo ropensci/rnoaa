@@ -89,6 +89,9 @@ ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01")
 ghcnd_search("AGE00147704", var = "PRCP", date_max = "1915-01-01")
 ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01", date_max = "1925-01-01")
 ghcnd_search("AGE00147704", date_min = "1920-01-01", date_max = "1925-01-01")
+ghcnd_search("AGE00147704", var = c("PRCP","TMIN"))
+ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
+ghcnd_search("AGE00147704", var="adfdf")
 }
 }
 

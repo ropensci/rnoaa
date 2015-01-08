@@ -56,6 +56,9 @@
 #' ghcnd_search("AGE00147704", var = "PRCP", date_max = "1915-01-01")
 #' ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01", date_max = "1925-01-01")
 #' ghcnd_search("AGE00147704", date_min = "1920-01-01", date_max = "1925-01-01")
+#' ghcnd_search("AGE00147704", var = c("PRCP","TMIN"))
+#' ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
+#' ghcnd_search("AGE00147704", var="adfdf")
 #' }
 
 ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
@@ -69,28 +72,35 @@ ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
 
 #' @export
 #' @rdname ghcnd
-ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all", path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
-  dat <- ghcnd_splitvars(ghcnd(stationid, path=path, overwrite=overwrite))
+ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all", 
+                         path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
   
-  if(var != "all") dat <- dat[[tolower(var)]]
+  dat <- ghcnd_splitvars(ghcnd(stationid, path=path, overwrite=overwrite))
+  possvars <- paste0(names(dat), collapse = ", ")
+  
+  if(any(var != "all")) dat <- dat[tolower(var)]
+  if( any(sapply(dat, is.null)) ) stop(sprintf("%s not in the dataset\nAvailable variables: %s", var, possvars), call. = FALSE)
   
   if(!is.null(date_min)) {
-    if(var != "all"){
-      dat <- dat %>% filter(date > date_min)
-    } else {
-      dat <- lapply(dat, function(z) z %>% filter(date > date_min))
-    }
+    dat <- lapply(dat, function(z) z %>% filter(date > date_min))
   }
-  
   if(!is.null(date_max)) {
-    if(var != "all"){
-      dat <- dat %>% filter(date < date_max)
-    } else {
-      dat <- lapply(dat, function(z) z %>% filter(date < date_max))
-    }
+    dat <- lapply(dat, function(z) z %>% filter(date < date_max))
   }
-  
   dat
+#     if(var != "all"){
+#       dat <- dat %>% filter(date > date_min)
+#     } else {
+    # }
+  
+#   if(!is.null(date_max)) {
+#     if(var != "all"){
+#       dat <- dat %>% filter(date < date_max)
+#     } else {
+#       dat <- lapply(dat, function(z) z %>% filter(date < date_max))
+#     }
+#   }
+  # dat
 }
 
 #' @export
