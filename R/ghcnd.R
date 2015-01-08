@@ -1,7 +1,7 @@
 #' Get GHCND daily data from NOAA FTP server
 #' 
 #' @importFrom tidyr gather
-#' @importFrom dplyr tbl_df mutate rename select
+#' @import dplyr
 #' @export
 #'
 #' @param stationid Stationid to get

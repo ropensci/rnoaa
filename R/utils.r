@@ -132,12 +132,12 @@ is.string <- function(x){
   is.character(x) && length(x) == 1
 }
 
-#' Pipe operator
-#'
-#' @name %>%
-#' @rdname pipe
-#' @keywords internal
-#' @export
-#' @importFrom dplyr %>%
-#' @usage lhs \%>\% rhs
-NULL
+# #' Pipe operator
+# #'
+# #' @name %>%
+# #' @rdname pipe
+# #' @keywords internal
+# #' @export
+# #' @importFrom magrittr %>%
+# #' @usage lhs \%>\% rhs
+# NULL
