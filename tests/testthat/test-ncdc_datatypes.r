@@ -1,9 +1,10 @@
 context("ncdc_datatypes")
 
-key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
+# key='YZJVDgzurxvMqiIcfpzrOozpRBVvTBhE'
 
 Sys.sleep(time = 0.5)
-tt <- ncdc_datatypes(datasetid="ANNUAL", token=key)
+tt <- ncdc_datatypes(datasetid="ANNUAL")
+# tt <- ncdc_datatypes(datasetid="ANNUAL", token=key)
 
 test_that("ncdc_datatypes returns the correct class", {
   expect_is(tt, "ncdc_datatypes")
