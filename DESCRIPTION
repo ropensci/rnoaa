@@ -10,7 +10,7 @@ Description: An R client for many NOAA data sources including the NCDC
     center. NOAA buoy data is only on the buoy branch in the Github repository
     for this package (see url below).
 Version: 0.3.5.99
-Date: 2015-01-07
+Date: 2015-01-12
 License: MIT + file LICENSE
 Authors@R: c(person("Hart", "Edmund", role = "aut",
     email = "Edmund.m.hart@gmail.com"),

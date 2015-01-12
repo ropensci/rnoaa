@@ -78,8 +78,14 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all
   dat <- ghcnd_splitvars(ghcnd(stationid, path=path, overwrite=overwrite))
   possvars <- paste0(names(dat), collapse = ", ")
   
-  if(any(var != "all")) dat <- dat[tolower(var)]
-  if( any(sapply(dat, is.null)) ) stop(sprintf("%s not in the dataset\nAvailable variables: %s", var, possvars), call. = FALSE)
+  if(any(var != "all")){
+    vars_null <- sort(tolower(var))[!sort(tolower(var)) %in% sort(names(dat))]
+    dat <- dat[tolower(var)]
+  }
+  if( any(sapply(dat, is.null)) ){
+    dat <- compact(dat)
+    warning(sprintf("%s not in the dataset\nAvailable variables: %s", paste0(vars_null, collapse = ", "), possvars), call. = FALSE)
+  }
   
   if(!is.null(date_min)) {
     dat <- lapply(dat, function(z) z %>% filter(date > date_min))
