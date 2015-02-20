@@ -26,7 +26,7 @@ Then `rnoaa` with the buoy functions should install and load correctly. See [thi
 
 ## Help
 
-There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rncdc_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.r-project.org/web/packages/rnoaa/index.html). The tutorials:
+There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.r-project.org/web/packages/rnoaa/index.html). The tutorials:
 
 * NOAA Buoy vignette
 * NOAA ERDDAP vignette
@@ -47,14 +47,15 @@ The majority of functions in this package work with NOAA NCDC data.
     * The docs for the NCDC data API are [here](http://www.ncdc.noaa.gov/cdo-web/webservices/v2)
     * GHCN Daily data is available [here](http://www.ncdc.noaa.gov/oa/climate/ghcn-daily/) via FTP and HTTP
 * Severe weather data docs are [here](http://www.ncdc.noaa.gov/swdiws/)
-* Sea ice data [ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
-* NOAA buoy data [http://www.ndbc.noaa.gov/](http://www.ndbc.noaa.gov/)
-* ERDDAP data [http://upwell.pfeg.noaa.gov/erddap/index.html](http://upwell.pfeg.noaa.gov/erddap/index.html)
+* [Sea ice data](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
+* [NOAA buoy data](http://www.ndbc.noaa.gov/)
+* [ERDDAP data](http://upwell.pfeg.noaa.gov/erddap/index.html)
   * griddap - gridded data
   * tabledap - tablular data
-* Tornadoes! Data from the NOAA Storm Prediction Center [http://www.spc.noaa.gov/gis/svrgis/]()
-* HOMR - Historical Observing Metadata Repository - from the NOAA NCDC  [http://www.ncdc.noaa.gov/homr/api]()
-* Storm data - from the International Best Track Archive for Climate Stewardship (IBTrACS)   [http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data]()
+* Tornadoes! Data from the [NOAA Storm Prediction Center](http://www.spc.noaa.gov/gis/svrgis/)
+* HOMR - Historical Observing Metadata Repository - from [NOAA NCDC](http://www.ncdc.noaa.gov/homr/api)
+* Storm data - from the [International Best Track Archive for Climate Stewardship (IBTrACS)](http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data)
+* [GHCND FTP data](ftp://ftp.ncdc.noaa.gov/pub/data/noaa) - NOAA NCDC API has some/all (not sure really) of this data, but FTP allows to get more data more quickly
 
 ## NOAA NCDC Datasets
 
@@ -169,31 +170,31 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 
 #> $data
 #>               id                  name datacoverage    mindate    maxdate
-#> 1  CITY:NL000012            Zwolle, NL       1.0000 1892-08-01 2014-11-30
-#> 2  CITY:SZ000007            Zurich, SZ       1.0000 1901-01-01 2014-12-16
+#> 1  CITY:NL000012            Zwolle, NL       1.0000 1892-08-01 2015-01-31
+#> 2  CITY:SZ000007            Zurich, SZ       1.0000 1901-01-01 2015-02-17
 #> 3  CITY:NG000004            Zinder, NG       0.8678 1906-01-01 1980-12-31
-#> 4  CITY:UP000025         Zhytomyra, UP       0.9729 1938-01-01 2014-12-16
-#> 5  CITY:KZ000017        Zhezkazgan, KZ       0.9288 1948-03-01 2014-12-16
-#> 6  CITY:CH000045         Zhengzhou, CH       1.0000 1951-01-01 2014-12-16
-#> 7  CITY:SP000021          Zaragoza, SP       1.0000 1941-01-01 2012-08-31
+#> 4  CITY:UP000025         Zhytomyra, UP       0.9730 1938-01-01 2015-02-17
+#> 5  CITY:KZ000017        Zhezkazgan, KZ       0.9290 1948-03-01 2015-02-17
+#> 6  CITY:CH000045         Zhengzhou, CH       1.0000 1951-01-01 2015-02-17
+#> 7  CITY:SP000021          Zaragoza, SP       1.0000 1941-01-01 2014-12-22
 #> 8  CITY:UP000024      Zaporiyhzhya, UP       0.9739 1936-01-01 2009-06-16
-#> 9  CITY:US390029     Zanesville, OH US       1.0000 1893-01-01 2014-12-18
+#> 9  CITY:US390029     Zanesville, OH US       1.0000 1893-01-01 2015-02-19
 #> 10 CITY:LE000004             Zahle, LE       0.7811 1912-01-01 1971-12-31
 #> 11 CITY:IR000019           Zahedan, IR       0.9930 1951-01-01 2010-05-19
 #> 12 CITY:HR000002            Zagreb, HR       1.0000 1860-12-01 2013-12-31
-#> 13 CITY:RS000081 Yuzhno-Sakhalinsk, RS       1.0000 1947-01-01 2014-12-16
-#> 14 CITY:US040015           Yuma, AZ US       1.0000 1893-01-01 2014-12-18
-#> 15 CITY:US060048   Yucca Valley, CA US       1.0000 1942-02-01 2014-12-18
-#> 16 CITY:US060047      Yuba City, CA US       1.0000 1893-01-01 2014-12-18
-#> 17 CITY:US390028     Youngstown, OH US       1.0000 1893-01-01 2014-12-18
-#> 18 CITY:US420024           York, PA US       1.0000 1941-01-01 2014-12-18
-#> 19 CITY:US360031        Yonkers, NY US       1.0000 1876-01-01 2014-12-18
-#> 20 CITY:JA000017          Yokohama, JA       1.0000 1949-01-01 2014-12-16
-#> 21 CITY:CH000044          Yinchuan, CH       1.0000 1951-01-01 2014-12-16
-#> 22 CITY:AM000001           Yerevan, AM       0.9751 1885-06-01 2014-12-16
-#> 23 CITY:US280020     Yazoo City, MS US       1.0000 1948-01-01 2014-12-18
+#> 13 CITY:RS000081 Yuzhno-Sakhalinsk, RS       1.0000 1947-01-01 2015-02-17
+#> 14 CITY:US040015           Yuma, AZ US       1.0000 1893-01-01 2015-02-19
+#> 15 CITY:US060048   Yucca Valley, CA US       1.0000 1942-02-01 2015-02-19
+#> 16 CITY:US060047      Yuba City, CA US       1.0000 1893-01-01 2015-02-19
+#> 17 CITY:US390028     Youngstown, OH US       1.0000 1893-01-01 2015-02-19
+#> 18 CITY:US420024           York, PA US       1.0000 1941-01-01 2015-02-19
+#> 19 CITY:US360031        Yonkers, NY US       1.0000 1876-01-01 2015-02-19
+#> 20 CITY:JA000017          Yokohama, JA       1.0000 1949-01-01 2015-02-17
+#> 21 CITY:CH000044          Yinchuan, CH       1.0000 1951-01-01 2015-02-17
+#> 22 CITY:AM000001           Yerevan, AM       0.9751 1885-06-01 2015-02-17
+#> 23 CITY:US280020     Yazoo City, MS US       1.0000 1948-01-01 2015-02-19
 #> 24 CITY:RS000080         Yaroslavl, RS       0.9850 1959-07-01 1987-05-20
-#> 25 CITY:US460009        Yankton, SD US       1.0000 1932-01-01 2014-12-18
+#> 25 CITY:US460009        Yankton, SD US       1.0000 1932-01-01 2015-02-19
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -211,7 +212,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #>                  id elevation                  name elevationUnit
 #> 1 GHCND:USC00084289      12.2 INVERNESS 3 SE, FL US        METERS
 #>   datacoverage longitude    mindate latitude    maxdate
-#> 1            1  -82.3126 1899-02-01  28.8029 2014-12-17
+#> 1            1  -82.3126 1899-02-01  28.8029 2015-02-17
 #> 
 #> attr(,"class")
 #> [1] "ncdc_stations"
@@ -293,16 +294,16 @@ ncdc_datasets()
 #> 11 gov.noaa.ncdc:C00313 PRECIP_HLY      Precipitation Hourly         1.00
 #>       mindate    maxdate
 #> 1  1831-02-01 2014-07-01
-#> 2  1763-01-01 2014-12-18
-#> 3  1763-01-01 2014-11-01
-#> 4  1991-06-05 2014-12-18
-#> 5  1994-05-20 2014-12-14
+#> 2  1763-01-01 2015-02-19
+#> 3  1763-01-01 2015-01-01
+#> 4  1991-06-05 2015-02-19
+#> 5  1994-05-20 2015-02-16
 #> 6  2010-01-01 2010-01-01
 #> 7  2010-01-01 2010-12-31
 #> 8  2010-01-01 2010-12-31
 #> 9  2010-01-01 2010-12-01
-#> 10 1970-05-12 2013-07-01
-#> 11 1900-01-01 2013-10-01
+#> 10 1970-05-12 2013-12-01
+#> 11 1900-01-01 2013-12-01
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datasets"
@@ -608,44 +609,46 @@ erddap_search(query='size', which = "table")
 #> 1                Channel Islands, Kelp Forest Monitoring, Size and Frequency, Natural Habitat
 #> 2                                                                          CalCOFI Fish Sizes
 #> 3                                                                        CalCOFI Larvae Sizes
-#> 4                                                  OBIS - ARGOS Satellite Tracking of Animals
-#> 5                                                     GLOBEC NEP MOCNESS Plankton (MOC1) Data
-#> 6                                                 GLOBEC NEP Vertical Plankton Tow (VPT) Data
-#> 7                             NWFSC Observer Fixed Gear Data, off West Coast of US, 2002-2006
-#> 8                                  NWFSC Observer Trawl Data, off West Coast of US, 2002-2006
-#> 9                                                         CalCOFI Larvae Counts Positive Tows
-#> 10                                                                               CalCOFI Tows
-#> 16 AN EXPERIMENTAL DATASET: Underway Sea Surface Temperature and Salinity Aboard the Oleander
+#> 5                             NWFSC Observer Fixed Gear Data, off West Coast of US, 2002-2006
+#> 6                                  NWFSC Observer Trawl Data, off West Coast of US, 2002-2006
+#> 7                                                  OBIS - ARGOS Satellite Tracking of Animals
+#> 8                                                     GLOBEC NEP MOCNESS Plankton (MOC1) Data
+#> 9                                                 GLOBEC NEP Vertical Plankton Tow (VPT) Data
+#> 10                                                        CalCOFI Larvae Counts Positive Tows
+#> 11                                                                               CalCOFI Tows
+#> 12 AN EXPERIMENTAL DATASET: Underway Sea Surface Temperature and Salinity Aboard the Oleander
 #>             dataset_id
 #> 1       erdCinpKfmSFNH
 #> 2     erdCalCOFIfshsiz
 #> 3     erdCalCOFIlrvsiz
-#> 4            aadcArgos
-#> 5        erdGlobecMoc1
-#> 6         erdGlobecVpt
-#> 7   nwioosObsFixed2002
-#> 8   nwioosObsTrawl2002
-#> 9  erdCalCOFIlrvcntpos
-#> 10      erdCalCOFItows
-#> 16            nodcPJJU
+#> 5   nwioosObsFixed2002
+#> 6   nwioosObsTrawl2002
+#> 7            aadcArgos
+#> 8        erdGlobecMoc1
+#> 9         erdGlobecVpt
+#> 10 erdCalCOFIlrvcntpos
+#> 11      erdCalCOFItows
+#> 12            nodcPJJU
 ```
 
 
 ```r
 erddap_search(query='size', which = "grid")
-#> 5 results, showing first 20 
+#> 6 results, showing first 20 
 #>                                                            title
-#> 11               NOAA Global Coral Bleaching Monitoring Products
-#> 12            Coawst 4 use, Best Time Series [time][eta_u][xi_u]
-#> 13            Coawst 4 use, Best Time Series [time][eta_v][xi_v]
-#> 14 Coawst 4 use, Best Time Series [time][s_rho][eta_rho][xi_rho]
-#> 15  Coawst 4 use, Best Time Series [time][Nbed][eta_rho][xi_rho]
-#>               dataset_id
-#> 11 hawaii_3b41_0c0b_72bc
-#> 12   whoi_61c3_0b5d_cd61
-#> 13   whoi_62d0_9d64_c8ff
-#> 14   whoi_7dd7_db97_4bbe
-#> 15   whoi_a4fb_2c9c_16a7
+#> 4                NOAA Global Coral Bleaching Monitoring Products
+#> 13        Coawst 4 use, Best Time Series [time][eta_rho][xi_rho]
+#> 14            Coawst 4 use, Best Time Series [time][eta_u][xi_u]
+#> 15            Coawst 4 use, Best Time Series [time][eta_v][xi_v]
+#> 16 Coawst 4 use, Best Time Series [time][s_rho][eta_rho][xi_rho]
+#> 17  Coawst 4 use, Best Time Series [time][Nbed][eta_rho][xi_rho]
+#>             dataset_id
+#> 4             NOAA_DHW
+#> 13 whoi_ed12_89ce_9592
+#> 14 whoi_61c3_0b5d_cd61
+#> 15 whoi_62d0_9d64_c8ff
+#> 16 whoi_7dd7_db97_4bbe
+#> 17 whoi_a4fb_2c9c_16a7
 ```
 
 Then you can get information on a single dataset
@@ -653,20 +656,7 @@ Then you can get information on a single dataset
 
 ```r
 erddap_info('hawaii_3b41_0c0b_72bc')
-#> <ERDDAP Dataset> hawaii_3b41_0c0b_72bc 
-#>  Dimensions (range):  
-#>      time: (2000-11-28T00:00:00Z, 2014-12-04T00:00:00Z) 
-#>      latitude: (85.0, -80.0) 
-#>      longitude: (-180.0, 179.5) 
-#>  Variables:  
-#>      CRW_DHW: 
-#>          Units: Celsius weeks 
-#>      CRW_HOTSPOT: 
-#>          Units: Celsius 
-#>      CRW_SST: 
-#>          Units: Celsius 
-#>      CRW_SSTANOMALY: 
-#>          Units: Celsius
+#> Error in erddap_GET(url = sprintf(paste0(eurl(), "info/%s/index.json"), : client error: (404) Not Found
 ```
 
 __griddap data__
@@ -693,9 +683,9 @@ __griddap data__
   longitude = c(-80, -75)
 ))
 #> <NOAA ERDDAP griddap> noaa_esrl_027d_0fb5_5d38
-#>    Path: [/Users/sacmac/.rnoaa/erddap/noaa_esrl_027d_0fb5_5d38.csv]
-#>    Last updated: [2014-11-04 10:36:20]
-#>    File size:    [0 mb]
+#>    Path: [/Users/sacmac/.rnoaa/erddap/654539f754bea2d7feac0d975a936f7d.csv]
+#>    Last updated: [2015-02-11 19:00:45]
+#>    File size:    [0.94 KB]
 #>    Dimensions:   [24 X 4]
 #> 
 #>                    time latitude longitude  air
@@ -785,7 +775,7 @@ erddap_table(out, fields=c('longitude','latitude','fish_size','itis_tsn'),
 
 ## Meta
 
-* [Please report any issues or bugs](https://github.com/ropensci/rnoaa/issues).
+* Please [report any issues or bugs](https://github.com/ropensci/rnoaa/issues).
 * License: MIT
 * Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
 
