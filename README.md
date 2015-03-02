@@ -5,6 +5,7 @@ rnoaa
 
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 [![Build status](https://ci.appveyor.com/api/projects/status/8daqtllo2sg6me07/branch/master)](https://ci.appveyor.com/project/sckott/rnoaa/branch/master)
+[![Coverage Status](https://coveralls.io/repos/ropensci/rnoaa/badge.svg)](https://coveralls.io/r/ropensci/rnoaa)
 
 ## IMPORTANT - BUOY DATA
 
@@ -171,30 +172,30 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> $data
 #>               id                  name datacoverage    mindate    maxdate
 #> 1  CITY:NL000012            Zwolle, NL       1.0000 1892-08-01 2015-01-31
-#> 2  CITY:SZ000007            Zurich, SZ       1.0000 1901-01-01 2015-02-17
+#> 2  CITY:SZ000007            Zurich, SZ       1.0000 1901-01-01 2015-02-27
 #> 3  CITY:NG000004            Zinder, NG       0.8678 1906-01-01 1980-12-31
-#> 4  CITY:UP000025         Zhytomyra, UP       0.9730 1938-01-01 2015-02-17
-#> 5  CITY:KZ000017        Zhezkazgan, KZ       0.9290 1948-03-01 2015-02-17
-#> 6  CITY:CH000045         Zhengzhou, CH       1.0000 1951-01-01 2015-02-17
+#> 4  CITY:UP000025         Zhytomyra, UP       0.9730 1938-01-01 2015-02-27
+#> 5  CITY:KZ000017        Zhezkazgan, KZ       0.9290 1948-03-01 2015-02-27
+#> 6  CITY:CH000045         Zhengzhou, CH       1.0000 1951-01-01 2015-02-27
 #> 7  CITY:SP000021          Zaragoza, SP       1.0000 1941-01-01 2014-12-22
 #> 8  CITY:UP000024      Zaporiyhzhya, UP       0.9739 1936-01-01 2009-06-16
-#> 9  CITY:US390029     Zanesville, OH US       1.0000 1893-01-01 2015-02-19
+#> 9  CITY:US390029     Zanesville, OH US       1.0000 1893-01-01 2015-02-28
 #> 10 CITY:LE000004             Zahle, LE       0.7811 1912-01-01 1971-12-31
 #> 11 CITY:IR000019           Zahedan, IR       0.9930 1951-01-01 2010-05-19
 #> 12 CITY:HR000002            Zagreb, HR       1.0000 1860-12-01 2013-12-31
-#> 13 CITY:RS000081 Yuzhno-Sakhalinsk, RS       1.0000 1947-01-01 2015-02-17
-#> 14 CITY:US040015           Yuma, AZ US       1.0000 1893-01-01 2015-02-19
-#> 15 CITY:US060048   Yucca Valley, CA US       1.0000 1942-02-01 2015-02-19
-#> 16 CITY:US060047      Yuba City, CA US       1.0000 1893-01-01 2015-02-19
-#> 17 CITY:US390028     Youngstown, OH US       1.0000 1893-01-01 2015-02-19
-#> 18 CITY:US420024           York, PA US       1.0000 1941-01-01 2015-02-19
-#> 19 CITY:US360031        Yonkers, NY US       1.0000 1876-01-01 2015-02-19
-#> 20 CITY:JA000017          Yokohama, JA       1.0000 1949-01-01 2015-02-17
-#> 21 CITY:CH000044          Yinchuan, CH       1.0000 1951-01-01 2015-02-17
-#> 22 CITY:AM000001           Yerevan, AM       0.9751 1885-06-01 2015-02-17
-#> 23 CITY:US280020     Yazoo City, MS US       1.0000 1948-01-01 2015-02-19
+#> 13 CITY:RS000081 Yuzhno-Sakhalinsk, RS       1.0000 1947-01-01 2015-02-27
+#> 14 CITY:US040015           Yuma, AZ US       1.0000 1893-01-01 2015-02-28
+#> 15 CITY:US060048   Yucca Valley, CA US       1.0000 1942-02-01 2015-02-28
+#> 16 CITY:US060047      Yuba City, CA US       1.0000 1893-01-01 2015-02-28
+#> 17 CITY:US390028     Youngstown, OH US       1.0000 1893-01-01 2015-03-01
+#> 18 CITY:US420024           York, PA US       1.0000 1941-01-01 2015-02-28
+#> 19 CITY:US360031        Yonkers, NY US       1.0000 1876-01-01 2015-03-01
+#> 20 CITY:JA000017          Yokohama, JA       1.0000 1949-01-01 2015-02-27
+#> 21 CITY:CH000044          Yinchuan, CH       1.0000 1951-01-01 2015-02-27
+#> 22 CITY:AM000001           Yerevan, AM       0.9751 1885-06-01 2015-02-27
+#> 23 CITY:US280020     Yazoo City, MS US       1.0000 1948-01-01 2015-02-28
 #> 24 CITY:RS000080         Yaroslavl, RS       0.9850 1959-07-01 1987-05-20
-#> 25 CITY:US460009        Yankton, SD US       1.0000 1932-01-01 2015-02-19
+#> 25 CITY:US460009        Yankton, SD US       1.0000 1932-01-01 2015-03-01
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -212,7 +213,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #>                  id elevation                  name elevationUnit
 #> 1 GHCND:USC00084289      12.2 INVERNESS 3 SE, FL US        METERS
 #>   datacoverage longitude    mindate latitude    maxdate
-#> 1            1  -82.3126 1899-02-01  28.8029 2015-02-17
+#> 1            1  -82.3126 1899-02-01  28.8029 2015-02-28
 #> 
 #> attr(,"class")
 #> [1] "ncdc_stations"
@@ -294,10 +295,10 @@ ncdc_datasets()
 #> 11 gov.noaa.ncdc:C00313 PRECIP_HLY      Precipitation Hourly         1.00
 #>       mindate    maxdate
 #> 1  1831-02-01 2014-07-01
-#> 2  1763-01-01 2015-02-19
+#> 2  1763-01-01 2015-03-01
 #> 3  1763-01-01 2015-01-01
-#> 4  1991-06-05 2015-02-19
-#> 5  1994-05-20 2015-02-16
+#> 4  1991-06-05 2015-02-27
+#> 5  1994-05-20 2015-02-25
 #> 6  2010-01-01 2010-01-01
 #> 7  2010-01-01 2010-12-31
 #> 8  2010-01-01 2010-12-31
@@ -606,28 +607,28 @@ First, you likely want to search for data, specify either `griddadp` or `tableda
 erddap_search(query='size', which = "table")
 #> 11 results, showing first 20 
 #>                                                                                         title
-#> 1                Channel Islands, Kelp Forest Monitoring, Size and Frequency, Natural Habitat
-#> 2                                                                          CalCOFI Fish Sizes
-#> 3                                                                        CalCOFI Larvae Sizes
-#> 5                             NWFSC Observer Fixed Gear Data, off West Coast of US, 2002-2006
-#> 6                                  NWFSC Observer Trawl Data, off West Coast of US, 2002-2006
-#> 7                                                  OBIS - ARGOS Satellite Tracking of Animals
-#> 8                                                     GLOBEC NEP MOCNESS Plankton (MOC1) Data
-#> 9                                                 GLOBEC NEP Vertical Plankton Tow (VPT) Data
-#> 10                                                        CalCOFI Larvae Counts Positive Tows
-#> 11                                                                               CalCOFI Tows
+#> 1                                                                          CalCOFI Fish Sizes
+#> 2                                                                        CalCOFI Larvae Sizes
+#> 3                Channel Islands, Kelp Forest Monitoring, Size and Frequency, Natural Habitat
+#> 4                                                  OBIS - ARGOS Satellite Tracking of Animals
+#> 5                                                     GLOBEC NEP MOCNESS Plankton (MOC1) Data
+#> 6                                                 GLOBEC NEP Vertical Plankton Tow (VPT) Data
+#> 7                             NWFSC Observer Fixed Gear Data, off West Coast of US, 2002-2006
+#> 8                                  NWFSC Observer Trawl Data, off West Coast of US, 2002-2006
+#> 9                                                         CalCOFI Larvae Counts Positive Tows
+#> 10                                                                               CalCOFI Tows
 #> 12 AN EXPERIMENTAL DATASET: Underway Sea Surface Temperature and Salinity Aboard the Oleander
 #>             dataset_id
-#> 1       erdCinpKfmSFNH
-#> 2     erdCalCOFIfshsiz
-#> 3     erdCalCOFIlrvsiz
-#> 5   nwioosObsFixed2002
-#> 6   nwioosObsTrawl2002
-#> 7            aadcArgos
-#> 8        erdGlobecMoc1
-#> 9         erdGlobecVpt
-#> 10 erdCalCOFIlrvcntpos
-#> 11      erdCalCOFItows
+#> 1     erdCalCOFIfshsiz
+#> 2     erdCalCOFIlrvsiz
+#> 3       erdCinpKfmSFNH
+#> 4            aadcArgos
+#> 5        erdGlobecMoc1
+#> 6         erdGlobecVpt
+#> 7   nwioosObsFixed2002
+#> 8   nwioosObsTrawl2002
+#> 9  erdCalCOFIlrvcntpos
+#> 10      erdCalCOFItows
 #> 12            nodcPJJU
 ```
 
@@ -636,14 +637,14 @@ erddap_search(query='size', which = "table")
 erddap_search(query='size', which = "grid")
 #> 6 results, showing first 20 
 #>                                                            title
-#> 4                NOAA Global Coral Bleaching Monitoring Products
+#> 11               NOAA Global Coral Bleaching Monitoring Products
 #> 13        Coawst 4 use, Best Time Series [time][eta_rho][xi_rho]
 #> 14            Coawst 4 use, Best Time Series [time][eta_u][xi_u]
 #> 15            Coawst 4 use, Best Time Series [time][eta_v][xi_v]
 #> 16 Coawst 4 use, Best Time Series [time][s_rho][eta_rho][xi_rho]
 #> 17  Coawst 4 use, Best Time Series [time][Nbed][eta_rho][xi_rho]
 #>             dataset_id
-#> 4             NOAA_DHW
+#> 11            NOAA_DHW
 #> 13 whoi_ed12_89ce_9592
 #> 14 whoi_61c3_0b5d_cd61
 #> 15 whoi_62d0_9d64_c8ff
@@ -655,8 +656,32 @@ Then you can get information on a single dataset
 
 
 ```r
-erddap_info('hawaii_3b41_0c0b_72bc')
-#> Error in erddap_GET(url = sprintf(paste0(eurl(), "info/%s/index.json"), : client error: (404) Not Found
+erddap_info('whoi_7dd7_db97_4bbe')
+#> <ERDDAP Dataset> whoi_7dd7_db97_4bbe 
+#>  Dimensions (range):  
+#>      time: (2012-06-25T01:00:00Z, 2015-03-02T00:00:00Z) 
+#>      s_rho: (-0.96875, -0.03125) 
+#>      eta_rho: (0, 335) 
+#>      xi_rho: (0, 895) 
+#>  Variables:  
+#>      rho: 
+#>          Units: kilogram meter-3 
+#>      salt: 
+#>          Units: 0.001 
+#>      sand_01: 
+#>          Units: kilogram meter-3 
+#>      sand_02: 
+#>          Units: kilogram meter-3 
+#>      sand_03: 
+#>          Units: kilogram meter-3 
+#>      sand_04: 
+#>          Units: kilogram meter-3 
+#>      sand_05: 
+#>          Units: kilogram meter-3 
+#>      sand_06: 
+#>          Units: kilogram meter-3 
+#>      temp: 
+#>          Units: Celsius
 ```
 
 __griddap data__

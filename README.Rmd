@@ -15,6 +15,7 @@ knitr::opts_chunk$set(
 
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 [![Build status](https://ci.appveyor.com/api/projects/status/8daqtllo2sg6me07/branch/master)](https://ci.appveyor.com/project/sckott/rnoaa/branch/master)
+[![Coverage Status](https://coveralls.io/repos/ropensci/rnoaa/badge.svg)](https://coveralls.io/r/ropensci/rnoaa)
 
 ## IMPORTANT - BUOY DATA
 
@@ -252,7 +253,7 @@ erddap_search(query='size', which = "grid")
 Then you can get information on a single dataset
 
 ```{r erddap_info}
-erddap_info('hawaii_3b41_0c0b_72bc')
+erddap_info('whoi_7dd7_db97_4bbe')
 ```
 
 __griddap data__
