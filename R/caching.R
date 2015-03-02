@@ -1,11 +1,22 @@
 #' Clear cached files
 #' 
-#' @export
+#' @name caching
 #' @param path Path to location of cached files. Defaults to \code{disk()$path}
+#' @param force (logical) Should we force removal of files if permissions say otherwise?
 #' @details BEWARE: this will clear all cached files. 
-erddap_clear_cache <- function(path = disk()){
+
+#' @export
+#' @rdname caching
+erddap_clear_cache <- function(path = disk(), force = FALSE) {
   files <- list.files(path$path, full.names = TRUE)
-  unlink(files, recursive = TRUE, )
+  unlink(files, recursive = TRUE, force = force)
+}
+
+#' @export 
+#' @rdname caching
+ghcnd_clear_cache <- function(path = "~/.rnoaa/ghcnd", force = FALSE) {
+  files <- list.files(path, full.names = TRUE)
+  unlink(files, recursive = TRUE, force = force)
 }
 
 cache_get <- function(cache, url, args=list(), path="~/")
@@ -25,11 +36,11 @@ cache_get <- function(cache, url, args=list(), path="~/")
   } else { NULL }
 }
 
-write_path <- function(path, url, args=list())
+write_path <- function(path, url, args=list(), fmt="csv")
 {
   url <- if(!identical(args, list())) make_key(url, args) else url
   hash <- digest::digest(url)
-  file.path(path, paste0(hash, ".csv", sep=""))
+  file.path(path, paste0(hash, paste0(".", fmt), sep=""))
 }
 
 make_key <- function(url, args)
