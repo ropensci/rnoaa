@@ -24,3 +24,22 @@ notifications:
     auth_token:
       secure: S3AcHEoJHUtahR5N8ConStS8oV/+x34tS1bDGM3OD0QxDKBBxufeiMmXQsId1gZu
     channel: builds
+
+artifacts:
+  - path: '*.Rcheck\**\*.log'
+    name: Logs
+
+  - path: '*.Rcheck\**\*.out'
+    name: Logs
+
+  - path: '*.Rcheck\**\*.fail'
+    name: Logs
+
+  - path: '*.Rcheck\**\*.Rout'
+    name: Logs
+
+  - path: '\*_*.tar.gz'
+    name: Bits
+
+  - path: '\*_*.zip'
+    name: Bits
