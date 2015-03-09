@@ -130,7 +130,7 @@ check_response <- function(x){
 
 #' Check response from NOAA, including status codes, server error messages, mime-type, etc.
 #' @keywords internal
-check_response_erddap <- function(x){
+check_response_erddap <- function(x, fmt){
   if(!x$status_code == 200){
     html <- content(x)
     values <- xpathApply(html, "//u", xmlValue)
@@ -145,7 +145,11 @@ check_response_erddap <- function(x){
       } else { stop(sprintf("Error: (%s)", x$status_code), call. = FALSE) }
     } else { stop_for_status(x) }
   } else {
-    stopifnot(x$headers$`content-type`=='text/csv;charset=UTF-8')
+    if(fmt == "csv"){
+      stopifnot(x$headers$`content-type`=='text/csv;charset=UTF-8')
+    } else {
+      stopifnot(x$headers$`content-type`=='application/x-download')
+    }
     return( x )
   }
 }
@@ -191,17 +195,20 @@ read_csv <- function(x){
   tmp
 }
 
-read_upwell <- function(x){
-  if(is(x, "response")) {
-    x <- content(x, "text")
-    tmp <- read.csv(text = x, header = FALSE, sep = ",", stringsAsFactors=FALSE, skip = 2)
-    nmz <- names(read.csv(text = x, header = TRUE, sep = ",", stringsAsFactors=FALSE, nrows=1))
-  } else {  
-    tmp <- read.csv(x, header = FALSE, sep = ",", stringsAsFactors=FALSE, skip = 2)
-    nmz <- names(read.csv(x, header = TRUE, sep = ",", stringsAsFactors=FALSE, nrows=1))
+read_upwell <- function(x, fmt){
+  if(fmt == "csv"){
+    if(is(x, "response")) {
+      x <- content(x, "text")
+      tmp <- read.csv(text = x, header = FALSE, sep = ",", stringsAsFactors=FALSE, skip = 2)
+      nmz <- names(read.csv(text = x, header = TRUE, sep = ",", stringsAsFactors=FALSE, nrows=1))
+    } else {
+      tmp <- read.csv(x, header = FALSE, sep = ",", stringsAsFactors=FALSE, skip = 2)
+      nmz <- names(read.csv(x, header = TRUE, sep = ",", stringsAsFactors=FALSE, nrows=1))
+    }
+    setNames(tmp, tolower(nmz))
+  } else {
+    get_ncdf(x)
   }
-  names(tmp) <- tolower(nmz)
-  tmp
 }
 
 read_table <- function(x){

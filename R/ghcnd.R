@@ -220,6 +220,10 @@ ghcnd_version <- function(...){
   content(res, "text")
 }
 
+ghcnd_zip <- function(x){
+  "adf" 
+}
+
 ghcnd_GET <- function(bp, stationid, overwrite, ...){
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- ghcnd_local(stationid, bp)

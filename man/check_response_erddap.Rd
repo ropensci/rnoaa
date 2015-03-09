@@ -4,7 +4,7 @@
 \alias{check_response_erddap}
 \title{Check response from NOAA, including status codes, server error messages, mime-type, etc.}
 \usage{
-check_response_erddap(x)
+check_response_erddap(x, fmt)
 }
 \description{
 Check response from NOAA, including status codes, server error messages, mime-type, etc.

@@ -4,8 +4,8 @@
 \alias{erddap_grid}
 \title{Get ERDDAP griddap data.}
 \usage{
-erddap_grid(x, ..., fields = "all", stride = 1, store = disk(),
-  callopts = list())
+erddap_grid(x, ..., fields = "all", stride = 1, fmt = "csv",
+  store = disk(), callopts = list())
 }
 \arguments{
 \item{x}{Anything coercable to an object of class erddap_info. So the output of a call to

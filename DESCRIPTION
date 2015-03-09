@@ -40,7 +40,8 @@ Imports:
     XML,
     data.table,
     jsonlite,
-    digest
+    digest,
+    reshape2
 Suggests:
     testthat,
     roxygen2,

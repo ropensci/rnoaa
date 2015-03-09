@@ -2,6 +2,7 @@
 #'
 #' @export
 #' @import digest
+#' @importFrom reshape2 melt
 #'
 #' @param x Anything coercable to an object of class erddap_info. So the output of a call to
 #' \code{erddap_info}, or a datasetid, which will internally be passed through \code{erddap_info}.
@@ -123,7 +124,8 @@
 #' ))
 #' }
 
-erddap_grid <- function(x, ..., fields = 'all', stride = 1, store = disk(), callopts = list())
+erddap_grid <- function(x, ..., fields = 'all', stride = 1, 
+  fmt = "csv", store = disk(), callopts = list())
 {
   x <- as.erddap_info(x)
   dimargs <- list(...)
@@ -136,9 +138,9 @@ erddap_grid <- function(x, ..., fields = 'all', stride = 1, store = disk(), call
     pargs <- sapply(dims, function(y) parse_args(x, y, stride, dimargs))
     args <- paste0(lapply(var, function(y) paste0(y, paste0(pargs, collapse = ""))), collapse = ",")
   }
-  resp <- erd_up_GET(url = sprintf("%sgriddap/%s.csv", eurl(), d), dset = d, args, store, callopts)
+  resp <- erd_up_GET(url = sprintf("%sgriddap/%s.%s", eurl(), d, fmt), dset = d, args, store, fmt, callopts)
   loc <- if(store$store == "disk") resp else "memory"
-  structure(read_upwell(resp), class=c("erddap_grid","data.frame"), datasetid=d, path=loc)
+  structure(read_upwell(resp, fmt), class=c("erddap_grid","data.frame"), datasetid=d, path=loc)
 }
 
 #' @export
@@ -209,21 +211,23 @@ dimvars <- function(x){
   vars[ !vars %in% c("NC_GLOBAL", x$variables$variable_name) ]
 }
 
-erd_up_GET <- function(url, dset, args, store, ...){
+erd_up_GET <- function(url, dset, args, store, fmt, ...){
   if(store$store == "disk"){
     out <- suppressWarnings(cache_get(cache = TRUE, url = url, args = args, path = store$path))
 
     # fpath <- path.expand(file.path(store$path, paste0(dset, ".csv")))
-    if( !is.null( out ) && !store$overwrite ){ out } else {
+    if( !is.null( out ) && !store$overwrite ){ 
+      out 
+    } else {
       dir.create(store$path, showWarnings = FALSE, recursive = TRUE)
-      res <- GET(url, query=args, write_disk(write_path(store$path, url, args), store$overwrite), ...)
-      out <- check_response_erddap(res)
+      res <- GET(url, query=args, write_disk(write_path(store$path, url, args, fmt), store$overwrite), ...)
+      out <- check_response_erddap(res, fmt)
       if(res$status_code != 200) unlink(res$request$writer[[1]])
       if(grepl("Error", out, ignore.case = TRUE)) NA else res$request$writer[[1]]
     }
   } else {
     res <- GET(url, query=args, ...)
-    out <- check_response_erddap(res)
+    out <- check_response_erddap(res, fmt)
     if(grepl("Error", out, ignore.case = TRUE)) NA else res
   }
 }
@@ -234,4 +238,26 @@ file_info <- function(x){
   tmp2 <- tmp[,c('mtime','size')]
   tmp2$size <- if(tmp2$size < 10000) paste0(round(tmp2$size/1000L, 2), " KB") else paste0(round(tmp2$size/1000000L, 2), " MB")
   tmp2
+}
+
+# file = "~/.rnoaa/erddap/e93051f9010dbbd568fca953a71acae7.nc"
+get_ncdf <- function(file){
+  nc <- open.ncdf(file)
+  lat <- get.var.ncdf(nc, "latitude")
+  long <- get.var.ncdf(nc, "longitude")
+  time <- get.var.ncdf(nc, "time")
+  vars <- names(nc$var)
+  outvars <- list()
+  for(i in seq_along(vars)){
+    outvars[[ vars[i] ]] <- melt(get.var.ncdf(nc, vars[i]))[,"value"]
+  }
+  df <- do.call("cbind.data.frame", outvars)
+  rows <- length(outvars[[1]])
+  meta <- data.frame(time=rep(time, each=rows/length(time)),
+                   lat=rep(lat, each=rows/length(lat)),
+                   long=rep(long, each=rows/length(long)),
+                   stringsAsFactors = FALSE)
+  alldf <- cbind(meta, df)
+  close.ncdf(nc)
+  alldf
 }
