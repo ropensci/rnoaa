@@ -10,6 +10,7 @@
 #' @param fields Fields to return, a character vector.
 #' @param stride (integer) How many values to get. 1 = get every value, 2 = get every other value,
 #' etc. Default: 1 (i.e., get every value)
+#' @param fmt (character) One of csv (default) or ncdf
 #' @param store One of \code{disk} (default) or \code{memory}. You can pass options to \code{disk}
 #' @param callopts Pass on curl options to \code{\link[httr]{GET}}
 #'

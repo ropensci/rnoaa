@@ -18,6 +18,8 @@ erddap_grid(x, ..., fields = "all", stride = 1, fmt = "csv",
 \item{stride}{(integer) How many values to get. 1 = get every value, 2 = get every other value,
 etc. Default: 1 (i.e., get every value)}
 
+\item{fmt}{(character) One of csv (default) or ncdf}
+
 \item{store}{One of \code{disk} (default) or \code{memory}. You can pass options to \code{disk}}
 
 \item{callopts}{Pass on curl options to \code{\link[httr]{GET}}}
