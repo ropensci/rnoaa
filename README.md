@@ -6,6 +6,7 @@ rnoaa
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 [![Build status](https://ci.appveyor.com/api/projects/status/8daqtllo2sg6me07/branch/master)](https://ci.appveyor.com/project/sckott/rnoaa/branch/master)
 [![Coverage Status](https://coveralls.io/repos/ropensci/rnoaa/badge.svg)](https://coveralls.io/r/ropensci/rnoaa)
+[![cran version](http://www.r-pkg.org/badges/version/rnoaa)](http://cran.rstudio.com/web/packages/rnoaa)
 
 ## IMPORTANT - BUOY DATA
 

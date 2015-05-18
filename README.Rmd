@@ -5,7 +5,7 @@ rnoaa
 knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
-  warning = FALSE, 
+  warning = FALSE,
   message = FALSE,
   fig.width = 10,
   fig.path = "inst/img/",
@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 [![Build status](https://ci.appveyor.com/api/projects/status/8daqtllo2sg6me07/branch/master)](https://ci.appveyor.com/project/sckott/rnoaa/branch/master)
 [![Coverage Status](https://coveralls.io/repos/ropensci/rnoaa/badge.svg)](https://coveralls.io/r/ropensci/rnoaa)
+[![cran version](http://www.r-pkg.org/badges/version/rnoaa)](http://cran.rstudio.com/web/packages/rnoaa)
 
 ## IMPORTANT - BUOY DATA
 
@@ -96,7 +97,7 @@ You'll need an API key to use the NOAA NCDC functions (those starting with `ncdc
 
 Once you obtain a key, there are two ways to use it.
 
-a) Pass it inline with each function call (somewhat cumbersome)  
+a) Pass it inline with each function call (somewhat cumbersome)
 
 ```{r eval=FALSE}
 ncdc(datasetid = 'PRECIP_HLY', locationid = 'ZIP:28801', datatypeid = 'HPCP', limit = 5, token =  "YOUR_TOKEN")
@@ -284,7 +285,7 @@ erddap_table(out, fields=c('longitude','latitude','fish_size','itis_tsn'),
 #>    Last updated: [2014-12-19 09:14:01]
 #>    File size:    [0.02 mb]
 #>    Dimensions:   [558 X 4]
-#> 
+#>
 #>     longitude  latitude fish_size itis_tsn
 #> 2     -118.26    33.255      22.9   623745
 #> 3     -118.26    33.255      22.9   623745
