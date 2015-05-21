@@ -131,13 +131,3 @@ contains <- function(vars, match, ignore.case = TRUE){
 is.string <- function(x){
   is.character(x) && length(x) == 1
 }
-
-# #' Pipe operator
-# #'
-# #' @name %>%
-# #' @rdname pipe
-# #' @keywords internal
-# #' @export
-# #' @importFrom magrittr %>%
-# #' @usage lhs \%>\% rhs
-# NULL
