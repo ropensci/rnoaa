@@ -98,14 +98,12 @@ seaiceeurls <- function(yr=NULL, mo=NULL, pole=NULL)
 }
 
 #' Function to read shapefiles
-#' @import maptools
 #' @param x A url
 #' @param storepath Path to store data in
 #' @return An object of class sp
 #' @export
 #' @keywords internal
-readshpfile <- function(x, storepath=NULL)
-{
+readshpfile <- function(x, storepath=NULL) {
   filename <- strsplit(x, '/')[[1]][length(strsplit(x, '/')[[1]])]
   filename_noending <- strsplit(filename, "\\.")[[1]][[1]]
   if(is.null(storepath)){ storepath <- tempdir() }
