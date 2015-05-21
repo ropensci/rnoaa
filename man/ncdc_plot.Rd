@@ -32,7 +32,7 @@ code within this function, where input is the output from a \code{\link[rnoaa]{n
 call - go crazy:
 
 input <- input$data
-input$date <- ymd(str_replace(as.character(input$date), "T00:00:00\\.000", ''))
+input$date <- ymd(sub("T00:00:00\\.000", '', as.character(input$date)))
 ggplot(input, aes(date, value)) +
    theme_bw(base_size=18) +
    geom_line(size=2) +
@@ -43,7 +43,7 @@ ggplot(input, aes(date, value)) +
 \dontrun{
 # Search for data first, then plot
 out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
-startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
+   startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
 ncdc_plot(out)
 ncdc_plot(out, breaks="14 days")
 ncdc_plot(out, breaks="1 month", dateformat="\%d/\%m")

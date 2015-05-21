@@ -36,7 +36,6 @@ Imports:
     rgdal,
     rgeos,
     maptools,
-    stringr,
     XML,
     data.table,
     jsonlite,

@@ -1,7 +1,7 @@
 #' Get GHCND daily data from NOAA FTP server
-#' 
+#'
 #' @importFrom tidyr gather
-#' @import dplyr
+#' @importFrom dplyr %>% rbind_all select mutate rename tbl_df
 #' @export
 #'
 #' @param stationid Stationid to get
@@ -9,20 +9,20 @@
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #' @param n Number of rows to print
-#' @param x Input object to print methods. For \code{ghcnd_splitvars()}, the output of a call 
+#' @param x Input object to print methods. For \code{ghcnd_splitvars()}, the output of a call
 #' to \code{ghcnd()}.
-#' @param date_min,date_max (character) Minimum and maximum dates. Use together to get a 
+#' @param date_min,date_max (character) Minimum and maximum dates. Use together to get a
 #' date range
-#' @param var (character) Variable to get, defaults to "all", which gives back all variables 
+#' @param var (character) Variable to get, defaults to "all", which gives back all variables
 #' in a list. To see what variables are available for a dataset, look at the dataset returned
 #' from \code{ghcnd()}.
-#' 
+#'
 #' @examples \dontrun{
 #' # Get metadata
 #' ghcnd_states()
 #' ghcnd_countries()
 #' ghcnd_version()
-#' 
+#'
 #' # Get stations, ghcnd-stations and ghcnd-inventory merged
 #' (stations <- ghcnd_stations())
 #'
@@ -33,7 +33,7 @@
 #' ghcnd(stations$data$id[10000])
 #' ghcnd(stations$data$id[80000])
 #' ghcnd(stations$data$id[80300])
-#' 
+#'
 #' library("dplyr")
 #' ghcnd(stations$data$id[80300])$data %>% select(id, element) %>% head
 #'
@@ -43,13 +43,13 @@
 #' (alldat <- ghcnd_splitvars(dat))
 #' library("ggplot2")
 #' ggplot(subset(alldat$tmax, tmax >= 0), aes(date, tmax)) + geom_point()
-#' 
+#'
 #' ## using dplyr
 #' library("dplyr")
 #' dat <- ghcnd(stationid="AGE00147704")
 #' dat$data %>%
 #'  filter(element == "PRCP", year == 1909)
-#'  
+#'
 #' # Search based on variable and/or date
 #' ghcnd_search("AGE00147704", var = "PRCP")
 #' ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01")
@@ -72,12 +72,12 @@ ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
 
 #' @export
 #' @rdname ghcnd
-ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all", 
+ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all",
                          path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
-  
+
   dat <- ghcnd_splitvars(ghcnd(stationid, path=path, overwrite=overwrite))
   possvars <- paste0(names(dat), collapse = ", ")
-  
+
   if(any(var != "all")){
     vars_null <- sort(tolower(var))[!sort(tolower(var)) %in% sort(names(dat))]
     dat <- dat[tolower(var)]
@@ -86,7 +86,7 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all
     dat <- compact(dat)
     warning(sprintf("%s not in the dataset\nAvailable variables: %s", paste0(vars_null, collapse = ", "), possvars), call. = FALSE)
   }
-  
+
   if(!is.null(date_min)) {
     dat <- lapply(dat, function(z) z %>% filter(date > date_min))
   }
@@ -98,7 +98,7 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all
 #       dat <- dat %>% filter(date > date_min)
 #     } else {
     # }
-  
+
 #   if(!is.null(date_max)) {
 #     if(var != "all"){
 #       dat <- dat %>% filter(date < date_max)
@@ -125,38 +125,38 @@ ghcnd_splitvars <- function(x){
   # tmp$date <- as.Date(sprintf("%s-%s-01", tmp$year, tmp$month), "%Y-%m-%d")
   # tmp2 <- tmp %>% tbl_df() %>% select(-contains("FLAG"))
   out <- lapply(as.character(unique(tmp$element)), function(y){
-    dd <- tmp[ tmp$element == y, ] %>% 
-      select(-contains("FLAG")) %>% 
+    dd <- tmp[ tmp$element == y, ] %>%
+      select(-contains("FLAG")) %>%
       gather(var, value, -id, -year, -month, -element) %>%
-      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>% 
-      filter(!is.na(date)) %>% 
+      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
+      filter(!is.na(date)) %>%
       select(-element, -var, -year, -month, -day)
     dd <- setNames(dd, c("id",tolower(y),"date"))
-    
-    mflag <- tmp[ tmp$element == y, ] %>% 
-      select(-contains("VALUE"), -contains("QFLAG"), -contains("SFLAG")) %>% 
+
+    mflag <- tmp[ tmp$element == y, ] %>%
+      select(-contains("VALUE"), -contains("QFLAG"), -contains("SFLAG")) %>%
       gather(var, value, -id, -year, -month, -element) %>%
-      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>% 
-      filter(!is.na(date)) %>% 
-      select(value) %>% 
+      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
+      filter(!is.na(date)) %>%
+      select(value) %>%
       rename(mflag = value)
-    
-    qflag <- tmp[ tmp$element == y, ] %>% 
-      select(-contains("VALUE"), -contains("MFLAG"), -contains("SFLAG")) %>% 
+
+    qflag <- tmp[ tmp$element == y, ] %>%
+      select(-contains("VALUE"), -contains("MFLAG"), -contains("SFLAG")) %>%
       gather(var, value, -id, -year, -month, -element) %>%
-      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>% 
-      filter(!is.na(date)) %>% 
-      select(value) %>% 
+      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
+      filter(!is.na(date)) %>%
+      select(value) %>%
       rename(qflag = value)
-      
-    sflag <- tmp[ tmp$element == y, ] %>% 
-      select(-contains("VALUE"), -contains("QFLAG"), -contains("MFLAG")) %>% 
+
+    sflag <- tmp[ tmp$element == y, ] %>%
+      select(-contains("VALUE"), -contains("QFLAG"), -contains("MFLAG")) %>%
       gather(var, value, -id, -year, -month, -element) %>%
-      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>% 
-      filter(!is.na(date)) %>% 
-      select(value) %>% 
+      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
+      filter(!is.na(date)) %>%
+      select(value) %>%
       rename(sflag = value)
-    
+
     tbl_df(cbind(dd, mflag, qflag, sflag))
   })
   setNames(out, tolower(unique(tmp$element)))
@@ -221,7 +221,7 @@ ghcnd_version <- function(...){
 }
 
 ghcnd_zip <- function(x){
-  "adf" 
+  "adf"
 }
 
 ghcnd_GET <- function(bp, stationid, overwrite, ...){

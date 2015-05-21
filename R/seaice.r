@@ -40,7 +40,7 @@ seaice <- function(url, ...)
 }
 
 #' Make all urls for sea ice data
-#' @import stringr
+#'
 #' @importFrom lubridate year today month
 #' @param yr Year (numeric)
 #' @param mo Month, as character abbrevation of a month  (character)
@@ -106,12 +106,11 @@ seaiceeurls <- function(yr=NULL, mo=NULL, pole=NULL)
 #' @keywords internal
 readshpfile <- function(x, storepath=NULL)
 {
-  filename <- str_split(x, '/')[[1]][length(str_split(x, '/')[[1]])]
-  filename_noending <- str_split(filename, "\\.")[[1]][[1]]
+  filename <- strsplit(x, '/')[[1]][length(strsplit(x, '/')[[1]])]
+  filename_noending <- strsplit(filename, "\\.")[[1]][[1]]
   if(is.null(storepath)){ storepath <- tempdir() }
   path_write <- paste0(storepath, '/', filename_noending)
   path <- paste0(storepath, '/', filename)
-#   path_shp <- str_replace(path, ".zip", ".shp")
   bb <- try(download.file(x, path), silent=TRUE)
   if(class(bb) == "try-error")
     stop('Data not available, ftp server may be down')
@@ -119,8 +118,6 @@ readshpfile <- function(x, storepath=NULL)
   unzip(path, exdir=path_write)
   my_layer <- ogrListLayers(path.expand(path_write))
   readOGR(path.expand(path_write), layer=my_layer)
-#   spTransform(temp, CRS("+proj=longlat"))
-#   temp <- readShapePoly(path_shp, proj4string=CRS("+proj=utm +datum=WGS84"))
 }
 
 #' ggplot2 map theme

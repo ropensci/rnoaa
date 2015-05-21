@@ -20,7 +20,7 @@
 #' call - go crazy:
 #'
 #' input <- input$data
-#' input$date <- ymd(str_replace(as.character(input$date), "T00:00:00\\.000", ''))
+#' input$date <- ymd(sub("T00:00:00\\.000", '', as.character(input$date)))
 #' ggplot(input, aes(date, value)) +
 #'    theme_bw(base_size=18) +
 #'    geom_line(size=2) +
@@ -30,7 +30,7 @@
 #' @examples \dontrun{
 #' # Search for data first, then plot
 #' out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
-#' startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
+#'    startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
 #' ncdc_plot(out)
 #' ncdc_plot(out, breaks="14 days")
 #' ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
@@ -64,7 +64,7 @@ ncdc_plot.ncdc_data <- function(..., breaks="7 days", dateformat='%d/%m/%y')
 
   if(length(input) == 1){
     df <- input[[1]]$data
-    df$date <- ymd(str_replace(as.character(df$date), 'T00:00:00\\.000|T00:00:00', ''))
+    df$date <- ymd(sub('T00:00:00\\.000|T00:00:00', '', as.character(df$date)))
     ggplot(df, aes(date, value)) +
       theme_bw(base_size=18) +
       geom_line(size=2) +
@@ -74,7 +74,7 @@ ncdc_plot.ncdc_data <- function(..., breaks="7 days", dateformat='%d/%m/%y')
   } else {
     df <- do.call(rbind.fill, lapply(input, function(x) x$data))
     df$facet <- rep(paste("input", 1:length(input)), times=sapply(input, function(x) nrow(x$data)))
-    df$date <- ymd(str_replace(as.character(df$date), "T00:00:00\\.000|T00:00:00", ''))
+    df$date <- ymd(sub("T00:00:00\\.000|T00:00:00", '', as.character(df$date)))
     ggplot(df, aes(date, value)) +
       theme_bw(base_size=18) +
       geom_line(size=2) +
