@@ -3,71 +3,102 @@
 #' @export
 #' @name isd
 #'
-#' @param usaf USAF code
-#' @param wban WBAN code
-#' @param year (numeric) One of the years from 1901 to the current year
-#' @param path (character) A path to store the files, Default: \code{~/.rnoaa/isd}
-#' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
+#' @param usaf,wban (character) USAF and WBAN code. Required
+#' @param year (numeric) One of the years from 1901 to the current year. 
+#' Required.
+#' @param path (character) A path to store the files, a directory. Default: 
+#' \code{~/.rnoaa/isd}. Required.
+#' @param overwrite (logical) To overwrite the path to store files in or not, 
+#' Default: \code{TRUE}
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
+#' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
+#' @details This function first looks for whether the data for your specific query has
+#' already been downloaded previously in the directory given by the \code{path} 
+#' parameter. If not found, the data is requested form NOAA's FTP server. The first time 
+#' a dataset is pulled down we must a) download the data, b) process the data, and c) save
+#' a .csv file to disk. The next time the same data is requested, we only have to read 
+#' back in the .csv file, and is quite fast. The processing can take quite a long time 
+#' since the data is quite messy and takes a bunch of regex to split apart text strings.
+#' See examples below for different behavior.
 #' @examples \dontrun{
 #' # Get station table
 #' stations <- isd_stations()
 #' head(stations)
 #'
 #' # Get data
-#' (res <- isd(usaf="010230", wban="99999", year=1986))
-#' (res <- isd(usaf="992230", wban="99999", year=1986))
+#' (res <- isd(usaf="011490", wban="99999", year=1986))
+#' (res <- isd(usaf="011690", wban="99999", year=1993))
+#' (res <- isd(usaf="172007", wban="99999", year=2015))
+#' (res <- isd(usaf="702700", wban="00489", year=2015))
+#' 
+#' # The first time a dataset is requested takes longer
+#' system.time( isd(usaf="782680", wban="99999", year=2011) )
+#' system.time( isd(usaf="782680", wban="99999", year=2011) )
 #' }
 
 #' @export
 #' @rdname isd
-isd <- function(usaf=NULL, wban=NULL, year=NULL, path="~/.rnoaa/isd", overwrite = TRUE)
-{
+isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE) {
   csvpath <- isd_local(usaf, wban, year, path)
-  if(!is_isd(x = csvpath)){
-    csvpath <- isd_GET(path, usaf, wban, year, overwrite)
+  if (!is_isd(x = csvpath)) {
+    isd_GET(path, usaf, wban, year, overwrite)
   }
   message(sprintf("<path>%s", csvpath), "\n")
-  structure(list(data=read_isd(csvpath, sections)), class="isd")
+  structure(list(data = read_isd(csvpath, sections)), class = "isd")
 }
 
 #' @export
 #' @rdname isd
-isd_stations <- function(...){
+isd_stations <- function(...) {
   res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-history.csv", ...))
-  df <- read.csv(text=content(res, "text"), header = TRUE)
+  df <- read.csv(text = content(res, "text"), header = TRUE)
   setNames(df, gsub("_$", "", gsub("\\.", "_", tolower(names(df)))))
 }
 
 #' @export
-print.isd <- function(x, ..., n = 10){
+print.isd <- function(x, ..., n = 10) {
   cat("<ISD Data>", sep = "\n")
   cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
   trunc_mat_(x$data, n = n)
 }
 
-isd_GET <- function(bp, usaf, wban, year, overwrite){
+isd_GET <- function(bp, usaf, wban, year, overwrite) {
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- isd_local(usaf, wban, year, bp)
-  res <- suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite)))
-  res$request$writer[[1]]
+  suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite)))
 }
 
-isd_remote <- function(usaf, wban, year) file.path(isdbase(), year, sprintf("%s-%s-%s%s", usaf, wban, year, ".gz"))
-isd_local <- function(usaf, wban, year, path) file.path(path, sprintf("%s-%s-%s%s", usaf, wban, year, ".gz"))
+isd_remote <- function(usaf, wban, year) {
+  file.path(isdbase(), year, sprintf("%s-%s-%s%s", usaf, wban, year, ".gz"))
+}
 
-is_isd <- function(x) if(file.exists(x)) TRUE else FALSE
-isdbase <- function() 'ftp://ftp.ncdc.noaa.gov/pub/data/noaa/'
+isd_local <- function(usaf, wban, year, path) {
+  file.path(path, sprintf("%s-%s-%s%s", usaf, wban, year, ".gz"))
+}
 
-# x <- "~/Downloads/997379-99999-2014"
-# x <- "~/Downloads/103380-99999-1927"
-# x <- "~/Downloads/107880-99999-1942"
-# x <- "~/Downloads/011960-99999-1986"
-# read_isd(x)
-read_isd <- function(x, sections){
-  lns <- readLines(x)
-  linesproc <- lapply(lns, each_line, sections=sections)
-  do.call(rbind.fill, linesproc)
+is_isd <- function(x) {
+  if (file.exists(x)) TRUE else FALSE
+}
+
+isdbase <- function() 'ftp://ftp.ncdc.noaa.gov/pub/data/noaa'
+
+read_isd <- function(x, sections) {
+  path_csv <- sub("gz", "csv", x)
+  if (file.exists(path_csv)) {
+    df <- read.csv(path_csv, stringsAsFactors = FALSE)
+  } else {
+    lns <- readLines(x)
+    linesproc <- lapply(lns, each_line, sections = sections)
+    df <- dplyr::rbind_all(linesproc)
+    cache_csv(path_csv, df)
+  }
+  return(df)
+}
+
+cache_csv <- function(x, y) {
+  if (!file.exists(x)) {
+    write.csv(y, file = x, row.names = FALSE)
+  }
 }
 
 each_line <- function(y, sections){
@@ -113,7 +144,7 @@ sections <- list(
 )
 
 proc_other <- function(x){
-  x <- substring(x, 4, nchar(x))
+  # x <- substring(x, 4, nchar(x))
   tt <- list(check_get(x, "SA1", sa1),
        check_get(x, "REM", rem),
        check_get(x, "AY1", ay1),
@@ -129,30 +160,34 @@ proc_other <- function(x){
   do.call(cbind, lapply(other, data.frame, stringsAsFactors = FALSE))
 }
 
-check_get <- function(string, pattern, fxn){
+check_get <- function(string, pattern, fxn) {
   yy <- regexpr(pattern, string)
-  tt <- if(yy > 0) fxn(string) else NULL
+  tt <- if (yy > 0) fxn(string) else NULL
   setNames(list(tt), pattern)
 }
 
 # str_match_len(x, "SA1", 8)
 str_match_len <- function(x, index, length){
   sa1 <- regexpr(index, x)
-  if(sa1 > 0) substring(x, sa1[1], sa1[1]+(length-1)) else NULL
+  if (sa1 > 0) {
+    substring(x, sa1[1], sa1[1] + (length - 1)) 
+  } else {
+    NULL
+  }
 }
 
 str_from_to <- function(x, a, b){
-  substring(x, a, a+b)
+  substring(x, a, a + b)
 }
 
 str_pieces <- function(z, pieces, nms=NULL){
-  tmp <- lapply(pieces, function(x) substring(z, x[1], if(x[2]==999) nchar(z) else x[2]))
-  if(is.null(nms)) tmp else setNames(tmp, nms)
+  tmp <- lapply(pieces, function(x) substring(z, x[1], if (x[2] == 999) nchar(z) else x[2]))
+  if (is.null(nms)) tmp else setNames(tmp, nms)
 }
 
 # sea surface temperature data
 # sa1(x)
-sa1 <- function(x){
+sa1 <- function(x) {
   str_pieces(
     str_match_len(x, "SA1", 8),
     list(c(1,3),c(4,7),c(8,8)),
