@@ -18,6 +18,10 @@ A data.frame
 \description{
 Get sea ice data.
 }
+\details{
+If you want to reproject the shape files, use
+\code{\link{readshpfile}} to read in shape file, then reproject, and so on.
+}
 \examples{
 \dontrun{
 # Look at data.frame's for a series of years for Feb, South pole
