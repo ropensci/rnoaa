@@ -20,7 +20,6 @@ are:
 
 \itemize{
  \item \code{buoy_*} - NOAA Buoy data, only on buoy branch in Github repo
- \item \code{erddap_*} - NOAA ERDDAP vignette
  \item \code{ncdc_*} - NOAA National Climatic Data Center (NCDC) vignette (examples)
  \item \code{seaice} - Sea ice vignette
  \item \code{swdi} - Severe Weather Data Inventory (SWDI) vignette

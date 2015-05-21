@@ -82,9 +82,56 @@ noaa_seaice <- function(...){
 #' @export
 #' @rdname erddap_data-defunct
 #' @keywords internal
-erddap_data <- function()
-{
+erddap_data <- function(){
   .Defunct(msg = "See functions erddap_grid and erddap_table for griddap and tabledap data, respectively")
+}
+
+#' This function is defunct.
+#' @export
+#' @rdname erddap_clear_cache-defunct
+#' @keywords internal
+erddap_clear_cache <- function(){
+  .Defunct(package = "rerddap", msg = "See package rerddap")
+}
+
+#' This function is defunct.
+#' @export
+#' @rdname erddap_datasets-defunct
+#' @keywords internal
+erddap_datasets <- function(){
+  .Defunct(new = "ed_datasets", package = "rerddap", msg = "See ed_datasets() in package rerddap")
+}
+
+#' This function is defunct.
+#' @export
+#' @rdname erddap_grid-defunct
+#' @keywords internal
+erddap_grid <- function(){
+  .Defunct(new = "griddap", package = "rerddap", msg = "See griddap() in package rerddap")
+}
+
+#' This function is defunct.
+#' @export
+#' @rdname erddap_info-defunct
+#' @keywords internal
+erddap_info <- function(){
+  .Defunct(new = "info", package = "rerddap", msg = "See info() in package rerddap")
+}
+
+#' This function is defunct.
+#' @export
+#' @rdname erddap_search-defunct
+#' @keywords internal
+erddap_search <- function(){
+  .Defunct(new = "ed_search", package = "rerddap", msg = "See ed_search() in package rerddap")
+}
+
+#' This function is defunct.
+#' @export
+#' @rdname erddap_table-defunct
+#' @keywords internal
+erddap_table <- function(){
+  .Defunct(new = "tabledap", package = "rerddap", msg = "See tabledap() in package rerddap")
 }
 
 #' Defunct functions in rnoaa
@@ -100,8 +147,18 @@ erddap_data <- function()
 #'  \item \code{\link{noaa_plot}}: Function name changed, prefixed with ncdc now
 #'  \item \code{\link{noaa_combine}}: Function name changed, prefixed with ncdc now
 #'  \item \code{\link{noaa_seaice}}: Function name changed to seaice
-#'  \item \code{\link{erddap_data}}: See the function \code{\link{erddap_grid}} for getting
-#'  griddap data and \code{\link{erddap_table}} for getting tabledap data.
+#'  \item \code{\link{erddap_data}}: See package rerddap
+#'  \item \code{\link{erddap_clear_cache}}: See package rerddap
+#'  \item \code{\link{erddap_datasets}}: Moved to \code{\link[rerddap]{ed_datasets}} in 
+#'  package rerddap
+#'  \item \code{\link{erddap_grid}}: Moved to \code{\link[rerddap]{griddap}} in package 
+#'  rerddap
+#'  \item \code{\link{erddap_info}}: Moved to \code{\link[rerddap]{info}} in package 
+#'  rerddap
+#'  \item \code{\link{erddap_search}}: Moved to \code{\link[rerddap]{ed_search}} in 
+#'  package rerddap
+#'  \item \code{\link{erddap_table}}: Moved to \code{\link[rerddap]{tabledap}} in 
+#'  package rerddap
 #' }
 #'
 #' @name rnoaa-defunct

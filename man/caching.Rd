@@ -2,12 +2,9 @@
 % Please edit documentation in R/caching.R
 \name{caching}
 \alias{caching}
-\alias{erddap_clear_cache}
 \alias{ghcnd_clear_cache}
 \title{Clear cached files}
 \usage{
-erddap_clear_cache(path = disk(), force = FALSE)
-
 ghcnd_clear_cache(path = "~/.rnoaa/ghcnd", force = FALSE)
 }
 \arguments{

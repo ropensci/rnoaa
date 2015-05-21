@@ -11,7 +11,7 @@ is.ncdc_data <- function(x) inherits(x, "ncdc_data")
 
 #' @rdname is.ncdc_data
 #' @export
-#' @keywords internal 
+#' @keywords internal
 is.ncdc_datasets <- function(x) inherits(x, "ncdc_datasets")
 
 #' @rdname is.ncdc_data
@@ -128,32 +128,6 @@ check_response <- function(x){
   }
 }
 
-#' Check response from NOAA, including status codes, server error messages, mime-type, etc.
-#' @keywords internal
-check_response_erddap <- function(x, fmt){
-  if(!x$status_code == 200){
-    html <- content(x)
-    values <- xpathApply(html, "//u", xmlValue)
-    error <- grep("Error|Resource", values, ignore.case = TRUE, value = TRUE)
-    if(length(error) > 1) error <- error[1]
-    #check specifically for no matching results error
-    if(grepl("no matching results", error)) error <- 'Error: Your query produced no matching results.'
-
-    if(!is.null(error)){
-      if(grepl('Error|Resource not found', error, ignore.case = TRUE)){
-        stop(sprintf("(%s) - %s", x$status_code, error), call. = FALSE)
-      } else { stop(sprintf("Error: (%s)", x$status_code), call. = FALSE) }
-    } else { stop_for_status(x) }
-  } else {
-    if(fmt == "csv"){
-      stopifnot(x$headers$`content-type`=='text/csv;charset=UTF-8')
-    } else {
-      stopifnot(x$headers$`content-type`=='application/x-download')
-    }
-    return( x )
-  }
-}
-
 #' Check response from NOAA SWDI service, including status codes, server error messages,
 #' mime-type, etc.
 #' @keywords internal
@@ -195,28 +169,12 @@ read_csv <- function(x){
   tmp
 }
 
-read_upwell <- function(x, fmt){
-  if(fmt == "csv"){
-    if(is(x, "response")) {
-      x <- content(x, "text")
-      tmp <- read.csv(text = x, header = FALSE, sep = ",", stringsAsFactors=FALSE, skip = 2)
-      nmz <- names(read.csv(text = x, header = TRUE, sep = ",", stringsAsFactors=FALSE, nrows=1))
-    } else {
-      tmp <- read.csv(x, header = FALSE, sep = ",", stringsAsFactors=FALSE, skip = 2)
-      nmz <- names(read.csv(x, header = TRUE, sep = ",", stringsAsFactors=FALSE, nrows=1))
-    }
-    setNames(tmp, tolower(nmz))
-  } else {
-    get_ncdf(x)
-  }
-}
-
 read_table <- function(x){
   if(is(x, "response")) {
     txt <- gsub('\n$', '', content(x, "text"))
     read.csv(text = txt, sep = ",", stringsAsFactors=FALSE,
              blank.lines.skip=FALSE)[-1, , drop=FALSE]
-  } else {  
+  } else {
     read.delim(x, sep=",", stringsAsFactors=FALSE,
                blank.lines.skip=FALSE)[-1, , drop=FALSE]
   }

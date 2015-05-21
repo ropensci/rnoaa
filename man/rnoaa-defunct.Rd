@@ -15,8 +15,18 @@
  \item \code{\link{noaa_plot}}: Function name changed, prefixed with ncdc now
  \item \code{\link{noaa_combine}}: Function name changed, prefixed with ncdc now
  \item \code{\link{noaa_seaice}}: Function name changed to seaice
- \item \code{\link{erddap_data}}: See the function \code{\link{erddap_grid}} for getting
- griddap data and \code{\link{erddap_table}} for getting tabledap data.
+ \item \code{\link{erddap_data}}: See package rerddap
+ \item \code{\link{erddap_clear_cache}}: See package rerddap
+ \item \code{\link{erddap_datasets}}: Moved to \code{\link[rerddap]{ed_datasets}} in
+ package rerddap
+ \item \code{\link{erddap_grid}}: Moved to \code{\link[rerddap]{griddap}} in package
+ rerddap
+ \item \code{\link{erddap_info}}: Moved to \code{\link[rerddap]{info}} in package
+ rerddap
+ \item \code{\link{erddap_search}}: Moved to \code{\link[rerddap]{ed_search}} in
+ package rerddap
+ \item \code{\link{erddap_table}}: Moved to \code{\link[rerddap]{tabledap}} in
+ package rerddap
 }
 }
 
