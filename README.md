@@ -31,7 +31,6 @@ Then `rnoaa` with the buoy functions should install and load correctly. See [thi
 There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.r-project.org/web/packages/rnoaa/index.html). The tutorials:
 
 * NOAA Buoy vignette
-* NOAA ERDDAP vignette
 * NOAA National Climatic Data Center (NCDC) vignette (examples)
 * NOAA NCDC attributes vignette
 * NOAA NCDC workflow vignette
@@ -52,8 +51,7 @@ The majority of functions in this package work with NOAA NCDC data.
 * [Sea ice data](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
 * [NOAA buoy data](http://www.ndbc.noaa.gov/)
 * [ERDDAP data](http://upwell.pfeg.noaa.gov/erddap/index.html)
-  * griddap - gridded data
-  * tabledap - tablular data
+  * Now in package [rerddap](https://github.com/ropensci/rerddap)
 * Tornadoes! Data from the [NOAA Storm Prediction Center](http://www.spc.noaa.gov/gis/svrgis/)
 * HOMR - Historical Observing Metadata Repository - from [NOAA NCDC](http://www.ncdc.noaa.gov/homr/api)
 * Storm data - from the [International Best Track Archive for Climate Stewardship (IBTrACS)](http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data)
@@ -87,7 +85,7 @@ You'll need an API key to use the NOAA NCDC functions (those starting with `ncdc
 
 Once you obtain a key, there are two ways to use it.
 
-a) Pass it inline with each function call (somewhat cumbersome)  
+a) Pass it inline with each function call (somewhat cumbersome)
 
 
 ```r
@@ -172,31 +170,31 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 
 #> $data
 #>               id                  name datacoverage    mindate    maxdate
-#> 1  CITY:NL000012            Zwolle, NL       1.0000 1892-08-01 2015-01-31
-#> 2  CITY:SZ000007            Zurich, SZ       1.0000 1901-01-01 2015-02-27
+#> 1  CITY:NL000012            Zwolle, NL       1.0000 1892-08-01 2015-04-30
+#> 2  CITY:SZ000007            Zurich, SZ       1.0000 1901-01-01 2015-05-18
 #> 3  CITY:NG000004            Zinder, NG       0.8678 1906-01-01 1980-12-31
-#> 4  CITY:UP000025         Zhytomyra, UP       0.9730 1938-01-01 2015-02-27
-#> 5  CITY:KZ000017        Zhezkazgan, KZ       0.9290 1948-03-01 2015-02-27
-#> 6  CITY:CH000045         Zhengzhou, CH       1.0000 1951-01-01 2015-02-27
+#> 4  CITY:UP000025         Zhytomyra, UP       0.9731 1938-01-01 2015-05-18
+#> 5  CITY:KZ000017        Zhezkazgan, KZ       0.9293 1948-03-01 2015-05-18
+#> 6  CITY:CH000045         Zhengzhou, CH       1.0000 1951-01-01 2015-05-18
 #> 7  CITY:SP000021          Zaragoza, SP       1.0000 1941-01-01 2014-12-22
 #> 8  CITY:UP000024      Zaporiyhzhya, UP       0.9739 1936-01-01 2009-06-16
-#> 9  CITY:US390029     Zanesville, OH US       1.0000 1893-01-01 2015-02-28
-#> 10 CITY:LE000004             Zahle, LE       0.7811 1912-01-01 1971-12-31
+#> 9  CITY:US390029     Zanesville, OH US       1.0000 1893-01-01 2015-05-18
+#> 10 CITY:LE000004             Zahle, LE       0.7966 1912-01-01 1971-12-31
 #> 11 CITY:IR000019           Zahedan, IR       0.9930 1951-01-01 2010-05-19
 #> 12 CITY:HR000002            Zagreb, HR       1.0000 1860-12-01 2013-12-31
-#> 13 CITY:RS000081 Yuzhno-Sakhalinsk, RS       1.0000 1947-01-01 2015-02-27
-#> 14 CITY:US040015           Yuma, AZ US       1.0000 1893-01-01 2015-02-28
-#> 15 CITY:US060048   Yucca Valley, CA US       1.0000 1942-02-01 2015-02-28
-#> 16 CITY:US060047      Yuba City, CA US       1.0000 1893-01-01 2015-02-28
-#> 17 CITY:US390028     Youngstown, OH US       1.0000 1893-01-01 2015-03-01
-#> 18 CITY:US420024           York, PA US       1.0000 1941-01-01 2015-02-28
-#> 19 CITY:US360031        Yonkers, NY US       1.0000 1876-01-01 2015-03-01
-#> 20 CITY:JA000017          Yokohama, JA       1.0000 1949-01-01 2015-02-27
-#> 21 CITY:CH000044          Yinchuan, CH       1.0000 1951-01-01 2015-02-27
-#> 22 CITY:AM000001           Yerevan, AM       0.9751 1885-06-01 2015-02-27
-#> 23 CITY:US280020     Yazoo City, MS US       1.0000 1948-01-01 2015-02-28
+#> 13 CITY:RS000081 Yuzhno-Sakhalinsk, RS       1.0000 1947-01-01 2015-05-18
+#> 14 CITY:US040015           Yuma, AZ US       1.0000 1893-01-01 2015-05-18
+#> 15 CITY:US060048   Yucca Valley, CA US       1.0000 1942-02-01 2015-05-19
+#> 16 CITY:US060047      Yuba City, CA US       1.0000 1893-01-01 2015-05-19
+#> 17 CITY:US390028     Youngstown, OH US       1.0000 1893-01-01 2015-05-19
+#> 18 CITY:US420024           York, PA US       1.0000 1941-01-01 2015-05-19
+#> 19 CITY:US360031        Yonkers, NY US       1.0000 1876-01-01 2015-05-19
+#> 20 CITY:JA000017          Yokohama, JA       1.0000 1949-01-01 2015-05-18
+#> 21 CITY:CH000044          Yinchuan, CH       1.0000 1951-01-01 2015-05-18
+#> 22 CITY:AM000001           Yerevan, AM       0.9751 1885-06-01 2015-05-18
+#> 23 CITY:US280020     Yazoo City, MS US       1.0000 1948-01-01 2015-05-19
 #> 24 CITY:RS000080         Yaroslavl, RS       0.9850 1959-07-01 1987-05-20
-#> 25 CITY:US460009        Yankton, SD US       1.0000 1932-01-01 2015-03-01
+#> 25 CITY:US460009        Yankton, SD US       1.0000 1932-01-01 2015-05-19
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -214,7 +212,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #>                  id elevation                  name elevationUnit
 #> 1 GHCND:USC00084289      12.2 INVERNESS 3 SE, FL US        METERS
 #>   datacoverage longitude    mindate latitude    maxdate
-#> 1            1  -82.3126 1899-02-01  28.8029 2015-02-28
+#> 1            1  -82.3126 1899-02-01  28.8029 2015-05-19
 #> 
 #> attr(,"class")
 #> [1] "ncdc_stations"
@@ -282,30 +280,18 @@ ncdc_datasets()
 #> 
 #> 
 #> $data
-#>                     uid         id                      name datacoverage
-#> 1  gov.noaa.ncdc:C00040     ANNUAL          Annual Summaries         1.00
-#> 2  gov.noaa.ncdc:C00861      GHCND           Daily Summaries         1.00
-#> 3  gov.noaa.ncdc:C00841    GHCNDMS         Monthly Summaries         1.00
-#> 4  gov.noaa.ncdc:C00345    NEXRAD2  Weather Radar (Level II)         0.95
-#> 5  gov.noaa.ncdc:C00708    NEXRAD3 Weather Radar (Level III)         0.95
-#> 6  gov.noaa.ncdc:C00821 NORMAL_ANN   Normals Annual/Seasonal         1.00
-#> 7  gov.noaa.ncdc:C00823 NORMAL_DLY             Normals Daily         1.00
-#> 8  gov.noaa.ncdc:C00824 NORMAL_HLY            Normals Hourly         1.00
-#> 9  gov.noaa.ncdc:C00822 NORMAL_MLY           Normals Monthly         1.00
-#> 10 gov.noaa.ncdc:C00505  PRECIP_15   Precipitation 15 Minute         0.25
-#> 11 gov.noaa.ncdc:C00313 PRECIP_HLY      Precipitation Hourly         1.00
-#>       mindate    maxdate
-#> 1  1831-02-01 2014-07-01
-#> 2  1763-01-01 2015-03-01
-#> 3  1763-01-01 2015-01-01
-#> 4  1991-06-05 2015-02-27
-#> 5  1994-05-20 2015-02-25
-#> 6  2010-01-01 2010-01-01
-#> 7  2010-01-01 2010-12-31
-#> 8  2010-01-01 2010-12-31
-#> 9  2010-01-01 2010-12-01
-#> 10 1970-05-12 2013-12-01
-#> 11 1900-01-01 2013-12-01
+#>                     uid         id                      name datacoverage    mindate    maxdate
+#> 1  gov.noaa.ncdc:C00040     ANNUAL          Annual Summaries         1.00 1831-02-01 2014-11-01
+#> 2  gov.noaa.ncdc:C00861      GHCND           Daily Summaries         1.00 1763-01-01 2015-05-20
+#> 3  gov.noaa.ncdc:C00841    GHCNDMS         Monthly Summaries         1.00 1763-01-01 2015-04-01
+#> 4  gov.noaa.ncdc:C00345    NEXRAD2  Weather Radar (Level II)         0.95 1991-06-05 2015-05-18
+#> 5  gov.noaa.ncdc:C00708    NEXRAD3 Weather Radar (Level III)         0.95 1994-05-20 2015-05-15
+#> 6  gov.noaa.ncdc:C00821 NORMAL_ANN   Normals Annual/Seasonal         1.00 2010-01-01 2010-01-01
+#> 7  gov.noaa.ncdc:C00823 NORMAL_DLY             Normals Daily         1.00 2010-01-01 2010-12-31
+#> 8  gov.noaa.ncdc:C00824 NORMAL_HLY            Normals Hourly         1.00 2010-01-01 2010-12-31
+#> 9  gov.noaa.ncdc:C00822 NORMAL_MLY           Normals Monthly         1.00 2010-01-01 2010-12-01
+#> 10 gov.noaa.ncdc:C00505  PRECIP_15   Precipitation 15 Minute         0.25 1970-05-12 2014-01-01
+#> 11 gov.noaa.ncdc:C00313 PRECIP_HLY      Precipitation Hourly         1.00 1900-01-01 2014-01-01
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datasets"
@@ -368,8 +354,8 @@ The function `tornadoes()` simply gets __all the data__. So the call takes a whi
 shp <- tornadoes()
 #> OGR data source with driver: ESRI Shapefile 
 #> Source: "/Users/sacmac/.rnoaa/tornadoes/tornadoes", layer: "tornado"
-#> with 57988 features and 21 fields
-#> Feature type: wkbLineString with 2 dimensions
+#> with 57988 features
+#> It has 21 fields
 library('sp')
 plot(shp)
 ```
@@ -388,10 +374,8 @@ homr(qid = 'COOP:046742')
 #> [1] "20002078"
 #> 
 #> $`20002078`$head
-#>                  preferredName latitude_dec longitude_dec precision
-#> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283    DDMMSS
-#>             por.beginDate por.endDate
-#> 1 1949-10-05T00:00:00.000     Present
+#>                  preferredName latitude_dec longitude_dec precision           por.beginDate por.endDate
+#> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283    DDMMSS 1949-10-05T00:00:00.000     Present
 #> 
 #> $`20002078`$namez
 #>                         name  nameType
@@ -433,37 +417,22 @@ homr(qid = 'COOP:046742')
 #> $`20002078`$updates
 #>             effectiveDate    providedBy updateSource version
 #> 1 2014-08-14T00:00:00.000 NCDC\\KTHOMAS       AD HOC    NONE
-#>                                                                                       description
-#> 1 ADDING ANEMOMETER HEIGHTS FROM NWS SURFACE OBSERVATIONS PROGRAM LISTING DATED FEBRUARY 11, 2009
-#>   enteredBy               enteredDate modifiedBy              modifiedDate
-#> 1   KTHOMAS 2014-08-14T10:07:52-04:00   SMCNEILL 2014-09-24T14:56:23-04:00
+#>                                                                                       description enteredBy               enteredDate modifiedBy
+#> 1 ADDING ANEMOMETER HEIGHTS FROM NWS SURFACE OBSERVATIONS PROGRAM LISTING DATED FEBRUARY 11, 2009   KTHOMAS 2014-08-14T10:07:52-04:00   SMCNEILL
+#>                modifiedDate
+#> 1 2014-09-24T14:56:23-04:00
 #> 
 #> $`20002078`$elements
-#>   dataProgram element frequency observationTime publishedFlag receiver
-#> 1    COOP HPD  PRECIP    HOURLY            2400           HPD     NCDC
-#> 2    COOP SOD  PRECIP     DAILY            2400            CD     NCDC
-#> 3    COOP SOD    TEMP     DAILY            2400            CD     NCDC
-#> 4    COOP SOD    WIND    HOURLY            UNKN          <NA>     <NA>
-#>   reportingMethod equipment.equipment equipment.equipmentMods
-#> 1             ADP                AHTB                RCRD;HTD
-#> 2             ADP               PCPNX                    <NA>
-#> 3             ADP               TEMPX                    <NA>
-#> 4            <NA>                <NA>                    <NA>
-#>   equipment.equipmentAzimuth equipment.equipmentDistance
-#> 1                        000                           0
-#> 2                        000                           0
-#> 3                        090                           4
-#> 4                       <NA>                        <NA>
-#>   equipment.equipmentDistanceUnits          date.beginDate date.endDate
-#> 1                               ft 2010-02-11T00:00:00.000      Present
-#> 2                               ft 2010-02-11T00:00:00.000      Present
-#> 3                               ft 2010-02-11T00:00:00.000      Present
-#> 4                             <NA> 2010-02-11T00:00:00.000      Present
-#>   equipment
-#> 1      <NA>
-#> 2      <NA>
-#> 3      <NA>
-#> 4 ANEMSONIC
+#>   dataProgram element frequency observationTime publishedFlag receiver reportingMethod equipment.equipment equipment.equipmentMods
+#> 1    COOP HPD  PRECIP    HOURLY            2400           HPD     NCDC             ADP                AHTB                RCRD;HTD
+#> 2    COOP SOD  PRECIP     DAILY            2400            CD     NCDC             ADP               PCPNX                    <NA>
+#> 3    COOP SOD    TEMP     DAILY            2400            CD     NCDC             ADP               TEMPX                    <NA>
+#> 4    COOP SOD    WIND    HOURLY            UNKN          <NA>     <NA>            <NA>                <NA>                    <NA>
+#>   equipment.equipmentAzimuth equipment.equipmentDistance equipment.equipmentDistanceUnits          date.beginDate date.endDate equipment
+#> 1                        000                           0                               ft 2010-02-11T00:00:00.000      Present      <NA>
+#> 2                        000                           0                               ft 2010-02-11T00:00:00.000      Present      <NA>
+#> 3                        090                           4                               ft 2010-02-11T00:00:00.000      Present      <NA>
+#> 4                       <NA>                        <NA>                             <NA> 2010-02-11T00:00:00.000      Present ANEMSONIC
 #> 
 #> $`20002078`$location
 #> $`20002078`$location$id
@@ -474,10 +443,8 @@ homr(qid = 'COOP:046742')
 #> 1 PASO ROBLES MUNICIPAL AIRPORT OUTSIDE AND 5 MILES NE OF PO AT PASO ROBLES CA
 #> 
 #> $`20002078`$location$latlon
-#>   latitude_dec longitude_dec latitude_dms longitude_dms precision
-#> 1      35.6697     -120.6283   35,40,11,N   120,37,42,W    DDMMSS
-#>   datum_horiz           source
-#> 1       NAD83 ASOS SITE SURVEY
+#>   latitude_dec longitude_dec latitude_dms longitude_dms precision datum_horiz           source
+#> 1      35.6697     -120.6283   35,40,11,N   120,37,42,W    DDMMSS       NAD83 ASOS SITE SURVEY
 #> 
 #> $`20002078`$location$elevation
 #>   elevationType elevationFeet elevationMeters groundElevDatum
@@ -496,12 +463,8 @@ homr(qid = 'COOP:046742')
 #> 1 20002078 UNITED STATES    CA SAN LUIS OBISPO        -8
 #> 
 #> $`20002078`$location$nwsinfo
-#>   ncdstnId climateDivisions.stateProvince climateDivisions.climateDivision
-#> 1 20002078                             CA                               04
-#>   climateDivisions.displayName nwsRegion nwsWfos.nwsWfo
-#> 1       Central Coast Drainage   WESTERN            LOX
-#>   nwsWfos.displayName
-#> 1     LOS ANGELES, CA
+#>   ncdstnId climateDivisions.stateProvince climateDivisions.climateDivision climateDivisions.displayName nwsRegion nwsWfos.nwsWfo nwsWfos.displayName
+#> 1 20002078                             CA                               04       Central Coast Drainage   WESTERN            LOX     LOS ANGELES, CA
 #> 
 #> 
 #> 
@@ -521,282 +484,45 @@ storm_data(year=2010)
 #> <NOAA Storm Data>
 #> Size: 2855 X 195
 #> 
-#>       serial_num season num basin sub_basin name            iso_time
-#> 1  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 06:00:00
-#> 2  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 12:00:00
-#> 3  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 18:00:00
-#> 4  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 00:00:00
-#> 5  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 06:00:00
-#> 6  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 12:00:00
-#> 7  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 18:00:00
-#> 8  2009317S10073   2010   1    SI        MM ANJA 2009-11-15 00:00:00
-#> 9  2009317S10073   2010   1    SI        MM ANJA 2009-11-15 06:00:00
-#> 10 2009317S10073   2010   1    SI        MM ANJA 2009-11-15 12:00:00
-#> ..           ...    ... ...   ...       ...  ...                 ...
-#> Variables not shown: nature (chr), latitude (dbl), longitude (dbl),
-#>      wind.wmo. (dbl), pres.wmo. (dbl), center (chr), wind.wmo..percentile
-#>      (dbl), pres.wmo..percentile (dbl), track_type (chr),
-#>      latitude_for_mapping (dbl), longitude_for_mapping (dbl),
-#>      current.basin (chr), hurdat_atl_lat (dbl), hurdat_atl_lon (dbl),
-#>      hurdat_atl_grade (dbl), hurdat_atl_wind (dbl), hurdat_atl_pres (dbl),
-#>      td9636_lat (dbl), td9636_lon (dbl), td9636_grade (dbl), td9636_wind
-#>      (dbl), td9636_pres (dbl), reunion_lat (dbl), reunion_lon (dbl),
-#>      reunion_grade (dbl), reunion_wind (dbl), reunion_pres (dbl), atcf_lat
-#>      (dbl), atcf_lon (dbl), atcf_grade (dbl), atcf_wind (dbl), atcf_pres
-#>      (dbl), ds824_sh_lat (dbl), ds824_sh_lon (dbl), ds824_sh_grade (dbl),
-#>      ds824_sh_wind (dbl), ds824_sh_pres (dbl), ds824_ni_lat (dbl),
-#>      ds824_ni_lon (dbl), ds824_ni_grade (dbl), ds824_ni_wind (dbl),
-#>      ds824_ni_pres (dbl), bom_lat (dbl), bom_lon (dbl), bom_grade (dbl),
-#>      bom_wind (dbl), bom_pres (dbl), ds824_au_lat (dbl), ds824_au_lon
-#>      (dbl), ds824_au_grade (dbl), ds824_au_wind (dbl), ds824_au_pres
-#>      (dbl), jtwc_sh_lat (dbl), jtwc_sh_lon (dbl), jtwc_sh_grade (dbl),
-#>      jtwc_sh_wind (dbl), jtwc_sh_pres (dbl), jtwc_wp_lat (dbl),
-#>      jtwc_wp_lon (dbl), jtwc_wp_grade (dbl), jtwc_wp_wind (dbl),
-#>      jtwc_wp_pres (dbl), td9635_lat (dbl), td9635_lon (dbl), td9635_grade
-#>      (dbl), td9635_wind (dbl), td9635_pres (dbl), ds824_wp_lat (dbl),
-#>      ds824_wp_lon (dbl), ds824_wp_grade (dbl), ds824_wp_wind (dbl),
-#>      ds824_wp_pres (dbl), jtwc_io_lat (dbl), jtwc_io_lon (dbl),
-#>      jtwc_io_grade (dbl), jtwc_io_wind (dbl), jtwc_io_pres (dbl), cma_lat
-#>      (dbl), cma_lon (dbl), cma_grade (dbl), cma_wind (dbl), cma_pres
-#>      (dbl), hurdat_epa_lat (dbl), hurdat_epa_lon (dbl), hurdat_epa_grade
-#>      (dbl), hurdat_epa_wind (dbl), hurdat_epa_pres (dbl), jtwc_ep_lat
-#>      (dbl), jtwc_ep_lon (dbl), jtwc_ep_grade (dbl), jtwc_ep_wind (dbl),
-#>      jtwc_ep_pres (dbl), ds824_ep_lat (dbl), ds824_ep_lon (dbl),
-#>      ds824_ep_grade (dbl), ds824_ep_wind (dbl), ds824_ep_pres (dbl),
-#>      jtwc_cp_lat (dbl), jtwc_cp_lon (dbl), jtwc_cp_grade (dbl),
-#>      jtwc_cp_wind (dbl), jtwc_cp_pres (dbl), tokyo_lat (dbl), tokyo_lon
-#>      (dbl), tokyo_grade (dbl), tokyo_wind (dbl), tokyo_pres (dbl),
-#>      neumann_lat (dbl), neumann_lon (dbl), neumann_grade (dbl),
-#>      neumann_wind (dbl), neumann_pres (dbl), hko_lat (dbl), hko_lon (dbl),
-#>      hko_grade (dbl), hko_wind (dbl), hko_pres (dbl), cphc_lat (dbl),
-#>      cphc_lon (dbl), cphc_grade (dbl), cphc_wind (dbl), cphc_pres (dbl),
-#>      wellington_lat (dbl), wellington_lon (dbl), wellington_grade (dbl),
-#>      wellington_wind (dbl), wellington_pres (dbl), newdelhi_lat (dbl),
-#>      newdelhi_lon (dbl), newdelhi_grade (dbl), newdelhi_wind (dbl),
-#>      newdelhi_pres (dbl), nadi_lat (dbl), nadi_lon (dbl), nadi_grade
-#>      (dbl), nadi_wind (dbl), nadi_pres (dbl), reunion_rmw (dbl),
-#>      reunion_wind_radii_1_ne (dbl), reunion_wind_radii_1_se (dbl),
-#>      reunion_wind_radii_1_sw (dbl), reunion_wind_radii_1_nw (dbl),
-#>      reunion_wind_radii_2_ne (dbl), reunion_wind_radii_2_se (dbl),
-#>      reunion_wind_radii_2_sw (dbl), reunion_wind_radii_2_nw (dbl),
-#>      bom_mn_hurr_xtnt (dbl), bom_mn_gale_xtnt (dbl), bom_mn_eye_diam
-#>      (dbl), bom_roci (dbl), atcf_rmw (dbl), atcf_poci (dbl), atcf_roci
-#>      (dbl), atcf_eye (dbl), atcf_wrad34_rad1 (dbl), atcf_wrad34_rad2
-#>      (dbl), atcf_wrad34_rad3 (dbl), atcf_wrad34_rad4 (dbl),
-#>      atcf_wrad50_rad1 (dbl), atcf_wrad50_rad2 (dbl), atcf_wrad50_rad3
-#>      (dbl), atcf_wrad50_rad4 (dbl), atcf_wrad64_rad1 (dbl),
-#>      atcf_wrad64_rad2 (dbl), atcf_wrad64_rad3 (dbl), atcf_wrad64_rad4
-#>      (dbl), tokyo_dir50 (dbl), tokyo_long50 (dbl), tokyo_short50 (dbl),
-#>      tokyo_dir30 (dbl), tokyo_long30 (dbl), tokyo_short30 (dbl),
-#>      jtwc_.._rmw (dbl), jtwc_.._poci (dbl), jtwc_.._roci (dbl),
-#>      jtwc_.._eye (dbl), jtwc_.._wrad34_rad1 (dbl), jtwc_.._wrad34_rad2
-#>      (dbl), jtwc_.._wrad34_rad3 (dbl), jtwc_.._wrad34_rad4 (dbl),
-#>      jtwc_.._wrad50_rad1 (dbl), jtwc_.._wrad50_rad2 (dbl),
-#>      jtwc_.._wrad50_rad3 (dbl), jtwc_.._wrad50_rad4 (dbl),
-#>      jtwc_.._wrad64_rad1 (dbl), jtwc_.._wrad64_rad2 (dbl),
+#>       serial_num season num basin sub_basin name            iso_time nature latitude longitude wind.wmo. pres.wmo.  center wind.wmo..percentile
+#> 1  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 06:00:00     TS     -9.5      72.5         0      1006 reunion             -100.000
+#> 2  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 12:00:00     TS    -10.2      71.9         0      1004 reunion             -100.000
+#> 3  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 18:00:00     TS    -11.1      71.4        25      1002 reunion               15.909
+#> 4  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 00:00:00     TS    -11.9      71.1        28       999 reunion               29.029
+#> 5  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 06:00:00     TS    -12.5      70.9        33       996 reunion               42.130
+#> 6  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 12:00:00     TS    -12.8      70.7        40       992 reunion               58.657
+#> 7  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 18:00:00     TS    -12.9      70.6        50       985 reunion               71.928
+#> 8  2009317S10073   2010   1    SI        MM ANJA 2009-11-15 00:00:00     TS    -12.9      70.5        60       975 reunion               81.694
+#> 9  2009317S10073   2010   1    SI        MM ANJA 2009-11-15 06:00:00     TS    -13.0      70.2        80       960 reunion               92.461
+#> 10 2009317S10073   2010   1    SI        MM ANJA 2009-11-15 12:00:00     TS    -13.1      69.9        90       950 reunion               96.020
+#> ..           ...    ... ...   ...       ...  ...                 ...    ...      ...       ...       ...       ...     ...                  ...
+#> Variables not shown: pres.wmo..percentile (dbl), track_type (chr), latitude_for_mapping (dbl), longitude_for_mapping (dbl), current.basin (chr),
+#>      hurdat_atl_lat (dbl), hurdat_atl_lon (dbl), hurdat_atl_grade (dbl), hurdat_atl_wind (dbl), hurdat_atl_pres (dbl), td9636_lat (dbl), td9636_lon
+#>      (dbl), td9636_grade (dbl), td9636_wind (dbl), td9636_pres (dbl), reunion_lat (dbl), reunion_lon (dbl), reunion_grade (dbl), reunion_wind (dbl),
+#>      reunion_pres (dbl), atcf_lat (dbl), atcf_lon (dbl), atcf_grade (dbl), atcf_wind (dbl), atcf_pres (dbl), ds824_sh_lat (dbl), ds824_sh_lon (dbl),
+#>      ds824_sh_grade (dbl), ds824_sh_wind (dbl), ds824_sh_pres (dbl), ds824_ni_lat (dbl), ds824_ni_lon (dbl), ds824_ni_grade (dbl), ds824_ni_wind (dbl),
+#>      ds824_ni_pres (dbl), bom_lat (dbl), bom_lon (dbl), bom_grade (dbl), bom_wind (dbl), bom_pres (dbl), ds824_au_lat (dbl), ds824_au_lon (dbl),
+#>      ds824_au_grade (dbl), ds824_au_wind (dbl), ds824_au_pres (dbl), jtwc_sh_lat (dbl), jtwc_sh_lon (dbl), jtwc_sh_grade (dbl), jtwc_sh_wind (dbl),
+#>      jtwc_sh_pres (dbl), jtwc_wp_lat (dbl), jtwc_wp_lon (dbl), jtwc_wp_grade (dbl), jtwc_wp_wind (dbl), jtwc_wp_pres (dbl), td9635_lat (dbl), td9635_lon
+#>      (dbl), td9635_grade (dbl), td9635_wind (dbl), td9635_pres (dbl), ds824_wp_lat (dbl), ds824_wp_lon (dbl), ds824_wp_grade (dbl), ds824_wp_wind (dbl),
+#>      ds824_wp_pres (dbl), jtwc_io_lat (dbl), jtwc_io_lon (dbl), jtwc_io_grade (dbl), jtwc_io_wind (dbl), jtwc_io_pres (dbl), cma_lat (dbl), cma_lon
+#>      (dbl), cma_grade (dbl), cma_wind (dbl), cma_pres (dbl), hurdat_epa_lat (dbl), hurdat_epa_lon (dbl), hurdat_epa_grade (dbl), hurdat_epa_wind (dbl),
+#>      hurdat_epa_pres (dbl), jtwc_ep_lat (dbl), jtwc_ep_lon (dbl), jtwc_ep_grade (dbl), jtwc_ep_wind (dbl), jtwc_ep_pres (dbl), ds824_ep_lat (dbl),
+#>      ds824_ep_lon (dbl), ds824_ep_grade (dbl), ds824_ep_wind (dbl), ds824_ep_pres (dbl), jtwc_cp_lat (dbl), jtwc_cp_lon (dbl), jtwc_cp_grade (dbl),
+#>      jtwc_cp_wind (dbl), jtwc_cp_pres (dbl), tokyo_lat (dbl), tokyo_lon (dbl), tokyo_grade (dbl), tokyo_wind (dbl), tokyo_pres (dbl), neumann_lat (dbl),
+#>      neumann_lon (dbl), neumann_grade (dbl), neumann_wind (dbl), neumann_pres (dbl), hko_lat (dbl), hko_lon (dbl), hko_grade (dbl), hko_wind (dbl),
+#>      hko_pres (dbl), cphc_lat (dbl), cphc_lon (dbl), cphc_grade (dbl), cphc_wind (dbl), cphc_pres (dbl), wellington_lat (dbl), wellington_lon (dbl),
+#>      wellington_grade (dbl), wellington_wind (dbl), wellington_pres (dbl), newdelhi_lat (dbl), newdelhi_lon (dbl), newdelhi_grade (dbl), newdelhi_wind
+#>      (dbl), newdelhi_pres (dbl), nadi_lat (dbl), nadi_lon (dbl), nadi_grade (dbl), nadi_wind (dbl), nadi_pres (dbl), reunion_rmw (dbl),
+#>      reunion_wind_radii_1_ne (dbl), reunion_wind_radii_1_se (dbl), reunion_wind_radii_1_sw (dbl), reunion_wind_radii_1_nw (dbl), reunion_wind_radii_2_ne
+#>      (dbl), reunion_wind_radii_2_se (dbl), reunion_wind_radii_2_sw (dbl), reunion_wind_radii_2_nw (dbl), bom_mn_hurr_xtnt (dbl), bom_mn_gale_xtnt (dbl),
+#>      bom_mn_eye_diam (dbl), bom_roci (dbl), atcf_rmw (dbl), atcf_poci (dbl), atcf_roci (dbl), atcf_eye (dbl), atcf_wrad34_rad1 (dbl), atcf_wrad34_rad2
+#>      (dbl), atcf_wrad34_rad3 (dbl), atcf_wrad34_rad4 (dbl), atcf_wrad50_rad1 (dbl), atcf_wrad50_rad2 (dbl), atcf_wrad50_rad3 (dbl), atcf_wrad50_rad4
+#>      (dbl), atcf_wrad64_rad1 (dbl), atcf_wrad64_rad2 (dbl), atcf_wrad64_rad3 (dbl), atcf_wrad64_rad4 (dbl), tokyo_dir50 (dbl), tokyo_long50 (dbl),
+#>      tokyo_short50 (dbl), tokyo_dir30 (dbl), tokyo_long30 (dbl), tokyo_short30 (dbl), jtwc_.._rmw (dbl), jtwc_.._poci (dbl), jtwc_.._roci (dbl),
+#>      jtwc_.._eye (dbl), jtwc_.._wrad34_rad1 (dbl), jtwc_.._wrad34_rad2 (dbl), jtwc_.._wrad34_rad3 (dbl), jtwc_.._wrad34_rad4 (dbl), jtwc_.._wrad50_rad1
+#>      (dbl), jtwc_.._wrad50_rad2 (dbl), jtwc_.._wrad50_rad3 (dbl), jtwc_.._wrad50_rad4 (dbl), jtwc_.._wrad64_rad1 (dbl), jtwc_.._wrad64_rad2 (dbl),
 #>      jtwc_.._wrad64_rad3 (dbl), jtwc_.._wrad64_rad4 (dbl)
-```
-
-## ERDDAP data
-
-ERDDAP is a server built on top of OPenDAP, which serves some NOAA data. You can get gridded data ([griddap](http://upwell.pfeg.noaa.gov/erddap/griddap/documentation.html)), which lets you query from gridded datasets, or table data ([tabledap](http://upwell.pfeg.noaa.gov/erddap/tabledap/documentation.html)) which lets you query from tabular datasets. In terms of how we interface with them, there are similarties, but some differences too. We try to make a similar interface to both data types in `rnoaa`.
-
-First, you likely want to search for data, specify either `griddadp` or `tabledap`
-
-
-```r
-erddap_search(query='size', which = "table")
-#> 11 results, showing first 20 
-#>                                                                                         title
-#> 1                                                                          CalCOFI Fish Sizes
-#> 2                                                                        CalCOFI Larvae Sizes
-#> 3                Channel Islands, Kelp Forest Monitoring, Size and Frequency, Natural Habitat
-#> 4                                                  OBIS - ARGOS Satellite Tracking of Animals
-#> 5                                                     GLOBEC NEP MOCNESS Plankton (MOC1) Data
-#> 6                                                 GLOBEC NEP Vertical Plankton Tow (VPT) Data
-#> 7                             NWFSC Observer Fixed Gear Data, off West Coast of US, 2002-2006
-#> 8                                  NWFSC Observer Trawl Data, off West Coast of US, 2002-2006
-#> 9                                                         CalCOFI Larvae Counts Positive Tows
-#> 10                                                                               CalCOFI Tows
-#> 12 AN EXPERIMENTAL DATASET: Underway Sea Surface Temperature and Salinity Aboard the Oleander
-#>             dataset_id
-#> 1     erdCalCOFIfshsiz
-#> 2     erdCalCOFIlrvsiz
-#> 3       erdCinpKfmSFNH
-#> 4            aadcArgos
-#> 5        erdGlobecMoc1
-#> 6         erdGlobecVpt
-#> 7   nwioosObsFixed2002
-#> 8   nwioosObsTrawl2002
-#> 9  erdCalCOFIlrvcntpos
-#> 10      erdCalCOFItows
-#> 12            nodcPJJU
-```
-
-
-```r
-erddap_search(query='size', which = "grid")
-#> 6 results, showing first 20 
-#>                                                            title
-#> 11               NOAA Global Coral Bleaching Monitoring Products
-#> 13        Coawst 4 use, Best Time Series [time][eta_rho][xi_rho]
-#> 14            Coawst 4 use, Best Time Series [time][eta_u][xi_u]
-#> 15            Coawst 4 use, Best Time Series [time][eta_v][xi_v]
-#> 16 Coawst 4 use, Best Time Series [time][s_rho][eta_rho][xi_rho]
-#> 17  Coawst 4 use, Best Time Series [time][Nbed][eta_rho][xi_rho]
-#>             dataset_id
-#> 11            NOAA_DHW
-#> 13 whoi_ed12_89ce_9592
-#> 14 whoi_61c3_0b5d_cd61
-#> 15 whoi_62d0_9d64_c8ff
-#> 16 whoi_7dd7_db97_4bbe
-#> 17 whoi_a4fb_2c9c_16a7
-```
-
-Then you can get information on a single dataset
-
-
-```r
-erddap_info('whoi_7dd7_db97_4bbe')
-#> <ERDDAP Dataset> whoi_7dd7_db97_4bbe 
-#>  Dimensions (range):  
-#>      time: (2012-06-25T01:00:00Z, 2015-03-02T00:00:00Z) 
-#>      s_rho: (-0.96875, -0.03125) 
-#>      eta_rho: (0, 335) 
-#>      xi_rho: (0, 895) 
-#>  Variables:  
-#>      rho: 
-#>          Units: kilogram meter-3 
-#>      salt: 
-#>          Units: 0.001 
-#>      sand_01: 
-#>          Units: kilogram meter-3 
-#>      sand_02: 
-#>          Units: kilogram meter-3 
-#>      sand_03: 
-#>          Units: kilogram meter-3 
-#>      sand_04: 
-#>          Units: kilogram meter-3 
-#>      sand_05: 
-#>          Units: kilogram meter-3 
-#>      sand_06: 
-#>          Units: kilogram meter-3 
-#>      temp: 
-#>          Units: Celsius
-```
-
-__griddap data__
-
-
-```r
-(out <- erddap_info('noaa_esrl_027d_0fb5_5d38'))
-#> <ERDDAP Dataset> noaa_esrl_027d_0fb5_5d38 
-#>  Dimensions (range):  
-#>      time: (1850-01-01T00:00:00Z, 2014-05-01T00:00:00Z) 
-#>      latitude: (87.5, -87.5) 
-#>      longitude: (-177.5, 177.5) 
-#>  Variables:  
-#>      air: 
-#>          Range: -20.9, 19.5 
-#>          Units: degC
-```
-
-
-```r
-(res <- erddap_grid(out,
-  time = c('2012-01-01','2012-06-12'),
-  latitude = c(21, 18),
-  longitude = c(-80, -75)
-))
-#> <NOAA ERDDAP griddap> noaa_esrl_027d_0fb5_5d38
-#>    Path: [/Users/sacmac/.rnoaa/erddap/654539f754bea2d7feac0d975a936f7d.csv]
-#>    Last updated: [2015-02-11 19:00:45]
-#>    File size:    [0.94 KB]
-#>    Dimensions:   [24 X 4]
-#> 
-#>                    time latitude longitude  air
-#> 1  2012-01-01T00:00:00Z     22.5     -77.5  NaN
-#> 2  2012-01-01T00:00:00Z     22.5     -72.5  NaN
-#> 3  2012-01-01T00:00:00Z     17.5     -77.5 -0.1
-#> 4  2012-01-01T00:00:00Z     17.5     -72.5  NaN
-#> 5  2012-02-01T00:00:00Z     22.5     -77.5  NaN
-#> 6  2012-02-01T00:00:00Z     22.5     -72.5  NaN
-#> 7  2012-02-01T00:00:00Z     17.5     -77.5  0.4
-#> 8  2012-02-01T00:00:00Z     17.5     -72.5  NaN
-#> 9  2012-03-01T00:00:00Z     22.5     -77.5  NaN
-#> 10 2012-03-01T00:00:00Z     22.5     -72.5  NaN
-#> ..                  ...      ...       ...  ...
-```
-
-__tabledap data__
-
-
-```r
-(out <- erddap_info('erdCalCOFIfshsiz'))
-#> <ERDDAP Dataset> erdCalCOFIfshsiz 
-#>  Variables:  
-#>      calcofi_species_code: 
-#>          Range: 19, 1550 
-#>      common_name: 
-#>      cruise: 
-#>      fish_1000m3: 
-#>          Units: Fish per 1,000 cubic meters of water sampled 
-#>      fish_count: 
-#>      fish_size: 
-#>          Units: mm 
-#>      itis_tsn: 
-#>      latitude: 
-#>          Range: 32.515, 38.502 
-#>          Units: degrees_north 
-#>      line: 
-#>          Range: 46.6, 93.3 
-#>      longitude: 
-#>          Range: -128.5, -117.33 
-#>          Units: degrees_east 
-#>      net_location: 
-#>      net_type: 
-#>      order_occupied: 
-#>      percent_sorted: 
-#>          Units: %/100 
-#>      sample_quality: 
-#>      scientific_name: 
-#>      ship: 
-#>      ship_code: 
-#>      standard_haul_factor: 
-#>      station: 
-#>          Range: 28.0, 114.9 
-#>      time: 
-#>          Range: 9.94464E8, 9.9510582E8 
-#>          Units: seconds since 1970-01-01T00:00:00Z 
-#>      tow_number: 
-#>          Range: 2, 10 
-#>      tow_type: 
-#>      volume_sampled: 
-#>          Units: cubic meters
-```
-
-
-```r
-erddap_table(out, fields=c('longitude','latitude','fish_size','itis_tsn'),
-    'time>=2001-07-07','time<=2001-07-10')
-#> <NOAA ERDDAP tabledap> erdCalCOFIfshsiz
-#>    Path: [~/.rnoaa/erddap/erdCalCOFIfshsiz.csv]
-#>    Last updated: [2014-12-19 09:14:01]
-#>    File size:    [0.02 mb]
-#>    Dimensions:   [558 X 4]
-#> 
-#>     longitude  latitude fish_size itis_tsn
-#> 2     -118.26    33.255      22.9   623745
-#> 3     -118.26    33.255      22.9   623745
-#> 4  -118.10667 32.738335      31.5   623625
-#> 5  -118.10667 32.738335      48.3   623625
-#> 6  -118.10667 32.738335      15.5   162221
-#> 7  -118.10667 32.738335      16.3   162221
-#> 8  -118.10667 32.738335      17.8   162221
-#> 9  -118.10667 32.738335      18.2   162221
-#> 10 -118.10667 32.738335      19.2   162221
-#> 11 -118.10667 32.738335      20.0   162221
-#> ..        ...       ...       ...      ...
 ```
 
 ## Meta

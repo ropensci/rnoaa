@@ -41,7 +41,6 @@ Then `rnoaa` with the buoy functions should install and load correctly. See [thi
 There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.r-project.org/web/packages/rnoaa/index.html). The tutorials:
 
 * NOAA Buoy vignette
-* NOAA ERDDAP vignette
 * NOAA National Climatic Data Center (NCDC) vignette (examples)
 * NOAA NCDC attributes vignette
 * NOAA NCDC workflow vignette
@@ -62,8 +61,7 @@ The majority of functions in this package work with NOAA NCDC data.
 * [Sea ice data](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
 * [NOAA buoy data](http://www.ndbc.noaa.gov/)
 * [ERDDAP data](http://upwell.pfeg.noaa.gov/erddap/index.html)
-  * griddap - gridded data
-  * tabledap - tablular data
+  * Now in package [rerddap](https://github.com/ropensci/rerddap)
 * Tornadoes! Data from the [NOAA Storm Prediction Center](http://www.spc.noaa.gov/gis/svrgis/)
 * HOMR - Historical Observing Metadata Repository - from [NOAA NCDC](http://www.ncdc.noaa.gov/homr/api)
 * Storm data - from the [International Best Track Archive for Climate Stewardship (IBTrACS)](http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data)
@@ -235,69 +233,6 @@ Get storm data for the year 2010
 
 ```{r}
 storm_data(year=2010)
-```
-
-## ERDDAP data
-
-ERDDAP is a server built on top of OPenDAP, which serves some NOAA data. You can get gridded data ([griddap](http://upwell.pfeg.noaa.gov/erddap/griddap/documentation.html)), which lets you query from gridded datasets, or table data ([tabledap](http://upwell.pfeg.noaa.gov/erddap/tabledap/documentation.html)) which lets you query from tabular datasets. In terms of how we interface with them, there are similarties, but some differences too. We try to make a similar interface to both data types in `rnoaa`.
-
-First, you likely want to search for data, specify either `griddadp` or `tabledap`
-
-```{r erddap_search_table}
-erddap_search(query='size', which = "table")
-```
-
-```{r erddap_search_grid}
-erddap_search(query='size', which = "grid")
-```
-
-Then you can get information on a single dataset
-
-```{r erddap_info}
-erddap_info('whoi_7dd7_db97_4bbe')
-```
-
-__griddap data__
-
-```{r griddap_info}
-(out <- erddap_info('noaa_esrl_027d_0fb5_5d38'))
-```
-
-```{r griddap_data}
-(res <- erddap_grid(out,
-  time = c('2012-01-01','2012-06-12'),
-  latitude = c(21, 18),
-  longitude = c(-80, -75)
-))
-```
-
-__tabledap data__
-
-```{r tabledap_info}
-(out <- erddap_info('erdCalCOFIfshsiz'))
-```
-
-```{r tabledap_data, eval=FALSE}
-erddap_table(out, fields=c('longitude','latitude','fish_size','itis_tsn'),
-    'time>=2001-07-07','time<=2001-07-10')
-#> <NOAA ERDDAP tabledap> erdCalCOFIfshsiz
-#>    Path: [~/.rnoaa/erddap/erdCalCOFIfshsiz.csv]
-#>    Last updated: [2014-12-19 09:14:01]
-#>    File size:    [0.02 mb]
-#>    Dimensions:   [558 X 4]
-#>
-#>     longitude  latitude fish_size itis_tsn
-#> 2     -118.26    33.255      22.9   623745
-#> 3     -118.26    33.255      22.9   623745
-#> 4  -118.10667 32.738335      31.5   623625
-#> 5  -118.10667 32.738335      48.3   623625
-#> 6  -118.10667 32.738335      15.5   162221
-#> 7  -118.10667 32.738335      16.3   162221
-#> 8  -118.10667 32.738335      17.8   162221
-#> 9  -118.10667 32.738335      18.2   162221
-#> 10 -118.10667 32.738335      19.2   162221
-#> 11 -118.10667 32.738335      20.0   162221
-#> ..        ...       ...       ...      ...
 ```
 
 ## Meta
