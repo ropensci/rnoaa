@@ -94,4 +94,8 @@ ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
 ghcnd_search("AGE00147704", var="adfdf")
 }
 }
+\author{
+Scott Chamberlain \email{myrmecocystus@gmail.com},
+Adam Erickson \email{adam.erickson@ubc.ca}
+}
 

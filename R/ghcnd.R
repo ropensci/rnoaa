@@ -16,6 +16,9 @@
 #' @param var (character) Variable to get, defaults to "all", which gives back all variables
 #' in a list. To see what variables are available for a dataset, look at the dataset returned
 #' from \code{ghcnd()}.
+#' 
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}, 
+#' Adam Erickson \email{adam.erickson@@ubc.ca}
 #'
 #' @examples \dontrun{
 #' # Get metadata
