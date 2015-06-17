@@ -1,7 +1,7 @@
 #' Get GHCND daily data from NOAA FTP server
 #'
 #' @importFrom tidyr gather
-#' @importFrom dplyr %>% rbind_all select mutate rename tbl_df
+#' @importFrom dplyr %>% rbind_all select mutate rename tbl_df filter
 #' @export
 #'
 #' @param stationid Stationid to get
@@ -66,10 +66,10 @@
 
 ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
   csvpath <- ghcnd_local(stationid, path)
-  if(!is_ghcnd(x = csvpath)){
-    structure(list(data=ghcnd_GET(path, stationid, overwrite, ...)), class="ghcnd", source=csvpath)
+  if (!is_ghcnd(x = csvpath)) {
+    structure(list(data = ghcnd_GET(path, stationid, overwrite, ...)), class = "ghcnd", source = csvpath)
   } else {
-    structure(list(data=read.csv(csvpath, stringsAsFactors = FALSE)), class="ghcnd", source=csvpath)
+    structure(list(data = read.csv(csvpath, stringsAsFactors = FALSE)), class = "ghcnd", source = csvpath)
   }
 }
 
@@ -78,38 +78,24 @@ ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
 ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all",
                          path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
 
-  dat <- ghcnd_splitvars(ghcnd(stationid, path=path, overwrite=overwrite))
+  dat <- ghcnd_splitvars(ghcnd(stationid, path = path, overwrite = overwrite))
   possvars <- paste0(names(dat), collapse = ", ")
 
-  if(any(var != "all")){
+  if (any(var != "all")) {
     vars_null <- sort(tolower(var))[!sort(tolower(var)) %in% sort(names(dat))]
     dat <- dat[tolower(var)]
   }
-  if( any(sapply(dat, is.null)) ){
+  if (any(sapply(dat, is.null))) {
     dat <- compact(dat)
     warning(sprintf("%s not in the dataset\nAvailable variables: %s", paste0(vars_null, collapse = ", "), possvars), call. = FALSE)
   }
-
-  if(!is.null(date_min)) {
-    dat <- lapply(dat, function(z) z %>% filter(date > date_min))
+  if (!is.null(date_min)) {
+    dat <- lapply(dat, function(z) z %>% dplyr::filter(date > date_min))
   }
-  if(!is.null(date_max)) {
-    dat <- lapply(dat, function(z) z %>% filter(date < date_max))
+  if (!is.null(date_max)) {
+    dat <- lapply(dat, function(z) z %>% dplyr::filter(date < date_max))
   }
   dat
-#     if(var != "all"){
-#       dat <- dat %>% filter(date > date_min)
-#     } else {
-    # }
-
-#   if(!is.null(date_max)) {
-#     if(var != "all"){
-#       dat <- dat %>% filter(date < date_max)
-#     } else {
-#       dat <- lapply(dat, function(z) z %>% filter(date < date_max))
-#     }
-#   }
-  # dat
 }
 
 #' @export
@@ -120,47 +106,57 @@ print.ghcnd <- function(x, ..., n = 10){
   trunc_mat_(x$data, n = n)
 }
 
+fm <- function(n) {
+  gsub("\\s", "0", n)
+}
+
 #' @export
 #' @rdname ghcnd
 ghcnd_splitvars <- function(x){
   tmp <- x$data
-  tmp <- tmp[!is.na(tmp$id),]
-  # tmp$date <- as.Date(sprintf("%s-%s-01", tmp$year, tmp$month), "%Y-%m-%d")
-  # tmp2 <- tmp %>% tbl_df() %>% select(-contains("FLAG"))
+  tmp <- tmp[!is.na(tmp$id), ]
   out <- lapply(as.character(unique(tmp$element)), function(y){
-    dd <- tmp[ tmp$element == y, ] %>%
-      select(-contains("FLAG")) %>%
-      gather(var, value, -id, -year, -month, -element) %>%
-      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
-      filter(!is.na(date)) %>%
-      select(-element, -var, -year, -month, -day)
-    dd <- setNames(dd, c("id",tolower(y),"date"))
+    ydat <- tmp[ tmp$element == y, ]
+#     ydat2 <- ydat[, !grepl("FLAG", names(ydat))]
+#     g <- ydat2 %>% tidyr::gather(var, value, -id, -year, -month, -element)
+#     m <- g %>% dplyr::mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d"))
+#     ff <- m %>% dplyr::filter(!is.na(date))
+#     dd <- ff[ , !names(ff) %in% c("element", "var", "year", "month", "day")]
+#     dd <- setNames(dd, c("id", tolower(y), "date"))
+    
+    dd <- ydat %>%
+      dplyr::select(-contains("FLAG")) %>%
+      tidyr::gather(var, value, -id, -year, -month, -element) %>%
+      dplyr::mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
+      dplyr::filter(!is.na(date)) %>%
+      dplyr::select_(quote(-element), quote(-var), quote(-year), quote(-month), quote(-day))
+    dd <- setNames(dd, c("id", tolower(y), "date"))
 
-    mflag <- tmp[ tmp$element == y, ] %>%
-      select(-contains("VALUE"), -contains("QFLAG"), -contains("SFLAG")) %>%
-      gather(var, value, -id, -year, -month, -element) %>%
-      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
-      filter(!is.na(date)) %>%
-      select(value) %>%
-      rename(mflag = value)
+    mflag <- ydat %>%
+      dplyr::select(-contains("VALUE"), -contains("QFLAG"), -contains("SFLAG")) %>%
+      tidyr::gather(var, value, -id, -year, -month, -element) %>%
+      dplyr::mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
+      dplyr::filter(!is.na(date)) %>%
+      dplyr::select(value) %>%
+      dplyr::rename(mflag = value)
 
-    qflag <- tmp[ tmp$element == y, ] %>%
-      select(-contains("VALUE"), -contains("MFLAG"), -contains("SFLAG")) %>%
-      gather(var, value, -id, -year, -month, -element) %>%
-      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
-      filter(!is.na(date)) %>%
-      select(value) %>%
-      rename(qflag = value)
+    qflag <- ydat %>%
+      dplyr::select(-contains("VALUE"), -contains("MFLAG"), -contains("SFLAG")) %>%
+      tidyr::gather(var, value, -id, -year, -month, -element) %>%
+      dplyr::mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
+      dplyr::filter(!is.na(date)) %>%
+      dplyr::select(value) %>%
+      dplyr::rename(qflag = value)
 
-    sflag <- tmp[ tmp$element == y, ] %>%
-      select(-contains("VALUE"), -contains("QFLAG"), -contains("MFLAG")) %>%
-      gather(var, value, -id, -year, -month, -element) %>%
-      mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
-      filter(!is.na(date)) %>%
-      select(value) %>%
-      rename(sflag = value)
+    sflag <- ydat %>%
+      dplyr::select(-contains("VALUE"), -contains("QFLAG"), -contains("MFLAG")) %>%
+      tidyr::gather(var, value, -id, -year, -month, -element) %>%
+      dplyr::mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
+      dplyr::filter(!is.na(date)) %>%
+      dplyr::select(value) %>%
+      dplyr::rename(sflag = value)
 
-    tbl_df(cbind(dd, mflag, qflag, sflag))
+    dplyr::tbl_df(cbind(dd, mflag, qflag, sflag))
   })
   setNames(out, tolower(unique(tmp$element)))
 }

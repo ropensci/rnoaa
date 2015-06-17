@@ -33,16 +33,6 @@ test_that("version metadata", {
   expect_more_than(nchar(ver), 200)
 })
 
-test_that("stations metadata", {
-  skip_on_cran()
-  
-  stations <- ghcnd_stations()
-  
-  expect_is(stations, "ghcnd_stations")
-  expect_is(stations$data, "data.frame")
-  expect_is(stations$data$id, "character")
-})
-
 test_that("search for data", {
   skip_on_cran()
   
