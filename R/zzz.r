@@ -132,21 +132,25 @@ check_response <- function(x){
 #' mime-type, etc.
 #' @keywords internal
 check_response_swdi <- function(x, format){
-  if(!x$status_code == 200){
+  if (!x$status_code == 200) {
     res <- content(x)
     err <- gsub("\n", "", xpathApply(res, "//error", xmlValue)[[1]])
-    if(!is.null(err)){
-      if(grepl('ERROR', err, ignore.case = TRUE)){
+    if (!is.null(err)) {
+      if (grepl('ERROR', err, ignore.case = TRUE)) {
         warning(sprintf("(%s) - %s", x$status_code, err))
-      } else { warn_for_status(x) }
-    } else { warn_for_status(x) }
+      } else { 
+        warn_for_status(x) 
+      }
+    } else { 
+      warn_for_status(x) 
+    }
   } else {
-    if(format=='csv'){
-      stopifnot(x$headers$`content-type`=='text/plain; charset=UTF-8')
+    if (format == 'csv') {
+      stopifnot(x$headers$`content-type` == 'text/plain; charset=UTF-8')
       uu <- content(x, as = 'text', encoding = "UTF-8")
-      read.delim(text=uu, sep = ",")
+      read.delim(text = uu, sep = ",")
     } else {
-      stopifnot(x$headers$`content-type`=='text/xml')
+      stopifnot(x$headers$`content-type` == 'text/xml;charset=UTF-8')
       res <- content(x, as = 'text', encoding = "UTF-8")
       xmlParse(res)
     }

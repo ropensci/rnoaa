@@ -60,7 +60,7 @@ ghcnd_version()
 (stations <- ghcnd_stations())
 
 # Get data
-ghcnd(stationid="AGE00147704")
+ghcnd(stationid = "AGE00147704")
 ghcnd(stations$data$id[40])
 ghcnd(stations$data$id[4000])
 ghcnd(stations$data$id[10000])
