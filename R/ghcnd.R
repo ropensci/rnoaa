@@ -117,12 +117,6 @@ ghcnd_splitvars <- function(x){
   tmp <- tmp[!is.na(tmp$id), ]
   out <- lapply(as.character(unique(tmp$element)), function(y){
     ydat <- tmp[ tmp$element == y, ]
-#     ydat2 <- ydat[, !grepl("FLAG", names(ydat))]
-#     g <- ydat2 %>% tidyr::gather(var, value, -id, -year, -month, -element)
-#     m <- g %>% dplyr::mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d"))
-#     ff <- m %>% dplyr::filter(!is.na(date))
-#     dd <- ff[ , !names(ff) %in% c("element", "var", "year", "month", "day")]
-#     dd <- setNames(dd, c("id", tolower(y), "date"))
     
     dd <- ydat %>%
       dplyr::select(-contains("FLAG")) %>%
@@ -172,7 +166,7 @@ strex <- function(x) str_extract_(x, "[0-9]+")
 ghcnd_stations <- function(..., n = 10){
   sta <- get_stations(...)
   inv <- get_inventory(...)
-  structure(list(data=merge(sta, inv[,-c(2,3)], by = "id")), class = "ghcnd_stations")
+  structure(list(data = merge(sta, inv[,-c(2,3)], by = "id")), class = "ghcnd_stations")
 }
 
 #' @export
@@ -233,7 +227,6 @@ ghcnd_GET <- function(bp, stationid, overwrite, ...){
   dat <- setNames(df, vars)
   write.csv(dat, fp, row.names = FALSE)
   return(dat)
-  # res$request$writer[[1]]
 }
 
 ghcnd_remote <- function(stationid) file.path(ghcndbase(), paste0(stationid, ".dly"))
