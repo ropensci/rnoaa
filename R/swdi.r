@@ -22,7 +22,7 @@
 #' @param id An identifier, e.g., 533623. Not sure how you find these ids?
 #' @param filepath If kmz or shp chosen the file name and optionally path to write to. Ignored
 #'    format=xml or format=csv (optional)
-#' @param callopts Further arguments passed on to the API GET call. (optional)
+#' @param ... Curl options passed on to the API GET call. (optional)
 #' 
 #' @details
 #' Options for the dataset parameter. One of (and their data formats):
@@ -103,66 +103,68 @@
 #' }
 
 swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit=25,
-  offset=NULL, radius=NULL, center=NULL, bbox=NULL, tile=NULL, stat=NULL, id=NULL, filepath=NULL,
-  callopts=list())
-{
+                 offset=NULL, radius=NULL, center=NULL, bbox=NULL, tile=NULL, stat=NULL, 
+                 id=NULL, filepath=NULL, ...) {
+  
   stopifnot(!is.null(startdate))
   stopifnot(!is.null(enddate))
 
   format <- match.arg(format, choices = c('xml','csv','shp','kmz'))
-  if(is.null(enddate)){
+  if (is.null(enddate)) {
     daterange <- startdate
   } else {
     daterange <- paste0(startdate, ":", enddate)
   }
-  center <- if(!is.null(center)) paste(center, collapse = ",")
-  bbox <- if(!is.null(bbox)) paste(bbox, collapse = ",")
-  tile <- if(!is.null(tile)) paste(tile, collapse = ",")
-  if(is.null(offset)){
+  center <- if (!is.null(center)) paste(center, collapse = ",")
+  bbox <- if (!is.null(bbox)) paste(bbox, collapse = ",")
+  tile <- if (!is.null(tile)) paste(tile, collapse = ",")
+  if (is.null(offset)) {
     url <- sprintf('http://www.ncdc.noaa.gov/swdiws/%s/%s/%s/%s', format, dataset, daterange, limit)
-  } else if(!is.null(offset)){
+  } else if (!is.null(offset)) {
     url <- sprintf('http://www.ncdc.noaa.gov/swdiws/%s/%s/%s/%s/%s', format, dataset, daterange, limit, offset)
   }
-  args <- noaa_compact(list(radius=radius, center=center, bbox=bbox, tile=tile, stat=stat))
+  args <- noaa_compact(list(radius = radius, center = center, bbox = bbox, tile = tile, stat = stat))
 
-  if(format %in% c('kmz','shp')){
-    make_key <- function(url, args)
-    {
+  if (format %in% c('kmz','shp')) {
+    make_key <- function(url, args) {
       tmp <- parse_url(url)
       tmp$query <- args
       build_url(tmp)
     }
     url <- make_key(url, args)
-    if(format == 'shp'){
+    if (format == 'shp') {
       filepath <- paste0(filepath, ".zip")
       download.file(url, destfile = filepath)
       message(sprintf("Zip file downloaded to %s", filepath))
-    } else if(format == 'kmz'){
+    } else if (format == 'kmz') {
       download.file(url, destfile = filepath)
       message(sprintf("kmz file downloaded to %s", filepath))
     }
   } else {
-    temp <- GET(url, query=args, config = callopts)
+    # if (length(args) == 0) args <- NULL
+    temp <- GET(url, query = args)
     temp <- check_response_swdi(temp, format)
 
-    if(is(temp, "character")){ all <- list(meta=NA, data=NA, shape=NA) } else {
-      if(format == 'csv'){
-        meta <- list(totalCount=as.numeric(as.character(temp[ grep('totalCount', temp$ZTIME), 'WSR_ID'])),
-                     totalTimeInSeconds=as.numeric(as.character(temp[ grep('totalTimeInSeconds', temp$ZTIME), 'WSR_ID'])))
-        dat <- temp[1:grep('summary', temp$ZTIME)-1,]
+    if (is(temp, "character")) { 
+      all <- list(meta = NA, data = NA, shape = NA) 
+    } else {
+      if (format == 'csv') {
+        meta <- list(totalCount = as.numeric(as.character(temp[ grep('totalCount', temp$ZTIME), 'WSR_ID'])),
+                     totalTimeInSeconds = as.numeric(as.character(temp[ grep('totalTimeInSeconds', temp$ZTIME), 'WSR_ID'])))
+        dat <- temp[1:grep('summary', temp$ZTIME) - 1,]
         names(dat) <- tolower(names(dat))
         shp <- NULL
-      } else if(format == 'xml'){
+      } else if (format == 'xml') {
         xml <- xpathSApply(temp, "//result")
         aslist <- lapply(xml, xmlToList)
         dat <- data.frame(rbindlist(aslist), stringsAsFactors = FALSE)
-        shp <- data.frame(shape=dat[, names(dat) %in% 'shape'], stringsAsFactors = FALSE)
+        shp <- data.frame(shape = dat[, names(dat) %in% 'shape'], stringsAsFactors = FALSE)
         dat <- dat[, !names(dat) %in% c('shape','rownumber')]
 
-        meta <- list(totalCount=as.numeric(xpathSApply(temp, "//summary/totalCount", xmlValue)),
-                     totalTimeInSeconds=as.numeric(xpathSApply(temp, "//summary/totalTimeInSeconds", xmlValue)))
+        meta <- list(totalCount = as.numeric(xpathSApply(temp, "//summary/totalCount", xmlValue)),
+                     totalTimeInSeconds = as.numeric(xpathSApply(temp, "//summary/totalTimeInSeconds", xmlValue)))
       }
-      all <- list(meta=meta, data=dat, shape=shp)
+      all <- list(meta = meta, data = dat, shape = shp)
     }
     class(all) <- "swdi"
     return( all )

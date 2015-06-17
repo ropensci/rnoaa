@@ -7,7 +7,7 @@
 swdi(dataset = NULL, format = "xml", startdate = NULL, enddate = NULL,
   limit = 25, offset = NULL, radius = NULL, center = NULL,
   bbox = NULL, tile = NULL, stat = NULL, id = NULL, filepath = NULL,
-  callopts = list())
+  ...)
 }
 \arguments{
 \item{dataset}{Dataset to query. See below for details.}
@@ -42,7 +42,7 @@ degree to the supplied values.}
 \item{filepath}{If kmz or shp chosen the file name and optionally path to write to. Ignored
 format=xml or format=csv (optional)}
 
-\item{callopts}{Further arguments passed on to the API GET call. (optional)}
+\item{...}{Curl options passed on to the API GET call. (optional)}
 }
 \value{
 If xml or csv chosen, a list of length three, a slot of metadata (meta), a slot
