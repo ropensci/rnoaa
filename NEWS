@@ -1,3 +1,29 @@
+rnoaa 0.4.0
+===============
+
+NEW FEATURES
+
++ Gains a suite of new functions for working with NOAA GHCND data, including 
+`ghcnd()`, `ghcnd_clear_cache()`, `ghcnd_countries()`, `ghcnd_search()`, `ghcnd_splitvars()`
+`ghcnd_states()`, `ghcnd_stations()`, and `ghcnd_version()` (#85) (#86) (#87) (#88) (#94)
++ New contributor Adam Erickson
+
+MINOR IMPROVEMENTS
+
++ Minor adjustments to `isd()` functions, including better man file.
++ Cleaner package imports - importing mostly only functions used in dependencies.
++ Startup message gone.
++ `callopts` parameter changed to `...` in function `swdi()`.
++ More robust test suite.
++ `ncdc()` requires that users do their own paging - previously this was done internally (#77)
++ Many dependencies dropped, simplifying package: `RCurl`, `maptools`, `stringr`, `digest`. 
+A few new ones added: `dplyr`, `tidyr`.
+
+DEPRECATED AND DEFUNCT
+
++ All `erddap` functions now defunct - see the package [rerddap](https://github.com/ropensci/rerddap),
+a general purpose R client for ERDDAP servers. (#51) (#73) (#90) (#95)
+
 rnoaa 0.3.3
 ===============
 

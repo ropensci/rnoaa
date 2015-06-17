@@ -1,6 +1,7 @@
 #' Historical Observing Metadata Repository (HOMR) station metadata - definitions
 #'
 #' @export
+#' @importFrom jsonlite fromJSON
 #'
 #' @param ... Named parameters, such as \code{query}, \code{path}, etc, passed on to
 #' \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with

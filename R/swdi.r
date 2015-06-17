@@ -1,8 +1,8 @@
 #' Get NOAA data for the severe weather data inventory (swdi).
 #'
-#' @import XML
+#' @importFrom XML xpathSApply xpathApply xmlValue xmlParse xmlToList
 #' @importFrom data.table rbindlist
-#' 
+#'
 #' @param dataset Dataset to query. See below for details.
 #' @param format File format to download. One of xml, csv, shp, or kmz.
 #' @param startdate Start date. See details.
@@ -23,7 +23,7 @@
 #' @param filepath If kmz or shp chosen the file name and optionally path to write to. Ignored
 #'    format=xml or format=csv (optional)
 #' @param ... Curl options passed on to the API GET call. (optional)
-#' 
+#'
 #' @details
 #' Options for the dataset parameter. One of (and their data formats):
 #' \itemize{
@@ -93,7 +93,7 @@
 #' # KMZ format
 #' swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz',
 #'    radius=15, filepath='myfile.kmz')
-#' 
+#'
 #' # csv output to SpatialPointsDataFrame
 #' res <- swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format="csv")
 #' library('sp')
@@ -103,9 +103,9 @@
 #' }
 
 swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit=25,
-                 offset=NULL, radius=NULL, center=NULL, bbox=NULL, tile=NULL, stat=NULL, 
+                 offset=NULL, radius=NULL, center=NULL, bbox=NULL, tile=NULL, stat=NULL,
                  id=NULL, filepath=NULL, ...) {
-  
+
   stopifnot(!is.null(startdate))
   stopifnot(!is.null(enddate))
 
@@ -145,8 +145,8 @@ swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit
     temp <- GET(url, query = args)
     temp <- check_response_swdi(temp, format)
 
-    if (is(temp, "character")) { 
-      all <- list(meta = NA, data = NA, shape = NA) 
+    if (is(temp, "character")) {
+      all <- list(meta = NA, data = NA, shape = NA)
     } else {
       if (format == 'csv') {
         meta <- list(totalCount = as.numeric(as.character(temp[ grep('totalCount', temp$ZTIME), 'WSR_ID'])),

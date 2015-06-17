@@ -3,8 +3,6 @@
 #' From the NOAA API docs: Describes the type of data, acts as a label. If it's 64
 #' degrees out right now, then the data type is Air Temperature and the data is 64.
 #'
-#' @import httr
-#' @importFrom plyr compact
 #' @export
 #' @template rnoaa
 #' @template rnoaa2
@@ -45,7 +43,7 @@ ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
     url <- sprintf("http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes/%s", datatypeid)
   } else { url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes" }
 
-  args <- compact(list(datasetid=datasetid, datacategoryid=datacategoryid,
+  args <- noaa_compact(list(datasetid=datasetid, datacategoryid=datacategoryid,
                        locationid=locationid, stationid=stationid, startdate=startdate,
                        enddate=enddate, sortfield=sortfield, sortorder=sortorder,
                        limit=limit, offset=offset))

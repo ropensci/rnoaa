@@ -103,6 +103,29 @@ latlong2bbox <- function(lat, lon, radius=10)
   return( geometry )
 }
 
+latlong2bbox <- function(lat, lon, radius=10)
+{
+  stopifnot(is.numeric(lat), is.numeric(lon))
+  stopifnot(abs(lat)<=90, abs(lon)<=180)
+  
+  # Make a spatialpoints obj, do settings, transform to UTM with zone
+  d <- SpatialPoints(cbind(lon, lat), proj4string = CRS("+proj=longlat +datum=WGS84"))
+  zone <- long2utm(lon=lon, lat=lat)
+  dd <- spTransform(d, CRS(sprintf("+proj=utm +zone=%s +datum=WGS84 +units=m", zone)))
+  
+  # give buffer around point given radius
+  inmeters <- radius*1000
+  ee <- gBuffer(dd, width = inmeters)
+  
+  # transform back to decimal degree
+  ff <- spTransform(ee, CRS("+proj=longlat +datum=WGS84"))
+  
+  # get bounding box, put in a vector of length 4, and return
+  box <- ff@bbox
+  geometry <- sprintf('%s,%s,%s,%s', box[2,1], box[1,1], box[2,2], box[1,2])
+  return( geometry )
+}
+
 #' Check response from NOAA, including status codes, server error messages, mime-type, etc.
 #' @keywords internal
 check_response <- function(x){
@@ -155,13 +178,6 @@ check_response_swdi <- function(x, format){
       xmlParse(res)
     }
   }
-
-#   if(!'results' %in% names(tt)){
-#     if(length(out)==0){ warning("Sorry, no data found") }
-#   } else {
-#     if( class(try(out$results, silent=TRUE))=="try-error" | is.null(try(out$results, silent=TRUE)) )
-#       warning("Sorry, no data found")
-#   }
 }
 
 noaa_compact <- function (l) Filter(Negate(is.null), l)

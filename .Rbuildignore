@@ -15,4 +15,4 @@ cran-comments.md
 inst/cache
 inst/vign/cache
 README.Rmd
-figure
+vignettes/figure

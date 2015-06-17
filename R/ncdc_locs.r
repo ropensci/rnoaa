@@ -2,9 +2,9 @@
 #'
 #' From the NOAA NCDC API docs: Locations can be a specific latitude/longitude point
 #' such as a station, or a label representing a bounding area such as a city.
-#' 
+#'
 #' @export
-#' 
+#'
 #' @template location
 #' @param locationid A valid location id or a chain of location ids seperated by
 #'    ampersands. Data returned will contain data for the location(s) specified (optional)
@@ -34,7 +34,7 @@ ncdc_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
   url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/locations'
   if(!is.null(locationid))
     url <- paste(url, "/", locationid, sep="")
-  args <- compact(list(datasetid=datasetid,locationid=locationid,
+  args <- noaa_compact(list(datasetid=datasetid,locationid=locationid,
                        locationcategoryid=locationcategoryid,startdate=startdate,
                        enddate=enddate,token=token,sortfield=sortfield,
                        sortorder=sortorder,limit=limit,offset=offset))

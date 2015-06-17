@@ -1,11 +1,11 @@
 #' Get sea ice data.
 #'
-#' @import rgdal ggplot2
+#' @import ggplot2
 #' @param url A url for a NOAA sea ice ftp file
 #' @param ... Further arguments passed on to readshpfile function, see
 #'    \code{readshpfile}
 #' @return A data.frame
-#' @details If you want to reproject the shape files, use 
+#' @details If you want to reproject the shape files, use
 #' \code{\link{readshpfile}} to read in shape file, then reproject, and so on.
 #' @export
 #' @examples \dontrun{

@@ -1,6 +1,6 @@
 #' Search for and get NOAA NCDC data.
 #'
-#' @import httr
+#' @importFrom httr GET add_headers content warn_for_status stop_for_status write_disk parse_url build_url
 #' @importFrom plyr round_any rbind.fill
 #' @export
 #' @template rnoaa

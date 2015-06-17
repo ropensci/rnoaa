@@ -15,8 +15,8 @@
 #' @param var (character) Variable to get, defaults to "all", which gives back all variables
 #' in a list. To see what variables are available for a dataset, look at the dataset returned
 #' from \code{ghcnd()}.
-#' 
-#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}, 
+#'
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com},
 #' Adam Erickson \email{adam.erickson@@ubc.ca}
 #'
 #' @examples \dontrun{
@@ -85,7 +85,7 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all
     dat <- dat[tolower(var)]
   }
   if (any(sapply(dat, is.null))) {
-    dat <- compact(dat)
+    dat <- noaa_compact(dat)
     warning(sprintf("%s not in the dataset\nAvailable variables: %s", paste0(vars_null, collapse = ", "), possvars), call. = FALSE)
   }
   if (!is.null(date_min)) {
@@ -116,7 +116,7 @@ ghcnd_splitvars <- function(x){
   tmp <- tmp[!is.na(tmp$id), ]
   out <- lapply(as.character(unique(tmp$element)), function(y){
     ydat <- tmp[ tmp$element == y, ]
-    
+
     dd <- ydat %>%
       dplyr::select(-contains("FLAG")) %>%
       tidyr::gather(var, value, -id, -year, -month, -element) %>%

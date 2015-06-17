@@ -5,8 +5,9 @@
 #' station you want, you can quickly get all manner of data from it
 #'
 #' @export
-#' @import rgdal sp
-#' 
+#' @importFrom rgdal ogrListLayers readOGR
+#' @importFrom sp SpatialPoints spTransform CRS
+#'
 #' @template rnoaa
 #' @template rnoaa2
 #' @template stations
@@ -69,7 +70,7 @@ ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
         extent <- latlong2bbox(lat=extent[1], lon=extent[2], radius=radius)
       }
     }
-    args <- compact(list(datasetid=datasetid, datatypeid=datatypeid,
+    args <- noaa_compact(list(datasetid=datasetid, datatypeid=datatypeid,
                          locationid=locationid, startdate=startdate,
                          enddate=enddate, sortfield=sortfield, sortorder=sortorder,
                          limit=limit, offset=offset, datacategoryid=datacategoryid,
