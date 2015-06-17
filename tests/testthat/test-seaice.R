@@ -1,0 +1,14 @@
+context("seaice")
+
+test_that("seaice functions work", {
+  skip_on_cran()
+  
+  url <- seaiceeurls(1980, mo = 'Feb', pole = 'S')
+  out <- seaice(url)
+  
+  expect_is(url, "character")
+  expect_match(url, "ftp")
+  
+  expect_is(out, "data.frame")
+  expect_is(out$long, "numeric")
+})
