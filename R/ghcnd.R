@@ -6,7 +6,6 @@
 #'
 #' @param stationid Stationid to get
 #' @param path (character) A path to store the files, Default: \code{~/.rnoaa/isd}
-#' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #' @param n Number of rows to print
 #' @param x Input object to print methods. For \code{ghcnd_splitvars()}, the output of a call
@@ -64,10 +63,10 @@
 #' ghcnd_search("AGE00147704", var="adfdf")
 #' }
 
-ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
+ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", ...){
   csvpath <- ghcnd_local(stationid, path)
   if (!is_ghcnd(x = csvpath)) {
-    structure(list(data = ghcnd_GET(path, stationid, overwrite, ...)), class = "ghcnd", source = csvpath)
+    structure(list(data = ghcnd_GET(path, stationid, ...)), class = "ghcnd", source = csvpath)
   } else {
     structure(list(data = read.csv(csvpath, stringsAsFactors = FALSE)), class = "ghcnd", source = csvpath)
   }
@@ -76,9 +75,9 @@ ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
 #' @export
 #' @rdname ghcnd
 ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all",
-                         path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...){
+                         path = "~/.rnoaa/ghcnd", ...){
 
-  dat <- ghcnd_splitvars(ghcnd(stationid, path = path, overwrite = overwrite))
+  dat <- ghcnd_splitvars(ghcnd(stationid, path = path))
   possvars <- paste0(names(dat), collapse = ", ")
 
   if (any(var != "all")) {
@@ -217,7 +216,7 @@ ghcnd_zip <- function(x){
   "adf"
 }
 
-ghcnd_GET <- function(bp, stationid, overwrite, ...){
+ghcnd_GET <- function(bp, stationid, ...){
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- ghcnd_local(stationid, bp)
   res <- suppressWarnings(GET(ghcnd_remote(stationid), ...))
@@ -231,6 +230,6 @@ ghcnd_GET <- function(bp, stationid, overwrite, ...){
 
 ghcnd_remote <- function(stationid) file.path(ghcndbase(), paste0(stationid, ".dly"))
 ghcnd_local <- function(stationid, path) file.path(path, paste0(stationid, ".dly"))
-is_ghcnd <- function(x) if(file.exists(x)) TRUE else FALSE
+is_ghcnd <- function(x) if (file.exists(x)) TRUE else FALSE
 ghcndbase <- function() "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all"
 str_extract_ <- function(string, pattern) regmatches(string, regexpr(pattern, string))

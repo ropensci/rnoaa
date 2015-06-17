@@ -10,10 +10,10 @@
 \alias{ghcnd_version}
 \title{Get GHCND daily data from NOAA FTP server}
 \usage{
-ghcnd(stationid, path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...)
+ghcnd(stationid, path = "~/.rnoaa/ghcnd", ...)
 
 ghcnd_search(stationid, date_min = NULL, date_max = NULL, var = "all",
-  path = "~/.rnoaa/ghcnd", overwrite = TRUE, ...)
+  path = "~/.rnoaa/ghcnd", ...)
 
 ghcnd_splitvars(x)
 
@@ -29,8 +29,6 @@ ghcnd_version(...)
 \item{stationid}{Stationid to get}
 
 \item{path}{(character) A path to store the files, Default: \code{~/.rnoaa/isd}}
-
-\item{overwrite}{(logical) To overwrite the path to store files in or not, Default: TRUE.}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}}
 
