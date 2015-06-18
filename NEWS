@@ -6,7 +6,9 @@ NEW FEATURES
 + Gains a suite of new functions for working with NOAA GHCND data, including 
 `ghcnd()`, `ghcnd_clear_cache()`, `ghcnd_countries()`, `ghcnd_search()`, `ghcnd_splitvars()`
 `ghcnd_states()`, `ghcnd_stations()`, and `ghcnd_version()` (#85) (#86) (#87) (#88) (#94)
-+ New contributor Adam Erickson
++ New contributor Adam Erickson (@DougFirErickson)
++ All NOAA buoy functions put back into the package. They were previously 
+on a separate branch in the GitHub repository. (#37) (#71) (#100)
 
 MINOR IMPROVEMENTS
 
@@ -23,6 +25,9 @@ DEPRECATED AND DEFUNCT
 
 + All `erddap` functions now defunct - see the package [rerddap](https://github.com/ropensci/rerddap),
 a general purpose R client for ERDDAP servers. (#51) (#73) (#90) (#95)
++ The `extent` function in `noaa_stations()` used to accept either a bounding
+box or a point defined by lat/long. The lat/long option dropped as it required
+two packages, one of which is a pain to install for many users (#98) (#99)
 
 rnoaa 0.3.3
 ===============
