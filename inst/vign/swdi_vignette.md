@@ -43,7 +43,7 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.003
+#> [1] 0.007
 #> 
 #> 
 #> $data
@@ -143,7 +143,7 @@ list(out$meta, head(out$data), head(out$shape))
 #> numeric(0)
 #> 
 #> [[1]]$totalTimeInSeconds
-#> [1] 0.113
+#> [1] 0.127
 #> 
 #> 
 #> [[2]]
@@ -221,7 +221,7 @@ swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0
+#> [1] 0.001
 #> 
 #> 
 #> $data

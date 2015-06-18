@@ -10,7 +10,8 @@ NCDC workflow
 
 This vignette is intended to demonstrate a workflow for using the NOAA NCDC data using the `ncdc*()` functions. It can be confusing to understand how to get at data you want - that's the motivation for this vignette. Other vignettes show more thorough and different examples for specific data sources.
 
-Load `rnoaa` into the R session.
+
+## Load rnoaa
 
 
 ```r
@@ -41,10 +42,10 @@ ncdc_stations(stationid = id)
 #> NULL
 #> 
 #> $data
-#>                  id elevation                     name elevationUnit
-#> 1 GHCND:US1FLCT0002      36.9 INVERNESS 1.6 WSW, FL US        METERS
-#>   datacoverage longitude    mindate latitude    maxdate
-#> 1       0.9995    -82.37 2007-09-01    28.83 2012-10-24
+#>   elevation    mindate    maxdate latitude                     name
+#> 1      36.9 2007-09-01 2012-10-24  28.8303 INVERNESS 1.6 WSW, FL US
+#>   datacoverage                id elevationUnit longitude
+#> 1       0.9995 GHCND:US1FLCT0002        METERS  -82.3688
 #> 
 #> attr(,"class")
 #> [1] "ncdc_stations"
@@ -70,9 +71,9 @@ ncdc_datacats(stationid = id)
 #> 
 #> 
 #> $data
-#>     id          name
-#> 1 COMP      Computed
-#> 2 PRCP Precipitation
+#>            name   id
+#> 1      Computed COMP
+#> 2 Precipitation PRCP
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datacats"
@@ -84,23 +85,23 @@ Another way is looking for __data sets__:
 ```r
 ncdc_datasets(stationid = id)
 #> $meta
-#> $meta$limit
-#> [1] 25
+#> $meta$offset
+#> [1] 1
 #> 
 #> $meta$count
 #> [1] 2
 #> 
-#> $meta$offset
-#> [1] 1
+#> $meta$limit
+#> [1] 25
 #> 
 #> 
 #> $data
-#>                    uid      id              name datacoverage    mindate
-#> 1 gov.noaa.ncdc:C00861   GHCND   Daily Summaries            1 1763-01-01
-#> 2 gov.noaa.ncdc:C00841 GHCNDMS Monthly Summaries            1 1763-01-01
-#>      maxdate
-#> 1 2014-10-15
-#> 2 2014-09-01
+#>                    uid    mindate    maxdate              name
+#> 1 gov.noaa.ncdc:C00861 1763-01-01 2015-06-17   Daily Summaries
+#> 2 gov.noaa.ncdc:C00841 1763-01-01 2015-05-01 Monthly Summaries
+#>   datacoverage      id
+#> 1            1   GHCND
+#> 2            1 GHCNDMS
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datasets"
@@ -112,13 +113,13 @@ Yet another way is looking for __data types__:
 ```r
 ncdc_datatypes(datasetid = "GHCND", stationid = id)
 #> $meta
-#>   limit count offset
-#> 1    25     2      1
+#>   offset count limit
+#> 1      1     2    25
 #> 
 #> $data
-#>     id                         name datacoverage    mindate    maxdate
-#> 1 PRCP Precipitation (tenths of mm)            1 1781-01-01 2014-10-15
-#> 2 SNOW                Snowfall (mm)            1 1846-11-25 2014-10-15
+#>      mindate    maxdate                         name datacoverage   id
+#> 1 1781-01-01 2015-06-17 Precipitation (tenths of mm)            1 PRCP
+#> 2 1840-05-01 2015-06-16                Snowfall (mm)            1 SNOW
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datatypes"
@@ -151,29 +152,29 @@ ncdc(datasetid = "GHCND", stationid = id, datatypeid = "PRCP", startdate = "2012
 #> 
 #> 
 #> $data
-#>              station value datatype                date fl_m fl_q fl_so
-#> 1  GHCND:US1FLCT0002    13     PRCP 2012-10-01T00:00:00               N
-#> 2  GHCND:US1FLCT0002     3     PRCP 2012-10-02T00:00:00               N
-#> 3  GHCND:US1FLCT0002    15     PRCP 2012-10-03T00:00:00               N
-#> 4  GHCND:US1FLCT0002   142     PRCP 2012-10-04T00:00:00               N
-#> 5  GHCND:US1FLCT0002   244     PRCP 2012-10-05T00:00:00               N
-#> 6  GHCND:US1FLCT0002   655     PRCP 2012-10-06T00:00:00               N
-#> 7  GHCND:US1FLCT0002    23     PRCP 2012-10-07T00:00:00               N
-#> 8  GHCND:US1FLCT0002     0     PRCP 2012-10-08T00:00:00               N
-#> 9  GHCND:US1FLCT0002     3     PRCP 2012-10-09T00:00:00               N
-#> 10 GHCND:US1FLCT0002     0     PRCP 2012-10-10T00:00:00               N
-#> 11 GHCND:US1FLCT0002     0     PRCP 2012-10-11T00:00:00               N
-#> 12 GHCND:US1FLCT0002     0     PRCP 2012-10-12T00:00:00               N
-#> 13 GHCND:US1FLCT0002     0     PRCP 2012-10-13T00:00:00               N
-#> 14 GHCND:US1FLCT0002     0     PRCP 2012-10-14T00:00:00               N
-#> 15 GHCND:US1FLCT0002     0     PRCP 2012-10-15T00:00:00               N
-#> 16 GHCND:US1FLCT0002     0     PRCP 2012-10-16T00:00:00               N
-#> 17 GHCND:US1FLCT0002     0     PRCP 2012-10-17T00:00:00               N
-#> 18 GHCND:US1FLCT0002     0     PRCP 2012-10-18T00:00:00    T          N
-#> 19 GHCND:US1FLCT0002     0     PRCP 2012-10-19T00:00:00               N
-#> 20 GHCND:US1FLCT0002     0     PRCP 2012-10-20T00:00:00               N
-#> 21 GHCND:US1FLCT0002     0     PRCP 2012-10-21T00:00:00               N
-#> 22 GHCND:US1FLCT0002     0     PRCP 2012-10-24T00:00:00               N
+#>                   date datatype           station value fl_m fl_q fl_so
+#> 1  2012-10-01T00:00:00     PRCP GHCND:US1FLCT0002    13               N
+#> 2  2012-10-02T00:00:00     PRCP GHCND:US1FLCT0002     3               N
+#> 3  2012-10-03T00:00:00     PRCP GHCND:US1FLCT0002    15               N
+#> 4  2012-10-04T00:00:00     PRCP GHCND:US1FLCT0002   142               N
+#> 5  2012-10-05T00:00:00     PRCP GHCND:US1FLCT0002   244               N
+#> 6  2012-10-06T00:00:00     PRCP GHCND:US1FLCT0002   655               N
+#> 7  2012-10-07T00:00:00     PRCP GHCND:US1FLCT0002    23               N
+#> 8  2012-10-08T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 9  2012-10-09T00:00:00     PRCP GHCND:US1FLCT0002     3               N
+#> 10 2012-10-10T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 11 2012-10-11T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 12 2012-10-12T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 13 2012-10-13T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 14 2012-10-14T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 15 2012-10-15T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 16 2012-10-16T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 17 2012-10-17T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 18 2012-10-18T00:00:00     PRCP GHCND:US1FLCT0002     0    T          N
+#> 19 2012-10-19T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 20 2012-10-20T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 21 2012-10-21T00:00:00     PRCP GHCND:US1FLCT0002     0               N
+#> 22 2012-10-24T00:00:00     PRCP GHCND:US1FLCT0002     0               N
 #>    fl_t
 #> 1      
 #> 2      
