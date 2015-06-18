@@ -33,10 +33,10 @@ Imports:
     rgdal,
     XML,
     data.table,
-    jsonlite,
-    V8
+    jsonlite
 Suggests:
     testthat,
     roxygen2,
     knitr,
-    taxize
+    taxize,
+    V8

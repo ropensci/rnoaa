@@ -1,5 +1,8 @@
 language: r
 
+before_install:
+- sudo apt-get install libv8-dev
+
 r_binary_packages:
   - rgdal
 
@@ -11,6 +14,9 @@ after_success:
   - Rscript -e 'library(covr); coveralls()'
 
 notifications:
+  email:
+    on_success: change
+    on_failure: change
   slack:
     secure: fee+yd3SW53ASTFm0ZH3/HKD7wUn1zJL+LHbwJErIMhAemo2FcNaLDGF5TXLuVCSMMnIE+rc8c8NEH0Mf+Jw4+EiZEfEsbu4Ai5xxx81jCJV3sCRAQZG+Tpes+zR3rnxxs7LyM9EcVGf/ypMCLREdAM1rluNrbAe14DZI0b4pjw=
 

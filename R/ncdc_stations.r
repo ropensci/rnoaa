@@ -66,30 +66,30 @@ ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
       if (length(extent) == 4) {
         extent <- paste0(extent, collapse = ",")
       } else {
-        extent <- latlong2bbox(lat=extent[1], lon=extent[2], radius=radius)
+        check4v8()
+        extent <- latlong2bbox(lat = extent[1], lon = extent[2], radius = radius)
       }
     }
-    args <- noaa_compact(list(datasetid=datasetid, datatypeid=datatypeid,
-                         locationid=locationid, startdate=startdate,
-                         enddate=enddate, sortfield=sortfield, sortorder=sortorder,
-                         limit=limit, offset=offset, datacategoryid=datacategoryid,
-                         extent=extent))
+    args <- noaa_compact(list(datasetid = datasetid, datatypeid = datatypeid,
+                         locationid = locationid, startdate = startdate,
+                         enddate = enddate, sortfield = sortfield, sortorder = sortorder,
+                         limit = limit, offset = offset, datacategoryid = datacategoryid,
+                         extent = extent))
   }
 
-  temp <- GET(url, query=args, add_headers("token" = token), ...)
+  temp <- GET(url, query = args, add_headers("token" = token), ...)
   tt <- check_response(temp)
-  if(is(temp, "character")){
-    all <- list(meta=NULL, data=NULL)
+  if (is(temp, "character")) {
+    all <- list(meta = NULL, data = NULL)
   } else {
-    if(!is.null(stationid)){
-      dat <- data.frame(tt, stringsAsFactors=FALSE)
-      all <- list(meta=NULL, data=dat)
-    } else
-    {
-      dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
+    if (!is.null(stationid)) {
+      dat <- data.frame(tt, stringsAsFactors = FALSE)
+      all <- list(meta = NULL, data = dat)
+    } else {
+      dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x, stringsAsFactors = FALSE)))
       meta <- tt$metadata$resultset
-      atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
-      all <- list(meta=atts, data=dat)
+      atts <- list(totalCount = meta$count, pageCount = meta$limit, offset = meta$offset)
+      all <- list(meta = atts, data = dat)
     }
   }
   class(all) <- "ncdc_stations"

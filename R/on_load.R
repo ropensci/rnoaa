@@ -1,4 +1,3 @@
-#' @importFrom V8 new_context
 buff <- NULL
 extent <- NULL
 .onLoad <- function(libname, pkgname){
