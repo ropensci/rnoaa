@@ -68,41 +68,6 @@ long2utm <- function(lon, lat) {
   (floor((lon + 180)/6) %% 60) + 1
 }
 
-#' Function to calculate bounding box for the extent parameter in ncdc_stations function.
-#' @export
-#' @param lat Latitude, in decimal degree style
-#' @param lon Longitude, in decimal degree style
-#' @param radius Amount to create buffer by, in km
-#' @keywords internal
-#' @examples
-#' latlong2bbox(lat=33.95, lon=-118.40) # radius of 10 km
-#' latlong2bbox(lat=33.95, lon=-118.40, radius=2) # radius of 2 km
-#' latlong2bbox(lat=33.95, lon=-118.40, radius=200) # radius of 200 km
-#' latlong2bbox(lat=33.95, lon=-118.40, radius=0.02) # radius of 20 meters
-latlong2bbox <- function(lat, lon, radius=10) {
-  stopifnot(is.numeric(lat), is.numeric(lon))
-  stopifnot(abs(lat) <= 90, abs(lon) <= 180)
-  
-  # buffer the point
-  pt <- list(
-    type = "Feature",
-    properties = NULL,
-    geometry = list(
-      type = "Point",
-      coordinates = c(lon, lat)
-    )
-  )
-  buff$eval(sprintf("var out = buffer(%s, %s, '%s');", jsonlite::toJSON(pt, auto_unbox = TRUE), radius, "kilometers"))
-  pt_buff <- buff$get("out")
-  
-  # get bbox
-  extent$eval(sprintf("var bbox = extent(%s);", jsonlite::toJSON(pt_buff, auto_unbox = TRUE)))
-  bbox <- extent$get("bbox")
-  
-  # put in a vector of length 4, and return
-  sprintf('%.6f,%.6f,%.6f,%.6f', bbox[2], bbox[1], bbox[4], bbox[3])
-}
-
 #' Check response from NOAA, including status codes, server error messages, mime-type, etc.
 #' @keywords internal
 check_response <- function(x){

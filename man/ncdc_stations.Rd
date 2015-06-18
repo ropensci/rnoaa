@@ -43,16 +43,19 @@ datacoverage fields (optional)}
 
 \item{offset}{Defaults to 0, used to offset the resultlist (optional)}
 
-\item{datacategoryid}{(character, optional) Accepts a valid data category id or an array of data category ids.
-Stations returned will be associated with the data category(ies) specified}
+\item{datacategoryid}{(character, optional) Accepts a valid data category id or an
+array of data category ids.  Stations returned will be associated with the data
+category(ies) specified}
 
-\item{extent}{(numeric, optional) The geographical extent for which you want to search. Give either a vecctor with
-   two values: a latitude and a longitude. For example, \code{c(lat,long)}. Or give four values that defines a bounding box, lat and long for the
-southwest corner, then lat and long for the northeast corner. For example: \code{c(minlat,
-minlong, maxlat, maxlong)}.}
+\item{extent}{(numeric, optional) The geographical extent for which you want to
+search. Give either a vecctor with two values: a latitude and a longitude. For
+example, \code{c(lat,long)}. Or give four values that defines a bounding box,
+lat and long for the southwest corner, then lat and long for the northeast corner.
+For example: \code{c(minlat, minlong, maxlat, maxlong)}.}
 
-\item{radius}{(numeric) If a single latitude/longitude pair is given to the extent parameter, the radius to
-create around the point. Ignored if a vector of appropriate structure is passed to the  extent parameter.}
+\item{radius}{(numeric) If a single latitude/longitude pair is given to the extent
+parameter, the radius to create around the point. Ignored if a vector of appropriate
+structure is passed to the  extent parameter.}
 
 \item{token}{This must be a valid token token supplied to you by NCDC's Climate
 Data Online access token generator. (required) Get an API key (=token) at
@@ -120,8 +123,6 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017')
 ncdc_stations(datasetid='PRECIP_HLY', startdate='19900101', enddate='19901231')
 
 # Search for stations by spatial extent
-## Search using a single point, given by a lat long pair
-ncdc_stations(extent=c(33.95,-118.40))
 ## Search using a bounding box, w/ lat/long of the SW corner, then of NE corner
 ncdc_stations(extent=c(47.5204,-122.2047,47.6139,-122.1065))
 }
