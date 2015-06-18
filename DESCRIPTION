@@ -5,10 +5,10 @@ Description: Client for many 'NOAA' data sources including the 'NCDC'
     functions for each of the 'API' 'endpoints': data, data categories, data sets,
     data types, locations, location categories, and stations. In addition, we
     have an interface for 'NOAA' sea ice data, the 'NOAA' severe weather inventory,
-    'NOAA' Historical Observing Metadata Repository ('HOMR') data,
+    'NOAA' Historical Observing 'Metadata' Repository ('HOMR') data,
     'NOAA' storm data via 'IBTrACS', and tornado data via the 'NOAA' storm prediction
     center.
-Version: 0.3.9.9800
+Version: 0.3.9.9810
 License: MIT + file LICENSE
 Authors@R: c(
     person("Hart", "Edmund", role = "ctb", email = "Edmund.m.hart@gmail.com"),
