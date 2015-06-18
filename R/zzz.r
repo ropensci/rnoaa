@@ -69,7 +69,6 @@ long2utm <- function(lon, lat) {
 }
 
 #' Function to calculate bounding box for the extent parameter in ncdc_stations function.
-#' @importFrom rgeos gBuffer
 #' @export
 #' @param lat Latitude, in decimal degree style
 #' @param lon Longitude, in decimal degree style
@@ -80,50 +79,28 @@ long2utm <- function(lon, lat) {
 #' latlong2bbox(lat=33.95, lon=-118.40, radius=2) # radius of 2 km
 #' latlong2bbox(lat=33.95, lon=-118.40, radius=200) # radius of 200 km
 #' latlong2bbox(lat=33.95, lon=-118.40, radius=0.02) # radius of 20 meters
-latlong2bbox <- function(lat, lon, radius=10)
-{
+latlong2bbox <- function(lat, lon, radius=10) {
   stopifnot(is.numeric(lat), is.numeric(lon))
-  stopifnot(abs(lat)<=90, abs(lon)<=180)
-
-  # Make a spatialpoints obj, do settings, transform to UTM with zone
-  d <- SpatialPoints(cbind(lon, lat), proj4string = CRS("+proj=longlat +datum=WGS84"))
-  zone <- long2utm(lon=lon, lat=lat)
-  dd <- spTransform(d, CRS(sprintf("+proj=utm +zone=%s +datum=WGS84 +units=m", zone)))
-
-  # give buffer around point given radius
-  inmeters <- radius*1000
-  ee <- gBuffer(dd, width = inmeters)
-
-  # transform back to decimal degree
-  ff <- spTransform(ee, CRS("+proj=longlat +datum=WGS84"))
-
-  # get bounding box, put in a vector of length 4, and return
-  box <- ff@bbox
-  geometry <- sprintf('%s,%s,%s,%s', box[2,1], box[1,1], box[2,2], box[1,2])
-  return( geometry )
-}
-
-latlong2bbox <- function(lat, lon, radius=10)
-{
-  stopifnot(is.numeric(lat), is.numeric(lon))
-  stopifnot(abs(lat)<=90, abs(lon)<=180)
+  stopifnot(abs(lat) <= 90, abs(lon) <= 180)
   
-  # Make a spatialpoints obj, do settings, transform to UTM with zone
-  d <- SpatialPoints(cbind(lon, lat), proj4string = CRS("+proj=longlat +datum=WGS84"))
-  zone <- long2utm(lon=lon, lat=lat)
-  dd <- spTransform(d, CRS(sprintf("+proj=utm +zone=%s +datum=WGS84 +units=m", zone)))
+  # buffer the point
+  pt <- list(
+    type = "Feature",
+    properties = NULL,
+    geometry = list(
+      type = "Point",
+      coordinates = c(lon, lat)
+    )
+  )
+  buff$eval(sprintf("var out = buffer(%s, %s, '%s');", jsonlite::toJSON(pt, auto_unbox = TRUE), radius, "kilometers"))
+  pt_buff <- buff$get("out")
   
-  # give buffer around point given radius
-  inmeters <- radius*1000
-  ee <- gBuffer(dd, width = inmeters)
+  # get bbox
+  extent$eval(sprintf("var bbox = extent(%s);", jsonlite::toJSON(pt_buff, auto_unbox = TRUE)))
+  bbox <- extent$get("bbox")
   
-  # transform back to decimal degree
-  ff <- spTransform(ee, CRS("+proj=longlat +datum=WGS84"))
-  
-  # get bounding box, put in a vector of length 4, and return
-  box <- ff@bbox
-  geometry <- sprintf('%s,%s,%s,%s', box[2,1], box[1,1], box[2,2], box[1,2])
-  return( geometry )
+  # put in a vector of length 4, and return
+  sprintf('%.6f,%.6f,%.6f,%.6f', bbox[2], bbox[1], bbox[4], bbox[3])
 }
 
 #' Check response from NOAA, including status codes, server error messages, mime-type, etc.

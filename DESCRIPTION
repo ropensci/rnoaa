@@ -14,7 +14,7 @@ License: MIT + file LICENSE
 Authors@R: c(
     person("Hart", "Edmund", role = "ctb", email = "Edmund.m.hart@gmail.com"),
     person("Scott", "Chamberlain", role = c("aut","cre"), email = "myrmecocystus@gmail.com"),
-    person("Karthik", "Ram", role = "ctb", email = "karthik.ram@gmail.com"), 
+    person("Karthik", "Ram", role = "ctb", email = "karthik.ram@gmail.com"),
     person("Adam", "Erickson", role = "ctb", email = "adam.erickson@ubc.ca")
   )
 URL: https://github.com/ropensci/rnoaa
@@ -30,12 +30,11 @@ Imports:
     tidyr,
     ggplot2,
     scales,
-    sp,
     rgdal,
-    rgeos,
     XML,
     data.table,
-    jsonlite
+    jsonlite,
+    V8
 Suggests:
     testthat,
     roxygen2,

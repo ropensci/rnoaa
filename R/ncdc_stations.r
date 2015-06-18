@@ -6,7 +6,6 @@
 #'
 #' @export
 #' @importFrom rgdal ogrListLayers readOGR
-#' @importFrom sp SpatialPoints spTransform CRS
 #'
 #' @template rnoaa
 #' @template rnoaa2
@@ -54,19 +53,19 @@
 ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locationid=NULL,
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
   datacategoryid=NULL, extent=NULL, radius=10, token=NULL, dataset=NULL,
-  station=NULL, location=NULL, locationtype=NULL, page=NULL, ...)
-{
+  station=NULL, location=NULL, locationtype=NULL, page=NULL, ...) {
+
   token <- check_key(token)
 
-  if(!is.null(stationid)){
+  if (!is.null(stationid)) {
     url <- sprintf('http://www.ncdc.noaa.gov/cdo-web/api/v2/stations/%s', stationid)
     args <- list()
-  } else
-  {
+  } else {
     url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/stations'
-    if(!is.null(extent)){
-      if(length(extent) == 4){ extent <- paste0(extent, collapse = ",") } else
-      {
+    if (!is.null(extent)) {
+      if (length(extent) == 4) {
+        extent <- paste0(extent, collapse = ",")
+      } else {
         extent <- latlong2bbox(lat=extent[1], lon=extent[2], radius=radius)
       }
     }
