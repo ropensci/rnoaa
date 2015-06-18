@@ -91,7 +91,7 @@ erddap_data <- function(){
 #' @rdname erddap_clear_cache-defunct
 #' @keywords internal
 erddap_clear_cache <- function(){
-  .Defunct(package = "rerddap", msg = "See package rerddap")
+  .Defunct(msg = "See package rerddap")
 }
 
 #' This function is defunct.
@@ -99,7 +99,7 @@ erddap_clear_cache <- function(){
 #' @rdname erddap_datasets-defunct
 #' @keywords internal
 erddap_datasets <- function(){
-  .Defunct(new = "ed_datasets", package = "rerddap", msg = "See ed_datasets() in package rerddap")
+  .Defunct(new = "ed_datasets", msg = "See ed_datasets() in package rerddap")
 }
 
 #' This function is defunct.
@@ -107,7 +107,7 @@ erddap_datasets <- function(){
 #' @rdname erddap_grid-defunct
 #' @keywords internal
 erddap_grid <- function(){
-  .Defunct(new = "griddap", package = "rerddap", msg = "See griddap() in package rerddap")
+  .Defunct(new = "griddap", msg = "See griddap() in package rerddap")
 }
 
 #' This function is defunct.
@@ -115,7 +115,7 @@ erddap_grid <- function(){
 #' @rdname erddap_info-defunct
 #' @keywords internal
 erddap_info <- function(){
-  .Defunct(new = "info", package = "rerddap", msg = "See info() in package rerddap")
+  .Defunct(new = "info", msg = "See info() in package rerddap")
 }
 
 #' This function is defunct.
@@ -123,7 +123,7 @@ erddap_info <- function(){
 #' @rdname erddap_search-defunct
 #' @keywords internal
 erddap_search <- function(){
-  .Defunct(new = "ed_search", package = "rerddap", msg = "See ed_search() in package rerddap")
+  .Defunct(new = "ed_search", msg = "See ed_search() in package rerddap")
 }
 
 #' This function is defunct.
@@ -131,7 +131,7 @@ erddap_search <- function(){
 #' @rdname erddap_table-defunct
 #' @keywords internal
 erddap_table <- function(){
-  .Defunct(new = "tabledap", package = "rerddap", msg = "See tabledap() in package rerddap")
+  .Defunct(new = "tabledap", msg = "See tabledap() in package rerddap")
 }
 
 #' Defunct functions in rnoaa
@@ -149,15 +149,15 @@ erddap_table <- function(){
 #'  \item \code{\link{noaa_seaice}}: Function name changed to seaice
 #'  \item \code{\link{erddap_data}}: See package rerddap
 #'  \item \code{\link{erddap_clear_cache}}: See package rerddap
-#'  \item \code{\link{erddap_datasets}}: Moved to \code{\link[rerddap]{ed_datasets}} in 
+#'  \item \code{\link{erddap_datasets}}: Moved to \code{ed_datasets} in
 #'  package rerddap
-#'  \item \code{\link{erddap_grid}}: Moved to \code{\link[rerddap]{griddap}} in package 
+#'  \item \code{\link{erddap_grid}}: Moved to \code{griddap} in package
 #'  rerddap
-#'  \item \code{\link{erddap_info}}: Moved to \code{\link[rerddap]{info}} in package 
+#'  \item \code{\link{erddap_info}}: Moved to \code{info} in package
 #'  rerddap
-#'  \item \code{\link{erddap_search}}: Moved to \code{\link[rerddap]{ed_search}} in 
+#'  \item \code{\link{erddap_search}}: Moved to \code{ed_search} in
 #'  package rerddap
-#'  \item \code{\link{erddap_table}}: Moved to \code{\link[rerddap]{tabledap}} in 
+#'  \item \code{\link{erddap_table}}: Moved to \code{tabledap} in
 #'  package rerddap
 #' }
 #'

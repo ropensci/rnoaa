@@ -17,15 +17,15 @@
  \item \code{\link{noaa_seaice}}: Function name changed to seaice
  \item \code{\link{erddap_data}}: See package rerddap
  \item \code{\link{erddap_clear_cache}}: See package rerddap
- \item \code{\link{erddap_datasets}}: Moved to \code{\link[rerddap]{ed_datasets}} in
+ \item \code{\link{erddap_datasets}}: Moved to \code{ed_datasets} in
  package rerddap
- \item \code{\link{erddap_grid}}: Moved to \code{\link[rerddap]{griddap}} in package
+ \item \code{\link{erddap_grid}}: Moved to \code{griddap} in package
  rerddap
- \item \code{\link{erddap_info}}: Moved to \code{\link[rerddap]{info}} in package
+ \item \code{\link{erddap_info}}: Moved to \code{info} in package
  rerddap
- \item \code{\link{erddap_search}}: Moved to \code{\link[rerddap]{ed_search}} in
+ \item \code{\link{erddap_search}}: Moved to \code{ed_search} in
  package rerddap
- \item \code{\link{erddap_table}}: Moved to \code{\link[rerddap]{tabledap}} in
+ \item \code{\link{erddap_table}}: Moved to \code{tabledap} in
  package rerddap
 }
 }
