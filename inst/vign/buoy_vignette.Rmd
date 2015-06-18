@@ -1,0 +1,72 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{buoy vignette}
+-->
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  fig.width = 10,
+  comment = "#>", 
+  warning = FALSE, 
+  message = FALSE
+)
+```
+
+buoy vignette
+======
+
+This vignette covers NOAA buoy data from the National Buoy Data Center. The
+main function to get data is `buoy`, while `buoys` can be used to
+get the buoy IDs and web pages for each buoy.
+
+```{r}
+library('rnoaa')
+```
+
+## Find out what buoys are available in a dataset
+
+```{r}
+res <- buoys(dataset = "cwind")
+```
+
+Inspect the buoy ids, and the urls for them
+
+```{r}
+head(res)
+```
+
+Or browse them on the web
+
+```{r eval=FALSE}
+browseURL(res[1, 2])
+```
+
+## Get buoy data
+
+With `buoy` you can get data for a particular dataset, buoy id, year, and datatype. 
+
+Get data for a buoy
+
+> if no year or datatype specified, we get the first file
+
+```{r cache=TRUE}
+buoy(dataset = 'cwind', buoyid = 46085)
+```
+
+Including year
+
+```{r cache=TRUE}
+buoy(dataset = 'cwind', buoyid = 41001, year = 1999)
+```
+
+Including year and datatype
+
+```{r cache=TRUE}
+buoy(dataset = 'cwind', buoyid = 41001, year = 2008, datatype = "cc")
+```
+
+Including just datatype
+
+```{r cache=TRUE}
+buoy(dataset = 'cwind', buoyid = 41001, datatype = "cc")
+```

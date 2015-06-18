@@ -2,6 +2,7 @@ language: r
 
 r_binary_packages:
   - rgdal
+  - ncdf
 
 r_github_packages:
   - jimhester/robustr
