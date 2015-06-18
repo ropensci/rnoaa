@@ -111,18 +111,18 @@ check_response_swdi <- function(x, format){
     }
   } else {
     if (format == 'csv') {
-      stopifnot(x$headers$`content-type` == 'text/plain; charset=UTF-8')
+      stopifnot(grepl('text/plain', x$headers$`content-type`))
       uu <- content(x, as = 'text', encoding = "UTF-8")
       read.delim(text = uu, sep = ",")
     } else {
-      stopifnot(x$headers$`content-type` == 'text/xml;charset=UTF-8')
+      stopifnot(grepl('text/xml', x$headers$`content-type`))
       res <- content(x, as = 'text', encoding = "UTF-8")
       xmlParse(res)
     }
   }
 }
 
-noaa_compact <- function (l) Filter(Negate(is.null), l)
+noaa_compact <- function(l) Filter(Negate(is.null), l)
 
 read_csv <- function(x){
   tmp <- read.csv(x, header = FALSE, sep = ",", stringsAsFactors=FALSE, skip = 3)

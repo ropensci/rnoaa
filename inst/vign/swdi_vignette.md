@@ -22,7 +22,7 @@ Data available in SWDI are:
 * Preliminary Local Storm Reports from the NOAA National Weather Service
 * Lightning Strikes from Vaisala NLDN
 
-Find out more about SWDI at [http://www.ncdc.noaa.gov/swdi/#Intro](http://www.ncdc.noaa.gov/swdi/#Intro) and the API at http://www.ncdc.noaa.gov/swdiws/.
+Find out more about SWDI at [http://www.ncdc.noaa.gov/swdi/#Intro](http://www.ncdc.noaa.gov/swdi/#Intro).
 
 
 ## Load rnoaa
@@ -43,7 +43,7 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.072
+#> [1] 0.003
 #> 
 #> 
 #> $data
@@ -143,7 +143,7 @@ list(out$meta, head(out$data), head(out$shape))
 #> numeric(0)
 #> 
 #> [[1]]$totalTimeInSeconds
-#> [1] 2.247
+#> [1] 0.113
 #> 
 #> 
 #> [[2]]
@@ -182,7 +182,7 @@ swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0
+#> [1] 0.001
 #> 
 #> 
 #> $data
@@ -298,7 +298,20 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-
 
 ```r
 head(swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='csv')$data)
-#> Error: x$headers$`content-type` == "text/plain; charset=UTF-8" is not TRUE
+#>                  ztime wsr_id cell_id cell_type range azimuth max_shear
+#> 1 2006-05-05T00:05:50Z   KBMX      Q0       TVS     7     217       403
+#> 2 2006-05-05T00:10:02Z   KBMX      Q0       TVS     5     208       421
+#> 3 2006-05-05T00:12:34Z   KSJT      P2       TVS    49     106        17
+#> 4 2006-05-05T00:17:31Z   KSJT      B4       TVS    40     297        25
+#> 5 2006-05-05T00:29:13Z   KMAF      H4       TVS    53     333        34
+#> 6 2006-05-05T00:31:25Z   KLBB      N0       TVS    51     241        24
+#>   mxdv    lat      lon
+#> 1  116 33.079  -86.854
+#> 2  120 33.098  -86.817
+#> 3   52 31.142  -99.577
+#> 4   62 31.672 -101.188
+#> 5  111 32.731 -102.664
+#> 6   78 33.238 -102.700
 ```
 
 ### SHP format

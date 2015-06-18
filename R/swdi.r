@@ -141,7 +141,6 @@ swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit
       message(sprintf("kmz file downloaded to %s", filepath))
     }
   } else {
-    # if (length(args) == 0) args <- NULL
     temp <- GET(url, query = args)
     temp <- check_response_swdi(temp, format)
 
