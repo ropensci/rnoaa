@@ -13,7 +13,7 @@ Get NOAA wind storm tabular data, metadata, or shp files from International Best
 
 
 
-Find out more about NOAA storms data at [http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering]().
+Find out more about NOAA storms data at http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering
 
 ## Load rnoaa
 
@@ -359,14 +359,14 @@ resshp <- storm_shp_read(res)
 ```
 #> OGR data source with driver: ESRI Shapefile 
 #> Source: "/Users/sacmac/.rnoaa/storms/year/Year.2013.ibtracs_all_points.v03r06.shp", layer: "Year.2013.ibtracs_all_points.v03r06"
-#> with 3053 features and 146 fields
-#> Feature type: wkbPoint with 2 dimensions
+#> with 3053 features
+#> It has 146 fields
 ```
 
 ```r
-library(maps)
+library("maps")
 map()
 points(resshp)
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 

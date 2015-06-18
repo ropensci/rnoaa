@@ -21,7 +21,7 @@ Get NOAA wind storm tabular data, metadata, or shp files from International Best
 
 
 
-Find out more about NOAA storms data at [http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering]().
+Find out more about NOAA storms data at http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering
 
 ## Load rnoaa
 

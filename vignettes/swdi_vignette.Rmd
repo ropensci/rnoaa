@@ -22,7 +22,7 @@ Data available in SWDI are:
 * Preliminary Local Storm Reports from the NOAA National Weather Service
 * Lightning Strikes from Vaisala NLDN
 
-Find out more about SWDI at [http://www.ncdc.noaa.gov/swdi/#Intro](http://www.ncdc.noaa.gov/swdi/#Intro) and the API at [http://www.ncdc.noaa.gov/swdiws/](http://www.ncdc.noaa.gov/swdiws/).
+Find out more about SWDI at [http://www.ncdc.noaa.gov/swdi/#Intro](http://www.ncdc.noaa.gov/swdi/#Intro) and the API at http://www.ncdc.noaa.gov/swdiws/.
 
 
 ## Load rnoaa
@@ -40,10 +40,10 @@ library('plyr')
 swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> $meta
 #> $meta$totalCount
-#> [1] 25
+#> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.01
+#> [1] 0.072
 #> 
 #> 
 #> $data
@@ -140,10 +140,10 @@ out <- swdi(dataset='warn', startdate='20060506', enddate='20060507', id=533623)
 list(out$meta, head(out$data), head(out$shape))
 #> [[1]]
 #> [[1]]$totalCount
-#> [1] 25
+#> numeric(0)
 #> 
 #> [[1]]$totalTimeInSeconds
-#> [1] 0.089
+#> [1] 2.247
 #> 
 #> 
 #> [[2]]
@@ -179,10 +179,10 @@ list(out$meta, head(out$data), head(out$shape))
 swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90,31))
 #> $meta
 #> $meta$totalCount
-#> [1] 5
+#> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.015
+#> [1] 0
 #> 
 #> 
 #> $data
@@ -218,10 +218,10 @@ swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90
 swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,32.62))
 #> $meta
 #> $meta$totalCount
-#> [1] 5
+#> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.011
+#> [1] 0
 #> 
 #> 
 #> $data
@@ -265,10 +265,10 @@ Get daily count nx3tvs features on .1 degree grid centered at `latitude = 32.7` 
 swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-102.0,32.7')
 #> $meta
 #> $meta$totalCount
-#> [1] 5
+#> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.022
+#> [1] 0
 #> 
 #> 
 #> $data
@@ -298,20 +298,7 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-
 
 ```r
 head(swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='csv')$data)
-#>                  ztime wsr_id cell_id cell_type range azimuth max_shear
-#> 1 2006-05-05T00:05:50Z   KBMX      Q0       TVS     7     217       403
-#> 2 2006-05-05T00:10:02Z   KBMX      Q0       TVS     5     208       421
-#> 3 2006-05-05T00:12:34Z   KSJT      P2       TVS    49     106        17
-#> 4 2006-05-05T00:17:31Z   KSJT      B4       TVS    40     297        25
-#> 5 2006-05-05T00:29:13Z   KMAF      H4       TVS    53     333        34
-#> 6 2006-05-05T00:31:25Z   KLBB      N0       TVS    51     241        24
-#>   mxdv   lat     lon rownumber
-#> 1  116 33.08  -86.85         1
-#> 2  120 33.10  -86.82         2
-#> 3   52 31.14  -99.58         3
-#> 4   62 31.67 -101.19         4
-#> 5  111 32.73 -102.66         5
-#> 6   78 33.24 -102.70         6
+#> Error: x$headers$`content-type` == "text/plain; charset=UTF-8" is not TRUE
 ```
 
 ### SHP format

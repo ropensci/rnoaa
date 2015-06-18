@@ -10,7 +10,7 @@ rnoaa is an R interface to NOAA climate data.
 }
 \details{
 Many functions in this package interact with the National Climatic Data Center application
-programming interface (API) at \url{http://www.ncdc.noaa.gov/cdo-web/webservices/v2}, all of
+programming interface (API) at http://www.ncdc.noaa.gov/cdo-web/webservices/v2, all of
 which functions start with \code{ncdc_}. An access token, or API key, is required to use all
 the \code{ncdc_} functions. The key is required by NOAA, not the creators of this R package.
 Go to the link given above to get an API key.

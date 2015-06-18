@@ -254,8 +254,7 @@ cover statistics include percent frequency of clear, few, scattered, broken and 
 statistics include prevailing and secondary wind direction and percent frequency, average wind speed,
 percentage of calm winds and mean wind vector direction and magnitude.
 
-The statistics are computed from the ISD-lite dataset for which more information can be found at
-http://www.ncdc.noaa.gov/oa/climate/isd/index.php?name=isd-lite. 262 stations were selected from
+The statistics are computed from the ISD-lite dataset. 262 stations were selected from
 the ISD-lite data, based on their completeness and membership in a list of what were known as "first
 order stations." These are typically airport locations with the needed 24 hours/day observations to
 make hourly normals meaningful. All stations had at least 27 of the 30 years represented.

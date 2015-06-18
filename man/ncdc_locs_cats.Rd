@@ -33,7 +33,7 @@ datacoverage fields (optional)}
 
 \item{token}{This must be a valid token token supplied to you by NCDC's Climate
 Data Online access token generator. (required) Get an API key (=token) at
-\url{http://www.ncdc.noaa.gov/cdo-web/token}. You can pass your token in as
+http://www.ncdc.noaa.gov/cdo-web/token. You can pass your token in as
 an argument or store it in your .Rprofile file with an entry like
 \itemize{
   \item options("noaakey" = "your-noaa-token")

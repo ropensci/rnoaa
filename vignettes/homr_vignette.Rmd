@@ -4,12 +4,14 @@
 -->
 
 
+
+
 HOMR metadata
 ======
 
 `HOMR` (Historical Observing Metadata Repository) provides climate station metadata. It's a NOAA service.
 
-Find out more about HOMR at [http://www.ncdc.noaa.gov/homr/]() and the HOMR API at [http://www.ncdc.noaa.gov/homr/api]().
+Find out more about HOMR at [http://www.ncdc.noaa.gov/homr/](http://www.ncdc.noaa.gov/homr/) and the HOMR API at [http://www.ncdc.noaa.gov/homr/api](http://www.ncdc.noaa.gov/homr/api).
 
 ## Load rnoaa
 
@@ -20,7 +22,7 @@ library('rnoaa')
 
 ## Search by station identifier
 
-You can do this in various ways. Using the `qid` parameter (stands or qualified ID, as far as I know), you can search by suffix (e.g., `046742`), or both separated by a colon (e.g., `COOP:046742`).
+You can do this in various ways. Using the `qid` parameter (stands or qualified ID, as far as I know), you can search by suffix (e.g., `046742`), or both separated by a colon (e.g., `COOP:046742`). 
 
 By station suffix
 
@@ -39,8 +41,8 @@ names(res[['20002078']])
 ```
 
 ```
-#>  [1] "id"          "head"        "namez"       "identifiers" "status"
-#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"
+#>  [1] "id"          "head"        "namez"       "identifiers" "status"     
+#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"   
 #> [11] "location"
 ```
 
@@ -51,13 +53,13 @@ res$`20002078`[1:3]
 ```
 #> $id
 #> [1] "20002078"
-#>
+#> 
 #> $head
 #>                  preferredName latitude_dec longitude_dec precision
 #> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283    DDMMSS
 #>             por.beginDate por.endDate
 #> 1 1949-10-05T00:00:00.000     Present
-#>
+#> 
 #> $namez
 #>                         name  nameType
 #> 1   PASO ROBLES MUNICIPAL AP      COOP
@@ -82,8 +84,8 @@ names(res[['20002078']])
 ```
 
 ```
-#>  [1] "id"          "head"        "namez"       "identifiers" "status"
-#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"
+#>  [1] "id"          "head"        "namez"       "identifiers" "status"     
+#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"   
 #> [11] "location"
 ```
 
@@ -94,19 +96,19 @@ res$`20002078`[1:5]
 ```
 #> $id
 #> [1] "20002078"
-#>
+#> 
 #> $head
 #>                  preferredName latitude_dec longitude_dec precision
 #> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283    DDMMSS
 #>             por.beginDate por.endDate
 #> 1 1949-10-05T00:00:00.000     Present
-#>
+#> 
 #> $namez
 #>                         name  nameType
 #> 1   PASO ROBLES MUNICIPAL AP      COOP
 #> 2   PASO ROBLES MUNICIPAL AP PRINCIPAL
 #> 3 PASO ROBLES MUNICIPAL ARPT       PUB
-#>
+#> 
 #> $identifiers
 #>      idType          id
 #> 1     GHCND USW00093209
@@ -117,14 +119,14 @@ res$`20002078`[1:5]
 #> 6      ICAO        KPRB
 #> 7     NWSLI         PRB
 #> 8 NCDCSTNID    20002078
-#>
+#> 
 #> $status
 #> NULL
 ```
 
 ## Search by station parameter
 
-You can also search by station identifier, which is different from the `qid` above.
+You can also search by station identifier, which is different from the `qid` above. 
 
 
 ```r
@@ -141,8 +143,8 @@ names(res[['20002078']])
 ```
 
 ```
-#>  [1] "id"          "head"        "namez"       "identifiers" "status"
-#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"
+#>  [1] "id"          "head"        "namez"       "identifiers" "status"     
+#>  [6] "platform"    "relocations" "remarks"     "updates"     "elements"   
 #> [11] "location"
 ```
 
@@ -161,10 +163,10 @@ res$`20002078`[4:6]
 #> 6      ICAO        KPRB
 #> 7     NWSLI         PRB
 #> 8 NCDCSTNID    20002078
-#>
+#> 
 #> $status
 #> NULL
-#>
+#> 
 #> $platform
 #> [1] "COOP"
 ```
@@ -189,7 +191,9 @@ names(res)
 #> [37] "30046814" "30051475" "30057217" "30063570" "30064900" "30065901"
 #> [43] "30067636" "30069663" "30075067" "30077378" "30077857" "30077923"
 #> [49] "30077988" "30079088" "30079240" "30082430" "30084216" "30084262"
-#> [55] "30084537" "30084796"
+#> [55] "30084537" "30084796" "30094582" "30094639" "30094664" "30094670"
+#> [61] "30094683" "30094730" "30094806" "30094830" "30094917" "30094931"
+#> [67] "30094936"
 ```
 
 By country
@@ -197,7 +201,7 @@ By country
 
 ```r
 res <- homr(country='GHANA', begindate='2005-01-01', enddate='2005-02-01')
-library(plyr)
+library("plyr")
 ldply(res, function(x) x$location$latlon)
 ```
 
@@ -228,19 +232,19 @@ head( ldply(res, "[[", "head") )
 ```
 
 ```
-#>        .id         preferredName latitude_dec longitude_dec precision
-#> 1 20013839         LEICESTER, NC        35.65         -82.7      DDMM
-#> 2 30077883 WEAVERVILLE 4.2 N, NC      35.7579      -82.5618      <NA>
-#> 3 30026101     ARDEN 1.6 ENE, NC      35.4791      -82.4924      <NA>
-#> 4 20013817     SWANNANOA 2 E, NC         35.6     -82.36667      DDMM
-#> 5 30023671 SWANNANOA 2.7 NNW, NC      35.6365      -82.4141      <NA>
-#> 6 30061838 ASHEVILLE 4.2 ESE, NC        35.55        -82.48      <NA>
+#>        .id            preferredName latitude_dec longitude_dec precision
+#> 1 20013818        BEETREE DAM 2, NC     35.63333         -82.4      DDMM
+#> 2 20013838          BEETREE GAP, NC         35.7         -82.4      DDMM
+#> 3 20014046      SWANNANOA 2 SSE, NC     35.57333       -82.385    DDMMSS
+#> 4 30083542 BLACK MOUNTAIN 0.8 N, NC      35.6263      -82.3297      <NA>
+#> 5 20013839            LEICESTER, NC        35.65         -82.7      DDMM
+#> 6 30077883    WEAVERVILLE 4.2 N, NC      35.7579      -82.5618      <NA>
 #>             por.beginDate             por.endDate
 #> 1 1949-01-01T00:00:00.000 1962-03-31T00:00:00.000
-#> 2                 Unknown                 Present
-#> 3                 Unknown                 Present
-#> 4 1948-08-01T00:00:00.000 1987-08-26T00:00:00.000
-#> 5                 Unknown                 Present
+#> 2 1948-08-01T00:00:00.000 1950-12-31T00:00:00.000
+#> 3 1984-01-01T00:00:00.000 2008-03-31T00:00:00.000
+#> 4                 Unknown                 Present
+#> 5 1949-01-01T00:00:00.000 1962-03-31T00:00:00.000
 #> 6                 Unknown                 Present
 ```
 
@@ -253,25 +257,25 @@ head( ldply(res, "[[", "head") )
 ```
 
 ```
-#>        .id                preferredName latitude_dec longitude_dec
-#> 1 20004158       REHOBOTH BEACH LBS, DE     38.61667     -75.06667
-#> 2 20004159          GEORGETOWN 5 SW, DE     38.63333        -75.45
-#> 3 20004165 BRIDGEVILLE STATE POLICE, DE     38.77444      -75.6075
-#> 4 20004183         MIDDLETOWN 1 WSW, DE     39.43333        -75.75
-#> 5 30027455            DELMAR 2.8 NE, DE      38.4863      -75.5332
-#> 6 30039554         GREENWOOD 2.9 SE, DE      38.7731      -75.5616
+#>        .id                   preferredName latitude_dec longitude_dec
+#> 1 20004159             GEORGETOWN 5 SW, DE     38.63333        -75.45
+#> 2 30075067         PRIME HOOK DELAWARE, DE      38.8333      -75.3333
+#> 3 20004158          REHOBOTH BEACH LBS, DE     38.61667     -75.06667
+#> 4 30039554            GREENWOOD 2.9 SE, DE      38.7731      -75.5616
+#> 5 30067636                LEWES 0.8 SE, DE      38.7731      -75.1385
+#> 6 20004174 BRANDYWINE SHOALS LIGHT STN, DE     38.98333         -75.1
 #>   precision           por.beginDate             por.endDate
-#> 1      DDMM                 Unknown                 Present
-#> 2      DDMM 1948-08-01T00:00:00.000 1997-06-01T00:00:00.000
-#> 3    DDMMSS 1975-08-01T00:00:00.000 2003-09-01T00:00:00.000
-#> 4      DDMM 1952-08-01T00:00:00.000 1985-08-01T00:00:00.000
+#> 1      DDMM 1948-08-01T00:00:00.000 1997-06-01T00:00:00.000
+#> 2      <NA>                 Unknown                 Present
+#> 3      DDMM                 Unknown                 Present
+#> 4      <NA>                 Unknown                 Present
 #> 5      <NA>                 Unknown                 Present
-#> 6      <NA>                 Unknown                 Present
+#> 6      DDMM 1972-10-01T00:00:00.000 1973-04-30T00:00:00.000
 ```
 
 ## Data definitions
 
-The data returned is the same format for all, so a separate function is provided to get metadata. The function `homr_definitions()` does query the HOMR API, so does get updated metadata - i.e., it's not a static dataset stored locally.
+The data returned is the same format for all, so a separate function is provided to get metadata. The function `homr_definitions()` does query the HOMR API, so does get updated metadata - i.e., it's not a static dataset stored locally. 
 
 
 ```r
