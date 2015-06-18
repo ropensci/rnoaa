@@ -18,24 +18,6 @@ knitr::opts_chunk$set(
 [![Coverage Status](https://coveralls.io/repos/ropensci/rnoaa/badge.svg)](https://coveralls.io/r/ropensci/rnoaa)
 [![cran version](http://www.r-pkg.org/badges/version/rnoaa)](http://cran.rstudio.com/web/packages/rnoaa)
 
-## IMPORTANT - BUOY DATA
-
-NOAA buoy data requires an R pacakage `ncdf4` that is difficult to use on Windows. Therefore, we have moved functions for working with buoy data into a separate branch called `buoy`, and the `CRAN` version does not include buoy functions. Thus, if you're on a Linux machine or on OSX you should be able to use the `buoy` branch just fine after installing the `netcdf` as:
-
-OSX
-
-```
-brew install netcdf
-```
-
-Linux (Ubuntu)
-
-```
-sudo apt-get install netcdf*
-```
-
-Then `rnoaa` with the buoy functions should install and load correctly. See [this stackoverflow post](http://stackoverflow.com/questions/22805123/netcdf-make-command-test/22806048#22806048) and [this blog post](http://mazamascience.com/WorkingWithData/?p=1429) for more Linux/OSX `netcdf` installation help.
-
 ## Help
 
 There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.r-project.org/web/packages/rnoaa/index.html). The tutorials:
@@ -51,11 +33,9 @@ There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoa
 
 ## Data sources used in rnoaa
 
-The majority of functions in this package work with NOAA NCDC data.
-
 * NOAA NCDC climate data:
-    * We are using the NOAA API version 2. A previous version of this software was using their V1 API - older versions of this software use the old API - let us know if you want to use that.
-    * The docs for the NCDC data API are [here](http://www.ncdc.noaa.gov/cdo-web/webservices/v2)
+    * We are using the NOAA API version 2
+    * Docs for the NCDC API are [here](http://www.ncdc.noaa.gov/cdo-web/webservices/v2)
     * GHCN Daily data is available [here](http://www.ncdc.noaa.gov/oa/climate/ghcn-daily/) via FTP and HTTP
 * Severe weather data docs are at http://www.ncdc.noaa.gov/swdiws/
 * [Sea ice data](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
