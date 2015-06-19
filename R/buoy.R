@@ -89,7 +89,6 @@ pickme <- function(findme, against) {
 #' @export
 #' @rdname buoy
 buoys <- function(dataset, ...) {
-  check4ncdf()
   url <- sprintf('http://dods.ndbc.noaa.gov/thredds/catalog/data/%s/catalog.html', dataset)
   res <- GET(url, ...)
   tt <- content(res, as = "text")
