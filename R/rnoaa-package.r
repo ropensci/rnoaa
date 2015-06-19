@@ -10,20 +10,29 @@
 #' are:
 #'
 #' \itemize{
-#'  \item \code{buoy_*} - NOAA Buoy data, only on buoy branch in Github repo
+#'  \item \code{buoy_*} - NOAA Buoy data from the National Buoy Data Center
+#'  \item \code{ghcnd_*} - GHCND daily data from NOAA
+#'  \item \code{isd_*} - ISD/ISH data from NOAA
+#'  \item \code{homr_*} - Historical Observing Metadata Repository (HOMR) vignette
 #'  \item \code{ncdc_*} - NOAA National Climatic Data Center (NCDC) vignette (examples)
 #'  \item \code{seaice} - Sea ice vignette
-#'  \item \code{swdi} - Severe Weather Data Inventory (SWDI) vignette
-#'  \item \code{homr_*} - Historical Observing Metadata Repository (HOMR) vignette
 #'  \item \code{storm_} - Storms (IBTrACS) vignette
+#'  \item \code{swdi} - Severe Weather Data Inventory (SWDI) vignette
 #'  \item \code{tornadoes} - From the NOAA Storm Prediction Center
 #' }
+#' 
+#' @section A note about ncdf:
+#' 
+#' Functions to work with buoy data use netcdf files. You'll need the \code{ncdf}
+#' package for those functions, and those only. \code{ncdf} is in Suggests in 
+#' this package, meaning you only need \code{ncdf} if you are using the buoy 
+#' functions. You'll get an informative error telling you to install \code{ncdf}
+#' if you don't have it and you try to use the buoy functions.
 #'
 #' @name rnoaa-package
 #' @aliases rnoaa
 #' @docType package
-#' @title General purpose R interface to noaa.
-#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
+#' @title General purpose R interface to NOAA datasets.
 #' @keywords package
 NULL
 
