@@ -52,6 +52,7 @@
 #' buoy(dataset = 'cwind', buoyid = 46085, config=verbose())
 #' }
 buoy <- function(dataset, buoyid, year=NULL, datatype=NULL, ...) {
+  check4ncdf()
   availbuoys <- buoys(dataset, ...)
   page <- availbuoys[grep(buoyid, availbuoys$id), "url"]
   files <- buoy_files(page, buoyid, ...)
@@ -88,6 +89,7 @@ pickme <- function(findme, against) {
 #' @export
 #' @rdname buoy
 buoys <- function(dataset, ...) {
+  check4ncdf()
   url <- sprintf('http://dods.ndbc.noaa.gov/thredds/catalog/data/%s/catalog.html', dataset)
   res <- GET(url, ...)
   tt <- content(res, as = "text")
@@ -180,3 +182,12 @@ convert_time <- function(n = NULL, isoTime = NULL) {
 #     stop(sprintf("Supply only one of %s or %s", deparse(substitute(x)), deparse(substitute(y))), call. = FALSE)
 #   }
 # }
+
+# check for ncdf
+check4ncdf <- function() {
+  if (!requireNamespace("ncdf", quietly = TRUE)) {
+    stop("Please install ncdf", call. = FALSE)
+  } else {
+    invisible(TRUE)
+  }
+}
