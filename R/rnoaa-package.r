@@ -28,6 +28,9 @@
 #' this package, meaning you only need \code{ncdf} if you are using the buoy 
 #' functions. You'll get an informative error telling you to install \code{ncdf}
 #' if you don't have it and you try to use the buoy functions.
+#' 
+#' Installation of \code{ncdf} should be straightforward on Mac and Windows, but 
+#' on Linux you may have issues. See http://cran.r-project.org/web/packages/ncdf/INSTALL
 #'
 #' @name rnoaa-package
 #' @aliases rnoaa
