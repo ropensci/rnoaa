@@ -72,6 +72,7 @@ ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
                          extent = extent))
   }
 
+  if (length(args) == 0) args <- NULL
   temp <- GET(url, query = args, add_headers("token" = token), ...)
   tt <- check_response(temp)
   if (is(temp, "character")) {

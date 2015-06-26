@@ -34,7 +34,7 @@ ncdc_locs_cats <- function(datasetid=NULL, locationcategoryid=NULL,
   args <- noaa_compact(list(datasetid=datasetid,locationcategoryid=locationcategoryid,
     startdate=startdate, enddate=enddate,token=token,sortfield=sortfield,
     sortorder=sortorder,limit=limit,offset=offset))
-
+  if (length(args) == 0) args <- NULL
   temp <- GET(url, query=args, add_headers("token" = token), ...)
   tt <- check_response(temp)
   if(is(tt, "character")){

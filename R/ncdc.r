@@ -137,6 +137,7 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
                          limit=limit, offset=offset, includemetadata=includemetadata))
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
+  if (length(args) == 0) args <- NULL
   temp <- GET(base, query=args, add_headers("token" = token), ...)
   tt <- check_response(temp)
   if(is(tt, "character")){

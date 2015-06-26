@@ -38,7 +38,7 @@ ncdc_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
                        locationcategoryid=locationcategoryid,startdate=startdate,
                        enddate=enddate,token=token,sortfield=sortfield,
                        sortorder=sortorder,limit=limit,offset=offset))
-
+  if (length(args) == 0) args <- NULL
   temp <- GET(url, query=args, add_headers("token" = token), ...)
   tt <- check_response(temp)
   if(is(tt, "character")){
