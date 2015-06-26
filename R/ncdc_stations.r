@@ -50,7 +50,7 @@
 
 ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locationid=NULL,
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
-  datacategoryid=NULL, extent=NULL, radius=10, token=NULL, dataset=NULL,
+  datacategoryid=NULL, extent=NULL, token=NULL, dataset=NULL,
   station=NULL, location=NULL, locationtype=NULL, page=NULL, ...) {
 
   token <- check_key(token)

@@ -7,9 +7,8 @@
 ncdc_stations(stationid = NULL, datasetid = NULL, datatypeid = NULL,
   locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
   sortorder = NULL, limit = 25, offset = NULL, datacategoryid = NULL,
-  extent = NULL, radius = 10, token = NULL, dataset = NULL,
-  station = NULL, location = NULL, locationtype = NULL, page = NULL,
-  ...)
+  extent = NULL, token = NULL, dataset = NULL, station = NULL,
+  location = NULL, locationtype = NULL, page = NULL, ...)
 }
 \arguments{
 \item{stationid}{Accepts a valid station id or a chain of of station ids in a
@@ -48,14 +47,9 @@ array of data category ids.  Stations returned will be associated with the data
 category(ies) specified}
 
 \item{extent}{(numeric, optional) The geographical extent for which you want to
-search. Give either a vecctor with two values: a latitude and a longitude. For
-example, \code{c(lat,long)}. Or give four values that defines a bounding box,
-lat and long for the southwest corner, then lat and long for the northeast corner.
-For example: \code{c(minlat, minlong, maxlat, maxlong)}.}
-
-\item{radius}{(numeric) If a single latitude/longitude pair is given to the extent
-parameter, the radius to create around the point. Ignored if a vector of appropriate
-structure is passed to the  extent parameter.}
+search. Give four values that defines a bounding box, lat and long for the
+southwest corner, then lat and long for the northeast corner. For example:
+\code{c(minlat, minlong, maxlat, maxlong)}.}
 
 \item{token}{This must be a valid token token supplied to you by NCDC's Climate
 Data Online access token generator. (required) Get an API key (=token) at
