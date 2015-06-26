@@ -78,6 +78,7 @@ homr <- function(qid=NULL, qidMod=NULL, station=NULL, state=NULL, county=NULL, c
   args <- noaa_compact(list(qid=qid, qidMod=qidMod, state=state, county=county, country=country,
       name=name, nameMod=nameMod, platform=platform, date=date, begindate=begindate,
       enddate=enddate, headersOnly=tl(headersOnly), phrData=tl(phrData), definitions='false'))
+  if (length(args) == 0) args <- NULL
   url <- if(is.null(station)) paste0(homr_base(), "search") else paste0(homr_base(), station)
   res <- GET(url, query=args, ...)
   out <- content(res, "text")

@@ -93,6 +93,7 @@ switch_name <- function(x){
 }
 
 ncdcl_GET <- function(url, args, ...){
+  if (length(args) == 0) args <- NULL
   res <- GET(url, query = args, ...)
   if (res$status_code > 200) {
     if (res$status_code == 503) stop(get_retry(res), call. = FALSE) else stop_for_status(res)
