@@ -1,13 +1,25 @@
+rnoaa 0.4.2
+===============
+
+### MINOR IMPROVEMENTS
+
+* Explicitly import non-base R pkg functions, so importing from `utils`, `methods`, and `stats` (#103)
+
+### BUG FIXES
+
+* Fixed problem with `httr` `v1` where empty list not allowed to pass to
+the `query` parameter in `GET` (#101)
+
 rnoaa 0.4.0
 ===============
 
 NEW FEATURES
 
-+ Gains a suite of new functions for working with NOAA GHCND data, including 
++ Gains a suite of new functions for working with NOAA GHCND data, including
 `ghcnd()`, `ghcnd_clear_cache()`, `ghcnd_countries()`, `ghcnd_search()`, `ghcnd_splitvars()`
 `ghcnd_states()`, `ghcnd_stations()`, and `ghcnd_version()` (#85) (#86) (#87) (#88) (#94)
 + New contributor Adam Erickson (@DougFirErickson)
-+ All NOAA buoy functions put back into the package. They were previously 
++ All NOAA buoy functions put back into the package. They were previously
 on a separate branch in the GitHub repository. (#37) (#71) (#100)
 
 MINOR IMPROVEMENTS
@@ -18,7 +30,7 @@ MINOR IMPROVEMENTS
 + `callopts` parameter changed to `...` in function `swdi()`.
 + More robust test suite.
 + `ncdc()` requires that users do their own paging - previously this was done internally (#77)
-+ Many dependencies dropped, simplifying package: `RCurl`, `maptools`, `stringr`, `digest`. 
++ Many dependencies dropped, simplifying package: `RCurl`, `maptools`, `stringr`, `digest`.
 A few new ones added: `dplyr`, `tidyr`.
 
 DEPRECATED AND DEFUNCT
