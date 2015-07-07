@@ -32,6 +32,9 @@
 #' Installation of \code{ncdf} should be straightforward on Mac and Windows, but 
 #' on Linux you may have issues. See http://cran.r-project.org/web/packages/ncdf/INSTALL
 #'
+#' @importFrom methods is
+#' @importFrom stats var
+#' @importFrom utils head download.file read.csv read.delim read.fwf write.csv untar unzip
 #' @name rnoaa-package
 #' @aliases rnoaa
 #' @docType package
