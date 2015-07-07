@@ -27,6 +27,17 @@
  package rerddap
  \item \code{\link{erddap_table}}: Moved to \code{tabledap} in
  package rerddap
+ \item \code{\link{ncdc_leg_variables}}: Removed. See \code{NCDC Legacy} below
+ \item \code{\link{ncdc_leg_sites}}: Removed. See \code{NCDC Legacy} below
+ \item \code{\link{ncdc_leg_site_info}}: Removed. See \code{NCDC Legacy} below
+ \item \code{\link{ncdc_leg_data}}: Removed. See \code{NCDC Legacy} below
 }
+}
+\section{NCDC Legacy}{
+
+The NCDC legacy API is too unreliable and slow. Use the newer NCDC API via the
+functions \code{\link{ncdc}}, \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},
+\code{\link{ncdc_datatypes}}, \code{\link{ncdc_locs}}, \code{\link{ncdc_locs_cats}},
+\code{\link{ncdc_stations}}, \code{\link{ncdc_plot}}, and \code{\link{ncdc_combine}}
 }
 
