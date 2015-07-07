@@ -74,8 +74,8 @@ ncdc_leg_data('isd', 71238099999, 'TMP', 200101, 200201)
 }
 }
 \references{
-\url{http://www7.ncdc.noaa.gov/wsregistration/ws_home.html},
-\url{http://www7.ncdc.noaa.gov/rest/},
-\url{http://www7.ncdc.noaa.gov/wsregistration/CDOServices.html}
+http://www7.ncdc.noaa.gov/wsregistration/ws_home.html,
+http://www7.ncdc.noaa.gov/rest/,
+http://www7.ncdc.noaa.gov/wsregistration/CDOServices.html
 }
 

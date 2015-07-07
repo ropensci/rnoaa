@@ -13,9 +13,9 @@
 #' @param start_date,end_date Date to start and end search for. Valid formats include, YYYY,
 #' YYYYMM, YYYYMMDD, YYYYMMDDhh, and YYYYMMDDhhmm.
 #' @param ... Further args passed to \code{\link[httr]{GET}}
-#' @references \url{http://www7.ncdc.noaa.gov/wsregistration/ws_home.html},
-#' \url{http://www7.ncdc.noaa.gov/rest/},
-#' \url{http://www7.ncdc.noaa.gov/wsregistration/CDOServices.html}
+#' @references http://www7.ncdc.noaa.gov/wsregistration/ws_home.html,
+#' http://www7.ncdc.noaa.gov/rest/,
+#' http://www7.ncdc.noaa.gov/wsregistration/CDOServices.html
 #' @details BEWARE: This service, as far as I can tell, enforces a wait time between successive
 #' data requests of 60 seconds. This is indeed a long time.
 #' @examples \dontrun{
