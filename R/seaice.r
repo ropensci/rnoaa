@@ -37,7 +37,7 @@
 #' }
 seaice <- function(url, ...) {
   tt <- readshpfile(url, ...)
-  fortify(tt)
+  suppressMessages(fortify(tt))
 }
 
 #' Make all urls for sea ice data
@@ -117,14 +117,14 @@ readshpfile <- function(x, storepath = NULL) {
   }
   path_write <- paste0(storepath, '/', filename_noending)
   path <- paste0(storepath, '/', filename)
-  bb <- try(download.file(x, path), silent = TRUE)
+  bb <- try(download.file(x, path, quiet = TRUE), silent = TRUE)
   if (class(bb) == "try-error") {
     stop('Data not available, ftp server may be down')
   }
   dir.create(path_write, showWarnings = FALSE)
   unzip(path, exdir = path_write)
   my_layer <- ogrListLayers(path.expand(path_write))
-  readOGR(path.expand(path_write), layer = my_layer)
+  readOGR(path.expand(path_write), layer = my_layer, verbose = FALSE)
 }
 
 #' ggplot2 map theme

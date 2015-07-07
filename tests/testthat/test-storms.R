@@ -18,8 +18,8 @@ test_that("storms meta", {
 test_that("storms data", {
   skip_on_cran()
   
-  storm <- storm_data(storm = '1970143N19091')
-  yr <- storm_data(year = 1940)
+  storm <- suppressMessages(storm_data(storm = '1970143N19091'))
+  yr <- suppressMessages(storm_data(year = 1940))
   
   expect_is(storm, "storm_data")
   expect_is(yr, "storm_data")

@@ -58,5 +58,5 @@ filepath2 <- function(basin, storm, year, type){
 
 shp_remote <- function(basin, storm, year, type) file.path(stormurl("shp"), shpfileext(basin, storm, year, type))
 shp_local <- function(basin, storm, year, path, type) file.path(path, shpfileext(basin, storm, year, type))
-is_shpstorm <- function(x) if(all(file.exists(x))) TRUE else FALSE
-readshp2 <- function(x, layer) readOGR(dsn = path.expand(x), layer = layer, stringsAsFactors = FALSE)
+is_shpstorm <- function(x) if (all(file.exists(x))) TRUE else FALSE
+readshp2 <- function(x, layer) readOGR(dsn = path.expand(x), layer = layer, stringsAsFactors = FALSE, verbose = FALSE)
