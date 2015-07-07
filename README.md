@@ -6,11 +6,11 @@ rnoaa
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 [![Build status](https://ci.appveyor.com/api/projects/status/8daqtllo2sg6me07/branch/master)](https://ci.appveyor.com/project/sckott/rnoaa/branch/master)
 [![Coverage Status](https://coveralls.io/repos/ropensci/rnoaa/badge.svg)](https://coveralls.io/r/ropensci/rnoaa)
-[![cran version](http://www.r-pkg.org/badges/version/rnoaa)](http://cran.rstudio.com/web/packages/rnoaa)
+[![cran version](http://www.r-pkg.org/badges/version/rnoaa)](http://cran.rstudio.com/package=rnoaa)
 
 ## Help
 
-There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.r-project.org/web/packages/rnoaa/index.html). The tutorials:
+There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.rstudio.com/package=rnoaa). The tutorials:
 
 * NOAA Buoy vignette
 * NOAA National Climatic Data Center (NCDC) vignette (examples)
@@ -143,7 +143,7 @@ library('rnoaa')
 ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> $meta
 #> $meta$totalCount
-#> [1] 1657
+#> [1] 1980
 #> 
 #> $meta$pageCount
 #> [1] 25
@@ -155,30 +155,30 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> $data
 #>       mindate    maxdate                  name datacoverage            id
 #> 1  1892-08-01 2015-05-31            Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2015-06-15            Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1906-01-01 1980-12-31            Zinder, NG       0.8678 CITY:NG000004
-#> 4  1938-01-01 2015-06-15         Zhytomyra, UP       0.9731 CITY:UP000025
-#> 5  1948-03-01 2015-06-15        Zhezkazgan, KZ       0.9294 CITY:KZ000017
-#> 6  1951-01-01 2015-06-15         Zhengzhou, CH       1.0000 CITY:CH000045
-#> 7  1941-01-01 2014-12-22          Zaragoza, SP       1.0000 CITY:SP000021
-#> 8  1936-01-01 2009-06-16      Zaporiyhzhya, UP       0.9739 CITY:UP000024
-#> 9  1893-01-01 2015-06-18     Zanesville, OH US       1.0000 CITY:US390029
-#> 10 1912-01-01 1971-12-31             Zahle, LE       0.7972 CITY:LE000004
-#> 11 1951-01-01 2010-05-19           Zahedan, IR       0.9930 CITY:IR000019
-#> 12 1860-12-01 2013-12-31            Zagreb, HR       1.0000 CITY:HR000002
-#> 13 1947-01-01 2015-05-30 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
-#> 14 1893-01-01 2015-06-18           Yuma, AZ US       1.0000 CITY:US040015
-#> 15 1942-02-01 2015-06-18   Yucca Valley, CA US       1.0000 CITY:US060048
-#> 16 1893-01-01 2015-06-18      Yuba City, CA US       1.0000 CITY:US060047
-#> 17 1893-01-01 2015-06-18     Youngstown, OH US       1.0000 CITY:US390028
-#> 18 1941-01-01 2015-06-18           York, PA US       1.0000 CITY:US420024
-#> 19 1876-01-01 2015-06-18        Yonkers, NY US       1.0000 CITY:US360031
-#> 20 1949-01-01 2015-06-15          Yokohama, JA       1.0000 CITY:JA000017
-#> 21 1951-01-01 2015-06-15          Yinchuan, CH       1.0000 CITY:CH000044
-#> 22 1885-06-01 2015-06-15           Yerevan, AM       0.9751 CITY:AM000001
-#> 23 1948-01-01 2015-06-18     Yazoo City, MS US       1.0000 CITY:US280020
-#> 24 1959-07-01 1987-05-20         Yaroslavl, RS       0.9850 CITY:RS000080
-#> 25 1932-01-01 2015-06-18        Yankton, SD US       1.0000 CITY:US460009
+#> 2  1901-01-01 2015-07-03            Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2015-07-03         Zonguldak, TU       0.8621 CITY:TU000057
+#> 4  1906-01-01 2015-07-03            Zinder, NG       0.9019 CITY:NG000004
+#> 5  1973-01-01 2015-07-03        Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2015-07-03         Zhytomyra, UP       0.9732 CITY:UP000025
+#> 7  1948-03-01 2015-07-03        Zhezkazgan, KZ       0.9295 CITY:KZ000017
+#> 8  1951-01-01 2015-07-03         Zhengzhou, CH       1.0000 CITY:CH000045
+#> 9  1941-01-01 2014-12-22          Zaragoza, SP       1.0000 CITY:SP000021
+#> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       0.9739 CITY:UP000024
+#> 11 1957-01-01 2015-07-03          Zanzibar, TZ       0.7981 CITY:TZ000019
+#> 12 1973-01-01 2015-07-03            Zanjan, IR       0.9080 CITY:IR000020
+#> 13 1893-01-01 2015-07-05     Zanesville, OH US       1.0000 CITY:US390029
+#> 14 1912-01-01 2015-07-03             Zahle, LE       0.9805 CITY:LE000004
+#> 15 1951-01-01 2015-07-03           Zahedan, IR       0.9975 CITY:IR000019
+#> 16 1860-12-01 2015-07-03            Zagreb, HR       1.0000 CITY:HR000002
+#> 17 1975-08-29 2015-07-03         Zacatecas, MX       0.9293 CITY:MX000036
+#> 18 1947-01-01 2015-07-03 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
+#> 19 1893-01-01 2015-07-05           Yuma, AZ US       1.0000 CITY:US040015
+#> 20 1942-02-01 2015-07-05   Yucca Valley, CA US       1.0000 CITY:US060048
+#> 21 1893-01-01 2015-07-05      Yuba City, CA US       1.0000 CITY:US060047
+#> 22 1998-02-01 2015-07-03            Yozgat, TU       0.9908 CITY:TU000056
+#> 23 1893-01-01 2015-07-05     Youngstown, OH US       1.0000 CITY:US390028
+#> 24 1941-01-01 2015-07-05           York, PA US       1.0000 CITY:US420024
+#> 25 1876-01-01 2015-07-05        Yonkers, NY US       1.0000 CITY:US360031
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -194,7 +194,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
-#> 1      12.2 1899-02-01 2015-06-16  28.8029 INVERNESS 3 SE, FL US
+#> 1      12.2 1899-02-01 2015-07-04  28.8029 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS  -82.3126
 #> 
@@ -266,10 +266,10 @@ ncdc_datasets()
 #> $data
 #>                     uid    mindate    maxdate                      name
 #> 1  gov.noaa.ncdc:C00040 1831-02-01 2015-01-01          Annual Summaries
-#> 2  gov.noaa.ncdc:C00861 1763-01-01 2015-06-17           Daily Summaries
-#> 3  gov.noaa.ncdc:C00841 1763-01-01 2015-05-01         Monthly Summaries
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2015-06-18  Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2015-06-14 Weather Radar (Level III)
+#> 2  gov.noaa.ncdc:C00861 1763-01-01 2015-07-05           Daily Summaries
+#> 3  gov.noaa.ncdc:C00841 1763-01-01 2015-06-01         Monthly Summaries
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2015-07-05  Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2015-07-02 Weather Radar (Level III)
 #> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01   Normals Annual/Seasonal
 #> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31             Normals Daily
 #> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31            Normals Hourly
