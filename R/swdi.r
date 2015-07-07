@@ -1,7 +1,6 @@
 #' Get NOAA data for the severe weather data inventory (swdi).
 #'
 #' @importFrom XML xpathSApply xpathApply xmlValue xmlParse xmlToList
-#' @importFrom data.table rbindlist
 #'
 #' @param dataset Dataset to query. See below for details.
 #' @param format File format to download. One of xml, csv, shp, or kmz.
@@ -157,7 +156,8 @@ swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit
       } else if (format == 'xml') {
         xml <- xpathSApply(temp, "//result")
         aslist <- lapply(xml, xmlToList)
-        dat <- data.frame(rbindlist(aslist), stringsAsFactors = FALSE)
+        dat <- dplyr::bind_rows(lapply(aslist, data.frame, stringsAsFactors = FALSE))
+        # dat <- data.frame(rbindlist(aslist), stringsAsFactors = FALSE)
         shp <- data.frame(shape = dat[, names(dat) %in% 'shape'], stringsAsFactors = FALSE)
         dat <- dat[, !names(dat) %in% c('shape','rownumber')]
 

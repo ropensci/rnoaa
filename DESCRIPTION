@@ -33,7 +33,6 @@ Imports:
     scales,
     rgdal,
     XML,
-    data.table,
     jsonlite
 Suggests:
     testthat,
