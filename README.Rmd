@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 [![Build status](https://ci.appveyor.com/api/projects/status/8daqtllo2sg6me07/branch/master)](https://ci.appveyor.com/project/sckott/rnoaa/branch/master)
 [![Coverage Status](https://coveralls.io/repos/ropensci/rnoaa/badge.svg)](https://coveralls.io/r/ropensci/rnoaa)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rnoaa?color=C9A115)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/rnoaa)](http://cran.rstudio.com/package=rnoaa)
 
 ## Help
@@ -121,17 +122,10 @@ install.packages("rnoaa")
 __or development version from GitHub__
 
 ```{r eval=FALSE}
-install.packages("devtools")
 devtools::install_github("ropensci/rnoaa")
-library('rnoaa')
 ```
 
-__or version with buoy functions on Github__
-
-```{r eval=FALSE}
-install.packages("devtools")
-devtools::install_github("ropensci/rnoaa", ref="buoy")
-```
+__Load rnoaa__
 
 ```{r}
 library('rnoaa')

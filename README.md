@@ -6,6 +6,7 @@ rnoaa
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 [![Build status](https://ci.appveyor.com/api/projects/status/8daqtllo2sg6me07/branch/master)](https://ci.appveyor.com/project/sckott/rnoaa/branch/master)
 [![Coverage Status](https://coveralls.io/repos/ropensci/rnoaa/badge.svg)](https://coveralls.io/r/ropensci/rnoaa)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rnoaa?color=C9A115)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/rnoaa)](http://cran.rstudio.com/package=rnoaa)
 
 ## Help
@@ -116,18 +117,10 @@ __or development version from GitHub__
 
 
 ```r
-install.packages("devtools")
 devtools::install_github("ropensci/rnoaa")
-library('rnoaa')
 ```
 
-__or version with buoy functions on Github__
-
-
-```r
-install.packages("devtools")
-devtools::install_github("ropensci/rnoaa", ref="buoy")
-```
+__Load rnoaa__
 
 
 ```r
@@ -153,32 +146,20 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 
 #> 
 #> $data
-#>       mindate    maxdate                  name datacoverage            id
-#> 1  1892-08-01 2015-05-31            Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2015-07-03            Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2015-07-03         Zonguldak, TU       0.8621 CITY:TU000057
-#> 4  1906-01-01 2015-07-03            Zinder, NG       0.9019 CITY:NG000004
-#> 5  1973-01-01 2015-07-03        Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2015-07-03         Zhytomyra, UP       0.9732 CITY:UP000025
-#> 7  1948-03-01 2015-07-03        Zhezkazgan, KZ       0.9295 CITY:KZ000017
-#> 8  1951-01-01 2015-07-03         Zhengzhou, CH       1.0000 CITY:CH000045
-#> 9  1941-01-01 2014-12-22          Zaragoza, SP       1.0000 CITY:SP000021
-#> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       0.9739 CITY:UP000024
-#> 11 1957-01-01 2015-07-03          Zanzibar, TZ       0.7981 CITY:TZ000019
-#> 12 1973-01-01 2015-07-03            Zanjan, IR       0.9080 CITY:IR000020
-#> 13 1893-01-01 2015-07-05     Zanesville, OH US       1.0000 CITY:US390029
-#> 14 1912-01-01 2015-07-03             Zahle, LE       0.9805 CITY:LE000004
-#> 15 1951-01-01 2015-07-03           Zahedan, IR       0.9975 CITY:IR000019
-#> 16 1860-12-01 2015-07-03            Zagreb, HR       1.0000 CITY:HR000002
-#> 17 1975-08-29 2015-07-03         Zacatecas, MX       0.9293 CITY:MX000036
-#> 18 1947-01-01 2015-07-03 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
-#> 19 1893-01-01 2015-07-05           Yuma, AZ US       1.0000 CITY:US040015
-#> 20 1942-02-01 2015-07-05   Yucca Valley, CA US       1.0000 CITY:US060048
-#> 21 1893-01-01 2015-07-05      Yuba City, CA US       1.0000 CITY:US060047
-#> 22 1998-02-01 2015-07-03            Yozgat, TU       0.9908 CITY:TU000056
-#> 23 1893-01-01 2015-07-05     Youngstown, OH US       1.0000 CITY:US390028
-#> 24 1941-01-01 2015-07-05           York, PA US       1.0000 CITY:US420024
-#> 25 1876-01-01 2015-07-05        Yonkers, NY US       1.0000 CITY:US360031
+#> Source: local data frame [25 x 5]
+#> 
+#>       mindate    maxdate             name datacoverage            id
+#> 1  1892-08-01 2015-05-31       Zwolle, NL       1.0000 CITY:NL000012
+#> 2  1901-01-01 2015-07-04       Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2015-07-04    Zonguldak, TU       0.8621 CITY:TU000057
+#> 4  1906-01-01 2015-07-04       Zinder, NG       0.9019 CITY:NG000004
+#> 5  1973-01-01 2015-07-04   Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2015-07-04    Zhytomyra, UP       0.9732 CITY:UP000025
+#> 7  1948-03-01 2015-07-04   Zhezkazgan, KZ       0.9295 CITY:KZ000017
+#> 8  1951-01-01 2015-07-04    Zhengzhou, CH       1.0000 CITY:CH000045
+#> 9  1941-01-01 2014-12-22     Zaragoza, SP       1.0000 CITY:SP000021
+#> 10 1936-01-01 2009-06-17 Zaporiyhzhya, UP       0.9739 CITY:UP000024
+#> ..        ...        ...              ...          ...           ...
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -194,7 +175,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
-#> 1      12.2 1899-02-01 2015-07-04  28.8029 INVERNESS 3 SE, FL US
+#> 1      12.2 1899-02-01 2015-07-05  28.8029 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS  -82.3126
 #> 
@@ -215,6 +196,8 @@ out <- ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='d
 
 ```r
 head( out$data )
+#> Source: local data frame [6 x 5]
+#> 
 #>                  date        datatype           station value fl_c
 #> 1 2010-05-01T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   652    S
 #> 2 2010-05-02T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   655    S
@@ -232,7 +215,7 @@ out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
-![plot of chunk unnamed-chunk-13](inst/img/unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-12](inst/img/unnamed-chunk-12-1.png) 
 
 ### More plotting
 
@@ -245,7 +228,7 @@ out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP'
 ncdc_plot(out1, out2, breaks="45 days")
 ```
 
-![plot of chunk unnamed-chunk-14](inst/img/unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-13](inst/img/unnamed-chunk-13-1.png) 
 
 ### Get table of all datasets
 
@@ -264,30 +247,21 @@ ncdc_datasets()
 #> 
 #> 
 #> $data
+#> Source: local data frame [11 x 6]
+#> 
 #>                     uid    mindate    maxdate                      name
 #> 1  gov.noaa.ncdc:C00040 1831-02-01 2015-01-01          Annual Summaries
-#> 2  gov.noaa.ncdc:C00861 1763-01-01 2015-07-05           Daily Summaries
+#> 2  gov.noaa.ncdc:C00861 1763-01-01 2015-07-06           Daily Summaries
 #> 3  gov.noaa.ncdc:C00841 1763-01-01 2015-06-01         Monthly Summaries
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2015-07-05  Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2015-07-02 Weather Radar (Level III)
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2015-07-07  Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2015-07-03 Weather Radar (Level III)
 #> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01   Normals Annual/Seasonal
 #> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31             Normals Daily
 #> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31            Normals Hourly
 #> 9  gov.noaa.ncdc:C00822 2010-01-01 2010-12-01           Normals Monthly
 #> 10 gov.noaa.ncdc:C00505 1970-05-12 2014-01-01   Precipitation 15 Minute
 #> 11 gov.noaa.ncdc:C00313 1900-01-01 2014-01-01      Precipitation Hourly
-#>    datacoverage         id
-#> 1          1.00     ANNUAL
-#> 2          1.00      GHCND
-#> 3          1.00    GHCNDMS
-#> 4          0.95    NEXRAD2
-#> 5          0.95    NEXRAD3
-#> 6          1.00 NORMAL_ANN
-#> 7          1.00 NORMAL_DLY
-#> 8          1.00 NORMAL_HLY
-#> 9          1.00 NORMAL_MLY
-#> 10         0.25  PRECIP_15
-#> 11         1.00 PRECIP_HLY
+#> Variables not shown: datacoverage (dbl), id (chr)
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datasets"
@@ -310,32 +284,20 @@ ncdc_datacats(locationid='CITY:US390029')
 #> 
 #> 
 #> $data
-#>                     name            id
-#> 1    Annual Agricultural        ANNAGR
-#> 2     Annual Degree Days         ANNDD
-#> 3   Annual Precipitation       ANNPRCP
-#> 4     Annual Temperature       ANNTEMP
-#> 5    Autumn Agricultural         AUAGR
-#> 6     Autumn Degree Days          AUDD
-#> 7   Autumn Precipitation        AUPRCP
-#> 8     Autumn Temperature        AUTEMP
-#> 9               Computed          COMP
-#> 10 Computed Agricultural       COMPAGR
-#> 11           Degree Days            DD
-#> 12      Dual-Pol Moments DUALPOLMOMENT
-#> 13             Echo Tops       ECHOTOP
-#> 14      Hydrometeor Type   HYDROMETEOR
-#> 15                 Other         OTHER
-#> 16               Overlay       OVERLAY
-#> 17         Precipitation          PRCP
-#> 18          Reflectivity  REFLECTIVITY
-#> 19    Sky cover & clouds           SKY
-#> 20   Spring Agricultural         SPAGR
-#> 21    Spring Degree Days          SPDD
-#> 22  Spring Precipitation        SPPRCP
-#> 23    Spring Temperature        SPTEMP
-#> 24   Summer Agricultural         SUAGR
-#> 25    Summer Degree Days          SUDD
+#> Source: local data frame [25 x 2]
+#> 
+#>                     name      id
+#> 1    Annual Agricultural  ANNAGR
+#> 2     Annual Degree Days   ANNDD
+#> 3   Annual Precipitation ANNPRCP
+#> 4     Annual Temperature ANNTEMP
+#> 5    Autumn Agricultural   AUAGR
+#> 6     Autumn Degree Days    AUDD
+#> 7   Autumn Precipitation  AUPRCP
+#> 8     Autumn Temperature  AUTEMP
+#> 9               Computed    COMP
+#> 10 Computed Agricultural COMPAGR
+#> ..                   ...     ...
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datacats"
@@ -350,13 +312,13 @@ The function `tornadoes()` simply gets __all the data__. So the call takes a whi
 shp <- tornadoes()
 #> OGR data source with driver: ESRI Shapefile 
 #> Source: "/Users/sacmac/.rnoaa/tornadoes/tornadoes", layer: "tornado"
-#> with 57988 features
-#> It has 21 fields
+#> with 57988 features and 21 fields
+#> Feature type: wkbLineString with 2 dimensions
 library('sp')
 plot(shp)
 ```
 
-![plot of chunk unnamed-chunk-17](inst/img/unnamed-chunk-17-1.png) 
+![plot of chunk unnamed-chunk-16](inst/img/unnamed-chunk-16-1.png) 
 
 ## HOMR metadata
 
@@ -376,12 +338,16 @@ homr(qid = 'COOP:046742')
 #> 1 1949-10-05T00:00:00.000     Present
 #> 
 #> $`20002078`$namez
+#> Source: local data frame [3 x 2]
+#> 
 #>                         name  nameType
 #> 1   PASO ROBLES MUNICIPAL AP      COOP
 #> 2   PASO ROBLES MUNICIPAL AP PRINCIPAL
 #> 3 PASO ROBLES MUNICIPAL ARPT       PUB
 #> 
 #> $`20002078`$identifiers
+#> Source: local data frame [8 x 2]
+#> 
 #>      idType          id
 #> 1     GHCND USW00093209
 #> 2   GHCNMLT USW00093209
@@ -403,14 +369,13 @@ homr(qid = 'COOP:046742')
 #> 1 5.1 mi NNE 1949-10-05T00:00:00.000
 #> 
 #> $`20002078`$remarks
+#> Source: local data frame [3 x 2]
+#> 
 #>                         type
 #> 1            NWS COOP INGEST
 #> 2                    GENERAL
 #> 3 RIVER BASIN (COOP NETWORK)
-#>                                                                                                                                                                                                                                                                                remark
-#> 1                                                                                                                                                                          REQUIRED 5 YEAR UPDATE\r\nASOS COMMISSIONED 01/18/2001\r\nSERVICE LEVEL "D" ASOS MAINTAINED BY LOX NWS ETS
-#> 2 PHOTOS ADDED FOR ASOS EXPOSURE DOCUMENTATION EFFORT (CIRCA 1999+) WHICH TOOK PHOTOS OF THE AREA SURROUNDING COASTAL AND INLAND ASOS SITES IN AREAS SUBJECT TO HURRICANES. THE PHOTOS HELP DOCUMENT STATION EXPOSURE AND IDENTIFY OBSTACLES THAT COULD REDUCE THE WINDS AT THE SITE.
-#> 3                                                                                                                                                                                                                                                                             SALINAS
+#> Variables not shown: remark (chr)
 #> 
 #> $`20002078`$updates
 #>             effectiveDate    providedBy updateSource version
@@ -421,39 +386,27 @@ homr(qid = 'COOP:046742')
 #> 1   KTHOMAS 2014-08-14T10:07:52-04:00   SMCNEILL 2014-09-24T14:56:23-04:00
 #> 
 #> $`20002078`$elements
+#> Source: local data frame [4 x 15]
+#> 
 #>   dataProgram element frequency observationTime publishedFlag receiver
 #> 1    COOP HPD  PRECIP    HOURLY            2400           HPD     NCDC
 #> 2    COOP SOD  PRECIP     DAILY            2400            CD     NCDC
 #> 3    COOP SOD    TEMP     DAILY            2400            CD     NCDC
-#> 4    COOP SOD    WIND    HOURLY            UNKN          <NA>     <NA>
-#>   reportingMethod equipment.equipment equipment.equipmentMods
-#> 1             ADP                AHTB                RCRD;HTD
-#> 2             ADP               PCPNX                    <NA>
-#> 3             ADP               TEMPX                    <NA>
-#> 4            <NA>                <NA>                    <NA>
-#>   equipment.equipmentAzimuth equipment.equipmentDistance
-#> 1                        000                           0
-#> 2                        000                           0
-#> 3                        090                           4
-#> 4                       <NA>                        <NA>
-#>   equipment.equipmentDistanceUnits          date.beginDate date.endDate
-#> 1                               ft 2010-02-11T00:00:00.000      Present
-#> 2                               ft 2010-02-11T00:00:00.000      Present
-#> 3                               ft 2010-02-11T00:00:00.000      Present
-#> 4                             <NA> 2010-02-11T00:00:00.000      Present
-#>   equipment
-#> 1      <NA>
-#> 2      <NA>
-#> 3      <NA>
-#> 4 ANEMSONIC
+#> 4    COOP SOD    WIND    HOURLY            UNKN            NA       NA
+#> Variables not shown: reportingMethod (chr), equipment.equipment (chr),
+#>   equipment.equipmentMods (chr), equipment.equipmentAzimuth (chr),
+#>   equipment.equipmentDistance (chr), equipment.equipmentDistanceUnits
+#>   (chr), date.beginDate (chr), date.endDate (chr), equipment (chr)
 #> 
 #> $`20002078`$location
 #> $`20002078`$location$id
 #> [1] "20002078"
 #> 
 #> $`20002078`$location$description
-#>                                                                    description
-#> 1 PASO ROBLES MUNICIPAL AIRPORT OUTSIDE AND 5 MILES NE OF PO AT PASO ROBLES CA
+#> Source: local data frame [1 x 1]
+#> 
+#>                                                                   description
+#> 1 PASO ROBLES MUNICIPAL AIRPORT OUTSIDE AND 5 MILES NE OF PO AT PASO ROBLES C
 #> 
 #> $`20002078`$location$latlon
 #>   latitude_dec longitude_dec latitude_dms longitude_dms precision
@@ -470,6 +423,8 @@ homr(qid = 'COOP:046742')
 #> "LEVEL VALLEY LOCATION (S-N)" 
 #> 
 #> $`20002078`$location$obstructions
+#> Source: local data frame [1 x 1]
+#> 
 #>                   description
 #> 1 HYGR 090/04 NO OBSTRUCTIONS
 #> 
