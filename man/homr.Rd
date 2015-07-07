@@ -58,9 +58,7 @@ by including phrData=false. If the parameter is not set, it will default to phrD
 
 \item{combine}{(logical) Combine station metadata or not.}
 
-\item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
-\code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
-\code{\link[httr]{config}}.}
+\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
 \value{
 A list, with elements named by the station ids.
@@ -78,7 +76,6 @@ descriptions information.
 homr(qid = 'COOP:046742')
 homr(headersOnly=TRUE, qid='TRANS:')
 homr(qid = ':046742')
-homr(qid = 'FAA:')
 homr(qidMod='starts', qid='COOP:0467')
 homr(headersOnly=TRUE, state='DE')
 homr(headersOnly=TRUE, country='GHANA')
@@ -95,6 +92,9 @@ homr(qid='COOP:046742', begindate='2005-01-01', enddate='2011-01-01')
 homr(state='DE', headersOnly=TRUE)
 homr(station=20002078)
 homr(station=20002078, date='all', phrData=FALSE)
+
+# Optionally pass in curl options
+homr(headersOnly=TRUE, state='NC', county='BUNCOMBE', config=verbose())
 }
 }
 \references{

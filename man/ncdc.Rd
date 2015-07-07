@@ -81,9 +81,7 @@ response time's improve, but perhaps they will for you.}
 
 \item{results}{THIS IS A DEPRECATED ARGUMENT. See limit.}
 
-\item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
-\code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
-\code{\link[httr]{config}}.}
+\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
 \value{
 An S3 list of length two, a slot of metadata (meta), and a slot for data (data).

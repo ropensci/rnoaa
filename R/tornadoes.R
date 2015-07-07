@@ -3,6 +3,7 @@
 #' @export
 #' @param path A path to store the files, Default: \code{~/.ots/kelp}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
+#' @param ... Curl options passed on to \code{\link[httr]{GET}} (optional)
 #'
 #' @return A Spatial object is returned of class SpatialLinesDataFrame.
 #' @references \url{http://www.spc.noaa.gov/gis/svrgis/}
@@ -13,19 +14,19 @@
 #' plot(shp) # may take 10 sec or so to render
 #' }
 
-tornadoes <- function(path="~/.rnoaa/tornadoes", overwrite = TRUE)
+tornadoes <- function(path="~/.rnoaa/tornadoes", overwrite = TRUE, ...)
 {
   if(!is_tornadoes(path.expand(file.path(path, "tornadoes")))){
     url <- 'http://spc.noaa.gov/gis/svrgis/zipped/tornado.zip'
-    tornadoes_GET(path, url, overwrite)
+    tornadoes_GET(path, url, overwrite, ...)
   }
   readshp(file.path(path, "tornadoes"))
 }
 
-tornadoes_GET <- function(bp, url, overwrite){
+tornadoes_GET <- function(bp, url, overwrite, ...){
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- file.path(bp, "tornadoes.zip")
-  res <- GET(url, write_disk(fp, overwrite))
+  res <- GET(url, write_disk(fp, overwrite), ...)
   stop_for_status(res)
   untar(fp, exdir = path.expand(file.path(bp, 'tornadoes')))
 }

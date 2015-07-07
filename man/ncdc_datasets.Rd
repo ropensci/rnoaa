@@ -60,9 +60,7 @@ arguments.}
 \item{month}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
 arguments.}
 
-\item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
-\code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
-\code{\link[httr]{config}}.}
+\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
 \value{
 A data.frame for all datasets, or a list of length two, each with a data.frame.

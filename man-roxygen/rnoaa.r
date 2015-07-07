@@ -18,6 +18,4 @@
 #'    \itemize{
 #'      \item options("noaakey" = "your-noaa-token")
 #'    }
-#' @param ... Further named parameters, such as \code{query}, \code{path}, etc, passed on to
-#' \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
-#' \code{\link[httr]{config}}.
+#' @param ... Curl options passed on to \code{\link[httr]{GET}} (optional)

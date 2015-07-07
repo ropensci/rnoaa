@@ -36,9 +36,7 @@
 #' increase the size of any result which includes it. If you don't need this data you can omit it
 #' by including phrData=false. If the parameter is not set, it will default to phrData=true.
 #' @param combine (logical) Combine station metadata or not.
-#' @param ... Further named parameters, such as \code{query}, \code{path}, etc, passed on to
-#' \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
-#' \code{\link[httr]{config}}.
+#' @param ... Curl options passed on to \code{\link[httr]{GET}} (optional)
 #'
 #' @details Since the definitions for variables are always the same, we don't include the ability
 #' to get description data in this function. Use \code{link[rnoaa]{homr_descriptions}} to get
@@ -52,7 +50,6 @@
 #' homr(qid = 'COOP:046742')
 #' homr(headersOnly=TRUE, qid='TRANS:')
 #' homr(qid = ':046742')
-#' homr(qid = 'FAA:')
 #' homr(qidMod='starts', qid='COOP:0467')
 #' homr(headersOnly=TRUE, state='DE')
 #' homr(headersOnly=TRUE, country='GHANA')
@@ -69,29 +66,38 @@
 #' homr(state='DE', headersOnly=TRUE)
 #' homr(station=20002078)
 #' homr(station=20002078, date='all', phrData=FALSE)
+#' 
+#' # Optionally pass in curl options
+#' homr(headersOnly=TRUE, state='NC', county='BUNCOMBE', config=verbose())
 #' }
 
 homr <- function(qid=NULL, qidMod=NULL, station=NULL, state=NULL, county=NULL, country=NULL,
   name=NULL, nameMod=NULL, platform=NULL, date=NULL, begindate=NULL, enddate=NULL, headersOnly=FALSE,
-  phrData=NULL, combine=FALSE, ...)
-{
+  phrData=NULL, combine=FALSE, ...) {
+
   args <- noaa_compact(list(qid=qid, qidMod=qidMod, state=state, county=county, country=country,
       name=name, nameMod=nameMod, platform=platform, date=date, begindate=begindate,
-      enddate=enddate, headersOnly=tl(headersOnly), phrData=tl(phrData), definitions='false'))
+      enddate=enddate, headersOnly=tl(headersOnly), phrData=tl(phrData), definitions = 'false'))
   if (length(args) == 0) args <- NULL
-  url <- if(is.null(station)) paste0(homr_base(), "search") else paste0(homr_base(), station)
-  res <- GET(url, query=args, ...)
+  url <- if (is.null(station)) paste0(homr_base(), "search") else paste0(homr_base(), station)
+  res <- GET(url, query = args, ...)
   out <- content(res, "text")
   json <- jsonlite::fromJSON(out, FALSE)
-  sts <- lapply(json$stationCollection$stations, parse_stations, headersOnly=headersOnly)
+  sts <- lapply(json$stationCollection$stations, parse_stations, headersOnly = headersOnly)
   names(sts) <- sapply(sts, "[[", "id")
-  if(!combine) structure(sts, class="homr", combined=FALSE) else structure(combine_stations(sts), class="homr", combined=TRUE)
+  if (!combine) {
+    structure(sts, class = "homr", combined = FALSE)
+  } else {
+    structure(combine_stations(sts), class = "homr", combined = TRUE)
+  }
 }
 
 parse_stations <- function(x, headersOnly) {
   id <- x$ncdcStnId
   head <- data.frame(x$header, stringsAsFactors = FALSE)
-  if(headersOnly){ list(id=id, head=head) } else {
+  if (headersOnly) {
+    list(id = id, head = head)
+  } else {
     namez <- rbf(todf(x$names))
     identifiers <- rbf(todf(x$identifiers))
     status <- x$statuses[[1]]$status
@@ -132,15 +138,15 @@ parse_loc <- function(y){
 
 combine_stations <- function(w){
   ids <- vapply(w, "[[", character(1), "id", USE.NAMES = FALSE)
-  head <- rbf(x=lapply(w, "[[", "head"), TRUE)
+  head <- rbf(x = lapply(w, "[[", "head"), TRUE)
   namez <- rbf(lapply(w, "[[", "namez"), TRUE)
   identifiers <- rbf(lapply(w, "[[", "identifiers"), TRUE)
   status <- sapply(w, "[[", "status", USE.NAMES = FALSE)
   platform <- unname(sapply(w, "[[", "platform", USE.NAMES = FALSE))
-  relocations <- rbf(x=lapply(w, "[[", "relocations"), TRUE)
-  remarks <- rbf(x=lapply(w, "[[", "remarks"), TRUE)
-  updates <- rbf(x=lapply(w, "[[", "updates"), TRUE)
-  elements <- rbf(x=lapply(w, "[[", "elements"), TRUE)
+  relocations <- rbf(x = lapply(w, "[[", "relocations"), TRUE)
+  remarks <- rbf(x = lapply(w, "[[", "remarks"), TRUE)
+  updates <- rbf(x = lapply(w, "[[", "updates"), TRUE)
+  elements <- rbf(x = lapply(w, "[[", "elements"), TRUE)
   location <- lapply(w, "[[", "location")
   list(id=ids, head=head, namez=namez, identifiers=identifiers,
        status=status, platform=platform, relocations=relocations,
@@ -149,18 +155,18 @@ combine_stations <- function(w){
 
 homr_base <- function() 'http://www.ncdc.noaa.gov/homr/services/station/'
 
-tl <- function(x) if(is.null(x)) NULL else tolower(x)
+tl <- function(x) if (is.null(x)) NULL else tolower(x)
 todf <- function(x) ifn_null(x, lapply(x, data.frame, stringsAsFactors = FALSE))
-rbf <- function(x, name=FALSE){
-  if(!name){
+rbf <- function(x, name = FALSE){
+  if (!name) {
     ifn_null(x, dplyr::bind_rows(x))
   } else {
     x <- noaa_compact(x)
     nmz <- names(x)
-    tmp <- Map(function(a, b) data.frame(id=b, a, stringsAsFactors = FALSE), x, nmz)
+    tmp <- Map(function(a, b) data.frame(id = b, a, stringsAsFactors = FALSE), x, nmz)
     ifn_null(tmp, dplyr::bind_rows(tmp))
   }
 }
-ifn_null <- function(x, y) if(is.null(x)) x else y
-ifn_na <- function(x) if(is.null(x)) NA else x
-na2null <- function(x) if(all(is.na(x))) NULL else x
+ifn_null <- function(x, y) if (is.null(x)) x else y
+ifn_na <- function(x) if (is.null(x)) NA else x
+na2null <- function(x) if (all(is.na(x))) NULL else x

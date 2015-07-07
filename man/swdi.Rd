@@ -42,7 +42,7 @@ degree to the supplied values.}
 \item{filepath}{If kmz or shp chosen the file name and optionally path to write to. Ignored
 format=xml or format=csv (optional)}
 
-\item{...}{Curl options passed on to the API GET call. (optional)}
+\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
 \value{
 If xml or csv chosen, a list of length three, a slot of metadata (meta), a slot

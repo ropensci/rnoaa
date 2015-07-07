@@ -4,12 +4,14 @@
 \alias{tornadoes}
 \title{Get NOAA tornado data.}
 \usage{
-tornadoes(path = "~/.rnoaa/tornadoes", overwrite = TRUE)
+tornadoes(path = "~/.rnoaa/tornadoes", overwrite = TRUE, ...)
 }
 \arguments{
 \item{path}{A path to store the files, Default: \code{~/.ots/kelp}}
 
 \item{overwrite}{(logical) To overwrite the path to store files in or not, Default: TRUE.}
+
+\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
 \value{
 A Spatial object is returned of class SpatialLinesDataFrame.

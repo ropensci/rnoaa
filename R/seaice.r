@@ -70,6 +70,7 @@ seaiceeurls <- function(yr=NULL, mo=NULL, pole=NULL) {
   if (!is.null(pole)) pole <- sprintf("_%s_", pole)
   if (!is.null(yr)) yr <- sprintf("_%s", yr)
 
+  ss <- allurls
   if (!is.null(yr) & is.null(mo) & is.null(pole))
     ss <- grep(yr, allurls, value = TRUE)
   if (is.null(yr) & !is.null(mo) & is.null(pole))

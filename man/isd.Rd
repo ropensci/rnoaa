@@ -5,7 +5,7 @@
 \alias{isd_stations}
 \title{Get NOAA ISD/ISH data from NOAA FTP server.}
 \usage{
-isd(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE)
+isd(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, ...)
 
 isd_stations(...)
 }
@@ -51,6 +51,9 @@ head(stations)
 # The first time a dataset is requested takes longer
 system.time( isd(usaf="782680", wban="99999", year=2011) )
 system.time( isd(usaf="782680", wban="99999", year=2011) )
+
+# Optionally pass in curl options
+res <- isd(usaf="011490", wban="99999", year=1986, config = verbose())
 }
 }
 \references{

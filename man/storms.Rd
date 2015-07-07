@@ -13,7 +13,7 @@ storm_shp(basin = NULL, storm = NULL, year = NULL, type = "points",
 storm_shp_read(x)
 
 storm_data(basin = NULL, storm = NULL, year = NULL,
-  path = "~/.rnoaa/storms", overwrite = TRUE)
+  path = "~/.rnoaa/storms", overwrite = TRUE, ...)
 
 storm_meta(what = "storm_columns")
 }
@@ -31,6 +31,8 @@ storm_meta(what = "storm_columns")
 \item{overwrite}{(logical) To overwrite the path to store files in or not, Default: TRUE.}
 
 \item{x}{Output from \code{storm_shp}, a path to shp file to read in.}
+
+\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 
 \item{what}{(character) One of storm_columns or storm_names.}
 }
@@ -55,8 +57,8 @@ May 23, 1970 near 19N 91E
 
 See \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering} for more.
 
-The datasets included in the package \code{\link[rnoaa]{storm_names}}, and
-\code{\link[rnoaa]{storm_columns}} may help in using these storm functions.
+The datasets included in the package \code{\link{storm_names}}, and
+\code{\link{storm_columns}} may help in using these storm functions.
 }
 \examples{
 \dontrun{
@@ -72,10 +74,6 @@ storm_data(storm='1970143N19091')
 storm_data(year=1940)
 storm_data(year=1941)
 storm_data(year=2010)
-
-## Or get all data, simply don't specify a value for basin, storm, or year
-res <- storm_data(read=FALSE) # just get path
-head()
 
 # shp files
 ## storm_shp downloads data and gives a path back
@@ -96,7 +94,7 @@ plot(res3shp)
 
 ### for year 1940, lines
 (res3_lines <- storm_shp(year=1940, type="lines"))
-res3_linesshp <- storm_shp_read(res3_lines)
+res3_linesshp <- storm_shp_read(x=res3_lines)
 plot(res3_linesshp)
 
 ### for year 2010, points

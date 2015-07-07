@@ -4,20 +4,20 @@
 #' @name isd
 #'
 #' @param usaf,wban (character) USAF and WBAN code. Required
-#' @param year (numeric) One of the years from 1901 to the current year. 
+#' @param year (numeric) One of the years from 1901 to the current year.
 #' Required.
-#' @param path (character) A path to store the files, a directory. Default: 
+#' @param path (character) A path to store the files, a directory. Default:
 #' \code{~/.rnoaa/isd}. Required.
-#' @param overwrite (logical) To overwrite the path to store files in or not, 
+#' @param overwrite (logical) To overwrite the path to store files in or not,
 #' Default: \code{TRUE}
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' @details This function first looks for whether the data for your specific query has
-#' already been downloaded previously in the directory given by the \code{path} 
-#' parameter. If not found, the data is requested form NOAA's FTP server. The first time 
+#' already been downloaded previously in the directory given by the \code{path}
+#' parameter. If not found, the data is requested form NOAA's FTP server. The first time
 #' a dataset is pulled down we must a) download the data, b) process the data, and c) save
-#' a .csv file to disk. The next time the same data is requested, we only have to read 
-#' back in the .csv file, and is quite fast. The processing can take quite a long time 
+#' a .csv file to disk. The next time the same data is requested, we only have to read
+#' back in the .csv file, and is quite fast. The processing can take quite a long time
 #' since the data is quite messy and takes a bunch of regex to split apart text strings.
 #' See examples below for different behavior.
 #' @examples \dontrun{
@@ -30,18 +30,21 @@
 #' (res <- isd(usaf="011690", wban="99999", year=1993))
 #' (res <- isd(usaf="172007", wban="99999", year=2015))
 #' (res <- isd(usaf="702700", wban="00489", year=2015))
-#' 
+#'
 #' # The first time a dataset is requested takes longer
 #' system.time( isd(usaf="782680", wban="99999", year=2011) )
 #' system.time( isd(usaf="782680", wban="99999", year=2011) )
+#' 
+#' # Optionally pass in curl options
+#' res <- isd(usaf="011490", wban="99999", year=1986, config = verbose())
 #' }
 
 #' @export
 #' @rdname isd
-isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE) {
+isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, ...) {
   csvpath <- isd_local(usaf, wban, year, path)
   if (!is_isd(x = csvpath)) {
-    isd_GET(path, usaf, wban, year, overwrite)
+    isd_GET(path, usaf, wban, year, overwrite, ...)
   }
   message(sprintf("<path>%s", csvpath), "\n")
   structure(list(data = read_isd(csvpath, sections)), class = "isd")
@@ -62,10 +65,10 @@ print.isd <- function(x, ..., n = 10) {
   trunc_mat_(x$data, n = n)
 }
 
-isd_GET <- function(bp, usaf, wban, year, overwrite) {
+isd_GET <- function(bp, usaf, wban, year, overwrite, ...) {
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- isd_local(usaf, wban, year, bp)
-  suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite)))
+  suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite), ...))
 }
 
 isd_remote <- function(usaf, wban, year) {
@@ -170,7 +173,7 @@ check_get <- function(string, pattern, fxn) {
 str_match_len <- function(x, index, length){
   sa1 <- regexpr(index, x)
   if (sa1 > 0) {
-    substring(x, sa1[1], sa1[1] + (length - 1)) 
+    substring(x, sa1[1], sa1[1] + (length - 1))
   } else {
     NULL
   }

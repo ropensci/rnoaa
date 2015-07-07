@@ -21,7 +21,7 @@
 #' @param id An identifier, e.g., 533623. Not sure how you find these ids?
 #' @param filepath If kmz or shp chosen the file name and optionally path to write to. Ignored
 #'    format=xml or format=csv (optional)
-#' @param ... Curl options passed on to the API GET call. (optional)
+#' @param ... Curl options passed on to \code{\link[httr]{GET}} (optional)
 #'
 #' @details
 #' Options for the dataset parameter. One of (and their data formats):
@@ -141,7 +141,7 @@ swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit
     }
   } else {
     if (length(args) == 0) args <- NULL
-    temp <- GET(url, query = args)
+    temp <- GET(url, query = args, ...)
     temp <- check_response_swdi(temp, format)
 
     if (is(temp, "character")) {
@@ -157,7 +157,6 @@ swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit
         xml <- xpathSApply(temp, "//result")
         aslist <- lapply(xml, xmlToList)
         dat <- dplyr::bind_rows(lapply(aslist, data.frame, stringsAsFactors = FALSE))
-        # dat <- data.frame(rbindlist(aslist), stringsAsFactors = FALSE)
         shp <- data.frame(shape = dat[, names(dat) %in% 'shape'], stringsAsFactors = FALSE)
         dat <- dat[, !names(dat) %in% c('shape','rownumber')]
 

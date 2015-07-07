@@ -71,9 +71,7 @@ of the NOAA API.}
 \item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
 of the NOAA API.}
 
-\item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
-\code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
-\code{\link[httr]{config}}.}
+\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
 \value{
 A list of metadata.
