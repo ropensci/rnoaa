@@ -36,19 +36,6 @@ library('ggplot2')
 ggplot(out, aes(long, lat, group=group)) +
    geom_polygon(fill="steelblue") +
    theme_ice()
-
-# Map all years for April only for North pole
-library('plyr')
-library('doMC')
-urls <- seaiceeurls(mo='Apr', pole='N')
-registerDoMC(cores=4)
-out <- llply(urls, seaice, .parallel=TRUE)
-names(out) <- seq(1979,2013,1)
-df <- ldply(out)
-ggplot(df, aes(long, lat, group=group)) +
-  geom_polygon(fill="steelblue") +
-  theme_ice() +
-  facet_wrap(~ .id)
 }
 }
 

@@ -61,7 +61,7 @@ ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
       all <- list(data = dat, meta = metadat)
     } else
     {
-      dat <- do.call(rbind.fill, lapply(out$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
+      dat <- dplyr::bind_rows(lapply(out$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
       metadat <- data.frame(out$metadata$resultset, stringsAsFactors=FALSE)
       all <- list(meta = metadat, data = dat)
     }

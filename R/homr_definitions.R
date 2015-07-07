@@ -19,5 +19,5 @@ homr_definitions <- function(...){
 }
 
 parse_defs <- function(x){
-  if(is.null(x)) NULL else do.call(rbind.fill, lapply(x, data.frame, stringsAsFactors = FALSE))
+  if(is.null(x)) NULL else dplyr::bind_rows(lapply(x, data.frame, stringsAsFactors = FALSE))
 }

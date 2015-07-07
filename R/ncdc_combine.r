@@ -1,7 +1,7 @@
 #' Coerce multiple outputs to a single data.frame object.
 #'
 #' @export
-#' 
+#'
 #' @param ... Objects from another ncdc_* function.
 #' @return A data.frame
 #' @examples \dontrun{
@@ -53,8 +53,7 @@
 #' ncdc_combine(out1, out2, out3)
 #' }
 
-ncdc_combine <- function(...)
-{
+ncdc_combine <- function(...) {
   classes <- c("ncdc_data","ncdc_datasets","ncdc_datatypes","ncdc_datacats",
                "ncdc_locs","ncdc_locs_cats","ncdc_stations")
   input <- list(...)
@@ -63,109 +62,11 @@ ncdc_combine <- function(...)
     stop(sprintf("Input must be of one of the following classes: %s", paste(classes,collapse=", ") ))
 
   if(class == 'ncdc_data'){
-    out <- list(data = do.call(rbind.fill, lapply(input, "[[", "data")))
+    out <- list(data = dplyr::bind_rows(lapply(input, "[[", "data")))
     class(out) <- "ncdc_data"
 	} else {
-    out <- do.call(rbind.fill, lapply(input, "[[", "data"))
+    out <- dplyr::bind_rows(lapply(input, "[[", "data"))
 	}
 
   return(out)
 }
-
-# #' @method ncdc_combine ncdc_data
-# #' @export
-# #' @rdname ncdc_combine
-# ncdc_combine.ncdc_data <- function(...)
-# {
-#   input <- list(...)
-#   if(!inherits(input[[1]], "ncdc_data"))
-#     stop("Input must be of class ncdc_data")
-#
-#   out <- do.call(rbind.fill, lapply(input, "[[", "data"))
-#   class(out) <- "ncdc_data_comb"
-#   return(out)
-# }
-
-# #' @method ncdc_combine ncdc_datasets
-# #' @export
-# #' @rdname ncdc_combine
-# ncdc_combine.ncdc_datasets <- function(...)
-# {
-#   input <- list(...)
-#   if(!inherits(input[[1]], "ncdc_datasets"))
-#     stop("Input must be of class ncdc_datasets")
-#
-#   #   out <- data.frame(rbindlist(lapply(input, "[[", "data")))
-#   out <- do.call(rbind.fill, lapply(input, "[[", "data"))
-#   return(out)
-# }
-#
-# #' @method ncdc_combine ncdc_datatypes
-# #' @export
-# #' @rdname ncdc_combine
-# ncdc_combine.ncdc_datatypes <- function(...)
-# {
-#   input <- list(...)
-#   if(!inherits(input[[1]], "ncdc_datatypes"))
-#     stop("Input must be of class ncdc_datatypes")
-#
-#   #   out <- data.frame(rbindlist(lapply(input, "[[", "data")))
-#   out <- do.call(rbind.fill, lapply(input, "[[", "data"))
-#   return(out)
-# }
-#
-# #' @method ncdc_combine ncdc_datacats
-# #' @export
-# #' @rdname ncdc_combine
-# ncdc_combine.ncdc_datacats <- function(...)
-# {
-#   input <- list(...)
-#   if(!inherits(input[[1]], "ncdc_datacats"))
-#     stop("Input must be of class ncdc_datacats")
-#
-#   #   out <- data.frame(rbindlist(lapply(input, "[[", "data")))
-#   out <- do.call(rbind.fill, lapply(input, "[[", "data"))
-#   return(out)
-# }
-#
-# #' @method ncdc_combine ncdc_locs
-# #' @export
-# #' @rdname ncdc_combine
-# ncdc_combine.ncdc_locs <- function(...)
-# {
-#   input <- list(...)
-#   if(!inherits(input[[1]], "ncdc_locs"))
-#     stop("Input must be of class ncdc_locs")
-#
-#   #   out <- data.frame(rbindlist(lapply(input, "[[", "data")))
-#   out <- do.call(rbind.fill, lapply(input, "[[", "data"))
-#   return(out)
-# }
-#
-# #' @method ncdc_combine ncdc_locs_cats
-# #' @export
-# #' @rdname ncdc_combine
-# ncdc_combine.ncdc_locs_cats <- function(...)
-# {
-#   input <- list(...)
-#   if(!inherits(input[[1]], "ncdc_locs_cats"))
-#     stop("Input must be of class ncdc_locs_cats")
-#
-#   #   out <- data.frame(rbindlist(lapply(input, "[[", "data")))
-#   out <- do.call(rbind.fill, lapply(input, "[[", "data"))
-#   return(out)
-# }
-#
-# #' @method ncdc_combine ncdc_stations
-# #' @export
-# #' @rdname ncdc_combine
-# ncdc_combine.ncdc_stations <- function(...)
-# {
-#   input <- list(...)
-#   if(!inherits(input[[1]], "ncdc_stations"))
-#     stop("Input must be of class ncdc_stations")
-#
-#   #   out <- data.frame(rbindlist(lapply(input, "[[", "data")))
-#   out <- do.call(rbind.fill, lapply(input, "[[", "data"))
-#   return(out)
-# }

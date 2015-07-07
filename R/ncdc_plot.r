@@ -72,7 +72,7 @@ ncdc_plot.ncdc_data <- function(..., breaks="7 days", dateformat='%d/%m/%y')
       labs(y=as.character(df[1,'dataType']), x="Date") +
       ncdc_theme()
   } else {
-    df <- do.call(rbind.fill, lapply(input, function(x) x$data))
+    df <- dplyr::bind_rows(lapply(input, function(x) x$data))
     df$facet <- rep(paste("input", 1:length(input)), times=sapply(input, function(x) nrow(x$data)))
     df$date <- ymd(sub("T00:00:00\\.000|T00:00:00", '', as.character(df$date)))
     ggplot(df, aes(date, value)) +

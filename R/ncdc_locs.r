@@ -53,7 +53,7 @@ ncdc_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
         all <- list(meta=NULL, data=NULL)
         warning("Sorry, no data found")
       } else {
-        dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
+        dat <- dplyr::bind_rows(lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
         meta <- tt$metadata$resultset
         atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
         all <- list(meta=atts, data=dat)

@@ -4,6 +4,9 @@ rnoaa 0.4.2
 ### MINOR IMPROVEMENTS
 
 * Explicitly import non-base R pkg functions, so importing from `utils`, `methods`, and `stats` (#103)
+* All NCDC legacy API functions are now defunct. See `?rnoaa-defunct` for more information (#104)
+* `radius` parameter removed from `ncdc_stations()` function (#102), was already removed internally within the function in the last version, now not in the function definition, see also (#98) and (#99)
+* Dropped `plyr` from imports.
 
 ### BUG FIXES
 

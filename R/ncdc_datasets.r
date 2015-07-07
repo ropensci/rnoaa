@@ -2,7 +2,7 @@
 #'
 #' From the NOAA API docs: All of our data are in datasets. To retrieve any data
 #' from us, you must know what dataset it is in.
-#' 
+#'
 #' @export
 #'
 #' @template rnoaa
@@ -59,7 +59,7 @@ ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
       all <- list(meta = NULL, data = dat)
     } else
     {
-      dat <- do.call(rbind.fill, lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
+      dat <- dplyr::bind_rows(lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
       all <- list(meta = tt$metadata$resultset, data = dat)
     }
   }

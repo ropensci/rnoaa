@@ -153,12 +153,12 @@ tl <- function(x) if(is.null(x)) NULL else tolower(x)
 todf <- function(x) ifn_null(x, lapply(x, data.frame, stringsAsFactors = FALSE))
 rbf <- function(x, name=FALSE){
   if(!name){
-    ifn_null(x, do.call(rbind.fill, x))
+    ifn_null(x, dplyr::bind_rows(x))
   } else {
     x <- noaa_compact(x)
     nmz <- names(x)
     tmp <- Map(function(a, b) data.frame(id=b, a, stringsAsFactors = FALSE), x, nmz)
-    ifn_null(tmp, do.call(rbind.fill, tmp))
+    ifn_null(tmp, dplyr::bind_rows(tmp))
   }
 }
 ifn_null <- function(x, y) if(is.null(x)) x else y
