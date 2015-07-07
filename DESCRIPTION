@@ -1,5 +1,5 @@
 Package: rnoaa
-Title: 'NOAA' Climate Data from R
+Title: 'NOAA' Weather Data from R
 Description: Client for many 'NOAA' data sources including the 'NCDC'
     climate 'API' at http://www.ncdc.noaa.gov/cdo-web/webservices/v2, with
     functions for each of the 'API' 'endpoints': data, data categories, data sets,
