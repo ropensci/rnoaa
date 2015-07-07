@@ -8,7 +8,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC'
     'NOAA' Historical Observing 'Metadata' Repository ('HOMR') data,
     'NOAA' storm data via 'IBTrACS', and tornado data via the 'NOAA' storm prediction
     center.
-Version: 0.4.1.9100
+Version: 0.4.1.9200
 License: MIT + file LICENSE
 Authors@R: c(
     person("Hart", "Edmund", role = "ctb", email = "Edmund.m.hart@gmail.com"),

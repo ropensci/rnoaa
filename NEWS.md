@@ -13,7 +13,7 @@ the `query` parameter in `GET` (#101)
 rnoaa 0.4.0
 ===============
 
-NEW FEATURES
+### NEW FEATURES
 
 + Gains a suite of new functions for working with NOAA GHCND data, including
 `ghcnd()`, `ghcnd_clear_cache()`, `ghcnd_countries()`, `ghcnd_search()`, `ghcnd_splitvars()`
@@ -22,7 +22,7 @@ NEW FEATURES
 + All NOAA buoy functions put back into the package. They were previously
 on a separate branch in the GitHub repository. (#37) (#71) (#100)
 
-MINOR IMPROVEMENTS
+### MINOR IMPROVEMENTS
 
 + Minor adjustments to `isd()` functions, including better man file.
 + Cleaner package imports - importing mostly only functions used in dependencies.
@@ -33,7 +33,7 @@ MINOR IMPROVEMENTS
 + Many dependencies dropped, simplifying package: `RCurl`, `maptools`, `stringr`, `digest`.
 A few new ones added: `dplyr`, `tidyr`.
 
-DEPRECATED AND DEFUNCT
+### DEPRECATED AND DEFUNCT
 
 + All `erddap` functions now defunct - see the package [rerddap](https://github.com/ropensci/rerddap),
 a general purpose R client for ERDDAP servers. (#51) (#73) (#90) (#95)
@@ -44,7 +44,7 @@ two packages, one of which is a pain to install for many users (#98) (#99)
 rnoaa 0.3.3
 ===============
 
-NEW FEATURES
+### NEW FEATURES
 
 + New data source NOAA legacy API with ISD, daily, and ish data via function
 `ncdc_legacy()`. (#54)
@@ -55,7 +55,7 @@ function `erddap_search()` was modified to search for either tabledap or griddap
 datasets, and `erddap_info()` gets and prints summary information differently
 for tabledap and griddap datasets. (#63)
 
-MINOR IMPROVEMENTS
+### MINOR IMPROVEMENTS
 
 + `erddap_data()` defunct, now as functions `erddap_table()` and `erddap_grid()`, uses new
 `store` parameter which takes a function, either `disk(path, overwrite)` to store
@@ -65,7 +65,7 @@ on disk or `memory()` to store in R memory.
 rnoaa 0.3.0
 ===============
 
-NEW FEATURES
+### NEW FEATURES
 
 + New data source added (NOAA torndoes data) via function `tornadoes()`. (#56)
 + New data source added (NOAA storm data from IBTrACS) via functions
@@ -76,7 +76,7 @@ NEW FEATURES
 + Some functions in rnoaa now print data.frame outputs as `dplyr`-like outputs
 with a summary of the data.frame, as appropriate.
 
-MINOR IMPROVEMENTS
+### MINOR IMPROVEMENTS
 
 + Across all `ncdc_*` functions changed `callopts` parameter to `...`. This parameter
 allow you to pass in options to `httr::GET` to modify curl requests. (#61)
@@ -91,7 +91,7 @@ like `options(var = "...")`, or stored long term in your `.Rprofile` file.
 rnoaa 0.2.0
 ===============
 
-NEW FEATURES
+### NEW FEATURES
 
 * New package imports: `sp`, `rgeos`, `assertthat`, `jsonlite`, and `ncdf4`, and new package Suggests: `knitr`, `taxize`
 * Most function names changed. All `noaa*()` functions for NCDC data changed to `ncdc*()`. `noaa_buoy()` changed to `buoy()`. `noaa_seaice()` changed to `seaice()`. When you call the old versions an error is thrown, with a message pointing you to the new function name. See ?rnoaa-defunct.
@@ -101,7 +101,7 @@ NEW FEATURES
 * `ncdc()` now splits apart attributes. Previously, the attributes were returned as a single column, but now there is column for each attribute so data can be easily retrieved. Attribute columns differ for each different `datasetid`.
 * `buoy()` function has been removed from the CRAN version of `rnoaa`. Install the version with `buoy()` and associated functions via `devtools::install_github("ropensci/rnoaa", ref="buoy")`
 
-MINOR IMPROVEMENTS
+### MINOR IMPROVEMENTS
 
 * `noaa_swdi()` (function changed to `swdi()`) gains new parameter `filepath` to specify path to write a file to if `format=kmz` or `format=shp`. Examples added for using `format=` csv, shp, and kmz.
 * Now using internal version of `plyr::compact`.
@@ -109,7 +109,7 @@ MINOR IMPROVEMENTS
 * `ncdc()` gains new parameter `includemetadata`. If TRUE, includes metadata, if not, does not, and response should be faster as does not take time to calculate metadata.
 * `noaa_stations()` gains new parameter `radius`. If `extent` is a vector of length 4 (for a bounding box) then radius is ignored, but if you pass in two points to `extent`, it is interpreted as a point, and then `radius` is used as the distance upon which to construct a bounding box. `radius` default is 10 km.
 
-BUG FIXES
+### BUG FIXES
 
 * `datasetid`, `startdate`, and `enddate` are often required parameters, and changes were made to help users with this.
 
@@ -117,7 +117,7 @@ BUG FIXES
 rnoaa 0.1.0
 ===============
 
-NEW FEATURES
+### NEW FEATURES
 
 * Submitted to CRAN.
 
@@ -125,7 +125,7 @@ NEW FEATURES
 rnoaa 0.0.8
 ===============
 
-NEW FEATURES
+### NEW FEATURES
 
 * Wrote new functions for NOAA API v2.
 * A working vignette now.
@@ -134,6 +134,6 @@ NEW FEATURES
 rnoaa 0.0.1
 ===============
 
-NEW FEATURES
+### NEW FEATURES
 
 * Wrappers for NOAA API v1 were written, not on CRAN at this point.

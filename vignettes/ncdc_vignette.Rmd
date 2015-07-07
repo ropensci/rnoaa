@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{ncdc vignette}
+%\VignetteEncoding{UTF-8}
 -->
 
 

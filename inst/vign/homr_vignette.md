@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{HOMR metadata}
+%\VignetteEncoding{UTF-8}
 -->
 
 
@@ -221,6 +222,24 @@ ldply(res, function(x) x$location$latlon)
 #> 12 30087759         6.68         -1.62        Unknown      Present
 #> 13 30087760          8.2          0.57        Unknown      Present
 #> 14 30087761         4.88         -1.77        Unknown      Present
+#> 15 30095009          6.2        -2.333        Unknown      Present
+#> 16 30095161        6.083         -0.25        Unknown      Present
+#> 17 30095204        5.933        -0.983        Unknown      Present
+#> 18 30095262        9.033        -2.483        Unknown      Present
+#> 19 30095272         7.75          -2.1        Unknown      Present
+#> 20 30095306       10.083        -2.508        Unknown      Present
+#> 21 30095319        9.557        -0.863        Unknown      Present
+#> 22 30095440        5.783         0.633        Unknown      Present
+#> 23 30095471        4.867        -2.233        Unknown      Present
+#> 24 30095567          6.1         0.117        Unknown      Present
+#> 25 30095838        7.362        -2.329        Unknown      Present
+#> 26 30095905        5.617           0.0        Unknown      Present
+#> 27 30095956         10.9          -1.1        Unknown      Present
+#> 28 30096063        7.817        -0.033        Unknown      Present
+#> 29 30096177          6.6         0.467        Unknown      Present
+#> 30 30096242        5.605        -0.167        Unknown      Present
+#> 31 30096313        6.715        -1.591        Unknown      Present
+#> 32 30096407        4.896        -1.775        Unknown      Present
 ```
 
 By state and county
@@ -232,20 +251,20 @@ head( ldply(res, "[[", "head") )
 ```
 
 ```
-#>        .id            preferredName latitude_dec longitude_dec precision
-#> 1 20013818        BEETREE DAM 2, NC     35.63333         -82.4      DDMM
-#> 2 20013838          BEETREE GAP, NC         35.7         -82.4      DDMM
-#> 3 20014046      SWANNANOA 2 SSE, NC     35.57333       -82.385    DDMMSS
-#> 4 30083542 BLACK MOUNTAIN 0.8 N, NC      35.6263      -82.3297      <NA>
-#> 5 20013839            LEICESTER, NC        35.65         -82.7      DDMM
-#> 6 30077883    WEAVERVILLE 4.2 N, NC      35.7579      -82.5618      <NA>
-#>             por.beginDate             por.endDate
-#> 1 1949-01-01T00:00:00.000 1962-03-31T00:00:00.000
-#> 2 1948-08-01T00:00:00.000 1950-12-31T00:00:00.000
-#> 3 1984-01-01T00:00:00.000 2008-03-31T00:00:00.000
-#> 4                 Unknown                 Present
-#> 5 1949-01-01T00:00:00.000 1962-03-31T00:00:00.000
-#> 6                 Unknown                 Present
+#>        .id            preferredName latitude_dec longitude_dec
+#> 1 30077883    WEAVERVILLE 4.2 N, NC      35.7579      -82.5618
+#> 2 20014046      SWANNANOA 2 SSE, NC     35.57333       -82.385
+#> 3 20013839            LEICESTER, NC        35.65         -82.7
+#> 4 30029796       FAIRVIEW 1.2 S, NC      35.5058      -82.4051
+#> 5 30083542 BLACK MOUNTAIN 0.8 N, NC      35.6263      -82.3297
+#> 6 30026101        ARDEN 1.6 ENE, NC      35.4791      -82.4924
+#>             por.beginDate             por.endDate precision
+#> 1                 Unknown                 Present      <NA>
+#> 2 1984-01-01T00:00:00.000 2008-03-31T00:00:00.000    DDMMSS
+#> 3 1949-01-01T00:00:00.000 1962-03-31T00:00:00.000      DDMM
+#> 4                 Unknown                 Present      <NA>
+#> 5                 Unknown                 Present      <NA>
+#> 6                 Unknown                 Present      <NA>
 ```
 
 ## Get header information only
@@ -257,20 +276,20 @@ head( ldply(res, "[[", "head") )
 ```
 
 ```
-#>        .id                   preferredName latitude_dec longitude_dec
-#> 1 20004159             GEORGETOWN 5 SW, DE     38.63333        -75.45
-#> 2 30075067         PRIME HOOK DELAWARE, DE      38.8333      -75.3333
-#> 3 20004158          REHOBOTH BEACH LBS, DE     38.61667     -75.06667
-#> 4 30039554            GREENWOOD 2.9 SE, DE      38.7731      -75.5616
-#> 5 30067636                LEWES 0.8 SE, DE      38.7731      -75.1385
-#> 6 20004174 BRANDYWINE SHOALS LIGHT STN, DE     38.98333         -75.1
-#>   precision           por.beginDate             por.endDate
-#> 1      DDMM 1948-08-01T00:00:00.000 1997-06-01T00:00:00.000
-#> 2      <NA>                 Unknown                 Present
-#> 3      DDMM                 Unknown                 Present
-#> 4      <NA>                 Unknown                 Present
-#> 5      <NA>                 Unknown                 Present
-#> 6      DDMM 1972-10-01T00:00:00.000 1973-04-30T00:00:00.000
+#>        .id           preferredName latitude_dec longitude_dec precision
+#> 1 20004158  REHOBOTH BEACH LBS, DE     38.61667     -75.06667      DDMM
+#> 2 30075067 PRIME HOOK DELAWARE, DE      38.8333      -75.3333      <NA>
+#> 3 30027455       DELMAR 2.8 NE, DE      38.4863      -75.5332      <NA>
+#> 4 30067636        LEWES 0.8 SE, DE      38.7731      -75.1385      <NA>
+#> 5 20004159     GEORGETOWN 5 SW, DE     38.63333        -75.45      DDMM
+#> 6 30039554    GREENWOOD 2.9 SE, DE      38.7731      -75.5616      <NA>
+#>             por.beginDate             por.endDate
+#> 1                 Unknown                 Present
+#> 2                 Unknown                 Present
+#> 3                 Unknown                 Present
+#> 4                 Unknown                 Present
+#> 5 1948-08-01T00:00:00.000 1997-06-01T00:00:00.000
+#> 6                 Unknown                 Present
 ```
 
 ## Data definitions

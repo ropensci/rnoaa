@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{Sea ice vignette}
+%\VignetteEncoding{UTF-8}
 -->
 
 Sea ice vignette
@@ -36,7 +37,6 @@ urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x, mo='Feb', pole='S
 out <- lapply(urls, seaice)
 ```
 
-
 ```r
 head(out[[1]])
 ```
@@ -59,17 +59,6 @@ urls <- seaiceeurls(mo='Apr', pole='N', yr=1990)
 out <- seaice(urls)
 ```
 
-```
-## OGR data source with driver: ESRI Shapefile 
-## Source: "/var/folders/gs/4khph0xs0436gmd2gdnwsg080000gn/T//RtmpBQH6xq/extent_N_199004_polygon", layer: "extent_N_199004_polygon"
-## with 147 features
-## It has 1 fields
-```
-
-```
-## Regions defined for each Polygons
-```
-
 ```r
 library('ggplot2')
 ggplot(out, aes(long, lat, group=group)) +
@@ -86,7 +75,6 @@ ggplot(out, aes(long, lat, group=group)) +
 urls <- seaiceeurls(mo='Apr', pole='N')[1:10]
 out <- lapply(urls, seaice)
 ```
-
 
 ```r
 names(out) <- seq(1979,1988,1)

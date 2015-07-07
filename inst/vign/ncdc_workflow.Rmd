@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{ncdc workflow}
+%\VignetteEncoding{UTF-8}
 -->
 
 ```{r echo=FALSE}

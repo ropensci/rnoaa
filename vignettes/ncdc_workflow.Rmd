@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{ncdc workflow}
+%\VignetteEncoding{UTF-8}
 -->
 
 
@@ -97,8 +98,8 @@ ncdc_datasets(stationid = id)
 #> 
 #> $data
 #>                    uid    mindate    maxdate              name
-#> 1 gov.noaa.ncdc:C00861 1763-01-01 2015-06-17   Daily Summaries
-#> 2 gov.noaa.ncdc:C00841 1763-01-01 2015-05-01 Monthly Summaries
+#> 1 gov.noaa.ncdc:C00861 1763-01-01 2015-07-05   Daily Summaries
+#> 2 gov.noaa.ncdc:C00841 1763-01-01 2015-06-01 Monthly Summaries
 #>   datacoverage      id
 #> 1            1   GHCND
 #> 2            1 GHCNDMS
@@ -118,8 +119,8 @@ ncdc_datatypes(datasetid = "GHCND", stationid = id)
 #> 
 #> $data
 #>      mindate    maxdate                         name datacoverage   id
-#> 1 1781-01-01 2015-06-17 Precipitation (tenths of mm)            1 PRCP
-#> 2 1840-05-01 2015-06-16                Snowfall (mm)            1 SNOW
+#> 1 1781-01-01 2015-07-05 Precipitation (tenths of mm)            1 PRCP
+#> 2 1840-05-01 2015-07-05                Snowfall (mm)            1 SNOW
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datatypes"

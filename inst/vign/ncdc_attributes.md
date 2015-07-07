@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{NOAA NCDC dataset attributes}
+%\VignetteEncoding{UTF-8}
 -->
 
 NOAA NCDC dataset attributes

@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{Sea ice vignette}
+%\VignetteEncoding{UTF-8}
 -->
 
 Sea ice vignette

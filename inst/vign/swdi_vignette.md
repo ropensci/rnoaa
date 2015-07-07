@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{SWDI vignette}
+%\VignetteEncoding{UTF-8}
 -->
 
 
@@ -43,7 +44,7 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.007
+#> [1] 0.045
 #> 
 #> 
 #> $data
@@ -143,7 +144,7 @@ list(out$meta, head(out$data), head(out$shape))
 #> numeric(0)
 #> 
 #> [[1]]$totalTimeInSeconds
-#> [1] 0.127
+#> [1] 2.788
 #> 
 #> 
 #> [[2]]
@@ -182,7 +183,7 @@ swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.001
+#> [1] 0
 #> 
 #> 
 #> $data
@@ -221,7 +222,7 @@ swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.001
+#> [1] 0
 #> 
 #> 
 #> $data

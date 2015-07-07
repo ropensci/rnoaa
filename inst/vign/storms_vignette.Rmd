@@ -1,6 +1,7 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{NOAA storms}
+%\VignetteEncoding{UTF-8}
 -->
 
 ```{r echo=FALSE}
