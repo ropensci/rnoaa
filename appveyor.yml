@@ -12,6 +12,7 @@ install:
 
 build_script:
   - travis-tool.sh install_deps
+  - travis-tool.sh r_install proto taxize
 
 test_script:
   - travis-tool.sh run_tests
