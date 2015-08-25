@@ -50,37 +50,42 @@
 #' ## or pass in each element separately
 #' ncdc_plot(out1, out2, breaks="45 days")
 #' }
-ncdc_plot <- function(..., breaks="7 days", dateformat='%d/%m/%y') UseMethod("ncdc_plot")
+ncdc_plot <- function(..., breaks="7 days", dateformat='%d/%m/%y') {
+  UseMethod("ncdc_plot")
+}
 
 #' @method ncdc_plot ncdc_data
 #' @export
 #' @rdname ncdc_plot
-ncdc_plot.ncdc_data <- function(..., breaks="7 days", dateformat='%d/%m/%y')
-{
+ncdc_plot.ncdc_data <- function(..., breaks="7 days", dateformat='%d/%m/%y') {
   input <- list(...)
   value = NULL
-  if(!inherits(input[[1]], c('ncdc_data','ncdc_data_comb')))
+  if (!inherits(input[[1]], c('ncdc_data','ncdc_data_comb'))) {
     stop("Input is not of class ncdc_data or ncdc_data_comb")
+  }
 
-  if(length(input) == 1){
+  if (length(input) == 1) {
     df <- input[[1]]$data
     df$date <- ymd(sub('T00:00:00\\.000|T00:00:00', '', as.character(df$date)))
     ggplot(df, aes(date, value)) +
-      theme_bw(base_size=18) +
-      geom_line(size=2) +
-      scale_x_datetime(breaks = date_breaks(breaks), labels = date_format(dateformat)) +
-      labs(y=as.character(df[1,'dataType']), x="Date") +
+      plot_template(df, breaks, dateformat) +
       ncdc_theme()
   } else {
     df <- dplyr::bind_rows(lapply(input, function(x) x$data))
-    df$facet <- rep(paste("input", 1:length(input)), times=sapply(input, function(x) nrow(x$data)))
+    df$facet <- rep(paste("input", 1:length(input)), times = sapply(input, function(x) nrow(x$data)))
     df$date <- ymd(sub("T00:00:00\\.000|T00:00:00", '', as.character(df$date)))
     ggplot(df, aes(date, value)) +
-      theme_bw(base_size=18) +
-      geom_line(size=2) +
-      scale_x_datetime(breaks = date_breaks(breaks), labels = date_format(dateformat)) +
-      labs(y=as.character(df[1,'dataType']), x="Date") +
+      plot_template(df, breaks, dateformat) +
       ncdc_theme() +
-      facet_wrap(~ facet, scales="free")
+      facet_wrap(~facet, scales = "free")
   }
+}
+
+plot_template <- function(df, breaks, dateformat) {
+  list(
+    theme_bw(base_size = 18),
+    geom_line(size = 2),
+    scale_x_datetime(breaks = date_breaks(breaks), labels = date_format(dateformat)),
+    labs(y = as.character(df[1, 'datatype']), x = "Date")
+  )
 }
