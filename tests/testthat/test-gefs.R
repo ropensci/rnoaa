@@ -8,11 +8,15 @@ lon = -116.2188
 var = "Temperature_height_above_ground_ens"
 
 test_that("gefs errors", {
+  #not needed because no web API call is/should be made.
+  #skip_on_cran()
   
   expect_error(gefs(lat=lat, lon=lon), "Need to specify the variable to get. A list of variables is available from gefs_variables().")
 })
 
 test_that("gefs time and ensemble selection returns correct indices.", {
+  skip_on_cran()
+  
   ens_idx = 2:4
   time_idx = 5:10
   d = gefs(var, lat, lon, ens_idx = ens_idx, time_idx = time_idx)
@@ -23,6 +27,8 @@ test_that("gefs time and ensemble selection returns correct indices.", {
 })
 
 test_that("gefs metadata", {
+  skip_on_cran()
+  
   today = format(as.Date(Sys.time()) - 1, "%Y%m%d")
   forecast_time = "0600"
   d = gefs(var, lat, lon, ens=1, date=today, forecast_time=forecast_time)

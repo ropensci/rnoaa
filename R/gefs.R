@@ -3,7 +3,6 @@
 #' Fetches GEFS forecast data for every 6 hours out to 384 hours past selected date. GEFS
 #' is an ensemble of 21 models that can be summarized to estimate likelihoods of forecasts.
 #'  
-#' @importFrom ncdf4 nc_open ncvar_get
 #' @importFrom tidyr gather
 #' @export
 #' 
@@ -22,6 +21,8 @@
 #' @param ... additional parameters passed to \code{ncvar_get}.
 #' @return a list containing metadata and accompanying data frame of forecast 
 #'   values. If lat/lon are not specified, the $data is an unprocessed matrix.
+#'   
+#' @references \url{https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs}
 #' 
 #' @author Nicholas Potter \email{potterzot@@gmail.com}
 #' @examples \dontrun{
@@ -55,6 +56,7 @@
 #' #specific ensemble and times, for the 1800 forecast. 
 #' # here ensembles 1-3 (ensembles are numbered starting with 0)
 #' # and time for 2 days from today at 1800
+#' var = "Temperature_height_above_ground_ens"
 #' gefs(var, lat, lon, forecast_time = "1800", ens_idx=2:4, time_idx=1:8)
 #' 
 #' #One ensemble, all latitudes and longitudes (this is a big file) for the
@@ -63,10 +65,10 @@
 #' }
 #' 
 gefs <- function(var, lat, lon, ...) {
+  check4ncdf()
   gefs_GET(var, lat, lon, ...)
 }
 
-#' @importFrom ncdf4 nc_open
 #' @rdname gefs
 gefs_CONNECT <- function(date = format(Sys.time(), "%Y%m%d"), 
                          forecast_time = c("0000", "0600", "1200", "1800")) {
@@ -82,10 +84,10 @@ gefs_CONNECT <- function(date = format(Sys.time(), "%Y%m%d"),
   gefs_url = paste0(gefs_url_pre, date, "_", forecast_time, gefs_url_suf)
   
   #open the connection
-  nc_open(gefs_url)
+  #nc_open(gefs_url) #ncdf4 version
+  open.ncdf(gefs_url)
 }
 
-#' @importFrom ncdf4 ncvar_get
 #' @rdname gefs
 gefs_GET <- function(var, lat, lon,
                      date = format(Sys.time(), "%Y%m%d"), 
@@ -137,7 +139,8 @@ gefs_GET <- function(var, lat, lon,
   
   # actual data
   # Do not modify the data, so don't convert (- 273.15) * 1.8 + 32. #convert from K to F
-  d = ncvar_get(con, v, start = start, count = count_n, ...)
+  #d = ncvar_get(con, v, start = start, count = count_n, ...) #ncdf4 version
+  d = get.var.ncdf(con, v, start = start, count = count_n, ...)
  
   #create the data frame
   #For now, if lat/lon are not specified, just return a matrix.
@@ -205,6 +208,15 @@ gefs_dimension_values <- function(dim, con = NULL, ...) {
   if (is.null(dim) || missing(dim)) stop("dim cannot be NULL or missing.")
   if (is.null(con)) con = gefs_CONNECT(...)
   con$dim[[dim]]$vals
+}
+
+#Check that ncdf is installed
+check4ncdf <- function() {
+  if (!requireNamespace("ncdf", quietly = TRUE)) {
+    stop("Please install ncdf", call. = FALSE)
+  } else {
+    invisible(TRUE)
+  }
 }
 
 

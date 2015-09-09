@@ -22,16 +22,13 @@
 #'  \item \code{tornadoes} - From the NOAA Storm Prediction Center
 #' }
 #' 
-#' @section A note about ncdf/ncdf4:
+#' @section A note about ncdf:
 #' 
 #' Functions to work with buoy data use netcdf files. You'll need the \code{ncdf}
 #' package for those functions, and those only. \code{ncdf} is in Suggests in 
 #' this package, meaning you only need \code{ncdf} if you are using the buoy 
 #' functions. You'll get an informative error telling you to install \code{ncdf}
 #' if you don't have it and you try to use the buoy functions.
-#' 
-#' The gefs function uses \code{ncdf4}, which is available on CRAN and should be
-#' straightfoward to install.
 #' 
 #' Installation of \code{ncdf} should be straightforward on Mac and Windows, but 
 #' on Linux you may have issues. See http://cran.r-project.org/web/packages/ncdf/INSTALL
