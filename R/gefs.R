@@ -57,8 +57,9 @@
 #' #specific ensemble and times, for the 1800 forecast. 
 #' # here ensembles 1-3 (ensembles are numbered starting with 0)
 #' # and time for 2 days from today at 1800
+#' date=format(as.Date(Sys.time()) - 1, "%Y%m%d")
 #' var = "Temperature_height_above_ground_ens"
-#' gefs(var, lat, lon, forecast_time = "1800", ens_idx=2:4, time_idx=1:8)
+#' gefs(var, lat, lon, date = date, forecast_time = "1800", ens_idx=2:4, time_idx=1:8)
 #' 
 #' #One ensemble, all latitudes and longitudes (this is a big file) for the
 #' # next 3 days.
