@@ -33,10 +33,11 @@ Imports:
     scales,
     rgdal,
     XML,
-    jsonlite
+    jsonlite,
 Suggests:
     testthat,
     roxygen2,
     knitr,
     taxize,
-    ncdf
+    ncdf,
+    ncdf4,

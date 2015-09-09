@@ -11,6 +11,7 @@
 #'
 #' \itemize{
 #'  \item \code{buoy_*} - NOAA Buoy data from the National Buoy Data Center
+#'  \item \code{gefs} - GEFS forecast ensemble data
 #'  \item \code{ghcnd_*} - GHCND daily data from NOAA
 #'  \item \code{isd_*} - ISD/ISH data from NOAA
 #'  \item \code{homr_*} - Historical Observing Metadata Repository (HOMR) vignette
@@ -21,13 +22,16 @@
 #'  \item \code{tornadoes} - From the NOAA Storm Prediction Center
 #' }
 #' 
-#' @section A note about ncdf:
+#' @section A note about ncdf/ncdf4:
 #' 
 #' Functions to work with buoy data use netcdf files. You'll need the \code{ncdf}
 #' package for those functions, and those only. \code{ncdf} is in Suggests in 
 #' this package, meaning you only need \code{ncdf} if you are using the buoy 
 #' functions. You'll get an informative error telling you to install \code{ncdf}
 #' if you don't have it and you try to use the buoy functions.
+#' 
+#' The gefs function uses \code{ncdf4}, which is available on CRAN and should be
+#' straightfoward to install.
 #' 
 #' Installation of \code{ncdf} should be straightforward on Mac and Windows, but 
 #' on Linux you may have issues. See http://cran.r-project.org/web/packages/ncdf/INSTALL
