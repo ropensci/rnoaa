@@ -78,7 +78,7 @@ test_that("gefs_dimension_values returns numeric array.", {
   expect_is(vals, "array")
   expect_is(vals[1], "numeric")
   
-  #expect_error(gefs_dimension_values(dim=NULL), "dim cannot be NULL or missing.")
+  expect_error(gefs_dimension_values(dim = NULL), "dim cannot be NULL or missing.")
 })
 
 

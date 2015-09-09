@@ -50,6 +50,8 @@ length of the list.}
 \item{time_idx}{sequential list of time increments to return. List is the index
 of times, which are in 6 hour increments. (e.g. c(1,2) fetches the 6 and 12 hour forecast.)}
 
+\item{dims}{(not implemented) indices for additional dimensions to be included between lat, lon, ens, and time.}
+
 \item{raw}{logical to indicate whether to return raw data matrix or reshaped data frame.}
 
 \item{con}{an ncdf4 connection.}

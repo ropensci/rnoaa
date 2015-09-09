@@ -17,6 +17,7 @@
 #' @param ens_idx sequential list of ensembles to fetch. Default is all 21. Note that the ensembles are labelled 0-20, so ens_idx=1:3 will return ensembles 0, 1, and 2.
 #' @param time_idx sequential list of time increments to return. List is the index
 #'   of times, which are in 6 hour increments. (e.g. c(1,2) fetches the 6 and 12 hour forecast.)
+#' @param dims (not implemented) indices for additional dimensions to be included between lat, lon, ens, and time.
 #' @param raw logical to indicate whether to return raw data matrix or reshaped data frame.
 #' @param ... additional parameters passed to \code{ncvar_get}.
 #' @return a list containing metadata and accompanying data frame of forecast 
@@ -85,7 +86,7 @@ gefs_CONNECT <- function(date = format(Sys.time(), "%Y%m%d"),
   
   #open the connection
   #nc_open(gefs_url) #ncdf4 version
-  open.ncdf(gefs_url)
+  ncdf::open.ncdf(gefs_url)
 }
 
 #' @rdname gefs
@@ -140,7 +141,7 @@ gefs_GET <- function(var, lat, lon,
   # actual data
   # Do not modify the data, so don't convert (- 273.15) * 1.8 + 32. #convert from K to F
   #d = ncvar_get(con, v, start = start, count = count_n, ...) #ncdf4 version
-  d = get.var.ncdf(con, v, start = start, count = count_n, ...)
+  d = ncdf::get.var.ncdf(con, v, start = start, count = count_n, ...)
  
   #create the data frame
   #For now, if lat/lon are not specified, just return a matrix.
