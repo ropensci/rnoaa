@@ -35,7 +35,7 @@ test_that("gefs metadata", {
   
   expect_equal(d$forecast_date, today)
   expect_equal(d$forecast_time, forecast_time)
-  expect_equal(d$dimensions, c("lon", "lat", "height_above_ground", "ens", "time1"))
+  expect_equal(d$dimensions[1:4], c("lon", "lat", "height_above_ground", "ens"))
 })
 
 test_that("gefs_variables returns characters.", {
