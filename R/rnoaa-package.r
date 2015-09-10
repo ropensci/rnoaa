@@ -3,15 +3,15 @@
 #' Many functions in this package interact with the National Climatic Data Center application
 #' programming interface (API) at http://www.ncdc.noaa.gov/cdo-web/webservices/v2, all of
 #' which functions start with \code{ncdc_}. An access token, or API key, is required to use all
-#' the \code{ncdc_} functions. The key is required by NOAA, not the creators of this R package.
-#' Go to the link given above to get an API key.
+#' the \code{ncdc_} functions. The key is required by NOAA, not us. Go to the link given above 
+#' to get an API key.
 #'
 #' More NOAA data sources are being added through time. Data sources and their function prefixes
 #' are:
 #'
 #' \itemize{
 #'  \item \code{buoy_*} - NOAA Buoy data from the National Buoy Data Center
-#'  \item \code{gefs} - GEFS forecast ensemble data
+#'  \item \code{gefs_*} - GEFS forecast ensemble data
 #'  \item \code{ghcnd_*} - GHCND daily data from NOAA
 #'  \item \code{isd_*} - ISD/ISH data from NOAA
 #'  \item \code{homr_*} - Historical Observing Metadata Repository (HOMR) vignette

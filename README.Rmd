@@ -19,18 +19,8 @@ knitr::opts_chunk$set(
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rnoaa?color=C9A115)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/rnoaa)](http://cran.rstudio.com/package=rnoaa)
 
-## Help
 
-There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.rstudio.com/package=rnoaa). The tutorials:
-
-* NOAA Buoy vignette
-* NOAA National Climatic Data Center (NCDC) vignette (examples)
-* NOAA NCDC attributes vignette
-* NOAA NCDC workflow vignette
-* Sea ice vignette
-* Severe Weather Data Inventory (SWDI) vignette
-* Historical Observing Metadata Repository (HOMR) vignette
-* Storms (IBTrACS) vignette
+`rnoaa` is an R interface to many NOAA data sources. We don't cover all of them, but we include many commonly used sources, and add we are always adding new sources. We focus on easy to use interfaces for getting NOAA data, and giving back data in easy to use formats downstream. We currently don't do much in the way of plots or analysis. 
 
 ## Data sources used in rnoaa
 
@@ -47,6 +37,20 @@ There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoa
 * HOMR - Historical Observing Metadata Repository - from [NOAA NCDC](http://www.ncdc.noaa.gov/homr/api)
 * Storm data - from the [International Best Track Archive for Climate Stewardship (IBTrACS)](http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data)
 * [GHCND FTP data](ftp://ftp.ncdc.noaa.gov/pub/data/noaa) - NOAA NCDC API has some/all (not sure really) of this data, but FTP allows to get more data more quickly
+* [Global Ensemble Forecast System (GEFS) data](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs)
+
+## Help
+
+There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.rstudio.com/package=rnoaa). The tutorials:
+
+* NOAA Buoy vignette
+* NOAA National Climatic Data Center (NCDC) vignette (examples)
+* NOAA NCDC attributes vignette
+* NOAA NCDC workflow vignette
+* Sea ice vignette
+* Severe Weather Data Inventory (SWDI) vignette
+* Historical Observing Metadata Repository (HOMR) vignette
+* Storms (IBTrACS) vignette
 
 ## netcdf data
 
@@ -54,7 +58,7 @@ Functions to work with buoy data use netcdf files. You'll need the `ncdf` packag
 
 ## NOAA NCDC Datasets
 
-There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unkown reason.
+There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unkown reason. This relates to `ncdc_*()` functions only.
 
 | Dataset | Description | Start date | End date |
 |---------|-------------|------------|----------|
@@ -74,7 +78,7 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See http://www.ncdc.noaa.gov/cdo-web/datasets for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](inst/vign/rncdc_attributes.md) to find out more
 
-## Authentication
+## NCDC Authentication
 
 You'll need an API key to use the NOAA NCDC functions (those starting with `ncdc*()`) in this package (essentially a password). Go to http://www.ncdc.noaa.gov/cdo-web/token to get one. *You can't use this package without an API key.*
 
@@ -184,7 +188,7 @@ ncdc_datasets()
 ### Get data category data and metadata
 
 ```{r}
-ncdc_datacats(locationid='CITY:US390029')
+ncdc_datacats(locationid = 'CITY:US390029')
 ```
 
 ## Tornado data
@@ -210,7 +214,16 @@ homr(qid = 'COOP:046742')
 Get storm data for the year 2010
 
 ```{r}
-storm_data(year=2010)
+storm_data(year = 2010)
+```
+
+## GEFS data
+
+Get forecast for a certain variable.
+
+```{r cache = TRUE}
+res <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat = 46.28125, lon = -116.2188)
+head(res$data)
 ```
 
 ## Meta

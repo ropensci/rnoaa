@@ -6,24 +6,28 @@
 #' @importFrom tidyr gather
 #' @export
 #' 
-#' @param var the variable to get. Must be one of the variables listed in \code{gefs_variables()}.
+#' @param var the variable to get. Must be one of the variables listed in 
+#' \code{gefs_variables()}.
 #' @param lat,lon the longitude. Will be converted to the nearest GEFS available
 #'  longitude. If lon is a list of vlaues, it must be a sequential list, and
 #'  data are returned for the number of longitudes in the list starting with
 #'  the maximum value and incrementing through the indexed values for the 
 #'  length of the list.
 #' @param date A date/string formatted as YYYYMMDD.
-#' @param forecast_time a string indicating which time of day UTC the forecast is from. Options are "0000", "0600", "1200", "1800".
-#' @param ens_idx sequential list of ensembles to fetch. Default is all 21. Note that the ensembles are labelled 0-20, so ens_idx=1:3 will return ensembles 0, 1, and 2.
+#' @param forecast_time a string indicating which time of day UTC the forecast is from. 
+#' Options are "0000", "0600", "1200", "1800".
+#' @param ens_idx sequential list of ensembles to fetch. Default is all 21. Note that the 
+#' ensembles are labelled 0-20, so ens_idx=1:3 will return ensembles 0, 1, and 2.
 #' @param time_idx sequential list of time increments to return. List is the index
 #'   of times, which are in 6 hour increments. (e.g. c(1,2) fetches the 6 and 12 hour forecast.)
-#' @param dims (not implemented) indices for additional dimensions to be included between lat, lon, ens, and time.
+#' @param dims (not implemented) indices for additional dimensions to be included between 
+#' lat, lon, ens, and time.
 #' @param raw logical to indicate whether to return raw data matrix or reshaped data frame.
 #' @param ... additional parameters passed to \code{ncvar_get}.
 #' @return a list containing metadata and accompanying data frame of forecast 
 #'   values. If lat/lon are not specified, the $data is an unprocessed matrix.
 #'   
-#' @references \url{https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs}
+#' @references \url{http://bit.ly/noaagefs}
 #' 
 #' @author Nicholas Potter \email{potterzot@@gmail.com}
 #' @examples \dontrun{
