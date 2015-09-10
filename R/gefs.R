@@ -27,7 +27,11 @@
 #' @return a list containing metadata and accompanying data frame of forecast 
 #'   values. If lat/lon are not specified, the $data is an unprocessed matrix.
 #'   
-#' @references \url{http://bit.ly/noaagefs}
+#' @references \itemize{
+#'  \item Data description - \url{http://bit.ly/noaagefs}
+#'  \item Adapted from Python code written by Von P. Walden, Washington State University -  
+#'  \url{http://sila.cee.wsu.edu/forecasts/WeatherAndClimateDatafromNWS.html}
+#' }
 #' 
 #' @author Nicholas Potter \email{potterzot@@gmail.com}
 #' @examples \dontrun{
