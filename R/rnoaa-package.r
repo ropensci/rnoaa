@@ -11,6 +11,7 @@
 #'
 #' \itemize{
 #'  \item \code{buoy_*} - NOAA Buoy data from the National Buoy Data Center
+#'  \item \code{gefs} - GEFS forecast ensemble data
 #'  \item \code{ghcnd_*} - GHCND daily data from NOAA
 #'  \item \code{isd_*} - ISD/ISH data from NOAA
 #'  \item \code{homr_*} - Historical Observing Metadata Repository (HOMR) vignette
