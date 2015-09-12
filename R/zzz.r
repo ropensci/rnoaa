@@ -99,6 +99,9 @@ check_response <- function(x){
 check_response_swdi <- function(x, format){
   if (!x$status_code == 200) {
     res <- content(x)
+    if (length(res) == 0) {
+      stop(http_status(x)$message, call. = FALSE)
+    }
     err <- gsub("\n", "", xpathApply(res, "//error", xmlValue)[[1]])
     if (!is.null(err)) {
       if (grepl('ERROR', err, ignore.case = TRUE)) {

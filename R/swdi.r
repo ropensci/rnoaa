@@ -32,7 +32,9 @@
 #'  \item nx3structure NEXRAD Level-3 Storm Cell Structure Information (point)
 #'  \item plsr Preliminary Local Storm Reports (point)
 #'  \item warn Severe Thunderstorm, Tornado, Flash Flood and Special Marine warnings (polygon)
-#'  \item nldn Lightning strikes from Vaisala (.gov and .mil ONLY) (point)
+#'  \item nldn Lightning strikes from Vaisala. Available to government and 
+#'  military users only. If you aren't one of those, you'll get a 400 status
+#'  stop message if you request data from this dataset (point)
 #' }
 #'
 #' For startdate and enddate, the date range syntax is 'startDate:endDate' or special
