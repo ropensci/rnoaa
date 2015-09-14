@@ -87,7 +87,7 @@ gefs_CONNECT <- function(date = format(Sys.time(), "%Y%m%d"),
   forecast_time = match.arg(forecast_time)
   
   #url parts
-  gefs_url_pre = 'http://motherlode.ucar.edu/thredds/dodsC/grib/NCEP/GEFS/Global_1p0deg_Ensemble/members/GEFS_Global_1p0deg_Ensemble_'
+  gefs_url_pre = 'http://thredds.ucar.edu/thredds/dodsC/grib/NCEP/GEFS/Global_1p0deg_Ensemble/members/GEFS_Global_1p0deg_Ensemble_'
   gefs_url_suf = ".grib2"
   
   #final url
