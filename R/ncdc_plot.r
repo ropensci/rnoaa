@@ -4,9 +4,6 @@
 #' not other functions.
 #'
 #' @export
-#' @import ggplot2
-#' @importFrom lubridate ymd
-#' @importFrom scales date_breaks date_format
 #'
 #' @param ... Input noaa object or objects.
 #' @param breaks Regularly spaced date breaks for x-axis. See \code{\link{date_breaks}}

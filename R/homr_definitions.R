@@ -1,7 +1,6 @@
 #' Historical Observing Metadata Repository (HOMR) station metadata - definitions
 #'
 #' @export
-#' @importFrom jsonlite fromJSON
 #' @param ... Curl options passed on to \code{\link[httr]{GET}} (optional)
 #' @examples \dontrun{
 #' head( homr_definitions() )

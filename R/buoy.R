@@ -1,6 +1,5 @@
 #' Get NOAA buoy data from the National Buoy Data Center
-#' 
-#' @importFrom XML htmlParse
+#'
 #' @export
 #'
 #' @param dataset (character) Dataset name to query. See below for Details. Required
@@ -14,7 +13,7 @@
 #'  \item buoys Get available buoys given a dataset name
 #'  \item buoy Get data given some combination of dataset name, buoy ID, year, and datatype
 #' }
-#' 
+#'
 #' Options for the dataset parameter. One of:
 #' \itemize{
 #'  \item adcp - Acoustic Doppler Current Profiler data
@@ -32,18 +31,18 @@
 #' @examples \dontrun{
 #' # Get available buoys
 #' buoys(dataset = 'cwind')
-#' 
+#'
 #' # Get data for a buoy
 #' ## if no year or datatype specified, we get the first file
 #' buoy(dataset = 'cwind', buoyid = 46085)
-#' 
+#'
 #' # Including specific year
 #' buoy(dataset = 'cwind', buoyid = 41001, year = 1999)
-#' 
+#'
 #' # Including specific year and datatype
 #' buoy(dataset = 'cwind', buoyid = 41001, year = 2008, datatype = "cc")
 #' buoy(dataset = 'cwind', buoyid = 41001, year = 2008, datatype = "cc")
-#' 
+#'
 #' # Other datasets
 #' buoy(dataset = 'ocean', buoyid = 42856)
 #'
@@ -125,31 +124,31 @@ get_ncdf_file <- function(path, buoyid, file, output){
 # Download a single ncdf file
 buoy_collect_data <- function(path){
   nc <- ncdf::open.ncdf(path)
-  
+
   out <- list()
   dims <- names(nc$dim)
   for (i in seq_along(dims)) {
     out[[dims[i]]] <- ncdf::get.var.ncdf(nc, nc$dim[[dims[i]]])
   }
   out$time <- sapply(out$time, convert_time)
-  
+
   vars <- names(nc$var)
   outvars <- list()
   for (i in seq_along(vars)) {
     outvars[[ vars[i] ]] <- as.vector(ncdf::get.var.ncdf(nc, vars[i]))
   }
   df <- do.call("cbind.data.frame", outvars)
-  
+
   rows <- length(outvars[[1]])
   out <- lapply(out, function(z) rep(z, each = rows/length(z)))
-  
+
   meta <- data.frame(out, stringsAsFactors = FALSE)
   alldf <- cbind(meta, df)
-  
+
   nms <- c('name','prec','units','longname','missval','hasAddOffset','hasScaleFact')
   meta <- lapply(vars, function(x) nc$var[[x]][names(nc$var[[x]]) %in% nms])
   names(meta) <- vars
-  
+
   invisible(ncdf::close.ncdf(nc))
   all <- list(meta = meta, data = alldf)
   class(all) <- "buoy"

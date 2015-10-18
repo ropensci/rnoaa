@@ -1,6 +1,6 @@
 #' Get NOAA data for the severe weather data inventory (swdi).
 #'
-#' @importFrom XML xpathSApply xpathApply xmlValue xmlParse xmlToList
+#' @export
 #'
 #' @param dataset Dataset to query. See below for details.
 #' @param format File format to download. One of xml, csv, shp, or kmz.
@@ -32,7 +32,7 @@
 #'  \item nx3structure NEXRAD Level-3 Storm Cell Structure Information (point)
 #'  \item plsr Preliminary Local Storm Reports (point)
 #'  \item warn Severe Thunderstorm, Tornado, Flash Flood and Special Marine warnings (polygon)
-#'  \item nldn Lightning strikes from Vaisala. Available to government and 
+#'  \item nldn Lightning strikes from Vaisala. Available to government and
 #'  military users only. If you aren't one of those, you'll get a 400 status
 #'  stop message if you request data from this dataset (point)
 #' }
@@ -51,7 +51,6 @@
 #'
 #' If kmz or shp chosen, the file is downloaded to your machine and a message is printed.
 #'
-#' @export
 #' @examples \dontrun{
 #' # Search for nx3tvs data from 5 May 2006 to 6 May 2006
 #' swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')

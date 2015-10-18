@@ -1,13 +1,12 @@
 #' Get sea ice data.
 #'
-#' @import ggplot2
+#' @export
 #' @param url A url for a NOAA sea ice ftp file
 #' @param ... Further arguments passed on to readshpfile function, see
 #'    \code{readshpfile}
 #' @return A data.frame
 #' @details If you want to reproject the shape files, use
 #' \code{\link{readshpfile}} to read in shape file, then reproject, and so on.
-#' @export
 #' @examples \dontrun{
 #' # Look at data.frame's for a series of years for Feb, South pole
 #' urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x, mo='Feb', pole='S'))
@@ -29,7 +28,6 @@ seaice <- function(url, ...) {
 
 #' Make all urls for sea ice data
 #'
-#' @importFrom lubridate year today month
 #' @param yr Year (numeric)
 #' @param mo Month, as character abbrevation of a month  (character)
 #' @param Pole One of S (south) or N (north) (character)
@@ -116,7 +114,6 @@ readshpfile <- function(x, storepath = NULL) {
 }
 
 #' ggplot2 map theme
-#' @import ggplot2
 #' @export
 #' @keywords internal
 theme_ice <- function() {

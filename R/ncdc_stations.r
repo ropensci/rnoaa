@@ -5,7 +5,6 @@
 #' station you want, you can quickly get all manner of data from it
 #'
 #' @export
-#' @importFrom rgdal ogrListLayers readOGR
 #'
 #' @template rnoaa
 #' @template rnoaa2

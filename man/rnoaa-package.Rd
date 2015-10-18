@@ -4,13 +4,15 @@
 \name{rnoaa-package}
 \alias{rnoaa}
 \alias{rnoaa-package}
-\title{General purpose R interface to NOAA datasets.}
+\title{rnoaa is an R interface to NOAA climate data.}
 \description{
 rnoaa is an R interface to NOAA climate data.
 }
-\details{
-Many functions in this package interact with the National Climatic Data Center application
-programming interface (API) at http://www.ncdc.noaa.gov/cdo-web/webservices/v2, all of
+\section{Data Sources}{
+
+Many functions in this package interact with the National Climatic Data
+Center application programming interface (API) at
+http://www.ncdc.noaa.gov/cdo-web/webservices/v2, all of
 which functions start with \code{ncdc_}. An access token, or API key, is required to use all
 the \code{ncdc_} functions. The key is required by NOAA, not us. Go to the link given above
 to get an API key.
@@ -31,6 +33,7 @@ are:
  \item \code{tornadoes} - From the NOAA Storm Prediction Center
 }
 }
+
 \section{A note about ncdf}{
 
 
