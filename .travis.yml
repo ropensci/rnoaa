@@ -6,13 +6,12 @@ before_install:
 r_binary_packages:
   - rgdal
   - ncdf
-  - lawn
-  - geojsonio
-  - taxize
 
 r_github_packages:
   - jimhester/robustr
   - jimhester/covr
+  - ropensci/lawn
+  - ropensci/geojsonio
 
 after_success:
   - Rscript -e 'covr::codecov()'
