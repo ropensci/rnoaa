@@ -149,3 +149,12 @@ check_key <- function(x){
   tmp <- if(is.null(x)) Sys.getenv("NOAA_KEY", "") else x
   if(tmp == "") getOption("noaakey", stop("need an API key for NOAA data")) else tmp
 }
+
+# check for a package
+check4pkg <- function(x) {
+  if (!requireNamespace(x, quietly = TRUE)) {
+    stop(sprintf("Please install '%s'", x), call. = FALSE)
+  } else {
+    invisible(TRUE)
+  }
+}

@@ -74,7 +74,7 @@
 #' }
 #'
 gefs <- function(var, lat, lon, ...) {
-  check4ncdf()
+  check4pkg("ncdf")
   gefs_GET(var, lat, lon, ...)
 }
 
@@ -218,15 +218,3 @@ gefs_dimension_values <- function(dim, con = NULL, ...) {
   if (is.null(con)) con = gefs_CONNECT(...)
   con$dim[[dim]]$vals
 }
-
-#Check that ncdf is installed
-check4ncdf <- function() {
-  if (!requireNamespace("ncdf", quietly = TRUE)) {
-    stop("Please install ncdf", call. = FALSE)
-  } else {
-    invisible(TRUE)
-  }
-}
-
-
-

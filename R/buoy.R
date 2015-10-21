@@ -51,7 +51,7 @@
 #' buoy(dataset = 'cwind', buoyid = 46085, config=verbose())
 #' }
 buoy <- function(dataset, buoyid, year=NULL, datatype=NULL, ...) {
-  check4ncdf()
+  check4pkg("ncdf")
   availbuoys <- buoys(dataset, ...)
   page <- availbuoys[grep(buoyid, availbuoys$id), "url"]
   files <- buoy_files(page, buoyid, ...)
@@ -170,22 +170,4 @@ convert_time <- function(n = NULL, isoTime = NULL) {
 #   check1notboth(n, isoTime)
   format(as.POSIXct(noaa_compact(list(n, isoTime))[[1]], origin = "1970-01-01T00:00:00Z", tz = "UTC"),
          format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
-}
-
-# check1notboth <- function(x, y) {
-#   if (is.null(x) && is.null(y)) {
-#     stop(sprintf("One of %s or %s must be non-NULL", deparse(substitute(x)), deparse(substitute(y))), call. = FALSE)
-#   }
-#   if (!is.null(x) && !is.null(y)) {
-#     stop(sprintf("Supply only one of %s or %s", deparse(substitute(x)), deparse(substitute(y))), call. = FALSE)
-#   }
-# }
-
-# check for ncdf
-check4ncdf <- function() {
-  if (!requireNamespace("ncdf", quietly = TRUE)) {
-    stop("Please install ncdf", call. = FALSE)
-  } else {
-    invisible(TRUE)
-  }
 }
