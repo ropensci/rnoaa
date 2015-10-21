@@ -40,4 +40,7 @@ Suggests:
     roxygen2,
     knitr,
     taxize,
-    ncdf
+    ncdf,
+    leaflet,
+    geojsonio,
+    lawn

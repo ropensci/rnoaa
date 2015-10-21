@@ -2,12 +2,13 @@
 % Please edit documentation in R/isd.R
 \name{isd}
 \alias{isd}
-\alias{isd_stations}
+\alias{rbind.isd}
 \title{Get NOAA ISD/ISH data from NOAA FTP server.}
 \usage{
-isd(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, ...)
+isd(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE,
+  cleanup = TRUE, ...)
 
-isd_stations(...)
+rbind.isd(...)
 }
 \arguments{
 \item{usaf,wban}{(character) USAF and WBAN code. Required}
@@ -21,6 +22,10 @@ Required.}
 \item{overwrite}{(logical) To overwrite the path to store files in or not,
 Default: \code{TRUE}}
 
+\item{cleanup}{(logical) If \code{TRUE}, remove compressed \code{.gz} file at end of
+function execution. Processing data takes up a lot of time, so we cache a cleaned version
+of the data. Cleaning up will save you on disk space. Default: \code{TRUE}}
+
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}}
 }
 \description{
@@ -31,10 +36,13 @@ This function first looks for whether the data for your specific query has
 already been downloaded previously in the directory given by the \code{path}
 parameter. If not found, the data is requested form NOAA's FTP server. The first time
 a dataset is pulled down we must a) download the data, b) process the data, and c) save
-a .csv file to disk. The next time the same data is requested, we only have to read
-back in the .csv file, and is quite fast. The processing can take quite a long time
+a compressed .rds file to disk. The next time the same data is requested, we only have
+to read back in the .rds file, and is quite fast. The benfit of writing to .rds files
+is that data is compressed, taking up less space on your disk, and data is read back in
+quickly, without changing any data classes in your data, whereas we'd have to jump
+through hoops to do that with reading in csv. The processing can take quite a long time
 since the data is quite messy and takes a bunch of regex to split apart text strings.
-See examples below for different behavior.
+We hope to speed this process up in the future. See examples below for different behavior.
 }
 \examples{
 \dontrun{
@@ -42,11 +50,22 @@ See examples below for different behavior.
 stations <- isd_stations()
 head(stations)
 
+## plot stations
+### remove incomplete cases, those at 0,0
+df <- stations[complete.cases(stations$lat, stations$lon), ]
+df <- df[df$lat != 0, ]
+### make plot
+library("leaflet")
+leaflet(data = df) \%>\%
+  addTiles() \%>\%
+  addCircles()
+
 # Get data
 (res <- isd(usaf="011490", wban="99999", year=1986))
 (res <- isd(usaf="011690", wban="99999", year=1993))
 (res <- isd(usaf="172007", wban="99999", year=2015))
 (res <- isd(usaf="702700", wban="00489", year=2015))
+(res <- isd(usaf="109711", wban=99999, year=1970))
 
 # The first time a dataset is requested takes longer
 system.time( isd(usaf="782680", wban="99999", year=2011) )
@@ -54,9 +73,35 @@ system.time( isd(usaf="782680", wban="99999", year=2011) )
 
 # Optionally pass in curl options
 res <- isd(usaf="011490", wban="99999", year=1986, config = verbose())
+
+# Plot data
+## get data for multiple stations
+res1 <- isd(usaf="011690", wban="99999", year=1993)
+res2 <- isd(usaf="172007", wban="99999", year=2015)
+res3 <- isd(usaf="702700", wban="00489", year=2015)
+res4 <- isd(usaf="109711", wban=99999, year=1970)
+## combine data
+### uses rbind.isd (all inputs of which must be of class isd)
+res_all <- rbind(res1, res2, res3, res4)
+# add date time
+library("lubridate")
+res_all$date_time <- ymd_hm(
+  sprintf("\%s \%s", as.character(res_all$date), res_all$time)
+)
+## remove 999's
+library("dplyr")
+res_all <- res_all \%>\% filter(temperature < 900)
+## plot
+library("ggplot2")
+ggplot(res_all, aes(date_time, temperature)) +
+  geom_line() +
+  facet_wrap(~usaf_station, scales = "free_x")
 }
 }
 \references{
 ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
+}
+\seealso{
+\code{\link{isd_stations}}
 }
 

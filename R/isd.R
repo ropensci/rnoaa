@@ -1,7 +1,6 @@
 #' Get NOAA ISD/ISH data from NOAA FTP server.
 #'
 #' @export
-#' @name isd
 #'
 #' @param usaf,wban (character) USAF and WBAN code. Required
 #' @param year (numeric) One of the years from 1901 to the current year.
@@ -10,52 +9,96 @@
 #' \code{~/.rnoaa/isd}. Required.
 #' @param overwrite (logical) To overwrite the path to store files in or not,
 #' Default: \code{TRUE}
+#' @param cleanup (logical) If \code{TRUE}, remove compressed \code{.gz} file at end of
+#' function execution. Processing data takes up a lot of time, so we cache a cleaned version
+#' of the data. Cleaning up will save you on disk space. Default: \code{TRUE}
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
+#' 
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
+#' @seealso \code{\link{isd_stations}}
+#' 
 #' @details This function first looks for whether the data for your specific query has
 #' already been downloaded previously in the directory given by the \code{path}
 #' parameter. If not found, the data is requested form NOAA's FTP server. The first time
 #' a dataset is pulled down we must a) download the data, b) process the data, and c) save
-#' a .csv file to disk. The next time the same data is requested, we only have to read
-#' back in the .csv file, and is quite fast. The processing can take quite a long time
-#' since the data is quite messy and takes a bunch of regex to split apart text strings.
-#' See examples below for different behavior.
+#' a compressed .rds file to disk. The next time the same data is requested, we only have 
+#' to read back in the .rds file, and is quite fast. The benfit of writing to .rds files 
+#' is that data is compressed, taking up less space on your disk, and data is read back in 
+#' quickly, without changing any data classes in your data, whereas we'd have to jump 
+#' through hoops to do that with reading in csv. The processing can take quite a long time
+#' since the data is quite messy and takes a bunch of regex to split apart text strings. 
+#' We hope to speed this process up in the future. See examples below for different behavior.
+#' 
 #' @examples \dontrun{
 #' # Get station table
 #' stations <- isd_stations()
 #' head(stations)
+#' 
+#' ## plot stations
+#' ### remove incomplete cases, those at 0,0
+#' df <- stations[complete.cases(stations$lat, stations$lon), ]
+#' df <- df[df$lat != 0, ]
+#' ### make plot
+#' library("leaflet")
+#' leaflet(data = df) %>%
+#'   addTiles() %>%
+#'   addCircles()
 #'
 #' # Get data
 #' (res <- isd(usaf="011490", wban="99999", year=1986))
 #' (res <- isd(usaf="011690", wban="99999", year=1993))
 #' (res <- isd(usaf="172007", wban="99999", year=2015))
 #' (res <- isd(usaf="702700", wban="00489", year=2015))
+#' (res <- isd(usaf="109711", wban=99999, year=1970))
 #'
 #' # The first time a dataset is requested takes longer
 #' system.time( isd(usaf="782680", wban="99999", year=2011) )
 #' system.time( isd(usaf="782680", wban="99999", year=2011) )
-#' 
+#'
 #' # Optionally pass in curl options
 #' res <- isd(usaf="011490", wban="99999", year=1986, config = verbose())
+#'
+#' # Plot data
+#' ## get data for multiple stations
+#' res1 <- isd(usaf="011690", wban="99999", year=1993)
+#' res2 <- isd(usaf="172007", wban="99999", year=2015)
+#' res3 <- isd(usaf="702700", wban="00489", year=2015)
+#' res4 <- isd(usaf="109711", wban=99999, year=1970)
+#' ## combine data
+#' ### uses rbind.isd (all inputs of which must be of class isd)
+#' res_all <- rbind(res1, res2, res3, res4)
+#' # add date time
+#' library("lubridate")
+#' res_all$date_time <- ymd_hm(
+#'   sprintf("%s %s", as.character(res_all$date), res_all$time)
+#' )
+#' ## remove 999's
+#' library("dplyr")
+#' res_all <- res_all %>% filter(temperature < 900)
+#' ## plot
+#' library("ggplot2")
+#' ggplot(res_all, aes(date_time, temperature)) +
+#'   geom_line() + 
+#'   facet_wrap(~usaf_station, scales = "free_x")
 #' }
-
-#' @export
-#' @rdname isd
-isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, ...) {
-  csvpath <- isd_local(usaf, wban, year, path)
-  if (!is_isd(x = csvpath)) {
+isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, cleanup = TRUE, ...) {
+  rdspath <- isd_local(usaf, wban, year, path)
+  if (!is_isd(x = rdspath)) {
     isd_GET(path, usaf, wban, year, overwrite, ...)
   }
-  message(sprintf("<path>%s", csvpath), "\n")
-  structure(list(data = read_isd(csvpath, sections)), class = "isd")
+  message(sprintf("<path>%s", rdspath), "\n")
+  structure(list(data = read_isd(rdspath, sections, cleanup)), class = "isd")
 }
 
 #' @export
 #' @rdname isd
-isd_stations <- function(...) {
-  res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-history.csv", ...))
-  df <- read.csv(text = content(res, "text"), header = TRUE)
-  setNames(df, gsub("_$", "", gsub("\\.", "_", tolower(names(df)))))
+rbind.isd <- function(...) {
+  input <- list(...)
+  if (!all(sapply(input, class) == "isd")) {
+    stop("All inputs must be of class isd", call. = FALSE)
+  }
+  input <- lapply(input, "[[", "data")
+  rbind_all(input)
 }
 
 #' @export
@@ -85,65 +128,108 @@ is_isd <- function(x) {
 
 isdbase <- function() 'ftp://ftp.ncdc.noaa.gov/pub/data/noaa'
 
-read_isd <- function(x, sections) {
-  path_csv <- sub("gz", "csv", x)
-  if (file.exists(path_csv)) {
-    df <- read.csv(path_csv, stringsAsFactors = FALSE)
+read_isd <- function(x, sections, cleanup) {
+  path_rds <- sub("gz", "rds", x)
+  if (file.exists(path_rds)) {
+    df <- readRDS(path_rds)
+    # df <- read.csv(path_csv, stringsAsFactors = FALSE)
   } else {
     lns <- readLines(x)
     linesproc <- lapply(lns, each_line, sections = sections)
     df <- dplyr::rbind_all(linesproc)
-    cache_csv(path_csv, df)
+    df <- trans_vars(df)
+    cache_rds(path_rds, df)
+    if (cleanup) {
+      unlink(x)
+    }
+    # cache_csv(path_csv, df)
   }
   return(df)
 }
 
-cache_csv <- function(x, y) {
+cache_rds <- function(x, y) {
   if (!file.exists(x)) {
-    write.csv(y, file = x, row.names = FALSE)
+    saveRDS(y, file = x)
+  }
+}
+
+# cache_csv <- function(x, y) {
+#   if (!file.exists(x)) {
+#     write.csv(y, file = x, row.names = FALSE)
+#   }
+# }
+
+trans_vars <- function(w) {
+  # fix scaled variables
+  w$latitude <- trans_var(w$latitude, 1000)
+  w$longitude <- trans_var(w$longitude, 1000)
+  w$elevation <- trans_var(w$elevation, 10)
+  w$wind_speed <- trans_var(w$wind_speed, 10)
+  w$temperature <- trans_var(w$temperature, 10)
+  w$temperature_dewpoint <- trans_var(w$temperature_dewpoint, 10)
+  w$air_pressure <- trans_var(w$air_pressure, 10)
+  w$precipitation <- trans_var(w$precipitation, 10)
+  
+  # as date
+  w$date <- as.Date(w$date, "%Y%m%d")
+  
+  # change class
+  w$wind_direction <- as.numeric(w$wind_direction)
+  w$total_chars <- as.numeric(w$total_chars)
+  
+  return(w)
+}
+
+trans_var <- function(x, n) {
+  if (is.null(x)) {
+    x
+  } else {
+    as.numeric(x)/n
   }
 }
 
 each_line <- function(y, sections){
-  pluck <- function(input, x) vapply(input, "[[", numeric(1), x)
-  subs <- function(z, start, stop) substring(z, start, stop)
   normal <- Map(function(a,b) subs(y, a, b), pluck(sections, "start"), pluck(sections, "stop"))
   other <- gsub("\\s+$", "", substring(y, 106, nchar(y)))
   data.frame(normal, proc_other(other), stringsAsFactors = FALSE)
 }
 
+pluck <- function(input, x) vapply(input, "[[", numeric(1), x)
+
+subs <- function(z, start, stop) substring(z, start, stop)
+
 sections <- list(
-  total_chars=list(start=1,stop=4),
-  usaf_station=list(start=5,stop=10),
-  wban_station=list(start=11,stop=15),
-  date=list(start=16,stop=23),
-  time=list(start=24,stop=27),
-  date_flag=list(start=28,stop=28),
-  latitude=list(start=29,stop=34),
-  longitude=list(start=35,stop=41),
-  type_code=list(start=42,stop=46),
-  elevation=list(start=47,stop=51),
-  call_letter=list(start=52,stop=56),
-  quality=list(start=57,stop=60),
-  wind_direction=list(start=61,stop=63),
-  wind_direction_quality=list(start=64,stop=64),
-  wind_code=list(start=65,stop=65),
-  wind_speed=list(start=66,stop=69),
-  wind_speed_quality=list(start=70,stop=70),
-  ceiling_height=list(start=71,stop=75),
-  ceiling_height_quality=list(start=76,stop=76),
-  ceiling_height_determination=list(start=77,stop=77),
-  ceiling_height_cavok=list(start=78,stop=78),
-  visibility_distance=list(start=79,stop=84),
-  visibility_distance_quality=list(start=85,stop=85),
-  visibility_code=list(start=86,stop=86),
-  visibility_code_quality=list(start=87,stop=87),
-  temperature=list(start=88,stop=92),
-  temperature_quality=list(start=93,stop=93),
-  temperature_dewpoint=list(start=94,stop=98),
-  temperature_dewpoint_quality=list(start=99,stop=99),
-  air_pressure=list(start=100,stop=104),
-  air_pressure_quality=list(start=105,stop=105)
+  total_chars = list(start = 1,stop = 4),
+  usaf_station = list(start = 5,stop = 10),
+  wban_station = list(start = 11,stop = 15),
+  date = list(start = 16,stop = 23),
+  time = list(start = 24,stop = 27),
+  date_flag = list(start = 28,stop = 28),
+  latitude = list(start = 29,stop = 34),
+  longitude = list(start = 35,stop = 41),
+  type_code = list(start = 42,stop = 46),
+  elevation = list(start = 47,stop = 51),
+  call_letter = list(start = 52,stop = 56),
+  quality = list(start = 57,stop = 60),
+  wind_direction = list(start = 61,stop = 63),
+  wind_direction_quality = list(start = 64,stop = 64),
+  wind_code = list(start = 65,stop = 65),
+  wind_speed = list(start = 66,stop = 69),
+  wind_speed_quality = list(start = 70,stop = 70),
+  ceiling_height = list(start = 71,stop = 75),
+  ceiling_height_quality = list(start = 76,stop = 76),
+  ceiling_height_determination = list(start = 77,stop = 77),
+  ceiling_height_cavok = list(start = 78,stop = 78),
+  visibility_distance = list(start = 79,stop = 84),
+  visibility_distance_quality = list(start = 85,stop = 85),
+  visibility_code = list(start = 86,stop = 86),
+  visibility_code_quality = list(start = 87,stop = 87),
+  temperature = list(start = 88,stop = 92),
+  temperature_quality = list(start = 93,stop = 93),
+  temperature_dewpoint = list(start = 94,stop = 98),
+  temperature_dewpoint_quality = list(start = 99,stop = 99),
+  air_pressure = list(start = 100,stop = 104),
+  air_pressure_quality = list(start = 105,stop = 105)
 )
 
 proc_other <- function(x){

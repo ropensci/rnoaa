@@ -1,8 +1,14 @@
 language: r
 
+before_install:
+  - sudo apt-get install libv8-dev
+
 r_binary_packages:
   - rgdal
   - ncdf
+  - lawn
+  - geojsonio
+  - taxize
 
 r_github_packages:
   - jimhester/robustr
