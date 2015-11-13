@@ -4,7 +4,10 @@
 \name{rnoaa-package}
 \alias{rnoaa}
 \alias{rnoaa-package}
-\title{rnoaa is an R interface to NOAA climate data.}
+\title{rnoaa}
+\description{
+rnoaa is an R interface to NOAA climate data.
+}
 \section{Data Sources}{
  
 Many functions in this package interact with the National Climatic Data 
