@@ -21,5 +21,4 @@ notifications:
 
 env:
   global:
-    secure: cgAtrSgJVgVNr3+6D4pg4R3rA4Nb0n2rmlHzqVaC/8EvkTGbUZ5qQxc5SFaYAAwm02UQQUodgztzhgAe4BYi4YIdzb4sYh+YbBgug1MABGKY4IDswanvYqA3IAcjiwbHVYpYiQgl/nt/qqQXoD0d29XRQXN0puf+Aw6Y7uMQIyA=
     - _R_CHECK_FORCE_SUGGESTS_=False
