@@ -18,6 +18,7 @@ test_that("gefs errors", {
 test_that("gefs time and ensemble selection returns correct indices.", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
   
   ens_idx = 2:4
   time_idx = 5:10
@@ -31,6 +32,7 @@ test_that("gefs time and ensemble selection returns correct indices.", {
 test_that("gefs metadata", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
   
   today = format(as.Date(Sys.time()) - 1, "%Y%m%d")
   forecast_time = "0600"
@@ -44,6 +46,7 @@ test_that("gefs metadata", {
 test_that("gefs_variables returns characters.", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
   
   vars = gefs_variables()
   
@@ -54,6 +57,7 @@ test_that("gefs_variables returns characters.", {
 test_that("gefs_latitudes returns numeric.", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
   
   lats = gefs_latitudes()
   expect_is(lats, "array")
@@ -63,6 +67,7 @@ test_that("gefs_latitudes returns numeric.", {
 test_that("gefs_longitudes returns numeric.", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
   
   lons = gefs_longitudes()
   expect_is(lons, "array")
@@ -72,6 +77,7 @@ test_that("gefs_longitudes returns numeric.", {
 test_that("gefs_dimensions returns character list.", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
   
   dims = gefs_dimensions()
   expect_is(dims, "character")
@@ -81,6 +87,7 @@ test_that("gefs_dimensions returns character list.", {
 test_that("gefs_dimension_values returns numeric array.", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
   
   vals = gefs_dimension_values("lat")
   expect_is(vals, "array")

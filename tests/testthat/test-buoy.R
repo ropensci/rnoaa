@@ -3,6 +3,7 @@ context("buoy")
 test_that("buoys works", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
 
   aa <- buoys(dataset = 'cwind')
 
@@ -17,6 +18,7 @@ test_that("buoys works", {
 test_that("buoys fails well", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
 
   expect_error(buoys(), "argument \"dataset\" is missing")
 })
@@ -24,6 +26,7 @@ test_that("buoys fails well", {
 test_that("buoy works", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
 
   one <- buoy(dataset = 'cwind', buoyid = 41001, year = 2008, datatype = "cc")
 
@@ -40,6 +43,7 @@ test_that("buoy works", {
 test_that("buoy works with character buoy ids", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
 
   aa <- buoy(dataset = "stdmet", buoyid = "wplf1")
 
@@ -53,6 +57,7 @@ test_that("buoy works with character buoy ids", {
 test_that("buoy works regardless of buoyid case", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
 
   aa <- buoy(dataset = "stdmet", buoyid = "vcaf1")
   bb <- buoy(dataset = "stdmet", buoyid = "VCAF1")
@@ -63,6 +68,7 @@ test_that("buoy works regardless of buoyid case", {
 test_that("buoys fails well", {
   skip_on_cran()
   skip_on_travis()
+  skip_on_appveyor()
 
   expect_error(buoy(), "argument \"dataset\" is missing")
   expect_error(buoy(dataset = 'ocean', buoyid = 41012), "No data files found")
