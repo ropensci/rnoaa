@@ -5,13 +5,13 @@ before_install:
 
 r_binary_packages:
   - rgdal
-  - ncdf4
-  - geojsonio
+
+env:
+  global:
+    - _R_CHECK_FORCE_SUGGESTS_=FALSE
 
 r_github_packages:
-  - jimhester/robustr
   - jimhester/covr
-  - ropensci/lawn
 
 after_success:
   - Rscript -e 'covr::codecov()'
