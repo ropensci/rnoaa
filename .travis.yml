@@ -7,8 +7,8 @@ r_binary_packages:
   - rgdal
 
 env:
-  global:
-    - _R_CHECK_FORCE_SUGGESTS_=FALSE
+    global:
+        - _R_CHECK_FORCE_SUGGESTS_=False
 
 r_github_packages:
   - jimhester/covr
