@@ -87,14 +87,14 @@ gefs_dimensions()
 gefs_dimension_values("height_above_ground")
 
 #example location.
-lat = 46.28125
-lon = -116.2188
+lat <- 46.28125
+lon <- -116.2188
 
 #Get forecast for a certain variable.
-forecast = gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat, lon)
+forecast <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat, lon)
 
 #Fetch a different date (available up to 10 days prior to today)
-forecast_yesterday_prec = gefs("Total_precipitation_surface_6_Hour_Accumulation_ens",
+forecast_yesterday_prec <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens",
                                lat,
                                lon,
                                date=format(as.Date(Sys.time()) - 1, "\%Y\%m\%d"))
@@ -103,7 +103,7 @@ forecast_yesterday_prec = gefs("Total_precipitation_surface_6_Hour_Accumulation_
 # here ensembles 1-3 (ensembles are numbered starting with 0)
 # and time for 2 days from today at 1800
 date=format(as.Date(Sys.time()) - 1, "\%Y\%m\%d")
-var = "Temperature_height_above_ground_ens"
+var <- "Temperature_height_above_ground_ens"
 gefs(var, lat, lon, date = date, forecast_time = "1800", ens_idx=2:4, time_idx=1:8)
 
 #One ensemble, all latitudes and longitudes (this is a big file) for the
