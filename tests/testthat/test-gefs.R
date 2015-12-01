@@ -11,6 +11,8 @@ var = "Temperature_height_above_ground_ens"
 test_that("gefs errors", {
   #not needed because no web API call is/should be made.
   #skip_on_cran()
+  skip_on_appveyor()
+  skip_on_travis()
   
   expect_error(gefs(lat=lat, lon=lon), "Need to specify the variable to get. A list of variables is available from gefs_variables().")
 })
