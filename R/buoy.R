@@ -56,7 +56,7 @@
 #' buoy(dataset = "dart", buoyid = "dartu")
 #' }
 buoy <- function(dataset, buoyid, year=NULL, datatype=NULL, ...) {
-  check4pkg("ncdf")
+  check4pkg("ncdf4")
   availbuoys <- buoys(dataset, ...)
   buoyid <- tolower(buoyid)
   page <- availbuoys[grep(buoyid, availbuoys$id, ignore.case = TRUE), "url"]
@@ -128,37 +128,36 @@ get_ncdf_file <- function(path, buoyid, file, output){
 }
 
 # Download a single ncdf file
-buoy_collect_data <- function(path){
-  nc <- ncdf::open.ncdf(path)
-
+buoy_collect_data <- function(path) {
+  nc <- ncdf4::nc_open(path)
+  
   out <- list()
   dims <- names(nc$dim)
   for (i in seq_along(dims)) {
-    out[[dims[i]]] <- ncdf::get.var.ncdf(nc, nc$dim[[dims[i]]])
+    out[[dims[i]]] <- ncdf4::ncvar_get(nc, nc$dim[[dims[i]]])
   }
   out$time <- sapply(out$time, convert_time)
-
+  
   vars <- names(nc$var)
   outvars <- list()
   for (i in seq_along(vars)) {
-    outvars[[ vars[i] ]] <- as.vector(ncdf::get.var.ncdf(nc, vars[i]))
+    outvars[[ vars[i] ]] <- as.vector(ncdf4::ncvar_get(nc, vars[i]))
   }
   df <- do.call("cbind.data.frame", outvars)
-
+  
   rows <- length(outvars[[1]])
-  out <- lapply(out, function(z) rep(z, each = rows/length(z)))
-
-  meta <- data.frame(out, stringsAsFactors = FALSE)
+  time <- rep(out$time, each = rows/length(out$time))
+  lat <- rep(rep(out$latitude, each = length(out$longitude)), length(out$time))
+  lon <- rep(rep(out$longitude, times = length(out$latitude)), times = length(out$time))
+  meta <- data.frame(time, lat, lon, stringsAsFactors = FALSE)
   alldf <- cbind(meta, df)
-
+  
   nms <- c('name','prec','units','longname','missval','hasAddOffset','hasScaleFact')
   meta <- lapply(vars, function(x) nc$var[[x]][names(nc$var[[x]]) %in% nms])
   names(meta) <- vars
-
-  invisible(ncdf::close.ncdf(nc))
-  all <- list(meta = meta, data = alldf)
-  class(all) <- "buoy"
-  return( all )
+  
+  on.exit(ncdf4::nc_close(nc))
+  structure(list(meta = meta, data = alldf), class = "buoy")
 }
 
 #' @export
