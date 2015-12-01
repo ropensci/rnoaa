@@ -13,6 +13,12 @@ the current year is. Required}
 \item{month}{A month, character or numeric. If single digit (e.g. 8), we
 add a zero in front (e.g., 08). Required}
 
+\item{path}{(character) A path to store the files, a directory. Default:
+\code{~/.rnoaa/ersst}. Required.}
+
+\item{overwrite}{(logical) To overwrite the path to store files in or not,
+Default: \code{TRUE}}
+
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}
 }
 \value{

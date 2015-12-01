@@ -5,6 +5,10 @@
 #' the current year is. Required
 #' @param month A month, character or numeric. If single digit (e.g. 8), we
 #' add a zero in front (e.g., 08). Required
+#' @param path (character) A path to store the files, a directory. Default:
+#' \code{~/.rnoaa/ersst}. Required.
+#' @param overwrite (logical) To overwrite the path to store files in or not,
+#' Default: \code{TRUE}
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}. Optional
 #' @return An \code{ncdf4} object for now, may change output later to
 #' perhaps a data.frame. See \pkg{ncdf4} for parsing the output.
