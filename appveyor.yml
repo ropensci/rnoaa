@@ -12,7 +12,7 @@ install:
 
 build_script:
   - travis-tool.sh install_deps
-  - travis-tool.sh r_install proto taxize rgdal ncdf lawn geojsonio taxize
+  - travis-tool.sh r_install proto taxize rgdal ncdf4 lawn geojsonio taxize
 
 test_script:
   - travis-tool.sh run_tests
