@@ -1,4 +1,5 @@
 context("gefs")
+library(rnoaa)
 
 #set a location
 lat = 46.28125
@@ -58,9 +59,9 @@ test_that("gefs_latitudes returns numeric.", {
 test_that("gefs_longitudes returns numeric.", {
   skip_on_cran()
   
-  lats = gefs_longitudes()
-  expect_is(lats, "array")
-  expect_is(lats[1], "numeric")
+  lons = gefs_longitudes()
+  expect_is(lons, "array")
+  expect_is(lons[1], "numeric")
 })
 
 test_that("gefs_dimensions returns character list.", {
