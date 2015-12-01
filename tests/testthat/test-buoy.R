@@ -34,6 +34,27 @@ test_that("buoy works", {
   expect_equal(length(one), 2)
 })
 
+test_that("buoy works with character buoy ids", {
+  skip_on_cran()
+  
+  aa <- buoy(dataset = "stdmet", buoyid = "wplf1")
+  
+  expect_is(aa, "buoy")
+  expect_is(unclass(aa), "list")
+  expect_is(aa$meta, "list")
+  expect_is(aa$data, "data.frame")
+  expect_equal(length(aa), 2)
+})
+
+test_that("buoy works regardless of buoyid case", {
+  skip_on_cran()
+  
+  aa <- buoy(dataset = "stdmet", buoyid = "vcaf1")
+  bb <- buoy(dataset = "stdmet", buoyid = "VCAF1")
+  
+  expect_identical(aa, bb)
+})
+
 test_that("buoys fails well", {
   skip_on_cran()
   

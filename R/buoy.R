@@ -3,10 +3,10 @@
 #' @export
 #'
 #' @param dataset (character) Dataset name to query. See below for Details. Required
-#' @param buoyid (integer) Buoy ID. Required
-#' @param datatype (character) Data type, one of 'c', 'cc', 'p', 'o'
-#' @param year (integer) Year of data collection
-#' @param ... Curl options passed on to \code{\link[httr]{GET}} (optional)
+#' @param buoyid Buoy ID, can be numeric/integer/character. Required
+#' @param datatype (character) Data type, one of 'c', 'cc', 'p', 'o'. Optional
+#' @param year (integer) Year of data collection. Optional
+#' @param ... Curl options passed on to \code{\link[httr]{GET}}. Optional
 #'
 #' @details Functions:
 #' \itemize{
@@ -23,7 +23,7 @@
 #'  \item mmbcur - Marsh-McBirney Current Measurements data
 #'  \item ocean - Oceanographic data
 #'  \item pwind - Peak Winds data
-#'  \item stdmet- Standard Meteorological data
+#'  \item stdmet - Standard Meteorological data
 #'  \item swden - Spectral Wave Density data with Spectral Wave Direction data
 #'  \item wlevel - Water Level data
 #' }
@@ -49,17 +49,23 @@
 #' # curl debugging
 #' library('httr')
 #' buoy(dataset = 'cwind', buoyid = 46085, config=verbose())
+#' 
+#' # some buoy ids are character, case doesn't matter, we'll account for it
+#' buoy(dataset = "stdmet", buoyid = "VCAF1")
+#' buoy(dataset = "stdmet", buoyid = "wplf1")
+#' buoy(dataset = "dart", buoyid = "dartu")
 #' }
 buoy <- function(dataset, buoyid, year=NULL, datatype=NULL, ...) {
   check4pkg("ncdf")
+  buoyid <- tolower(buoyid)
   availbuoys <- buoys(dataset, ...)
-  page <- availbuoys[grep(buoyid, availbuoys$id), "url"]
-  files <- buoy_files(page, buoyid, ...)
+  page <- availbuoys[grep(buoyid, availbuoys$id, ignore.case = TRUE), "url"]
+  files <- buoy_files(path = page, buoyid, ...)
   if (length(files) == 0) stop("No data files found, try a different search", call. = FALSE)
   fileuse <- pick_year_type(files, year, datatype)
   toget <- buoy_single_file_url(dataset, buoyid, fileuse)
   output <- tempdir()
-  ncfile <- get_ncdf_file(toget, buoyid, files[[1]], output)
+  ncfile <- get_ncdf_file(path = toget, buoyid, file = files[[1]], output)
   buoy_collect_data(ncfile)
 }
 
@@ -104,7 +110,7 @@ buoy_files <- function(path, buoyid, ...){
   tt_sbf <- content(singlebuoy_files, as = "text")
   html_sbf <- htmlParse(tt_sbf)
   files_sbf <- grep(".nc$", xpathSApply(html_sbf, "//a//tt", xmlValue), value = TRUE)
-  gsub(buoyid, "", files_sbf)
+  gsub(tolower(buoyid), "", files_sbf)
 }
 
 # Make url for a single NOAA buoy data file

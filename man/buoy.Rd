@@ -12,13 +12,13 @@ buoys(dataset, ...)
 \arguments{
 \item{dataset}{(character) Dataset name to query. See below for Details. Required}
 
-\item{buoyid}{(integer) Buoy ID. Required}
+\item{buoyid}{Buoy ID, can be numeric/integer/character. Required}
 
-\item{year}{(integer) Year of data collection}
+\item{year}{(integer) Year of data collection. Optional}
 
-\item{datatype}{(character) Data type, one of 'c', 'cc', 'p', 'o'}
+\item{datatype}{(character) Data type, one of 'c', 'cc', 'p', 'o'. Optional}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
+\item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}
 }
 \description{
 Get NOAA buoy data from the National Buoy Data Center
@@ -39,7 +39,7 @@ Options for the dataset parameter. One of:
  \item mmbcur - Marsh-McBirney Current Measurements data
  \item ocean - Oceanographic data
  \item pwind - Peak Winds data
- \item stdmet- Standard Meteorological data
+ \item stdmet - Standard Meteorological data
  \item swden - Spectral Wave Density data with Spectral Wave Direction data
  \item wlevel - Water Level data
 }
@@ -66,6 +66,11 @@ buoy(dataset = 'ocean', buoyid = 42856)
 # curl debugging
 library('httr')
 buoy(dataset = 'cwind', buoyid = 46085, config=verbose())
+
+# some buoy ids are character, case doesn't matter, we'll account for it
+buoy(dataset = "stdmet", buoyid = "VCAF1")
+buoy(dataset = "stdmet", buoyid = "wplf1")
+buoy(dataset = "dart", buoyid = "dartu")
 }
 }
 \references{
