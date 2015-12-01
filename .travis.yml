@@ -5,7 +5,7 @@ before_install:
 
 r_binary_packages:
   - rgdal
-  - ncdf
+  - ncdf4
 
 r_github_packages:
   - jimhester/robustr

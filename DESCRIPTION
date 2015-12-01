@@ -39,7 +39,6 @@ Suggests:
     roxygen2,
     knitr,
     taxize,
-    ncdf,
     ncdf4,
     leaflet,
     geojsonio,
