@@ -57,8 +57,8 @@
 #' }
 buoy <- function(dataset, buoyid, year=NULL, datatype=NULL, ...) {
   check4pkg("ncdf")
-  buoyid <- tolower(buoyid)
   availbuoys <- buoys(dataset, ...)
+  buoyid <- tolower(buoyid)
   page <- availbuoys[grep(buoyid, availbuoys$id, ignore.case = TRUE), "url"]
   files <- buoy_files(path = page, buoyid, ...)
   if (length(files) == 0) stop("No data files found, try a different search", call. = FALSE)
