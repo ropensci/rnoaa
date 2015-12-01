@@ -220,8 +220,6 @@ gefs_dimension_values <- function(dim, con = NULL, ...) {
 
 #' Check that package is installed
 #' 
-#' @export
-#' 
 #' @param x the package name
 check4pkg <- function(x) {
   if (!requireNamespace(x, quietly = TRUE)) {
