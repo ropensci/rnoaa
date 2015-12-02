@@ -1,5 +1,6 @@
 environment:
   R_CHECK_ARGS: --no-build-vignettes --no-manual
+  _R_CHECK_FORCE_SUGGESTS_: FALSE
 
 init:
   ps: |
@@ -12,7 +13,7 @@ install:
 
 build_script:
   - travis-tool.sh install_deps
-  - travis-tool.sh r_install proto taxize rgdal ncdf lawn geojsonio taxize
+  - travis-tool.sh r_binary_install proto rgdal
 
 test_script:
   - travis-tool.sh run_tests

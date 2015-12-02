@@ -26,19 +26,16 @@
 #'  \item \code{tornadoes} - From the NOAA Storm Prediction Center
 #' }
 #' 
-#' @section A note about ncdf:
+#' @section A note about NCDF data:
 #' 
-#' Functions to work with buoy data use netcdf files. You'll need the \code{ncdf}
-#' package for those functions, and those only. \code{ncdf} is in Suggests in 
-#' this package, meaning you only need \code{ncdf} if you are using the buoy 
-#' functions. You'll get an informative error telling you to install \code{ncdf}
+#' Functions to work with buoy data use netcdf files. You'll need the \code{ncdf4}
+#' package for those functions, and those only. \code{ncdf4} is in Suggests in 
+#' this package, meaning you only need \code{ncdf4} if you are using the buoy 
+#' functions. You'll get an informative error telling you to install \code{ncdf4}
 #' if you don't have it and you try to use the buoy functions.
 #' 
-#' Installation of \code{ncdf} should be straightforward on Mac and Windows, but 
-#' on Linux you may have issues. See http://cran.r-project.org/web/packages/ncdf/INSTALL
-#'
 #' @importFrom methods is
-#' @importFrom stats var setNames
+#' @importFrom stats var setNames complete.cases
 #' @importFrom utils head download.file read.csv read.delim read.fwf write.csv 
 #' untar unzip
 #' @importFrom lubridate ymd year today month
