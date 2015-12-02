@@ -6,7 +6,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     locations, location categories, and stations. In addition, we have an interface
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
-    and tornado data via the 'NOAA' storm prediction center.
+    tornado data via the 'NOAA' storm prediction center, and more.
 Version: 0.5.0
 License: MIT + file LICENSE
 Authors@R: c(
