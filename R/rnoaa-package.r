@@ -35,7 +35,7 @@
 #' if you don't have it and you try to use the buoy functions.
 #' 
 #' @importFrom methods is
-#' @importFrom stats var setNames
+#' @importFrom stats var setNames complete.cases
 #' @importFrom utils head download.file read.csv read.delim read.fwf write.csv 
 #' untar unzip
 #' @importFrom lubridate ymd year today month
