@@ -10,6 +10,7 @@ now an author too
 * New data source added: NOAA Extended Reconstructed Sea Surface Temperature 
 (ERSST) data. See function `ersst()` (#96)
 * New function `isd_stations()` to get ISD station data.
+* Added code of conduct to code repository
 
 ### MINOR IMPROVEMENTS
 

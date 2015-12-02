@@ -28,6 +28,7 @@ rnoaa
 * Storm data - from the [International Best Track Archive for Climate Stewardship (IBTrACS)](http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data)
 * [GHCND FTP data](ftp://ftp.ncdc.noaa.gov/pub/data/noaa) - NOAA NCDC API has some/all (not sure really) of this data, but FTP allows to get more data more quickly
 * [Global Ensemble Forecast System (GEFS) data](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs)
+* [Extended Reconstructed Sea Surface Temperature (ERSST) data](https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4)
 
 ## Help
 
@@ -154,14 +155,14 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 
 #>       mindate    maxdate             name datacoverage            id
 #>         (chr)      (chr)            (chr)        (dbl)         (chr)
-#> 1  1892-08-01 2015-07-31       Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2015-09-07       Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2015-09-07    Zonguldak, TU       0.8623 CITY:TU000057
-#> 4  1906-01-01 2015-09-07       Zinder, NG       0.9019 CITY:NG000004
-#> 5  1973-01-01 2015-09-07   Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2015-09-07    Zhytomyra, UP       0.9732 CITY:UP000025
-#> 7  1948-03-01 2015-09-07   Zhezkazgan, KZ       0.9295 CITY:KZ000017
-#> 8  1951-01-01 2015-09-07    Zhengzhou, CH       1.0000 CITY:CH000045
+#> 1  1892-08-01 2015-10-31       Zwolle, NL       1.0000 CITY:NL000012
+#> 2  1901-01-01 2015-11-28       Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2015-11-28    Zonguldak, TU       0.8628 CITY:TU000057
+#> 4  1906-01-01 2015-11-28       Zinder, NG       0.9021 CITY:NG000004
+#> 5  1973-01-01 2015-11-28   Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2015-11-28    Zhytomyra, UP       0.9722 CITY:UP000025
+#> 7  1948-03-01 2015-11-28   Zhezkazgan, KZ       0.9298 CITY:KZ000017
+#> 8  1951-01-01 2015-11-28    Zhengzhou, CH       1.0000 CITY:CH000045
 #> 9  1941-01-01 2014-12-22     Zaragoza, SP       1.0000 CITY:SP000021
 #> 10 1936-01-01 2009-06-17 Zaporiyhzhya, UP       0.9739 CITY:UP000024
 #> ..        ...        ...              ...          ...           ...
@@ -180,7 +181,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
-#> 1      12.2 1899-02-01 2015-09-08  28.8029 INVERNESS 3 SE, FL US
+#> 1      12.2 1899-02-01 2015-11-28  28.8029 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS  -82.3126
 #> 
@@ -257,11 +258,11 @@ ncdc_datasets()
 #> 
 #>                     uid    mindate    maxdate                      name
 #>                   (chr)      (chr)      (chr)                     (chr)
-#> 1  gov.noaa.ncdc:C00040 1831-02-01 2015-04-01          Annual Summaries
-#> 2  gov.noaa.ncdc:C00861 1763-01-01 2015-09-09           Daily Summaries
-#> 3  gov.noaa.ncdc:C00841 1763-01-01 2015-07-01         Monthly Summaries
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2015-09-09  Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2015-09-05 Weather Radar (Level III)
+#> 1  gov.noaa.ncdc:C00040 1831-02-01 2015-06-01          Annual Summaries
+#> 2  gov.noaa.ncdc:C00861 1763-01-01 2015-11-30           Daily Summaries
+#> 3  gov.noaa.ncdc:C00841 1763-01-01 2015-10-01         Monthly Summaries
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2015-12-01  Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2015-11-28 Weather Radar (Level III)
 #> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01   Normals Annual/Seasonal
 #> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31             Normals Daily
 #> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31            Normals Hourly
@@ -494,5 +495,6 @@ head(res$data)
 * Please [report any issues or bugs](https://github.com/ropensci/rnoaa/issues).
 * License: MIT
 * Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
+* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![rofooter](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
