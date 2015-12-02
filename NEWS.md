@@ -1,3 +1,38 @@
+rnoaa 0.5.0
+===============
+
+### NEW FEATURES
+
+* New data source added: NOAA Global Ensemble Forecast System (GEFS) data. 
+See functions `gefs()`, `gefs_dimension_values()`, `gefs_dimensions()`, `gefs_latitudes()`, 
+`gefs_longitudes()`, and `gefs_variables()` (#106) (#119)  thanks @potterzot - he's 
+now an author too
+* New data source added: NOAA Extended Reconstructed Sea Surface Temperature 
+(ERSST) data. See function `ersst()` (#96)
+* New function `isd_stations()` to get ISD station data.
+
+### MINOR IMPROVEMENTS
+
+* Swapped `ncdf` package for `ncdf4` package. Windows binaries weren't 
+availiable for `ncdf4` prior to now. (#117)
+* Proper license info added for javascript modules used inside the
+package (#116)
+* Improvements to `isd()` function to do transformations of certain 
+variables to give back data that makes more sense (#115)
+* `leaflet`, `geojsonio`, and `lawn` added in Suggests, used in a few 
+functions.
+* Note added to `swdi()` function man page that the `nldn` dataset is 
+available to military users only (#107)
+
+### BUG FIXES
+
+* Fix to `buoy()` function to accept character class inputs for the 
+`buoyid` parameter. the error occurred because matching was not 
+case-insensitive, now works regardless of case (#118)
+* Fixes for new `ggplot2` version (#113)
+* Built in `GET` request retries for `ghncd` functions as 
+some URLs fail unpredictably (#110)
+
 rnoaa 0.4.2
 ===============
 
