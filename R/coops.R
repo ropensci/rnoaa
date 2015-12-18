@@ -21,7 +21,6 @@ coops_search <- function(begin_date = NULL, end_date = NULL, station_name = NULL
 coops_base <- function() "http://tidesandcurrents.noaa.gov/api/datagetter"
 
 coops_GET <- function(url, args, ...) {
-  browser()
   res <- httr::GET(url, query = args, ...)
   httr::stop_for_status(res)
   jsonlite::fromJSON(httr::content(res, "text"))
