@@ -66,8 +66,19 @@ Options for the datum paramter. One of:
 }
 \examples{
 \dontrun{
+# Get monthly mean sea level data at Vaca Key (8723970)
 coops_search(station_name = 8723970, begin_date = 19820301, end_date = 20141001,
  datum = "stnd", product = "monthly_mean")
+ 
+# Get verified water level data at Vaca Key (2723970)
+coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
+ datum = "stnd", product = "water_level")
+ 
+# Get air temperature at Vaca Key (2723970)
+coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928, product = "air_temperature")
+
+# Get water temperature at Vaca Key (2723970)
+coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928, product = "water_temperature")
 }
 }
 \references{
