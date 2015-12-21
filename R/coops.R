@@ -62,11 +62,17 @@
 #' # Get water temperature at Vaca Key (2723970)
 #' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928, product = "water_temperature")
 #' }
-coops_search <- function(begin_date = NULL, end_date = NULL, station_name = NULL, product = NULL, datum = NULL, units = "metric", time_zone = "gmt", ...){
+coops_search <- function(begin_date = NULL, end_date = NULL, station_name = NULL, product, datum = NULL, units = "metric", time_zone = "gmt", ...){
 
   args <- noaa_compact(list(begin_date = begin_date, end_date = end_date, station = station_name, product = product, datum = datum, units = units, time_zone = time_zone, application = "rnoaa", format = "json"))
 
-  coops_GET(coops_base(), args, ...)
+  res <- coops_GET(coops_base(), args, ...)
+
+  if(is.null(nrow(res$data))){
+    stop("No data was found")
+  }
+  
+  res
 }
 
 coops_base <- function() "http://tidesandcurrents.noaa.gov/api/datagetter"
