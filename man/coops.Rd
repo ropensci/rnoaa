@@ -6,8 +6,8 @@
 \title{Get NOAA co-ops data}
 \usage{
 coops_search(begin_date = NULL, end_date = NULL, station_name = NULL,
-  product = NULL, datum = NULL, units = "metric", time_zone = "gmt",
-  ...)
+  product, datum = NULL, units = "metric", time_zone = "gmt",
+  application = "rnoaa", ...)
 }
 \arguments{
 \item{begin_date}{(numeric) Date in yyyymmdd format. Required}
@@ -23,6 +23,8 @@ coops_search(begin_date = NULL, end_date = NULL, station_name = NULL,
 \item{units}{(character) Specify metric or english (imperial) units, one of 'metric', 'english'.}
 
 \item{time_zone}{(character) Time zone, one of 'gmt', 'lst', 'lst_ldt'.}
+
+\item{application}{(character) If called within an external package, set to the name of your organization. Optional}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}
 }
@@ -75,10 +77,12 @@ coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
  datum = "stnd", product = "water_level")
  
 # Get air temperature at Vaca Key (2723970)
-coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928, product = "air_temperature")
+coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
+ product = "air_temperature")
 
 # Get water temperature at Vaca Key (2723970)
-coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928, product = "water_temperature")
+coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
+ product = "water_temperature")
 }
 }
 \references{

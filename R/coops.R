@@ -8,6 +8,7 @@
 #' @param datum (character) See below for Details. Required for all water level products.
 #' @param units (character) Specify metric or english (imperial) units, one of 'metric', 'english'. 
 #' @param time_zone (character) Time zone, one of 'gmt', 'lst', 'lst_ldt'.
+#' @param application (character) If called within an external package, set to the name of your organization. Optional
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}. Optional
 #' 
 #' @details 
@@ -57,14 +58,16 @@
 #'  datum = "stnd", product = "water_level")
 #'  
 #' # Get air temperature at Vaca Key (2723970)
-#' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928, product = "air_temperature")
+#' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
+#'  product = "air_temperature")
 #' 
 #' # Get water temperature at Vaca Key (2723970)
-#' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928, product = "water_temperature")
+#' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
+#'  product = "water_temperature")
 #' }
-coops_search <- function(begin_date = NULL, end_date = NULL, station_name = NULL, product, datum = NULL, units = "metric", time_zone = "gmt", ...){
+coops_search <- function(begin_date = NULL, end_date = NULL, station_name = NULL, product, datum = NULL, units = "metric", time_zone = "gmt", application = "rnoaa", ...){
 
-  args <- noaa_compact(list(begin_date = begin_date, end_date = end_date, station = station_name, product = product, datum = datum, units = units, time_zone = time_zone, application = "rnoaa", format = "json"))
+  args <- noaa_compact(list(begin_date = begin_date, end_date = end_date, station = station_name, product = product, datum = datum, units = units, time_zone = time_zone, application = application, format = "json"))
 
   res <- coops_GET(coops_base(), args, ...)
 
