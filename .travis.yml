@@ -1,15 +1,16 @@
-language: r
+language: c
+sudo: required
+dist: trusty
+script: ./travis-tool.sh run_tests
 
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -y libv8-dev
-  - sudo apt-get install -y gdal-bin libhdf5-dev libhdf5-serial-dev libgdal-dev libgdal1-dev libproj-dev libgdal1h
-
-r_binary_packages:
-  - rgdal
-
-r_github_packages:
-  - jimhester/covr
+before_script:
+  - sudo apt-get --yes --force-yes update -qq
+  - sudo apt-get install -y gdal-bin libgdal-dev libgdal1-dev netcdf-bin libproj-dev libv8-dev
+  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+  - chmod 755 ./travis-tool.sh
+  - ./travis-tool.sh bootstrap
+  - ./travis-tool.sh install_deps
+  - ./travis-tool.sh install_github jimhester/covr
 
 after_success:
   - Rscript -e 'covr::codecov()'
@@ -24,3 +25,7 @@ notifications:
 env:
   global:
     - _R_CHECK_FORCE_SUGGESTS_=False
+    - R_LIBS="http://cran.rstudio.com"
+    - R_BUILD_ARGS="--no-build-vignettes --no-manual"
+    - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
+    - BOOTSTRAP_LATEX=""
