@@ -14,6 +14,7 @@ storm_shp <- function(basin=NULL, storm=NULL, year=NULL, type="points",
 #' @export
 #' @rdname storms
 storm_shp_read <- function(x) {
+  check4pkg("rgdal")
   readshp2(x$path, filepath2(attr(x, 'basin'), attr(x, 'storm'), attr(x, 'year'), attr(x, 'type')))
 }
 
@@ -63,4 +64,4 @@ filepath2 <- function(basin, storm, year, type) {
 shp_remote <- function(basin, storm, year, type) file.path(stormurl("shp"), shpfileext(basin, storm, year, type))
 shp_local <- function(basin, storm, year, path, type) file.path(path, shpfileext(basin, storm, year, type))
 is_shpstorm <- function(x) if (all(file.exists(x))) TRUE else FALSE
-readshp2 <- function(x, layer) readOGR(dsn = path.expand(x), layer = layer, stringsAsFactors = FALSE, verbose = FALSE)
+readshp2 <- function(x, layer) rgdal::readOGR(dsn = path.expand(x), layer = layer, stringsAsFactors = FALSE, verbose = FALSE)

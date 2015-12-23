@@ -7,7 +7,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 0.5.0.9200
+Version: 0.5.0.9500
 License: MIT + file LICENSE
 Authors@R: c(
     person("Hart", "Edmund", role = "ctb", email = "Edmund.m.hart@gmail.com"),
@@ -30,7 +30,6 @@ Imports:
     tidyr,
     ggplot2,
     scales,
-    rgdal,
     XML,
     jsonlite
 Suggests:
@@ -41,5 +40,6 @@ Suggests:
     ncdf4,
     leaflet,
     geojsonio,
-    lawn
+    lawn,
+    rgdal
 RoxygenNote: 5.0.1

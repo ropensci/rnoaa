@@ -22,6 +22,7 @@
 #'    theme_ice()
 #' }
 seaice <- function(url, ...) {
+  check4pkg("rgdal")
   tt <- readshpfile(url, ...)
   suppressMessages(fortify(tt))
 }
@@ -109,8 +110,8 @@ readshpfile <- function(x, storepath = NULL) {
   }
   dir.create(path_write, showWarnings = FALSE)
   unzip(path, exdir = path_write)
-  my_layer <- ogrListLayers(path.expand(path_write))
-  readOGR(path.expand(path_write), layer = my_layer, verbose = FALSE)
+  my_layer <- rgdal::ogrListLayers(path.expand(path_write))
+  rgdal::readOGR(path.expand(path_write), layer = my_layer, verbose = FALSE)
 }
 
 #' ggplot2 map theme
