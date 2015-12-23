@@ -13,6 +13,16 @@ argo_files(gt = NULL, of = NULL, qwmo = NULL, wmo = NULL, box = NULL,
   ...)
 }
 \arguments{
+\item{gt}{gt string}
+
+\item{of}{of string}
+
+\item{qwmo}{qwmo string}
+
+\item{wmo}{wmo string}
+
+\item{box}{Bounding box, of the form: min lon, min lat, max lon, max lat}
+
 \item{limit}{(integer) number to return}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}

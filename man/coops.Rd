@@ -24,7 +24,8 @@ coops_search(begin_date = NULL, end_date = NULL, station_name = NULL,
 
 \item{time_zone}{(character) Time zone, one of 'gmt', 'lst', 'lst_ldt'.}
 
-\item{application}{(character) If called within an external package, set to the name of your organization. Optional}
+\item{application}{(character) If called within an external package, set to the name of your
+organization. Optional}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}
 }
@@ -41,7 +42,8 @@ Options for the product paramter. One of:
  \item air_pressure - Barometric pressure as measured at the station
  \item air_gap - Air Gap (distance between a bridge and the water's surface) at the station
  \item conductivity - The water's conductivity as measured at the station
- \item visibility - Visibility from the station's visibility sensor. A measure of atmospheric clarity
+ \item visibility - Visibility from the station's visibility sensor. A measure of 
+ atmospheric clarity
  \item humidity - Relative humidity as measured at the station
  \item salinity - Salinity and specific gravity data for the station
  \item hourly_height - Verified hourly height water level data for the station

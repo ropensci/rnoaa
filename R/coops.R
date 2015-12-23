@@ -1,5 +1,6 @@
 #' Get NOAA co-ops data
 #'
+#' @export
 #' @name coops
 #' @param station_name (numeric)
 #' @param begin_date (numeric) Date in yyyymmdd format. Required
@@ -8,7 +9,8 @@
 #' @param datum (character) See below for Details. Required for all water level products.
 #' @param units (character) Specify metric or english (imperial) units, one of 'metric', 'english'. 
 #' @param time_zone (character) Time zone, one of 'gmt', 'lst', 'lst_ldt'.
-#' @param application (character) If called within an external package, set to the name of your organization. Optional
+#' @param application (character) If called within an external package, set to the name of your
+#' organization. Optional
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}. Optional
 #' 
 #' @details 
@@ -21,7 +23,8 @@
 #'  \item air_pressure - Barometric pressure as measured at the station
 #'  \item air_gap - Air Gap (distance between a bridge and the water's surface) at the station
 #'  \item conductivity - The water's conductivity as measured at the station
-#'  \item visibility - Visibility from the station's visibility sensor. A measure of atmospheric clarity
+#'  \item visibility - Visibility from the station's visibility sensor. A measure of 
+#'  atmospheric clarity
 #'  \item humidity - Relative humidity as measured at the station
 #'  \item salinity - Salinity and specific gravity data for the station
 #'  \item hourly_height - Verified hourly height water level data for the station
@@ -46,7 +49,6 @@
 #'  \item STND - Station datum
 #' }
 #'
-#' @export
 #' @references \url{http://co-ops.nos.noaa.gov/api/}
 #' @examples \dontrun{
 #' # Get monthly mean sea level data at Vaca Key (8723970)
@@ -65,14 +67,19 @@
 #' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
 #'  product = "water_temperature")
 #' }
-coops_search <- function(begin_date = NULL, end_date = NULL, station_name = NULL, product, datum = NULL, units = "metric", time_zone = "gmt", application = "rnoaa", ...){
+coops_search <- function(begin_date = NULL, end_date = NULL, station_name = NULL, 
+                         product, datum = NULL, units = "metric", time_zone = "gmt", 
+                         application = "rnoaa", ...){
 
-  args <- noaa_compact(list(begin_date = begin_date, end_date = end_date, station = station_name, product = product, datum = datum, units = units, time_zone = time_zone, application = application, format = "json"))
+  args <- noaa_compact(list(begin_date = begin_date, end_date = end_date, 
+                            station = station_name, product = product, datum = datum, 
+                            units = units, time_zone = time_zone, application = application, 
+                            format = "json"))
 
   res <- coops_GET(coops_base(), args, ...)
 
-  if(is.null(nrow(res$data))){
-    stop("No data was found")
+  if (is.null(nrow(res$data))) {
+    stop("No data was found", call. = FALSE)
   }
   
   res
@@ -85,4 +92,3 @@ coops_GET <- function(url, args, ...) {
   httr::stop_for_status(res)
   jsonlite::fromJSON(httr::content(res, "text"))
 }
-        

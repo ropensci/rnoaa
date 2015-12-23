@@ -2,6 +2,11 @@
 #'
 #' @export
 #' @name argo
+#' @param gt gt string
+#' @param of of string
+#' @param qwmo qwmo string
+#' @param wmo wmo string
+#' @param box Bounding box, of the form: min lon, min lat, max lon, max lat
 #' @param limit (integer) number to return
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}. Optional
 #' @references \url{http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html}
