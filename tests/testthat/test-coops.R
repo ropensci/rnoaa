@@ -32,3 +32,13 @@ test_that("coops fails well", {
   expect_error(coops_search(station_name = 8775244, begin_date = 20140927, end_date = 20140928, product = "air_temperature"), "No data was found")
   
 })
+
+test_that("coops fails well", {
+  skip_on_cran()
+  skip_on_travis()
+  skip_on_appveyor()
+  
+  expect_error(coops_search(station_name = 8775244, begin_date = 20140927, end_date = 20140928, product = "monthly_mean"), "Must specify a datum for water level products")
+  
+})
+

@@ -76,6 +76,11 @@ coops_search <- function(begin_date = NULL, end_date = NULL, station_name = NULL
                          product, datum = NULL, units = "metric", time_zone = "gmt", 
                          application = "rnoaa", ...){
 
+  water_level_products <- c("water_level", "hourly_height", "high_low", "daily_mean", "monthly_mean", "one_minute_water_level", "predictions")
+  if(product %in% water_level_products & length(datum) < 1){
+    stop("Must specify a datum for water level products", call. = FALSE)
+  }
+    
   args <- noaa_compact(list(begin_date = begin_date, end_date = end_date, 
                             station = station_name, product = product, datum = datum, 
                             units = units, time_zone = time_zone, application = application, 
