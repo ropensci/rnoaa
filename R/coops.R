@@ -50,6 +50,11 @@
 #' }
 #'
 #' @references \url{http://co-ops.nos.noaa.gov/api/}
+#' @return List, of length two. 
+#' \itemize{
+#'  \item metadata A list of metadata with slots id, name, lat, lon
+#'  \item data A data.frame with data
+#' }
 #' @examples \dontrun{
 #' # Get monthly mean sea level data at Vaca Key (8723970)
 #' coops_search(station_name = 8723970, begin_date = 19820301, end_date = 20141001,

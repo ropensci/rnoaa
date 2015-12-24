@@ -29,6 +29,13 @@ organization. Optional}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}
 }
+\value{
+List, of length two. 
+\itemize{
+ \item metadata A list of metadata with slots id, name, lat, lon
+ \item data A data.frame with data
+}
+}
 \description{
 Get NOAA co-ops data
 }
