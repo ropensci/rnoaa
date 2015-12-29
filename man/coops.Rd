@@ -30,7 +30,7 @@ organization. Optional}
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}
 }
 \value{
-List, of length two. 
+List, of length one or two. 
 \itemize{
  \item metadata A list of metadata with slots id, name, lat, lon
  \item data A data.frame with data
@@ -84,6 +84,9 @@ coops_search(station_name = 8723970, begin_date = 19820301, end_date = 20141001,
 # Get verified water level data at Vaca Key (2723970)
 coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
  datum = "stnd", product = "water_level")
+ 
+# Get daily mean water level data at Fairport, OH (9063053)
+ coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928, product = "daily_mean", datum = "stnd"), time_zone = "lst")
  
 # Get air temperature at Vaca Key (2723970)
 coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,

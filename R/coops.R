@@ -68,6 +68,9 @@
 #' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
 #'  datum = "stnd", product = "water_level")
 #'  
+#' # Get daily mean water level data at Fairport, OH (9063053)
+#'  coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928, product = "daily_mean", datum = "stnd"), time_zone = "lst")
+#'  
 #' # Get air temperature at Vaca Key (2723970)
 #' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
 #'  product = "air_temperature")
@@ -96,6 +99,16 @@ coops_search <- function(begin_date = NULL, end_date = NULL, station_name = NULL
       & is.null(nrow(res$datums))) {
     stop("No data was found", call. = FALSE)
   }
+  
+  if(!(product %in% c("monthly_mean", "datums"))){
+    res[[length(res)]][,1] <- as.POSIXct(res[[length(res)]][,1])
+  }
+  
+  if(product == "monthly_mean"){
+    res[[length(res)]] <- data.frame(apply(res[[length(res)]], 2, as.numeric))
+  }
+  
+  res[[length(res)]][,2] <- as.numeric(res[[length(res)]][,2])
   
   res
 }
