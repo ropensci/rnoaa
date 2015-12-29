@@ -96,5 +96,7 @@ coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
 }
 \references{
 \url{http://co-ops.nos.noaa.gov/api/}
+
+\url{http://tidesandcurrents.noaa.gov/map/}
 }
 

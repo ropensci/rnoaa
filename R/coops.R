@@ -49,8 +49,12 @@
 #'  \item STND - Station datum
 #' }
 #'
-#' @references \url{http://co-ops.nos.noaa.gov/api/}
-#' @return List, of length two. 
+#' @references 
+#' \url{http://co-ops.nos.noaa.gov/api/}
+#' 
+#' \url{http://tidesandcurrents.noaa.gov/map/}
+#'  
+#' @return List, of length one or two. 
 #' \itemize{
 #'  \item metadata A list of metadata with slots id, name, lat, lon
 #'  \item data A data.frame with data
@@ -88,7 +92,8 @@ coops_search <- function(begin_date = NULL, end_date = NULL, station_name = NULL
 
   res <- coops_GET(coops_base(), args, ...)
 
-  if (is.null(nrow(res$data))) {
+  if (is.null(nrow(res$data)) & is.null(nrow(res$predictions))
+      & is.null(nrow(res$datums))) {
     stop("No data was found", call. = FALSE)
   }
   
