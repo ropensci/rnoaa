@@ -64,20 +64,65 @@
 #' coops_search(station_name = 8723970, begin_date = 19820301, end_date = 20141001,
 #'  datum = "stnd", product = "monthly_mean")
 #'  
-#' # Get verified water level data at Vaca Key (2723970)
+#' # Get verified water level data at Vaca Key (8723970)
 #' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
 #'  datum = "stnd", product = "water_level")
 #'  
 #' # Get daily mean water level data at Fairport, OH (9063053)
-#'  coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928, product = "daily_mean", datum = "stnd"), time_zone = "lst")
+#'  coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
+#'   product = "daily_mean", datum = "stnd"), time_zone = "lst")
 #'  
-#' # Get air temperature at Vaca Key (2723970)
+#' # Get air temperature at Vaca Key (8723970)
 #' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
 #'  product = "air_temperature")
 #' 
-#' # Get water temperature at Vaca Key (2723970)
+#' # Get water temperature at Vaca Key (8723970)
 #' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
 #'  product = "water_temperature")
+#'  
+#' # Get air pressure at Vaca Key (8723970)
+#' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
+#'  product = "air_pressure")
+#' 
+#' # Get conductivity at Eugene Island, LA (8764314)
+#' coops_search(station_name = 8764314, begin_date = 20151223, end_date = 20151224,
+#'  product = "conductivity")
+#' 
+#' # Get salinity at Eugene Island, LA (8764314)
+#' coops_search(station_name = 8764314, begin_date = 20150927, end_date = 20150928,
+#'  product = "salinity")
+#'  
+#' # Get humidity at Eugene Island, LA (8764314)
+#' coops_search(station_name = 8764314, begin_date = 20150927, end_date = 20150928,
+#'  product = "humidity")
+#'
+#' # Get wind at Vaca Key (8723970)
+#' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
+#'  product = "wind")
+#'  
+#' # Get hourly water level height at Key West (8724580)
+#' coops_search(station_name = 8724580, begin_date = 20140927, end_date = 20140928,
+#'  product = "hourly_height", datum = "stnd")
+#'  
+#' # Get high-low water level at Key West (8724580)
+#' coops_search(station_name = 8724580, begin_date = 20140927, end_date = 20140928,
+#'  product = "high_low", datum = "stnd")
+#'  
+#' # Get currents data at Pascagoula Harbor (ps0401)
+#' coops_search(station_name = "ps0401", begin_date = 20151221, end_date = 20151222,
+#'  product = "currents")
+#'  
+#' # Get one-minute water level at Vaca Key (8723970)
+#' coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
+#'  datum = "stnd", product = "one_minute_water_level")
+#' 
+#' # Get datums at Fort Myers, FL (8725520)
+#' coops_search(station_name = 8725520, product = "datums")
+#' 
+#' # Get water level predictions at Vaca Key (8723970)
+#' coops_search(station_name = 8723970, begin_date = 20140928, end_date = 20140929,
+#'  datum = "stnd", product = "predictions")
+#' 
 #' }
 coops_search <- function(begin_date = NULL, end_date = NULL, station_name = NULL, 
                          product, datum = NULL, units = "metric", time_zone = "gmt", 
