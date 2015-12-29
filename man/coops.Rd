@@ -87,7 +87,7 @@ coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
  
 # Get daily mean water level data at Fairport, OH (9063053)
  coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
-  product = "daily_mean", datum = "stnd"), time_zone = "lst")
+  product = "daily_mean", datum = "stnd", time_zone = "lst")
  
 # Get air temperature at Vaca Key (8723970)
 coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
