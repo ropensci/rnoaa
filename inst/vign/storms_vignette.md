@@ -355,19 +355,9 @@ You can easily read in the data (or do it on your own), then do stuff with the d
 
 ```r
 resshp <- storm_shp_read(res)
-```
-
-```
-#> OGR data source with driver: ESRI Shapefile 
-#> Source: "/Users/sacmac/.rnoaa/storms/year/Year.2013.ibtracs_all_points.v03r06.shp", layer: "Year.2013.ibtracs_all_points.v03r06"
-#> with 3053 features
-#> It has 146 fields
-```
-
-```r
 library("maps")
 map()
 points(resshp)
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)

@@ -4,6 +4,15 @@
 %\VignetteEncoding{UTF-8}
 -->
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>", 
+  collapse = TRUE,
+  warning = FALSE, 
+  message = FALSE
+)
+```
+
 Sea ice vignette
 ======
 
@@ -22,40 +31,40 @@ install.packages("devtools")
 devtools::install_github("ropensci/rnoaa")
 ```
 
-```{r load, message=FALSE, warning=FALSE}
+```{r load}
 library('rnoaa')
 library('plyr')
 ```
 
 ### Look at data.frame's for a series of years for Feb, South pole
 
-```{r message=FALSE, warning=FALSE}
-urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x, mo='Feb', pole='S'))
+```{r}
+urls <- sapply(seq(1979, 1990, 1), function(x) seaiceeurls(yr = x, mo = 'Feb', pole = 'S'))
 out <- lapply(urls, seaice)
 head(out[[1]])
 ```
 
 ### Map a single year/month/pole combo
 
-```{r}
-urls <- seaiceeurls(mo='Apr', pole='N', yr=1990)
+```{r seaice1}
+urls <- seaiceeurls(mo = 'Apr', pole = 'N', yr = 1990)
 out <- seaice(urls)
 library('ggplot2')
-ggplot(out, aes(long, lat, group=group)) +
-   geom_polygon(fill="steelblue") +
+ggplot(out, aes(long, lat, group = group)) +
+   geom_polygon(fill = "steelblue") +
    theme_ice()
 ```
 
 ### Map all years for April only for North pole
 
-```{r message=FALSE, warning=FALSE}
-urls <- seaiceeurls(mo='Apr', pole='N')[1:10]
+```{r seaice2}
+urls <- seaiceeurls(mo = 'Apr', pole = 'N')[1:10]
 out <- lapply(urls, seaice)
-names(out) <- seq(1979,1988,1)
+names(out) <- seq(1979, 1988, 1)
 df <- ldply(out)
 library('ggplot2')
-ggplot(df, aes(long, lat, group=group)) +
-  geom_polygon(fill="steelblue") +
+ggplot(df, aes(long, lat, group = group)) +
+  geom_polygon(fill = "steelblue") +
   theme_ice() +
-  facet_wrap(~ .id)
+  facet_wrap(~.id)
 ```
