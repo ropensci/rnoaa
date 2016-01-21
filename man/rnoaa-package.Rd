@@ -17,8 +17,8 @@ which functions start with \code{ncdc_}. An access token, or API key, is require
 the \code{ncdc_} functions. The key is required by NOAA, not us. Go to the link given above 
 to get an API key.
 
-More NOAA data sources are being added through time. Data sources and their function prefixes
-are:
+More NOAA data sources are being added through time. Data sources and their 
+function prefixes are:
 
 \itemize{
  \item \code{buoy_*} - NOAA Buoy data from the National Buoy Data Center
@@ -31,6 +31,8 @@ are:
  \item \code{storm_} - Storms (IBTrACS) vignette
  \item \code{swdi} - Severe Weather Data Inventory (SWDI) vignette
  \item \code{tornadoes} - From the NOAA Storm Prediction Center
+ \item \code{argo_*} - Argo buoys
+ \item \code{coops_search} - NOAA CO-OPS - tides and currents data
 }
 }
 

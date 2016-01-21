@@ -1,5 +1,4 @@
 context("gefs")
-library(rnoaa)
 
 #set a location
 lat = 46.28125
@@ -96,6 +95,3 @@ test_that("gefs_dimension_values returns numeric array.", {
 
   expect_error(gefs_dimension_values(dim = NULL), "dim cannot be NULL or missing.")
 })
-
-
-

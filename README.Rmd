@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 `rnoaa` is an R interface to many NOAA data sources. We don't cover all of them, but we include many commonly used sources, and add we are always adding new sources. We focus on easy to use interfaces for getting NOAA data, and giving back data in easy to use formats downstream. We currently don't do much in the way of plots or analysis. 
 
-## Data sources used in rnoaa
+## Data sources in rnoaa
 
 * NOAA NCDC climate data:
     * We are using the NOAA API version 2
@@ -39,6 +39,8 @@ knitr::opts_chunk$set(
 * [GHCND FTP data](ftp://ftp.ncdc.noaa.gov/pub/data/noaa) - NOAA NCDC API has some/all (not sure really) of this data, but FTP allows to get more data more quickly
 * [Global Ensemble Forecast System (GEFS) data](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs)
 * [Extended Reconstructed Sea Surface Temperature (ERSST) data](https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4)
+* [Argo buoys](http://www.argo.ucsd.edu/) - a global array of more than 3,000 free-drifting profiling floats that measures thetemperature and salinity of the upper 2000 m of the ocean
+* [NOAA CO-OPS - tides and currents data](http://tidesandcurrents.noaa.gov/)
 
 ## Help
 
@@ -225,6 +227,36 @@ Get forecast for a certain variable.
 ```{r cache = TRUE}
 res <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat = 46.28125, lon = -116.2188)
 head(res$data)
+```
+
+## Argo buoys data
+
+There are a suite of functions for Argo data, a few egs:
+
+```{r eval=FALSE}
+# Spatial search - by bounding box
+argo_search("coord", box = c(-40, 35, 3, 2))
+
+# Time based search
+argo_search("coord", yearmin = 2007, yearmax = 2009)
+
+# Data quality based search
+argo_search("coord", pres_qc = "A", temp_qc = "A")
+
+# Search on partial float id number
+argo_qwmo(qwmo = 49)
+
+# Get data
+argo(dac = "meds", id = 4900881, cycle = 127, dtype = "D")
+```
+
+## CO-OPS data
+
+Get daily mean water level data at Fairport, OH (9063053)
+
+```{r}
+coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
+             product = "daily_mean", datum = "stnd", time_zone = "lst")
 ```
 
 ## Meta
