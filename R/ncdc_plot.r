@@ -6,23 +6,16 @@
 #' @export
 #'
 #' @param ... Input noaa object or objects.
-#' @param breaks Regularly spaced date breaks for x-axis. See \code{\link{date_breaks}}
+#' @param breaks Regularly spaced date breaks for x-axis. See examples for usage. 
+#' See \code{\link{date_breaks}}. Default: \code{NULL} (uses ggplot2 default break 
+#' sformatting)
 #' @param dateformat Date format using standard POSIX specification for labels on
 #' x-axis. See \code{\link{date_format}}
-#' @return Plot of climate data.
+#' @return ggplot2 plot
 #' @details
 #' This is a simple wrapper function around some ggplot2 code. There is indeed a lot you
-#' can modify in your plots, so this function just does some basic stuff. Here's the
-#' code within this function, where input is the output from a \code{\link[rnoaa]{ncdc}}
-#' call - go crazy:
-#'
-#' input <- input$data
-#' input$date <- ymd(sub("T00:00:00\\.000", '', as.character(input$date)))
-#' ggplot(input, aes(date, value)) +
-#'    theme_bw(base_size=18) +
-#'    geom_line(size=2) +
-#'    scale_x_datetime(breaks = date_breaks("7 days"), labels = date_format('%d/%m/%y')) +
-#'    labs(y=as.character(input[1,'dataType']), x="Date")
+#' can modify in your plots, so this function just does some basic stuff. Look at the internals
+#' for what the function does.
 #'
 #' @examples \dontrun{
 #' # Search for data first, then plot
@@ -34,31 +27,29 @@
 #' ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 #'
 #' out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
-#' startdate = '2010-05-01', enddate = '2010-05-03', limit=100)
+#'    startdate = '2010-05-01', enddate = '2010-05-03', limit=100)
 #' ncdc_plot(out2, breaks="6 hours", dateformat="%H")
 #'
 #' # Combine many calls to ncdc function
 #' out1 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
-#' startdate = '2010-03-01', enddate = '2010-05-31', limit=500)
+#'    startdate = '2010-03-01', enddate = '2010-05-31', limit=500)
 #' out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
-#' startdate = '2010-09-01', enddate = '2010-10-31', limit=500)
+#'    startdate = '2010-09-01', enddate = '2010-10-31', limit=500)
 #' df <- ncdc_combine(out1, out2)
 #' ncdc_plot(df)
 #' ## or pass in each element separately
 #' ncdc_plot(out1, out2, breaks="45 days")
 #' }
-ncdc_plot <- function(..., breaks="7 days", dateformat='%d/%m/%y') {
+ncdc_plot <- function(...,  breaks = NULL, dateformat='%d/%m/%y') {
   UseMethod("ncdc_plot")
 }
 
-#' @method ncdc_plot ncdc_data
 #' @export
-#' @rdname ncdc_plot
-ncdc_plot.ncdc_data <- function(..., breaks="7 days", dateformat='%d/%m/%y') {
+ncdc_plot.ncdc_data <- function(..., breaks = NULL, dateformat='%d/%m/%y') {
   input <- list(...)
   value = NULL
   if (!inherits(input[[1]], c('ncdc_data','ncdc_data_comb'))) {
-    stop("Input is not of class ncdc_data or ncdc_data_comb")
+    stop("Input is not of class ncdc_data or ncdc_data_comb", call. = FALSE)
   }
 
   if (length(input) == 1) {
@@ -78,11 +69,20 @@ ncdc_plot.ncdc_data <- function(..., breaks="7 days", dateformat='%d/%m/%y') {
   }
 }
 
+#' @export
+ncdc_plot.default <- function(...,  breaks = NULL, dateformat='%d/%m/%y') {
+  stop("No method for ", class(list(...)[[1]]), call. = FALSE)
+}
+
 plot_template <- function(df, breaks, dateformat) {
-  list(
+  tt <- list(
     theme_bw(base_size = 18),
     geom_line(size = 2),
-    scale_x_datetime(breaks = date_breaks(breaks), labels = date_format(dateformat)),
     labs(y = as.character(df[1, 'datatype']), x = "Date")
   )
+  if (!is.null(breaks)) {
+    c(tt, scale_x_datetime(breaks = date_breaks(breaks), labels = date_format(dateformat)))
+  } else {
+    tt
+  }
 }
