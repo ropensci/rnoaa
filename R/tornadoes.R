@@ -14,8 +14,8 @@
 #' plot(shp) # may take 10 sec or so to render
 #' }
 
-tornadoes <- function(path="~/.rnoaa/tornadoes", overwrite = TRUE, ...)
-{
+tornadoes <- function(path="~/.rnoaa/tornadoes", overwrite = TRUE, ...) {
+  check4pkg('rgdal')
   if(!is_tornadoes(path.expand(file.path(path, "tornadoes")))){
     url <- 'http://spc.noaa.gov/gis/svrgis/zipped/tornado.zip'
     tornadoes_GET(path, url, overwrite, ...)
@@ -37,7 +37,7 @@ is_tornadoes <- function(x){
   }
 }
 
-readshp <- function(x) readOGR(dsn = path.expand(x), layer = "tornado", stringsAsFactors = FALSE)
+readshp <- function(x) rgdal::readOGR(dsn = path.expand(x), layer = "tornado", stringsAsFactors = FALSE)
 
 tornadoes_files <-
   c("tornado.dbf","tornado.prj","tornado.sbn","tornado.sbx","tornado.shp","tornado.shx")

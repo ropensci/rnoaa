@@ -47,6 +47,19 @@ to \code{ghcnd()}.}
 \description{
 Get GHCND daily data from NOAA FTP server
 }
+\details{
+Functions:
+\itemize{
+ \item \code{ghcnd_version} - Get current version of GHCND data
+ \item \code{ghcnd_stations} - Get GHCND stations and their metadata
+ \item \code{ghcnd_states} - Get US/Canada state names and 2-letter codes
+ \item \code{ghcnd_countries} - Get country names and 2-letter codes
+ \item \code{ghcnd_search} - Search GHCND data
+ \item \code{ghcnd} - Get GHCND data
+ \item \code{ghcnd_splitvars} - Split variables in data returned from \code{ghcnd}
+ \item \code{ghcnd_clear_cache} - Clear cache of locally stored files
+}
+}
 \examples{
 \dontrun{
 # Get metadata

@@ -1,13 +1,14 @@
-language: r
+language: c
+sudo: required
+
+script: ./travis-tool.sh run_tests
 
 before_install:
-  - sudo apt-get install libv8-dev
-
-r_binary_packages:
-  - rgdal
-
-r_github_packages:
-  - jimhester/covr
+  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+  - chmod 755 ./travis-tool.sh
+  - ./travis-tool.sh bootstrap
+  - ./travis-tool.sh install_deps
+  - ./travis-tool.sh install_github jimhester/covr
 
 after_success:
   - Rscript -e 'covr::codecov()'
@@ -22,3 +23,7 @@ notifications:
 env:
   global:
     - _R_CHECK_FORCE_SUGGESTS_=False
+    - R_LIBS="http://cran.rstudio.com"
+    - R_BUILD_ARGS="--no-build-vignettes --no-manual"
+    - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
+    - BOOTSTRAP_LATEX=""

@@ -45,7 +45,6 @@
 #' @importFrom httr GET add_headers content warn_for_status stop_for_status
 #' write_disk parse_url build_url http_status
 #' @importFrom XML xpathSApply xpathApply xmlValue xmlParse xmlToList htmlParse
-#' @importFrom rgdal ogrListLayers readOGR
 #' @importFrom jsonlite fromJSON
 #' @importFrom tidyr gather
 #' @importFrom dplyr %>% rbind_all select mutate rename tbl_df filter bind_rows
