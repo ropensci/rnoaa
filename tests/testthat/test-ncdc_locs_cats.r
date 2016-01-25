@@ -3,7 +3,7 @@ context("ncdc_locs_cats")
 test_that("ncdc_locs_cats returns the correct ...", {
   skip_on_cran()
   
-  Sys.sleep(time = 0.5)
+  Sys.sleep(time = 1)
   tt <- ncdc_locs_cats()
   Sys.sleep(time = 0.5)
   uu <- ncdc_locs_cats(locationcategoryid='CLIM_REG')

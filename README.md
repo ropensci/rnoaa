@@ -12,7 +12,7 @@ rnoaa
 
 `rnoaa` is an R interface to many NOAA data sources. We don't cover all of them, but we include many commonly used sources, and add we are always adding new sources. We focus on easy to use interfaces for getting NOAA data, and giving back data in easy to use formats downstream. We currently don't do much in the way of plots or analysis. 
 
-## Data sources used in rnoaa
+## Data sources in rnoaa
 
 * NOAA NCDC climate data:
     * We are using the NOAA API version 2
@@ -29,6 +29,8 @@ rnoaa
 * [GHCND FTP data](ftp://ftp.ncdc.noaa.gov/pub/data/noaa) - NOAA NCDC API has some/all (not sure really) of this data, but FTP allows to get more data more quickly
 * [Global Ensemble Forecast System (GEFS) data](https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs)
 * [Extended Reconstructed Sea Surface Temperature (ERSST) data](https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4)
+* [Argo buoys](http://www.argo.ucsd.edu/) - a global array of more than 3,000 free-drifting profiling floats that measures thetemperature and salinity of the upper 2000 m of the ocean
+* [NOAA CO-OPS - tides and currents data](http://tidesandcurrents.noaa.gov/)
 
 ## Help
 
@@ -155,15 +157,15 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 
 #>       mindate    maxdate             name datacoverage            id
 #>         (chr)      (chr)            (chr)        (dbl)         (chr)
-#> 1  1892-08-01 2015-10-31       Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2015-11-28       Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2015-11-28    Zonguldak, TU       0.8628 CITY:TU000057
-#> 4  1906-01-01 2015-11-28       Zinder, NG       0.9021 CITY:NG000004
-#> 5  1973-01-01 2015-11-28   Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2015-11-28    Zhytomyra, UP       0.9722 CITY:UP000025
-#> 7  1948-03-01 2015-11-28   Zhezkazgan, KZ       0.9298 CITY:KZ000017
-#> 8  1951-01-01 2015-11-28    Zhengzhou, CH       1.0000 CITY:CH000045
-#> 9  1941-01-01 2014-12-22     Zaragoza, SP       1.0000 CITY:SP000021
+#> 1  1892-08-01 2015-11-30       Zwolle, NL       1.0000 CITY:NL000012
+#> 2  1901-01-01 2016-01-07       Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2016-01-07    Zonguldak, TU       0.8632 CITY:TU000057
+#> 4  1906-01-01 2016-01-07       Zinder, NG       0.9023 CITY:NG000004
+#> 5  1973-01-01 2016-01-16   Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2016-01-07    Zhytomyra, UP       0.9722 CITY:UP000025
+#> 7  1948-03-01 2016-01-07   Zhezkazgan, KZ       0.9299 CITY:KZ000017
+#> 8  1951-01-01 2016-01-06    Zhengzhou, CH       1.0000 CITY:CH000045
+#> 9  1941-01-01 2015-11-12     Zaragoza, SP       1.0000 CITY:SP000021
 #> 10 1936-01-01 2009-06-17 Zaporiyhzhya, UP       0.9739 CITY:UP000024
 #> ..        ...        ...              ...          ...           ...
 #> 
@@ -181,7 +183,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
-#> 1      12.2 1899-02-01 2015-11-28  28.8029 INVERNESS 3 SE, FL US
+#> 1      12.2 1899-02-01 2016-01-16  28.8029 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS  -82.3126
 #> 
@@ -222,7 +224,7 @@ out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
-![plot of chunk unnamed-chunk-12](inst/img/unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](inst/img/unnamed-chunk-12-1.png)
 
 ### More plotting
 
@@ -235,7 +237,7 @@ out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP'
 ncdc_plot(out1, out2, breaks="45 days")
 ```
 
-![plot of chunk unnamed-chunk-13](inst/img/unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-13](inst/img/unnamed-chunk-13-1.png)
 
 ### Get table of all datasets
 
@@ -259,10 +261,10 @@ ncdc_datasets()
 #>                     uid    mindate    maxdate                      name
 #>                   (chr)      (chr)      (chr)                     (chr)
 #> 1  gov.noaa.ncdc:C00040 1831-02-01 2015-06-01          Annual Summaries
-#> 2  gov.noaa.ncdc:C00861 1763-01-01 2015-11-30           Daily Summaries
-#> 3  gov.noaa.ncdc:C00841 1763-01-01 2015-10-01         Monthly Summaries
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2015-12-01  Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2015-11-28 Weather Radar (Level III)
+#> 2  gov.noaa.ncdc:C00861 1763-01-01 2016-01-17           Daily Summaries
+#> 3  gov.noaa.ncdc:C00841 1763-01-01 2015-12-01         Monthly Summaries
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2016-01-20  Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2016-01-17 Weather Radar (Level III)
 #> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01   Normals Annual/Seasonal
 #> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31             Normals Daily
 #> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31            Normals Hourly
@@ -356,111 +358,7 @@ homr(qid = 'COOP:046742')
 #> 3 PASO ROBLES MUNICIPAL ARPT       PUB
 #> 
 #> $`20002078`$identifiers
-#> Source: local data frame [8 x 2]
-#> 
-#>      idType          id
-#>       (chr)       (chr)
-#> 1     GHCND USW00093209
-#> 2   GHCNMLT USW00093209
-#> 3      COOP      046742
-#> 4      WBAN       93209
-#> 5       FAA         PRB
-#> 6      ICAO        KPRB
-#> 7     NWSLI         PRB
-#> 8 NCDCSTNID    20002078
-#> 
-#> $`20002078`$status
-#> NULL
-#> 
-#> $`20002078`$platform
-#> [1] "COOP"
-#> 
-#> $`20002078`$relocations
-#>   relocation                    date
-#> 1 5.1 mi NNE 1949-10-05T00:00:00.000
-#> 
-#> $`20002078`$remarks
-#> Source: local data frame [3 x 2]
-#> 
-#>                         type
-#>                        (chr)
-#> 1            NWS COOP INGEST
-#> 2                    GENERAL
-#> 3 RIVER BASIN (COOP NETWORK)
-#> Variables not shown: remark (chr)
-#> 
-#> $`20002078`$updates
-#>             effectiveDate    providedBy updateSource version
-#> 1 2014-08-14T00:00:00.000 NCDC\\KTHOMAS       AD HOC    NONE
-#>                                                                                       description
-#> 1 ADDING ANEMOMETER HEIGHTS FROM NWS SURFACE OBSERVATIONS PROGRAM LISTING DATED FEBRUARY 11, 2009
-#>   enteredBy               enteredDate modifiedBy              modifiedDate
-#> 1   KTHOMAS 2014-08-14T10:07:52-04:00   SMCNEILL 2014-09-24T14:56:23-04:00
-#> 
-#> $`20002078`$elements
-#> Source: local data frame [4 x 15]
-#> 
-#>   dataProgram element frequency observationTime publishedFlag receiver
-#>         (chr)   (chr)     (chr)           (chr)         (chr)    (chr)
-#> 1    COOP HPD  PRECIP    HOURLY            2400           HPD     NCEI
-#> 2    COOP SOD  PRECIP     DAILY            2400            CD     NCEI
-#> 3    COOP SOD    TEMP     DAILY            2400            CD     NCEI
-#> 4    COOP SOD    WIND    HOURLY            UNKN            NA       NA
-#> Variables not shown: reportingMethod (chr), equipment.equipment (chr),
-#>   equipment.equipmentMods (chr), equipment.equipmentAzimuth (chr),
-#>   equipment.equipmentDistance (chr), equipment.equipmentDistanceUnits
-#>   (chr), date.beginDate (chr), date.endDate (chr), equipment (chr)
-#> 
-#> $`20002078`$location
-#> $`20002078`$location$id
-#> [1] "20002078"
-#> 
-#> $`20002078`$location$description
-#> Source: local data frame [1 x 1]
-#> 
-#>                                                                   description
-#>                                                                         (chr)
-#> 1 PASO ROBLES MUNICIPAL AIRPORT OUTSIDE AND 5 MILES NE OF PO AT PASO ROBLES C
-#> 
-#> $`20002078`$location$latlon
-#>   latitude_dec longitude_dec latitude_dms longitude_dms precision
-#> 1      35.6697     -120.6283   35,40,11,N   120,37,42,W    DDMMSS
-#>   datum_horiz           source
-#> 1       NAD83 ASOS SITE SURVEY
-#> 
-#> $`20002078`$location$elevation
-#>   elevationType elevationFeet elevationMeters groundElevDatum
-#> 1        GROUND           810           246.9          NAVD88
-#> 
-#> $`20002078`$location$topography
-#>                   description 
-#> "LEVEL VALLEY LOCATION (S-N)" 
-#> 
-#> $`20002078`$location$obstructions
-#> Source: local data frame [1 x 1]
-#> 
-#>                   description
-#>                         (chr)
-#> 1 HYGR 090/04 NO OBSTRUCTIONS
-#> 
-#> $`20002078`$location$geoinfo
-#>   ncdstnId       country state          county utcoffset
-#> 1 20002078 UNITED STATES    CA SAN LUIS OBISPO        -8
-#> 
-#> $`20002078`$location$nwsinfo
-#>   ncdstnId climateDivisions.stateProvince climateDivisions.climateDivision
-#> 1 20002078                             CA                               04
-#>   climateDivisions.displayName nwsRegion nwsWfos.nwsWfo
-#> 1       Central Coast Drainage   WESTERN            LOX
-#>   nwsWfos.displayName
-#> 1     LOS ANGELES, CA
-#> 
-#> 
-#> 
-#> attr(,"class")
-#> [1] "homr"
-#> attr(,"combined")
-#> [1] FALSE
+...
 ```
 
 ## Storm data
@@ -470,7 +368,27 @@ Get storm data for the year 2010
 
 ```r
 storm_data(year = 2010)
-#> Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input
+#> <NOAA Storm Data>
+#> Size: 2855 X 195
+#> 
+#>       serial_num season num basin sub_basin name            iso_time
+#> 1  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 06:00:00
+#> 2  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 12:00:00
+#> 3  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 18:00:00
+#> 4  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 00:00:00
+#> 5  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 06:00:00
+#> 6  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 12:00:00
+#> 7  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 18:00:00
+#> 8  2009317S10073   2010   1    SI        MM ANJA 2009-11-15 00:00:00
+#> 9  2009317S10073   2010   1    SI        MM ANJA 2009-11-15 06:00:00
+#> 10 2009317S10073   2010   1    SI        MM ANJA 2009-11-15 12:00:00
+#> ..           ...    ... ...   ...       ...  ...                 ...
+#> Variables not shown: nature (chr), latitude (dbl), longitude (dbl),
+#>      wind.wmo. (dbl), pres.wmo. (dbl), center (chr), wind.wmo..percentile
+#>      (dbl), pres.wmo..percentile (dbl), track_type (chr),
+#>      latitude_for_mapping (dbl), longitude_for_mapping (dbl),
+#>      current.basin (chr), hurdat_atl_lat (dbl), hurdat_atl_lon (dbl),
+...
 ```
 
 ## GEFS data
@@ -488,6 +406,56 @@ head(res$data)
 #> 4 244  46   3    24                                                   0
 #> 5 244  46   4    30                                                   0
 #> 6 244  46   5    36                                                   0
+```
+
+## Argo buoys data
+
+There are a suite of functions for Argo data, a few egs:
+
+
+```r
+# Spatial search - by bounding box
+argo_search("coord", box = c(-40, 35, 3, 2))
+
+# Time based search
+argo_search("coord", yearmin = 2007, yearmax = 2009)
+
+# Data quality based search
+argo_search("coord", pres_qc = "A", temp_qc = "A")
+
+# Search on partial float id number
+argo_qwmo(qwmo = 49)
+
+# Get data
+argo(dac = "meds", id = 4900881, cycle = 127, dtype = "D")
+```
+
+## CO-OPS data
+
+Get daily mean water level data at Fairport, OH (9063053)
+
+
+```r
+coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
+             product = "daily_mean", datum = "stnd", time_zone = "lst")
+#> $metadata
+#> $metadata$id
+#> [1] "9063053"
+#> 
+#> $metadata$name
+#> [1] "Fairport"
+#> 
+#> $metadata$lat
+#> [1] "41.7598"
+#> 
+#> $metadata$lon
+#> [1] "-81.2811"
+#> 
+#> 
+#> $data
+#>            t       v   f
+#> 1 2015-09-27 174.480 0,0
+#> 2 2015-09-28 174.472 0,0
 ```
 
 ## Meta

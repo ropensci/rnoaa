@@ -2,6 +2,31 @@ rnoaa
 =====
 
 ```{r echo=FALSE}
+library("knitr")
+hook_output <- knitr::knit_hooks$get("output")
+knitr::knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines)==1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(if (abs(lines[1])>1) more else NULL,
+            x[lines],
+            if (length(x)>lines[abs(length(lines))]) more else NULL
+           )
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+ })
+
 knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
@@ -208,7 +233,7 @@ plot(shp)
 
 In this example, search for metadata for a single station ID
 
-```{r}
+```{r output.lines=1:20}
 homr(qid = 'COOP:046742')
 ```
 
@@ -216,7 +241,7 @@ homr(qid = 'COOP:046742')
 
 Get storm data for the year 2010
 
-```{r}
+```{r output.lines=1:20}
 storm_data(year = 2010)
 ```
 
