@@ -7,10 +7,13 @@ rnoaa 0.5.2
 for more, see http://www.argo.ucsd.edu/
 * New data source added: CO-OPS tide and current data. See function `coops_search()` 
 (#111) for idea from @fmichonneau (#124) for implementing @jsta See http://co-ops.nos.noaa.gov/api/
+also (#126) (#128)
 
 ### MINOR IMPROVEMENTS
 
 * `rgdal` moved to Suggests to make usage easier (#125)
+* Changes to `ncdc_plot()` - made default brakes to just default to what
+`ggplot2` does, but you can still pass in your own breaks (#131)
 
 rnoaa 0.5.0
 ===============
