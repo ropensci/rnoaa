@@ -38,8 +38,8 @@
 #' 
 #' @importFrom methods is
 #' @importFrom stats var setNames complete.cases
-#' @importFrom utils head download.file read.csv read.delim read.fwf write.csv 
-#' untar unzip
+#' @importFrom utils head download.file read.csv read.delim read.fwf read.table 
+#' write.csv untar unzip
 #' @importFrom lubridate ymd year today month
 #' @importFrom scales date_breaks date_format
 #' @importFrom ggplot2 ggplot aes facet_wrap theme theme_bw geom_line labs 
