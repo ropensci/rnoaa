@@ -158,3 +158,8 @@ check4pkg <- function(x) {
     invisible(TRUE)
   }
 }
+
+#Check operating system is windows
+is_windows <- function() {
+      .Platform$OS.type == "windows"
+}

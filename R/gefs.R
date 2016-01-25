@@ -27,9 +27,8 @@
 #'   values. If lat/lon are not specified, the $data is an unprocessed matrix.
 #'
 #' @references \itemize{
-#'  \item Data description - \url{http://bit.ly/noaagefs}
-#'  \item Adapted from Python code written by Von P. Walden, Washington State University -
-#'  http://sila.cee.wsu.edu/forecasts/WeatherAndClimateDatafromNWS.html
+#'  \item Data description - \url{http://bit.ly/noaagefs}.
+#'  \item Adapted from Python code written by Von P. Walden, Washington State University.
 #' }
 #'
 #' @author Nicholas Potter \email{potterzot@@gmail.com}
@@ -82,6 +81,10 @@ gefs <- function(var, lat, lon, ...) {
 gefs_CONNECT <- function(date = format(Sys.time(), "%Y%m%d"),
                          forecast_time = c("0000", "0600", "1200", "1800")) {
 
+  
+  # Until bug #127 is resolved
+  if (is_windows()) stop("gefs not implemented on windows yet", .call = FALSE)
+  
   #forecast time
   forecast_time <- match.arg(forecast_time)
 
