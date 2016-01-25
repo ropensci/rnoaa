@@ -16,6 +16,4 @@ inst/cache
 inst/vign/cache
 README.Rmd
 vignettes/figure
-NEWS.md
-
 ^CONDUCT\.md$
