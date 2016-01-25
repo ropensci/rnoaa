@@ -81,6 +81,10 @@ gefs <- function(var, lat, lon, ...) {
 gefs_CONNECT <- function(date = format(Sys.time(), "%Y%m%d"),
                          forecast_time = c("0000", "0600", "1200", "1800")) {
 
+  
+  # Until bug #127 is resolved
+  if (is_windows()) stop("gefs not implemented on windows yet", .call = FALSE)
+  
   #forecast time
   forecast_time <- match.arg(forecast_time)
 
