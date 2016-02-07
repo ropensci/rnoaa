@@ -17,7 +17,7 @@ argo_search <- function(func = NULL, of = NULL, qwmo = NULL, wmo = NULL, box=NUL
       lr = lr, from = from, to = to, dmode = dmode, pres_qc = pres_qc, temp_qc = temp_qc, 
       psal_qc = psal_qc, doxy_qc = doxy_qc, ticket = ticket, limit = limit))
   res <- argo_GET(argo_api(), args, ...)
-  jsonlite::fromJSON(content(res, "text"))
+  jsonlite::fromJSON(utcf8(res))
 }
 
 #' @export
@@ -25,7 +25,7 @@ argo_search <- function(func = NULL, of = NULL, qwmo = NULL, wmo = NULL, box=NUL
 argo_files <- function(wmo = NULL, cyc = NULL, ...) {
   args <- noaa_compact(list(wmo = wmo, cyc = cyc, file = ""))
   res <- argo_GET(argo_api(), args, ...)
-  jsonlite::fromJSON(content(res, "text"))
+  jsonlite::fromJSON(utcf8(res))
 }
 
 #' @export
@@ -33,7 +33,7 @@ argo_files <- function(wmo = NULL, cyc = NULL, ...) {
 argo_qwmo <- function(qwmo, limit = 10, ...) {
   args <- noaa_compact(list(qwmo = qwmo, limit = limit))
   res <- argo_GET(argo_api(), args, ...)
-  jsonlite::fromJSON(content(res, "text"))
+  jsonlite::fromJSON(utcf8(res))
 }
 
 #' @export
@@ -41,7 +41,7 @@ argo_qwmo <- function(qwmo, limit = 10, ...) {
 argo_plan <- function(...) {
   args <- noaa_compact(list(plan = ""))
   res <- argo_GET(argo_api(), args, ...)
-  jsonlite::fromJSON(content(res, "text"))
+  jsonlite::fromJSON(utcf8(res))
 }
 
 #' @export

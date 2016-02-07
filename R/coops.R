@@ -163,5 +163,5 @@ coops_base <- function() "http://tidesandcurrents.noaa.gov/api/datagetter"
 coops_GET <- function(url, args, ...) {
   res <- httr::GET(url, query = args, ...)
   httr::stop_for_status(res)
-  jsonlite::fromJSON(httr::content(res, "text"))
+  jsonlite::fromJSON(utcf8(res))
 }

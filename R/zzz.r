@@ -71,23 +71,31 @@ long2utm <- function(lon, lat) {
 #' Check response from NOAA, including status codes, server error messages, mime-type, etc.
 #' @keywords internal
 check_response <- function(x){
-  if(!x$status_code == 200){
-    stnames <- names(content(x))
-    if(!is.null(stnames)){
-      if('developerMessage' %in% stnames|'message' %in% stnames){
+  if (!x$status_code == 200) { 
+    stnames <- names(jsonlite::fromJSON(utcf8(x), FALSE))
+    if (!is.null(stnames)) {
+      if ('developerMessage' %in% stnames || 'message' %in% stnames) {
         warning(sprintf("Error: (%s) - %s", x$status_code,
-                        noaa_compact(list(content(x)$developerMessage, content(x)$message))))
-      } else { warning(sprintf("Error: (%s)", x$status_code)) }
-    } else { warn_for_status(x) }
+            noaa_compact(list(jsonlite::fromJSON(utcf8(x), FALSE)$developerMessage, jsonlite::fromJSON(utcf8(x), FALSE)$message))), 
+            call. = FALSE)
+      } else { 
+        warning(sprintf("Error: (%s)", x$status_code), call. = FALSE)
+      }
+    } else { 
+      warn_for_status(x) 
+    }
   } else {
-    stopifnot(x$headers$`content-type`=='application/json;charset=UTF-8')
-    res <- content(x, as = 'text', encoding = "UTF-8")
+    stopifnot(x$headers$`content-type` == 'application/json;charset=UTF-8')
+    res <- utcf8(x)
     out <- jsonlite::fromJSON(res, simplifyVector = FALSE)
-    if(!'results' %in% names(out)){
-      if(length(out)==0){ warning("Sorry, no data found") }
+    if (!'results' %in% names(out)) {
+      if (length(out) == 0) { 
+        warning("Sorry, no data found", call. = FALSE) 
+      }
     } else {
-      if( class(try(out$results, silent=TRUE))=="try-error" | is.null(try(out$results, silent=TRUE)) )
-        warning("Sorry, no data found")
+      if ( class(try(out$results, silent = TRUE)) == "try-error" || is.null(try(out$results, silent = TRUE)) ) {
+        warning("Sorry, no data found", call. = FALSE)
+      }
     }
     return( out )
   }
@@ -98,7 +106,7 @@ check_response <- function(x){
 #' @keywords internal
 check_response_swdi <- function(x, format){
   if (!x$status_code == 200) {
-    res <- content(x)
+    res <- utcf8(x)
     if (length(res) == 0) {
       stop(http_status(x)$message, call. = FALSE)
     }
@@ -115,12 +123,10 @@ check_response_swdi <- function(x, format){
   } else {
     if (format == 'csv') {
       stopifnot(grepl('text/plain', x$headers$`content-type`))
-      uu <- content(x, as = 'text', encoding = "UTF-8")
-      read.delim(text = uu, sep = ",")
+      read.delim(text = utcf8(x), sep = ",")
     } else {
       stopifnot(grepl('text/xml', x$headers$`content-type`))
-      res <- content(x, as = 'text', encoding = "UTF-8")
-      xmlParse(res)
+      xmlParse(utcf8(x))
     }
   }
 }
@@ -136,7 +142,7 @@ read_csv <- function(x){
 
 read_table <- function(x){
   if(is(x, "response")) {
-    txt <- gsub('\n$', '', content(x, "text"))
+    txt <- gsub('\n$', '', utcf8(x))
     read.csv(text = txt, sep = ",", stringsAsFactors=FALSE,
              blank.lines.skip=FALSE)[-1, , drop=FALSE]
   } else {
@@ -163,3 +169,5 @@ check4pkg <- function(x) {
 is_windows <- function() {
       .Platform$OS.type == "windows"
 }
+
+utcf8 <- function(x) httr::content(x, "text", encoding = "UTF-8")

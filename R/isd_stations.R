@@ -50,7 +50,7 @@
 isd_stations <- function(refresh = FALSE, path = NULL, ...) {
   if (refresh) {
     res <- suppressWarnings(GET(paste0(isdbase(), "/isd-history.csv"), ...))
-    df <- read.csv(text = content(res, "text"), header = TRUE)
+    df <- read.csv(text = utcf8(res), header = TRUE)
     dat <- setNames(df, gsub("_$", "", gsub("\\.", "_", tolower(names(df)))))
     if (is.null(path)) path <- file.path(".", "isd_stations.rds")
     rnoaa_env$isd_stations_path <- path

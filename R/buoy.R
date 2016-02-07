@@ -96,7 +96,7 @@ pickme <- function(findme, against) {
 buoys <- function(dataset, ...) {
   url <- sprintf('http://dods.ndbc.noaa.gov/thredds/catalog/data/%s/catalog.html', dataset)
   res <- GET(url, ...)
-  tt <- content(res, as = "text")
+  tt <- utcf8(res)
   html <- htmlParse(tt)
   folders <- xpathSApply(html, "//a//tt", xmlValue)
   folders <- grep("/", folders, value = TRUE)
@@ -107,7 +107,7 @@ buoys <- function(dataset, ...) {
 # Get NOAA buoy data from the National Buoy Data Center
 buoy_files <- function(path, buoyid, ...){
   singlebuoy_files <- GET(path, ...)
-  tt_sbf <- content(singlebuoy_files, as = "text")
+  tt_sbf <- utcf8(singlebuoy_files)
   html_sbf <- htmlParse(tt_sbf)
   files_sbf <- grep(".nc$", xpathSApply(html_sbf, "//a//tt", xmlValue), value = TRUE)
   gsub(tolower(buoyid), "", files_sbf)
@@ -123,7 +123,7 @@ buoy_single_file_url <- function(dataset, buoyid, file){
 get_ncdf_file <- function(path, buoyid, file, output){
   res <- GET(path)
   outpath <- sprintf("%s/%s%s", output, buoyid, file)
-  writeBin(content(res), outpath)
+  writeBin(content(res, "raw"), outpath) ### FIXME, do new content parsing
   return(outpath)
 }
 

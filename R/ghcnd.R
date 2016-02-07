@@ -187,7 +187,7 @@ print.ghcnd_stations <- function(x, ..., n = 10){
 
 get_stations <- function(...){
   res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt", ...)
-  df <- read.fwf(textConnection(content(res, "text")), widths = c(11, 9, 11, 7, 33, 5, 10),
+  df <- read.fwf(textConnection(utcf8(res)), widths = c(11, 9, 11, 7, 33, 5, 10),
                  header = FALSE, strip.white = TRUE, comment.char = "", stringsAsFactors = FALSE)
   nms <- c("id","latitude", "longitude", "elevation", "name", "gsn_flag", "wmo_id")
   setNames(df, nms)
@@ -195,7 +195,7 @@ get_stations <- function(...){
 
 get_inventory <- function(...){
   res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt", ...)
-  df <- read.fwf(textConnection(content(res, "text")), widths = c(11, 9, 10, 5, 5, 5),
+  df <- read.fwf(textConnection(utcf8(res)), widths = c(11, 9, 10, 5, 5, 5),
                  header = FALSE, strip.white = TRUE, comment.char = "", stringsAsFactors = FALSE)
   nms <- c("id","latitude", "longitude", "element", "first_year", "last_year")
   setNames(df, nms)
@@ -206,7 +206,7 @@ get_inventory <- function(...){
 ghcnd_states <- function(...){
   # res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-states.txt", ...))
   res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-states.txt", ...)
-  df <- read.fwf(textConnection(content(res, "text")), widths = c(2, 27),
+  df <- read.fwf(textConnection(utcf8(res)), widths = c(2, 27),
                  header = FALSE, strip.white = TRUE, comment.char = "",
                  stringsAsFactors = FALSE, col.names = c("code","name"))
   df[ -NROW(df) ,]
@@ -228,7 +228,7 @@ GET_retry <- function(url, ..., times = 3) {
 #' @rdname ghcnd
 ghcnd_countries <- function(...){
   res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-countries.txt", ...)
-  df <- read.fwf(textConnection(content(res, "text")), widths = c(2, 47),
+  df <- read.fwf(textConnection(utcf8(res)), widths = c(2, 47),
                  header = FALSE, strip.white = TRUE, comment.char = "",
                  stringsAsFactors = FALSE, col.names = c("code","name"))
   df[ -NROW(df) ,]
@@ -238,7 +238,7 @@ ghcnd_countries <- function(...){
 #' @rdname ghcnd
 ghcnd_version <- function(...){
   res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-version.txt", ...)
-  content(res, "text")
+  utcf8(res)
 }
 
 ghcnd_zip <- function(x){
@@ -249,7 +249,7 @@ ghcnd_GET <- function(bp, stationid, ...){
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- ghcnd_local(stationid, bp)
   res <- suppressWarnings(GET(ghcnd_remote(stationid), ...))
-  tt <- content(res, "text")
+  tt <- utcf8(res)
   vars <- c("id","year","month","element",do.call("c", lapply(1:31, function(x) paste0(c("VALUE","MFLAG","QFLAG","SFLAG"), x))))
   df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)))
   dat <- setNames(df, vars)

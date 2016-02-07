@@ -8,7 +8,7 @@
 
 homr_definitions <- function(...){
   res <- GET(paste0(homr_base(), "search"), query=list(qid='COOP:046742'), ...)
-  out <- content(res, "text")
+  out <- utcf8(res)
   json <- jsonlite::fromJSON(out, FALSE)
   parse_defs(json$stationCollection$definitions)
 }

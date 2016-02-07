@@ -81,7 +81,7 @@ homr <- function(qid=NULL, qidMod=NULL, station=NULL, state=NULL, county=NULL, c
   if (length(args) == 0) args <- NULL
   url <- if (is.null(station)) paste0(homr_base(), "search") else paste0(homr_base(), station)
   res <- GET(url, query = args, ...)
-  out <- content(res, "text")
+  out <- utcf8(res)
   json <- jsonlite::fromJSON(out, FALSE)
   sts <- lapply(json$stationCollection$stations, parse_stations, headersOnly = headersOnly)
   names(sts) <- sapply(sts, "[[", "id")
