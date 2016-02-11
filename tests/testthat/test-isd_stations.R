@@ -6,7 +6,7 @@ test_that("list stations", {
   aa <- isd_stations()
   
   expect_is(aa, "data.frame")
-  expect_is(aa$usaf, "integer")
+  expect_is(aa$usaf, "character")
   
   expect_equal(NCOL(aa), 11)
 })
