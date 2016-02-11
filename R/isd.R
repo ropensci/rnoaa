@@ -84,7 +84,7 @@
 isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, cleanup = TRUE, ...) {
   rdspath <- isd_local(usaf, wban, year, path)
   if (!is_isd(x = rdspath)) {
-    isd_GET(path, usaf, wban, year, overwrite, ...)
+    isd_GET(bp = path, usaf, wban, year, overwrite, ...)
   }
   message(sprintf("<path>%s", rdspath), "\n")
   structure(list(data = read_isd(rdspath, sections, cleanup)), class = "isd")
@@ -111,7 +111,14 @@ print.isd <- function(x, ..., n = 10) {
 isd_GET <- function(bp, usaf, wban, year, overwrite, ...) {
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- isd_local(usaf, wban, year, bp)
-  suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite), ...))
+  tryget <- tryCatch(suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite))), 
+           error = function(e) e)
+  if (inherits(tryget, "error")) {
+    unlink(fp)
+    stop("download failed for\n   ", isd_remote(usaf, wban, year), call. = FALSE)
+  } else {
+    tryget
+  }
 }
 
 isd_remote <- function(usaf, wban, year) {

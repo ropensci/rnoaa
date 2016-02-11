@@ -28,6 +28,25 @@ If \code{refresh=FALSE}, this argument is ignored.}
 \item{bbox}{(numeric) Bounding box, of the form: min-longitude, min-latitude, 
 max-longitude, max-latitude}
 }
+\value{
+\code{isd_stations} returns a data.frame with the columns:
+\itemize{
+ \item usaf - USAF number, character
+ \item wban - WBAN number, character
+ \item station_name - station name, character
+ \item ctry - Country, if given, character
+ \item state - State, if given, character
+ \item icao - ICAO number, if given, character
+ \item lat - Latitude, if given, numeric
+ \item lon - Longitude, if given, numeric
+ \item elev_m - Elevation, if given, numeric
+ \item begin - Begin date of data coverage, of form YYYYMMDD, numeric
+ \item end - End date of data coverage, of form YYYYMMDD, numeric
+}
+
+\code{isd_stations_search} returns a data.frame, if any matches, with the same columns
+as listed above
+}
 \description{
 Get NOAA ISD/ISH station data from NOAA FTP server.
 }
@@ -65,7 +84,7 @@ bbox <- c(-125.0, 38.4, -121.8, 40.9)
 ## lat, long, radius
 isd_stations_search(lat = 38.4, lon = -123, radius = 250)
 
-### then plot
+### then plot...
 }
 }
 \references{

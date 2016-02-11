@@ -14,6 +14,23 @@
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' @seealso \code{\link{isd}}
+#' @return \code{isd_stations} returns a data.frame with the columns:
+#' \itemize{
+#'  \item usaf - USAF number, character
+#'  \item wban - WBAN number, character
+#'  \item station_name - station name, character
+#'  \item ctry - Country, if given, character
+#'  \item state - State, if given, character
+#'  \item icao - ICAO number, if given, character
+#'  \item lat - Latitude, if given, numeric
+#'  \item lon - Longitude, if given, numeric
+#'  \item elev_m - Elevation, if given, numeric
+#'  \item begin - Begin date of data coverage, of form YYYYMMDD, numeric
+#'  \item end - End date of data coverage, of form YYYYMMDD, numeric
+#' }
+#' 
+#' \code{isd_stations_search} returns a data.frame, if any matches, with the same columns
+#' as listed above
 #' @details \code{\link{isd_stations_search}} requires \pkg{geojsonio} and \pkg{lawn}, 
 #' but are not imported in this package, so they aren't required for the rest of the 
 #' package to operate - only this function. Install those from CRAN if you don't 
@@ -45,12 +62,17 @@
 #' ## lat, long, radius
 #' isd_stations_search(lat = 38.4, lon = -123, radius = 250)
 #' 
-#' ### then plot
+#' ### then plot...
 #' }
 isd_stations <- function(refresh = FALSE, path = NULL, ...) {
   if (refresh) {
     res <- suppressWarnings(GET(paste0(isdbase(), "/isd-history.csv"), ...))
-    df <- read.csv(text = utcf8(res), header = TRUE)
+    df <- read.csv(text = utcf8(res), header = TRUE, colClasses = 'character')
+    df$LAT <- as.numeric(df$LAT)
+    df$LON <- as.numeric(df$LON)
+    df$ELEV.M. <- as.numeric(df$ELEV.M.)
+    df$BEGIN <- as.numeric(df$BEGIN)
+    df$END <- as.numeric(df$END)
     dat <- setNames(df, gsub("_$", "", gsub("\\.", "_", tolower(names(df)))))
     if (is.null(path)) path <- file.path(".", "isd_stations.rds")
     rnoaa_env$isd_stations_path <- path
@@ -90,6 +112,8 @@ isd_stations_search <- function(lat = NULL, lon = NULL, radius = NULL,
   
   # prep station data
   x <- isd_stations(...)
+  x$lat <- as.numeric(x$lat)
+  x$lon <- as.numeric(x$lon)
   df <- x[complete.cases(x$lat, x$lon), ]
   df <- df[abs(df$lat) <= 90, ]
   df <- df[abs(df$lon) <= 180, ]
