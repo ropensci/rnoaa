@@ -17,8 +17,7 @@ dataset specified, see datasets()}
    comma-separated vector. Data returned will contain all of the data type(s) specified
 (optional)}
 
-\item{stationid}{Accepts a valid station id or a chain of of station ids in a
-comma-separated vector. Data returned will contain data for the station(s) specified (optional)}
+\item{stationid}{Accepts a valid station id or a vector or list of station ids}
 
 \item{locationid}{Accepts a valid location id or a chain of location ids in a
 comma-separated vector. Data returned will contain data for the location(s) specified (optional)}

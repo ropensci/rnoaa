@@ -11,8 +11,8 @@ ncdc_stations(stationid = NULL, datasetid = NULL, datatypeid = NULL,
   location = NULL, locationtype = NULL, page = NULL, ...)
 }
 \arguments{
-\item{stationid}{Accepts a valid station id or a chain of of station ids in a
-comma-separated vector. Data returned will contain data for the station(s) specified (optional)}
+\item{stationid}{A single valid station id, with datasetid namespace, 
+e.g., GHCND:USW00014895}
 
 \item{datasetid}{(optional) Accepts a single valid dataset id. Data returned will be from the 
 dataset specified, see datasets()}

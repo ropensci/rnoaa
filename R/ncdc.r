@@ -3,6 +3,7 @@
 #' @export
 #' @template rnoaa
 #' @template noaa
+#' @param stationid Accepts a valid station id or a vector or list of station ids
 #' @param includemetadata Used to improve response time by preventing the calculation of
 #' result metadata. Default: TRUE. This does not affect the return object, in that the named part
 #' of the output list called "meta' is still returned, but is NULL. In practice, I haven't seen

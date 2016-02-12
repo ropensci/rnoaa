@@ -9,6 +9,8 @@
 #' @template rnoaa
 #' @template rnoaa2
 #' @template stations
+#' @param stationid A single valid station id, with datasetid namespace, 
+#' e.g., GHCND:USW00014895
 #' @return A list of metadata.
 #' @examples \dontrun{
 #' # Get metadata on all stations
@@ -55,6 +57,7 @@ ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
   token <- check_key(token)
 
   if (!is.null(stationid)) {
+    if (length(stationid) > 1) stop("stationid must be of length 1", call. = FALSE)
     url <- sprintf('http://www.ncdc.noaa.gov/cdo-web/api/v2/stations/%s', stationid)
     args <- list()
   } else {

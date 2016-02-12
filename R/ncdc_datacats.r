@@ -5,6 +5,7 @@
 #' @export
 #' @template datacats
 #' @template all
+#' @param stationid Accepts a valid station id or a vector or list of station ids
 #' @return A \code{data.frame} for all datasets, or a list of length two, each
 #'    with a data.frame.
 #' @details Note that calls with both startdate and enddate don't seem to work, though specifying
@@ -34,32 +35,34 @@ ncdc_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
 {
   token <- check_key(token)
   url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datacategories"
-  if(!is.null(datacategoryid))
-    url <- paste(url, "/", datacategoryid, sep="")
-  args <- c(datasetid=datasetid, locationid=locationid, stationid=stationid,
+  if (!is.null(datacategoryid)) url <- paste(url, "/", datacategoryid, sep = "")
+  args <- c(datasetid=datasetid, locationid=locationid,
             startdate=startdate, enddate=enddate, sortfield=sortfield,
             sortorder=sortorder, limit=limit, offset=offset)
-  names(args) <- sapply(names(args), function(y) gsub("[0-9+]", "", y), USE.NAMES=FALSE)
+  if (!is.null(stationid)) {
+    stationid <- lapply(stationid, function(x) list(stationid = x))
+  }
+  args <- c(args, stationid)
+  names(args) <- sapply(names(args), function(y) gsub("[0-9+]", "", y), USE.NAMES = FALSE)
   args <- as.list(args)
   if (length(args) == 0) args <- NULL
-  temp <- GET(url, query=args, add_headers("token" = token), ...)
+  temp <- GET(url, query = args, add_headers("token" = token), ...)
   tt <- check_response(temp)
-  if(is(tt, "character")){
-    all <- list(meta=NULL, data=NULL)
+  if (is(tt, "character")) {
+    all <- list(meta = NULL, data = NULL)
   } else {
-    if(!is.null(datacategoryid)){
-      dat <- data.frame(tt,stringsAsFactors=FALSE)
-      all <- list(meta=NULL, data=dat)
-    } else
-    {
-      if(class(try(tt$results, silent=TRUE))=="try-error"){
-        all <- list(meta=NULL, data=NULL)
+    if (!is.null(datacategoryid)) {
+      dat <- data.frame(tt,stringsAsFactors = FALSE)
+      all <- list(meta = NULL, data = dat)
+    } else {
+      if (class(try(tt$results, silent = TRUE)) == "try-error") {
+        all <- list(meta = NULL, data = NULL)
         warning("Sorry, no data found")
       } else {
-        dat <- dplyr::bind_rows(lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
+        dat <- dplyr::bind_rows(lapply(tt$results, function(x) data.frame(x, stringsAsFactors = FALSE)))
         meta <- tt$metadata$resultset
-        atts <- list(totalCount=meta$count, pageCount=meta$limit, offset=meta$offset)
-        all <- list(meta=atts, data=dat)
+        atts <- list(totalCount = meta$count, pageCount = meta$limit, offset = meta$offset)
+        all <- list(meta = atts, data = dat)
       }
     }
   }

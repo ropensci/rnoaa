@@ -48,6 +48,8 @@ an argument or store it in your .Rprofile file with an entry like
 \item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
 \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
 \code{\link[httr]{config}}.}
+
+\item{stationid}{Accepts a valid station id or a vector or list of station ids}
 }
 \value{
 A \code{data.frame} for all datasets, or a list of length two, each

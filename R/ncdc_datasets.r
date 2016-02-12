@@ -8,6 +8,7 @@
 #' @template rnoaa
 #' @template rnoaa2
 #' @template datasets
+#' @param stationid Accepts a valid station id or a vector or list of station ids
 #' @return A data.frame for all datasets, or a list of length two, each with a data.frame.
 #' @examples \dontrun{
 #' # Get a table of all datasets
@@ -34,34 +35,36 @@ ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("dataset", "page", "year", "month") %in% calls
-  if(any(calls_vec))
+  if (any(calls_vec))
     stop("The parameters dataset, page, year, and month \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?ncdc_datasets")
 
   token <- check_key(token)
 
   url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datasets"
-  if(!is.null(datasetid))
-    url <- paste(url, "/", datasetid, sep="")
+  if (!is.null(datasetid)) url <- paste(url, "/", datasetid, sep = "")
   args <- noaa_compact(list(datatypeid=datatypeid,
-                       locationid=locationid, stationid=stationid, startdate=startdate,
+                       locationid=locationid, startdate=startdate,
                        enddate=enddate, sortfield=sortfield, sortorder=sortorder,
                        limit=limit, offset=offset))
+  if (!is.null(stationid)) {
+    stationid <- lapply(stationid, function(x) list(stationid = x))
+  }
+  args <- c(args, stationid)
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
   if (length(args) == 0) args <- NULL
-  temp <- GET(url, query=args, add_headers("token" = token), ...)
+  temp <- GET(url, query = args, add_headers("token" = token), ...)
   tt <- check_response(temp)
-  if(is(tt, "character")){
-    all <- list(meta=NULL, data=NULL)
+  if (is(tt, "character")) {
+    all <- list(meta = NULL, data = NULL)
   } else {
-    if(!is.null(datasetid)){
-      dat <- data.frame(tt, stringsAsFactors=FALSE)
+    if (!is.null(datasetid)) {
+      dat <- data.frame(tt, stringsAsFactors = FALSE)
       all <- list(meta = NULL, data = dat)
-    } else
-    {
-      dat <- dplyr::bind_rows(lapply(tt$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
+    } else {
+      dat <- dplyr::bind_rows(lapply(tt$results, function(x) data.frame(x, stringsAsFactors = FALSE)))
       all <- list(meta = tt$metadata$resultset, data = dat)
     }
   }
-  structure(all, class="ncdc_datasets")
+  structure(all, class = "ncdc_datasets")
 }

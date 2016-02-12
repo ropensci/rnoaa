@@ -7,6 +7,7 @@
 #' @template rnoaa
 #' @template rnoaa2
 #' @template datatypes
+#' @param stationid Accepts a valid station id or a vector or list of station ids
 #' @param datacategoryid Optional. Accepts a valid data category id or a chain of data
 #'    category ids seperated by ampersands (although it is rare to have a data type
 #'    with more than one data category). Data types returned will be associated with
@@ -34,35 +35,40 @@ ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("dataset", "page", "filter") %in% calls
-  if(any(calls_vec))
-    stop("The parameters dataset, page, and filter \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?ncdc_datatypes")
+  if (any(calls_vec))
+    stop("The parameters dataset, page, and filter \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?ncdc_datatypes", call. = FALSE)
 
   token <- check_key(token)
 
-  if(!is.null(datatypeid)){
+  if (!is.null(datatypeid)) {
     url <- sprintf("http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes/%s", datatypeid)
-  } else { url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes" }
+  } else { 
+    url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes" 
+  }
 
   args <- noaa_compact(list(datasetid=datasetid, datacategoryid=datacategoryid,
-                       locationid=locationid, stationid=stationid, startdate=startdate,
+                       locationid=locationid, startdate=startdate,
                        enddate=enddate, sortfield=sortfield, sortorder=sortorder,
                        limit=limit, offset=offset))
+  if (!is.null(stationid)) {
+    stationid <- lapply(stationid, function(x) list(stationid = x))
+  }
+  args <- c(args, stationid)
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
   if (length(args) == 0) args <- NULL
-  temp <- GET(url, query=args, add_headers("token" = token), ...)
+  temp <- GET(url, query = args, add_headers("token" = token), ...)
   out <- check_response(temp)
-  if(is(out, "character")){
-    all <- list(meta=NULL, data=NULL)
+  if (is(out, "character")) {
+    all <- list(meta = NULL, data = NULL)
   } else {
-    if(!is.null(datatypeid)){
-      dat <- data.frame(out, stringsAsFactors=FALSE)
+    if (!is.null(datatypeid)) {
+      dat <- data.frame(out, stringsAsFactors = FALSE)
       metadat <- NULL
       all <- list(data = dat, meta = metadat)
-    } else
-    {
-      dat <- dplyr::bind_rows(lapply(out$results, function(x) data.frame(x, stringsAsFactors=FALSE)))
-      metadat <- data.frame(out$metadata$resultset, stringsAsFactors=FALSE)
+    } else {
+      dat <- dplyr::bind_rows(lapply(out$results, function(x) data.frame(x, stringsAsFactors = FALSE)))
+      metadat <- data.frame(out$metadata$resultset, stringsAsFactors = FALSE)
       all <- list(meta = metadat, data = dat)
     }
   }

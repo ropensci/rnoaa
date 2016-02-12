@@ -3,8 +3,6 @@
 #'    (optional)
 #' @param locationid Accepts a valid location id or a chain of location ids in a
 #' 	  comma-separated vector. Data returned will contain data for the location(s) specified (optional)
-#' @param stationid Accepts a valid station id or a chain of of station ids in a
-#' 	  comma-separated vector. Data returned will contain data for the station(s) specified (optional)
 #' @param sortfield The field to sort results by. Supports id, name, mindate, maxdate, and
 #'    datacoverage fields (optional)
 #' @param sortorder Which order to sort by, asc or desc. Defaults to asc (optional)
