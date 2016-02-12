@@ -15,8 +15,7 @@ dataset specified, see datasets() (required)}
 \item{datacategoryid}{A valid data category id. Data types returned will be associated
 with the data category(ies) specified}
 
-\item{stationid}{Accepts a valid station id. Data returned will contain data for the
-station(s) specified (optional)}
+\item{stationid}{Accepts a valid station id or a vector or list of station ids (optional)}
 
 \item{locationid}{Accepts a valid location id. Data returned will contain data for
 the location(s) specified (optional)}
@@ -48,8 +47,6 @@ an argument or store it in your .Rprofile file with an entry like
 \item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
 \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
 \code{\link[httr]{config}}.}
-
-\item{stationid}{Accepts a valid station id or a vector or list of station ids}
 }
 \value{
 A \code{data.frame} for all datasets, or a list of length two, each

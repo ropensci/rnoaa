@@ -5,7 +5,6 @@
 #' @export
 #' @template datacats
 #' @template all
-#' @param stationid Accepts a valid station id or a vector or list of station ids
 #' @return A \code{data.frame} for all datasets, or a list of length two, each
 #'    with a data.frame.
 #' @details Note that calls with both startdate and enddate don't seem to work, though specifying

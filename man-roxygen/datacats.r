@@ -4,8 +4,7 @@
 #' 	  with the data category(ies) specified
 #' @param locationid Accepts a valid location id. Data returned will contain data for
 #' 	  the location(s) specified (optional)
-#' @param stationid Accepts a valid station id. Data returned will contain data for the
-#' 	  station(s) specified (optional)
+#' @param stationid Accepts a valid station id or a vector or list of station ids (optional)
 #' @param startdate Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have
 #'    data after the specified date. Paramater can be use independently of enddate (optional)
 #' @param enddate Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have data
