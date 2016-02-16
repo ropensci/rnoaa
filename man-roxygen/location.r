@@ -1,7 +1,6 @@
-#' @param datasetid A single valid dataset id. Data returned will be from the
+#' @param datasetid A valid dataset id or a vecto or list of dataset id's. Data returned will be from the
 #'    dataset specified, see datasets() (required)
-#' @param locationcategoryid A valid location id or a chain of location category ids
-#' 	  in a comma-separated vector. Locations returned will be in the location category(ies) specified
+#' @param locationcategoryid A valid location id or a vector or list of location category ids
 #' @param startdate A valid ISO formated date (yyyy-mm-dd). Data returned will have
 #'    data after the specified date. Paramater can be use independently of enddate (optional)
 #' @param enddate Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have data

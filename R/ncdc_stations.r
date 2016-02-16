@@ -9,6 +9,8 @@
 #' @template rnoaa
 #' @template rnoaa2
 #' @template stations
+#' @param datasetid (optional) Accepts a valid dataset id or a vector or list of them. Data 
+#'    returned will be from the dataset specified.
 #' @param stationid A single valid station id, with datasetid namespace, 
 #' e.g., GHCND:USW00014895
 #' @return A list of metadata.
@@ -22,9 +24,24 @@
 #'
 #' # Displays all stations within GHCN-Daily (100 Stations per page limit)
 #' ncdc_stations(datasetid='GHCND')
+#' ncdc_stations(datasetid=c('GHCND', 'ANNUAL'))
 #'
 #' # Station
 #' ncdc_stations(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895')
+#' 
+#' # datatypeid
+#' ncdc_stations(datatypeid="ANN-HTDD-NORMAL")
+#' ncdc_stations(datatypeid=c("ANN-HTDD-NORMAL", "ACSC"))
+#' 
+#' # locationid
+#' ncdc_stations(locationid="CITY:AG000001")
+#' ncdc_stations(locationid="FIPS:30091")
+#' ncdc_stations(locationid=c("FIPS:30103", "FIPS:30091"))
+#' 
+#' # datacategoryid
+#' ncdc_stations(datacategoryid="ANNPRCP")
+#' ncdc_stations(datacategoryid="AUAGR")
+#' ncdc_stations(datacategoryid=c("ANNPRCP", "AUAGR"))
 #'
 #' # Displays all stations within GHCN-Daily (Displaying page 10 of the results)
 #' ncdc_stations(datasetid='GHCND')
@@ -67,13 +84,26 @@ ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
       stopifnot(is(extent, "numeric"))
       extent <- paste0(extent, collapse = ",")
     }
-    args <- noaa_compact(list(datasetid = datasetid, datatypeid = datatypeid,
-                         locationid = locationid, startdate = startdate,
-                         enddate = enddate, sortfield = sortfield, sortorder = sortorder,
-                         limit = limit, offset = offset, datacategoryid = datacategoryid,
-                         extent = extent))
+    args <- noaa_compact(list(startdate = startdate, enddate = enddate, 
+          sortfield = sortfield, sortorder = sortorder, limit = limit, 
+          offset = offset, extent = extent))
   }
 
+  if (!is.null(datasetid)) {
+    datasetid <- lapply(datasetid, function(x) list(datasetid = x))
+  }
+  if (!is.null(datatypeid)) {
+    datatypeid <- lapply(datatypeid, function(x) list(datatypeid = x))
+  }
+  if (!is.null(locationid)) {
+    locationid <- lapply(locationid, function(x) list(locationid = x))
+  }
+  if (!is.null(datacategoryid)) {
+    datacategoryid <- lapply(datacategoryid, function(x) list(datacategoryid = x))
+  }
+  args <- c(args, datasetid, datatypeid, locationid, datacategoryid)
+  args <- as.list(unlist(args))
+  
   if (length(args) == 0) args <- NULL
   temp <- GET(url, query = args, add_headers("token" = token), ...)
   tt <- check_response(temp)

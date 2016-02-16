@@ -9,16 +9,15 @@ ncdc_datacats(datasetid = NULL, datacategoryid = NULL, stationid = NULL,
   sortorder = NULL, limit = 25, offset = NULL, token = NULL, ...)
 }
 \arguments{
-\item{datasetid}{Accepts a single valid dataset id. Data returned will be from the
-dataset specified, see datasets() (required)}
+\item{datasetid}{Accepts a valid dataset id or a vector or list of dataset id's. Data returned
+will be from the dataset specified, see datasets() (required)}
 
 \item{datacategoryid}{A valid data category id. Data types returned will be associated
 with the data category(ies) specified}
 
 \item{stationid}{Accepts a valid station id or a vector or list of station ids (optional)}
 
-\item{locationid}{Accepts a valid location id. Data returned will contain data for
-the location(s) specified (optional)}
+\item{locationid}{Accepts a valid location id or a vector or list of location id's. (optional)}
 
 \item{startdate}{Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have
 data after the specified date. Paramater can be use independently of enddate (optional)}
@@ -64,6 +63,10 @@ Note that calls with both startdate and enddate don't seem to work, though speci
 ## Limit to 10 results
 ncdc_datacats(limit=10)
 
+## by datasetid
+ncdc_datacats(datasetid="ANNUAL")
+ncdc_datacats(datasetid=c("ANNUAL", "PRECIP_HLY"))
+
 ## Single data category
 ncdc_datacats(datacategoryid="ANNAGR")
 
@@ -73,6 +76,11 @@ ncdc_datacats(locationid=c('CITY:US390029', 'FIPS:37'))
 
 ## Data categories for a given date
 ncdc_datacats(startdate = '2013-10-01')
+
+# Get data categories with data for a series of the same parameter arg, in this case
+# stationid's
+ncdc_datacats(stationid='COOP:310090')
+ncdc_datacats(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
 
 ## Curl debugging
 ncdc_datacats(limit=10, config=verbose())

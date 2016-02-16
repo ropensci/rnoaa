@@ -1,8 +1,7 @@
-#' @param datatypeid Accepts a valid data type id or a chain of data type ids in a
-#' 	  comma-separated vector. Data returned will contain all of the data type(s) specified
+#' @param datatypeid Accepts a valid data type id or a vector or list of data type ids.
 #'    (optional)
-#' @param locationid Accepts a valid location id or a chain of location ids in a
-#' 	  comma-separated vector. Data returned will contain data for the location(s) specified (optional)
+#' @param locationid Accepts a valid location id or a vector or list of location ids
+#'    (optional)
 #' @param sortfield The field to sort results by. Supports id, name, mindate, maxdate, and
 #'    datacoverage fields (optional)
 #' @param sortorder Which order to sort by, asc or desc. Defaults to asc (optional)

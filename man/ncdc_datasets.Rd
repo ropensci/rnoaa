@@ -10,24 +10,23 @@ ncdc_datasets(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   dataset = NULL, page = NULL, year = NULL, month = NULL, ...)
 }
 \arguments{
-\item{datasetid}{(optional) Accepts a single valid dataset id. Data returned will be from the 
-dataset specified, see datasets()}
+\item{datasetid}{(optional) Accepts a single valid dataset id. Data returned will be 
+from the dataset specified.}
 
-\item{datatypeid}{Accepts a valid data type id or a chain of data type ids in a
-   comma-separated vector. Data returned will contain all of the data type(s) specified
+\item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.
 (optional)}
 
 \item{stationid}{Accepts a valid station id or a vector or list of station ids}
 
-\item{locationid}{Accepts a valid location id or a chain of location ids in a
-comma-separated vector. Data returned will contain data for the location(s) specified (optional)}
+\item{locationid}{Accepts a valid location id or a vector or list of location ids
+(optional)}
 
-\item{startdate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time 
-(YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The 
+\item{startdate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time
+(YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The
 date range must be less than 1 year.}
 
-\item{enddate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time 
-(YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The 
+\item{enddate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time
+(YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The
 date range must be less than 1 year.}
 
 \item{sortfield}{The field to sort results by. Supports id, name, mindate, maxdate, and
@@ -50,7 +49,7 @@ an argument or store it in your .Rprofile file with an entry like
 
 \item{dataset}{THIS IS A DEPRECATED ARGUMENT. See datasetid.}
 
-\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2 
+\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
 of the NOAA API.}
 
 \item{year}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
@@ -78,14 +77,21 @@ ncdc_datasets(datasetid='ANNUAL')
 
 # Get datasets with Temperature at the time of observation (TOBS) data type
 ncdc_datasets(datatypeid='TOBS')
+## two datatypeid's
+ncdc_datasets(datatypeid=c('TOBS', "ACMH"))
 
 # Get datasets with data for a series of the same parameter arg, in this case
 # stationid's
+ncdc_datasets(stationid='COOP:310090')
 ncdc_datasets(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
 
 # Multiple datatypeid's
 ncdc_datasets(datatypeid=c('ACMC','ACMH','ACSC'))
 ncdc_datasets(datasetid='ANNUAL', datatypeid=c('ACMC','ACMH','ACSC'))
+
+# Multiple locationid's
+ncdc_datasets(locationid="FIPS:30091")
+ncdc_datasets(locationid=c("FIPS:30103", "FIPS:30091"))
 }
 }
 

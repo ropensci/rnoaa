@@ -1,6 +1,5 @@
-#' @param datacategoryid (character, optional) Accepts a valid data category id or an 
-#' array of data category ids.  Stations returned will be associated with the data 
-#' category(ies) specified
+#' @param datacategoryid (character, optional) Accepts a valid data category id or a
+#' vector or list of data category ids.
 #' @param extent (numeric, optional) The geographical extent for which you want to 
 #' search. Give four values that defines a bounding box, lat and long for the 
 #' southwest corner, then lat and long for the northeast corner. For example: 

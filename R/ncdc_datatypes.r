@@ -7,25 +7,37 @@
 #' @template rnoaa
 #' @template rnoaa2
 #' @template datatypes
+#' @param datasetid (optional) Accepts a valid dataset id or a vector or list of them. Data 
+#'    returned will be from the dataset specified.
 #' @param stationid Accepts a valid station id or a vector or list of station ids
-#' @param datacategoryid Optional. Accepts a valid data category id or a chain of data
-#'    category ids seperated by ampersands (although it is rare to have a data type
-#'    with more than one data category). Data types returned will be associated with
-#'    the data category(ies) specified
+#' @param datacategoryid Optional. Accepts a valid data category id or a vector or list
+#'    of data category ids (although it is rare to have a data type with more than 
+#'    one data category)
 #' @return A \code{data.frame} for all datasets, or a list of length two, each with
 #'    a data.frame.
 #' @examples \dontrun{
 #' # Fetch available data types
 #' ncdc_datatypes()
 #'
-#' # Fetch more information about the ACMH data type id
+#' # Fetch more information about the ACMH data type id, or the ACSC
 #' ncdc_datatypes(datatypeid="ACMH")
+#' ncdc_datatypes(datatypeid="ACSC")
+#' 
+#' # datasetid, one or many
+#' ncdc_datatypes(datasetid="ANNUAL")
+#' ncdc_datatypes(datasetid=c("ANNUAL", "PRECIP_HLY"))
 #'
 #' # Fetch data types with the air temperature data category
 #' ncdc_datatypes(datacategoryid="TEMP", limit=56)
+#' ncdc_datatypes(datacategoryid=c("TEMP", "AUPRCP"))
 #'
 #' # Fetch data types that support a given set of stations
+#' ncdc_datatypes(stationid='COOP:310090')
 #' ncdc_datatypes(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
+#' 
+#' # Fetch data types that support a given set of loncationids
+#' ncdc_datatypes(locationid='CITY:AG000001')
+#' ncdc_datatypes(locationid=c('CITY:AG000001','CITY:AG000004'))
 #' }
 
 ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
@@ -46,14 +58,22 @@ ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
     url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes" 
   }
 
-  args <- noaa_compact(list(datasetid=datasetid, datacategoryid=datacategoryid,
-                       locationid=locationid, startdate=startdate,
-                       enddate=enddate, sortfield=sortfield, sortorder=sortorder,
-                       limit=limit, offset=offset))
+  args <- noaa_compact(list(startdate=startdate, enddate=enddate, 
+                            sortfield=sortfield, sortorder=sortorder,
+                            limit=limit, offset=offset))
+  if (!is.null(datasetid)) {
+    datasetid <- lapply(datasetid, function(x) list(datasetid = x))
+  }
   if (!is.null(stationid)) {
     stationid <- lapply(stationid, function(x) list(stationid = x))
   }
-  args <- c(args, stationid)
+  if (!is.null(datacategoryid)) {
+    datacategoryid <- lapply(datacategoryid, function(x) list(datacategoryid = x))
+  }
+  if (!is.null(locationid)) {
+    locationid <- lapply(locationid, function(x) list(locationid = x))
+  }
+  args <- c(args, datasetid, stationid, datacategoryid, locationid)
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
   if (length(args) == 0) args <- NULL

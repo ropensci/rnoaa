@@ -9,14 +9,12 @@ ncdc_locs(datasetid = NULL, locationid = NULL, locationcategoryid = NULL,
   limit = 25, offset = NULL, token = NULL, ...)
 }
 \arguments{
-\item{datasetid}{A single valid dataset id. Data returned will be from the
+\item{datasetid}{A valid dataset id or a vecto or list of dataset id's. Data returned will be from the
 dataset specified, see datasets() (required)}
 
-\item{locationid}{A valid location id or a chain of location ids seperated by
-ampersands. Data returned will contain data for the location(s) specified (optional)}
+\item{locationid}{A valid location id or a vector or list of location ids.}
 
-\item{locationcategoryid}{A valid location id or a chain of location category ids
-in a comma-separated vector. Locations returned will be in the location category(ies) specified}
+\item{locationcategoryid}{A valid location id or a vector or list of location category ids}
 
 \item{startdate}{A valid ISO formated date (yyyy-mm-dd). Data returned will have
 data after the specified date. Paramater can be use independently of enddate (optional)}
@@ -63,9 +61,16 @@ ncdc_locs(locationid='FIPS:37')
 
 # Fetch available locations for the GHCND (Daily Summaries) dataset
 ncdc_locs(datasetid='GHCND')
+ncdc_locs(datasetid=c('GHCND', 'ANNUAL'))
+ncdc_locs(datasetid=c('GHCND', 'GHCNDMS'))
 
 # Fetch all U.S. States
 ncdc_locs(locationcategoryid='ST', limit=52)
+
+# Many locationcategoryid's
+## this apparently works, but returns nothing often with multiple 
+## locationcategoryid's
+ncdc_locs(locationcategoryid=c('ST', 'ZIP'))
 
 # Fetch list of city locations in descending order
 ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')

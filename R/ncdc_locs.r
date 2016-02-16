@@ -6,8 +6,7 @@
 #' @export
 #'
 #' @template location
-#' @param locationid A valid location id or a chain of location ids seperated by
-#'    ampersands. Data returned will contain data for the location(s) specified (optional)
+#' @param locationid A valid location id or a vector or list of location ids.
 #' @return A list containing metadata and the data, or a single data.frame.
 #' @examples \dontrun{
 #' # All locations, first 25 results
@@ -18,9 +17,16 @@
 #'
 #' # Fetch available locations for the GHCND (Daily Summaries) dataset
 #' ncdc_locs(datasetid='GHCND')
+#' ncdc_locs(datasetid=c('GHCND', 'ANNUAL'))
+#' ncdc_locs(datasetid=c('GHCND', 'GHCNDMS'))
 #'
 #' # Fetch all U.S. States
 #' ncdc_locs(locationcategoryid='ST', limit=52)
+#' 
+#' # Many locationcategoryid's
+#' ## this apparently works, but returns nothing often with multiple 
+#' ## locationcategoryid's
+#' ncdc_locs(locationcategoryid=c('ST', 'ZIP'))
 #'
 #' # Fetch list of city locations in descending order
 #' ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
@@ -34,10 +40,17 @@ ncdc_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
   url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/locations'
   if(!is.null(locationid))
     url <- paste(url, "/", locationid, sep="")
-  args <- noaa_compact(list(datasetid=datasetid,locationid=locationid,
-                       locationcategoryid=locationcategoryid,startdate=startdate,
-                       enddate=enddate,token=token,sortfield=sortfield,
-                       sortorder=sortorder,limit=limit,offset=offset))
+  args <- noaa_compact(list(locationid=locationid, startdate=startdate,
+                       enddate=enddate, token=token, sortfield=sortfield,
+                       sortorder=sortorder, limit=limit, offset=offset))
+  if (!is.null(datasetid)) {
+    datasetid <- lapply(datasetid, function(x) list(datasetid = x))
+  }
+  if (!is.null(locationcategoryid)) {
+    locationcategoryid <- lapply(locationcategoryid, function(x) list(locationcategoryid = x))
+  }
+  args <- c(args, datasetid, locationcategoryid)
+  args <- as.list(unlist(args))
   if (length(args) == 0) args <- NULL
   temp <- GET(url, query=args, add_headers("token" = token), ...)
   tt <- check_response(temp)

@@ -10,29 +10,27 @@ ncdc_datatypes(datasetid = NULL, datatypeid = NULL, datacategoryid = NULL,
   token = NULL, dataset = NULL, page = NULL, filter = NULL, ...)
 }
 \arguments{
-\item{datasetid}{(optional) Accepts a single valid dataset id. Data returned will be from the 
-dataset specified, see datasets()}
+\item{datasetid}{(optional) Accepts a valid dataset id or a vector or list of them. Data 
+returned will be from the dataset specified.}
 
-\item{datatypeid}{Accepts a valid data type id or a chain of data type ids in a
-   comma-separated vector. Data returned will contain all of the data type(s) specified
+\item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.
 (optional)}
 
-\item{datacategoryid}{Optional. Accepts a valid data category id or a chain of data
-category ids seperated by ampersands (although it is rare to have a data type
-with more than one data category). Data types returned will be associated with
-the data category(ies) specified}
+\item{datacategoryid}{Optional. Accepts a valid data category id or a vector or list
+of data category ids (although it is rare to have a data type with more than 
+one data category)}
 
 \item{stationid}{Accepts a valid station id or a vector or list of station ids}
 
-\item{locationid}{Accepts a valid location id or a chain of location ids in a
-comma-separated vector. Data returned will contain data for the location(s) specified (optional)}
+\item{locationid}{Accepts a valid location id or a vector or list of location ids
+(optional)}
 
-\item{startdate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time 
-(YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The 
+\item{startdate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time
+(YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The
 date range must be less than 1 year.}
 
-\item{enddate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time 
-(YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The 
+\item{enddate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time
+(YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The
 date range must be less than 1 year.}
 
 \item{sortfield}{The field to sort results by. Supports id, name, mindate, maxdate, and
@@ -55,10 +53,10 @@ an argument or store it in your .Rprofile file with an entry like
 
 \item{dataset}{THIS IS A DEPRECATED ARGUMENT. See datasetid.}
 
-\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2 
+\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
 of the NOAA API.}
 
-\item{filter}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2 
+\item{filter}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
 of the NOAA API.}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
@@ -76,14 +74,25 @@ degrees out right now, then the data type is Air Temperature and the data is 64.
 # Fetch available data types
 ncdc_datatypes()
 
-# Fetch more information about the ACMH data type id
+# Fetch more information about the ACMH data type id, or the ACSC
 ncdc_datatypes(datatypeid="ACMH")
+ncdc_datatypes(datatypeid="ACSC")
+
+# datasetid, one or many
+ncdc_datatypes(datasetid="ANNUAL")
+ncdc_datatypes(datasetid=c("ANNUAL", "PRECIP_HLY"))
 
 # Fetch data types with the air temperature data category
 ncdc_datatypes(datacategoryid="TEMP", limit=56)
+ncdc_datatypes(datacategoryid=c("TEMP", "AUPRCP"))
 
 # Fetch data types that support a given set of stations
+ncdc_datatypes(stationid='COOP:310090')
 ncdc_datatypes(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
+
+# Fetch data types that support a given set of loncationids
+ncdc_datatypes(locationid='CITY:AG000001')
+ncdc_datatypes(locationid=c('CITY:AG000001','CITY:AG000004'))
 }
 }
 

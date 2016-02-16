@@ -68,7 +68,15 @@
 #' # Dataset, location and datatype for PRECIP_HLY data
 #' ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
 #'    startdate = '2010-05-01', enddate = '2010-05-10')
-#'
+#' 
+#' # multiple datatypeid's
+#' ncdc(datasetid='PRECIP_HLY', datatypeid=c('HPCP', 'ACMC'),
+#'    startdate = '2010-05-01', enddate = '2010-05-10')   
+#'    
+#' # multiple locationid's
+#' ncdc(datasetid='PRECIP_HLY', locationid=c("FIPS:30103", "FIPS:30091"),
+#'    startdate = '2010-05-01', enddate = '2010-05-10')
+#' 
 #' # Dataset, location, station and datatype
 #' ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP',
 #'    startdate = '2010-05-01', enddate = '2010-05-10')
@@ -109,6 +117,14 @@
 #'    enddate = '2013-12-01')
 #' ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
 #'    enddate = '2013-12-01', includemetadata=FALSE)
+#'    
+#' # Many stationid's
+#' stat <- ncdc_stations(startdate = "2000-01-01", enddate = "2016-01-01")
+#' ## find out what datasets might be available for these stations
+#' ncdc_datasets(stationid = stat$data$id[1])
+#' ## get some data
+#' ncdc(datasetid = "ANNUAL", stationid = stat$data$id[1:10], 
+#'    startdate = "2010-01-01", enddate = "2011-01-01")
 #' }
 #'
 #' \dontrun{
@@ -130,10 +146,19 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
 
   token <- check_key(token)
   base = 'http://www.ncdc.noaa.gov/cdo-web/api/v2/data'
-  args <- noaa_compact(list(datasetid=datasetid, datatypeid=datatypeid,
-                         locationid=locationid, stationid=stationid, startdate=startdate,
+  args <- noaa_compact(list(datasetid=datasetid, startdate=startdate,
                          enddate=enddate, sortfield=sortfield, sortorder=sortorder,
                          limit=limit, offset=offset, includemetadata=includemetadata))
+  if (!is.null(stationid)) {
+    stationid <- lapply(stationid, function(x) list(stationid = x))
+  }
+  if (!is.null(datatypeid)) {
+    datatypeid <- lapply(datatypeid, function(x) list(datatypeid = x))
+  }
+  if (!is.null(locationid)) {
+    locationid <- lapply(locationid, function(x) list(locationid = x))
+  }
+  args <- c(args, stationid, datatypeid, locationid)
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
   if (length(args) == 0) args <- NULL

@@ -18,6 +18,9 @@
 #'
 #' # Displays available location categories within GHCN-Daily dataset
 #' ncdc_locs_cats(datasetid='GHCND')
+#' 
+#' # multiple datasetid's
+#' ncdc_locs_cats(datasetid=c('GHCND', 'GHCNDMS'))
 #'
 #' # Displays available location categories from start date 1970-01-01
 #' ncdc_locs_cats(startdate='1970-01-01')
@@ -31,9 +34,14 @@ ncdc_locs_cats <- function(datasetid=NULL, locationcategoryid=NULL,
   url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories'
   if(!is.null(locationcategoryid))
     url <- paste(url, "/", locationcategoryid, sep="")
-  args <- noaa_compact(list(datasetid=datasetid,locationcategoryid=locationcategoryid,
+  args <- noaa_compact(list(locationcategoryid=locationcategoryid,
     startdate=startdate, enddate=enddate,token=token,sortfield=sortfield,
     sortorder=sortorder,limit=limit,offset=offset))
+  if (!is.null(datasetid)) {
+    datasetid <- lapply(datasetid, function(x) list(datasetid = x))
+  }
+  args <- c(args, datasetid)
+  args <- as.list(unlist(args))
   if (length(args) == 0) args <- NULL
   temp <- GET(url, query=args, add_headers("token" = token), ...)
   tt <- check_response(temp)

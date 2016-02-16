@@ -12,24 +12,23 @@ ncdc(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   day = NULL, includemetadata = TRUE, results = NULL, ...)
 }
 \arguments{
-\item{datasetid}{(required) Accepts a single valid dataset id. Data returned will be from the 
+\item{datasetid}{(required) Accepts a single valid dataset id. Data returned will be from the
 dataset specified, see datasets()}
 
-\item{datatypeid}{Accepts a valid data type id or a chain of data type ids in a
-   comma-separated vector. Data returned will contain all of the data type(s) specified
+\item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.
 (optional)}
 
 \item{stationid}{Accepts a valid station id or a vector or list of station ids}
 
-\item{locationid}{Accepts a valid location id or a chain of location ids in a
-comma-separated vector. Data returned will contain data for the location(s) specified (optional)}
+\item{locationid}{Accepts a valid location id or a vector or list of location ids
+(optional)}
 
-\item{startdate}{(required) Accepts valid ISO formated date (yyyy-mm-dd) or date time 
-(YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The 
+\item{startdate}{(required) Accepts valid ISO formated date (yyyy-mm-dd) or date time
+(YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The
 date range must be less than 1 year.}
 
-\item{enddate}{(required) Accepts valid ISO formated date (yyyy-mm-dd) or date time 
-(YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The 
+\item{enddate}{(required) Accepts valid ISO formated date (yyyy-mm-dd) or date time
+(YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The
 date range must be less than 1 year.}
 
 \item{sortfield}{The field to sort results by. Supports id, name, mindate, maxdate, and
@@ -58,10 +57,10 @@ an argument or store it in your .Rprofile file with an entry like
 
 \item{location}{THIS IS A DEPRECATED ARGUMENT. See locationid.}
 
-\item{locationtype}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2 
+\item{locationtype}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
 of the NOAA API.}
 
-\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2 
+\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
 of the NOAA API.}
 
 \item{year}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
@@ -147,6 +146,14 @@ ncdc(datasetid='GHCND', locationid='FIPS:AS', startdate = '2010-05-01', enddate 
 ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
    startdate = '2010-05-01', enddate = '2010-05-10')
 
+# multiple datatypeid's
+ncdc(datasetid='PRECIP_HLY', datatypeid=c('HPCP', 'ACMC'),
+   startdate = '2010-05-01', enddate = '2010-05-10')   
+   
+# multiple locationid's
+ncdc(datasetid='PRECIP_HLY', locationid=c("FIPS:30103", "FIPS:30091"),
+   startdate = '2010-05-01', enddate = '2010-05-10')
+
 # Dataset, location, station and datatype
 ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP',
    startdate = '2010-05-01', enddate = '2010-05-10')
@@ -187,6 +194,14 @@ ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
    enddate = '2013-12-01')
 ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
    enddate = '2013-12-01', includemetadata=FALSE)
+   
+# Many stationid's
+stat <- ncdc_stations(startdate = "2000-01-01", enddate = "2016-01-01")
+## find out what datasets might be available for these stations
+ncdc_datasets(stationid = stat$data$id[1])
+## get some data
+ncdc(datasetid = "ANNUAL", stationid = stat$data$id[1:10], 
+   startdate = "2010-01-01", enddate = "2011-01-01")
 }
 
 \dontrun{

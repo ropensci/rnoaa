@@ -9,11 +9,10 @@ ncdc_locs_cats(datasetid = NULL, locationcategoryid = NULL,
   limit = 25, offset = NULL, token = NULL, ...)
 }
 \arguments{
-\item{datasetid}{A single valid dataset id. Data returned will be from the
+\item{datasetid}{A valid dataset id or a vecto or list of dataset id's. Data returned will be from the
 dataset specified, see datasets() (required)}
 
-\item{locationcategoryid}{A valid location id or a chain of location category ids
-in a comma-separated vector. Locations returned will be in the location category(ies) specified}
+\item{locationcategoryid}{A valid location id or a vector or list of location category ids}
 
 \item{startdate}{A valid ISO formated date (yyyy-mm-dd). Data returned will have
 data after the specified date. Paramater can be use independently of enddate (optional)}
@@ -63,6 +62,9 @@ ncdc_locs_cats(locationcategoryid='CLIM_REG')
 
 # Displays available location categories within GHCN-Daily dataset
 ncdc_locs_cats(datasetid='GHCND')
+
+# multiple datasetid's
+ncdc_locs_cats(datasetid=c('GHCND', 'GHCNDMS'))
 
 # Displays available location categories from start date 1970-01-01
 ncdc_locs_cats(startdate='1970-01-01')

@@ -14,22 +14,21 @@ ncdc_stations(stationid = NULL, datasetid = NULL, datatypeid = NULL,
 \item{stationid}{A single valid station id, with datasetid namespace, 
 e.g., GHCND:USW00014895}
 
-\item{datasetid}{(optional) Accepts a single valid dataset id. Data returned will be from the 
-dataset specified, see datasets()}
+\item{datasetid}{(optional) Accepts a valid dataset id or a vector or list of them. Data 
+returned will be from the dataset specified.}
 
-\item{datatypeid}{Accepts a valid data type id or a chain of data type ids in a
-   comma-separated vector. Data returned will contain all of the data type(s) specified
+\item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.
 (optional)}
 
-\item{locationid}{Accepts a valid location id or a chain of location ids in a
-comma-separated vector. Data returned will contain data for the location(s) specified (optional)}
+\item{locationid}{Accepts a valid location id or a vector or list of location ids
+(optional)}
 
-\item{startdate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time 
-(YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The 
+\item{startdate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time
+(YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The
 date range must be less than 1 year.}
 
-\item{enddate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time 
-(YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The 
+\item{enddate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time
+(YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The
 date range must be less than 1 year.}
 
 \item{sortfield}{The field to sort results by. Supports id, name, mindate, maxdate, and
@@ -42,9 +41,8 @@ datacoverage fields (optional)}
 
 \item{offset}{Defaults to 0, used to offset the resultlist (optional)}
 
-\item{datacategoryid}{(character, optional) Accepts a valid data category id or an 
-array of data category ids.  Stations returned will be associated with the data 
-category(ies) specified}
+\item{datacategoryid}{(character, optional) Accepts a valid data category id or a
+vector or list of data category ids.}
 
 \item{extent}{(numeric, optional) The geographical extent for which you want to 
 search. Give four values that defines a bounding box, lat and long for the 
@@ -92,9 +90,24 @@ ncdc_stations(stationid='COOP:010008')
 
 # Displays all stations within GHCN-Daily (100 Stations per page limit)
 ncdc_stations(datasetid='GHCND')
+ncdc_stations(datasetid=c('GHCND', 'ANNUAL'))
 
 # Station
 ncdc_stations(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895')
+
+# datatypeid
+ncdc_stations(datatypeid="ANN-HTDD-NORMAL")
+ncdc_stations(datatypeid=c("ANN-HTDD-NORMAL", "ACSC"))
+
+# locationid
+ncdc_stations(locationid="CITY:AG000001")
+ncdc_stations(locationid="FIPS:30091")
+ncdc_stations(locationid=c("FIPS:30103", "FIPS:30091"))
+
+# datacategoryid
+ncdc_stations(datacategoryid="ANNPRCP")
+ncdc_stations(datacategoryid="AUAGR")
+ncdc_stations(datacategoryid=c("ANNPRCP", "AUAGR"))
 
 # Displays all stations within GHCN-Daily (Displaying page 10 of the results)
 ncdc_stations(datasetid='GHCND')
