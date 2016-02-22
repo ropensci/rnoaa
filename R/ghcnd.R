@@ -215,11 +215,15 @@ ghcnd_states <- function(...){
 GET_retry <- function(url, ..., times = 3) {
   res <- suppressWarnings(GET(url, ...))
   if (res$status_code > 226) {
+    message("Request failed - Retrying")
     stat <- 500
-    while (stat > 226) {
+    i <- 0
+    while (stat > 226 && i <= times) {
+      i <- i + 1
       res <- suppressWarnings(GET(url, ...))
       stat <- res$status_code
     }
+    if (res$status_code > 226) stop("Request failed, try again", call. = FALSE)
   }
   return(res)
 }
