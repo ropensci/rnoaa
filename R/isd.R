@@ -87,7 +87,7 @@ isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, clean
     isd_GET(bp = path, usaf, wban, year, overwrite, ...)
   }
   message(sprintf("<path>%s", rdspath), "\n")
-  structure(list(data = read_isd(rdspath, sections, cleanup)), class = "isd")
+  structure(list(data = read_isd(x = rdspath, sections, cleanup)), class = "isd")
 }
 
 #' @export
@@ -111,7 +111,7 @@ print.isd <- function(x, ..., n = 10) {
 isd_GET <- function(bp, usaf, wban, year, overwrite, ...) {
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- isd_local(usaf, wban, year, bp)
-  tryget <- tryCatch(suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite))), 
+  tryget <- tryCatch(suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite), ...)), 
            error = function(e) e)
   if (inherits(tryget, "error")) {
     unlink(fp)
@@ -139,7 +139,6 @@ read_isd <- function(x, sections, cleanup) {
   path_rds <- sub("gz", "rds", x)
   if (file.exists(path_rds)) {
     df <- readRDS(path_rds)
-    # df <- read.csv(path_csv, stringsAsFactors = FALSE)
   } else {
     lns <- readLines(x)
     linesproc <- lapply(lns, each_line, sections = sections)
@@ -149,7 +148,6 @@ read_isd <- function(x, sections, cleanup) {
     if (cleanup) {
       unlink(x)
     }
-    # cache_csv(path_csv, df)
   }
   return(df)
 }
@@ -168,14 +166,14 @@ cache_rds <- function(x, y) {
 
 trans_vars <- function(w) {
   # fix scaled variables
-  w$latitude <- trans_var(w$latitude, 1000)
-  w$longitude <- trans_var(w$longitude, 1000)
-  w$elevation <- trans_var(w$elevation, 10)
-  w$wind_speed <- trans_var(w$wind_speed, 10)
-  w$temperature <- trans_var(w$temperature, 10)
-  w$temperature_dewpoint <- trans_var(w$temperature_dewpoint, 10)
-  w$air_pressure <- trans_var(w$air_pressure, 10)
-  w$precipitation <- trans_var(w$precipitation, 10)
+  w$latitude <- trans_var(trycol(w$latitude), 1000)
+  w$longitude <- trans_var(trycol(w$longitude), 1000)
+  w$elevation <- trans_var(trycol(w$elevation), 10)
+  w$wind_speed <- trans_var(trycol(w$wind_speed), 10)
+  w$temperature <- trans_var(trycol(w$temperature), 10)
+  w$temperature_dewpoint <- trans_var(trycol(w$temperature_dewpoint), 10)
+  w$air_pressure <- trans_var(trycol(w$air_pressure), 10)
+  w$precipitation <- trans_var(trycol(w$precipitation), 10)
   
   # as date
   w$date <- as.Date(w$date, "%Y%m%d")
@@ -185,6 +183,11 @@ trans_vars <- function(w) {
   w$total_chars <- as.numeric(w$total_chars)
   
   return(w)
+}
+
+trycol <- function(x) {
+  tt <- tryCatch(x, error = function(e) e)
+  if (inherits(tt, "error")) NULL else tt
 }
 
 trans_var <- function(x, n) {
@@ -198,7 +201,14 @@ trans_var <- function(x, n) {
 each_line <- function(y, sections){
   normal <- Map(function(a,b) subs(y, a, b), pluck(sections, "start"), pluck(sections, "stop"))
   other <- gsub("\\s+$", "", substring(y, 106, nchar(y)))
-  data.frame(normal, proc_other(other), stringsAsFactors = FALSE)
+  oth <- proc_other(other)
+  if (is.null(oth)) {
+    dplyr::as_data_frame(normal)
+    #data.frame(normal, stringsAsFactors = FALSE)
+  } else {
+    dplyr::as_data_frame(c(normal, oth))
+    #data.frame(normal, oth, stringsAsFactors = FALSE)
+  }
 }
 
 pluck <- function(input, x) vapply(input, "[[", numeric(1), x)
@@ -252,9 +262,15 @@ proc_other <- function(x){
        check_get(x, "MD1", md1),
        check_get(x, "MW1", mw1)
   )
-  other <- tt[!sapply(tt, function(x) is.null(x[[1]]))]
-  do.call(cbind, lapply(other, data.frame, stringsAsFactors = FALSE))
+  other <- tt[!vapply(tt, function(x) is.null(x[[1]]), TRUE)]
+  unlist(lapply(other, function(z) {
+    nms <- names(z)
+    tmp <- if (!is_named(z[[1]])) z[[1]][[1]] else z[[1]]
+    setNames(tmp, paste(nms, names(tmp), sep = "_"))
+  }), FALSE)
 }
+
+is_named <- function(x) !is.null(names(x))
 
 check_get <- function(string, pattern, fxn) {
   yy <- regexpr(pattern, string)

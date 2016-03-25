@@ -10,7 +10,7 @@ test_that("isd gets data", {
   expect_is(data_a$data, "data.frame")
   expect_is(data_a$data$quality, "character")
   
-  expect_less_than(NROW(data_a$data), NROW(data_b$data))
+  expect_lt(NROW(data_a$data), NROW(data_b$data))
 })
 
 test_that("isd fails well", {
