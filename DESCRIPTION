@@ -42,5 +42,6 @@ Suggests:
     leaflet,
     geojsonio,
     lawn,
-    rgdal
+    rgdal,
+    covr
 RoxygenNote: 5.0.1
