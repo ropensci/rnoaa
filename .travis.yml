@@ -7,9 +7,6 @@ addons:
     packages:
       - libv8-dev
 
-r_packages:
-  - lawn
-
 after_success:
   - Rscript -e 'covr::codecov()'
 
@@ -22,7 +19,7 @@ notifications:
 
 env:
   global:
-    - _R_CHECK_FORCE_SUGGESTS_=False
+    - _R_CHECK_FORCE_SUGGESTS_=True
     - R_LIBS="http://cran.rstudio.com"
     - R_BUILD_ARGS="--no-build-vignettes --no-manual"
     - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
