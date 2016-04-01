@@ -1,5 +1,6 @@
 ---
-title: "Vignette Title"
+
+title: "Complementing air quality data with weather data using rnoaa"
 author: "Vignette Author"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -9,50 +10,69 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+# Introduction: getting air quality data
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+This vignette aims at explaining how you can complement a data.frame with weather data using rnoaa. In this vignette we shall use air quality data from the OpenAQ platform queried with the Ropenaq package, for India. Using [Ropenaq](https://github.com/masalmon/Ropenaq) one can get e.g. PM2.5 values over time in Delhi. For getting all data for march we'll loop over several pages.
 
-## Vignette Info
+```{r, message = FALSE, warning = FALSE, cache = TRUE}
+library("Ropenaq")
+library("dplyr")
+measurementsDelhi <- NULL
+for (page in 1:6){
+  measurementsDelhi <- rbind(measurementsDelhi,
+                             aq_measurements(city = "Delhi",
+                                     parameter = "pm25",
+                                     date_from = "2016-03-01",
+                                     limit = 1000, 
+                                     page = page))
+}
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+measurementsDelhi %>% head() %>% knitr::kable()
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+We now transform these data into daily data.
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
+```{r, message = FALSE, warning = FALSE, cache = TRUE}
+measurementsDelhi <- measurementsDelhi %>% 
+  mutate(day = as.Date(dateLocal)) %>%
+  group_by(location, day) %>%
+  summarize(value = mean(value),
+            longitude = longitude[1],
+            latitude = latitude[1])
+measurementsDelhi %>% head() %>% knitr::kable()
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
 ```
 
-Also a quote using `>`:
+Air quality and weather are correlated, so one could be interested in getting a time series of say temperature for the same location. The OpenAQ platform itself does not provide weather data but nearly all stations have geographical coordinates. Our goal here will be to use rnoaa to complement this table with precipitation and temperature.
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+# Find stations with the right time, space and parameter coverage
+
+There are many weather stations in India for which we can query data using rnoaa. Let's do a map of all of them using leaflet.
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+load("data/stationsIndia.RData")
+```
+
+We could start by finding all stations for India.
+
+```{r, message = FALSE, warning = FALSE, echo = TRUE, eval = FALSE}
+library("rnoa")
+stationsIndia <- ghcnd_stations(country = "IN")
+```
+
+For now we'll filter the ones that have "DELHI" in their names, but later we'll use geographical information for doing this.
+
+```{r, message = FALSE, warning = FALSE}
+library("ggmap")
+stationsDelhi <- filter(stationsIndia$data, grepl("DELHI", name))
+map <- get_map(location = "Delhi", zoom = 8)
+ggmap(map) + 
+  geom_point(aes(x = longitude, y = latitude),
+             data = stationsDelhi)
+```
+
+
+# Query weather data for these stations
+
+# Join the two tables, thus complementing the original table
+
