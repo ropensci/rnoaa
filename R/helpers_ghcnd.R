@@ -63,6 +63,8 @@
 #' }
 #'
 #' @importFrom dplyr %>%
+#'
+#' @export
 clean_daily <- function(ghcnd_data, keep_flags = FALSE){
   if(keep_flags){
     cleaned_df <- dplyr::filter(ghcnd_data$data,
