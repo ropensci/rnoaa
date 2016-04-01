@@ -13,9 +13,29 @@ station using \code{\link{ghcnd}}.}
 \item{keep_flags}{TRUE / FALSE for whether the user would like to keep all the flags
 for each weather varialbe. The default is to not keep the flags (FALSE).}
 }
+\value{
+A data frame of daily weather data for a single weather monitor,
+   converted to a tidy format.
+}
 \description{
 This function inputs an object created by \code{\link{ghcnd}} and cleans up the
 data into a tidy form.
+}
+\note{
+The weather flags, which are kept by specifying
+\code{keep_flags = TRUE} are:
+\itemize{
+\item \code{*_mflag}: Measurement flag, which gives some information on how
+   the observation was measured.
+\item \code{*_qflag}: Quality flag, which gives quality information on the
+   measurement, like if it failed to pass certain quality checks.
+\item \code{*_sflag}: Source flag. This gives some information on the
+   weather collection system (e.g., U.S. Cooperative Summary of the Day,
+   Australian Bureau of Meteorology) the weather observation comes from.
+}
+More information on the interpretation of these flags can be found in the
+README file for the NCDC's Daily Global Historical Climatology Network's
+data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
 }
 \examples{
 \dontrun{
