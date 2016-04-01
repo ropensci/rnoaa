@@ -32,7 +32,8 @@ Imports:
     ggplot2,
     scales,
     XML,
-    jsonlite
+    jsonlite,
+    rappdirs
 Suggests:
     testthat,
     roxygen2,
