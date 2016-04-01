@@ -28,6 +28,6 @@ meteo_distance(data, lat, long, latName = "latitude",
 a dataframe in a column with the distance of stations
 }
 \description{
-
+meteo_distance
 }
 

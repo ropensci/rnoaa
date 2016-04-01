@@ -8,7 +8,17 @@ meteo_process_geographic_data(data, lat, long, latName, longName,
   units = "deg")
 }
 \arguments{
-\item{units}{}
+\item{data}{data}
+
+\item{lat}{data}
+
+\item{long}{data}
+
+\item{latName}{data}
+
+\item{longName}{data}
+
+\item{units}{data}
 }
 \description{
 meteo_process_geographic_data

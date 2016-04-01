@@ -7,7 +7,15 @@
 meteo_spherical_distance(lat1, long1, lat2, long2, units = "deg")
 }
 \arguments{
-\item{units}{}
+\item{lat1}{data}
+
+\item{long1}{data}
+
+\item{lat2}{data}
+
+\item{long2}{data}
+
+\item{units}{data}
 }
 \description{
 meteo_spherical_distance

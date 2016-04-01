@@ -1,7 +1,5 @@
 #' meteo_distance
 #'
-#' @description
-#'
 #' @param data a dataframe. Expects col headers with names latName and longName
 #' @param lat Latitude to centre search at
 #' @param long Longitude to centre search at
@@ -13,8 +11,6 @@
 #'
 #' @return a dataframe in a column with the distance of stations
 #' @export
-#'
-#' @examples
 meteo_distance <- function(data,
                            lat,
                            long,
@@ -45,17 +41,14 @@ meteo_distance <- function(data,
 
 #' meteo_process_geographic_data
 #'
-#' @param data
-#' @param lat
-#' @param long
-#' @param latName
-#' @param longName
-#' @param units
+#' @param data data
+#' @param lat data
+#' @param long data
+#' @param latName data
+#' @param longName data
+#' @param units data
 #'
-#' @return
 #' @export
-#'
-#' @examples
 meteo_process_geographic_data <- function(data,
                                           lat,
                                           long,
@@ -92,16 +85,13 @@ meteo_process_geographic_data <- function(data,
 
 #' meteo_spherical_distance
 #'
-#' @param lat1
-#' @param long1
-#' @param lat2
-#' @param long2
-#' @param units
+#' @param lat1 data
+#' @param long1 data
+#' @param lat2 data
+#' @param long2 data
+#' @param units data
 #'
-#' @return
 #' @export
-#'
-#' @examples
 meteo_spherical_distance <- function(lat1,
                                      long1,
                                      lat2,
@@ -133,10 +123,7 @@ meteo_spherical_distance <- function(lat1,
 #'
 #' @param deg
 #'
-#' @return
 #' @export
-#'
-#' @examples
 deg2rad <- function(deg) {
   return(deg*pi/180)
 } # End deg2rad
