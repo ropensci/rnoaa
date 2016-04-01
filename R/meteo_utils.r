@@ -10,7 +10,16 @@
 #'        coverate tests. These should be \code{Date} objects.
 #' @param verbose if \code{TRUE} will display the coverage summary along
 #'        with returning the coverage data.frame
-#' @return a \code{data.frame} with the coverage for each station
+#' @return a \code{data.frame} with the coverage for each station, minimally
+#' containing: \preformatted{
+#' $ id         (fctr)
+#' $ station    (fctr)
+#' $ start_date (time)
+#' $ end_date   (time)
+#' $ total_obs  (int)
+#' }
+#' with additional fields (and their coverage percent) depending on what
+#' was available for the weather station.
 #' @export
 meteo_coverage <- function(meteo_df,
                            obs_start_date=NULL,
