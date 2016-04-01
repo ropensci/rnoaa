@@ -8,6 +8,9 @@
 #' @param keep_flags TRUE / FALSE for whether the user would like to keep all the flags
 #'    for each weather varialbe. The default is to not keep the flags (FALSE).
 #'
+#' @return A data frame of daily weather data for a single weather monitor,
+#'    converted to a tidy format.
+#'
 #' @examples
 #' \dontrun{
 #' # You must have your NOAA API key saved as `steve`
