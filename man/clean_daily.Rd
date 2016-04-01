@@ -25,6 +25,8 @@ A data frame of daily weather data for a single weather monitor,
    \item \code{tavg}: Average temperature, in degrees Celsius
    \item \code{tmax}: Maximum temperature, in degrees Celsius
    \item \code{tmin}: Minimum temperature, in degrees Celsius
+   \item \code{awnd}: Average daily wind speed, in meters / second
+   \item \code{wsfg}: Peak gust wind speed, in meters / second
    }
    There are other possible weather variables in the Global Historical
    Climatology Network, but we have not implemented cleaning them through

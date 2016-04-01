@@ -19,6 +19,8 @@
 #'    \item \code{tavg}: Average temperature, in degrees Celsius
 #'    \item \code{tmax}: Maximum temperature, in degrees Celsius
 #'    \item \code{tmin}: Minimum temperature, in degrees Celsius
+#'    \item \code{awnd}: Average daily wind speed, in meters / second
+#'    \item \code{wsfg}: Peak gust wind speed, in meters / second
 #'    }
 #'    There are other possible weather variables in the Global Historical
 #'    Climatology Network, but we have not implemented cleaning them through
@@ -58,7 +60,8 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
   if(keep_flags){
     cleaned_df <- dplyr::filter(ghcnd_data$data,
                                 element %in% c("TMAX", "TMIN", "PRCP",
-                                               "SNOW", "SNWD")) %>%
+                                               "SNOW", "SNWD", "AWND",
+                                               "WSFG")) %>%
       tidyr::gather(what, value, -id, -year, -month, -element) %>%
       dplyr::mutate(day = as.numeric(gsub("[A-Z]", "", what)),
              what = gsub("[0-9]", "", what),
@@ -75,7 +78,8 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
   } else {
     cleaned_df <- dplyr::filter(ghcnd_data$data,
                                 element %in% c("TMAX", "TMIN", "PRCP",
-                                               "SNOW", "SNWD")) %>%
+                                               "SNOW", "SNWD", "AWND",
+                                               "WSFG")) %>%
       dplyr::select(-matches("FLAG")) %>%
       tidyr::gather(what, value, -id, -year, -month, -element) %>%
       dplyr::mutate(day = as.numeric(gsub("[A-Z]", "", what)),
@@ -92,7 +96,8 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
       dplyr::arrange(date)
   }
   which_weather_vars <- which(colnames(cleaned_df) %in%
-                                c("prcp", "tavg", "tmax", "tmin"))
+                                c("prcp", "tavg", "tmax", "tmin", "awnd",
+                                  "wsfg"))
   # All these variables are in tenths of units
   cleaned_df[, which_weather_vars] <- vapply(cleaned_df[, which_weather_vars],
                                              FUN.VALUE = numeric(nrow(cleaned_df)),
