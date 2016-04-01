@@ -5,3 +5,4 @@
 inst/ignore/bath.r
 inst/cache/
 inst/vign/cache
+inst/doc

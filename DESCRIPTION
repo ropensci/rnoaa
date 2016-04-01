@@ -43,5 +43,6 @@ Suggests:
     geojsonio,
     lawn,
     rgdal,
-    covr
+    covr,
+    rmarkdown
 RoxygenNote: 5.0.1
