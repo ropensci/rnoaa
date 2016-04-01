@@ -28,17 +28,12 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
              what = paste(tolower(element), tolower(what), sep = "_"),
              what = gsub("_value", "", what),
              value = ifelse(value == -9999, NA, as.character(value))) %>%
-      mutate(date = lubridate::ymd(paste0(year, sprintf("%02s", month),
-                                          sprintf("%02s", day)))) %>%
+      mutate(date = suppressWarnings(lubridate::ymd(paste0(year, sprintf("%02s", month),
+                                          sprintf("%02s", day))))) %>%
       filter(!is.na(date)) %>%
       select(id, date, what, value) %>%
       spread(what, value) %>%
       arrange(date)
-
-    #which_flags <- grep("flag", colnames(cleaned_df))
-    #cleaned_df[, which_flags] <- apply(cleaned_df[, which_flags],
-    #                                          MARGIN = 2,
-    #                                          function(x) as.factor(x))
   } else {
     cleaned_df <- select(ghcnd_data$data, -matches("FLAG")) %>%
       gather(what, value,
@@ -57,8 +52,8 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
   }
   which_weather_vars <- which(colnames(cleaned_df) %in%
                                 c("prcp", "tavg", "tmax", "tmin"))
-  cleaned_df[, which_weather_vars] <- apply(cleaned_df[, which_weather_vars],
-                                             MARGIN = 2,
-                                             function(x) as.numeric(x) / 10)
+  cleaned_df[, which_weather_vars] <- vapply(cleaned_df[, which_weather_vars],
+                                             FUN.VALUE = numeric(nrow(cleaned_df)),
+                                             FUN = function(x) as.numeric(x) / 10)
   return(cleaned_df)
 }
