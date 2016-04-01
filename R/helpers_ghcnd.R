@@ -39,8 +39,10 @@
 #' @importFrom dplyr %>%
 clean_daily <- function(ghcnd_data, keep_flags = FALSE){
   if(keep_flags){
-    cleaned_df <- tidyr::gather(ghcnd_data$data, what, value,
-             -id, -year, -month, -element) %>%
+    cleaned_df <- dplyr::filter(ghcnd_data$data,
+                                element %in% c("TMAX", "TMIN", "PRCP",
+                                               "SNOW", "SNWD")) %>%
+      tidyr::gather(what, value, -id, -year, -month, -element) %>%
       dplyr::mutate(day = as.numeric(gsub("[A-Z]", "", what)),
              what = gsub("[0-9]", "", what),
              what = paste(tolower(element), tolower(what), sep = "_"),
@@ -54,7 +56,10 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
       tidyr::spread(what, value) %>%
       dplyr::arrange(date)
   } else {
-    cleaned_df <- dplyr::select(ghcnd_data$data, -matches("FLAG")) %>%
+    cleaned_df <- dplyr::filter(ghcnd_data$data,
+                                element %in% c("TMAX", "TMIN", "PRCP",
+                                               "SNOW", "SNWD")) %>%
+      dplyr::select(-matches("FLAG")) %>%
       tidyr::gather(what, value, -id, -year, -month, -element) %>%
       dplyr::mutate(day = as.numeric(gsub("[A-Z]", "", what)),
              what = gsub("[0-9]", "", what),
@@ -71,8 +76,14 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
   }
   which_weather_vars <- which(colnames(cleaned_df) %in%
                                 c("prcp", "tavg", "tmax", "tmin"))
+  # All these variables are in tenths of units
   cleaned_df[, which_weather_vars] <- vapply(cleaned_df[, which_weather_vars],
                                              FUN.VALUE = numeric(nrow(cleaned_df)),
                                              FUN = function(x) as.numeric(x) / 10)
+  which_snow_vars <- which(colnames(cleaned_df) %in%
+                             c("snow", "snwd"))
+  cleaned_df[, which_weather_vars] <- vapply(cleaned_df[, which_weather_vars],
+                                             FUN.VALUE = numeric(nrow(cleaned_df)),
+                                             FUN = function(x) as.numeric(x))
   return(cleaned_df)
 }
