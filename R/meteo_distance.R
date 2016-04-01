@@ -139,7 +139,6 @@ deg2rad <- function(deg) {
 #' @param radius Radius to search (in km)
 #'
 #' @return a dataframe containing a unique set of the weather stations within the search radius
-#' @export
 #'
 #' @examples
 #' lat <- c(37.779199, 37.531635)
@@ -148,8 +147,9 @@ deg2rad <- function(deg) {
 #'
 #' nearby_stations <- 
 #' get_nearby_stations(lat_lon_df = test_df, lat_colname = 'latitude', lon_colname = 'longitude', ghcnd_station_list = stations, radius = 20)
-
-get_nearby_stations <- function(lat_lon_df, lat_colname, lon_colname, ghcnd_station_list, radius, ...)
+#' 
+#' @export
+meteo_nearby_stations <- function(lat_lon_df, lat_colname, lon_colname, ghcnd_station_list, radius, ...)
   lat_lon_df %>%
   dplyr::distinct_(lat_colname, lon_colname) %>% 
   split(.[, lat_colname], .[, lon_colname]) %>%
