@@ -9,7 +9,24 @@
 #'    for each weather varialbe. The default is to not keep the flags (FALSE).
 #'
 #' @return A data frame of daily weather data for a single weather monitor,
-#'    converted to a tidy format.
+#'    converted to a tidy format. All weather variables may not exist for all
+#'    weather stations, but the returned dataset would have at most the
+#'    following columns:
+#'    \itemize{
+#'    \item \code{id}: Character string with the weather station site id
+#'    \item \code{date}: Date of the observation
+#'    \item \code{prcp}: Precipitation, in mm
+#'    \item \code{tavg}: Average temperature, in degrees Celsius
+#'    \item \code{tmax}: Maximum temperature, in degrees Celsius
+#'    \item \code{tmin}: Minimum temperature, in degrees Celsius
+#'    }
+#'    There are other possible weather variables in the Global Historical
+#'    Climatology Network, but we have not implemented cleaning them through
+#'    this function. See
+#'    \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt} for a full
+#'    list. If you are interested in having other weather variables from this
+#'    list added to this function, you can submit a request to this package's
+#'    GitHub issues page and we may be able to add it.
 #'
 #' @note The weather flags, which are kept by specifying
 #' \code{keep_flags = TRUE} are:
