@@ -165,10 +165,23 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
 #'
 #' @export
 meteo_pull_monitors <- function(monitors, keep_flags = FALSE){
-  monitors <- unique(monitor)
-  all_monitors_ghcnd <- lapply(monitors, ghcnd)
+  monitors <- unique(monitors)
+  safe_ghcnd <- purrr::safely(ghcnd)
+  all_monitors_ghcnd <- lapply(monitors, safe_ghcnd)
+
+  check_station <- sapply(all_monitors_ghcnd, function(x) is.null(x$result))
+  bad_stations <- monitors[check_station]
+  if(length(bad_stations) > 0){
+    warning(paste("The following stations could not be pulled from",
+                  "the GHCN ftp:\n", paste(bad_stations, collapse = ", "),
+                  "\nAll other monitors were successfully pulled from GHCN."))
+  }
+
+  all_monitors_ghcnd <- lapply(all_monitors_ghcnd[!check_station],
+                               function(x) x$result)
   all_monitors_clean <- lapply(all_monitors_ghcnd, clean_daily,
                                keep_flags = keep_flags)
   all_monitors_clean <- suppressWarnings(dplyr::bind_rows(all_monitors_clean))
   return(all_monitors_clean)
 }
+
