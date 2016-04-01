@@ -40,7 +40,9 @@ A data frame of daily weather data for a multiple weather monitors,
 This function takes a vector of one or more weather station IDs. It will pull
 the weather data from the Global Historical Climatology Network's daily
 data for each of the stations and join them together in a single tidy
-dataframe.
+dataframe. For any weather stations that the user calls that are not
+available by ftp from GHCN, the function will return a warning
+giving the station ID.
 }
 \note{
 This function may take a while to run.
