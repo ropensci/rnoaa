@@ -24,34 +24,35 @@
 #' @importFrom dplyr %>%
 clean_daily <- function(ghcnd_data, keep_flags = FALSE){
   if(keep_flags){
-    cleaned_df <- gather(ghcnd_data$data, what, value,
+    cleaned_df <- tidyr::gather(ghcnd_data$data, what, value,
              -id, -year, -month, -element) %>%
-      mutate(day = as.numeric(gsub("[A-Z]", "", what)),
+      dplyr::mutate(day = as.numeric(gsub("[A-Z]", "", what)),
              what = gsub("[0-9]", "", what),
              what = paste(tolower(element), tolower(what), sep = "_"),
              what = gsub("_value", "", what),
              value = ifelse(value == -9999, NA, as.character(value))) %>%
-      mutate(date = suppressWarnings(lubridate::ymd(paste0(year, sprintf("%02s", month),
-                                          sprintf("%02s", day))))) %>%
-      filter(!is.na(date)) %>%
-      select(id, date, what, value) %>%
-      spread(what, value) %>%
-      arrange(date)
+      dplyr::mutate(date = suppressWarnings(
+        lubridate::ymd(paste0(year, sprintf("%02s", month),
+                              sprintf("%02s", day))))) %>%
+      dplyr::filter(!is.na(date)) %>%
+      dplyr::select(id, date, what, value) %>%
+      tidyr::spread(what, value) %>%
+      dplyr::arrange(date)
   } else {
-    cleaned_df <- select(ghcnd_data$data, -matches("FLAG")) %>%
-      gather(what, value,
-             -id, -year, -month, -element) %>%
-      mutate(day = as.numeric(gsub("[A-Z]", "", what)),
+    cleaned_df <- dplyr::select(ghcnd_data$data, -matches("FLAG")) %>%
+      tidyr::gather(what, value, -id, -year, -month, -element) %>%
+      dplyr::mutate(day = as.numeric(gsub("[A-Z]", "", what)),
              what = gsub("[0-9]", "", what),
              what = paste(tolower(element), tolower(what), sep = "_"),
              what = gsub("_value", "", what),
              value = ifelse(value == -9999, NA, as.character(value))) %>%
-      mutate(date = lubridate::ymd(paste0(year, sprintf("%02s", month),
-                                          sprintf("%02s", day)))) %>%
-      filter(!is.na(date)) %>%
-      select(id, date, what, value) %>%
-      spread(what, value) %>%
-      arrange(date)
+      dplyr::mutate(date = suppressWarnings(
+        lubridate::ymd(paste0(year, sprintf("%02s", month),
+                                          sprintf("%02s", day))))) %>%
+      dplyr::filter(!is.na(date)) %>%
+      dplyr::select(id, date, what, value) %>%
+      tidyr::spread(what, value) %>%
+      dplyr::arrange(date)
   }
   which_weather_vars <- which(colnames(cleaned_df) %in%
                                 c("prcp", "tavg", "tmax", "tmin"))
