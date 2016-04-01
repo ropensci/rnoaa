@@ -61,6 +61,7 @@
 #' @importFrom tidyr gather
 #' @importFrom dplyr %>% rbind_all select mutate rename tbl_df filter bind_rows as_data_frame
 #' @importFrom rappdirs user_cache_dir
+#' @importFrom gridExtra grid.arrange
 #' @name rnoaa-package
 #' @aliases rnoaa
 #' @docType package

@@ -34,7 +34,8 @@ Imports:
     scales,
     XML,
     jsonlite,
-    rappdirs
+    rappdirs,
+    gridExtra
 Suggests:
     testthat,
     shinydashboard,
