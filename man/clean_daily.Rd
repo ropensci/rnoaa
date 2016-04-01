@@ -13,6 +13,10 @@ station using \code{\link{ghcnd}}.}
 \item{keep_flags}{TRUE / FALSE for whether the user would like to keep all the flags
 for each weather varialbe. The default is to not keep the flags (FALSE).}
 }
+\value{
+A data frame of daily weather data for a single weather monitor,
+   converted to a tidy format.
+}
 \description{
 This function inputs an object created by \code{\link{ghcnd}} and cleans up the
 data into a tidy form.
