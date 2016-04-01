@@ -3,13 +3,54 @@
 #' This function inputs an object created by \code{\link{ghcnd}} and cleans up the
 #' data into a tidy form.
 #'
+#' The following reference has more information on this data:
+#'
+#' Menne, M.J., I. Durre, R.S. Vose, B.E. Gleason, and T.G. Houston, 2012:
+#' An overview of the Global Historical Climatology Network-Daily Database.
+#' Journal of Atmospheric and Oceanic Technology, 29, 897-910,
+#' doi:10.1175/JTECH-D-11-00103.1.
+#'
 #' @param ghcnd_data An object of class "ghcnd", as generated for a single weather
 #'    station using \code{\link{ghcnd}}.
 #' @param keep_flags TRUE / FALSE for whether the user would like to keep all the flags
 #'    for each weather varialbe. The default is to not keep the flags (FALSE).
 #'
 #' @return A data frame of daily weather data for a single weather monitor,
-#'    converted to a tidy format.
+#'    converted to a tidy format. All weather variables may not exist for all
+#'    weather stations, but the returned dataset would have at most the
+#'    following columns:
+#'    \itemize{
+#'    \item \code{id}: Character string with the weather station site id
+#'    \item \code{date}: Date of the observation
+#'    \item \code{prcp}: Precipitation, in mm
+#'    \item \code{tavg}: Average temperature, in degrees Celsius
+#'    \item \code{tmax}: Maximum temperature, in degrees Celsius
+#'    \item \code{tmin}: Minimum temperature, in degrees Celsius
+#'    \item \code{awnd}: Average daily wind speed, in meters / second
+#'    \item \code{wsfg}: Peak gust wind speed, in meters / second
+#'    }
+#'    There are other possible weather variables in the Global Historical
+#'    Climatology Network, but we have not implemented cleaning them through
+#'    this function. See
+#'    \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt} for a full
+#'    list. If you are interested in having other weather variables from this
+#'    list added to this function, you can submit a request to this package's
+#'    GitHub issues page and we may be able to add it.
+#'
+#' @note The weather flags, which are kept by specifying
+#' \code{keep_flags = TRUE} are:
+#' \itemize{
+#' \item \code{*_mflag}: Measurement flag, which gives some information on how
+#'    the observation was measured.
+#' \item \code{*_qflag}: Quality flag, which gives quality information on the
+#'    measurement, like if it failed to pass certain quality checks.
+#' \item \code{*_sflag}: Source flag. This gives some information on the
+#'    weather collection system (e.g., U.S. Cooperative Summary of the Day,
+#'    Australian Bureau of Meteorology) the weather observation comes from.
+#' }
+#' More information on the interpretation of these flags can be found in the
+#' README file for the NCDC's Daily Global Historical Climatology Network's
+#' data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
 #'
 #' @examples
 #' \dontrun{
@@ -24,8 +65,11 @@
 #' @importFrom dplyr %>%
 clean_daily <- function(ghcnd_data, keep_flags = FALSE){
   if(keep_flags){
-    cleaned_df <- tidyr::gather(ghcnd_data$data, what, value,
-             -id, -year, -month, -element) %>%
+    cleaned_df <- dplyr::filter(ghcnd_data$data,
+                                element %in% c("TMAX", "TMIN", "PRCP",
+                                               "SNOW", "SNWD", "AWND",
+                                               "WSFG")) %>%
+      tidyr::gather(what, value, -id, -year, -month, -element) %>%
       dplyr::mutate(day = as.numeric(gsub("[A-Z]", "", what)),
              what = gsub("[0-9]", "", what),
              what = paste(tolower(element), tolower(what), sep = "_"),
@@ -39,7 +83,11 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
       tidyr::spread(what, value) %>%
       dplyr::arrange(date)
   } else {
-    cleaned_df <- dplyr::select(ghcnd_data$data, -matches("FLAG")) %>%
+    cleaned_df <- dplyr::filter(ghcnd_data$data,
+                                element %in% c("TMAX", "TMIN", "PRCP",
+                                               "SNOW", "SNWD", "AWND",
+                                               "WSFG")) %>%
+      dplyr::select(-matches("FLAG")) %>%
       tidyr::gather(what, value, -id, -year, -month, -element) %>%
       dplyr::mutate(day = as.numeric(gsub("[A-Z]", "", what)),
              what = gsub("[0-9]", "", what),
@@ -55,9 +103,16 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
       dplyr::arrange(date)
   }
   which_weather_vars <- which(colnames(cleaned_df) %in%
-                                c("prcp", "tavg", "tmax", "tmin"))
+                                c("prcp", "tavg", "tmax", "tmin", "awnd",
+                                  "wsfg"))
+  # All these variables are in tenths of units
   cleaned_df[, which_weather_vars] <- vapply(cleaned_df[, which_weather_vars],
                                              FUN.VALUE = numeric(nrow(cleaned_df)),
                                              FUN = function(x) as.numeric(x) / 10)
+  which_snow_vars <- which(colnames(cleaned_df) %in%
+                             c("snow", "snwd"))
+  cleaned_df[, which_weather_vars] <- vapply(cleaned_df[, which_weather_vars],
+                                             FUN.VALUE = numeric(nrow(cleaned_df)),
+                                             FUN = function(x) as.numeric(x))
   return(cleaned_df)
 }
