@@ -255,7 +255,8 @@ ghcnd_GET <- function(bp, stationid, ...){
   res <- suppressWarnings(httr::GET(ghcnd_remote(stationid), ...))
   tt <- utcf8(res)
   vars <- c("id","year","month","element",do.call("c", lapply(1:31, function(x) paste0(c("VALUE","MFLAG","QFLAG","SFLAG"), x))))
-  df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)))
+  df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)),
+                 na.strings = "-9999")
   dat <- setNames(df, vars)
   write.csv(dat, fp, row.names = FALSE)
   return(dat)
