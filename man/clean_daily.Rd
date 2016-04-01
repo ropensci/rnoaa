@@ -40,6 +40,14 @@ A data frame of daily weather data for a single weather monitor,
 This function inputs an object created by \code{\link{ghcnd}} and cleans up the
 data into a tidy form.
 }
+\details{
+The following reference has more information on this data:
+
+Menne, M.J., I. Durre, R.S. Vose, B.E. Gleason, and T.G. Houston, 2012:
+An overview of the Global Historical Climatology Network-Daily Database.
+Journal of Atmospheric and Oceanic Technology, 29, 897-910,
+doi:10.1175/JTECH-D-11-00103.1.
+}
 \note{
 The weather flags, which are kept by specifying
 \code{keep_flags = TRUE} are:

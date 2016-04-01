@@ -3,6 +3,13 @@
 #' This function inputs an object created by \code{\link{ghcnd}} and cleans up the
 #' data into a tidy form.
 #'
+#' The following reference has more information on this data:
+#'
+#' Menne, M.J., I. Durre, R.S. Vose, B.E. Gleason, and T.G. Houston, 2012:
+#' An overview of the Global Historical Climatology Network-Daily Database.
+#' Journal of Atmospheric and Oceanic Technology, 29, 897-910,
+#' doi:10.1175/JTECH-D-11-00103.1.
+#'
 #' @param ghcnd_data An object of class "ghcnd", as generated for a single weather
 #'    station using \code{\link{ghcnd}}.
 #' @param keep_flags TRUE / FALSE for whether the user would like to keep all the flags
