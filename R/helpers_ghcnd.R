@@ -116,3 +116,9 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
                                              FUN = function(x) as.numeric(x))
   return(cleaned_df)
 }
+
+meteo_pull_monitors <- function(monitors){
+  all_monitors_ghcnd <- lapply(monitors, ghcnd)
+  all_monitors_clean <- lapply(all_monitors_ghcnd, clean_daily)
+  all_monitors_clean <- bind_rows(all_monitors_clean)
+}
