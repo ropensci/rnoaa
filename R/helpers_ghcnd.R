@@ -165,6 +165,7 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
 #'
 #' @export
 meteo_pull_monitors <- function(monitors, keep_flags = FALSE){
+  monitors <- unique(monitor)
   all_monitors_ghcnd <- lapply(monitors, ghcnd)
   all_monitors_clean <- lapply(all_monitors_ghcnd, clean_daily,
                                keep_flags = keep_flags)
