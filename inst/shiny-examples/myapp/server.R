@@ -1,65 +1,87 @@
 library("shiny")
 library("dplyr")
-library("zoo")
-library("lubridate")
-library("xtable")
-library("shinydashboard")
-library("ammon")
-library("DT")
-library("ggiraph")
+library("leaflet")
+library("rnoaa")
+library("httr")
+library("geosphere")
+library("purrr")
+
+get_nearby_stations <- function(lat_lon_df, lat_colname, lon_colname, ghcnd_station_list, radius)
+  lat_lon_df %>%
+  distinct_(lat_colname, lon_colname) %>%
+  split(.[, lat_colname], .[, lon_colname]) %>%
+  map(function(x) {
+    station_ids <-
+      meteo_distance(data = ghcnd_station_list, lat = x$latitude, long = x$longitude, radius = radius) %>%
+      distinct(id)
+    return(station_ids)
+  })
+
+
+#stations <- tbl_df(ghcnd_stations()$data)
+load("ghcnd_stations.Rda")
+
+
 
 shinyServer(function(input, output) {
+  points <- eventReactive(input$go, {
+  closest <- get_nearby_stations(data.frame(latitude = input$latitude,
+                                 longitude = input$longitude),
+                      "latitude",
+                      "longitude",
+                      stations,
+                      input$radius)
 
+  rbind_all(closest)%>%
+    filter(!is.na(latitude))
+})
 
-  microPEMObject <- eventReactive(input$go, {
+  now <- eventReactive(input$go, {
+    #stations <- ghcnd()
+    data.frame(latitude = input$latitude,
+               longitude = input$longitude)
+  })
 
-    file <- reactive({input$file1})
-    if (is.null(input$file1))
-    return(NULL)
+  radius <- eventReactive(input$go, {
+    #stations <- ghcnd()
+    as.numeric(input$radius)
+  })
 
-    else {
-      convertOutput(file()$datapath, version=input$version)
-    }
-       })
+  output$mymap <- renderLeaflet({
+    input$go
 
-  output$Settings<- DT::renderDataTable({
-    file <- reactive({input$file1})
-    if (is.null(input$file1))
-      return(NULL)
+    lat2 <- destPoint(p = c(now()$longitude,
+                              now()$latitude),
+                        b = 0,
+                        d = radius()*1000)[1,2]
+    lat1 <- destPoint(p = c(now()$longitude,
+                            now()$latitude),
+                      b = 180,
+                      d = radius()*1000)[1,2]
+    lon2 <- destPoint(p = c(now()$longitude,
+                            now()$latitude),
+                      b = 90,
+                      d = radius()*1000)[1,1]
+    lon1 <- destPoint(p = c(now()$longitude,
+                            now()$latitude),
+                      b = 270,
+                      d = radius()*1000)[1,1]
 
-    else {
-      data.frame(value = t(microPEMObject()$control)[,1])
+    leaflet() %>%
+      addTiles() %>%  # Add default OpenStreetMap map tiles
+      addCircles(data=now(), lat = ~latitude, lng = ~longitude,
+                radius = radius()*1000,
+              fillColor = "green", color = "green", fillOpacity=0.2)%>%  # Add default OpenStreetMap map tiles
+      addCircleMarkers(data=now(), lat = ~latitude, lng = ~longitude,
+                       popup = "Your location", fillColor = "red") %>%
+      addMarkers(data=points(), lat = ~latitude, lng = ~longitude,
+                 popup = ~id) %>%
+      fitBounds(lng1 = as.numeric(lon1),
+                lat1 = as.numeric(lat1),
+                lng2 = as.numeric(lon2),
+                lat2 = as.numeric(lat2))
 
-    }
-  }, options = list(pageLength = 41))
-
-
-
-
-    output$Summary <- DT::renderDataTable({
-      microPEMObject()$summary()
-    })
-
-    output$Alarms <- DT::renderDataTable({
-      alarmCHAI(microPEMObject())
-    })
-
-    gg_plot <- eventReactive(input$go, {
-
-      file <- reactive({input$file1})
-      if (is.null(input$file1))
-        return(NULL)
-
-      else {
-        microPEMObject()$plot(type="interactive")
-      }
-    })
-
-    output$plotPM <-  renderggiraph({
-      ggiraph(code = print(gg_plot()), width = 12, height = 10,
-              hover_css = "fill:orange;stroke-width:1px;stroke:wheat;cursor:pointer;")
-    })
-
+  })
 
 })
 
