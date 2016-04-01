@@ -36,6 +36,16 @@
 #' functions. You'll get an informative error telling you to install \code{ncdf4}
 #' if you don't have it and you try to use the buoy functions.
 #'
+#' @section The \code{meteo} family of functions:
+#'
+#' The \code{meteo} family of functions are prefixed with \code{meteo_} and provide
+#' a set of helper functions to:
+#'
+#' \itemize{
+#'   \item Identify candidate stations from a latitude/longitude pair
+#'   \item Retrieve complete data for one or more stations (\code{meteo_coverage()})
+#' }
+#'
 #' @importFrom methods is
 #' @importFrom stats var setNames complete.cases
 #' @importFrom utils head download.file read.csv read.delim read.fwf read.table
