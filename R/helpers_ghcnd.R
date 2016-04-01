@@ -63,6 +63,8 @@
 #' }
 #'
 #' @importFrom dplyr %>%
+#'
+#' @export
 clean_daily <- function(ghcnd_data, keep_flags = FALSE){
   if(keep_flags){
     cleaned_df <- dplyr::filter(ghcnd_data$data,
@@ -105,6 +107,7 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
   which_weather_vars <- which(colnames(cleaned_df) %in%
                                 c("prcp", "tavg", "tmax", "tmin", "awnd",
                                   "wsfg"))
+  cleaned_df <- tbl_df(cleaned_df)
   # All these variables are in tenths of units
   cleaned_df[, which_weather_vars] <- vapply(cleaned_df[, which_weather_vars],
                                              FUN.VALUE = numeric(nrow(cleaned_df)),
@@ -128,12 +131,39 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
 #'    weather stations the user would like to pull.
 #' @inheritParams clean_daily
 #'
+#' @return A data frame of daily weather data for a multiple weather monitors,
+#'    converted to a tidy format. All weather variables may not exist for all
+#'    weather stations, but the returned dataset would have at most the
+#'    following columns:
+#'    \itemize{
+#'    \item \code{id}: Character string with the weather station site id
+#'    \item \code{date}: Date of the observation
+#'    \item \code{prcp}: Precipitation, in mm
+#'    \item \code{tavg}: Average temperature, in degrees Celsius
+#'    \item \code{tmax}: Maximum temperature, in degrees Celsius
+#'    \item \code{tmin}: Minimum temperature, in degrees Celsius
+#'    \item \code{awnd}: Average daily wind speed, in meters / second
+#'    \item \code{wsfg}: Peak gust wind speed, in meters / second
+#'    }
+#'    There are other possible weather variables in the Global Historical
+#'    Climatology Network, but we have not implemented cleaning them through
+#'    this function. See
+#'    \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt} for a full
+#'    list. If you are interested in having other weather variables from this
+#'    list added to this function, you can submit a request to this package's
+#'    GitHub issues page and we may be able to add it.
+#'
+#' @note This function may take a while to run.
+#'
 #' @examples
 #' \dontrun{
 #'
 #' monitors <- c("ASN00003003", "ASM00094299", "ASM00094995", "ASM00094998")
 #' all_monitors_clean <- meteo_pull_monitors(monitors)
+#'
 #' }
+#'
+#' @export
 meteo_pull_monitors <- function(monitors, keep_flags = FALSE){
   all_monitors_ghcnd <- lapply(monitors, ghcnd)
   all_monitors_clean <- lapply(all_monitors_ghcnd, clean_daily,
