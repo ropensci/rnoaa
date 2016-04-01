@@ -117,8 +117,27 @@ clean_daily <- function(ghcnd_data, keep_flags = FALSE){
   return(cleaned_df)
 }
 
-meteo_pull_monitors <- function(monitors){
+#' Pull daily weather data for multiple weather monitors
+#'
+#' This function takes a vector of one or more weather station IDs. It will pull
+#' the weather data from the Global Historical Climatology Network's daily
+#' data for each of the stations and join them together in a single tidy
+#' dataframe.
+#'
+#' @param monitors A character vector listing the station IDs for all
+#'    weather stations the user would like to pull.
+#' @inheritParams clean_daily
+#'
+#' @examples
+#' \dontrun{
+#'
+#' monitors <- c("ASN00003003", "ASM00094299", "ASM00094995", "ASM00094998")
+#' all_monitors_clean <- meteo_pull_monitors(monitors)
+#' }
+meteo_pull_monitors <- function(monitors, keep_flags = FALSE){
   all_monitors_ghcnd <- lapply(monitors, ghcnd)
-  all_monitors_clean <- lapply(all_monitors_ghcnd, clean_daily)
-  all_monitors_clean <- bind_rows(all_monitors_clean)
+  all_monitors_clean <- lapply(all_monitors_ghcnd, clean_daily,
+                               keep_flags = keep_flags)
+  all_monitors_clean <- dplyr::bind_rows(all_monitors_clean)
+  return(all_monitors_clean)
 }
