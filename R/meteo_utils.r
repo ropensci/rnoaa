@@ -10,7 +10,15 @@
 #'        coverate tests. These should be \code{Date} objects.
 #' @param verbose if \code{TRUE} will display the coverage summary along
 #'        with returning the coverage data.frame
-#' @return a \code{data.frame} with the coverage for each station
+#' @return a \code{data.frame} with the coverage for each station, minimally
+#' containing: \preformatted{
+#' $ id         (chr)
+#' $ start_date (time)
+#' $ end_date   (time)
+#' $ total_obs  (int)
+#' }
+#' with additional fields (and their coverage percent) depending on what
+#' was available for the weather station.
 #' @export
 meteo_coverage <- function(meteo_df,
                            obs_start_date=NULL,
@@ -28,10 +36,9 @@ meteo_coverage <- function(meteo_df,
   dplyr::group_by(meteo_df, id) %>%
     do({
       rng <- range(.$date)
-      dat <- data.frame(station = .$id[1],
-                        start_date = rng[1],
+      dat <- data.frame(start_date = rng[1],
                         end_date = rng[2],
-                        total_obs = nrow(.))
+                        total_obs = nrow(.), stringsAsFactors=FALSE)
       if (verbose) cat(sprintf("Station Id: %s\n", .$id[1]))
       if (verbose) cat(sprintf("\n  Date range for observations: %s\n\n",
                   paste0(as.character(rng), sep="", collapse=" to ")))
@@ -44,7 +51,7 @@ meteo_coverage <- function(meteo_df,
         sum(!is.na(.[,x])) / nrow(.)
       }, max(vapply(colnames(.), nchar, numeric(1), USE.NAMES=FALSE)))
       if (verbose) cat("\n")
-      col_cov <- setNames(cbind.data.frame(col_cov), meteo_cols)
+      col_cov <- setNames(cbind.data.frame(col_cov, stringsAsFactors=FALSE), meteo_cols)
       dplyr::bind_cols(dat, col_cov)
     }) -> out
   if (verbose) return(invisible(out))

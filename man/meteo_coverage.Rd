@@ -17,7 +17,15 @@ coverate tests. These should be \code{Date} objects.}
 with returning the coverage data.frame}
 }
 \value{
-a \code{data.frame} with the coverage for each station
+a \code{data.frame} with the coverage for each station, minimally
+containing: \preformatted{
+$ id         (chr)
+$ start_date (time)
+$ end_date   (time)
+$ total_obs  (int)
+}
+with additional fields (and their coverage percent) depending on what
+was available for the weather station.
 }
 \description{
 Call this function after pulling down observations for a set of stations
