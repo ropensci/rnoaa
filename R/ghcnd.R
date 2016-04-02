@@ -8,6 +8,11 @@
 #' @param n Number of rows to print
 #' @param x Input object to print methods. For \code{ghcnd_splitvars()}, the output of a call
 #' to \code{ghcnd()}.
+#' @param date_min,date_max (character) Minimum and maximum dates. Use together to get a
+#' date range
+#' @param var (character) Variable to get, defaults to "all", which gives back all variables
+#' in a list. To see what variables are available for a dataset, look at the dataset returned
+#' from \code{ghcnd()}.
 #'
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com},
 #' Adam Erickson \email{adam.erickson@@ubc.ca}
