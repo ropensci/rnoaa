@@ -2,24 +2,9 @@
 % Please edit documentation in R/ghcnd.R
 \name{ghcnd}
 \alias{ghcnd}
-\alias{ghcnd_countries}
-\alias{ghcnd_splitvars}
-\alias{ghcnd_states}
-\alias{ghcnd_stations}
-\alias{ghcnd_version}
 \title{Get all GHCND data from a single weather site}
 \usage{
 ghcnd(stationid, path = "~/.rnoaa/ghcnd", ...)
-
-ghcnd_splitvars(x)
-
-ghcnd_stations(..., n = 10)
-
-ghcnd_states(...)
-
-ghcnd_countries(...)
-
-ghcnd_version(...)
 }
 \arguments{
 \item{stationid}{A character vector giving the identification of the weather
@@ -102,7 +87,8 @@ Menne, M.J., I. Durre, R.S. Vose, B.E. Gleason, and T.G. Houston, 2012:
 An overview of the Global Historical Climatology Network-Daily Database.
 Journal of Atmospheric and Oceanic Technology, 29, 897-910,
 doi:10.1175/JTECH-D-11-00103.1.
-
- @seealso \code{\link{ghcnd_search}}
+}
+\seealso{
+\code{\link{ghcnd_search}}
 }
 
