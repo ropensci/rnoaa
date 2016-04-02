@@ -128,3 +128,35 @@ deg2rad <- function(deg) {
   return(deg*pi/180)
 } # End deg2rad
 
+#' get_nearby_stations
+#'
+#' @description
+#'
+#' @param lat_lon_df A dataframe that contains the site latitude and longitude values used to search for nearby weather stations
+#' @param lat_colname Name of the latitude column in the lat_lon_df
+#' @param lon_colname Name of the longitude column in the lat_lon_df
+#' @param ghcnd_station_list List of weather stations obtained using `ghcnd_stations()`
+#' @param radius Radius to search (in km)
+#'
+#' @return a dataframe containing a unique set of the weather stations within the search radius
+#'
+#' @examples
+#' lat <- c(37.779199, 37.531635)
+#' lon <- c(-122.404294, -122.419282)
+#' lat_lon_df <- data.frame(latitude = lat, longitude = lon)
+#'
+#' nearby_stations <- 
+#' get_nearby_stations(lat_lon_df = test_df, lat_colname = 'latitude', lon_colname = 'longitude', ghcnd_station_list = stations, radius = 20)
+#' 
+#' @export
+meteo_nearby_stations <- function(lat_lon_df, lat_colname, lon_colname, ghcnd_station_list, radius, ...)
+  lat_lon_df %>%
+  dplyr::distinct_(lat_colname, lon_colname) %>% 
+  split(.[, lat_colname], .[, lon_colname]) %>%
+  purrr::map(function(x) {
+    station_ids <- 
+      meteo_distance(data = ghcnd_station_list, lat = x$latitude, long = x$longitude, radius = radius) %>% 
+      distinct(id)
+    station_ids <- dplyr::rbind_all(station_ids)
+    return(station_ids)
+    })
