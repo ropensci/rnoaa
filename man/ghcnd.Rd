@@ -32,13 +32,6 @@ ghcnd_version(...)
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}}
 
-\item{date_min, date_max}{(character) Minimum and maximum dates. Use together to get a
-date range}
-
-\item{var}{(character) Variable to get, defaults to "all", which gives back all variables
-in a list. To see what variables are available for a dataset, look at the dataset returned
-from \code{ghcnd()}.}
-
 \item{x}{Input object to print methods. For \code{ghcnd_splitvars()}, the output of a call
 to \code{ghcnd()}.}
 
