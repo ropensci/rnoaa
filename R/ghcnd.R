@@ -1,3 +1,91 @@
+#' Get all GHCND data from a single weather site
+#'
+#' This function uses ftp to access the Global Historical Climatology Network
+#' daily weather data from NOAA's FTP server for a single weather site. It
+#' requires the site identification number for that site and will pull the
+#' entire weather dataset for the site.
+#'
+#' To generate a weather dataset for a single weather site that has been
+#' cleaned to a tidier weather format, the user should use the
+#' \code{\link{ghcnd_search}} function, which calls \code{\link{ghcnd}} and then
+#' processes the output rather than using this function directly.
+#'
+#' @param stationid A character vector giving the identification of the weather
+#'    station for which the user would like to pull data. To get a full and
+#'    current list of stations, the user can use the \code{\link{ghcnd_stations}}
+#'    function.
+#' @param path A character vector giving the path to the directory to cache
+#'    the files locally. By default, the function uses \code{~/.rnoaa/isd}.
+#' @param ... Additional curl options to pass through to \code{\link[httr]{GET}}.
+#'
+#' @return A list object with a single slot, \code{data}, which contains the
+#'    dataframe pulled from NOAA's FTP for the queried weather site. A README
+#'    file with more information about the format of this file is available
+#'    from NOAA (\url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}).
+#'    This file is formatted so each line of the file gives the daily weather
+#'    observations for a single weather variable for all days of one month of
+#'    one year. In addition to measurements, columns are included for certain
+#'    flags, which add information on observation sources and quality and are
+#'    further explained in NOAA's README file for the data.
+#'
+#' @note This function saves the full set of weather data for the queried
+#' site locally and [more about caching magic here and what the user should
+#' do, if anything, to clean up after running].
+#'
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com},
+#' Adam Erickson \email{adam.erickson@@ubc.ca}
+#'
+#' @references
+#'
+#' The following reference has more information on this data:
+#'
+#' Menne, M.J., I. Durre, R.S. Vose, B.E. Gleason, and T.G. Houston, 2012:
+#' An overview of the Global Historical Climatology Network-Daily Database.
+#' Journal of Atmospheric and Oceanic Technology, 29, 897-910,
+#' doi:10.1175/JTECH-D-11-00103.1.
+#'
+#' @seealso \code{\link{ghcnd_search}}
+#'
+#' @examples
+#' \dontrun{
+#' # Get data
+#' ghcnd(stationid = "AGE00147704")
+#'
+#' stations <- ghcnd_stations()
+#' ghcnd(stations$data$id[40])
+#' ghcnd(stations$data$id[4000])
+#' ghcnd(stations$data$id[10000])
+#' ghcnd(stations$data$id[80000])
+#' ghcnd(stations$data$id[80300])
+#'
+#' library("dplyr")
+#' ghcnd(stations$data$id[80300])$data %>% select(id, element) %>% head
+#'
+#' # manipulate data
+#' ## using built in fxns
+#' dat <- ghcnd(stationid="AGE00147704")
+#' (alldat <- ghcnd_splitvars(dat))
+#' library("ggplot2")
+#' ggplot(subset(alldat$tmax, tmax >= 0), aes(date, tmax)) + geom_point()
+#'
+#' ## using dplyr
+#' library("dplyr")
+#' dat <- ghcnd(stationid="AGE00147704")
+#' dat$data %>%
+#'  filter(element == "PRCP", year == 1909)
+#'
+#' }
+#'
+#' @export
+ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", ...){
+  csvpath <- ghcnd_local(stationid, path)
+  if (!is_ghcnd(x = csvpath)) {
+    structure(list(data = ghcnd_GET(path, stationid, ...)), class = "ghcnd", source = csvpath)
+  } else {
+    structure(list(data = read.csv(csvpath, stringsAsFactors = FALSE)), class = "ghcnd", source = csvpath)
+  }
+}
+
 #' Get GHCND daily data from NOAA FTP server
 #'
 #' @export
@@ -38,30 +126,6 @@
 #' # Get stations, ghcnd-stations and ghcnd-inventory merged
 #' (stations <- ghcnd_stations())
 #'
-#' # Get data
-#' ghcnd(stationid = "AGE00147704")
-#' ghcnd(stations$data$id[40])
-#' ghcnd(stations$data$id[4000])
-#' ghcnd(stations$data$id[10000])
-#' ghcnd(stations$data$id[80000])
-#' ghcnd(stations$data$id[80300])
-#'
-#' library("dplyr")
-#' ghcnd(stations$data$id[80300])$data %>% select(id, element) %>% head
-#'
-#' # manipulate data
-#' ## using built in fxns
-#' dat <- ghcnd(stationid="AGE00147704")
-#' (alldat <- ghcnd_splitvars(dat))
-#' library("ggplot2")
-#' ggplot(subset(alldat$tmax, tmax >= 0), aes(date, tmax)) + geom_point()
-#'
-#' ## using dplyr
-#' library("dplyr")
-#' dat <- ghcnd(stationid="AGE00147704")
-#' dat$data %>%
-#'  filter(element == "PRCP", year == 1909)
-#'
 #' # Search based on variable and/or date
 #' ghcnd_search("AGE00147704", var = "PRCP")
 #' ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01")
@@ -72,18 +136,7 @@
 #' ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
 #' ghcnd_search("AGE00147704", var="adfdf")
 #' }
-
-ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", ...){
-  csvpath <- ghcnd_local(stationid, path)
-  if (!is_ghcnd(x = csvpath)) {
-    structure(list(data = ghcnd_GET(path, stationid, ...)), class = "ghcnd", source = csvpath)
-  } else {
-    structure(list(data = read.csv(csvpath, stringsAsFactors = FALSE)), class = "ghcnd", source = csvpath)
-  }
-}
-
 #' @export
-#' @rdname ghcnd
 ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all",
                          path = "~/.rnoaa/ghcnd", ...){
 
