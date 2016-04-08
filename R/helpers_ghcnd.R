@@ -14,6 +14,7 @@
 #'    station using \code{\link{ghcnd}}.
 #' @param keep_flags TRUE / FALSE for whether the user would like to keep all the flags
 #'    for each weather varialbe. The default is to not keep the flags (FALSE).
+#' @inheritParams ghcnd_search
 #'
 #' @return A data frame of daily weather data for a single weather monitor,
 #'    converted to a tidy format. All weather variables may not exist for all
@@ -54,70 +55,71 @@
 #'
 #' @examples
 #' \dontrun{
-#' # You must have your NOAA API key saved as `steve`
-#' options("noaakey" = steve)
-#'
 #' # One station in Australia is ASM00094275
-#' ghcnd_data <- ghcnd(stationid = "ASN00003003")
-#' cleaned_df <- clean_daily(ghcnd_data)
+#' cleaned_df <- clean_daily(stationid = "ASN00003003")
 #' }
 #'
 #' @importFrom dplyr %>%
 #'
 #' @export
-clean_daily <- function(ghcnd_data, keep_flags = FALSE){
-  if(keep_flags){
-    cleaned_df <- dplyr::filter(ghcnd_data$data,
-                                element %in% c("TMAX", "TMIN", "PRCP",
-                                               "SNOW", "SNWD", "AWND",
-                                               "WSFG")) %>%
-      tidyr::gather(what, value, -id, -year, -month, -element) %>%
-      dplyr::mutate(day = as.numeric(gsub("[A-Z]", "", what)),
-             what = gsub("[0-9]", "", what),
-             what = paste(tolower(element), tolower(what), sep = "_"),
-             what = gsub("_value", "", what),
-             value = ifelse(value == -9999, NA, as.character(value))) %>%
-      dplyr::mutate(date = suppressWarnings(
-        lubridate::ymd(paste0(year, sprintf("%02s", month),
-                              sprintf("%02s", day))))) %>%
-      dplyr::filter(!is.na(date)) %>%
-      dplyr::select(id, date, what, value) %>%
-      tidyr::spread(what, value) %>%
-      dplyr::arrange(date)
-  } else {
-    cleaned_df <- dplyr::filter(ghcnd_data$data,
-                                element %in% c("TMAX", "TMIN", "PRCP",
-                                               "SNOW", "SNWD", "AWND",
-                                               "WSFG")) %>%
-      dplyr::select(-matches("FLAG")) %>%
-      tidyr::gather(what, value, -id, -year, -month, -element) %>%
-      dplyr::mutate(day = as.numeric(gsub("[A-Z]", "", what)),
-             what = gsub("[0-9]", "", what),
-             what = paste(tolower(element), tolower(what), sep = "_"),
-             what = gsub("_value", "", what),
-             value = ifelse(value == -9999, NA, as.character(value))) %>%
-      dplyr::mutate(date = suppressWarnings(
-        lubridate::ymd(paste0(year, sprintf("%02s", month),
-                                          sprintf("%02s", day))))) %>%
-      dplyr::filter(!is.na(date)) %>%
-      dplyr::select(id, date, what, value) %>%
-      tidyr::spread(what, value) %>%
-      dplyr::arrange(date)
-  }
-  which_weather_vars <- which(colnames(cleaned_df) %in%
-                                c("prcp", "tavg", "tmax", "tmin", "awnd",
-                                  "wsfg"))
+clean_daily <- function(stationid, keep_flags = FALSE, var = "all",
+                        date_min = NULL, date_max = NULL){
+
+    dat <- ghcnd_search(stationid = stationid, var = var, date_min = date_min,
+                        date_max = date_max) %>%
+      lapply(clean_ghncd_element, keep_flags = keep_flags)
+    cleaned_df <- do.call(rbind.data.frame, dat) %>%
+      tidyr::spread(key = key, value = value)
+
+  which_vars_tenths <- which(colnames(cleaned_df) %in%
+                                c("prcp", "tmax", "tmin", "tavg"))
   cleaned_df <- tbl_df(cleaned_df)
   # All these variables are in tenths of units
-  cleaned_df[, which_weather_vars] <- vapply(cleaned_df[, which_weather_vars],
+  cleaned_df[, which_vars_tenths] <- vapply(cleaned_df[, which_vars_tenths],
                                              FUN.VALUE = numeric(nrow(cleaned_df)),
-                                             FUN = function(x) as.numeric(x) / 10)
-  which_snow_vars <- which(colnames(cleaned_df) %in%
+                                             FUN = function(x){
+                                               x <- ifelse(x == -9999, NA, x)
+                                               x <- as.numeric(x) / 10
+                                             })
+
+  which_other_vars <- which(colnames(cleaned_df) %in%
                              c("snow", "snwd"))
-  cleaned_df[, which_weather_vars] <- vapply(cleaned_df[, which_weather_vars],
+  cleaned_df[, which_other_vars] <- vapply(cleaned_df[, which_other_vars],
                                              FUN.VALUE = numeric(nrow(cleaned_df)),
-                                             FUN = function(x) as.numeric(x))
+                                             FUN = function(x){
+                                               x <- ifelse(x == -9999, NA, x)
+                                               x <- as.numeric(x)
+                                             })
   return(cleaned_df)
+}
+
+#' Restructure element of ghncd_search list
+#'
+#' This function restructures a single element of the list object created
+#' by \code{\link{ghncd_search}}, to add a column giving the variable name
+#' (\code{key}) and change the name of the variable column to \code{value}.
+#' These changes facilitate combining all elements from the list created by
+#' \code{\link{ghncd_search}}, to create a tidy dataframe of the weather
+#' observations from the station.
+#'
+#' @param x A dataframe with daily observations for a single monitor for a
+#'    single weather variable. This dataframe is one of the elements returned
+#'    by \code{\link{ghncd_search}}.
+#' @inheritParams clean_daily
+#'
+#' @return A dataframe reformatted to allow easy aggregation of all weather
+#'    variables for a single monitor.
+clean_ghncd_element <- function(x, keep_flags = FALSE){
+  var_name <- colnames(x)[2]
+  if(keep_flags){
+    flag_locs <- grep("flag", colnames(x))
+    colnames(x)[flag_locs] <- paste(colnames(x)[flag_locs], var_name, sep = "_")
+    x <- tidyr::gather(x, key, value, -id, -date)
+  } else {
+    x <- dplyr::select(x, -ends_with("flag")) %>%
+      tidyr::gather(key, value, -id, -date)
+  }
+  return(x)
 }
 
 #' Pull daily weather data for multiple weather monitors

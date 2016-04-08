@@ -42,8 +42,7 @@ processes the output rather than using this function directly.
 }
 \note{
 This function saves the full set of weather data for the queried
-site locally and [more about caching magic here and what the user should
-do, if anything, to clean up after running].
+site locally in the directory specified by the \code{path} argument.
 }
 \examples{
 \dontrun{
