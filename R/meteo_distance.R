@@ -155,8 +155,10 @@ deg2rad <- function(deg) {
 #' lon_colname = 'longitude', ghcnd_station_list = stations, radius = 20)
 #'
 #' @export
-meteo_nearby_stations <- function(lat_lon_df, lat_colname, lon_colname,
-                                  ghcnd_station_list, radius, ...)
+meteo_nearby_stations <- function(lat_lon_df, lat_colname = "lat",
+                                  lon_colname = "lon",
+                                  ghcnd_station_list = ghcnd_stations(),
+                                  radius, ...)
   lat_lon_df %>%
   dplyr::distinct_(lat_colname, lon_colname) %>%
   split(.[, lat_colname], .[, lon_colname]) %>%
