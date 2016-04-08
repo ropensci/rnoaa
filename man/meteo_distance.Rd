@@ -18,7 +18,8 @@ meteo_distance(data, lat, long, latName = "latitude",
 
 \item{longName}{Name of longitude header name in data. Default = 'longitude'}
 
-\item{units}{Units of the latitude and longitude values: degrees 'deg', radians 'rad', d/m/s 'dms'. Default = 'deg'}
+\item{units}{Units of the latitude and longitude values: degrees 'deg',
+radians 'rad', d/m/s 'dms'. Default = 'deg'}
 
 \item{radius}{Radius to search (does nothing yet)}
 

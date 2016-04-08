@@ -2,35 +2,62 @@
 % Please edit documentation in R/meteo_distance.R
 \name{meteo_nearby_stations}
 \alias{meteo_nearby_stations}
-\title{get_nearby_stations}
+\title{Created a list of weather monitors near one or more locations}
 \usage{
-meteo_nearby_stations(lat_lon_df, lat_colname, lon_colname, ghcnd_station_list,
-  radius, ...)
+meteo_nearby_stations(lat_lon_df, lat_colname = "lat", lon_colname = "lon",
+  ghcnd_station_list = ghcnd_stations(), radius = 25, ...)
 }
 \arguments{
-\item{lat_lon_df}{A dataframe that contains the site latitude and longitude values used to search for nearby weather stations}
+\item{lat_lon_df}{A dataframe that contains the site latitude and longitude
+values used to search for nearby weather stations}
 
-\item{lat_colname}{Name of the latitude column in the lat_lon_df}
+\item{lat_colname}{A character string giving the name of the latitude column
+in the \code{lat_lon_df} dataframe.}
 
-\item{lon_colname}{Name of the longitude column in the lat_lon_df}
+\item{lon_colname}{A character string giving the name of the longitude column
+in the \code{lat_lon_df} dataframe.}
 
-\item{ghcnd_station_list}{List of weather stations obtained using `ghcnd_stations()`}
+\item{ghcnd_station_list}{The output of \code{\link{ghcnd_stations()}}: a
+current list of weather stations available through NOAA for the GHCND
+dataset. The format of this is a list with a single element, a dataframe
+with one row per available weather station.}
 
-\item{radius}{Radius to search (in km)}
+\item{radius}{A numeric vector giving the radius (in kilometers) within which
+to search for monitors near a location}
 }
 \value{
-a dataframe containing a unique set of the weather stations within the search radius
+a dataframe containing a unique set of the weather stations within
+   the search radius. Site IDs for the weather stations given in this
+   dataframe can be used in conjunction with other functions in the
+   \code{rnoaa} package to pull weather data for the station.
 }
 \description{
-
+This function inputs a dataframe with latitudes and longitudes of locations
+and creates a dataframe with monitors with a certain radius of those
+locations. The site ids from this dataframe can then be used with other
+\code{rnoaa} functions to pull data from all available weather stations near
+a location.
+}
+\note{
+By default, this function will pull the full station list from NOAA
+   to use to identify nearby locations. If you will be creating lists of
+   monitors nearby several stations, you can save some time by using the
+   \code{\link{ghcnd_stations}} function separately to create an object
+   with all stations and then use the argument \code{ghcnd_station_list} in
+   this function to reference that object, rather than using this function's
+   defaults.
 }
 \examples{
+\dontrun{
 lat <- c(37.779199, 37.531635)
 lon <- c(-122.404294, -122.419282)
 lat_lon_df <- data.frame(latitude = lat, longitude = lon)
 
-nearby_stations <- 
-get_nearby_stations(lat_lon_df = test_df, lat_colname = 'latitude', lon_colname = 'longitude', ghcnd_station_list = stations, radius = 20)
+stations <- ghncd_stations()
+nearby_stations <-
+meteo_nearby_stations(lat_lon_df, lat_colname = 'latitude',
+   lon_colname = 'longitude', ghcnd_station_list = stations, radius = 20)
+}
 
 }
 
