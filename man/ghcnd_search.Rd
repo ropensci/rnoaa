@@ -2,7 +2,7 @@
 % Please edit documentation in R/ghcnd.R
 \name{ghcnd_search}
 \alias{ghcnd_search}
-\title{Get a tidy version of GHCND data from a single weather site}
+\title{Get a cleaned version of GHCND data from a single weather site}
 \usage{
 ghcnd_search(stationid, date_min = NULL, date_max = NULL, var = "all",
   path = "~/.rnoaa/ghcnd", ...)
@@ -21,13 +21,13 @@ default is to keep all available daily data for the queried weather site.}
 
 \item{var}{A character vector specifying either \code{"all"} (pull all
 available weather parameters for the site) or the weather parameters to
-keep in the final data (e.g., \code{c("tmax", "tmin")} to only keep
+keep in the final data (e.g., \code{c("TMAX", "TMIN")} to only keep
 maximum and minimum temperature). Example choices for this argument include:
 \itemize{
-\item \code{PRCP}: Precipitation, in mm
-\item \code{TAVG}: Average temperature, in degrees Celsius
-\item \code{TMAX}: Maximum temperature, in degrees Celsius
-\item \code{TMIN}: Minimum temperature, in degrees Celsius
+\item \code{PRCP}: Precipitation, in tenths of millimeters
+\item \code{TAVG}: Average temperature, in tenths of degrees Celsius
+\item \code{TMAX}: Maximum temperature, in tenths of degrees Celsius
+\item \code{TMIN}: Minimum temperature, in tenths of degrees Celsius
 }
 A full list of possible weather variables is available in NOAA's README
 file for the GHCND data (\url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}).
@@ -40,6 +40,14 @@ the files locally. By default, the function uses \code{~/.rnoaa/isd}.}
 
 \item{...}{Additional curl options to pass through to \code{\link[httr]{GET}}.}
 }
+\value{
+A list object with slots for each of the available specified
+   weather variables. Each element in the list is a separate time series
+   dataframe with daily observations, as well as flag values, for one of
+   the weather variables. The flag values give information on the quality
+   and source of each observation; see the NOAA README file on this
+   data for more information.
+}
 \description{
 This function uses ftp to access the Global Historical Climatology Network
 daily weather data from NOAA's FTP server for a single weather site. It
@@ -47,6 +55,13 @@ requires the site identification number for that site and will pull the
 entire weather dataset for the site. It will then clean this data to convert
 it to a tidier format and will also, if requested, filter it to a certain
 date range and to certain weather variables.
+}
+\note{
+This function calls \code{\link{ghcnd}}, which will download and save
+   data from all available dates and weather variables for the queried
+   weather station. The step of limiting the dataset to only certain dates
+   and / or weather variables does not occur until after the full data has
+   been pulled.
 }
 \examples{
 \dontrun{
