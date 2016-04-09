@@ -3,8 +3,8 @@
 #' @param station_data a dataframe. Expects col headers with names latName and longName
 #' @param lat Latitude to centre search at
 #' @param long Longitude to centre search at
-#' @param latName Name of latitude header name in data, Default = 'latitude'
-#' @param longName Name of longitude header name in data. Default = 'longitude'
+#' @param latName Name of latitude header name in the station data, Default = 'latitude'
+#' @param longName Name of longitude header name in station data. Default = 'longitude'
 #' @param units Units of the latitude and longitude values: degrees 'deg',
 #'    radians 'rad', d/m/s 'dms'. Default = 'deg'
 #' @param radius Radius to search (does nothing yet)
@@ -62,14 +62,10 @@ meteo_process_geographic_data <- function(data,
   data["distance"] <- NA
 
   # Caluclate distance between points
-  data$distance <-
-    meteo_spherical_distance(
-      lat1 = lat,
-      long1 = long,
-      lat2 = data[ , latName],
-      long2 = data[ , longName],
-      units = 'deg'
-    )
+  data$distance <- meteo_spherical_distance(lat1 = lat, long1 = long,
+                                            lat2 = data[ , latName],
+                                            long2 = data[ , longName],
+                                            units = "deg")
 
   # Sort data into ascending order by distance column
   data <- arrange(data, distance)
@@ -90,6 +86,8 @@ meteo_process_geographic_data <- function(data,
 #'
 #' @return A numeric vector giving the distance (in kilometers) between the
 #'    pair of locations input.
+#'
+#' @note This function assumes an earth radius of 6,371 km.
 #'
 #' @export
 meteo_spherical_distance <- function(lat1, long1, lat2, long2, units = 'deg') {
@@ -112,8 +110,8 @@ meteo_spherical_distance <- function(lat1, long1, lat2, long2, units = 'deg') {
   a <- sin((lat2 - lat1) / 2) ^ 2 + cos(lat1) * cos(lat2) *
     sin((long2 - long1) / 2) ^ 2
 
-  d <- 2 * atan2(sqrt(a), sqrt(1 - a)) * radius_earth
-
+  # d <- 2 * atan2(sqrt(a), sqrt(1 - a)) * radius_earth
+  d <- 2 * asin(sqrt(a)) * radius_earth
   return(d)
 
 } # End calculate_spherical_distance
@@ -169,24 +167,43 @@ deg2rad <- function(deg) {
 #' lon <- c(-122.404294, -122.419282)
 #' lat_lon_df <- data.frame(latitude = lat, longitude = lon)
 #'
-#' stations <- ghncd_stations()
+#' station_data <- ghncd_stations()[[1]]
 #' nearby_stations <-
 #' meteo_nearby_stations(lat_lon_df, lat_colname = 'latitude',
 #'    lon_colname = 'longitude', ghcnd_station_list = stations, radius = 20)
 #' }
 #'
+#' @importFrom dplyr %>%
+#'
 #' @export
-meteo_nearby_stations <- function(lat_lon_df, lat_colname = "lat",
-                                  lon_colname = "lon",
+meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
+                                  lon_colname = "longitude",
                                   station_data = ghcnd_stations()[[1]],
+                                  var = "all",
+                                  year_min = NULL,
+                                  year_max = NULL,
                                   radius = 25, ...)
+
+  # Handle generic values for `var`, `year_min`, and `year_max` arguments
+  if(is.null(year_min)) year_min <- min(station_data$first_year, na.rm = TRUE)
+  if(is.null(year_max)) year_max <- max(station_data$first_year, na.rm = TRUE)
+  if(var == "all") var <- unique(station_data$element)
+
+  station_data2 <- dplyr::filter(station_data,
+                                 last_year >= year_min &
+                                   first_year <= year_max &
+                                   element %in% var &
+                                   !is.na(element)) %>%
+    dplyr::select(id, name, latitude, longitude) %>%
+    dplyr::distinct()
+
   lat_lon_df %>%
   dplyr::distinct_(lat_colname, lon_colname) %>%
   split(.[, lat_colname], .[, lon_colname]) %>%
   purrr::map(function(x) {
     station_ids <-
-      meteo_distance(station_data = station_data, lat = x[lat_colname],
-                     long = x[lon_colname], radius = radius) %>%
+      meteo_distance(station_data = station_data, lat = x[ , lat_colname],
+                     long = x[ , lon_colname], radius = radius) %>%
       distinct(id)
     station_ids <- dplyr::rbind_all(station_ids)
     return(station_ids)
