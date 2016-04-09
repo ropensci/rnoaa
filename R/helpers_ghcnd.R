@@ -10,8 +10,6 @@
 #' Journal of Atmospheric and Oceanic Technology, 29, 897-910,
 #' doi:10.1175/JTECH-D-11-00103.1.
 #'
-#' @param ghcnd_data An object of class "ghcnd", as generated for a single weather
-#'    station using \code{\link{ghcnd}}.
 #' @param keep_flags TRUE / FALSE for whether the user would like to keep all the flags
 #'    for each weather varialbe. The default is to not keep the flags (FALSE).
 #' @inheritParams ghcnd_search
@@ -168,12 +166,18 @@ clean_ghncd_element <- function(x, keep_flags = FALSE){
 #' }
 #'
 #' @export
-meteo_pull_monitors <- function(monitors, keep_flags = FALSE){
+meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
+                                date_max = NULL, var = "all"){
   monitors <- unique(monitors)
-  safe_ghcnd <- purrr::safely(ghcnd)
-  all_monitors_ghcnd <- lapply(monitors, safe_ghcnd)
+  #safe_ghcnd <- purrr::safely(ghcnd)
+  #all_monitors_ghcnd <- lapply(monitors, safe_ghcnd)
 
-  check_station <- sapply(all_monitors_ghcnd, function(x) is.null(x$result))
+  safe_clean_daily <- purrr::safely(clean_daily)
+  all_monitors_clean <- lapply(monitors, safe_clean_daily,
+                               keep_flags = keep_flags, date_min = date_min,
+                               date_max = date_max, var = var)
+
+  check_station <- sapply(all_monitors_clean, function(x) is.null(x$result))
   bad_stations <- monitors[check_station]
   if(length(bad_stations) > 0){
     warning(paste("The following stations could not be pulled from",
@@ -181,11 +185,9 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE){
                   "\nAll other monitors were successfully pulled from GHCN."))
   }
 
-  all_monitors_ghcnd <- lapply(all_monitors_ghcnd[!check_station],
+  all_monitors_out <- lapply(all_monitors_clean[!check_station],
                                function(x) x$result)
-  all_monitors_clean <- lapply(all_monitors_ghcnd, clean_daily,
-                               keep_flags = keep_flags)
-  all_monitors_clean <- suppressWarnings(dplyr::bind_rows(all_monitors_clean))
-  return(all_monitors_clean)
+  all_monitors_out <- suppressWarnings(dplyr::bind_rows(all_monitors_out))
+  return(all_monitors_out)
 }
 
