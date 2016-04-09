@@ -12,9 +12,9 @@ meteo_process_geographic_data(data, lat, long, latName, longName,
 
 \item{long}{Longitude to centre search at}
 
-\item{latName}{Name of latitude header name in data, Default = 'latitude'}
+\item{latName}{Name of latitude header name in the station data, Default = 'latitude'}
 
-\item{longName}{Name of longitude header name in data. Default = 'longitude'}
+\item{longName}{Name of longitude header name in station data. Default = 'longitude'}
 
 \item{units}{Units of the latitude and longitude values: degrees 'deg',
 radians 'rad', d/m/s 'dms'. Default = 'deg'}

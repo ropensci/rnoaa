@@ -6,7 +6,7 @@
 \usage{
 meteo_nearby_stations(lat_lon_df, lat_colname = "latitude",
   lon_colname = "longitude", station_data = ghcnd_stations()[[1]],
-  radius = 25, ...)
+  var = "all", year_min = NULL, year_max = NULL, radius = 25, ...)
 }
 \arguments{
 \item{lat_lon_df}{A dataframe that contains the site latitude and longitude
@@ -54,10 +54,14 @@ lat <- c(37.779199, 37.531635)
 lon <- c(-122.404294, -122.419282)
 lat_lon_df <- data.frame(latitude = lat, longitude = lon)
 
-station_data <- ghncd_stations()[[1]]
-nearby_stations <-
-meteo_nearby_stations(lat_lon_df, lat_colname = 'latitude',
-   lon_colname = 'longitude', ghcnd_station_list = stations, radius = 20)
+station_data <- ghncd_stations()[[1]] # Takes a while to run
+nearby_stations <-  meteo_nearby_stations(lat_lon_df,
+                    station_data = station_data, radius = 50)
+
+miami <- data.frame(latitude = 25.7617, longitude = -80.1918)
+meteo_nearby_stations(lat_lon_df = miami, station_data = station_data,
+                      radius = 50, var = c("prcp", "tmax"),
+                      year_min = 1992, year_max = 1992)
 }
 
 }
