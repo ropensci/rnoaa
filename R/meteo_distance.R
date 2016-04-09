@@ -26,7 +26,6 @@ meteo_distance <- function(station_data, lat, long,
   )
 
   if(!is.null(radius)) {
-    print('test')
     data <- data[data$distance < radius,]
   }
 
@@ -147,6 +146,7 @@ deg2rad <- function(deg) {
 #'    with one row per available weather station.
 #' @param radius A numeric vector giving the radius (in kilometers) within which
 #'    to search for monitors near a location
+#' @inheritParams ghcnd_search
 #'
 #' @return a dataframe containing a unique set of the weather stations within
 #'    the search radius. Site IDs for the weather stations given in this
@@ -167,10 +167,14 @@ deg2rad <- function(deg) {
 #' lon <- c(-122.404294, -122.419282)
 #' lat_lon_df <- data.frame(latitude = lat, longitude = lon)
 #'
-#' station_data <- ghncd_stations()[[1]]
-#' nearby_stations <-
-#' meteo_nearby_stations(lat_lon_df, lat_colname = 'latitude',
-#'    lon_colname = 'longitude', ghcnd_station_list = stations, radius = 20)
+#' station_data <- ghncd_stations()[[1]] # Takes a while to run
+#' nearby_stations <-  meteo_nearby_stations(lat_lon_df,
+#'                     station_data = station_data, radius = 50)
+#'
+#' miami <- data.frame(id = "miami", latitude = 25.7617, longitude = -80.1918)
+#' meteo_nearby_stations(lat_lon_df = miami, station_data = station_data,
+#'                       radius = 50, var = c("prcp", "tmax"),
+#'                       year_min = 1992, year_max = 1992)
 #' }
 #'
 #' @importFrom dplyr %>%
@@ -182,29 +186,32 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
                                   var = "all",
                                   year_min = NULL,
                                   year_max = NULL,
-                                  radius = 25, ...)
+                                  radius = 25, ...){
 
   # Handle generic values for `var`, `year_min`, and `year_max` arguments
   if(is.null(year_min)) year_min <- min(station_data$first_year, na.rm = TRUE)
-  if(is.null(year_max)) year_max <- max(station_data$first_year, na.rm = TRUE)
-  if(var == "all") var <- unique(station_data$element)
+  if(is.null(year_max)) year_max <- max(station_data$last_year, na.rm = TRUE)
+  if(length(var) == 1 && var == "all"){
+    var <- unique(station_data$element)
+  }
 
-  station_data2 <- dplyr::filter(station_data,
+  station_data <- dplyr::filter(station_data,
                                  last_year >= year_min &
                                    first_year <= year_max &
-                                   element %in% var &
+                                   element %in% toupper(var) &
                                    !is.na(element)) %>%
     dplyr::select(id, name, latitude, longitude) %>%
     dplyr::distinct()
 
-  lat_lon_df %>%
-  dplyr::distinct_(lat_colname, lon_colname) %>%
-  split(.[, lat_colname], .[, lon_colname]) %>%
-  purrr::map(function(x) {
-    station_ids <-
-      meteo_distance(station_data = station_data, lat = x[ , lat_colname],
-                     long = x[ , lon_colname], radius = radius) %>%
-      distinct(id)
-    station_ids <- dplyr::rbind_all(station_ids)
+  location_stations <- lat_lon_df %>%
+    split(.[, lat_colname], .[, lon_colname]) %>%
+    purrr::map(function(x) {
+      station_ids <- meteo_distance(station_data = station_data,
+                                    lat = x[ , lat_colname],
+                                    long = x[ , lon_colname],
+                                    radius = radius)
     return(station_ids)
     })
+  names(location_stations) <- lat_lon_df$id
+  return(location_stations)
+}
