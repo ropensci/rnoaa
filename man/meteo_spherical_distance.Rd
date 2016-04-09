@@ -2,7 +2,7 @@
 % Please edit documentation in R/meteo_distance.R
 \name{meteo_spherical_distance}
 \alias{meteo_spherical_distance}
-\title{meteo_spherical_distance}
+\title{Calculate the distance between two locations}
 \usage{
 meteo_spherical_distance(lat1, long1, lat2, long2, units = "deg")
 }
@@ -15,9 +15,18 @@ meteo_spherical_distance(lat1, long1, lat2, long2, units = "deg")
 
 \item{long2}{data}
 
-\item{units}{data}
+\item{units}{Units of the latitude and longitude values: degrees 'deg',
+radians 'rad', d/m/s 'dms'. Default = 'deg'}
+}
+\value{
+A numeric vector giving the distance (in kilometers) between the
+   pair of locations input.
 }
 \description{
-meteo_spherical_distance
+This functions uses the haversine formula to calculate the great circle
+distance between two locations, identified by their latitudes and longitudes.
+}
+\note{
+This function assumes an earth radius of 6,371 km.
 }
 

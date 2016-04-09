@@ -2,14 +2,17 @@
 % Please edit documentation in R/meteo_distance.R
 \name{deg2rad}
 \alias{deg2rad}
-\title{deg2rad}
+\title{Convert from degrees to radians}
 \usage{
 deg2rad(deg)
 }
 \arguments{
-\item{deg}{}
+\item{deg}{A numeric vector in units of degrees.}
+}
+\value{
+The input numeric vector, converted to units of radians.
 }
 \description{
-deg2rad
+Convert from degrees to radians
 }
 

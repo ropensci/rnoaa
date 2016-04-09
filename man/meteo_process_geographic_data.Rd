@@ -8,17 +8,16 @@ meteo_process_geographic_data(data, lat, long, latName, longName,
   units = "deg")
 }
 \arguments{
-\item{data}{data}
+\item{lat}{Latitude to centre search at}
 
-\item{lat}{data}
+\item{long}{Longitude to centre search at}
 
-\item{long}{data}
+\item{latName}{Name of latitude header name in data, Default = 'latitude'}
 
-\item{latName}{data}
+\item{longName}{Name of longitude header name in data. Default = 'longitude'}
 
-\item{longName}{data}
-
-\item{units}{data}
+\item{units}{Units of the latitude and longitude values: degrees 'deg',
+radians 'rad', d/m/s 'dms'. Default = 'deg'}
 }
 \description{
 meteo_process_geographic_data

@@ -2,10 +2,11 @@
 % Please edit documentation in R/meteo_distance.R
 \name{meteo_nearby_stations}
 \alias{meteo_nearby_stations}
-\title{Created a list of weather monitors near one or more locations}
+\title{Find weather monitors near locations}
 \usage{
-meteo_nearby_stations(lat_lon_df, lat_colname = "lat", lon_colname = "lon",
-  ghcnd_station_list = ghcnd_stations(), radius = 25, ...)
+meteo_nearby_stations(lat_lon_df, lat_colname = "latitude",
+  lon_colname = "longitude", station_data = ghcnd_stations()[[1]],
+  radius = 25, ...)
 }
 \arguments{
 \item{lat_lon_df}{A dataframe that contains the site latitude and longitude
@@ -17,8 +18,8 @@ in the \code{lat_lon_df} dataframe.}
 \item{lon_colname}{A character string giving the name of the longitude column
 in the \code{lat_lon_df} dataframe.}
 
-\item{ghcnd_station_list}{The output of \code{\link{ghcnd_stations()}}: a
-current list of weather stations available through NOAA for the GHCND
+\item{station_data}{The output of \code{\link{ghcnd_stations()[[1]]}}:
+a current list of weather stations available through NOAA for the GHCND
 dataset. The format of this is a list with a single element, a dataframe
 with one row per available weather station.}
 
@@ -53,7 +54,7 @@ lat <- c(37.779199, 37.531635)
 lon <- c(-122.404294, -122.419282)
 lat_lon_df <- data.frame(latitude = lat, longitude = lon)
 
-stations <- ghncd_stations()
+station_data <- ghncd_stations()[[1]]
 nearby_stations <-
 meteo_nearby_stations(lat_lon_df, lat_colname = 'latitude',
    lon_colname = 'longitude', ghcnd_station_list = stations, radius = 20)

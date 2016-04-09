@@ -4,11 +4,11 @@
 \alias{meteo_distance}
 \title{meteo_distance}
 \usage{
-meteo_distance(data, lat, long, latName = "latitude",
+meteo_distance(station_data, lat, long, latName = "latitude",
   longName = "longitude", units = "deg", radius = NULL, limit = NULL)
 }
 \arguments{
-\item{data}{a dataframe. Expects col headers with names latName and longName}
+\item{station_data}{a dataframe. Expects col headers with names latName and longName}
 
 \item{lat}{Latitude to centre search at}
 
