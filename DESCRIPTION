@@ -44,4 +44,5 @@ Suggests:
     lawn,
     rgdal,
     covr
+Remotes: ropensci/geojsonio
 RoxygenNote: 5.0.1
