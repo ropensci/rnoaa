@@ -63,8 +63,9 @@
 clean_daily <- function(stationid, keep_flags = FALSE, var = "all",
                         date_min = NULL, date_max = NULL){
 
-    dat <- ghcnd_search(stationid = stationid, var = var, date_min = date_min,
-                        date_max = date_max) %>%
+    dat <- suppressWarnings(ghcnd_search(stationid = stationid, var = var,
+                                         date_min = date_min,
+                                         date_max = date_max)) %>%
       lapply(clean_ghncd_element, keep_flags = keep_flags)
     cleaned_df <- do.call(rbind.data.frame, dat) %>%
       tidyr::spread(key = key, value = value)
