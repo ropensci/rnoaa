@@ -14,9 +14,9 @@ Here are some recent tropical storms that were very severe with severe impacts t
 Storm | Landfall  time | Landfall location | Some places affected
 ----- | ------------- | -----------------  | -------
 Hurricane Andrew | 0905 UTC 24 August 1992 | near Homestead AFB FL | Miami, Key Largo, Nassau (Bahamas)
-Labor Day Storm | 1935 | US | ...
-Cyclone Tracy | 1974 | Australia | ...
-Tropical Storm Bilis | 2006 | China | Guangdong, Hunan, Fujian
+Labor Day Storm | late on September 2, 1935 | Florida Keys | Florida Keys, St. Petersburg, Florida
+Cyclone Tracy | very early December 25, 1974 | Darwin, Australia | Darwin
+Tropical Storm Bilis | 12:50 p.m. local time July 14, 2006 | near Fuzhou, China | Guangdong, Hunan, Fujian
 
 You will be trying to collect relevant data for one of these storms. 
 
