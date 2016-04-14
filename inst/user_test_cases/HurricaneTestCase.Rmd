@@ -1,0 +1,57 @@
+---
+title: 'Test Case: Hurricane Data'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Main task
+
+Here are some recent tropical storms that were very severe with severe impacts to humans: 
+
+Storm | Landfall  time | Landfall location | Some places affected
+----- | ------------- | -----------------  | -------
+Hurricane Andrew | 0905 UTC 24 August 1992 | near Homestead AFB FL | Miami, Key Largo, Nassau (Bahamas)
+Labor Day Storm | 1935 | US | ...
+Cyclone Tracy | 1974 | Australia | ...
+Tropical Storm Bilis | 2006 | China | Guangdong, Hunan, Fujian
+
+You will be trying to collect relevant data for one of these storms. 
+
+# Relevant NOAA weather products
+
+In later sections, you will have specific goals to try to achieve, in terms of what data to get. However, as you work on this project, please keep a running list here of any of the NOAA data products that you think might have data that could be used to explore the storm you're working on. Include the name of the dataset, a short description of what you might be able to get from it, and a link to any websites that give more information.
+
+# Relevant other data sources
+
+As you work on this project, also keep a running list here of any data from sources other than NOAA that you think might have data that could be used to explore the storm you're working on. Include the name of the dataset, a short description of what you might be able to get from it, and a link to any websites that give more information and / or the data itself.
+
+# Specific tasks
+
+As you work on these, include the code that you try. Include things that worked and things that you thought would work but that did not. Also write down what parts were easy to figure out how to do, and which you had to search around a lot to figure out what to do. 
+
+## Winds at landfall
+
+Get any data you can that gives measurements of winds when the storm made landfall (use the landfall listed for the storm in the table-- often, there are more than one for a storm for different locations, but just try for the listed one). 
+
+Try to get:
+
+- A measure of how strong winds were over land around where the storm made landfall
+- A measure of how strong winds were over water around where the storm made landfall
+- Wind directions at different locations (on land or over water) near landfall 
+- An estimate of how many of the stations near the landfall that were operating the week before the storm that were still operational and recording data at landfall
+
+## Precipitation at affected cities
+
+For each of the affected cities, estimate the precipitation during the storm and on neighboring days. Include: 
+
+- Daily and hourly estimates of rainfall
+- How many stations you used to get each of those values
+- A map of stations you used to get those values, with some measure on the map of the maximum daily or hourly rainfall measured at that station
+
+## Plotting the storm
+
+Plot the full track of the storm. Show its intensity as it progressed along the track, as well as the affected cities.
+ 
