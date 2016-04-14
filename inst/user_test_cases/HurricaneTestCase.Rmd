@@ -50,8 +50,9 @@ For each of the affected cities, estimate the precipitation during the storm and
 - Daily and hourly estimates of rainfall
 - How many stations you used to get each of those values
 - A map of stations you used to get those values, with some measure on the map of the maximum daily or hourly rainfall measured at that station
+- Did the location have problems with flooding during the storm? Get some measure to identify if and to what degree the location flooded.
 
 ## Plotting the storm
 
 Plot the full track of the storm. Show its intensity as it progressed along the track, as well as the affected cities.
- 
+
