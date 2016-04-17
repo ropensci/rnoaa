@@ -15,7 +15,9 @@
 #' @param station_data The output of \code{ghcnd_stations()[[1]]}:
 #'    a current list of weather stations available through NOAA for the GHCND
 #'    dataset. The format of this is a list with a single element, a dataframe
-#'    with one row per available weather station.
+#'    with one row per available weather station. To save time, run the
+#'    \code{ghcnd_stations} call and save the output to an object, rather than
+#'    rerunning the default every time (see the examples).
 #' @param radius A numeric vector giving the radius (in kilometers) within which
 #'    to search for monitors near a location
 #' @inheritParams ghcnd_search
@@ -67,13 +69,11 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
     var <- unique(station_data$element)
   }
 
-  station_data <- dplyr::filter(station_data,
-                                last_year >= year_min &
-                                  first_year <= year_max &
-                                  element %in% toupper(var) &
-                                  !is.na(element)) %>%
-    dplyr::select(id, name, latitude, longitude) %>%
-    dplyr::distinct()
+  .dots <- list(~last_year >= year_min & first_year <= year_max &
+                 element %in% toupper(var) & !is.na(element))
+  station_data <- dplyr::filter_(station_data, .dots = .dots) %>%
+    dplyr::select_(~id, ~name, ~latitude, ~longitude) %>%
+    dplyr::distinct_()
 
   location_stations <- lat_lon_df %>%
     split(.[, lat_colname], .[, lon_colname]) %>%
@@ -157,7 +157,7 @@ meteo_process_geographic_data <- function(data,
                                             units = "deg")
 
   # Sort data into ascending order by distance column
-  data <- arrange(data, distance)
+  data <- dplyr::arrange_(data, ~distance)
 
   return(data)
 } # End meteo_process_geographic_data
@@ -199,8 +199,7 @@ meteo_spherical_distance <- function(lat1, long1, lat2, long2, units = 'deg') {
   a <- sin((lat2 - lat1) / 2) ^ 2 + cos(lat1) * cos(lat2) *
     sin((long2 - long1) / 2) ^ 2
 
-  # d <- 2 * atan2(sqrt(a), sqrt(1 - a)) * radius_earth
-  d <- 2 * asin(sqrt(a)) * radius_earth
+  d <- 2 * atan2(sqrt(a), sqrt(1 - a)) * radius_earth
   return(d)
 
 } # End calculate_spherical_distance
@@ -210,8 +209,6 @@ meteo_spherical_distance <- function(lat1, long1, lat2, long2, units = 'deg') {
 #' @param deg A numeric vector in units of degrees.
 #'
 #' @return The input numeric vector, converted to units of radians.
-#'
-#' @export
 deg2rad <- function(deg) {
   return(deg*pi/180)
 } # End deg2rad
