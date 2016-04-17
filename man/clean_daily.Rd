@@ -43,9 +43,6 @@ and latest dates of the daily weather time series that the user would
 like in the final output. This character string should be formatted as
 "yyyy-mm-dd" (see examples). If these arguments are not specified, the
 default is to keep all available daily data for the queried weather site.}
-
-\item{ghcnd_data}{An object of class "ghcnd", as generated for a single weather
-station using \code{\link{ghcnd}}.}
 }
 \value{
 A data frame of daily weather data for a single weather monitor,
