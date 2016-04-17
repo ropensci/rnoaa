@@ -48,6 +48,7 @@ Suggests:
     lawn,
     rgdal,
     covr,
-    rmarkdown
+    rmarkdown,
+    purrr
 Remotes: ropensci/geojsonio
 RoxygenNote: 5.0.1
