@@ -13,7 +13,7 @@ test_that("storms meta", {
   expect_is(meta_3, "data.frame")
 
   expect_equal(NCOL(meta_1), NCOL(meta_2))
-  expect_less_than(NCOL(meta_3), NCOL(meta_2))
+  expect_lt(NCOL(meta_3), NCOL(meta_2))
 })
 
 test_that("storms data", {

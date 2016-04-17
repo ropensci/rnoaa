@@ -49,4 +49,5 @@ Suggests:
     rgdal,
     covr,
     rmarkdown
+Remotes: ropensci/geojsonio
 RoxygenNote: 5.0.1
