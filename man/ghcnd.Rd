@@ -7,10 +7,11 @@
 ghcnd(stationid, path = "~/.rnoaa/ghcnd", ...)
 }
 \arguments{
-\item{stationid}{A character vector giving the identification of the weather
+\item{stationid}{A character string giving the identification of the weather
 station for which the user would like to pull data. To get a full and
 current list of stations, the user can use the \code{\link{ghcnd_stations}}
-function.}
+function. To identify stations within a certain radius of a location, the
+user can use the \code{\link{meteo_nearby_stations}} function.}
 
 \item{path}{A character vector giving the path to the directory to cache
 the files locally. By default, the function uses \code{~/.rnoaa/isd}.}
@@ -33,12 +34,6 @@ This function uses ftp to access the Global Historical Climatology Network
 daily weather data from NOAA's FTP server for a single weather site. It
 requires the site identification number for that site and will pull the
 entire weather dataset for the site.
-}
-\details{
-To generate a weather dataset for a single weather site that has been
-cleaned to a tidier weather format, the user should use the
-\code{\link{ghcnd_search}} function, which calls \code{\link{ghcnd}} and then
-processes the output rather than using this function directly.
 }
 \note{
 This function saves the full set of weather data for the queried
@@ -79,15 +74,14 @@ dat$data \%>\%
 Scott Chamberlain \email{myrmecocystus@gmail.com},
 Adam Erickson \email{adam.erickson@ubc.ca}
 }
-\references{
-The following reference has more information on this data:
-
-Menne, M.J., I. Durre, R.S. Vose, B.E. Gleason, and T.G. Houston, 2012:
-An overview of the Global Historical Climatology Network-Daily Database.
-Journal of Atmospheric and Oceanic Technology, 29, 897-910,
-doi:10.1175/JTECH-D-11-00103.1.
-}
 \seealso{
-\code{\link{ghcnd_search}}
+To generate a weather dataset for a single weather site that has been
+cleaned to a tidier weather format, the user should use the
+\code{\link{ghcnd_search}} function, which calls \code{\link{ghcnd}} and then
+processes the output rather than using this function directly, or
+\code{\link{meteo_tidy_ghcnd}}, which wraps the \code{\link{ghcnd_search}}
+function to output a tidy dataframe rather than a list object with the weather
+data. To pull GHCND data from multiple monitors, see
+\code{\link{meteo_pull_monitors}}.
 }
 

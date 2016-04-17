@@ -8,16 +8,23 @@ ghcnd_search(stationid, date_min = NULL, date_max = NULL, var = "all",
   path = "~/.rnoaa/ghcnd", ...)
 }
 \arguments{
-\item{stationid}{A character vector giving the identification of the weather
+\item{stationid}{A character string giving the identification of the weather
 station for which the user would like to pull data. To get a full and
 current list of stations, the user can use the \code{\link{ghcnd_stations}}
-function.}
+function. To identify stations within a certain radius of a location, the
+user can use the \code{\link{meteo_nearby_stations}} function.}
 
-\item{date_min, date_max}{Character strings giving, respectively, the earliest
-and latest dates of the daily weather time series that the user would
+\item{date_min}{A character string giving the earliest
+date of the daily weather time series that the user would
 like in the final output. This character string should be formatted as
-"yyyy-mm-dd" (see examples). If these arguments are not specified, the
-default is to keep all available daily data for the queried weather site.}
+"yyyy-mm-dd". If not specified, the default is to keep all daily data for
+the queried weather site from the earliest available date.}
+
+\item{date_max}{A character string giving the latest
+date of the daily weather time series that the user would
+like in the final output. This character string should be formatted as
+"yyyy-mm-dd". If not specified, the default is to keep all daily data for
+the queried weather site through the most current available date.}
 
 \item{var}{A character vector specifying either \code{"all"} (pull all
 available weather parameters for the site) or the weather parameters to
@@ -45,8 +52,8 @@ A list object with slots for each of the available specified
    weather variables. Each element in the list is a separate time series
    dataframe with daily observations, as well as flag values, for one of
    the weather variables. The flag values give information on the quality
-   and source of each observation; see the NOAA README file on this
-   data for more information.
+   and source of each observation; see the NOAA README file linked above
+   for more information.
 }
 \description{
 This function uses ftp to access the Global Historical Climatology Network
@@ -60,7 +67,8 @@ date range and to certain weather variables.
 This function calls \code{\link{ghcnd}}, which will download and save
    data from all available dates and weather variables for the queried
    weather station. The step of limiting the dataset to only certain dates
-   and / or weather variables does not occur until after the full data has
+   and / or weather variables, using the \code{date_min}, \code{date_max},
+   and \code{var} arguments, does not occur until after the full data has
    been pulled.
 }
 \examples{
@@ -70,7 +78,8 @@ This function calls \code{\link{ghcnd}}, which will download and save
 ghcnd_search("AGE00147704", var = "PRCP")
 ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01")
 ghcnd_search("AGE00147704", var = "PRCP", date_max = "1915-01-01")
-ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01", date_max = "1925-01-01")
+ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01",
+             date_max = "1925-01-01")
 ghcnd_search("AGE00147704", date_min = "1920-01-01", date_max = "1925-01-01")
 ghcnd_search("AGE00147704", var = c("PRCP","TMIN"))
 ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
@@ -83,13 +92,7 @@ ghcnd_search("AGE00147704", var="adfdf")
 Scott Chamberlain \email{myrmecocystus@gmail.com},
 Adam Erickson \email{adam.erickson@ubc.ca}
 }
-\references{
-The following reference has more information on the data pulled using this
-function:
-
-Menne, M.J., I. Durre, R.S. Vose, B.E. Gleason, and T.G. Houston, 2012:
-An overview of the Global Historical Climatology Network-Daily Database.
-Journal of Atmospheric and Oceanic Technology, 29, 897-910,
-doi:10.1175/JTECH-D-11-00103.1.
+\seealso{
+\code{\link{meteo_pull_monitors}}, \code{\link{meteo_tidy_ghcnd}}
 }
 
