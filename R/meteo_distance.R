@@ -12,7 +12,7 @@
 #'    in the \code{lat_lon_df} dataframe.
 #' @param lon_colname A character string giving the name of the longitude column
 #'    in the \code{lat_lon_df} dataframe.
-#' @param station_data The output of \code{\link{ghcnd_stations()[[1]]}}:
+#' @param station_data The output of \code{ghcnd_stations()[[1]]}:
 #'    a current list of weather stations available through NOAA for the GHCND
 #'    dataset. The format of this is a list with a single element, a dataframe
 #'    with one row per available weather station.
@@ -39,7 +39,7 @@
 #' lon <- c(-122.404294, -122.419282)
 #' lat_lon_df <- data.frame(latitude = lat, longitude = lon)
 #'
-#' station_data <- ghncd_stations()[[1]] # Takes a while to run
+#' station_data <- ghcnd_stations()[[1]] # Takes a while to run
 #' nearby_stations <-  meteo_nearby_stations(lat_lon_df,
 #'                     station_data = station_data, radius = 50)
 #'

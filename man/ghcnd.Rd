@@ -78,10 +78,9 @@ Adam Erickson \email{adam.erickson@ubc.ca}
 To generate a weather dataset for a single weather site that has been
 cleaned to a tidier weather format, the user should use the
 \code{\link{ghcnd_search}} function, which calls \code{\link{ghcnd}} and then
-processes the output rather than using this function directly, or
-\code{\link{meteo_tidy_ghcnd}}, which wraps the \code{\link{ghcnd_search}}
-function to output a tidy dataframe rather than a list object with the weather
-data. To pull GHCND data from multiple monitors, see
+processes the output, or \code{\link{meteo_tidy_ghcnd}}, which wraps the
+\code{\link{ghcnd_search}} function to output a tidy dataframe rather than a
+list object. To pull GHCND data from multiple monitors, see
 \code{\link{meteo_pull_monitors}}.
 }
 
