@@ -1,3 +1,93 @@
+#' Find weather monitors near locations
+#'
+#' This function inputs a dataframe with latitudes and longitudes of locations
+#' and creates a dataframe with monitors with a certain radius of those
+#' locations. The site ids from this dataframe can then be used with other
+#' \code{rnoaa} functions to pull data from all available weather stations near
+#' a location.
+#'
+#' @param lat_lon_df A dataframe that contains the site latitude and longitude
+#'    values used to search for nearby weather stations
+#' @param lat_colname A character string giving the name of the latitude column
+#'    in the \code{lat_lon_df} dataframe.
+#' @param lon_colname A character string giving the name of the longitude column
+#'    in the \code{lat_lon_df} dataframe.
+#' @param station_data The output of \code{\link{ghcnd_stations()[[1]]}}:
+#'    a current list of weather stations available through NOAA for the GHCND
+#'    dataset. The format of this is a list with a single element, a dataframe
+#'    with one row per available weather station.
+#' @param radius A numeric vector giving the radius (in kilometers) within which
+#'    to search for monitors near a location
+#' @inheritParams ghcnd_search
+#'
+#' @return a dataframe containing a unique set of the weather stations within
+#'    the search radius. Site IDs for the weather stations given in this
+#'    dataframe can be used in conjunction with other functions in the
+#'    \code{rnoaa} package to pull weather data for the station.
+#'
+#' @note By default, this function will pull the full station list from NOAA
+#'    to use to identify nearby locations. If you will be creating lists of
+#'    monitors nearby several stations, you can save some time by using the
+#'    \code{\link{ghcnd_stations}} function separately to create an object
+#'    with all stations and then use the argument \code{ghcnd_station_list} in
+#'    this function to reference that object, rather than using this function's
+#'    defaults.
+#'
+#' @examples
+#' \dontrun{
+#' lat <- c(37.779199, 37.531635)
+#' lon <- c(-122.404294, -122.419282)
+#' lat_lon_df <- data.frame(latitude = lat, longitude = lon)
+#'
+#' station_data <- ghncd_stations()[[1]] # Takes a while to run
+#' nearby_stations <-  meteo_nearby_stations(lat_lon_df,
+#'                     station_data = station_data, radius = 50)
+#'
+#' miami <- data.frame(id = "miami", latitude = 25.7617, longitude = -80.1918)
+#' meteo_nearby_stations(lat_lon_df = miami, station_data = station_data,
+#'                       radius = 50, var = c("prcp", "tmax"),
+#'                       year_min = 1992, year_max = 1992)
+#' }
+#'
+#' @importFrom dplyr %>%
+#'
+#' @export
+meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
+                                  lon_colname = "longitude",
+                                  station_data = ghcnd_stations()[[1]],
+                                  var = "all",
+                                  year_min = NULL,
+                                  year_max = NULL,
+                                  radius = 25, ...){
+
+  # Handle generic values for `var`, `year_min`, and `year_max` arguments
+  if(is.null(year_min)) year_min <- min(station_data$first_year, na.rm = TRUE)
+  if(is.null(year_max)) year_max <- max(station_data$last_year, na.rm = TRUE)
+  if(length(var) == 1 && var == "all"){
+    var <- unique(station_data$element)
+  }
+
+  station_data <- dplyr::filter(station_data,
+                                last_year >= year_min &
+                                  first_year <= year_max &
+                                  element %in% toupper(var) &
+                                  !is.na(element)) %>%
+    dplyr::select(id, name, latitude, longitude) %>%
+    dplyr::distinct()
+
+  location_stations <- lat_lon_df %>%
+    split(.[, lat_colname], .[, lon_colname]) %>%
+    purrr::map(function(x) {
+      station_ids <- meteo_distance(station_data = station_data,
+                                    lat = x[ , lat_colname],
+                                    long = x[ , lon_colname],
+                                    radius = radius)
+      return(station_ids)
+    })
+  names(location_stations) <- lat_lon_df$id
+  return(location_stations)
+}
+
 #' meteo_distance
 #'
 #' @param station_data a dataframe. Expects col headers with names latName and longName
@@ -126,92 +216,3 @@ deg2rad <- function(deg) {
   return(deg*pi/180)
 } # End deg2rad
 
-#' Find weather monitors near locations
-#'
-#' This function inputs a dataframe with latitudes and longitudes of locations
-#' and creates a dataframe with monitors with a certain radius of those
-#' locations. The site ids from this dataframe can then be used with other
-#' \code{rnoaa} functions to pull data from all available weather stations near
-#' a location.
-#'
-#' @param lat_lon_df A dataframe that contains the site latitude and longitude
-#'    values used to search for nearby weather stations
-#' @param lat_colname A character string giving the name of the latitude column
-#'    in the \code{lat_lon_df} dataframe.
-#' @param lon_colname A character string giving the name of the longitude column
-#'    in the \code{lat_lon_df} dataframe.
-#' @param station_data The output of \code{\link{ghcnd_stations()[[1]]}}:
-#'    a current list of weather stations available through NOAA for the GHCND
-#'    dataset. The format of this is a list with a single element, a dataframe
-#'    with one row per available weather station.
-#' @param radius A numeric vector giving the radius (in kilometers) within which
-#'    to search for monitors near a location
-#' @inheritParams ghcnd_search
-#'
-#' @return a dataframe containing a unique set of the weather stations within
-#'    the search radius. Site IDs for the weather stations given in this
-#'    dataframe can be used in conjunction with other functions in the
-#'    \code{rnoaa} package to pull weather data for the station.
-#'
-#' @note By default, this function will pull the full station list from NOAA
-#'    to use to identify nearby locations. If you will be creating lists of
-#'    monitors nearby several stations, you can save some time by using the
-#'    \code{\link{ghcnd_stations}} function separately to create an object
-#'    with all stations and then use the argument \code{ghcnd_station_list} in
-#'    this function to reference that object, rather than using this function's
-#'    defaults.
-#'
-#' @examples
-#' \dontrun{
-#' lat <- c(37.779199, 37.531635)
-#' lon <- c(-122.404294, -122.419282)
-#' lat_lon_df <- data.frame(latitude = lat, longitude = lon)
-#'
-#' station_data <- ghncd_stations()[[1]] # Takes a while to run
-#' nearby_stations <-  meteo_nearby_stations(lat_lon_df,
-#'                     station_data = station_data, radius = 50)
-#'
-#' miami <- data.frame(id = "miami", latitude = 25.7617, longitude = -80.1918)
-#' meteo_nearby_stations(lat_lon_df = miami, station_data = station_data,
-#'                       radius = 50, var = c("prcp", "tmax"),
-#'                       year_min = 1992, year_max = 1992)
-#' }
-#'
-#' @importFrom dplyr %>%
-#'
-#' @export
-meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
-                                  lon_colname = "longitude",
-                                  station_data = ghcnd_stations()[[1]],
-                                  var = "all",
-                                  year_min = NULL,
-                                  year_max = NULL,
-                                  radius = 25, ...){
-
-  # Handle generic values for `var`, `year_min`, and `year_max` arguments
-  if(is.null(year_min)) year_min <- min(station_data$first_year, na.rm = TRUE)
-  if(is.null(year_max)) year_max <- max(station_data$last_year, na.rm = TRUE)
-  if(length(var) == 1 && var == "all"){
-    var <- unique(station_data$element)
-  }
-
-  station_data <- dplyr::filter(station_data,
-                                 last_year >= year_min &
-                                   first_year <= year_max &
-                                   element %in% toupper(var) &
-                                   !is.na(element)) %>%
-    dplyr::select(id, name, latitude, longitude) %>%
-    dplyr::distinct()
-
-  location_stations <- lat_lon_df %>%
-    split(.[, lat_colname], .[, lon_colname]) %>%
-    purrr::map(function(x) {
-      station_ids <- meteo_distance(station_data = station_data,
-                                    lat = x[ , lat_colname],
-                                    long = x[ , lon_colname],
-                                    radius = radius)
-    return(station_ids)
-    })
-  names(location_stations) <- lat_lon_df$id
-  return(location_stations)
-}
