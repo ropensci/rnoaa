@@ -35,15 +35,17 @@ meteo_coverage <- function(meteo_df,
                            verbose=TRUE) {
 
   if (!is.null(obs_start_date)) {
-    meteo_df <- dplyr::filter(meteo_df, as.Date(date) >= obs_start_date)
+    dots <- list(~as.Date(date) >= obs_start_date)
+    meteo_df <- dplyr::filter_(meteo_df, .dots = dots)
   }
 
   if (!is.null(obs_end_date)) {
-    meteo_df <- dplyr::filter(meteo_df, as.Date(date) <= obs_end_date)
+    dots <- list(~as.Date(date) <= obs_end_date)
+    meteo_df <- dplyr::filter_(meteo_df, .dots = dots)
   }
 
-  dplyr::group_by(meteo_df, id) %>%
-    do({
+  dplyr::group_by_(meteo_df, ~id) %>%
+    dplyr::do({
       rng <- range(.$date)
       dat <- data.frame(start_date = rng[1],
                         end_date = rng[2],
@@ -51,12 +53,13 @@ meteo_coverage <- function(meteo_df,
       if (verbose) cat(sprintf("Station Id: %s\n", .$id[1]))
       if (verbose) cat(sprintf("\n  Date range for observations: %s\n\n",
                   paste0(as.character(rng), sep="", collapse=" to ")))
-      if (verbose) cat(sprintf("  Total number of observations: %s\n\n", comma(nrow(.))))
-      meteo_cols <- setdiff(colnames(.), c("id", "date"))
+      if (verbose) cat(sprintf("  Total number of observations: %s\n\n",
+                               scales::comma(nrow(.))))
+      meteo_cols <- dplyr::setdiff(colnames(.), c("id", "date"))
       col_cov <- lapply(meteo_cols, function(x, n) {
         if (verbose) cat(sprintf("  Column %s completeness: %5s\n",
                     formatC(sprintf("'%s'", x), width = (n+2)),
-                    percent(sum(!is.na(.[,x])) / nrow(.))))
+                    scales::percent(sum(!is.na(.[,x])) / nrow(.))))
         sum(!is.na(.[,x])) / nrow(.)
       }, max(vapply(colnames(.), nchar, numeric(1), USE.NAMES=FALSE)))
       if (verbose) cat("\n")
@@ -70,49 +73,49 @@ meteo_coverage <- function(meteo_df,
 
 autoplot.meteo_coverage <- function(df) {
 
-  gg <- ggplot(df)
-  gg <- gg + geom_segment(data=df, aes(x=reorder(id, start_date),
-                                       xend=reorder(id, start_date),
-                                       y=start_date, yend=end_date))
-  gg <- gg + scale_x_discrete(expand=c(0,0.25))
-  gg <- gg + scale_y_datetime(expand=c(0,0))
-  gg <- gg + coord_flip()
-  gg <- gg + labs(x=NULL, y=NULL, title="Time coverage by station")
-  gg <- gg + theme_bw(base_family="Arial Narrow")
-  gg <- gg + theme(panel.grid=element_line(color="#b2b2b2", size=0.1))
-  gg <- gg + theme(panel.grid.major.x=element_line(color="#b2b2b2", size=0.1))
-  gg <- gg + theme(panel.grid.major.y=element_blank())
-  gg <- gg + theme(panel.grid.minor=element_blank())
-  gg <- gg + theme(panel.border=element_blank())
-  gg <- gg + theme(axis.ticks=element_blank())
-  gg <- gg + theme(plot.title=element_text(margin=margin(b=12)))
+  gg <- ggplot2::ggplot(df)
+  gg <- gg + ggplot2::geom_segment(data = df, ggplot2::aes(x = reorder(id, start_date),
+                                       xend = reorder(id, start_date),
+                                       y = start_date, yend = end_date))
+  gg <- gg + ggplot2::scale_x_discrete(expand = c(0, 0.25))
+  gg <- gg + ggplot2::scale_y_datetime(expand = c(0, 0))
+  gg <- gg + ggplot2::coord_flip()
+  gg <- gg + ggplot2::labs(x = NULL, y = NULL, title = "Time coverage by station")
+  gg <- gg + ggplot2::theme_bw(base_family = "Arial Narrow")
+  gg <- gg + ggplot2::theme(panel.grid = element_line(color="#b2b2b2", size=0.1))
+  gg <- gg + ggplot2::theme(panel.grid.major.x = element_line(color = "#b2b2b2", size = 0.1))
+  gg <- gg + ggplot2::theme(panel.grid.major.y = element_blank())
+  gg <- gg + ggplot2::theme(panel.grid.minor = element_blank())
+  gg <- gg + ggplot2::theme(panel.border = element_blank())
+  gg <- gg + ggplot2::theme(axis.ticks = element_blank())
+  gg <- gg + ggplot2::theme(plot.title = element_text(margin = margin(b = 12)))
   ggtime <- gg
 
   df_long <- tidyr::gather(dplyr::select(df, -start_date, -end_date, -total_obs),
                            observation, value, -id)
 
-  gg <- ggplot(df_long)
-  gg <- gg + geom_segment(aes(x=0, xend=value,
-                              y=observation, yend=observation, group=id))
-  gg <- gg + scale_x_continuous(labels=percent, limits=c(0, 1))
-  gg <- gg + facet_wrap(~id, scales="free_x")
-  gg <- gg + labs(x=NULL, y=NULL, title="Observation coverage by station")
-  gg <- gg + theme_bw(base_family="Arial Narrow")
-  gg <- gg + theme(panel.grid=element_line(color="#b2b2b2", size=0.1))
-  gg <- gg + theme(panel.grid.major.x=element_line(color="#b2b2b2", size=0.1))
-  gg <- gg + theme(panel.grid.major.y=element_blank())
-  gg <- gg + theme(panel.grid.minor=element_blank())
-  gg <- gg + theme(panel.border=element_blank())
-  gg <- gg + theme(axis.ticks=element_blank())
-  gg <- gg + theme(plot.title=element_text(margin=margin(b=12)))
-  gg <- gg + theme(strip.background=element_blank())
-  gg <- gg + theme(strip.text=element_text(hjust=0))
-  gg <- gg + theme(panel.margin.x=grid::unit(12, "pt"))
-  gg <- gg + theme(panel.margin.y=grid::unit(8, "pt"))
-  gg <- gg + theme(plot.margin=margin(t=30, b=5, l=20, r=20))
+  gg <- ggplot2::ggplot(df_long)
+  gg <- gg + ggplot2::geom_segment(aes(x = 0, xend = value,
+                              y = observation, yend = observation, group = id))
+  gg <- gg + ggplot2::scale_x_continuous(labels = percent, limits = c(0, 1))
+  gg <- gg + ggplot2::facet_wrap(~id, scales = "free_x")
+  gg <- gg + ggplot2::labs(x = NULL, y = NULL, title = "Observation coverage by station")
+  gg <- gg + ggplot2::theme_bw(base_family = "Arial Narrow")
+  gg <- gg + ggplot2::theme(panel.grid = element_line(color = "#b2b2b2", size = 0.1))
+  gg <- gg + ggplot2::theme(panel.grid.major.x = element_line(color = "#b2b2b2", size = 0.1))
+  gg <- gg + ggplot2::theme(panel.grid.major.y = element_blank())
+  gg <- gg + ggplot2::theme(panel.grid.minor = element_blank())
+  gg <- gg + ggplot2::theme(panel.border = element_blank())
+  gg <- gg + ggplot2::theme(axis.ticks = element_blank())
+  gg <- gg + ggplot2::theme(plot.title = element_text(margin = margin(b = 12)))
+  gg <- gg + ggplot2::theme(strip.background = element_blank())
+  gg <- gg + ggplot2::theme(strip.text = element_text(hjust = 0))
+  gg <- gg + ggplot2::theme(panel.margin.x = grid::unit(12, "pt"))
+  gg <- gg + ggplot2::theme(panel.margin.y = grid::unit(8, "pt"))
+  gg <- gg + ggplot2::theme(plot.margin = margin(t = 30, b = 5, l = 20, r = 20))
   ggobs <- gg
 
-  grid.arrange(ggtime, ggobs, ncol=1, heights=c(0.4, 0.6))
+  gridExtra::grid.arrange(ggtime, ggobs, ncol=1, heights=c(0.4, 0.6))
 
 }
 

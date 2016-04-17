@@ -212,10 +212,12 @@ meteo_tidy_ghncd_element <- function(x, keep_flags = FALSE){
   if(keep_flags){
     flag_locs <- grep("flag", colnames(x))
     colnames(x)[flag_locs] <- paste(colnames(x)[flag_locs], var_name, sep = "_")
-    x <- tidyr::gather(x, key, value, -id, -date)
+    x <- tidyr::gather_(x, "key", "value",
+                        gather_cols =  select_vars(names(x), -id, -date))
   } else {
-    x <- dplyr::select_(x, "-ends_with('flag')") %>%
-      tidyr::gather(key, value, -id, -date)
+    x <- dplyr::select_(x, "-ends_with('flag')")
+    x <- tidyr::gather_(x, "key", "value",
+                        gather_cols =  select_vars(names(x), -id, -date))
   }
   return(x)
 }

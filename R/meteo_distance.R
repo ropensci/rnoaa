@@ -69,9 +69,9 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
     var <- unique(station_data$element)
   }
 
-  .dots <- list(~last_year >= year_min & first_year <= year_max &
+  dots <- list(~last_year >= year_min & first_year <= year_max &
                  element %in% toupper(var) & !is.na(element))
-  station_data <- dplyr::filter_(station_data, .dots = .dots) %>%
+  station_data <- dplyr::filter_(station_data, .dots = dots) %>%
     dplyr::select_(~id, ~name, ~latitude, ~longitude) %>%
     dplyr::distinct_()
 
