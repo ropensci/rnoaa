@@ -2,33 +2,49 @@
 % Please edit documentation in R/meteo_distance.R
 \name{meteo_distance}
 \alias{meteo_distance}
-\title{meteo_distance}
+\title{Find all monitors within a radius of a locations}
 \usage{
-meteo_distance(station_data, lat, long, latName = "latitude",
-  longName = "longitude", units = "deg", radius = NULL, limit = NULL)
+meteo_distance(station_data, lat, long, units = "deg", radius = NULL,
+  limit = NULL)
 }
 \arguments{
-\item{station_data}{a dataframe. Expects col headers with names latName and longName}
+\item{station_data}{The output of \code{ghcnd_stations()[[1]]}, which is
+a current list of weather stations available through NOAA for the GHCND
+dataset. The format of this is a dataframe
+with one row per weather station. Latitude and longitude for the station
+locations should be in columns with the names "latitude" and "longitude",
+consistent with the output from \code{ghcnd_stations()[[1]]}. To save time, run the
+\code{ghcnd_stations} call and save the output to an object, rather than
+rerunning the default every time (see the examples).}
 
-\item{lat}{Latitude to centre search at}
+\item{lat}{Latitude of the location. Southern latitudes should be given
+as negative values.}
 
-\item{long}{Longitude to centre search at}
+\item{long}{Longitude of the location. Western longitudes should be given as
+negative values.}
 
-\item{latName}{Name of latitude header name in the station data, Default = 'latitude'}
+\item{units}{Units of the latitude and longitude values. Possible values
+are:
+\itemize{
+\item \code{deg}: Degrees (default);
+\item \code{rad}: Radians.
+}}
 
-\item{longName}{Name of longitude header name in station data. Default = 'longitude'}
+\item{radius}{A numeric vector giving the radius (in kilometers) within which
+to search for monitors near a location.}
 
-\item{units}{Units of the latitude and longitude values: degrees 'deg',
-radians 'rad', d/m/s 'dms'. Default = 'deg'}
-
-\item{radius}{Radius to search (does nothing yet)}
-
-\item{limit}{Upperbound on number of results. Deafult = 1}
+\item{limit}{An integer giving the maximum number of monitors to include for
+each location. The [x] closest monitors will be kept. Default is NULL
+(pull everything available within the radius).}
 }
 \value{
 a dataframe in a column with the distance of stations
 }
 \description{
-meteo_distance
+This function will identify all weather stations with a specified radius of
+a location. If no radius is given, the function will return a dataframe
+of all available monitors, sorted by distance to the location. The
+\code{limit} argument can be used to limit the output dataframe to the x
+closest monitors to the location.
 }
 

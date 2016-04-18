@@ -7,20 +7,24 @@
 meteo_spherical_distance(lat1, long1, lat2, long2, units = "deg")
 }
 \arguments{
-\item{lat1}{data}
+\item{lat1}{Latitude of the first location.}
 
-\item{long1}{data}
+\item{long1}{Longitude of the first location.}
 
-\item{lat2}{data}
+\item{lat2}{Latitude of the second location.}
 
-\item{long2}{data}
+\item{long2}{Longitude of the second location.}
 
-\item{units}{Units of the latitude and longitude values: degrees 'deg',
-radians 'rad', d/m/s 'dms'. Default = 'deg'}
+\item{units}{Units of the latitude and longitude values. Possible values
+are:
+\itemize{
+\item \code{deg}: Degrees (default);
+\item \code{rad}: Radians.
+}}
 }
 \value{
-A numeric vector giving the distance (in kilometers) between the
-   pair of locations input.
+A numeric value giving the distance (in kilometers) between the
+   pair of locations.
 }
 \description{
 This functions uses the haversine formula to calculate the great circle
@@ -28,5 +32,11 @@ distance between two locations, identified by their latitudes and longitudes.
 }
 \note{
 This function assumes an earth radius of 6,371 km.
+}
+\examples{
+
+meteo_spherical_distance(lat1 = -27.4667, long1 = 153.0217,
+                         lat2 = -27.4710, long2 = 153.0234)
+
 }
 

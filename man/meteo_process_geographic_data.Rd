@@ -2,24 +2,45 @@
 % Please edit documentation in R/meteo_distance.R
 \name{meteo_process_geographic_data}
 \alias{meteo_process_geographic_data}
-\title{meteo_process_geographic_data}
+\title{Calculate the distances between a location and all avaiable stations}
 \usage{
-meteo_process_geographic_data(data, lat, long, latName, longName,
-  units = "deg")
+meteo_process_geographic_data(station_data, lat, long, units = "deg")
 }
 \arguments{
-\item{lat}{Latitude to centre search at}
+\item{station_data}{The output of \code{ghcnd_stations()[[1]]}, which is
+a current list of weather stations available through NOAA for the GHCND
+dataset. The format of this is a dataframe
+with one row per weather station. Latitude and longitude for the station
+locations should be in columns with the names "latitude" and "longitude",
+consistent with the output from \code{ghcnd_stations()[[1]]}. To save time, run the
+\code{ghcnd_stations} call and save the output to an object, rather than
+rerunning the default every time (see the examples).}
 
-\item{long}{Longitude to centre search at}
+\item{lat}{Latitude of the location. Southern latitudes should be given
+as negative values.}
 
-\item{latName}{Name of latitude header name in the station data, Default = 'latitude'}
+\item{long}{Longitude of the location. Western longitudes should be given as
+negative values.}
 
-\item{longName}{Name of longitude header name in station data. Default = 'longitude'}
-
-\item{units}{Units of the latitude and longitude values: degrees 'deg',
-radians 'rad', d/m/s 'dms'. Default = 'deg'}
+\item{units}{Units of the latitude and longitude values. Possible values
+are:
+\itemize{
+\item \code{deg}: Degrees (default);
+\item \code{rad}: Radians.
+}}
+}
+\value{
+The \code{station_data} dataframe that is input, but with a
+   \code{distance} column added that gives the distance to the location
+   (in kilometers), and re-ordered by distance between each station and
+   the location (closest weather stations first).
 }
 \description{
-meteo_process_geographic_data
+This function takes a single location, a dataset of available weather stations,
+and calculates the distance between the location and each of the locations,
+using the great circle method. A new column is added to the dataset of
+available weather stations giving the distance between each station and
+the input location. The station dataset is then sorted from closest to
+furthest distance to the location and returned as the function output.
 }
 
