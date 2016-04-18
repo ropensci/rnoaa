@@ -29,7 +29,8 @@ with one row per weather station. Latitude and longitude for the station
 locations should be in columns with the names "latitude" and "longitude",
 consistent with the output from \code{ghcnd_stations()[[1]]}. To save time, run the
 \code{ghcnd_stations} call and save the output to an object, rather than
-rerunning the default every time (see the examples).}
+rerunning the default every time (see the examples in
+\code{\link{meteo_nearby_stations}}).}
 
 \item{var}{A character vector specifying either \code{"all"} (pull all
 available weather parameters for the site) or the weather parameters to
@@ -52,7 +53,7 @@ to search for monitors near a location.}
 
 \item{limit}{An integer giving the maximum number of monitors to include for
 each location. The [x] closest monitors will be kept. Default is NULL
-(pull everything available within the radius).}
+(pull everything available, within the radius if the radius is specified).}
 }
 \value{
 A list containing dataframes with the sets of unique weather stations within

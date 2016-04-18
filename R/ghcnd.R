@@ -184,44 +184,107 @@ fm <- function(n) {
   gsub("\\s", "0", n)
 }
 
-#' Get GHCND daily data from NOAA FTP server
+#' Get information on the GHCND weather stations
+#'
+#' This function returns an object with a dataframe with meta-information about
+#' all available GHCND weather stations.
+#'
+#' @inheritParams ghcnd
+#'
+#' @return This function returns a list with a single element-- a dataframe with
+#'    a weather station on each row with the following columns:
+#'    \itemize{
+#'    \item \code{id}: The weather station's ID number. The first two letters
+#'    denote the country (using FIPS country codes).
+#'    \item \code{latitude}: The station's latitude, in decimal degrees.
+#'    Southern latitudes will be negative.
+#'    \item \code{longitude}: The station's longitude, in decimal degrees.
+#'    Western longitudes will be negative.
+#'    \item \code{elevation}: The station's elevation, in meters.
+#'    \item \code{name}: The station's name.
+#'    \item \code{gsn_flag}: "GSN" if the monitor belongs to the GCOS Surface
+#'    Network (GSN). Otherwise either blank or missing.
+#'    \item \code{wmo_id}: If the station has a WMO number, this column gives
+#'    that number. Otherwise either blank or missing.
+#'    \item \code{element}: A weather variable recorded at some point during
+#'    that station's history. See the link below in "References" for definitions
+#'    of the abbreviations used for this variable.
+#'    \item \code{first_year}: The first year of data available at that station
+#'    for that weather element.
+#'    \item \code{last_year}: The last year of data available at that station
+#'    for that weather element.
+#'    }
+#'    If a weather station has data on more than one weather variable, it will
+#'    be represented in multiple rows of this output dataframe.
+#'
+#' @note Since this function is pulling a large dataset by ftp, it may take
+#' a while to run.
+#'
+#' @references
+#'
+#' For more documentation on the returned dataset, see
+#' \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
+#'
+#' @examples
+#' \dontrun{
+#' # Get stations, ghcnd-stations and ghcnd-inventory merged
+#' stations <- ghcnd_stations()
+#' }
 #'
 #' @export
+ghcnd_stations <- function(...){
+  sta <- get_stations(...)
+  inv <- get_inventory(...)
+  structure(list(data = merge(sta, inv[,-c(2,3)], by = "id")), class = "ghcnd_stations")
+}
+
+get_stations <- function(...){
+  res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt", ...)
+  df <- read.fwf(textConnection(utcf8(res)), widths = c(11, 9, 11, 7, 33, 5, 10),
+                 header = FALSE, strip.white = TRUE, comment.char = "", stringsAsFactors = FALSE)
+  nms <- c("id","latitude", "longitude", "elevation", "name", "gsn_flag", "wmo_id")
+  setNames(df, nms)
+}
+
+get_inventory <- function(...){
+  res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt", ...)
+  df <- read.fwf(textConnection(utcf8(res)), widths = c(11, 9, 10, 5, 5, 5),
+                 header = FALSE, strip.white = TRUE, comment.char = "", stringsAsFactors = FALSE)
+  nms <- c("id","latitude", "longitude", "element", "first_year", "last_year")
+  setNames(df, nms)
+}
+
+#' Print out GHCND stations
 #'
-#' @param stationid Stationid to get
-#' @param path (character) A path to store the files, Default: \code{~/.rnoaa/isd}
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}
-#' @param n Number of rows to print
-#' @param x Input object to print methods. For \code{ghcnd_splitvars()}, the output of a call
-#' to \code{ghcnd()}.
-#' @param date_min,date_max (character) Minimum and maximum dates. Use together to get a
-#' date range
-#' @param var (character) Variable to get, defaults to "all", which gives back all variables
-#' in a list. To see what variables are available for a dataset, look at the dataset returned
-#' from \code{ghcnd()}.
+#' This function prints out, in a nice format, the object returned by
+#' \code{\link{ghcnd_stations}}.
+#'
+#' @param n Number of rows of station data to print.
+#'
+#' @examples
+#' \dontrun{
+#' stations <- ghcnd_stations()
+#' print(stations)
+#' }
+#'
+#' @export
+print.ghcnd_stations <- function(x, n = 10){
+  cat("<GHCND Station Data>", sep = "\n")
+  cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
+  trunc_mat_(x$data, n = n)
+}
+
+#' Split variables in data returned from \code{ghcnd}
+#'
+#' This function is a helper function for \code{\link{ghcnd_search}}. It helps
+#' with cleaning up the data returned from \code{\link{ghcnd}}, to get it in a
+#' format that is easier to work with using R.
+#'
+#' @param x An object returned from \code{\link{ghcnd}}.
 #'
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com},
 #' Adam Erickson \email{adam.erickson@@ubc.ca}
 #'
-#' @details Functions:
-#' \itemize{
-#'  \item \code{ghcnd_version} - Get current version of GHCND data
-#'  \item \code{ghcnd_stations} - Get GHCND stations and their metadata
-#'  \item \code{ghcnd_states} - Get US/Canada state names and 2-letter codes
-#'  \item \code{ghcnd_countries} - Get country names and 2-letter codes
-#'  \item \code{ghcnd_splitvars} - Split variables in data returned from \code{ghcnd}
-#'  \item \code{ghcnd_clear_cache} - Clear cache of locally stored files
-#' }
-#'
-#' @examples \dontrun{
-#' # Get metadata
-#' ghcnd_states()
-#' ghcnd_countries()
-#' ghcnd_version()
-#'
-#' # Get stations, ghcnd-stations and ghcnd-inventory merged
-#' (stations <- ghcnd_stations())
-#' }
 #' @export
 ghcnd_splitvars <- function(x){
   tmp <- x$data
@@ -272,39 +335,33 @@ strex <- function(x) str_extract_(x, "[0-9]+")
 #   merge(x[[2]], x[[3]] %>% select(-id), by='date')
 # }
 
+#' Get meta-data on the GHCND daily data
+#'
+#' These function allow you to pull the current versions of certain meta-datasets
+#' for the GHCND, including lists of country and state abbreviations used in some
+#' of the weather station IDs and information about the current version of the
+#' data.
+#'
+#' @inheritParams ghcnd
+#'
+#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com},
+#' Adam Erickson \email{adam.erickson@@ubc.ca}
+#'
+#' @details Functions:
+#' \itemize{
+#'  \item \code{ghcnd_version}: Get current version of GHCND data
+#'  \item \code{ghcnd_states}: Get US/Canada state names and 2-letter codes
+#'  \item \code{ghcnd_countries}: Get country names and 2-letter codes
+#' }
+#'
+#' @examples \dontrun{
+#' # Get metadata
+#' ghcnd_states()
+#' ghcnd_countries()
+#' ghcnd_version()
+#' }
+#'
 #' @export
-#' @rdname ghcnd_splitvars
-ghcnd_stations <- function(..., n = 10){
-  sta <- get_stations(...)
-  inv <- get_inventory(...)
-  structure(list(data = merge(sta, inv[,-c(2,3)], by = "id")), class = "ghcnd_stations")
-}
-
-#' @export
-print.ghcnd_stations <- function(x, ..., n = 10){
-  cat("<GHCND Station Data>", sep = "\n")
-  cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
-  trunc_mat_(x$data, n = n)
-}
-
-get_stations <- function(...){
-  res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt", ...)
-  df <- read.fwf(textConnection(utcf8(res)), widths = c(11, 9, 11, 7, 33, 5, 10),
-                 header = FALSE, strip.white = TRUE, comment.char = "", stringsAsFactors = FALSE)
-  nms <- c("id","latitude", "longitude", "elevation", "name", "gsn_flag", "wmo_id")
-  setNames(df, nms)
-}
-
-get_inventory <- function(...){
-  res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt", ...)
-  df <- read.fwf(textConnection(utcf8(res)), widths = c(11, 9, 10, 5, 5, 5),
-                 header = FALSE, strip.white = TRUE, comment.char = "", stringsAsFactors = FALSE)
-  nms <- c("id","latitude", "longitude", "element", "first_year", "last_year")
-  setNames(df, nms)
-}
-
-#' @export
-#' @rdname ghcnd_splitvars
 ghcnd_states <- function(...){
   # res <- suppressWarnings(GET("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-states.txt", ...))
   res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-states.txt", ...)
@@ -312,6 +369,23 @@ ghcnd_states <- function(...){
                  header = FALSE, strip.white = TRUE, comment.char = "",
                  stringsAsFactors = FALSE, col.names = c("code","name"))
   df[ -NROW(df) ,]
+}
+
+#' @export
+#' @rdname ghcnd_states
+ghcnd_countries <- function(...){
+  res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-countries.txt", ...)
+  df <- read.fwf(textConnection(utcf8(res)), widths = c(2, 47),
+                 header = FALSE, strip.white = TRUE, comment.char = "",
+                 stringsAsFactors = FALSE, col.names = c("code","name"))
+  df[ -NROW(df) ,]
+}
+
+#' @export
+#' @rdname ghcnd_states
+ghcnd_version <- function(...){
+  res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-version.txt", ...)
+  utcf8(res)
 }
 
 GET_retry <- function(url, ..., times = 3) {
@@ -328,23 +402,6 @@ GET_retry <- function(url, ..., times = 3) {
     if (res$status_code > 226) stop("Request failed, try again", call. = FALSE)
   }
   return(res)
-}
-
-#' @export
-#' @rdname ghcnd_splitvars
-ghcnd_countries <- function(...){
-  res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-countries.txt", ...)
-  df <- read.fwf(textConnection(utcf8(res)), widths = c(2, 47),
-                 header = FALSE, strip.white = TRUE, comment.char = "",
-                 stringsAsFactors = FALSE, col.names = c("code","name"))
-  df[ -NROW(df) ,]
-}
-
-#' @export
-#' @rdname ghcnd_splitvars
-ghcnd_version <- function(...){
-  res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-version.txt", ...)
-  utcf8(res)
 }
 
 ghcnd_zip <- function(x){

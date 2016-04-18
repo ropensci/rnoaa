@@ -27,7 +27,7 @@ A numeric value giving the distance (in kilometers) between the
    pair of locations.
 }
 \description{
-This functions uses the haversine formula to calculate the great circle
+This function uses the haversine formula to calculate the great circle
 distance between two locations, identified by their latitudes and longitudes.
 }
 \note{

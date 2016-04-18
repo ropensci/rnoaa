@@ -2,7 +2,7 @@
 % Please edit documentation in R/meteo_distance.R
 \name{meteo_distance}
 \alias{meteo_distance}
-\title{Find all monitors within a radius of a locations}
+\title{Find all monitors within a radius of a location}
 \usage{
 meteo_distance(station_data, lat, long, units = "deg", radius = NULL,
   limit = NULL)
@@ -15,7 +15,8 @@ with one row per weather station. Latitude and longitude for the station
 locations should be in columns with the names "latitude" and "longitude",
 consistent with the output from \code{ghcnd_stations()[[1]]}. To save time, run the
 \code{ghcnd_stations} call and save the output to an object, rather than
-rerunning the default every time (see the examples).}
+rerunning the default every time (see the examples in
+\code{\link{meteo_nearby_stations}}).}
 
 \item{lat}{Latitude of the location. Southern latitudes should be given
 as negative values.}
@@ -35,16 +36,18 @@ to search for monitors near a location.}
 
 \item{limit}{An integer giving the maximum number of monitors to include for
 each location. The [x] closest monitors will be kept. Default is NULL
-(pull everything available within the radius).}
+(pull everything available, within the radius if the radius is specified).}
 }
 \value{
-a dataframe in a column with the distance of stations
+A dataframe of weather stations near the location. This is the
+   single-location version of the return value for
+   \code{\link{meteo_nearby_stations}}.
 }
 \description{
 This function will identify all weather stations with a specified radius of
 a location. If no radius is given, the function will return a dataframe
 of all available monitors, sorted by distance to the location. The
-\code{limit} argument can be used to limit the output dataframe to the x
+\code{limit} argument can be used to limit the output dataframe to the [x]
 closest monitors to the location.
 }
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/meteo_distance.R
 \name{meteo_process_geographic_data}
 \alias{meteo_process_geographic_data}
-\title{Calculate the distances between a location and all avaiable stations}
+\title{Calculate the distances between a location and all available stations}
 \usage{
 meteo_process_geographic_data(station_data, lat, long, units = "deg")
 }
@@ -14,7 +14,8 @@ with one row per weather station. Latitude and longitude for the station
 locations should be in columns with the names "latitude" and "longitude",
 consistent with the output from \code{ghcnd_stations()[[1]]}. To save time, run the
 \code{ghcnd_stations} call and save the output to an object, rather than
-rerunning the default every time (see the examples).}
+rerunning the default every time (see the examples in
+\code{\link{meteo_nearby_stations}}).}
 
 \item{lat}{Latitude of the location. Southern latitudes should be given
 as negative values.}
@@ -36,8 +37,8 @@ The \code{station_data} dataframe that is input, but with a
    the location (closest weather stations first).
 }
 \description{
-This function takes a single location, a dataset of available weather stations,
-and calculates the distance between the location and each of the locations,
+This function takes a single location and a dataset of available weather stations
+and calculates the distance between the location and each of the stations,
 using the great circle method. A new column is added to the dataset of
 available weather stations giving the distance between each station and
 the input location. The station dataset is then sorted from closest to
