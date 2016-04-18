@@ -10,7 +10,10 @@ meteo_coverage(meteo_df, obs_start_date = NULL, obs_end_date = NULL,
 \arguments{
 \item{meteo_df}{an \emph{meteo} \code{data.frame}}
 
-\item{obs_end_date, obs_end_date}{specify either or both to constrain
+\item{obs_start_date}{specify either or both (obs_start_date, obs_end_date) to constrain
+coverate tests. These should be \code{Date} objects.}
+
+\item{obs_end_date}{specify either or both (obs_start_date, obs_end_date) to constrain
 coverate tests. These should be \code{Date} objects.}
 
 \item{verbose}{if \code{TRUE} will display the coverage summary along

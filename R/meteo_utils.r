@@ -8,7 +8,9 @@
 #' There is an \code{autoplot} method for the output of this function.
 #'
 #' @param meteo_df an \emph{meteo} \code{data.frame}
-#' @param obs_end_date,obs_end_date specify either or both to constrain
+#' @param obs_start_date specify either or both (obs_start_date, obs_end_date) to constrain
+#'        coverate tests. These should be \code{Date} objects.
+#' @param obs_end_date specify either or both (obs_start_date, obs_end_date) to constrain
 #'        coverate tests. These should be \code{Date} objects.
 #' @param verbose if \code{TRUE} will display the coverage summary along
 #'        with returning the coverage data.frame
