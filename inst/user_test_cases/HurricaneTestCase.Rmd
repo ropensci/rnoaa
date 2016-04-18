@@ -53,6 +53,13 @@ For each of the affected cities, estimate the precipitation during the storm and
 - A map of stations you used to get those values, with some measure on the map of the maximum daily or hourly rainfall measured at that station
 - Did the location have problems with flooding during the storm? Get some measure to identify if and to what degree the location flooded.
 
+RS: The countyweather package has some functions for pulling and aggreagating weather data by FIPS code. For the US storms, this might be helpful for this task. If you have devtools installed, you can install countyweather using the following code: 
+```{r eval=FALSE}
+library(devtools)
+install_github("leighseverson/countyweather")
+library(countyweather)
+```
+
 ## Plotting the storm
 
 Plot the full track of the storm. Show its intensity as it progressed along the track, as well as the affected cities.
