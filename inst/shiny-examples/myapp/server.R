@@ -6,30 +6,20 @@ library("httr")
 library("geosphere")
 library("purrr")
 
-get_nearby_stations <- function(lat_lon_df, lat_colname, lon_colname, ghcnd_station_list, radius)
-  lat_lon_df %>%
-  distinct_(lat_colname, lon_colname) %>%
-  split(.[, lat_colname], .[, lon_colname]) %>%
-  map(function(x) {
-    station_ids <-
-      meteo_distance(data = ghcnd_station_list, lat = x$latitude, long = x$longitude, radius = radius) %>%
-      distinct(id)
-    return(station_ids)
-  })
 
 
-#stations <- tbl_df(ghcnd_stations()$data)
-load("ghcnd_stations.Rda")
+station_data <- rnoaa::ghcnd_stations()[[1]]
 
 
 
 shinyServer(function(input, output) {
   points <- eventReactive(input$go, {
-  closest <- get_nearby_stations(data.frame(latitude = input$latitude,
-                                 longitude = input$longitude),
+  closest <- rnoaa::meteo_nearby_stations(data.frame(latitude = input$latitude,
+                                 longitude = input$longitude,
+                                 id = factor("here")),
+                                 station_data = station_data,
                       "latitude",
                       "longitude",
-                      stations,
                       input$radius)
 
   rbind_all(closest)%>%

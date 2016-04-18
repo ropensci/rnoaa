@@ -14,7 +14,7 @@ library("purrr")
 options(RCHART_LIB = 'highcharts')
 shinyUI(fluidPage(
 
-  titlePanel("Exploring microPEM output"),
+  titlePanel("Finding nearest weather station"),
 
   sidebarLayout(
     sidebarPanel(
