@@ -4,9 +4,13 @@
 \alias{print.ghcnd_stations}
 \title{Print out GHCND stations}
 \usage{
-\method{print}{ghcnd_stations}(x, n = 10)
+\method{print}{ghcnd_stations}(x, ..., n = 10)
 }
 \arguments{
+\item{x}{The object returned by a call to \code{\link{ghcnd_stations}}.}
+
+\item{...}{Other parameters to pass to \code{print}.}
+
 \item{n}{Number of rows of station data to print.}
 }
 \description{

@@ -2,50 +2,17 @@
 % Please edit documentation in R/ghcnd.R
 \name{ghcnd_splitvars}
 \alias{ghcnd_splitvars}
-\title{Get GHCND daily data from NOAA FTP server}
+\title{Split variables in data returned from \code{ghcnd}}
 \usage{
 ghcnd_splitvars(x)
 }
 \arguments{
-\item{x}{Input object to print methods. For \code{ghcnd_splitvars()}, the output of a call
-to \code{ghcnd()}.}
-
-\item{stationid}{Stationid to get}
-
-\item{path}{(character) A path to store the files, Default: \code{~/.rnoaa/isd}}
-
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}}
-
-\item{date_min, date_max}{(character) Minimum and maximum dates. Use together to get a
-date range}
-
-\item{var}{(character) Variable to get, defaults to "all", which gives back all variables
-in a list. To see what variables are available for a dataset, look at the dataset returned
-from \code{ghcnd()}.}
+\item{x}{An object returned from \code{\link{ghcnd}}.}
 }
 \description{
-Get GHCND daily data from NOAA FTP server
-}
-\details{
-Functions:
-\itemize{
- \item \code{ghcnd_version} - Get current version of GHCND data
- \item \code{ghcnd_states} - Get US/Canada state names and 2-letter codes
- \item \code{ghcnd_countries} - Get country names and 2-letter codes
- \item \code{ghcnd_splitvars} - Split variables in data returned from \code{ghcnd}
- \item \code{ghcnd_clear_cache} - Clear cache of locally stored files
-}
-}
-\examples{
-\dontrun{
-# Get metadata
-ghcnd_states()
-ghcnd_countries()
-ghcnd_version()
-
-# Get stations, ghcnd-stations and ghcnd-inventory merged
-(stations <- ghcnd_stations())
-}
+This function is a helper function for \code{\link{ghcnd_search}}. It helps
+with cleaning up the data returned from \code{\link{ghcnd}}, to get it in a
+format that is easier to work with using R.
 }
 \author{
 Scott Chamberlain \email{myrmecocystus@gmail.com},

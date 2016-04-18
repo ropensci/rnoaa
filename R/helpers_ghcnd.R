@@ -163,9 +163,9 @@ meteo_tidy_ghcnd <- function(stationid, keep_flags = FALSE, var = "all",
     dat <- suppressWarnings(ghcnd_search(stationid = stationid, var = var,
                                          date_min = date_min,
                                          date_max = date_max)) %>%
-      lapply(meteo_tidy_ghncd_element, keep_flags = keep_flags)
+      lapply(meteo_tidy_ghcnd_element, keep_flags = keep_flags)
     cleaned_df <- do.call(rbind.data.frame, dat) %>%
-      tidyr::spread(key = key, value = value)
+      tidyr::spread_("key", "value")
 
   which_vars_tenths <- which(colnames(cleaned_df) %in%
                                 c("prcp", "tmax", "tmin", "tavg"))
@@ -189,35 +189,35 @@ meteo_tidy_ghcnd <- function(stationid, keep_flags = FALSE, var = "all",
   return(cleaned_df)
 }
 
-#' Restructure element of ghncd_search list
+#' Restructure element of ghcnd_search list
 #'
 #' This function restructures a single element of the list object created
-#' by \code{\link{ghncd_search}}, to add a column giving the variable name
+#' by \code{\link{ghcnd_search}}, to add a column giving the variable name
 #' (\code{key}) and change the name of the variable column to \code{value}.
 #' These changes facilitate combining all elements from the list created by
-#' \code{\link{ghncd_search}}, to create a tidy dataframe of the weather
+#' \code{\link{ghcnd_search}}, to create a tidy dataframe of the weather
 #' observations from the station.
 #'
 #' @param x A dataframe with daily observations for a single monitor for a
 #'    single weather variable. This dataframe is one of the elements returned
-#'    by \code{\link{ghncd_search}}.
+#'    by \code{\link{ghcnd_search}}.
 #' @inheritParams meteo_tidy_ghcnd
 #'
 #' @return A dataframe reformatted to allow easy aggregation of all weather
 #'    variables for a single monitor.
 #'
 #' @author Brooke Anderson \email{brooke.anderson@@colostate.edu}
-meteo_tidy_ghncd_element <- function(x, keep_flags = FALSE){
+meteo_tidy_ghcnd_element <- function(x, keep_flags = FALSE){
   var_name <- colnames(x)[2]
   if(keep_flags){
     flag_locs <- grep("flag", colnames(x))
     colnames(x)[flag_locs] <- paste(colnames(x)[flag_locs], var_name, sep = "_")
     x <- tidyr::gather_(x, "key", "value",
-                        gather_cols =  select_vars(names(x), -id, -date))
+                        gather_cols =  dplyr::select_vars(names(x), -id, -date))
   } else {
     x <- dplyr::select_(x, "-ends_with('flag')")
     x <- tidyr::gather_(x, "key", "value",
-                        gather_cols =  select_vars(names(x), -id, -date))
+                        gather_cols =  dplyr::select_vars(names(x), -id, -date))
   }
   return(x)
 }

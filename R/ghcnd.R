@@ -259,7 +259,9 @@ get_inventory <- function(...){
 #' This function prints out, in a nice format, the object returned by
 #' \code{\link{ghcnd_stations}}.
 #'
+#' @param x The object returned by a call to \code{\link{ghcnd_stations}}.
 #' @param n Number of rows of station data to print.
+#' @param ... Other parameters to pass to \code{print}.
 #'
 #' @examples
 #' \dontrun{
@@ -268,7 +270,7 @@ get_inventory <- function(...){
 #' }
 #'
 #' @export
-print.ghcnd_stations <- function(x, n = 10){
+print.ghcnd_stations <- function(x, ..., n = 10){
   cat("<GHCND Station Data>", sep = "\n")
   cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
   trunc_mat_(x$data, n = n)
