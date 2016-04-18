@@ -44,4 +44,8 @@ available weather stations giving the distance between each station and
 the input location. The station dataset is then sorted from closest to
 furthest distance to the location and returned as the function output.
 }
+\author{
+Alex Simmons \email{a2.simmons@qut.edu.au},
+   Brooke Anderson \email{brooke.anderson@colostate.edu}
+}
 

@@ -50,4 +50,8 @@ of all available monitors, sorted by distance to the location. The
 \code{limit} argument can be used to limit the output dataframe to the [x]
 closest monitors to the location.
 }
+\author{
+Alex Simmons \email{a2.simmons@qut.edu.au},
+   Brooke Anderson \email{brooke.anderson@colostate.edu}
+}
 

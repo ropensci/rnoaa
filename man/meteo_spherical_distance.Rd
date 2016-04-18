@@ -39,4 +39,8 @@ meteo_spherical_distance(lat1 = -27.4667, long1 = 153.0217,
                          lat2 = -27.4710, long2 = 153.0234)
 
 }
+\author{
+Alex Simmons \email{a2.simmons@qut.edu.au},
+   Brooke Anderson \email{brooke.anderson@colostate.edu}
+}
 

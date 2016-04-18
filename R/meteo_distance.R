@@ -66,6 +66,9 @@
 #'    \code{\link{meteo_pull_monitors}} and \code{\link{meteo_tidy_ghcnd}}, to
 #'    pull weather data from weather monitors near a location.
 #'
+#' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
+#'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
+#'
 #' @examples
 #' \dontrun{
 #'
@@ -152,6 +155,9 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
 #'    single-location version of the return value for
 #'    \code{\link{meteo_nearby_stations}}.
 #'
+#' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
+#'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
+#'
 #' @export
 meteo_distance <- function(station_data, lat, long,
                            units = 'deg', radius = NULL, limit = NULL) {
@@ -187,6 +193,9 @@ meteo_distance <- function(station_data, lat, long,
 #'    \code{distance} column added that gives the distance to the location
 #'    (in kilometers), and re-ordered by distance between each station and
 #'    the location (closest weather stations first).
+#'
+#' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
+#'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
 #' @export
 meteo_process_geographic_data <- function(station_data,
@@ -224,6 +233,9 @@ meteo_process_geographic_data <- function(station_data,
 #'    pair of locations.
 #'
 #' @note This function assumes an earth radius of 6,371 km.
+#'
+#' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
+#'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
 #' @examples
 #'
