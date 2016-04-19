@@ -1,13 +1,12 @@
 ---
-title: "Test case: Alaska wildfires"
-author: Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG)
+title: 'Test case: Alaska wildfires'
+author: "Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG)"
 output: html_document
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 # Main task 
 
 You are trying to get observational data related to wildfires from throughout the state of Alaska for the years 2000-2016. 
@@ -41,6 +40,7 @@ How many lightning strikes did you record in Alaska over this time period? Creat
 
 - BA: `rnoaa`'s `swdi` series of functions looks like it might have data on lightning strikes. The vignette for that series is [here](https://github.com/ropensci/rnoaa/blob/master/vignettes/swdi_vignette.Rmd). The NCDC webpage for the severe weather data inventory is [here](http://www.ncdc.noaa.gov/swdi/#Intro). From the documentation, it sounds like for non-military users, you may only be able to get number of strikes per day per region, not exact time and location.  
 - BA: [Here](https://www.ncdc.noaa.gov/data-access/severe-weather/lightning-products-and-services) is some more information from NOAA on lightning strikes. I'm not clear yet on how much of this overlaps the SWDI resource. 
+- RG: Test comment
 
 ## Relevant weather measures
 
