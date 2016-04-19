@@ -5,7 +5,7 @@
 \title{Determine the "coverage" for a station data frame}
 \usage{
 meteo_coverage(meteo_df, obs_start_date = NULL, obs_end_date = NULL,
-  verbose = TRUE)
+  verbose = FALSE)
 }
 \arguments{
 \item{meteo_df}{an \emph{meteo} \code{data.frame}}
@@ -45,6 +45,6 @@ monitors <- c("ASN00095063", "ASN00024025", "ASN00040112", "ASN00041023",
              "ASN00040126", "ASN00058161")
 obs <- meteo_pull_monitors(monitors)
 obs_covr <- meteo_coverage(obs)
-autoplot(obscovr)
+ggplot2::autoplot(obs_covr)
 }
 
