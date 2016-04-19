@@ -30,7 +30,7 @@
 #'              "ASN00040126", "ASN00058161")
 #' obs <- meteo_pull_monitors(monitors)
 #' obs_covr <- meteo_coverage(obs)
-#' ggplot2::autoplot(obs_covr)
+#' autoplot(obs_covr)
 meteo_coverage <- function(meteo_df,
                            obs_start_date=NULL,
                            obs_end_date=NULL,

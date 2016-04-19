@@ -45,6 +45,6 @@ monitors <- c("ASN00095063", "ASN00024025", "ASN00040112", "ASN00041023",
              "ASN00040126", "ASN00058161")
 obs <- meteo_pull_monitors(monitors)
 obs_covr <- meteo_coverage(obs)
-ggplot2::autoplot(obs_covr)
+autoplot(obs_covr)
 }
 
