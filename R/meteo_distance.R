@@ -29,8 +29,6 @@
 #'    \code{ghcnd_stations} call and save the output to an object, rather than
 #'    rerunning the default every time (see the examples in
 #'    \code{\link{meteo_nearby_stations}}).
-#' @param year_min Minimal year from which there should be data, e.g. "2013".
-#' @param year_max Maximal year from which there should be data, e.g. "2013".
 #' @param radius A numeric vector giving the radius (in kilometers) within which
 #'    to search for monitors near a location.
 #' @param limit An integer giving the maximum number of monitors to include for
@@ -119,7 +117,7 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
     dplyr::select_(~id, ~name, ~latitude, ~longitude) %>%
     dplyr::distinct_()
 
-  location_stations <- lat_lon_df %>%
+  location_stations <- as.data.frame(lat_lon_df) %>%
     split(.[, lat_colname], .[, lon_colname]) %>%
     purrr::map(function(x) {
       station_ids <- meteo_distance(station_data = station_data,
