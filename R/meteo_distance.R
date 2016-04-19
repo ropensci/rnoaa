@@ -29,6 +29,11 @@
 #'    \code{ghcnd_stations} call and save the output to an object, rather than
 #'    rerunning the default every time (see the examples in
 #'    \code{\link{meteo_nearby_stations}}).
+#' @param year_min A numeric value giving the earliest year from which you
+#'    ultimately want weather data (e.g., 2013, if you only are interested in
+#'    data from 2013 and later).
+#' @param year_max A numeric value giving the latest year from which you
+#'    ultimately want weather data.
 #' @param radius A numeric vector giving the radius (in kilometers) within which
 #'    to search for monitors near a location.
 #' @param limit An integer giving the maximum number of monitors to include for
