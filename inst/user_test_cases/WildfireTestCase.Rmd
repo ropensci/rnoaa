@@ -167,6 +167,56 @@ ggmap(station_map) + geom_point(aes(x = lon, y = lat),
 
 ```
 
+Taking a look at what the wunderground API has to offer. The following is exploratory and not yet operational. What is shown below is what looks like a promising source for hourly resolution weather data from high quality stations all over the world. Station metadata can be found http://weather.rap.ucar.edu/surface/stations.txt.
+
+```{r }
+library(weatherData)
+
+# Lets first check out what data is available, because I am a nerd (SJB) I 
+# Know the name of the station at Sea-tac
+try(checkSummarizedDataAvailability("KSEA", 
+                                start_date="2006-01-01", 
+                                end_date = "2006-01-10",
+                                station_type = "airportCode"))
+
+
+
+# Hmmmmmm looks like this package is broken. There is data at the url but
+# the function is not pulling it. Maybe I should contact the author on 
+# CRAN. 
+
+# If you go to the followung URL the data clearly exists 
+#http://www.wunderground.com/history/airport/KSEA/2006/1/1/CustomHistory.html?dayend=10&monthend=1&yearend=2006&req_city=NA&req_state=NA&req_statename=NA&format=1 
+
+# OK soo here is the deal, there are about a billion surface weather 
+# stations around the world. 
+# http://weather.rap.ucar.edu/surface/stations.txt
+
+library(RCurl)
+
+stationURLText <- "http://weather.rap.ucar.edu/surface/stations.txt"
+lines <- readLines("http://weather.rap.ucar.edu/surface/stations.txt")
+noHeader <- lines[44:length(lines)]
+# Gives a billion locations of stations
+
+# Below is some more broken code form this package. 
+# getDetailedWeather("KSEA", date="2006-01-01")
+
+# But if you build a url that looks like this
+deatiledDataURL <- "https://www.wunderground.com/history/airport/KSEA/2006/1/1/DailyHistory.html?format=1"
+
+# Beautiful data with hourly weather observations 
+KSEAData <- read.csv(text = getURL(deatiledDataURL))
+
+# This request could be made for any data and any setation! 
+t <- as.POSIXct(KSEAData$DateUTC,tz="PST")
+plot(t, KSEAData$TemperatureF, type="p",
+     ylab="T [f]", xlab="Local Time (PST)",
+     main="Example of hourly data avialable from Wunderground (KSEA)")
+
+
+```
+
 ## Vegetation / NDVI
 
 Gather the data on the vegetation / NDVI throughout Alaska. Do so at as fine of a temporal and spatial resolution as possible. If you can gather this at a very fine spatial and temporal resolution, start by only collecting for the first week of July 2015. If you can only get yearly values, get values for each year from 2000-2016. 
