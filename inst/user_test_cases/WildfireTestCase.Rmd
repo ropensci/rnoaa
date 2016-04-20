@@ -1,6 +1,6 @@
 ---
 title: 'Test case: Alaska wildfires'
-author: "Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF)"
+author: "Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF), Joshua Ferreri (JF)"
 output: pdf_document
 ---
 
@@ -9,7 +9,6 @@ knitr::opts_chunk$set(echo = TRUE)
 # Required libraries
 library(rnoaa)
 library(ggmap)
-
 ```
 # Main task 
 
@@ -81,6 +80,37 @@ For the first week of July 2015, get values for each of the weather variables, a
 
 - BA: For daily data, you should be able to use `meteo_pull_monitors` from `rnoaa` to collect this data. However, you'll need to find all the weather stations IDs that you want to pull first. For that, you may want to try out `ncdc_stations`, using the `locationid` argument to get a list of stations either by county or by state. If you are pulling and aggregating by county, you can also use the `weather_fips` function from the `countyweather` package, which lets you pull data by county FIPS code. 
 
+
+```{r eval =FALSE}
+
+ak_monitors <- ncdc_stations(datasetid = "GHCND", locationid = "FIPS:02", 
+                             limit = 1000)
+ak_station_2016 <- data_frame(ak_monitors$data$mindate, ak_monitors$data$maxdate,
+                              ak_monitors$data$name, ak_monitors$data$id, 
+                              ak_monitors$data$datacoverage)
+colnames(ak_station_2016) <- c("mindate", "maxdate", "name", "id", "coverage")
+ak_station_2016$id <- gsub("GHCND:", "", ak_station_2016$id)#Must remove "GHCND:" to get id alone
+alaska_weather <- meteo_pull_monitors(ak_station_2016$id[1:3], 
+                                      date_min = "2000-01-01", 
+                                      date_max = "2016-01-01") ##THIS WILL TAKE
+                                                               ##FOREVER 
+#startDates <- as.POSIXct(ak_station_2016$mindate, tz="GMT")
+#endDates <- as.POSIXct(ak_station_2016$maxdate, tz="GMT")
+#startRangeMask <- startDates <= as.POSIXct("2000-01-01", tz="GMT")
+#endRangeMask   <- endDates >= as.POSIXct("2015-12-31", tz="GMT")
+#inRange <- startRangeMask & endRangeMask
+test <- ak_station_2016
+test$mindate <- as.Date(test$mindate, format = "%Y-%m-%d")
+test$maxdate <- as.Date(test$maxdate, format = "%Y-%m-%d")
+##limit number of monitors to those with data that covers desired range, as well
+##as have greater than .75 data coverage
+test <- subset(test, mindate <= as.Date("2000-01-01") & maxdate >= as.Date("2015-12-31") & coverage > .75)
+alaska_weather2 <- meteo_pull_monitors(test$id[1:3], 
+                                      date_min = "2000-01-01", 
+                                      date_max = "2016-01-01")#for 168 monitors
+```
+
+-JF: Trying to pull weather data for all stations in Alaska. Pulling for all stations will take a very long time, therefore a test trial using the first 3 stations listed for Alaska were used (`alaska_weather`). Stations were then limited by a variety of parameters to create a new data frame, `test`, to limit the number of monitors used to create a data frame with weather variables (`alaska_weather2`).
 - MF: We used `ncdc_stations` to get a list of stations in Alaska. First we had to find the FIPS code for Alaska, which is "02". It took some experimenting to figure out the correct way to input the `locationid` argument. The `limit` defaults to 25 so we needed to change it in order to see all 831 stations in Alaska. At this point we don't actually know if `GHCND` is the dataset we want, but it was one of the examples in the documentation for `ncdc_stations`. The station list may be different depending on the dataset you're using.
 
 - RG: Adding a map of weather stations in Alaska, using MFs station dataframe
@@ -119,8 +149,6 @@ station_map <- get_map(location= alaska, # use bounding box for location
 ggmap(station_map) + geom_point(aes(x = lon, y = lat), 
                                 data = mydata, alpha = .5, color="blue", 
                                 size = 1)
-
-
 ```
 
 ## Vegetation / NDVI
