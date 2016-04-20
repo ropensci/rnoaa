@@ -106,6 +106,26 @@ ggplot(miami_wind, aes(x = date, y = wsfg)) +
 
 It seems like we should be able to get wind data from some of the other NOAA data sources. In particular, it seems like we should be able to get hourly, or another fine temporal resolution, of wind data. Check the "Data sources" section of the file at the bottom of the page [here](https://github.com/ropenscilabs/rnoaa).
 
+RS: The `isd()` function from the rnoaa package looks like it's getting hourly data. Here's an example with the station at Miami International Airport: 
+
+```{r}
+res <- isd(usaf = "722020", wban = "12839", year = 1992)$data
+res$date_time <- ymd_hm(sprintf("%s %s", as.character(res$date), res$time))
+
+res <- res %>% filter(temperature < 900) %>% select(usaf_station, wban_station, 
+                                                    date_time, latitude, longitude, 
+                                                    wind_direction, wind_speed, 
+                                                    temperature)
+
+ggplot(res, aes(date_time, temperature)) +
+  geom_line() +
+  facet_wrap(~usaf_station, scales = "free_x")
+```
+
+We should be able to filter the res dataframe to the particular month we're interested in to get hourly wind data. We found the USAF and WBAN codes for Miami by searching [this](ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-history.txt) text file of stations - there should be a better way to find USAF and WBAN codes for a particular location or station. 
+
+More info about this data can be found by going to NOAA's [land-based station data](https://www.ncdc.noaa.gov/data-access/land-based-station-data) site, then following the link for Integrated Surface Hourly Data base (3505) at the bottom of the page. For example, the readme.txt and ish-format-document.pdf files could be helpful. 
+
 #### A measure of how strong winds were over water around where the storm made landfall
 
 BA: For this, it seems like [buoy data](http://www.ndbc.noaa.gov) might work. The `buoy` function in `rnoaa` might work. I'm not sure how you could get station IDs through `rnoaa` for the buoy stations. I used the website to find a station close to Miami ("fwyf1"). Once you have a buoy id, you can do this kind of call: 
