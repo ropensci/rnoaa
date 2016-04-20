@@ -6,6 +6,7 @@ output: html_document
 
 ```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
 ```
 
 # Main task
@@ -51,7 +52,6 @@ For each of the affected cities, estimate the precipitation during the storm and
 - Daily and hourly estimates of rainfall
 - How many stations you used to get each of those values
 - A map of stations you used to get those values, with some measure on the map of the maximum daily or hourly rainfall measured at that station
-- Did the location have problems with flooding during the storm? Get some measure to identify if and to what degree the location flooded.
 
 RS: The countyweather package has some functions for pulling and aggreagating weather data by FIPS code. For the US storms, this might be helpful for this task. If you have devtools installed, you can install countyweather using the following code: 
 ```{r eval=FALSE}
@@ -59,6 +59,55 @@ library(devtools)
 install_github("leighseverson/countyweather")
 library(countyweather)
 ```
+
+## Flooding related to the hurricane
+
+Was there severe flooding related to the storm? For locations along the storm path, try to figure out: 
+
+- What areas were along the storm path?
+- Can you identify streams and rivers that were affected by the storm?
+- What cities had problems with flooding during the storm? Get some measure to identify if and to what degree the location flooded.
+- How closely were rainfall and flooding severity linked in locations?
+
+#### What areas were along the storm path?
+
+BG: For this, you'll need to have the storm track for each storm. I guess then match with distance to lat-lon coordinates for city or county centers to identify locations near the storm track?
+
+#### Can you identify streams and rivers that were affected by the storm?
+
+BG: No idea where to start here... Are there any databases where you can identify rivers or streams that are close to a certain location? Does streamgage meta-data have some information saying what river or stream it's on? If so, we might be able to pull meta-data on all streamgages through USGS, filter to just ones within the right date range, and then pull the latitude-longitude and the stream / river name, then calculate distances to the central path of the storm from storm tracks.
+
+#### What cities had problems with flooding during the storm? Get some measure to identify if and to what degree the location flooded.
+
+BG: The `waterData` package allows you to pull daily hydrologic time series from the USGS. You need to have the station IDs to do that first, though. 
+
+The package `countyweather` (this is Rachel's package) has a function to pull all the station IDs for a US county, based on the county FIPS code. This function is still in development (so feel free to fork the package and make your own changes!), but for right now you can use it like this-- to get the station IDs for Miami-Dade, which has a FIPS code of 12086
+
+```{r}
+# library(devtools)
+# install_github("leighseverson/countyweather") # install the package if you need to
+library(countyweather)
+miami_ids <- countyweather:::streamflow("12086",
+                                       date_min = "1992-08-20",
+                                       date_max = "1992-08-30")
+miami_ids
+```
+
+Then you can use these IDs with `importDVs` from the `waterData` package to import daily hydrological time series data. This function will, I think, only pull for one gauge at a time:
+
+```{r fig.width = 4, fig.height = 2.5}
+# install.packages(waterData) # if you need to install the package
+library(waterData)
+miami_1 <- importDVs(miami_ids[1], sdate = "1992-08-20", edate = "1992-08-30")
+head(miami_1)
+ggplot(miami_1, aes(x = dates, y = val)) + geom_line() + 
+  geom_point() + ggtitle("Stream discharge for streamgage 02287395")
+```
+
+The default is for `importDVs` to pull in the mean daily value. You can use the `stat` option to change what you get in, although for this, you'd want to look up what all the USGS statistics codes are. You can also change the USGS parameter code using the `code` argument. The default is "00060", which is the discharge in cubic feet per second. The help file for `importDvs` has web links to find the right codes for these. 
+
+So, I think next steps would be to use something from the `apply` family of functions or a loop to go through and get data from all of the Miami gauges, and then plot the discharge for them all. Are there any problems with pulling data from any of the gauges that we get back from the `streamflow` function?
+
 
 ## Plotting the storm
 
