@@ -1,7 +1,7 @@
 ---
 title: 'Test case: Alaska wildfires'
 author: "Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF)"
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
