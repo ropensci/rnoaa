@@ -76,6 +76,32 @@ For the first week of July 2015, get values for each of the weather variables, a
 
 - BA: For daily data, you should be able to use `meteo_pull_monitors` from `rnoaa` to collect this data. However, you'll need to find all the weather stations IDs that you want to pull first. For that, you may want to try out `ncdc_stations`, using the `locationid` argument to get a list of stations either by county or by state. If you are pulling and aggregating by county, you can also use the `weather_fips` function from the `countyweather` package, which lets you pull data by county FIPS code. 
 
+- MF: We used `ncdc_stations` to get a list of stations in Alaska. First we had to find the FIPS code for Alaska, which is "02". It took some experimenting to figure out the correct way to input the `locationid` argument. The `limit` defaults to 25 so we needed to change it in order to see all 831 stations in Alaska. At this point we don't actually know if `GHCND` is the dataset we want, but it was one of the examples in the documentation for `ncdc_stations`. The station list may be different depending on the dataset you're using.
+
+```{r results='hide'}
+# options("noaakey" = Sys.getenv("noaakey"))
+# library(devtools)
+# install_github("ropenscilabs/rnoaa") # if you need to install the package
+library(rnoaa)
+out <- ncdc_stations(datasetid='GHCND', locationid='FIPS:02', limit=1000)
+out$meta # totalCount indicates the total number of stations
+
+```
+
+- MF: **THIS IS NOT DATA!** Following an example in a `rnoaa` [tutorial](https://ropensci.org/tutorials/rnoaa_tutorial.html), below I am using the `NORMAL_DLY` dataset (I'm not sure exactly what "dly-tmax-normal" is, but I'm assuming it must be some kind of climate normal, i.e. an average over a long time period).
+
+```{r}
+# NORMAL_DLY has a different set of stations in Alaska (only 171 of them)
+out <- ncdc_stations(datasetid='NORMAL_DLY', locationid='FIPS:02', limit=1000)
+mydata <- data.frame(id=out[[2]]$id, lat=out[[2]]$latitude, lon=out[[2]]$longitude)
+# I selected the first station id to pull some data from
+temp <- ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', 
+             stationid='GHCND:USC00500243',
+             startdate = '2010-01-01', enddate = '2010-12-10', limit = 300)
+ncdc_plot(temp)
+
+```
+
 ## Vegetation / NDVI
 
 Gather the data on the vegetation / NDVI throughout Alaska. Do so at as fine of a temporal and spatial resolution as possible. If you can gather this at a very fine spatial and temporal resolution, start by only collecting for the first week of July 2015. If you can only get yearly values, get values for each year from 2000-2016. 
