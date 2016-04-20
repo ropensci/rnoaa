@@ -1,6 +1,6 @@
 ---
 title: 'Test Case: Hurricane Data'
-author: "Brooke Anderson (BA), Rachel Severson (RS)"
+author: "Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP)"
 output: html_document
 ---
 
@@ -76,12 +76,13 @@ Try to get:
 
 BA: It may work, for daily wind speeds, to use the Global Historical Climatology Network Daily data. If you have monitor ids, you can use the `meteo_pull_monitors` function from `rnoaa` to pull data from this source. If you have the FIPS code for a county, you can use the function `fips_stations` in `countyweather` (a package Rachel is developing) to get the station IDs for all relevant stations in a county. 
 
+CP: I had issues running `install_github("ropenscilabs/rnoaa")` in order to use the function `meteo_pull_monitors`, so instead try `load_all()`. Note that this will only work if you have devtools installed and you have forked the rnoaa respository from Github.  
 For example, the FIPS for Miami-Dade is 12086. Based on the [README file](http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) for this data, some of the windspeed variables have the abbreviations: "AWND", "WSFG", "WSF1". You can therefore run:
 
 ```{r}
-# library(devtools)
-# install_github("ropenscilabs/rnoaa") # if you need to install the package
-# install_github("leighseverson/countyweather") # if you need to install the package
+library(devtools)
+install_github("ropenscilabs/rnoaa", dependencies=TRUE) # if you need to install the package
+install_github("leighseverson/countyweather") # if you need to install the package
 library(rnoaa)
 library(countyweather)
 miami_stations <- fips_stations("12086", date_min = "1992-08-01",
@@ -104,12 +105,55 @@ ggplot(miami_wind, aes(x = date, y = wsfg)) +
   ylab("Wind gust (m / s)") 
 ```
 
+
 It seems like we should be able to get wind data from some of the other NOAA data sources. In particular, it seems like we should be able to get hourly, or another fine temporal resolution, of wind data. Check the "Data sources" section of the file at the bottom of the page [here](https://github.com/ropenscilabs/rnoaa).
 
-RS: The `isd()` function from the rnoaa package looks like it's getting hourly data. Here's an example with the station at Miami International Airport: 
+RS: The `isd()` function from the rnoaa package looks like it's getting hourly data. Here's an example with the station at Miami International Airport.
+
+
+CP: A current issue is that the `isd()` function takes USAF and WBAN station codes as input, whereas we would like to use FIPS codes (county codes) as input. My initial thought for a way around this is to use the `isd_stations_search` from the rnoaa package, which takes lat/lon and radius (km) as input. I can use census data from [here](http://www2.census.gov/geo/docs/reference/cenpop2010/county/CenPop2010_Mean_CO.txt) to find population weighted lat/lon associated with a given FIPS code, and then use the lat/lon as input to `isd_stations_search` to get the stations associated with that FIPS code. Note that we would like to produce output similar to `weather_fips`, a function that takes a county code as input and then gives weather data in the surrounding area. `weather_fips`, except for hourly data. The `weather_fips` code can be forked from [here](https://github.com/leighseverson/countyweather).
+
+
 
 ```{r}
-res <- isd(usaf = "722020", wban = "12839", year = 1992)$data
+library(stringr)
+
+census_data <- read.csv('http://www2.census.gov/geo/docs/reference/cenpop2010/county/CenPop2010_Mean_CO.txt')
+state <- census_data$STATEFP
+county <- census_data$COUNTYFP
+
+state[str_length(state) == 1] <- paste0(0, state[str_length(state) == 1])
+county[str_length(county) == 1] <- paste0(00, county[str_length(county) == 1])
+county[str_length(county) == 2] <- paste0(0, county[str_length(county) == 2])
+
+FIPS <- paste0(state,county)
+census_data$FIPS <- FIPS
+
+lat <- census_data$LATITUDE
+lon <- census_data$LONGITUDE
+
+#the idea is to go from FIPS -> population weighted lat/lon -> station ID (USAF and WBAN) -> hourly weather data
+
+#this is the FIPS for Miami-Dade 
+FIPS_test = "12086"
+row_num = which(grepl(FIPS_test, census_data$FIPS))
+
+lat_FIPS = lat[row_num]
+lon_FIPS = lon[row_num]
+
+#Get the stations within a 50 km radius corresponding to the 
+#population weighted lat/lon of FIPS_test.
+#It is also possible to specify a bounding box, instead of radius here.
+stations <- isd_stations_search(lat=lat_FIPS, lon=lon_FIPS, radius = 50)
+
+#stations contains usaf and wban codes in the county given by FIPS_test.
+USAF_codes = stations$usaf
+WBAN_codes = stations$wban
+
+#We can apply the isd() function to each of these stations to get the average hourly 'weather' data in the area. 
+
+#here is just an example of what the data looks like for a single station (Miami International Airport)
+res <- isd(usaf = USAF_codes[1], wban = WBAN_codes[1], year = 1992)$data
 res$date_time <- ymd_hm(sprintf("%s %s", as.character(res$date), res$time))
 
 res <- res %>% filter(temperature < 900) %>% select(usaf_station, wban_station, 
@@ -121,8 +165,10 @@ ggplot(res, aes(date_time, temperature)) +
   geom_line() +
   facet_wrap(~usaf_station, scales = "free_x")
 ```
+ 
+RS: We should be able to filter the res dataframe to the particular month we're interested in to get hourly wind data. We found the USAF and WBAN codes for Miami by searching [this](ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-history.txt) text file of stations - there should be a better way to find USAF and WBAN codes for a particular location or station. 
 
-We should be able to filter the res dataframe to the particular month we're interested in to get hourly wind data. We found the USAF and WBAN codes for Miami by searching [this](ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-history.txt) text file of stations - there should be a better way to find USAF and WBAN codes for a particular location or station. 
+CP: I found a function to go from location (lat/lon) to USAF and WBAN codes `isd_stations_search`, and use census data to go from FIPS to lat/lon. See above code. 
 
 More info about this data can be found by going to NOAA's [land-based station data](https://www.ncdc.noaa.gov/data-access/land-based-station-data) site, then following the link for Integrated Surface Hourly Data base (3505) at the bottom of the page. For example, the readme.txt and ish-format-document.pdf files could be helpful. 
 
