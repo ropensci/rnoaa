@@ -6,6 +6,10 @@ output: html_document
 
 ```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+# Required libraries
+library(rnoaa)
+library(ggmap)
+
 ```
 # Main task 
 
@@ -47,8 +51,10 @@ As you work on this project, also keep a running list here of any data from sour
 As you work on these, include the code that you try. Include things that worked and things that you thought would work but that did not. Also write down what parts were easy to figure out how to do, and which you had to search around a lot to figure out what to do. 
 
 ## Lightning strikes
+- RG: rnoaa swdi does not appear to be able to pull lightning strike data using 
+nldn command. I get the following error message 'Error in UseMethod("xpathApply")'
 
-Get a dataset of lightning strikes within Alaska for 2000-2016, with the following columns: 
+Get a dataset of lightning strikes within Alaska for 2000-2015, with the following columns: 
 
 - Date / time: The date and, if available, time of the lightning strike
 - Latitude: The latitude of the strike, in decimal degrees North
@@ -60,7 +66,6 @@ How many lightning strikes did you record in Alaska over this time period? Creat
 
 - BA: `rnoaa`'s `swdi` series of functions looks like it might have data on lightning strikes. The vignette for that series is [here](https://github.com/ropensci/rnoaa/blob/master/vignettes/swdi_vignette.Rmd). The NCDC webpage for the severe weather data inventory is [here](http://www.ncdc.noaa.gov/swdi/#Intro). From the documentation, it sounds like for non-military users, you may only be able to get number of strikes per day per region, not exact time and location.  
 - BA: [Here](https://www.ncdc.noaa.gov/data-access/severe-weather/lightning-products-and-services) is some more information from NOAA on lightning strikes. I'm not clear yet on how much of this overlaps the SWDI resource. 
-- RG: Test comment
 
 ## Relevant weather measures
 
@@ -78,11 +83,13 @@ For the first week of July 2015, get values for each of the weather variables, a
 
 - MF: We used `ncdc_stations` to get a list of stations in Alaska. First we had to find the FIPS code for Alaska, which is "02". It took some experimenting to figure out the correct way to input the `locationid` argument. The `limit` defaults to 25 so we needed to change it in order to see all 831 stations in Alaska. At this point we don't actually know if `GHCND` is the dataset we want, but it was one of the examples in the documentation for `ncdc_stations`. The station list may be different depending on the dataset you're using.
 
+- RG: Adding a map of weather stations in Alaska, using MFs station dataframe
+
 ```{r results='hide'}
 # options("noaakey" = Sys.getenv("noaakey"))
 # library(devtools)
 # install_github("ropenscilabs/rnoaa") # if you need to install the package
-library(rnoaa)
+
 out <- ncdc_stations(datasetid='GHCND', locationid='FIPS:02', limit=1000)
 out$meta # totalCount indicates the total number of stations
 
@@ -90,15 +97,29 @@ out$meta # totalCount indicates the total number of stations
 
 - MF: **THIS IS NOT DATA!** Following an example in a `rnoaa` [tutorial](https://ropensci.org/tutorials/rnoaa_tutorial.html), below I am using the `NORMAL_DLY` dataset (I'm not sure exactly what "dly-tmax-normal" is, but I'm assuming it must be some kind of climate normal, i.e. an average over a long time period).
 
-```{r}
+```{r message = F}
 # NORMAL_DLY has a different set of stations in Alaska (only 171 of them)
 out <- ncdc_stations(datasetid='NORMAL_DLY', locationid='FIPS:02', limit=1000)
 mydata <- data.frame(id=out[[2]]$id, lat=out[[2]]$latitude, lon=out[[2]]$longitude)
+
 # I selected the first station id to pull some data from
 temp <- ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', 
              stationid='GHCND:USC00500243',
              startdate = '2010-01-01', enddate = '2010-12-10', limit = 300)
 ncdc_plot(temp)
+
+# Plotting Weather Stations in Alaska
+alaska <- c(-180, 52, -130, 72) # set bounding box by lat long min and max
+
+station_map <- get_map(location= alaska, # use bounding box for location 
+                       source="stamen", # source stamen
+                       maptype= "toner", crop=FALSE) # toner style
+
+# adding station locations to the map
+ggmap(station_map) + geom_point(aes(x = lon, y = lat), 
+                                data = mydata, alpha = .5, color="blue", 
+                                size = 1)
+
 
 ```
 
