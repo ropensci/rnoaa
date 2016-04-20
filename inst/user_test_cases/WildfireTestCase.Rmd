@@ -1,11 +1,13 @@
 ---
 title: "Test case: Alaska wildfires"
-author: Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG)
+author: Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), 
+        Joshua Ferreri (JF)
 output: html_document
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+options("noaakey" = Sys.getenv("noaakey"))
 ```
 
 # Main task 
@@ -56,6 +58,21 @@ For the first week of July 2015, get values for each of the weather variables, a
 
 - BA: For daily data, you should be able to use `meteo_pull_monitors` from `rnoaa` to collect this data. However, you'll need to find all the weather stations IDs that you want to pull first. For that, you may want to try out `ncdc_stations`, using the `locationid` argument to get a list of stations either by county or by state. If you are pulling and aggregating by county, you can also use the `weather_fips` function from the `countyweather` package, which lets you pull data by county FIPS code. 
 
+```{r}
+options("noaakey" = Sys.getenv("noaakey"))
+alaska_stations <- ncdc_stations(datasetid = "GHCND", locationid = "FIPS:02", 
+                                 limit = 1000)
+names <- alaska_stations$data$name
+ids <- alaska_stations$data$id
+lat <- alaska_stations$data$latitude
+lon <- alaska_stations$data$longitude
+ak_station_names <- data_frame(names, ids, lat, lon)
+ak_station_names$ids <- gsub("GHCND:", "", ak_station_names$ids)
+alaska_weather <- meteo_pull_monitors(ak_station_names$ids, 
+                                      date_min = "2000-01-01", 
+                                      date_max = "2016-01-01") ##THIS WILL TAKE
+                                                               ##FOREVER 
+```
 ## Vegetation / NDVI
 
 Gather the data on the vegetation / NDVI throughout Alaska. Do so at as fine of a temporal and spatial resolution as possible. If you can gather this at a very fine spatial and temporal resolution, start by only collecting for the first week of July 2015. If you can only get yearly values, get values for each year from 2000-2016. 
