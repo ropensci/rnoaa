@@ -1,6 +1,6 @@
 ---
 title: 'Test Case: Hurricane Data'
-author: "Brooke Anderson (BA), Rachel Severson (RS)"
+author: "Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP)"
 output: html_document
 ---
 
@@ -76,12 +76,13 @@ Try to get:
 
 BA: It may work, for daily wind speeds, to use the Global Historical Climatology Network Daily data. If you have monitor ids, you can use the `meteo_pull_monitors` function from `rnoaa` to pull data from this source. If you have the FIPS code for a county, you can use the function `fips_stations` in `countyweather` (a package Rachel is developing) to get the station IDs for all relevant stations in a county. 
 
+CP: I had issues running `install_github("ropenscilabs/rnoaa")` in order to use the function `meteo_pull_monitors`, so instead try `load_all()`. Note that this will only work if you have devtools installed and you have forked the rnoaa respository from Github.  
 For example, the FIPS for Miami-Dade is 12086. Based on the [README file](http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) for this data, some of the windspeed variables have the abbreviations: "AWND", "WSFG", "WSF1". You can therefore run:
 
 ```{r}
-# library(devtools)
-# install_github("ropenscilabs/rnoaa") # if you need to install the package
-# install_github("leighseverson/countyweather") # if you need to install the package
+library(devtools)
+install_github("ropenscilabs/rnoaa", dependencies=TRUE) # if you need to install the package
+install_github("leighseverson/countyweather") # if you need to install the package
 library(rnoaa)
 library(countyweather)
 miami_stations <- fips_stations("12086", date_min = "1992-08-01",
@@ -103,6 +104,8 @@ ggplot(miami_wind, aes(x = date, y = wsfg)) +
   geom_line() + ggtitle("Wind gust speeds near Miami, FL, \nduring Hurricane Andrew") + 
   ylab("Wind gust (m / s)") 
 ```
+CP: We want to see if we can get data from some other of the test cases. 
+
 
 It seems like we should be able to get wind data from some of the other NOAA data sources. In particular, it seems like we should be able to get hourly, or another fine temporal resolution, of wind data. Check the "Data sources" section of the file at the bottom of the page [here](https://github.com/ropenscilabs/rnoaa).
 
