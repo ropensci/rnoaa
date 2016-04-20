@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="author" content="Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF) Steven J. Brey (SJB)" />
+<meta name="author" content="Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF) Steven J. Brey (SJB), Joshua Ferreri (JF)" />
 
 
 <title>Test case: Alaska wildfires</title>
@@ -109,7 +109,7 @@ $(document).ready(function () {
 
 
 <h1 class="title">Test case: Alaska wildfires</h1>
-<h4 class="author"><em>Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF) Steven J. Brey (SJB)</em></h4>
+<h4 class="author"><em>Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF) Steven J. Brey (SJB), Joshua Ferreri (JF)</em></h4>
 
 </div>
 
@@ -212,9 +212,36 @@ dfl &lt;- swdi(dataset='nx3hail',
 <p>First, get these values at a daily resolution. Get a separate time series for each weather monitor in Alaska (although limit to just weather monitors that have non-missing observations for at least 95% of days over 2000-2016). Also aggregate these monitor time series by county to get county-level time series.</p>
 <p>For the first week of July 2015, get values for each of the weather variables, at as fine a time resolution as possible, for each lightning strike in Alaska. In other words, for a given lightning strike, get weather data from the closest available weather monitor. If you can get the exact time for a lightning strike, try to get the matching weather variables at an hourly or minute resolution at the time of the lightning strike. If you can only get daily counts for a region, get a daily aggregated value of the weather variables for all monitors in the region.</p>
 <ul>
-<li><p>BA: For daily data, you should be able to use <code>meteo_pull_monitors</code> from <code>rnoaa</code> to collect this data. However, you’ll need to find all the weather stations IDs that you want to pull first. For that, you may want to try out <code>ncdc_stations</code>, using the <code>locationid</code> argument to get a list of stations either by county or by state. If you are pulling and aggregating by county, you can also use the <code>weather_fips</code> function from the <code>countyweather</code> package, which lets you pull data by county FIPS code.</p></li>
-<li><p>MF: We used <code>ncdc_stations</code> to get a list of stations in Alaska. First we had to find the FIPS code for Alaska, which is “02”. It took some experimenting to figure out the correct way to input the <code>locationid</code> argument. The <code>limit</code> defaults to 25 so we needed to change it in order to see all 831 stations in Alaska. At this point we don’t actually know if <code>GHCND</code> is the dataset we want, but it was one of the examples in the documentation for <code>ncdc_stations</code>. The station list may be different depending on the dataset you’re using.</p></li>
-<li><p>RG: Adding a map of weather stations in Alaska, using MFs station dataframe</p></li>
+<li>BA: For daily data, you should be able to use <code>meteo_pull_monitors</code> from <code>rnoaa</code> to collect this data. However, you’ll need to find all the weather stations IDs that you want to pull first. For that, you may want to try out <code>ncdc_stations</code>, using the <code>locationid</code> argument to get a list of stations either by county or by state. If you are pulling and aggregating by county, you can also use the <code>weather_fips</code> function from the <code>countyweather</code> package, which lets you pull data by county FIPS code.</li>
+</ul>
+<pre class="r"><code>ak_monitors &lt;- ncdc_stations(datasetid = &quot;GHCND&quot;, locationid = &quot;FIPS:02&quot;, 
+                             limit = 1000)
+ak_station_2016 &lt;- data_frame(ak_monitors$data$mindate, ak_monitors$data$maxdate,
+                              ak_monitors$data$name, ak_monitors$data$id, 
+                              ak_monitors$data$datacoverage)
+colnames(ak_station_2016) &lt;- c(&quot;mindate&quot;, &quot;maxdate&quot;, &quot;name&quot;, &quot;id&quot;, &quot;coverage&quot;)
+ak_station_2016$id &lt;- gsub(&quot;GHCND:&quot;, &quot;&quot;, ak_station_2016$id)#Must remove &quot;GHCND:&quot; to get id alone
+alaska_weather &lt;- meteo_pull_monitors(ak_station_2016$id[1:3], 
+                                      date_min = &quot;2000-01-01&quot;, 
+                                      date_max = &quot;2016-01-01&quot;) ##THIS WILL TAKE
+                                                               ##FOREVER 
+#startDates &lt;- as.POSIXct(ak_station_2016$mindate, tz=&quot;GMT&quot;)
+#endDates &lt;- as.POSIXct(ak_station_2016$maxdate, tz=&quot;GMT&quot;)
+#startRangeMask &lt;- startDates &lt;= as.POSIXct(&quot;2000-01-01&quot;, tz=&quot;GMT&quot;)
+#endRangeMask   &lt;- endDates &gt;= as.POSIXct(&quot;2015-12-31&quot;, tz=&quot;GMT&quot;)
+#inRange &lt;- startRangeMask &amp; endRangeMask
+test &lt;- ak_station_2016
+test$mindate &lt;- as.Date(test$mindate, format = &quot;%Y-%m-%d&quot;)
+test$maxdate &lt;- as.Date(test$maxdate, format = &quot;%Y-%m-%d&quot;)
+##limit number of monitors to those with data that covers desired range, as well
+##as have greater than .75 data coverage
+test &lt;- subset(test, mindate &lt;= as.Date(&quot;2000-01-01&quot;) &amp; maxdate &gt;= as.Date(&quot;2015-12-31&quot;) &amp; coverage &gt; .75)
+alaska_weather2 &lt;- meteo_pull_monitors(test$id[1:3], 
+                                      date_min = &quot;2000-01-01&quot;, 
+                                      date_max = &quot;2016-01-01&quot;)#for 168 monitors</code></pre>
+<p>-JF: Trying to pull weather data for all stations in Alaska. Pulling for all stations will take a very long time, therefore a test trial using the first 3 stations listed for Alaska were used (<code>alaska_weather</code>). Stations were then limited by a variety of parameters to create a new data frame, <code>test</code>, to limit the number of monitors used to create a data frame with weather variables (<code>alaska_weather2</code>). - MF: We used <code>ncdc_stations</code> to get a list of stations in Alaska. First we had to find the FIPS code for Alaska, which is “02”. It took some experimenting to figure out the correct way to input the <code>locationid</code> argument. The <code>limit</code> defaults to 25 so we needed to change it in order to see all 831 stations in Alaska. At this point we don’t actually know if <code>GHCND</code> is the dataset we want, but it was one of the examples in the documentation for <code>ncdc_stations</code>. The station list may be different depending on the dataset you’re using.</p>
+<ul>
+<li>RG: Adding a map of weather stations in Alaska, using MFs station dataframe</li>
 </ul>
 <pre class="r"><code># options(&quot;noaakey&quot; = Sys.getenv(&quot;noaakey&quot;))
 # library(devtools)
