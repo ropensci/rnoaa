@@ -1,6 +1,6 @@
 ---
 title: 'Test Case: Hurricane Data'
-author: "Brooke Anderson (BA), Rachel Severson (RS)"
+author: "Brooke Anderson (BA), Rachel Severson (RS), Mike Lyons (ML)"
 output: html_document
 ---
 
@@ -285,6 +285,37 @@ ggmap(miami_map) +
 ```
 
 Next, we could measure distance from US county centers and pick out the counties that were within [x] kilometers of the 6-hour storm location measures.
+
+Cyclone Tracy example: (note: need to pull from 1975, even though it was in 1974)
+
+```{r}
+Tracy_1975<-storm_data(year=1975)
+names(Tracy_1975)
+colnames(Tracy_1975$data)[1:10]
+tracy <- Tracy_1975$data[which(Tracy_1975$data$name == "07S:TRACY"), ]
+as.vector(unique(Tracy_1975$data$name))
+tracy[1:5, 1:10]
+storm_names <- storm_meta(what = "storm_names")
+head(storm_names)
+grep("TRACY", storm_names$name, value = TRUE)
+storm_names[grep("TRACY", storm_names$name), ]
+tracy_id <- storm_names[grep("TRACY", storm_names$name), 1][1]
+tracy_2 <- storm_data(storm = tracy_id)
+head(tracy_2$data[ , c("iso_time", "latitude", "longitude", "wind.wmo.")], 3)
+tracy_loc <- select(tracy, iso_time, latitude, longitude, wind.wmo.)
+tracy_loc$latitude[tracy_loc$latitude < -300]<-NA
+tracy_loc$longitude[tracy_loc$longitude < -300]<-NA
+tracy_loc$wind.wmo.[tracy_loc$wind.wmo. < -300]<-NA
+head(tracy, 3)
+ggplot(tracy_loc, aes(x = longitude, y = latitude)) +
+  geom_path() + geom_point(aes(color = wind.wmo.))
+library(ggmap)
+darwin_map <- get_map(location = 'Darwin', zoom = 5)
+ggmap(darwin_map) +
+  geom_path(data = tracy_loc, aes(x = longitude, y = latitude)) +
+  geom_point(data = tracy_loc, aes(x = longitude, y = latitude,
+                                    color = wind.wmo.))
+```
 
 #### Can you identify streams and rivers that were affected by the storm?
 
