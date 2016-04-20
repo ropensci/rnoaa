@@ -1,6 +1,6 @@
 ---
 title: 'Test case: Alaska wildfires'
-author: "Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG)"
+author: "Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Steven J. Brey (SJB)"
 output: html_document
 ---
 
@@ -15,12 +15,15 @@ You are trying to get observational data related to wildfires from throughout th
 
 In later sections, you will have specific goals to try to achieve, in terms of what data to get. However, as you work on this project, please keep a running list here of any of the NOAA data products that you think might have data that could be used to explore the storm you're working on. Include the name of the dataset, a short description of what you might be able to get from it, and a link to any websites that give more information.
 
+- SJB: Here is data from the NOAA Hazard Mapping System. This data shows smoke plumes outlined by a human analysist using visible satelite imagery (mostly GEOS). This dataset has no readme but the product has been described in several publications: ftp://satepsanone.nesdis.noaa.gov/volcano/FIRE/HMS_smoke/
+
 # Relevant other data sources
 
 As you work on this project, also keep a running list here of any data from sources other than NOAA that you think might have data that could be used to explore the storm you're working on. Include the name of the dataset, a short description of what you might be able to get from it, and a link to any websites that give more information and / or the data itself.
 
 - SM: There’s some data from the Alaska Interagency Coordination Center on lightning strikes and wildfires: http://wildfiretoday.com/2015/06/23/alaska-46000-lightning-strikes-and-many-fires/
 - SM: Vegetation is usually USDA and NDVI is a NOAA product (http://earthobservatory.nasa.gov/Features/MeasuringVegetation/measuring_vegetation_2.php)
+
 
 # Specific tasks
 
@@ -38,9 +41,44 @@ Are there any other variables available for each strike? If so, please describe 
 
 How many lightning strikes did you record in Alaska over this time period? Create a map by year of lightning strike locations. If you can, also create a heatmap, where you break the state up into either grid boxes or counties and show with color the number of lightning strikes per box / county over the time period. 
 
-- BA: `rnoaa`'s `swdi` series of functions looks like it might have data on lightning strikes. The vignette for that series is [here](https://github.com/ropensci/rnoaa/blob/master/vignettes/swdi_vignette.Rmd). The NCDC webpage for the severe weather data inventory is [here](http://www.ncdc.noaa.gov/swdi/#Intro). From the documentation, it sounds like for non-military users, you may only be able to get number of strikes per day per region, not exact time and location.  
+- BA: `rnoaa`'s `swdi` series of functions looks like it might have data on lightning strikes. The vignette for that series is [here](https://github.com/ropensci/rnoaa/blob/master/vignettes/swdi_vignette.Rmd). The NCDC webpage for the severe weather data inventory is [here](http://www.ncdc.noaa.gov/swdi/#Intro). From the documentation, it sounds like for non-military users, you may only be able to get number of strikes per day per region, not exact time and location. UPDATE: It does not appear any data is openly available to the public.
 - BA: [Here](https://www.ncdc.noaa.gov/data-access/severe-weather/lightning-products-and-services) is some more information from NOAA on lightning strikes. I'm not clear yet on how much of this overlaps the SWDI resource. 
 - RG: Test comment
+- SJB: There is a website that maps lighting. Not sure how they generate these maps but the response time and spatial coverage is excellent. It looks like they use geostationary satellites to make the detections?: http://www.lightningmaps.org/. It looks like the raw data are only avialable to 'contributors' (http://en.blitzortung.org/archive_data.php).
+
+```{r include=TRUE, echo = TRUE, message = FALSE}
+# The goal for this chunk of code is to read in lighting data and plot it
+devtools::load_all()
+library('rnoaa')
+library('plyr')
+library('XML')
+
+# Stock example getting Tornado Vortex Signatures. 
+df <- swdi(dataset='nx3tvs', 
+           startdate='20060505', 
+           enddate='20060506',
+           limit=20
+           )
+
+# NOTE: When I up my limit (number of detections to retrieve) I get curl
+# NOTE: timeout issues when I go as high as 100. Bummer. I can see that
+# NOTE: is probably why there is an index option so you have a way to get 
+# NOTE: all the detections for day. 
+
+class(df$shape[1,])
+# Not sure why you would want this data as a character. I would like to
+# change this to return numeric values. 
+
+names(df)
+
+df$meta
+df$data
+df$shape # Not actually a shapefile or even numeric for some reason...
+
+# TODO: Change the source code on swdi to return numeric. 
+
+
+```
 
 ## Relevant weather measures
 
