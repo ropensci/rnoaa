@@ -4,9 +4,10 @@ author: Brooke Anderson (BA)
 output: html_document
 ---
 
-```{r setup, include=FALSE, echo = FALSE}
+```{r setup, include=FALSE, echo = FALSE, message = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
+library(dplyr)
 ```
 
 # Main task
@@ -73,6 +74,63 @@ Was there severe flooding related to the storm? For locations along the storm pa
 
 BG: For this, you'll need to have the storm track for each storm. I guess then match with distance to lat-lon coordinates for city or county centers to identify locations near the storm track?
 
+The `rnoaa` package has some functions to tap into the [IBTracS](http://www.ncdc.noaa.gov/ibtracs/index.php) dataset, which has tropical storm tracks. It looks like you might be able to use the `storm_data` function to pull in data on a storm. You can pull for just one storm if you have the storm serial number, but it's not entirely clear to me how you would figure out what this number is for a storm you want to look for. 
+
+You can pull by year or basin, but it looks like you can't pull by both at the same time. I'll put just for 1992:
+
+```{r}
+# install_github("ropenscilabs/rnoaa") # if you need to install the package
+library(rnoaa)
+
+hurrs_1992 <- storm_data(year = 1992)
+```
+
+It looks like that pulls a list object, with the element `data` that has the actual data: 
+
+```{r}
+names(hurrs_1992)
+colnames(hurrs_1992$data)[1:10]
+```
+
+Maybe we could use the `name` column to look for Andrew?
+
+```{r}
+andrew <- hurrs_1992$data[which(hurrs_1992$data$name == "ANDREW"), ]
+andrew[1:5, 1:10]
+```
+
+This looks about right... Let's see what happens if we plot the locations of this:
+
+```{r fig.width = 5, fig.height = 3}
+andrew_loc <- select(andrew, iso_time, latitude, longitude, wind.wmo.)
+head(andrew_loc, 3)
+ggplot(andrew_loc, aes(x = longitude, y = latitude)) + 
+  geom_path() + geom_point(aes(color = wind.wmo.))
+```
+
+Let me add to a map: 
+
+```{r fig.width = 6, fig.height = 4, message = FALSE, warning = FALSE}
+library(ggmap)
+miami_map <- get_map(location = 'Miami', zoom = 3)
+ggmap(miami_map) + 
+  geom_path(data = andrew_loc, aes(x = longitude, y = latitude)) + 
+  geom_point(data = andrew_loc, aes(x = longitude, y = latitude, 
+                                    color = wind.wmo.))
+```
+
+And more locally: 
+
+```{r fig.width = 6, fig.height = 4, message = FALSE, warning = FALSE}
+miami_map <- get_map(location = 'Miami', zoom = 5)
+ggmap(miami_map) + 
+  geom_path(data = andrew_loc, aes(x = longitude, y = latitude)) + 
+  geom_point(data = andrew_loc, aes(x = longitude, y = latitude, 
+                                    color = wind.wmo.))
+```
+
+Next, we could measure distance from US county centers and pick out the counties that were within [x] kilometers of the 6-hour storm location measures.
+
 #### Can you identify streams and rivers that were affected by the storm?
 
 BG: No idea where to start here... Are there any databases where you can identify rivers or streams that are close to a certain location? Does streamgage meta-data have some information saying what river or stream it's on? If so, we might be able to pull meta-data on all streamgages through USGS, filter to just ones within the right date range, and then pull the latitude-longitude and the stream / river name, then calculate distances to the central path of the storm from storm tracks.
@@ -108,6 +166,9 @@ The default is for `importDVs` to pull in the mean daily value. You can use the 
 
 So, I think next steps would be to use something from the `apply` family of functions or a loop to go through and get data from all of the Miami gauges, and then plot the discharge for them all. Are there any problems with pulling data from any of the gauges that we get back from the `streamflow` function?
 
+#### How closely were rainfall and flooding severity linked in locations?
+
+BG: One way to do this would be to try to get county-level aggregated daily estimates of rainfall and flooding intensity. You could do all sorts of things with this. For example, you could take the county maximum of both values for days near the storm and see how well correlated those are across different counties. You could also try to measure how many days are typical between the maximum rain fall and maximum stream flow.
 
 ## Plotting the storm
 
