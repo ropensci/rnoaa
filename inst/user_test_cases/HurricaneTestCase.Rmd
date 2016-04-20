@@ -1,6 +1,6 @@
 ---
 title: 'Test Case: Hurricane Data'
-author: Brooke Anderson (BA)
+author: Brooke Anderson (BA), Rachel Severson (RS)
 output: html_document
 ---
 
@@ -27,9 +27,34 @@ You will be trying to collect relevant data for one of these storms.
 
 In later sections, you will have specific goals to try to achieve, in terms of what data to get. However, as you work on this project, please keep a running list here of any of the NOAA data products that you think might have data that could be used to explore the storm you're working on. Include the name of the dataset, a short description of what you might be able to get from it, and a link to any websites that give more information.
 
+- BA: The [IBTracS](http://www.ncdc.noaa.gov/ibtracs/index.php) dataset gives data on tropical storm tracks. It can be pulled through the `rnoaa` function `storm_data`. 
+- BA: The [GHCN-Daily dataset](https://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets/global-historical-climatology-network-ghcn) has daily measurements of precipitation and, for some monitors, temperature and wind speed, internationally. It sounds like coverage is best in the US, Australia, and Canada, but there are monitors worldwide. Several `rnoaa` functions work with this data: `meteo_nearby_stations` (find all the monitors within a certain radius of a lat-lon, or find the [x] closest monitors to a point), `meteo_pull_monitors`, and `ghcnd_search`. The function `weather_fips` in `countyweather` (a package Rachel's developing on GitHub) can pull and aggregate data from this source from all monitors in a county based on the county's FIPS code. 
+
+BA: Note: For many of the `rnoaa` functions, you will need an API key from NOAA. Here's how you should save that on your computer so that you can get this document to compile without including your API key (these instructions are adapted from [here](https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html):
+
+1. Ask NOAA for an API key: http://www.ncdc.noaa.gov/cdo-web/token
+2. Open a new text file. Put the following in it (note: this might not show up here, but there should be a second blank line):
+
+```
+noaakey == [your NOAA API key]
+
+```
+
+3. Save this text file as `.Renviron` in your home directory. Your computer might be upset that the file name starts with a dot. That's okay-- it should; ignore the warning and save like this. 
+4. Restart R.
+5. Now you can pull your key using `Sys.getenv("noaakey")`
+
+Now you can gear up to use functions that require the API key: 
+
+```{r}
+options("noaakey" = Sys.getenv("noaakey"))
+```
+
 # Relevant other data sources
 
 As you work on this project, also keep a running list here of any data from sources other than NOAA that you think might have data that could be used to explore the storm you're working on. Include the name of the dataset, a short description of what you might be able to get from it, and a link to any websites that give more information and / or the data itself.
+
+- BA: The USGS data on streamflow could be relevant for assessing flooding. This is available through the `waterData` package in R. 
 
 # Specific tasks
 
@@ -46,6 +71,46 @@ Try to get:
 - Wind directions at different locations (on land or over water) near landfall 
 - An estimate of how many of the stations near the landfall that were operating the week before the storm that were still operational and recording data at landfall
 
+#### A measure of how strong winds were over land around where the storm made landfall
+
+BA: It may work, for daily wind speeds, to use the Global Historical Climatology Network Daily data. If you have monitor ids, you can use the `meteo_pull_monitors` function from `rnoaa` to pull data from this source. If you have the FIPS code for a county, you can use the function ... in `countyweather` (a package Rachel is developing) to get the station IDs for all relevant stations in a county, and the ... function from that same package pulls and aggregates all data from GHCND stations in the county. 
+
+For example, the FIPS for Miami-Dade is 12086. Based on the [README file](http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) for this data, some of the windspeed variables have the abbreviations: "AWND", "WSFG", "WSF1". You can therefore run:
+
+```{r}
+# library(devtools)
+# install_github("ropenscilabs/rnoaa") # if you need to install the package
+# install_github("leighseverson/countyweather") # if you need to install the package
+library(rnoaa)
+library(countyweather)
+miami_stations <- fips_stations("12086", date_min = "1992-08-01",
+                                date_max = "1992-09-01")
+miami_stations
+```
+
+This does not pull any weather stations. However, I know that the station "USW00012839" should exist for this time-- it's the Miami Intl Airport station. I wonder why this isn't picked up by `fips_stations`?
+
+Once you know the station number, you can run: 
+
+```{r fig.width = 5, fig.height = 3}
+miami_wind <- meteo_pull_monitors("USW00012839", date_min = "1992-08-01",
+                                     date_max = "1992-09-01", 
+                                     var = c("AWND", "WSFG", "WSF1")) %>%
+  mutate(wsfg = wsfg / 10) # Convert to m / s-- see the README for this data from link
+head(miami_wind)
+ggplot(miami_wind, aes(x = date, y = wsfg)) + 
+  geom_line() + ggtitle("Wind gust speeds near Miami, FL, \nduring Hurricane Andrew") + 
+  ylab("Wind gust (m / s)") 
+```
+
+It seems like we should be able to get wind data from some of the other NOAA data sources. In particular, it seems like we should be able to get hourly, or another fine temporal resolution, of wind data. Check the "Data sources" section of the file at the bottom of the page [here](https://github.com/ropenscilabs/rnoaa).
+
+#### A measure of how strong winds were over water around where the storm made landfall
+
+#### Wind directions at different locations (on land or over water) near landfall 
+
+#### An estimate of how many of the stations near the landfall that were operating the week before the storm that were still operational and recording data at landfall
+
 ## Precipitation at affected cities
 
 For each of the affected cities, estimate the precipitation during the storm and on neighboring days. Include: 
@@ -56,9 +121,12 @@ For each of the affected cities, estimate the precipitation during the storm and
 
 RS: The countyweather package has some functions for pulling and aggreagating weather data by FIPS code. For the US storms, this might be helpful for this task. If you have devtools installed, you can install countyweather using the following code: 
 ```{r eval=FALSE}
-library(devtools)
-install_github("leighseverson/countyweather")
+# library(devtools)
+# install_github("ropenscilabs/rnoaa") # if you need to install the package
+# install_github("leighseverson/countyweather") # if you need to install the package
+library(rnoaa)
 library(countyweather)
+# miami_stations <- fips_stations()
 ```
 
 ## Flooding related to the hurricane
@@ -81,7 +149,6 @@ You can pull by year or basin, but it looks like you can't pull by both at the s
 ```{r}
 # install_github("ropenscilabs/rnoaa") # if you need to install the package
 library(rnoaa)
-
 hurrs_1992 <- storm_data(year = 1992)
 ```
 
@@ -99,7 +166,21 @@ andrew <- hurrs_1992$data[which(hurrs_1992$data$name == "ANDREW"), ]
 andrew[1:5, 1:10]
 ```
 
-This looks about right... Let's see what happens if we plot the locations of this:
+This looks about right... 
+
+Note: after digging some more, it looks like you can use the `storm_meta` function with the argument `what = "storm_names"` from `storm_data` to get the serial number for a storm if you know its name: 
+
+```{r}
+storm_names <- storm_meta(what = "storm_names")
+head(storm_names, 3)
+grep("ANDREW", storm_names$name, value = TRUE)
+storm_names[grep("ANDREW", storm_names$name), ]
+andrew_id <- storm_names[grep("ANDREW", storm_names$name), 1][2]
+andrew_2 <- storm_data(storm = andrew_id)
+head(andrew_2$data[ , c("iso_time", "latitude", "longitude", "wind.wmo.")], 3)
+```
+
+Let's see what happens if we plot the locations of this:
 
 ```{r fig.width = 5, fig.height = 3}
 andrew_loc <- select(andrew, iso_time, latitude, longitude, wind.wmo.)
@@ -139,7 +220,7 @@ BG: No idea where to start here... Are there any databases where you can identif
 
 BG: The `waterData` package allows you to pull daily hydrologic time series from the USGS. You need to have the station IDs to do that first, though. 
 
-The package `countyweather` (this is Rachel's package) has a function to pull all the station IDs for a US county, based on the county FIPS code. This function is still in development (so feel free to fork the package and make your own changes!), but for right now you can use it like this-- to get the station IDs for Miami-Dade, which has a FIPS code of 12086
+The package `countyweather` (this is Rachel's package) has a function to pull all the station IDs for a US county, based on the county FIPS code. This function is still in development (so feel free to fork the package and make your own changes!), but for right now you can use it like this-- to get the station IDs for Miami-Dade, which has a FIPS code of 12086:
 
 ```{r}
 # library(devtools)
