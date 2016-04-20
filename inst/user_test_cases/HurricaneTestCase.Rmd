@@ -1,6 +1,6 @@
 ---
 title: 'Test Case: Hurricane Data'
-author: Brooke Anderson (BA), Rachel Severson (RS)
+author: "Brooke Anderson (BA), Rachel Severson (RS)"
 output: html_document
 ---
 
@@ -8,6 +8,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(dplyr)
+library(lubridate)
 ```
 
 # Main task
@@ -73,7 +74,7 @@ Try to get:
 
 #### A measure of how strong winds were over land around where the storm made landfall
 
-BA: It may work, for daily wind speeds, to use the Global Historical Climatology Network Daily data. If you have monitor ids, you can use the `meteo_pull_monitors` function from `rnoaa` to pull data from this source. If you have the FIPS code for a county, you can use the function ... in `countyweather` (a package Rachel is developing) to get the station IDs for all relevant stations in a county, and the ... function from that same package pulls and aggregates all data from GHCND stations in the county. 
+BA: It may work, for daily wind speeds, to use the Global Historical Climatology Network Daily data. If you have monitor ids, you can use the `meteo_pull_monitors` function from `rnoaa` to pull data from this source. If you have the FIPS code for a county, you can use the function `fips_stations` in `countyweather` (a package Rachel is developing) to get the station IDs for all relevant stations in a county. 
 
 For example, the FIPS for Miami-Dade is 12086. Based on the [README file](http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) for this data, some of the windspeed variables have the abbreviations: "AWND", "WSFG", "WSF1". You can therefore run:
 
@@ -107,6 +108,21 @@ It seems like we should be able to get wind data from some of the other NOAA dat
 
 #### A measure of how strong winds were over water around where the storm made landfall
 
+BA: For this, it seems like [buoy data](http://www.ndbc.noaa.gov) might work. The `buoy` function in `rnoaa` might work. I'm not sure how you could get station IDs through `rnoaa` for the buoy stations. I used the website to find a station close to Miami ("fwyf1"). Once you have a buoy id, you can do this kind of call: 
+
+```{r fig.width = 6, fig.height = 2.5}
+ex <- buoy(dataset = 'cwind', buoyid = "fwyf1", year = 1992)
+head(ex$data)
+fl_buoy <- ex$data %>% mutate(time = ymd_hms(time)) %>%
+  filter(time > ymd_hms("1992-08-23 00:00:00") & 
+           time < ymd_hms("1992-08-26 00:00:00"))
+ggplot(fl_buoy, aes(x = time, y = wind_spd)) + geom_line()
+```
+
+It looks like this buoy was actually lost during the hurricane. It stops recording during the worst of the storm, and it doesn't look like it got back online in 1992 after that. 
+
+It looks like you need to look through the historical station maps to find a station, rather than the current ones. If there's somewhere we could get a list of all buoy ids by latitude and longitude, we could identify the ones closest to a location.
+
 #### Wind directions at different locations (on land or over water) near landfall 
 
 #### An estimate of how many of the stations near the landfall that were operating the week before the storm that were still operational and recording data at landfall
@@ -119,6 +135,8 @@ For each of the affected cities, estimate the precipitation during the storm and
 - How many stations you used to get each of those values
 - A map of stations you used to get those values, with some measure on the map of the maximum daily or hourly rainfall measured at that station
 
+#### Daily and hourly estimates of rainfall
+
 RS: The countyweather package has some functions for pulling and aggreagating weather data by FIPS code. For the US storms, this might be helpful for this task. If you have devtools installed, you can install countyweather using the following code: 
 ```{r eval=FALSE}
 # library(devtools)
@@ -126,8 +144,44 @@ RS: The countyweather package has some functions for pulling and aggreagating we
 # install_github("leighseverson/countyweather") # if you need to install the package
 library(rnoaa)
 library(countyweather)
-# miami_stations <- fips_stations()
+miami_stations <- fips_stations(fips = "12086")
+miami_rain <- meteo_pull_monitors(miami_stations, var = "PRCP")
+range(miami_rain$date)
 ```
+
+BG: For some reason, NCDC seems to only be identifying Miami weather monitors that operated from 2007 on. 
+
+You can instead use the `meteo_nearby_stations` function to find all precipitation monitors in a certain radius (parts of this take a long time to run, so I won't evaluate):
+
+```{r eval = FALSE}
+station_data <- ghcnd_stations()[[1]] # Takes a while to run
+miami <- data.frame(id = "miami", latitude = 25.7617, longitude = -80.1918)
+miami_monitors <- meteo_nearby_stations(lat_lon_df = miami,
+                                        station_data = station_data,
+                                        radius = 50,
+                                        var = c("PRCP"), 
+                                        year_min = 1992, year_max = 1992)
+miami_monitors <- miami_monitors[[1]]$id
+```
+
+```{r echo = FALSE}
+miami_monitors <- c("USW00092811", "USW00012859", "USC00083909", "USW00012839",
+                    "USC00087020", "USW00012849", "USC00083163", "USC00083168",
+                    "USC00084095")
+```
+
+```{r fig.width = 8, fig.height = 3}
+miami_weather <- meteo_pull_monitors(miami_monitors, date_min = "1992-08-01",
+                                     date_max = "1992-09-01", 
+                                     var = c("PRCP")) 
+ggplot(miami_weather, aes(x = date, y = prcp, color = id)) + 
+  geom_line() + ggtitle("Precipitation near Miami, FL, \nduring Hurricane Andrew") + 
+  ylab("Precipitation (mm)")
+```
+
+#### How many stations you used to get each of those values
+
+#### A map of stations you used to get those values, with some measure on the map of the maximum daily or hourly rainfall measured at that station
 
 ## Flooding related to the hurricane
 
