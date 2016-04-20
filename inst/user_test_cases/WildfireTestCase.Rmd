@@ -90,9 +90,25 @@ df <- swdi(dataset='nx3tvs',
 # NOTE: is probably why there is an index option so you have a way to get 
 # NOTE: all the detections for day. 
 # TODO: Change the source code on swdi to return numeric. 
+dfl <- swdi(dataset='nx3hail', 
+           startdate='20060505', 
+           enddate='20060506',
+           limit=20
+           )
 
 
 ```
+
+## Almost lightning data 
+
+So it looks like lightning data is largely not for free (bummer!). But it is 
+easy to find MODIS detected hotspots GIS data. Fires that are detected by MODIS
+out in the middle of nowhere Alaska are probably started by lightning, so maybe 
+this could be a proxy data source? 
+
+- Continental US http://activefiremaps.fs.fed.us/gisdata.php
+- Alaska http://activefiremaps.fs.fed.us/gisdata.php?sensor=modis&extent=alaska
+
 
 
 ## Relevant weather measures
