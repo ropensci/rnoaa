@@ -1,7 +1,8 @@
+---
 title: 'Test case: Alaska wildfires'
 author: "Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF) Steven J. Brey (SJB)"
 output: html_document
-
+---
 
 ```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
