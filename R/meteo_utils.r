@@ -6,7 +6,7 @@
 #' the coverage test will be limited to that date range.
 #'
 #' There is an \code{autoplot} method for the output of this function.
-#'
+#' @importFrom scales comma
 #' @param meteo_df an \emph{meteo} \code{data.frame}
 #' @param obs_start_date specify either or both (obs_start_date, obs_end_date) to constrain
 #'        coverate tests. These should be \code{Date} objects.
@@ -30,11 +30,11 @@
 #'              "ASN00040126", "ASN00058161")
 #' obs <- meteo_pull_monitors(monitors)
 #' obs_covr <- meteo_coverage(obs)
-#' autoplot(obscovr)
+#' autoplot(obs_covr)
 meteo_coverage <- function(meteo_df,
                            obs_start_date=NULL,
                            obs_end_date=NULL,
-                           verbose=TRUE) {
+                           verbose=FALSE) {
 
   if (!is.null(obs_start_date)) {
     dots <- list(~as.Date(date) >= obs_start_date)
