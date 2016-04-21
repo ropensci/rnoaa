@@ -255,8 +255,10 @@ This work is explore using the RNCEP package to obtain global weather and climat
 
 -MG: explore some examples using this package.
 
-```{r }
-install.packages('RNCEP')
+[BA: For right now, I'm having some errors running this on my version of R, so I'm going to set to not evaluate until I can figure out why I'm having a problem.]
+
+```{r eval = FALSE}
+# install.packages('RNCEP')
 library(RNCEP)
 
 # retrieve the temperature from a particular pressure level for a specified spatial and temporal event
