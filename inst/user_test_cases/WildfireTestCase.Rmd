@@ -260,21 +260,21 @@ library(gimms)
 # I was not able to change the "/data" specification; errors were returned
 gimms_dir <- paste0(getwd(), "/data")
 # Download the (.envi files I believe) by specifying the dates
-gimms_files_date <- downloadGimms(x = as.Date("2000-01-01"), y = as.Date("2000-06-30"), dsn = gimms_dir)
+system.time(gimms_files_date <- downloadGimms(x = as.Date("2013-01-01"), y = as.Date("2013-06-30"), dsn = gimms_dir))
 
-# .envi are not useable as is, we need to rasterize them
+# .envi files are not useable as is, we need to rasterize them
 system.time(gimms_raster <- rasterizeGimms(x = gimms_files_date, remove_header = TRUE))
-# The first six months of 2000 took 23 seconds to rasterize. (2.7 Ghz i5, 8 GM RAM)
+# The first six months of 2013 took 24 seconds to rasterize. (2.7 Ghz i5, 8 GB RAM)
 # Define some indices
 indices <- monthlyIndices(gimms_files_date)
 # Compute the monthly maximum value composites
-system.time(gimms_raster_mvc <- monthlyComposite(gimms_raster, indices = indices)) # 17 seconds for me
+system.time(gimms_raster_mvc <- monthlyComposite(gimms_raster, indices = indices)) # 16 seconds
 
 # Now, let's visualize the data
 library(sp) # package for spatial data
 names(gimms_raster_mvc) <- paste(month.abb, 2000)
-# returns an error "incorrect number of layer names"
-spplot(gimms_raster_mvc) # This still works, fortunately. 
+# returns the error "incorrect number of layer names"
+spplot(gimms_raster_mvc) # This still works. 
 # This is an aesthetic plot, but what form do you want this data in?
 # We could also ignore the monthly maximum value composites, which is just as well because I don't know what they mean.
 plot(gimm_raster)
