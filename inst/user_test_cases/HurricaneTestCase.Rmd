@@ -1,7 +1,7 @@
 ---
 title: 'Test Case: Hurricane Data'
 author: Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP), Mike Lyons
-  (ML)
+  (ML), Joshua Ferreri (JF)
 output: html_document
 ---
 
@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(dplyr)
 library(lubridate)
+library(ggmap)
 ```
 
 # Main task
@@ -243,6 +244,89 @@ miami_weather <- meteo_pull_monitors(miami_monitors, date_min = "1992-08-01",
                                      var = c("PRCP")) 
 ggplot(miami_weather, aes(x = date, y = prcp, color = id)) + 
   geom_line() + ggtitle("Precipitation near Miami, FL, \nduring Hurricane Andrew") + 
+  ylab("Precipitation (mm)")
+```
+
+```{r eval = FALSE}
+##Cyclone Tracy
+darwin_ll <- geocode("Darwin, Australia")
+darwin <- data.frame(id = "darwin", 
+                     latitude = darwin_ll$lat, 
+                     longitude = darwin_ll$lon)
+darwin_monitors <- meteo_nearby_stations(lat_lon_df = darwin,
+                                         lat_colname = "latitude",
+                                         lon_colname = "longitude",
+                                         station_data = station_data,
+                                         radius = 50,
+                                         var = "PRCP",
+                                         year_min = 1974, year_max = 1974)
+```
+
+```{r echo = FALSE}
+darwin_monitors <- darwin_monitors[[1]]$id
+darwin_weather <- meteo_pull_monitors(darwin_monitors, date_min = "1974-12-01",
+                                      date_max = "1974-12-31",
+                                      var = "PRCP")
+```
+
+-JF: `darwin_monitors` includes 25 possible monitors for the year 1974. However, when using the function `meteo_pull_monitors`, data was pulled for only 10 of these possible 25 monitors. This may be due to the date restriction used to pull data for this storm, and 15 monitors simply do not have available data from this time frame. No error message was given.
+
+```{r, fig.width = 8, fig.height = 3}
+ggplot(darwin_weather, aes(x = date, y = prcp, color = id)) +
+  geom_line() + ggtitle("Precipitation near Darwin, Australia, \nduring Cyclone Tracy") +
+  ylab("Precipitation (mm)")
+```
+
+```{r eval = FALSE}
+##Labor Day Storm
+keys <- geocode("Florida Keys, St. Petersburg, FL")
+keys <- data.frame(id = "keys", latitude = keys$lat, longitude = keys$lon)
+keys_monitors <- meteo_nearby_stations(lat_lon_df = keys,
+                                         lat_colname = "latitude",
+                                         lon_colname = "longitude",
+                                         station_data = station_data,
+                                         radius = 50,
+                                         var = "PRCP",
+                                         year_min = 1935, year_max = 1935)
+```
+
+```{r echo = FALSE}
+keys_monitors <- keys_monitors[[1]]$id
+keys_weather <- meteo_pull_monitors(keys_monitors, date_min = "1935-08-15",
+                                      date_max = "1935-09-15",
+                                      var = "PRCP")
+```
+
+```{r fig.width= 8, fig.height = 3}
+ggplot(keys_weather, aes(x = date, y = prcp, color = id)) +
+  geom_line() + ggtitle("Precipitation near the Florida Keys, Fl, \nduring the Labor Day Storm") +
+  ylab("Precipitation (mm)")
+```
+
+```{r eval = FALSE}
+fuzhou <- geocode("Fuzhou, China")
+fuzhou <- data.frame(id = "fuzhou", latitude = fuzhou$lat, longitude = fuzhou$lon)
+fuzhou_monitors <- meteo_nearby_stations(lat_lon_df = fuzhou,
+                                         lat_colname = "latitude",
+                                         lon_colname = "longitude",
+                                         station_data = station_data,
+                                         radius = 50,
+                                         var = "PRCP",
+                                         year_min = 2006, year_max = 2006)
+```
+
+- JF: Looks like there is only one station in/near Fuzhou, China, within a 50 mile radius.
+
+```{r echo = false}
+fuzhou_monitors <- fuzhou_monitors[[1]]$id
+fuzhou_weather <- meteo_pull_monitors(fuzhou_monitors, date_min = "2006-07-01",
+                                      date_max = "2006-08-01",
+                                      var = "PRCP")
+```
+
+```{r fig.width= 8, fig.height = 3}
+ggplot(fuzhou_weather, aes(x = date, y = prcp, color = id)) +
+  geom_line() + ggtitle("Precipitation near the Fuzhou, China, \nduring Tropical Storm Bills") +
   ylab("Precipitation (mm)")
 ```
 
