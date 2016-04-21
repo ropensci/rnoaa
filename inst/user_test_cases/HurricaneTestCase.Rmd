@@ -115,7 +115,79 @@ RS: The `isd()` function from the rnoaa package looks like it's getting hourly d
 
 CP: A current issue is that the `isd()` function takes USAF and WBAN station codes as input, whereas we would like to use FIPS codes (county codes) as input. My initial thought for a way around this is to use the `isd_stations_search` from the rnoaa package, which takes lat/lon and radius (km) as input. I can use census data from [here](http://www2.census.gov/geo/docs/reference/cenpop2010/county/CenPop2010_Mean_CO.txt) to find population weighted lat/lon associated with a given FIPS code, and then use the lat/lon as input to `isd_stations_search` to get the stations associated with that FIPS code. Note that we would like to produce output similar to `weather_fips`, a function that takes a county code as input and then gives weather data in the surrounding area. `weather_fips`, except for hourly data. The `weather_fips` code can be forked from [here](https://github.com/leighseverson/countyweather).
 
+```{r eval = FALSE}
+##Cyclone Tracy
+station_data <- ghcnd_stations()[[1]] # Takes a while to run
+darwin_ll <- geocode("Darwin, Australia")
+darwin <- data.frame(id = "darwin", 
+                     latitude = darwin_ll$lat, 
+                     longitude = darwin_ll$lon)
+darwin_monitors <- meteo_nearby_stations(lat_lon_df = darwin,
+                                         lat_colname = "latitude",
+                                         lon_colname = "longitude",
+                                         station_data = station_data,
+                                         limit = 10,
+                                         var = c("AWDR", "AWND", "WSFG", "WSF1",
+                                                 "FMTM", "MDWM", "WDF1", "WDF2",
+                                                 "WDF5", "WDFG", "WDFI", "WDFM",
+                                                 "WDMV", "WSF2", "WSF5", "WSFI",
+                                                 "WSFM", "WT11"),
+                                         year_min = 1974, year_max = 1974)
+```
 
+- JF: Tapping into the GHCND, there were no stations at this time in Australia that have recorded wind speed values (of any sort). The closest station was over 2000 miles away.
+
+```{r}
+keys_stations <- fips_stations("12087", date_min = "1935-08-15",
+                                date_max = "1935-09-15")
+keys_monitors <- ncdc_stations(datasetid = "GHCND", locationid = "FIPS:12087", 
+                             limit = 1000)
+keys_monitors <- data.frame(id = keys_monitors$data$id, 
+                            mindate = keys_monitors$data$mindate, 
+                            maxdate = keys_monitors$data$maxdate)
+keys_monitors$id <- gsub("GHCND:", "", keys_monitors$id)
+keys_monitors$mindate <- as.Date(keys_monitors$mindate)
+keys_monitors$maxdate <- as.Date(keys_monitors$maxdate)
+keys_monitors <- subset(keys_monitors, 
+                        keys_monitors$mindate <= as.Date("1935-08-01") & 
+                          keys_monitors$maxdate >= as.Date("1935-09-01")) #still nothing 
+keys <- geocode("Florida Keys, FL")
+keys <- data.frame(id = "keys", latitude = keys$lat, longitude = keys$lon)
+keys_monitors <- meteo_nearby_stations(lat_lon_df = keys,
+                                         lat_colname = "latitude",
+                                         lon_colname = "longitude",
+                                         station_data = station_data,
+                                         limit = 10,
+                                         var = c("AWDR", "AWND", "WSFG", "WSF1",
+                                                 "FMTM", "MDWM", "WDF1", "WDF2",
+                                                 "WDF5", "WDFG", "WDFI", "WDFM",
+                                                 "WDMV", "WSF2", "WSF5", "WSFI",
+                                                 "WSFM", "WT11"),
+                                         year_min = 1935, year_max = 1935)
+pete <- geocode("St. Petersburg, FL")
+pete <- data.frame(id = "pete", latitude = pete$lat, longitude = pete$lon)
+pete_monitors <- meteo_nearby_stations(lat_lon_df = pete,
+                                         lat_colname = "latitude",
+                                         lon_colname = "longitude",
+                                         station_data = station_data,
+                                         limit = 10,
+                                         var = c("AWDR", "AWND", "WSFG", "WSF1",
+                                                 "FMTM", "MDWM", "WDF1", "WDF2",
+                                                 "WDF5", "WDFG", "WDFI", "WDFM",
+                                                 "WDMV", "WSF2", "WSF5", "WSFI",
+                                                 "WSFM", "WT11"),
+                                         year_min = 1935, year_max = 1935)
+pete_monitors <- pete_monitors[[1]]$id
+pete_monitors <- pete_monitors[1]
+pete_weather <- meteo_pull_monitors(pete_monitors, date_min = "1935-08-15",
+                                      date_max = "1935-09-15",
+                                      var = c("AWDR", "AWND", "WSFG", "WSF1",
+                                                 "FMTM", "MDWM", "WDF1", "WDF2",
+                                                 "WDF5", "WDFG", "WDFI", "WDFM",
+                                                 "WDMV", "WSF2", "WSF5", "WSFI",
+                                                 "WSFM", "WT11"))
+```
+-JF: using `fips_stations`, was unable to find any weather station for the Florida Keys for 1935. Using `meteo_nearby_stations`, found the closest station to have recorded any sort of wind data to be USC00088786 in Tampa, FL. After pulling data for this station in September 1935, recieved data for `wt11` only, which seems to be potentially binary where 1 indicated high or damaging winds and NA is recorded for days where such winds are not observed.
 
 ```{r}
 library(stringr)
