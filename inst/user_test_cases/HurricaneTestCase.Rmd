@@ -1,7 +1,6 @@
 ---
 title: 'Test Case: Hurricane Data'
-author: Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP), Mike Lyons
-  (ML)
+author: Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP), Mike Lyons (ML), Enqun Wang (EW)
 output: html_document
 ---
 
@@ -335,7 +334,7 @@ Next, we could measure distance from US county centers and pick out the counties
 
 Cyclone Tracy example: (note: need to pull from 1975, even though it was in 1974)
 
-```{r}
+```{r, message=F}
 Tracy_1975<-storm_data(year=1975)
 names(Tracy_1975)
 colnames(Tracy_1975$data)[1:10]
@@ -362,6 +361,60 @@ ggmap(darwin_map) +
   geom_path(data = tracy_loc, aes(x = longitude, y = latitude)) +
   geom_point(data = tracy_loc, aes(x = longitude, y = latitude,
                                     color = wind.wmo.))
+```
+
+##### Storm Path Function
+
+EW: I wrote a function to plot the storm path. You need to know the `name`, `year`, `location` of the storm you would like to analyze. The function provides two types of map: the whole map or the local map.
+
+```{r message=F}
+require(rnoaa)
+require(ggplot2)
+
+storm_path <- function(name = "BILIS", year = 2006, location = 'Fuzhou, China', 
+                       local = TRUE){
+  # name: name of the storm
+  # year: year of the storm
+  # location: location of the storm
+  # local: if true, plot the local map; else, plot the whole plot
+  
+  hurrs_year <- storm_data(year = year)
+  storm <- hurrs_year$data[which(hurrs_year$data$name == name), ] 
+  if(sum(storm$latitude == -999)){
+    storm <- storm[-c(which(storm$latitude == -999)),]
+  }
+  storm_loc <- select(storm, iso_time, latitude, longitude, wind.wmo.) 
+  
+  if(local){
+    map <- get_map(location = location, zoom = 5) 
+  }else{
+    map <- get_map(location = location, zoom = 3, source='google')
+  }
+  ggmap(map) +
+    geom_path(data = storm_loc, aes(x = longitude, y = latitude)) + 
+    geom_point(data = storm_loc, aes(x = longitude, y = latitude, 
+                                     color = wind.wmo.))
+}
+```
+
+**Hurricane Andrew:**
+
+```{r message=F}
+storm_path(name = "ANDREW", year = 1992, location = "Miami", local = T)
+```
+
+**Labor Day Storm:**
+
+```{r message=F}
+storm_path(name = "XXXX935513", year = 1935, location = "Florida", local = F)
+```
+
+**Cyclone Tracy:** cannot find the data.
+
+**Tropical Storm Bilis:**
+
+```{r message=F}
+storm_path(name = "BILIS", year = 2006, location = "Fuzhou", local = T)
 ```
 
 #### Can you identify streams and rivers that were affected by the storm?
