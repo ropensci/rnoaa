@@ -252,10 +252,9 @@ plot(t, KSEAData$TemperatureF, type="p",
 Gather the data on the vegetation / NDVI throughout Alaska. Do so at as fine of a temporal and spatial resolution as possible. If you can gather this at a very fine spatial and temporal resolution, start by only collecting for the first week of July 2015. If you can only get yearly values, get values for each year from 2000-2016. 
 
 # Tentative leads:
-CRAN has an R package called "gimms", that purports to be able to read in GIMMS NDVI3g data. It seems the package was explicitly designed to work with data available at "http://ecocast.arc.nasa.gov/data/pub/gimms/3g.v0/." 
+CRAN has an R package called "gimms", that purports to be able to read in GIMMS NDVI3g data. It seems the package was explicitly designed to work with data available at "http://ecocast.arc.nasa.gov/data/pub/gimms/3g.v0/." The data runs from 1981 - 2013 in monthly increments.
 
 ```
-install.packages("gimms")
 library(gimms)
 # Specify the directory to download the files in
 # I was not able to change the "/data" specification; errors were returned
@@ -269,7 +268,17 @@ system.time(gimms_raster <- rasterizeGimms(x = gimms_files_date, remove_header =
 # Define some indices
 indices <- monthlyIndices(gimms_files_date)
 # Compute the monthly maximum value composites
-gimms_raster_mvc <- monthlyComposite(gimms_raster, indices = indices)
+system.time(gimms_raster_mvc <- monthlyComposite(gimms_raster, indices = indices)) # 17 seconds for me
+
+# Now, let's visualize the data
+library(sp) # package for spatial data
+names(gimms_raster_mvc) <- paste(month.abb, 2000)
+# returns an error "incorrect number of layer names"
+spplot(gimms_raster_mvc) # This still works, fortunately. 
+# This is an aesthetic plot, but what form do you want this data in?
+# We could also ignore the monthly maximum value composites, which is just as well because I don't know what they mean.
+plot(gimm_raster)
+
 ```
 
 
