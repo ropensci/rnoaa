@@ -251,7 +251,9 @@ plot(t, KSEAData$TemperatureF, type="p",
 
 ## RNCEP package
 
-MG: This work is use the RNCEP package to obtain global weather and climate data.
+This work is explore using the RNCEP package to obtain global weather and climate data.
+
+-MG: explore some examples using this package.
 
 ```{r }
 install.packages('RNCEP')
@@ -259,6 +261,7 @@ library(RNCEP)
 
 # retrieve the temperature from a particular pressure level for a specified spatial and temporal event
 # in this example, gather temperature data from a spatial extent for August and September from 2000-2001
+
 wx.extent <- NCEP.gather(variable='air', level=850,
                          months.minmax=c(8,9), years.minmax=c(2000,2001),
                          lat.southnorth=c(50,55), lon.westeast=c(0,5),
@@ -268,13 +271,9 @@ wx.extent
 # calculate the average temperature per month and year
 wx.ag <- NCEP.aggregate(wx.data=wx.extent, YEARS = TRUE, 
                         MONTHS = TRUE, DAYS = FALSE, HOURS = FALSE, fxn='mean')
-
-wx.ag # aggregated time components have been replace with XX or XXXX
-dimnames(wx.ag[[3]][1])
 wx.ag
 
 ```
-
 
 ## Vegetation / NDVI
 
