@@ -368,6 +368,7 @@ wx.ag
 Gather the data on the vegetation / NDVI throughout Alaska. Do so at as fine of a temporal and spatial resolution as possible. If you can gather this at a very fine spatial and temporal resolution, start by only collecting for the first week of July 2015. If you can only get yearly values, get values for each year from 2000-2016. 
 
 # Tentative leads:
+
 CRAN has an R package called "gimms", that purports to be able to read in GIMMS NDVI3g data. It seems the package was explicitly designed to work with data available at http://ecocast.arc.nasa.gov/data/pub/gimms/3g.v0/. The data runs from 1981 - 2013 in monthly increments.
 
 ```{r message = FALSE, warning = FALSE}
@@ -392,4 +393,3 @@ spplot(gimms_raster_mvc) # This still works. 10 seconds
 # We could also ignore the monthly maximum value composites.
 plot(gimms_raster)
 ```
-
