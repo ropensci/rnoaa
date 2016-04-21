@@ -244,7 +244,8 @@ alaska_weather2 <- meteo_pull_monitors(test$id[1:3],
 ```
 
 -JF: Trying to pull weather data for all stations in Alaska. Pulling for all stations will take a very long time, therefore a test trial using the first 3 stations listed for Alaska were used (`alaska_weather`). Stations were then limited by a variety of parameters to create a new data frame, `test`, to limit the number of monitors used to create a data frame with weather variables (`alaska_weather2`).
-- MF: We used `ncdc_stations` to get a list of stations in Alaska. First we had to find the FIPS code for Alaska, which is "02". It took some experimenting to figure out the correct way to input the `locationid` argument. The `limit` defaults to 25 so we needed to change it in order to see all 831 stations in Alaska. At this point we don't actually know if `GHCND` is the dataset we want, but it was one of the examples in the documentation for `ncdc_stations`. The station list may be different depending on the dataset you're using.
+
+- MF: (Very preliminary, looks like JF was able to develop this further above!) We used `ncdc_stations` to get a list of stations in Alaska. First we had to find the FIPS code for Alaska, which is "02". It took some experimenting to figure out the correct way to input the `locationid` argument. The `limit` defaults to 25 so we needed to change it in order to see all 831 stations in Alaska. At this point we don't actually know if `GHCND` is the dataset we want, but it was one of the examples in the documentation for `ncdc_stations`. The station list may be different depending on the dataset you're using.
 
 - RG: Adding a map of weather stations in Alaska, using MFs station dataframe
 
@@ -393,3 +394,21 @@ spplot(gimms_raster_mvc) # This still works. 10 seconds
 plot(gimms_raster)
 ```
 
+- MF: Continuing this example and bounding the extent to Alaska. We can see that the vegetation index increases from January 2013 to June 2013.
+
+```{r message = FALSE, warning = FALSE}
+# Change the layer titles to which time period they correspond to
+names(gimms_raster) <- gsub("\\.+.*", "", gsub(".+/geo", "yr20", gimms_files_date))
+
+# Select a bounding box (extent)
+ext <- extent(-180, -130, 50, 75)
+  # ext <- drawExtent(show=TRUE) # Or you could use this to draw the bounding box manually (click on opposite corners of the rectangle you want)
+
+# Crop using ext
+gimms_raster_crop <- crop(gimms_raster, ext)
+
+# Now visualize the new cropped object
+plot(gimms_raster_crop)
+plot(gimms_raster_crop, 11) # to view just one of the layers (layer 11 in this case)
+
+```
