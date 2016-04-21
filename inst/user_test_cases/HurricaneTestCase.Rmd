@@ -115,64 +115,97 @@ RS: The `isd()` function from the rnoaa package looks like it's getting hourly d
 
 CP: A current issue is that the `isd()` function takes USAF and WBAN station codes as input, whereas we would like to use FIPS codes (county codes) as input. My initial thought for a way around this is to use the `isd_stations_search` from the rnoaa package, which takes lat/lon and radius (km) as input. I can use census data from [here](http://www2.census.gov/geo/docs/reference/cenpop2010/county/CenPop2010_Mean_CO.txt) to find population weighted lat/lon associated with a given FIPS code, and then use the lat/lon as input to `isd_stations_search` to get the stations associated with that FIPS code. Note that we would like to produce output similar to `weather_fips`, a function that takes a county code as input and then gives weather data in the surrounding area. `weather_fips`, except for hourly data. The `weather_fips` code can be forked from [here](https://github.com/leighseverson/countyweather).
 
-
+RS: Thanks to CP's contributions above, here's a first stab at a function putting all of this together (sadly unfinished as of 5pm 4/21 but I'll plan to keep working on it!) The goal is to get averaged hourly data across multiple stations for a given FIPS, year, and desired weather variables. 
 
 ```{r}
 library(stringr)
 
-census_data <- read.csv('http://www2.census.gov/geo/docs/reference/cenpop2010/county/CenPop2010_Mean_CO.txt')
-state <- census_data$STATEFP
-county <- census_data$COUNTYFP
+## want to aggregate all stations for a particular FIPS !
 
-state[str_length(state) == 1] <- paste0(0, state[str_length(state) == 1])
-county[str_length(county) == 1] <- paste0(00, county[str_length(county) == 1])
-county[str_length(county) == 2] <- paste0(0, county[str_length(county) == 2])
+# 1. get station list for a particular fips 
+# probably want to use ggmaps geocodes for this instead
+isd_fips_stations <- function(fips){
+  census_data <- read.csv('http://www2.census.gov/geo/docs/reference/cenpop2010/county/CenPop2010_Mean_CO.txt')
+  state <- census_data$STATEFP
+  county <- census_data$COUNTYFP
+  
+  state[str_length(state) == 1] <- paste0(0, state[str_length(state) == 1])
+  county[str_length(county) == 1] <- paste0(00, county[str_length(county) == 1])
+  county[str_length(county) == 2] <- paste0(0, county[str_length(county) == 2])
+  
+  FIPS <- paste0(state,county)
+  census_data$FIPS <- FIPS
+  
+  lat <- census_data$LATITUDE
+  lon <- census_data$LONGITUDE
+  
+  your_fips <- fips
+  row_num <- which(grepl(your_fips, census_data$FIPS))
+  
+  lat_FIPS <- lat[row_num]
+  lon_FIPS <- lon[row_num]
+  
+  stations <- isd_stations_search(lat = lat_FIPS, lon = lon_FIPS,
+                                  radius = 50)
+  return(stations)
+}
 
-FIPS <- paste0(state,county)
-census_data$FIPS <- FIPS
 
-lat <- census_data$LATITUDE
-lon <- census_data$LONGITUDE
+# 2. get tidy full dataset for all monitors
+# let user specify weather variables? for example, var = c("wind_speed", 
+# "temperature")
 
-#the idea is to go from FIPS -> population weighted lat/lon -> station ID (USAF and WBAN) -> hourly weather data
+# function to get dataset for a single monitor
 
-#this is the FIPS for Miami-Dade 
-FIPS_test = "12086"
-row_num = which(grepl(FIPS_test, census_data$FIPS))
+int_surface_data <- function(usaf_code, wban_code, year, var = "all"){
+  isd_df <- rnoaa::isd(usaf = usaf_code, wban = wban_code, year = year)$data
+  # add date time (suggested by one of the rnoaa package vignette examples for isd())
+  isd_df$date_time <- ymd_hm(sprintf("%s %s", as.character(isd_df$date), isd_df$time))
+  # select variables
+  cols <- c("usaf_station", "wban_station", "date_time", "latitude", "longitude")
+  subset_vars <- append(var, cols)
+  isd_df <- dplyr::select_(isd_df, .dots = subset_vars)
+  # change misisng weather data values to NA - it looks like non-signed items are filled
+  # with 9 (quality codes), 999 or 9999; signed items are positive filled (+9999 or +99999)
+  # ftp://ftp.ncdc.noaa.gov/pub/data/noaa/ish-format-document.pdf
+  #for(i in 1:length(var)){
+  #  isd_df <- filter(isd_df, var[i] < 900)
+  #}
+  # great the above code failed miserably...not sure how to do this. 
+  
+  # also want to add a check for percent missing for each weather variable 
+  # and add option to filter 
+  return(isd_df)
+}
 
-lat_FIPS = lat[row_num]
-lon_FIPS = lon[row_num]
+# 3. pull data for multiple monitors 
 
-#Get the stations within a 50 km radius corresponding to the 
-#population weighted lat/lon of FIPS_test.
-#It is also possible to specify a bounding box, instead of radius here.
-stations <- isd_stations_search(lat=lat_FIPS, lon=lon_FIPS, radius = 50)
+isd_monitors_data <- function(fips, year, var = "all"){
+  ids <- isd_fips_stations(fips)
+  safe_int <- purrr::safely(int_surface_data)
+  
+  mult_stations <- lapply(int_surface_data, usaf_code = ids$usaf, wban_code = 
+                            ids$wban, year = year, var = var)
 
-#stations contains usaf and wban codes in the county given by FIPS_test.
-USAF_codes = stations$usaf
-WBAN_codes = stations$wban
+  test <- mapply(safe_int, usaf_code = ids$usaf, wban_code = 
+                   ids$wban, year = year, var = var)
+  check_station <- sapply( )
+  # ^ reference meteo_pull_monitors
+}
 
-#We can apply the isd() function to each of these stations to get the average hourly 'weather' data in the area. 
+# 4. average across stations 
 
-#here is just an example of what the data looks like for a single station (Miami International Airport)
-res <- isd(usaf = USAF_codes[1], wban = WBAN_codes[1], year = 1992)$data
-res$date_time <- ymd_hm(sprintf("%s %s", as.character(res$date), res$time))
+ave_hourly <- function(all_stations){
+  averaged <- gather(all_stations, key, value, -)
+}
 
-res <- res %>% filter(temperature < 900) %>% select(usaf_station, wban_station, 
-                                                    date_time, latitude, longitude, 
-                                                    wind_direction, wind_speed, 
-                                                    temperature)
-
-ggplot(res, aes(date_time, temperature)) +
-  geom_line() +
-  facet_wrap(~usaf_station, scales = "free_x")
 ```
  
 RS: We should be able to filter the res dataframe to the particular month we're interested in to get hourly wind data. We found the USAF and WBAN codes for Miami by searching [this](ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-history.txt) text file of stations - there should be a better way to find USAF and WBAN codes for a particular location or station. 
 
 CP: I found a function to go from location (lat/lon) to USAF and WBAN codes `isd_stations_search`, and use census data to go from FIPS to lat/lon. See above code. 
 
-More info about this data can be found by going to NOAA's [land-based station data](https://www.ncdc.noaa.gov/data-access/land-based-station-data) site, then following the link for Integrated Surface Hourly Data base (3505) at the bottom of the page. For example, the readme.txt and ish-format-document.pdf files could be helpful. 
+RS: More info about this data can be found by going to NOAA's [land-based station data](https://www.ncdc.noaa.gov/data-access/land-based-station-data) site, then following the link for Integrated Surface Hourly Data base (3505) at the bottom of the page. For example, the readme.txt and ish-format-document.pdf files could be helpful. 
 
 #### A measure of how strong winds were over water around where the storm made landfall
 
