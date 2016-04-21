@@ -400,7 +400,7 @@ storm_path <- function(name, year, location, local = TRUE){
 
 **Hurricane Andrew:**
 
-```{r message=F}
+```{r fig.width = 6, fig.height = 4, message=F, warning=FALSE}
 storm_path(name = "ANDREW", year = 1992, location = "Miami", local = F)
 storm_path(name = "ANDREW", year = 1992, location = "Miami", local = T)
 ```
@@ -409,14 +409,14 @@ storm_path(name = "ANDREW", year = 1992, location = "Miami", local = T)
 
 **Cyclone Tracy:**
 
-```{r message=F}
+```{r fig.width = 6, fig.height = 4, message=F, warning=FALSE}
 storm_path(name = "07S:TRACY", year = 1975, location = "Darwin", local = F)
 storm_path(name = "07S:TRACY", year = 1975, location = "Darwin", local = T)
 ```
 
 **Tropical Storm Bilis:**
 
-```{r message=F}
+```{r fig.width = 6, fig.height = 4, message=F, warning=FALSE}
 storm_path(name = "BILIS", year = 2006, location = "Fuzhou", local = F)
 storm_path(name = "BILIS", year = 2006, location = "Fuzhou", local = T)
 ```
