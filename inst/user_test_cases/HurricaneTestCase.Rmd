@@ -365,7 +365,7 @@ ggmap(darwin_map) +
 
 ##### Storm Path Function
 
-EW: This a function to plot the storm path. You need to know the `name`, `year`, and `location` of the storm you would like to analyze. The function provides two types of map: the whole map or the local map.
+EW: This is a function to plot the storm path. You need to know the `name`, `year`, and `location` of the storm you would like to analyze. The function provides two types of map: whole map or local map, which can be set via `local`.
 
 ```{r message=F}
 require(rnoaa)
