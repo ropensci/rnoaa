@@ -1,7 +1,6 @@
 ---
 title: 'Test Case: Hurricane Data'
-author: Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP), Mike Lyons
-  (ML)
+author: Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP), Mike Lyons (ML), Enqun Wang (EW)
 output: html_document
 ---
 
