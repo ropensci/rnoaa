@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="author" content="Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF) Steven J. Brey (SJB), Joshua Ferreri (JF), Molly Gutilla (MG)" />
+<meta name="author" content="Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF), Ryan Hicks (RH), Steven J. Brey (SJB), Joshua Ferreri (JF), Molly Gutilla (MG)" />
 
 
 <title>Test case: Alaska wildfires</title>
@@ -109,7 +109,7 @@ $(document).ready(function () {
 
 
 <h1 class="title">Test case: Alaska wildfires</h1>
-<h4 class="author"><em>Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF) Steven J. Brey (SJB), Joshua Ferreri (JF), Molly Gutilla (MG)</em></h4>
+<h4 class="author"><em>Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF), Ryan Hicks (RH), Steven J. Brey (SJB), Joshua Ferreri (JF), Molly Gutilla (MG)</em></h4>
 
 </div>
 
@@ -314,7 +314,7 @@ deatiledDataURL &lt;- &quot;https://www.wunderground.com/history/airport/KSEA/20
 # Beautiful data with hourly weather observations 
 KSEAData &lt;- read.csv(text = getURL(deatiledDataURL))
 
-# This request could be made for any data and any setation! 
+# This request could be made for any data and any station! 
 t &lt;- as.POSIXct(KSEAData$DateUTC,tz=&quot;PST&quot;)</code></pre>
 <pre><code>## Warning in strptime(xx, f &lt;- &quot;%Y-%m-%d %H:%M:%OS&quot;, tz = tz): unknown
 ## timezone 'PST'</code></pre>
@@ -354,6 +354,33 @@ wx.ag</code></pre>
 <h2>Vegetation / NDVI</h2>
 <p>Gather the data on the vegetation / NDVI throughout Alaska. Do so at as fine of a temporal and spatial resolution as possible. If you can gather this at a very fine spatial and temporal resolution, start by only collecting for the first week of July 2015. If you can only get yearly values, get values for each year from 2000-2016.</p>
 </div>
+</div>
+<div id="tentative-leads" class="section level1">
+<h1>Tentative leads:</h1>
+<p>CRAN has an R package called “gimms”, that purports to be able to read in GIMMS NDVI3g data. It seems the package was explicitly designed to work with data available at <a href="http://ecocast.arc.nasa.gov/data/pub/gimms/3g.v0/" class="uri">http://ecocast.arc.nasa.gov/data/pub/gimms/3g.v0/</a>. The data runs from 1981 - 2013 in monthly increments.</p>
+<pre class="r"><code>library(gimms)
+# Specify the directory to download the files in
+# I was not able to change the &quot;/data&quot; specification; errors were returned
+gimms_dir &lt;- paste0(getwd(), &quot;/data&quot;)
+# Download the (.envi files I believe) by specifying the dates
+system.time(gimms_files_date &lt;- downloadGimms(x = as.Date(&quot;2013-01-01&quot;), y = as.Date(&quot;2013-06-30&quot;), dsn = gimms_dir))
+
+# .envi files are not useable as is, we need to rasterize them
+system.time(gimms_raster &lt;- rasterizeGimms(x = gimms_files_date, remove_header = TRUE))
+# The first six months of 2013 took 24 seconds to rasterize. (2.7 Ghz i5, 8 GB RAM)
+# Define some indices
+indices &lt;- monthlyIndices(gimms_files_date)
+# Compute the monthly maximum value composites
+system.time(gimms_raster_mvc &lt;- monthlyComposite(gimms_raster, indices = indices)) # 16 seconds
+
+# Now, let's visualize the data
+library(sp) # package for spatial data
+names(gimms_raster_mvc) &lt;- paste(month.abb, 2000)
+# returns the error &quot;incorrect number of layer names&quot;
+spplot(gimms_raster_mvc) # This still works. 10 seconds 
+# This is an aesthetic plot, but what form should this data be in?
+# We could also ignore the monthly maximum value composites.
+plot(gimms_raster)</code></pre>
 </div>
 
 
