@@ -274,10 +274,10 @@ system.time(gimms_raster_mvc <- monthlyComposite(gimms_raster, indices = indices
 library(sp) # package for spatial data
 names(gimms_raster_mvc) <- paste(month.abb, 2000)
 # returns the error "incorrect number of layer names"
-spplot(gimms_raster_mvc) # This still works. 
-# This is an aesthetic plot, but what form do you want this data in?
-# We could also ignore the monthly maximum value composites, which is just as well because I don't know what they mean.
-plot(gimm_raster)
+spplot(gimms_raster_mvc) # This still works. 10 seconds 
+# This is an aesthetic plot, but what form should this data be in?
+# We could also ignore the monthly maximum value composites.
+plot(gimms_raster)
 
 ```
 
