@@ -1,7 +1,7 @@
 ---
 title: 'Test case: Alaska wildfires'
 author: Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF)
-  Steven J. Brey (SJB), Joshua Ferreri (JF)
+  Steven J. Brey (SJB), Joshua Ferreri (JF), Molly Gutilla (MG)
 output: html_document
 ---
 
@@ -248,6 +248,34 @@ plot(t, KSEAData$TemperatureF, type="p",
 
 ```
 
+
+## RNCEP package
+
+This work is explore using the RNCEP package to obtain global weather and climate data.
+
+-MG: explore some examples using this package.
+
+```{r }
+install.packages('RNCEP')
+library(RNCEP)
+
+# retrieve the temperature from a particular pressure level for a specified spatial and temporal event
+# in this example, gather temperature data from a spatial extent for August and September from 2000-2001
+
+wx.extent <- NCEP.gather(variable='air', level=850,
+                         months.minmax=c(8,9), years.minmax=c(2000,2001),
+                         lat.southnorth=c(50,55), lon.westeast=c(0,5),
+                         reanalysis2 = FALSE, return.units=TRUE)
+wx.extent
+
+# calculate the average temperature per month and year
+wx.ag <- NCEP.aggregate(wx.data=wx.extent, YEARS = TRUE, 
+                        MONTHS = TRUE, DAYS = FALSE, HOURS = FALSE, fxn='mean')
+wx.ag
+
+```
+
 ## Vegetation / NDVI
 
 Gather the data on the vegetation / NDVI throughout Alaska. Do so at as fine of a temporal and spatial resolution as possible. If you can gather this at a very fine spatial and temporal resolution, start by only collecting for the first week of July 2015. If you can only get yearly values, get values for each year from 2000-2016. 
+
