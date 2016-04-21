@@ -238,7 +238,7 @@ deatiledDataURL <- "https://www.wunderground.com/history/airport/KSEA/2006/1/1/D
 # Beautiful data with hourly weather observations 
 KSEAData <- read.csv(text = getURL(deatiledDataURL))
 
-# This request could be made for any data and any setation! 
+# This request could be made for any data and any station! 
 t <- as.POSIXct(KSEAData$DateUTC,tz="PST")
 plot(t, KSEAData$TemperatureF, type="p",
      ylab="T [f]", xlab="Local Time (PST)",
@@ -250,3 +250,26 @@ plot(t, KSEAData$TemperatureF, type="p",
 ## Vegetation / NDVI
 
 Gather the data on the vegetation / NDVI throughout Alaska. Do so at as fine of a temporal and spatial resolution as possible. If you can gather this at a very fine spatial and temporal resolution, start by only collecting for the first week of July 2015. If you can only get yearly values, get values for each year from 2000-2016. 
+
+# Tentative leads:
+CRAN has an R package called "gimms", that purports to be able to read in GIMMS NDVI3g data. It seems the package was explicitly designed to work with data available at "http://ecocast.arc.nasa.gov/data/pub/gimms/3g.v0/." 
+
+```
+install.packages("gimms")
+library(gimms)
+# Specify the directory to download the files in
+# I was not able to change the "/data" specification; errors were returned
+gimms_dir <- paste0(getwd(), "/data")
+# Download the (.envi files I believe) by specifying the dates
+gimms_files_date <- downloadGimms(x = as.Date("2000-01-01"), y = as.Date("2000-06-30"), dsn = gimms_dir)
+
+# .envi are not useable as is, we need to rasterize them
+system.time(gimms_raster <- rasterizeGimms(x = gimms_files_date, remove_header = TRUE))
+# The first six months of 2000 took 23 seconds to rasterize. (2.7 Ghz i5, 8 GM RAM)
+# Define some indices
+indices <- monthlyIndices(gimms_files_date)
+# Compute the monthly maximum value composites
+gimms_raster_mvc <- monthlyComposite(gimms_raster, indices = indices)
+```
+
+
