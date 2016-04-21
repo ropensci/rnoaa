@@ -1,6 +1,7 @@
 ---
 title: 'Test Case: Hurricane Data'
-author: "Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP)"
+author: Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP), Mike Lyons
+  (ML)
 output: html_document
 ---
 
@@ -332,6 +333,37 @@ ggmap(miami_map) +
 
 Next, we could measure distance from US county centers and pick out the counties that were within [x] kilometers of the 6-hour storm location measures.
 
+Cyclone Tracy example: (note: need to pull from 1975, even though it was in 1974)
+
+```{r}
+Tracy_1975<-storm_data(year=1975)
+names(Tracy_1975)
+colnames(Tracy_1975$data)[1:10]
+tracy <- Tracy_1975$data[which(Tracy_1975$data$name == "07S:TRACY"), ]
+as.vector(unique(Tracy_1975$data$name))
+tracy[1:5, 1:10]
+storm_names <- storm_meta(what = "storm_names")
+head(storm_names)
+grep("TRACY", storm_names$name, value = TRUE)
+storm_names[grep("TRACY", storm_names$name), ]
+tracy_id <- storm_names[grep("TRACY", storm_names$name), 1][1]
+tracy_2 <- storm_data(storm = tracy_id)
+head(tracy_2$data[ , c("iso_time", "latitude", "longitude", "wind.wmo.")], 3)
+tracy_loc <- select(tracy, iso_time, latitude, longitude, wind.wmo.)
+tracy_loc$latitude[tracy_loc$latitude < -300]<-NA
+tracy_loc$longitude[tracy_loc$longitude < -300]<-NA
+tracy_loc$wind.wmo.[tracy_loc$wind.wmo. < -300]<-NA
+head(tracy, 3)
+ggplot(tracy_loc, aes(x = longitude, y = latitude)) +
+  geom_path() + geom_point(aes(color = wind.wmo.))
+library(ggmap)
+darwin_map <- get_map(location = 'Darwin', zoom = 5)
+ggmap(darwin_map) +
+  geom_path(data = tracy_loc, aes(x = longitude, y = latitude)) +
+  geom_point(data = tracy_loc, aes(x = longitude, y = latitude,
+                                    color = wind.wmo.))
+```
+
 #### Can you identify streams and rivers that were affected by the storm?
 
 BG: No idea where to start here... Are there any databases where you can identify rivers or streams that are close to a certain location? Does streamgage meta-data have some information saying what river or stream it's on? If so, we might be able to pull meta-data on all streamgages through USGS, filter to just ones within the right date range, and then pull the latitude-longitude and the stream / river name, then calculate distances to the central path of the storm from storm tracks.
@@ -342,11 +374,13 @@ BG: The `waterData` package allows you to pull daily hydrologic time series from
 
 The package `countyweather` (this is Rachel's package) has a function to pull all the station IDs for a US county, based on the county FIPS code. This function is still in development (so feel free to fork the package and make your own changes!), but for right now you can use it like this-- to get the station IDs for Miami-Dade, which has a FIPS code of 12086:
 
+[Change to load from my branch of county weather for the moment because of the `streamstations` issue.]
+
 ```{r}
 # library(devtools)
-# install_github("leighseverson/countyweather") # install the package if you need to
+install_github("geanders/countyweather") # install the package if you need to
 library(countyweather)
-miami_ids <- countyweather:::streamflow("12086",
+miami_ids <- countyweather:::streamstations("12086",
                                        date_min = "1992-08-20",
                                        date_max = "1992-08-30")
 miami_ids
