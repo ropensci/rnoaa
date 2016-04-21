@@ -249,6 +249,7 @@ ggplot(miami_weather, aes(x = date, y = prcp, color = id)) +
 
 ```{r eval = FALSE}
 ##Cyclone Tracy
+library(ggmap)
 darwin_ll <- geocode("Darwin, Australia")
 darwin <- data.frame(id = "darwin", 
                      latitude = darwin_ll$lat, 
@@ -260,10 +261,23 @@ darwin_monitors <- meteo_nearby_stations(lat_lon_df = darwin,
                                          radius = 50,
                                          var = "PRCP",
                                          year_min = 1974, year_max = 1974)
+darwin_monitors <- darwin_monitors[[1]]$id
 ```
 
 ```{r echo = FALSE}
-darwin_monitors <- darwin_monitors[[1]]$id
+darwin_monitors <- c('ASN00014167', 'ASN00014170', 'ASN00014018', 
+                     'ASN00014163', 'ASN00014218', 'ASN00014040', 
+                     'ASN00014017', 'ASN00014015', 'ASN00014182',
+                     'ASN00014162', 'ASN00014169', 'ASN00014164', 
+                     'ASN00014270', 'ASN00014112', 'ASN00014116', 
+                     'ASN00014009', 'ASN00014175', 'ASN00014172', 
+                     'ASN00014129', 'ASN00014149', 'ASN00014110', 
+                     'ASN00014215', 'ASN00014080', 'ASN00014032', 
+                     'ASN00014183')
+```
+
+
+```{r echo = FALSE}
 darwin_weather <- meteo_pull_monitors(darwin_monitors, date_min = "1974-12-01",
                                       date_max = "1974-12-31",
                                       var = "PRCP")
@@ -288,16 +302,19 @@ keys_monitors <- meteo_nearby_stations(lat_lon_df = keys,
                                          radius = 50,
                                          var = "PRCP",
                                          year_min = 1935, year_max = 1935)
+keys_monitors <- keys_monitors[[1]]$id
 ```
 
+
 ```{r echo = FALSE}
-keys_monitors <- keys_monitors[[1]]$id
-keys_weather <- meteo_pull_monitors(keys_monitors, date_min = "1935-08-15",
-                                      date_max = "1935-09-15",
-                                      var = "PRCP")
+keys_monitors <- c('USC00088786', 'USC00087886', 'USC00087137',
+                   'USC00081632', 'USC00087205', 'USC00080940', 'USC00088824')
 ```
 
 ```{r fig.width= 8, fig.height = 3}
+keys_weather <- meteo_pull_monitors(keys_monitors, date_min = "1935-08-15",
+                                      date_max = "1935-09-15",
+                                      var = "PRCP")
 ggplot(keys_weather, aes(x = date, y = prcp, color = id)) +
   geom_line() + ggtitle("Precipitation near the Florida Keys, Fl, \nduring the Labor Day Storm") +
   ylab("Precipitation (mm)")
@@ -313,12 +330,16 @@ fuzhou_monitors <- meteo_nearby_stations(lat_lon_df = fuzhou,
                                          radius = 50,
                                          var = "PRCP",
                                          year_min = 2006, year_max = 2006)
+fuzhou_monitors <- fuzhou_monitors[[1]]$id
 ```
 
 - JF: Looks like there is only one station in/near Fuzhou, China, within a 50 mile radius.
 
-```{r echo = false}
-fuzhou_monitors <- fuzhou_monitors[[1]]$id
+```{r echo = FALSE}
+fuzhou_monitors <- "CHM00058847"
+```
+
+```{r}
 fuzhou_weather <- meteo_pull_monitors(fuzhou_monitors, date_min = "2006-07-01",
                                       date_max = "2006-08-01",
                                       var = "PRCP")
