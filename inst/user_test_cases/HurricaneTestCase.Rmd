@@ -1,7 +1,7 @@
 ---
 title: 'Test Case: Hurricane Data'
 author: Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP), Mike Lyons
-  (ML), Joshua Ferreri (JF)
+  (ML), Joshua Ferreri (JF), Enqun Wang (EW), Holly Kessler (HK)
 output: html_document
 ---
 
@@ -114,6 +114,82 @@ RS: The `isd()` function from the rnoaa package looks like it's getting hourly d
 
 
 CP: A current issue is that the `isd()` function takes USAF and WBAN station codes as input, whereas we would like to use FIPS codes (county codes) as input. My initial thought for a way around this is to use the `isd_stations_search` from the rnoaa package, which takes lat/lon and radius (km) as input. I can use census data from [here](http://www2.census.gov/geo/docs/reference/cenpop2010/county/CenPop2010_Mean_CO.txt) to find population weighted lat/lon associated with a given FIPS code, and then use the lat/lon as input to `isd_stations_search` to get the stations associated with that FIPS code. Note that we would like to produce output similar to `weather_fips`, a function that takes a county code as input and then gives weather data in the surrounding area. `weather_fips`, except for hourly data. The `weather_fips` code can be forked from [here](https://github.com/leighseverson/countyweather).
+
+
+```{r eval = FALSE}
+##Cyclone Tracy
+station_data <- ghcnd_stations()[[1]] # Takes a while to run
+darwin_ll <- geocode("Darwin, Australia")
+darwin <- data.frame(id = "darwin", 
+                     latitude = darwin_ll$lat, 
+                     longitude = darwin_ll$lon)
+darwin_monitors <- meteo_nearby_stations(lat_lon_df = darwin,
+                                         lat_colname = "latitude",
+                                         lon_colname = "longitude",
+                                         station_data = station_data,
+                                         limit = 10,
+                                         var = c("AWDR", "AWND", "WSFG", "WSF1",
+                                                 "FMTM", "MDWM", "WDF1", "WDF2",
+                                                 "WDF5", "WDFG", "WDFI", "WDFM",
+                                                 "WDMV", "WSF2", "WSF5", "WSFI",
+                                                 "WSFM", "WT11"),
+                                         year_min = 1974, year_max = 1974)
+```
+
+- JF: Tapping into the GHCND, there were no stations at this time in Australia that have recorded wind speed values (of any sort). The closest station was over 2000 miles away.
+
+```{r}
+keys_stations <- fips_stations("12087", date_min = "1935-08-15",
+                                date_max = "1935-09-15")
+keys_monitors <- ncdc_stations(datasetid = "GHCND", locationid = "FIPS:12087", 
+                             limit = 1000)
+keys_monitors <- data.frame(id = keys_monitors$data$id, 
+                            mindate = keys_monitors$data$mindate, 
+                            maxdate = keys_monitors$data$maxdate)
+keys_monitors$id <- gsub("GHCND:", "", keys_monitors$id)
+keys_monitors$mindate <- as.Date(keys_monitors$mindate)
+keys_monitors$maxdate <- as.Date(keys_monitors$maxdate)
+keys_monitors <- subset(keys_monitors, 
+                        keys_monitors$mindate <= as.Date("1935-08-01") & 
+                          keys_monitors$maxdate >= as.Date("1935-09-01")) #still nothing 
+keys <- geocode("Florida Keys, FL")
+keys <- data.frame(id = "keys", latitude = keys$lat, longitude = keys$lon)
+keys_monitors <- meteo_nearby_stations(lat_lon_df = keys,
+                                         lat_colname = "latitude",
+                                         lon_colname = "longitude",
+                                         station_data = station_data,
+                                         limit = 10,
+                                         var = c("AWDR", "AWND", "WSFG", "WSF1",
+                                                 "FMTM", "MDWM", "WDF1", "WDF2",
+                                                 "WDF5", "WDFG", "WDFI", "WDFM",
+                                                 "WDMV", "WSF2", "WSF5", "WSFI",
+                                                 "WSFM", "WT11"),
+                                         year_min = 1935, year_max = 1935)
+pete <- geocode("St. Petersburg, FL")
+pete <- data.frame(id = "pete", latitude = pete$lat, longitude = pete$lon)
+pete_monitors <- meteo_nearby_stations(lat_lon_df = pete,
+                                         lat_colname = "latitude",
+                                         lon_colname = "longitude",
+                                         station_data = station_data,
+                                         limit = 10,
+                                         var = c("AWDR", "AWND", "WSFG", "WSF1",
+                                                 "FMTM", "MDWM", "WDF1", "WDF2",
+                                                 "WDF5", "WDFG", "WDFI", "WDFM",
+                                                 "WDMV", "WSF2", "WSF5", "WSFI",
+                                                 "WSFM", "WT11"),
+                                         year_min = 1935, year_max = 1935)
+pete_monitors <- pete_monitors[[1]]$id
+pete_monitors <- pete_monitors[1]
+pete_weather <- meteo_pull_monitors(pete_monitors, date_min = "1935-08-15",
+                                      date_max = "1935-09-15",
+                                      var = c("AWDR", "AWND", "WSFG", "WSF1",
+                                                 "FMTM", "MDWM", "WDF1", "WDF2",
+                                                 "WDF5", "WDFG", "WDFI", "WDFM",
+                                                 "WDMV", "WSF2", "WSF5", "WSFI",
+                                                 "WSFM", "WT11"))
+```
+-JF: using `fips_stations`, was unable to find any weather station for the Florida Keys for 1935. Using `meteo_nearby_stations`, found the closest station to have recorded any sort of wind data to be USC00088786 in Tampa, FL. After pulling data for this station in September 1935, recieved data for `wt11` only, which seems to be potentially binary where 1 indicated high or damaging winds and NA is recorded for days where such winds are not observed.
+
 
 RS: Thanks to CP's contributions above, here's a first stab at a function putting all of this together (sadly unfinished as of 5pm 4/21 but I'll plan to keep working on it!) The goal is to get averaged hourly data across multiple stations for a given FIPS, year, and desired weather variables. 
 
@@ -282,6 +358,7 @@ ggplot(miami_weather, aes(x = date, y = prcp, color = id)) +
 
 ```{r eval = FALSE}
 ##Cyclone Tracy
+library(ggmap)
 darwin_ll <- geocode("Darwin, Australia")
 darwin <- data.frame(id = "darwin", 
                      latitude = darwin_ll$lat, 
@@ -293,10 +370,23 @@ darwin_monitors <- meteo_nearby_stations(lat_lon_df = darwin,
                                          radius = 50,
                                          var = "PRCP",
                                          year_min = 1974, year_max = 1974)
+darwin_monitors <- darwin_monitors[[1]]$id
 ```
 
 ```{r echo = FALSE}
-darwin_monitors <- darwin_monitors[[1]]$id
+darwin_monitors <- c('ASN00014167', 'ASN00014170', 'ASN00014018', 
+                     'ASN00014163', 'ASN00014218', 'ASN00014040', 
+                     'ASN00014017', 'ASN00014015', 'ASN00014182',
+                     'ASN00014162', 'ASN00014169', 'ASN00014164', 
+                     'ASN00014270', 'ASN00014112', 'ASN00014116', 
+                     'ASN00014009', 'ASN00014175', 'ASN00014172', 
+                     'ASN00014129', 'ASN00014149', 'ASN00014110', 
+                     'ASN00014215', 'ASN00014080', 'ASN00014032', 
+                     'ASN00014183')
+```
+
+
+```{r echo = FALSE}
 darwin_weather <- meteo_pull_monitors(darwin_monitors, date_min = "1974-12-01",
                                       date_max = "1974-12-31",
                                       var = "PRCP")
@@ -321,16 +411,19 @@ keys_monitors <- meteo_nearby_stations(lat_lon_df = keys,
                                          radius = 50,
                                          var = "PRCP",
                                          year_min = 1935, year_max = 1935)
+keys_monitors <- keys_monitors[[1]]$id
 ```
 
+
 ```{r echo = FALSE}
-keys_monitors <- keys_monitors[[1]]$id
-keys_weather <- meteo_pull_monitors(keys_monitors, date_min = "1935-08-15",
-                                      date_max = "1935-09-15",
-                                      var = "PRCP")
+keys_monitors <- c('USC00088786', 'USC00087886', 'USC00087137',
+                   'USC00081632', 'USC00087205', 'USC00080940', 'USC00088824')
 ```
 
 ```{r fig.width= 8, fig.height = 3}
+keys_weather <- meteo_pull_monitors(keys_monitors, date_min = "1935-08-15",
+                                      date_max = "1935-09-15",
+                                      var = "PRCP")
 ggplot(keys_weather, aes(x = date, y = prcp, color = id)) +
   geom_line() + ggtitle("Precipitation near the Florida Keys, Fl, \nduring the Labor Day Storm") +
   ylab("Precipitation (mm)")
@@ -346,12 +439,16 @@ fuzhou_monitors <- meteo_nearby_stations(lat_lon_df = fuzhou,
                                          radius = 50,
                                          var = "PRCP",
                                          year_min = 2006, year_max = 2006)
+fuzhou_monitors <- fuzhou_monitors[[1]]$id
 ```
 
 - JF: Looks like there is only one station in/near Fuzhou, China, within a 50 mile radius.
 
-```{r echo = false}
-fuzhou_monitors <- fuzhou_monitors[[1]]$id
+```{r echo = FALSE}
+fuzhou_monitors <- "CHM00058847"
+```
+
+```{r}
 fuzhou_weather <- meteo_pull_monitors(fuzhou_monitors, date_min = "2006-07-01",
                                       date_max = "2006-08-01",
                                       var = "PRCP")
@@ -362,6 +459,24 @@ ggplot(fuzhou_weather, aes(x = date, y = prcp, color = id)) +
   geom_line() + ggtitle("Precipitation near the Fuzhou, China, \nduring Tropical Storm Bills") +
   ylab("Precipitation (mm)")
 ```
+
+HK: Here is the pressure data during Andrew using the package RNCEP
+We aren't sure how accurate the model is compared to the true data.
+Regarding the Lon and Lat values, I picked a random larger box around the Miami station
+
+```{r, echo=FALSE, message=FALSE,warning=FALSE}
+install.packages("RNCEP")
+library(RNCEP)
+
+wx.extent1 <- NCEP.gather(variable='pres.sfc', level='surface',
+    months.minmax=c(8,9), years.minmax=c(1992,1992),
+    lat.southnorth=c(20,30), lon.westeast=c(-85,-75),
+    reanalysis2 = FALSE, return.units = TRUE, status.bar = FALSE)
+
+NCEP.vis.area(wx.data = wx.extent1, layer = "1992-08-24 12", show.pts = TRUE)
+
+```
+
 
 #### How many stations you used to get each of those values
 
@@ -452,7 +567,7 @@ Next, we could measure distance from US county centers and pick out the counties
 
 Cyclone Tracy example: (note: need to pull from 1975, even though it was in 1974)
 
-```{r}
+```{r, message=F}
 Tracy_1975<-storm_data(year=1975)
 names(Tracy_1975)
 colnames(Tracy_1975$data)[1:10]
@@ -480,6 +595,65 @@ ggmap(darwin_map) +
   geom_point(data = tracy_loc, aes(x = longitude, y = latitude,
                                     color = wind.wmo.))
 ```
+
+##### Storm Path Function
+
+EW: This is a function for plotting the storm path. You need to know the `name`, `year`, and `location` of the storm you would like to analyze. The function provides two types of map: whole map or local map, which can be set via `local`.
+
+```{r message=F}
+require(rnoaa)
+require(dplyr)
+require(ggplot2)
+require(ggmap)
+
+storm_path <- function(name, year, location, local = TRUE){
+  # name: name of the storm
+  # year: year of the storm
+  # location: location of the storm
+  # local: if true, plot the local map; else, plot the whole plot
+  
+  hurrs_year <- storm_data(year = year)
+  storm <- hurrs_year$data[which(hurrs_year$data$name == name), ] 
+  if(sum(storm$latitude == -999)){
+    storm <- storm[-c(which(storm$latitude == -999)),]
+  }
+  storm_loc <- select(storm, iso_time, latitude, longitude, wind.wmo.) 
+  
+  if(local){
+    map <- get_map(location = location, zoom = 5) 
+  }else{
+    map <- get_map(location = location, zoom = 3, source='google')
+  }
+  ggmap(map) +
+    geom_path(data = storm_loc, aes(x = longitude, y = latitude)) + 
+    geom_point(data = storm_loc, aes(x = longitude, y = latitude, 
+                                     color = wind.wmo.))
+}
+```
+
+**Hurricane Andrew:**
+
+```{r fig.width = 6, fig.height = 4, message=F, warning=FALSE}
+storm_path(name = "ANDREW", year = 1992, location = "Miami", local = F)
+storm_path(name = "ANDREW", year = 1992, location = "Miami", local = T)
+```
+
+**Labor Day Storm:** cannot find the data.
+
+**Cyclone Tracy:**
+
+```{r fig.width = 6, fig.height = 4, message=F, warning=FALSE}
+storm_path(name = "07S:TRACY", year = 1975, location = "Darwin", local = F)
+storm_path(name = "07S:TRACY", year = 1975, location = "Darwin", local = T)
+```
+
+**Tropical Storm Bilis:**
+
+```{r fig.width = 6, fig.height = 4, message=F, warning=FALSE}
+storm_path(name = "BILIS", year = 2006, location = "Fuzhou", local = F)
+storm_path(name = "BILIS", year = 2006, location = "Fuzhou", local = T)
+```
+
 
 #### Can you identify streams and rivers that were affected by the storm?
 
