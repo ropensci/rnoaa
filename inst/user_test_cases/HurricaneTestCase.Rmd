@@ -1,7 +1,6 @@
 ---
 title: 'Test Case: Hurricane Data'
-author: Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP), Mike Lyons
-  (ML)
+author: Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP), Mike Lyons (ML), Holly Kessler (HK)
 output: html_document
 ---
 
@@ -245,6 +244,24 @@ ggplot(miami_weather, aes(x = date, y = prcp, color = id)) +
   geom_line() + ggtitle("Precipitation near Miami, FL, \nduring Hurricane Andrew") + 
   ylab("Precipitation (mm)")
 ```
+
+HK: Here is the pressure data during Andrew using the package RNCEP
+We aren't sure how accurate the model is compared to the true data.
+Regarding the Lon and Lat values, I picked a random larger box around the Miami station
+
+```{r, echo=FALSE, message=FALSE,warning=FALSE}
+install.packages("RNCEP")
+library(RNCEP)
+
+wx.extent1 <- NCEP.gather(variable='pres.sfc', level='surface',
+    months.minmax=c(8,9), years.minmax=c(1992,1992),
+    lat.southnorth=c(20,30), lon.westeast=c(-85,-75),
+    reanalysis2 = FALSE, return.units = TRUE, status.bar = FALSE)
+
+NCEP.vis.area(wx.data = wx.extent1, layer = "1992-08-24 12", show.pts = TRUE)
+
+```
+
 
 #### How many stations you used to get each of those values
 
