@@ -54,9 +54,95 @@ As you work on this project, also keep a running list here of any data from sour
 
 As you work on these, include the code that you try. Include things that worked and things that you thought would work but that did not. Also write down what parts were easy to figure out how to do, and which you had to search around a lot to figure out what to do. 
 
+## Historic fire location
+- RG: The Bureau of Land Management has maps of historic fire records that can be downloaded    in dataframe format.
+  Web address: http://afsmaps.blm.gov/imf_firehistory/imf.jsp?site=firehistory
+  I couldn't figure out a way to scrap the website itself as it was a interactive map.          However, there is an option to download excel file. I've downloaded xls file, deleted first   two rows that were useless, and saved as a csv. I've put in rnoaa data file. 
+  
+  The following code creates a map of fire locations for each year. 
+  
+```{r, eval = FALSE}
+# infile fire csv
+fire_dir <- paste0('/Users/ryangan/Google Drive/CSU/wild_fire/rnoaa/alaska/',
+                   'rnoaa/data/alaska_historic_fire_location_2000_2015.csv')
+
+ak_fire <- read.csv(fire_dir)
+
+# base map
+alaska <- c(-180, 52, -130, 72) # set bounding box by lat long min and max
+
+ak_fire_map <- get_map(location=alaska, # use bounding box for location
+                       source="stamen", # source stamen
+                       maptype= "toner", crop=FALSE) # toner style
+# for loop
+for(i in 2000:2015){
+ak_fire_year <- filter(ak_fire, Fire.Year == i)
+# adding station locations to the map
+print(
+ggmap(ak_fire_map) + geom_point(aes(x = Longitude, y = Latitude),
+                                data = ak_fire_year , alpha = .5, color="red",
+                                size = 1, pch = 17) +
+                     ggtitle(paste("Alaska Fire Locations for", i))
+      )
+      } # end loop
+  
+```  
+  
 ## Lightning strikes
 - RG: rnoaa swdi does not appear to be able to pull lightning strike data using 
 nldn command. I get the following error message 'Error in UseMethod("xpathApply")'
+
+- RG Note 4/21/16: I found asource of lightning strikes (same AK BLM website). http://afsmaps.blm.gov/imf_firehistory/imf.jsp?site=firehistory. Downloaded historic lightning strike shapefile. There are two shapefiles with historic lightning data; 1986 to 2012, and 2012 to 2015. The projection is off a bit. The issue here is that the coordinate system of the lightning strikes (lat long) are in an Albers projection, with a rather odd orgin.
+
+# Note on projection of lightning strikes for Alaska
+Display Projection Information
+Vector source data for layers in all Alaska Fire Service MapServices are in North American Datum 1983 (NAD83) Geographic Coordinate System. Raster layers (generally these are background layers) are in the Albers Equal Area Projection for Alaska. For display purposes the layers are reprojected on the fly to NAD83 Albers. Coordinates displayed for the current location of the mouse are in NAD83 geographic. All coordinates displayed in the dataframe in response to a query or identify request are in NAD83 geographic. All data exported from this site will default to NAD83 geographic. NAD 83 Alaska Albers may be requested on an individual export.
+Additional Information for Alaska Albers: 
+Central Meridian = -154 
+Latitude of Origin = 50 
+Standard Parallel 1 = 55 
+Standard Parallel 2 = 65 
+False Easting = 0 
+False Northing = 0 
+Units = Meters 
+
+Datum = North American 1983 
+
+Source: http://afsmaps.blm.gov/imf_firehistory/sites/help/AFSProjectionStory.jsp
+
+```{r include=TRUE, echo = TRUE, message = FALSE, eval = FALSE}
+# The goal for this chunk of code is to read in lighting data shapefile for 2012
+# to 2015 and plot the strikes
+
+# Look at whats in the shapefile
+# saved shapefile in rnoaa data
+# library used
+library(rgdal) # package for reading shapefiles
+library(sp) # package for redefining coord ref (CRS)
+ 
+light_dir <- paste0('/Users/ryangan/Google Drive/CSU/wild_fire/rnoaa/alaska/',
+                    'rnoaa/data/CONDUCT')
+lightning_shp <- readOGR(dsn = light_dir, layer = 'TOALightning2012Thru2015')
+str(lightning_shp)
+plot(lightning_shp) # you can see the weird projection where data is missing in the middle
+
+# I need to redefine the CRS
+# lightning strikes are in an albers projeciton
+# creating a custom proj4 string with relevant info
+custom_crs <- paste0("+proj=laea +lat_0=50 +lon_0=-154 +lat_1=55 +lat_2=65",
+                     "+datum=NAD83 +no_defs +x_0=0 +y_0=0 +a=6370997 +b=6370997",
+                     " +units=m")
+# create new shapefile with new projection
+lightning_shp_albers <- spTransform(lightning_shp, CRS(custom_crs))
+summary(lightning_shp_albers)
+head(lightning_shp_albers$LONGITUDE)
+# plot looks better, but the lat and longitude are still the same
+# I will need to find a way to convert to values of more use
+plot(lightning_shp_albers)
+
+```
+-RG: I found a conversion forumla to convert albers projeciton lat longs to a more useable lat long. However it's in Java. Perhaps someone wants to write the r code converstion?
+Source: http://stackoverflow.com/questions/26474475/convert-lat-longs-to-x-y-coordinates-on-albers-projection-map
 
 Get a dataset of lightning strikes within Alaska for 2000-2015, with the following columns: 
 
@@ -200,7 +286,7 @@ ggmap(station_map) + geom_point(aes(x = lon, y = lat),
 
 Taking a look at what the wunderground API has to offer. The following is exploratory and not yet operational. What is shown below is what looks like a promising source for hourly resolution weather data from high quality stations all over the world. Station metadata can be found http://weather.rap.ucar.edu/surface/stations.txt.
 
-```{r }
+```{r, eval = F }
 library(weatherData)
 
 # Lets first check out what data is available, because I am a nerd (SJB) I 
