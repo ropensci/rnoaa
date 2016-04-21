@@ -1,7 +1,6 @@
 ---
 title: 'Test case: Alaska wildfires'
-author: Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF)
-  Steven J. Brey (SJB), Joshua Ferreri (JF)
+author: Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF), Ryan Hicks (RH), Steven J. Brey (SJB), Joshua Ferreri (JF)
 output: html_document
 ---
 
