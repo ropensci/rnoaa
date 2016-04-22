@@ -2,7 +2,7 @@
 title: 'Test case: Alaska wildfires'
 author: Brooke Anderson (BA), Sheryl Magzamen (SM), Ryan Gan (RG), Miranda Fix (MF),
   Ryan Hicks (RH), Steven J. Brey (SJB), Joshua Ferreri (JF), Molly Gutilla (MG)
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
@@ -61,12 +61,32 @@ As you work on these, include the code that you try. Include things that worked 
   
   The following code creates a map of fire locations for each year. 
   
-```{r, eval = FALSE}
-# infile fire csv
-fire_dir <- paste0('/Users/ryangan/Google Drive/CSU/wild_fire/rnoaa/alaska/',
-                   'rnoaa/data/alaska_historic_fire_location_2000_2015.csv')
+```{r}
+## BA: Directly pulled from http://afsmaps.blm.gov/imf_firehistory/imf.jsp?site=firehistory
+## Seems like I only got 2015, though... 
+fire_dir <- "~/Downloads/Extract_ilmakfs3ws103516312012"
+library(maptools)
+ak_fire <- readShapeSpatial(paste(fire_dir, "FirePointHistory", sep = "/"))
+ak_fire <- ak_fire@data
+summary(ak_fire$Latitude)
+summary(ak_fire$Longitude)
 
+library(ggmap)
+ak_map <- get_map("tanana", zoom = 4)
+ggmap(ak_map) + geom_point(data = ak_fire, aes(x = Longitude, y = Latitude),
+                           color = "red", alpha = 0.2, size = 0.5) + 
+  facet_wrap(~ GenCause, ncol = 2)
+ggmap(ak_map) + geom_point(data = ak_fire, aes(x = Longitude, y = Latitude),
+                           color = "red", alpha = 0.2, size = 0.5) + 
+  facet_wrap(~ PrimFuel, ncol = 4)
+```
+
+```{r eval = FALSE}
+# infile fire csv
+#fire_dir <- paste0('/Users/ryangan/Google Drive/CSU/wild_fire/rnoaa/alaska/',
+#                   'rnoaa/data/alaska_historic_fire_location_2000_2015.csv')
 ak_fire <- read.csv(fire_dir)
+
 
 # base map
 alaska <- c(-180, 52, -130, 72) # set bounding box by lat long min and max
