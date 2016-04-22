@@ -62,9 +62,9 @@ As you work on these, include the code that you try. Include things that worked 
   The following code creates a map of fire locations for each year. 
   
 ```{r}
+library(dplyr)
 ## BA: Directly pulled from http://afsmaps.blm.gov/imf_firehistory/imf.jsp?site=firehistory
-## Seems like I only got 2015, though... 
-fire_dir <- "~/Downloads/Extract_ilmakfs3ws103516312012"
+fire_dir <- "~/Downloads/Extract_ilmakfs3ws103516312013"
 library(maptools)
 ak_fire <- readShapeSpatial(paste(fire_dir, "FirePointHistory", sep = "/"))
 ak_fire <- ak_fire@data
@@ -75,10 +75,32 @@ library(ggmap)
 ak_map <- get_map("tanana", zoom = 4)
 ggmap(ak_map) + geom_point(data = ak_fire, aes(x = Longitude, y = Latitude),
                            color = "red", alpha = 0.2, size = 0.5) + 
-  facet_wrap(~ GenCause, ncol = 2)
+  facet_wrap(~ GenCause, ncol = 3)
+
+# Just for 2000-2016
+ggmap(ak_map) + geom_point(data = subset(ak_fire, FIRESEASON %in% c(2000:2016)),
+                           aes(x = Longitude, y = Latitude),
+                           color = "red", alpha = 0.2, size = 0.5) + 
+  facet_wrap(~ GenCause, ncol = 3)
+
+# Just for 2000-2016
 ggmap(ak_map) + geom_point(data = ak_fire, aes(x = Longitude, y = Latitude),
                            color = "red", alpha = 0.2, size = 0.5) + 
   facet_wrap(~ PrimFuel, ncol = 4)
+
+ak_fire <- dplyr::mutate(ak_fire, 
+                        fireseason = as.numeric(as.character(FIRESEASON)),
+                        year_group = cut(as.numeric(as.character(fireseason)),
+                                         breaks = c(1939, 1950, 1970, 1990,
+                                                    2010, 2016),
+                                         labels = c("1939-1949", "1950-1969",
+                                                    "1970-1989", "1990-2009",
+                                                    "2010-2016"))) %>%
+                        dplyr::filter(!is.na(year_group))
+
+ggmap(ak_map) + geom_point(data = ak_fire, aes(x = Longitude, y = Latitude),
+                           color = "red", alpha = 0.2, size = 0.5) + 
+  facet_wrap(~ year_group, ncol = 3)
 ```
 
 ```{r eval = FALSE}
@@ -161,7 +183,23 @@ head(lightning_shp_albers$LONGITUDE)
 plot(lightning_shp_albers)
 
 ```
--RG: I found a conversion forumla to convert albers projeciton lat longs to a more useable lat long. However it's in Java. Perhaps someone wants to write the r code converstion?
+
+ 
+```{r eval = FALSE}
+library(dplyr)
+## BA: Directly pulled from http://afsmaps.blm.gov/imf_firehistory/imf.jsp?site=firehistory
+lightning_dir <- "~/Downloads/Lightning1986Thru2015"
+library(maptools)
+ak_light <- readShapeSpatial(paste(lightning_dir,
+                                  "TOALightning2012Thru2015", sep = "/"))
+ak_light <- ak_light@data
+summary(ak_light$LATITUDE)
+summary(ak_light$LONGITUDE)
+
+ggplot(ak_light, aes(x = LONGITUDE, y = LATITUDE)) + geom_point()
+```
+
+-RG: I found a conversion formula to convert albers projeciton lat longs to a more useable lat long. However it's in Java. Perhaps someone wants to write the r code converstion?
 Source: http://stackoverflow.com/questions/26474475/convert-lat-longs-to-x-y-coordinates-on-albers-projection-map
 
 Get a dataset of lightning strikes within Alaska for 2000-2015, with the following columns: 
