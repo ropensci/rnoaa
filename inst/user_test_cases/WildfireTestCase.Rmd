@@ -410,5 +410,11 @@ gimms_raster_crop <- crop(gimms_raster, ext)
 # Now visualize the new cropped object
 plot(gimms_raster_crop)
 plot(gimms_raster_crop, 11) # to view just one of the layers (layer 11 in this case)
-
 ```
+
+Remove these `gimms` files: 
+
+```{r}
+file.remove(grep("geo13", list.files(), value = TRUE))
+```
+
