@@ -2,7 +2,7 @@
 title: 'Test Case: Hurricane Data'
 author: Brooke Anderson (BA), Rachel Severson (RS), Casey Patrizio (CP), Mike Lyons
   (ML), Joshua Ferreri (JF), Enqun Wang (EW), Holly Kessler (HK)
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE, echo = FALSE, message = FALSE}
@@ -82,9 +82,9 @@ CP: I had issues running `install_github("ropenscilabs/rnoaa")` in order to use 
 For example, the FIPS for Miami-Dade is 12086. Based on the [README file](http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) for this data, some of the windspeed variables have the abbreviations: "AWND", "WSFG", "WSF1". You can therefore run:
 
 ```{r}
-library(devtools)
-install_github("ropenscilabs/rnoaa", dependencies=TRUE) # if you need to install the package
-install_github("leighseverson/countyweather") # if you need to install the package
+# library(devtools)
+# install_github("ropenscilabs/rnoaa", dependencies=TRUE) # if you need to install the package
+# install_github("leighseverson/countyweather") # if you need to install the package
 library(rnoaa)
 library(countyweather)
 miami_stations <- fips_stations("12086", date_min = "1992-08-01",
@@ -116,7 +116,7 @@ RS: The `isd()` function from the rnoaa package looks like it's getting hourly d
 CP: A current issue is that the `isd()` function takes USAF and WBAN station codes as input, whereas we would like to use FIPS codes (county codes) as input. My initial thought for a way around this is to use the `isd_stations_search` from the rnoaa package, which takes lat/lon and radius (km) as input. I can use census data from [here](http://www2.census.gov/geo/docs/reference/cenpop2010/county/CenPop2010_Mean_CO.txt) to find population weighted lat/lon associated with a given FIPS code, and then use the lat/lon as input to `isd_stations_search` to get the stations associated with that FIPS code. Note that we would like to produce output similar to `weather_fips`, a function that takes a county code as input and then gives weather data in the surrounding area. `weather_fips`, except for hourly data. The `weather_fips` code can be forked from [here](https://github.com/leighseverson/countyweather).
 
 
-```{r eval = FALSE}
+```{r}
 ##Cyclone Tracy
 station_data <- ghcnd_stations()[[1]] # Takes a while to run
 darwin_ll <- geocode("Darwin, Australia")
@@ -151,7 +151,11 @@ keys_monitors$mindate <- as.Date(keys_monitors$mindate)
 keys_monitors$maxdate <- as.Date(keys_monitors$maxdate)
 keys_monitors <- subset(keys_monitors, 
                         keys_monitors$mindate <= as.Date("1935-08-01") & 
-                          keys_monitors$maxdate >= as.Date("1935-09-01")) #still nothing 
+                          keys_monitors$maxdate >= as.Date("1935-09-01")) #still nothing
+keys_monitors
+```
+
+```{r}
 keys <- geocode("Florida Keys, FL")
 keys <- data.frame(id = "keys", latitude = keys$lat, longitude = keys$lon)
 keys_monitors <- meteo_nearby_stations(lat_lon_df = keys,
@@ -165,6 +169,10 @@ keys_monitors <- meteo_nearby_stations(lat_lon_df = keys,
                                                  "WDMV", "WSF2", "WSF5", "WSFI",
                                                  "WSFM", "WT11"),
                                          year_min = 1935, year_max = 1935)
+keys_monitors
+```
+
+```{r}
 pete <- geocode("St. Petersburg, FL")
 pete <- data.frame(id = "pete", latitude = pete$lat, longitude = pete$lon)
 pete_monitors <- meteo_nearby_stations(lat_lon_df = pete,
@@ -178,6 +186,7 @@ pete_monitors <- meteo_nearby_stations(lat_lon_df = pete,
                                                  "WDMV", "WSF2", "WSF5", "WSFI",
                                                  "WSFM", "WT11"),
                                          year_min = 1935, year_max = 1935)
+pete_monitors
 pete_monitors <- pete_monitors[[1]]$id
 pete_monitors <- pete_monitors[1]
 pete_weather <- meteo_pull_monitors(pete_monitors, date_min = "1935-08-15",
@@ -193,7 +202,7 @@ pete_weather <- meteo_pull_monitors(pete_monitors, date_min = "1935-08-15",
 
 RS: Thanks to CP's contributions above, here's a first stab at a function putting all of this together (sadly unfinished as of 5pm 4/21 but I'll plan to keep working on it!) The goal is to get averaged hourly data across multiple stations for a given FIPS, year, and desired weather variables. 
 
-```{r}
+```{r eval = FALSE}
 library(stringr)
 
 ## want to aggregate all stations for a particular FIPS !
@@ -330,8 +339,8 @@ BG: For some reason, NCDC seems to only be identifying Miami weather monitors th
 
 You can instead use the `meteo_nearby_stations` function to find all precipitation monitors in a certain radius (parts of this take a long time to run, so I won't evaluate):
 
-```{r eval = FALSE}
-station_data <- ghcnd_stations()[[1]] # Takes a while to run
+```{r}
+# station_data <- ghcnd_stations()[[1]] # Takes a while to run
 miami <- data.frame(id = "miami", latitude = 25.7617, longitude = -80.1918)
 miami_monitors <- meteo_nearby_stations(lat_lon_df = miami,
                                         station_data = station_data,
@@ -339,12 +348,6 @@ miami_monitors <- meteo_nearby_stations(lat_lon_df = miami,
                                         var = c("PRCP"), 
                                         year_min = 1992, year_max = 1992)
 miami_monitors <- miami_monitors[[1]]$id
-```
-
-```{r echo = FALSE}
-miami_monitors <- c("USW00092811", "USW00012859", "USC00083909", "USW00012839",
-                    "USC00087020", "USW00012849", "USC00083163", "USC00083168",
-                    "USC00084095")
 ```
 
 ```{r fig.width = 8, fig.height = 3}
@@ -356,7 +359,7 @@ ggplot(miami_weather, aes(x = date, y = prcp, color = id)) +
   ylab("Precipitation (mm)")
 ```
 
-```{r eval = FALSE}
+```{r}
 ##Cyclone Tracy
 library(ggmap)
 darwin_ll <- geocode("Darwin, Australia")
@@ -370,23 +373,11 @@ darwin_monitors <- meteo_nearby_stations(lat_lon_df = darwin,
                                          radius = 50,
                                          var = "PRCP",
                                          year_min = 1974, year_max = 1974)
+darwin_monitors
 darwin_monitors <- darwin_monitors[[1]]$id
 ```
 
-```{r echo = FALSE}
-darwin_monitors <- c('ASN00014167', 'ASN00014170', 'ASN00014018', 
-                     'ASN00014163', 'ASN00014218', 'ASN00014040', 
-                     'ASN00014017', 'ASN00014015', 'ASN00014182',
-                     'ASN00014162', 'ASN00014169', 'ASN00014164', 
-                     'ASN00014270', 'ASN00014112', 'ASN00014116', 
-                     'ASN00014009', 'ASN00014175', 'ASN00014172', 
-                     'ASN00014129', 'ASN00014149', 'ASN00014110', 
-                     'ASN00014215', 'ASN00014080', 'ASN00014032', 
-                     'ASN00014183')
-```
-
-
-```{r echo = FALSE}
+```{r}
 darwin_weather <- meteo_pull_monitors(darwin_monitors, date_min = "1974-12-01",
                                       date_max = "1974-12-31",
                                       var = "PRCP")
@@ -400,7 +391,7 @@ ggplot(darwin_weather, aes(x = date, y = prcp, color = id)) +
   ylab("Precipitation (mm)")
 ```
 
-```{r eval = FALSE}
+```{r}
 ##Labor Day Storm
 keys <- geocode("Florida Keys, St. Petersburg, FL")
 keys <- data.frame(id = "keys", latitude = keys$lat, longitude = keys$lon)
@@ -411,13 +402,8 @@ keys_monitors <- meteo_nearby_stations(lat_lon_df = keys,
                                          radius = 50,
                                          var = "PRCP",
                                          year_min = 1935, year_max = 1935)
+keys_monitors
 keys_monitors <- keys_monitors[[1]]$id
-```
-
-
-```{r echo = FALSE}
-keys_monitors <- c('USC00088786', 'USC00087886', 'USC00087137',
-                   'USC00081632', 'USC00087205', 'USC00080940', 'USC00088824')
 ```
 
 ```{r fig.width= 8, fig.height = 3}
@@ -429,7 +415,7 @@ ggplot(keys_weather, aes(x = date, y = prcp, color = id)) +
   ylab("Precipitation (mm)")
 ```
 
-```{r eval = FALSE}
+```{r}
 fuzhou <- geocode("Fuzhou, China")
 fuzhou <- data.frame(id = "fuzhou", latitude = fuzhou$lat, longitude = fuzhou$lon)
 fuzhou_monitors <- meteo_nearby_stations(lat_lon_df = fuzhou,
@@ -439,14 +425,11 @@ fuzhou_monitors <- meteo_nearby_stations(lat_lon_df = fuzhou,
                                          radius = 50,
                                          var = "PRCP",
                                          year_min = 2006, year_max = 2006)
+fuzhou_monitors
 fuzhou_monitors <- fuzhou_monitors[[1]]$id
 ```
 
 - JF: Looks like there is only one station in/near Fuzhou, China, within a 50 mile radius.
-
-```{r echo = FALSE}
-fuzhou_monitors <- "CHM00058847"
-```
 
 ```{r}
 fuzhou_weather <- meteo_pull_monitors(fuzhou_monitors, date_min = "2006-07-01",
@@ -464,8 +447,8 @@ HK: Here is the pressure data during Andrew using the package RNCEP
 We aren't sure how accurate the model is compared to the true data.
 Regarding the Lon and Lat values, I picked a random larger box around the Miami station
 
-```{r, echo=FALSE, message=FALSE,warning=FALSE}
-install.packages("RNCEP")
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# install.packages("RNCEP") # if you need to install this package
 library(RNCEP)
 
 wx.extent1 <- NCEP.gather(variable='pres.sfc', level='surface',
@@ -474,9 +457,7 @@ wx.extent1 <- NCEP.gather(variable='pres.sfc', level='surface',
     reanalysis2 = FALSE, return.units = TRUE, status.bar = FALSE)
 
 NCEP.vis.area(wx.data = wx.extent1, layer = "1992-08-24 12", show.pts = TRUE)
-
 ```
-
 
 #### How many stations you used to get each of those values
 
@@ -665,11 +646,9 @@ BG: The `waterData` package allows you to pull daily hydrologic time series from
 
 The package `countyweather` (this is Rachel's package) has a function to pull all the station IDs for a US county, based on the county FIPS code. This function is still in development (so feel free to fork the package and make your own changes!), but for right now you can use it like this-- to get the station IDs for Miami-Dade, which has a FIPS code of 12086:
 
-[Change to load from my branch of county weather for the moment because of the `streamstations` issue.]
-
 ```{r}
 # library(devtools)
-install_github("geanders/countyweather") # install the package if you need to
+# install_github("leighseverson/countyweather") # install the package if you need to
 library(countyweather)
 miami_ids <- countyweather:::streamstations("12086",
                                        date_min = "1992-08-20",
