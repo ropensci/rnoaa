@@ -1,0 +1,222 @@
+---
+title: "Test Case: USGS Gauge Data based on Hurrican Tracks"
+author: "Rod Lammers"
+date: "April 24, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(plyr)
+library(purrr)
+library(lubridate)
+library(maps)
+library(dataRetrieval)
+```
+
+# Main Task
+The goal of this r script was to analyze potential flooding as a result of a hurricane or other large storm. Required inputs are lat-long coordinates and cooresponding date/time stamps of a storm track.
+
+# Analysis Steps
+## Import Storm Track Data
+The storm track data used in this example are from Hurricane Andrew (1992).
+
+```{r}
+setwd("C:/Users/rlammers/Desktop")
+
+# dataframe from Rnoaa for hurricane info
+andrew <- read.csv("HurAndrewInfo.csv")
+```
+
+## Create Bounding Boxes
+We will create boxes around each storm track point. These boxes each have a N-S-E-W lat or long which will be used to query the USGS databse and extract all stream gauges within this area that has data for the necessary time period. We also set the date/time and remove the time stamp since we are using only mean daily flows from USGS.
+```{r}
+# set box vert distance away from hurricane center in degrees
+box.dist <- 2 # degrees
+
+# Double check time zone for weather data
+andrew$iso_time <- as.character(andrew$iso_time)
+andrew$iso_time <- substr(andrew$iso_time,1,10)
+
+# add coloumns for bounding box coords
+andrew <- data.frame(andrew,
+                     bound.n = andrew$latitude + box.dist,
+                     bound.s = andrew$latitude - box.dist,
+                     bound.e = andrew$longitude + box.dist,
+                     bound.w = andrew$longitude - box.dist)
+```
+
+We can also create a plot of the storm track and bounding boxes.
+```{r fig.width = 6, fig.height = 4}
+data(usaMapEnv)
+par(mar=c(0,0,0,0))
+maps::map('usa',ylim=c(10,50),xlim=c(-100,-50))
+points(andrew$longitude, andrew$latitude)
+
+rect(andrew$bound.w,andrew$bound.s,andrew$bound.e,andrew$bound.n, border = "blue")
+```
+
+##Find USGS Stations Within Bounding Boxes
+We will next use the dataRetrieval package to find all USGS gages within the bounding boxes. The functions returns an error if the box is not over the contiguous U.S. so we use the safely() function from the purrr package. This allows us to run through all the bounding boxes, even if an error is returned. We then extract only those data for which there is no error. The start date and end date (of when the flow data are available) may be adjusted based on the objectives of the analysis.
+```{r}
+start.date <- as.Date(andrew$iso_time[1], format = "%Y-%m-%d")
+end.date <- start.date + 14 #add 14 days to get end date
+gage_extract <- function(andrew){
+    w.bound <- andrew$bound.w
+    s.bound <- andrew$bound.s
+    e.bound <- andrew$bound.e
+    n.bound <- andrew$bound.n
+    gages <- whatNWISsites(bBox=c(w.bound,s.bound,e.bound,n.bound),hasDataTypeCd="dv",
+                                parameterCd=c("00060"),startDT=start.date,endDT=end.date)
+  return(gages)
+}
+
+safe_gage <- safely(gage_extract,quiet=T)
+gages2 <- andrew %>% by_row(safe_gage)
+
+gages.list <- gages2$.out
+check.data <- sapply(gages.list, function(x) is.null(x$result))
+
+gages.list.out <- lapply(gages.list[!check.data],
+                          function(x) x$result)
+gages.list.out <- suppressWarnings(dplyr::bind_rows(gages.list.out))
+```
+
+Because some of the boxes overlap, we need to remove duplicate gauges.
+```{r}
+#remove query time column and remove duplicates
+gages.list.out <- gages.list.out[,!names(gages.list.out) %in% "queryTime"]
+gages.list.out <- unique(gages.list.out)
+```
+
+We can now plot the storm track with all the USGS gauges for which data are available.
+```{r fig.width = 6, fig.height = 4}
+data(usaMapEnv)
+maps::map('usa')
+lines(andrew$longitude, andrew$latitude,lwd=2)
+points(gages.list.out$dec_long_va,gages.list.out$dec_lat_va,pch=16,cex=0.3)
+```
+
+##Extract Flow Data for Gauges
+Now that we have the gauge names and locations, the next step is to actually obtain the flow data for these stations. The dataRetrieval package has a function that enables to obtain daily mean discharge data. However, we also need statistical data for the gauge to determine the relative magnitude of those flows. For this example, we use the 95th percentile flow as the threshold for a "flood". Future iterations on this may use other indicators such as flood stage as determined by the National Weather Service.
+
+Unfortunately, there is no built in function to obtain this statistical flow data so we need to build our own.
+```{r}
+buildURL <- function(siteNumber){
+  url <- "http://waterservices.usgs.gov/nwis/stat/?format=rdb&sites="
+  url <- paste0(url,siteNumber,"&statReportType=daily&statTypeCd=p95")
+  return(url)
+}
+
+readNWISstat <- function (siteNumber, parameterCd)
+{
+  url <- buildURL(siteNumber)
+  data <- read.table(url,sep="\t",header=T)
+  #remove first row
+  data <- data[2:length(data[,1]),]
+  #keep only discharge values
+  data <- data[data$parameter_cd==parameterCd,]
+
+  return(data)
+}
+```
+
+These functions build the url to retrieve the required data and then put the data into a data frame.
+
+We can then use these functions to obtain the flow data and statistical data for each gauge. For the 631 gauges in this analysis, this data retrieval took ~7 minutes.
+
+```{r}
+ptm <- proc.time()
+stat.data <- alply(gages.list.out,1,function(x){
+  readNWISstat(siteNumber=x$site_no[1],parameterCd="00060")
+})
+
+flow.data <- alply(gages.list.out,1,function(x){
+  readNWISdv(siteNumber=x$site_no[1],parameterCd="00060",startDate=start.date,endDate=end.date)
+})
+proc.time()-ptm
+```
+
+Even though the inital query for gauges should have only returned those with flow data for the period of interest, some gauges still do not have this data (or 95th percentile flow data). We therefore need to remove all these gauges without the required data.
+
+```{r}
+#remove stations with no discharge data
+omit <- sapply(flow.data,function(x){length(x)})
+flow.data <- lapply(flow.data[omit>0],function(x){x})
+stat.data <- lapply(stat.data[omit>0],function(x){x})
+
+#remove stations with no stat data
+omit <- sapply(stat.data,function(x){sum(as.numeric(x$p95_va)-1)})
+flow.data <- lapply(flow.data[omit>0],function(x){x})
+stat.data <- lapply(stat.data[omit>0],function(x){x})
+```
+
+##Match Flow and Stat Data
+Next, we need to match the flow data with the 95th percentile to determine if flooding was occuring. First, we get the month and date value for these data to serve as the variable with which to cross-reference the two data sets.
+
+```{r}
+#get months and days of flow data
+flow.data <- lapply(flow.data,function(x){
+  month <- as.character(month(x$Date))
+  day <- as.character(day(x$Date))
+  m.day <- paste(month,day)
+  data.frame(x,month,day,m.day)
+})
+
+#Set m.day value for stats list
+stat.data <- lapply(stat.data,function(x){
+  m.day <- paste(as.character(x$month_nu),as.character(x$day_nu))
+  data.frame(x,m.day)
+})
+```
+
+Next, we developed a function to check whether the flows on each day exceeded the 95th percentile, returing a true/false value.
+
+```{r}
+flood.fun <- function(flow,stat){
+  p.95 <- as.numeric(stat$p95_va[match(flow$m.day,stat$m.day)])
+  if (length(flow[,4])==length(p.95)){
+    exceed <- (flow[,4] > p.95 & p.95 != 1)
+  } else {
+    exceed <- logical(length=length(flow$m.day))
+    p.95 <- logical(length=length(flow$m.day))
+  }
+
+  data.frame(flow$site_no,p.95,flow[,4],exceed)
+}
+```
+
+We use this function to check the "flood status" of all gauges, rearranging the data to a number of days where flooding occured during the period of interest (in this case, 15 days).
+```{r}
+flood.status <- mapply(flood.fun,flow.data,stat.data,SIMPLIFY=F)
+
+#Put flood.status in one data.frame and summarize just number of days in flood
+flood.status <- dplyr::bind_rows(flood.status)
+flood.status <- ddply(flood.status,.(flow.site_no),function(x){
+  sum <- sum(x$exceed)
+})
+
+#put number of floods back into gages list
+indices <- match(flood.status$flow.site_no,gages.list.out$site_no)
+flood <- numeric(length=length(gages.list.out$site_no))
+flood[indices] <- flood.status$V1
+gages.list.out <- data.frame(gages.list.out,flood)
+```
+
+Next, we can create a plot of all of our gauges and color code them based upon the duration of the flood.
+```{r fig.width=6, fig.height=4}
+data(usaMapEnv)
+colors <- colorRampPalette(c("green","red"))(max(gages.list.out$flood))
+maps::map('usa')
+lines(andrew$longitude, andrew$latitude,lwd=2)
+points(gages.list.out$dec_long_va,gages.list.out$dec_lat_va,pch=1,cex=0.1)
+x <- gages.list.out$dec_long_va[gages.list.out$flood>0]
+y <- gages.list.out$dec_lat_va[gages.list.out$flood>0]
+val <- gages.list.out$flood[gages.list.out$flood>0]
+points(x,y,pch=1,cex=0.1,col=colors[val])
+```
+
+There doesn't seem to be much correlation between the distance from the storm track and flood status for these gauges. This could be some error in the data that needs a more in depth look (e.g. 95th percentiles may be inaccurate or not matching days correctly). Otherwise, the distance from the storm tracks may need to be expanded. Data on the width of the storm would be useful for this.
+
+##Addtional Products
+In addition to digging into the issues identified above, this analysis should be applied to other storm track data to assess its use and identify potential issues. A more refined data could animate the storm by day, showing how streamflow changes through time at each gauge within the storm track. This would require some more sophisticated code but can build upon the base developed here.
