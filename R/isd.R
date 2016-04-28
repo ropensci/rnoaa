@@ -98,7 +98,7 @@ rbind.isd <- function(...) {
     stop("All inputs must be of class isd", call. = FALSE)
   }
   input <- lapply(input, "[[", "data")
-  rbind_all(input)
+  bind_rows(input)
 }
 
 #' @export
@@ -142,7 +142,7 @@ read_isd <- function(x, sections, cleanup) {
   } else {
     lns <- readLines(x)
     linesproc <- lapply(lns, each_line, sections = sections)
-    df <- dplyr::rbind_all(linesproc)
+    df <- bind_rows(linesproc)
     df <- trans_vars(df)
     cache_rds(path_rds, df)
     if (cleanup) {

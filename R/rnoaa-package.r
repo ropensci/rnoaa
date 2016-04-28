@@ -49,7 +49,7 @@
 #' @importFrom XML xpathSApply xpathApply xmlValue xmlParse xmlToList htmlParse
 #' @importFrom jsonlite fromJSON
 #' @importFrom tidyr gather
-#' @importFrom dplyr %>% rbind_all select mutate rename tbl_df filter bind_rows as_data_frame
+#' @importFrom dplyr %>% select mutate rename tbl_df filter bind_rows as_data_frame
 #' @name rnoaa-package
 #' @aliases rnoaa
 #' @docType package
