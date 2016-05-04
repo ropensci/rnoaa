@@ -20,10 +20,12 @@ x-axis. See \code{\link{date_format}}}
 ggplot2 plot
 }
 \description{
-This function accepts directly output from the \code{\link[rnoaa]{ncdc}} function,
-not other functions.
+Plot NOAA climate data.
 }
 \details{
+This function accepts directly output from the \code{\link[rnoaa]{ncdc}} function,
+not other functions.
+
 This is a simple wrapper function around some ggplot2 code. There is indeed a lot you
 can modify in your plots, so this function just does some basic stuff. Look at the internals
 for what the function does.
@@ -39,7 +41,7 @@ ncdc_plot(out, breaks="1 month", dateformat="\%d/\%m")
 ncdc_plot(out, breaks="1 month", dateformat="\%d/\%m")
 
 out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
-   startdate = '2010-05-01', enddate = '2010-05-03', limit=100)
+   startdate = '2010-05-01', enddate = '2010-05-15', limit=500)
 ncdc_plot(out2, breaks="6 hours", dateformat="\%H")
 
 # Combine many calls to ncdc function
