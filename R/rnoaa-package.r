@@ -1,16 +1,16 @@
 #' @title rnoaa
-#' 
+#'
 #' @description rnoaa is an R interface to NOAA climate data.
 #'
-#' @section Data Sources: 
-#' Many functions in this package interact with the National Climatic Data 
-#' Center application programming interface (API) at 
+#' @section Data Sources:
+#' Many functions in this package interact with the National Climatic Data
+#' Center application programming interface (API) at
 #' http://www.ncdc.noaa.gov/cdo-web/webservices/v2, all of
 #' which functions start with \code{ncdc_}. An access token, or API key, is required to use all
-#' the \code{ncdc_} functions. The key is required by NOAA, not us. Go to the link given above 
+#' the \code{ncdc_} functions. The key is required by NOAA, not us. Go to the link given above
 #' to get an API key.
 #'
-#' More NOAA data sources are being added through time. Data sources and their 
+#' More NOAA data sources are being added through time. Data sources and their
 #' function prefixes are:
 #'
 #' \itemize{
@@ -27,23 +27,23 @@
 #'  \item \code{argo_*} - Argo buoys
 #'  \item \code{coops_search} - NOAA CO-OPS - tides and currents data
 #' }
-#' 
+#'
 #' @section A note about NCDF data:
-#' 
+#'
 #' Functions to work with buoy data use netcdf files. You'll need the \code{ncdf4}
-#' package for those functions, and those only. \code{ncdf4} is in Suggests in 
-#' this package, meaning you only need \code{ncdf4} if you are using the buoy 
+#' package for those functions, and those only. \code{ncdf4} is in Suggests in
+#' this package, meaning you only need \code{ncdf4} if you are using the buoy
 #' functions. You'll get an informative error telling you to install \code{ncdf4}
 #' if you don't have it and you try to use the buoy functions.
-#' 
+#'
 #' @importFrom methods is
 #' @importFrom stats var setNames complete.cases
-#' @importFrom utils head download.file read.csv read.delim read.fwf read.table 
+#' @importFrom utils head download.file read.csv read.delim read.fwf read.table
 #' write.csv untar unzip
 #' @importFrom lubridate ymd year today month
 #' @importFrom scales date_breaks date_format
-#' @importFrom ggplot2 ggplot aes facet_wrap theme theme_bw geom_line labs 
-#' guides guide_legend fortify scale_x_datetime element_blank
+#' @importFrom ggplot2 ggplot aes facet_wrap theme theme_bw geom_line labs
+#' guides guide_legend fortify scale_x_date element_blank
 #' @importFrom httr GET add_headers content warn_for_status stop_for_status
 #' write_disk parse_url build_url http_status
 #' @importFrom XML xpathSApply xpathApply xmlValue xmlParse xmlToList htmlParse

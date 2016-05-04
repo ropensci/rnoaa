@@ -9,15 +9,15 @@
 rnoaa is an R interface to NOAA climate data.
 }
 \section{Data Sources}{
- 
-Many functions in this package interact with the National Climatic Data 
-Center application programming interface (API) at 
+
+Many functions in this package interact with the National Climatic Data
+Center application programming interface (API) at
 http://www.ncdc.noaa.gov/cdo-web/webservices/v2, all of
 which functions start with \code{ncdc_}. An access token, or API key, is required to use all
-the \code{ncdc_} functions. The key is required by NOAA, not us. Go to the link given above 
+the \code{ncdc_} functions. The key is required by NOAA, not us. Go to the link given above
 to get an API key.
 
-More NOAA data sources are being added through time. Data sources and their 
+More NOAA data sources are being added through time. Data sources and their
 function prefixes are:
 
 \itemize{
@@ -40,8 +40,8 @@ function prefixes are:
 
 
 Functions to work with buoy data use netcdf files. You'll need the \code{ncdf4}
-package for those functions, and those only. \code{ncdf4} is in Suggests in 
-this package, meaning you only need \code{ncdf4} if you are using the buoy 
+package for those functions, and those only. \code{ncdf4} is in Suggests in
+this package, meaning you only need \code{ncdf4} if you are using the buoy
 functions. You'll get an informative error telling you to install \code{ncdf4}
 if you don't have it and you try to use the buoy functions.
 }

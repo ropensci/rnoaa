@@ -88,6 +88,14 @@ ncdc_stations(limit=5)
 # Get metadata on a single station
 ncdc_stations(stationid='COOP:010008')
 
+# For many stations use lapply or similar
+lapply(c("COOP:010008", "COOP:010063", "COOP:010116"), function(z) {
+  ncdc_stations(
+   startdate = "2013-01-01",
+   enddate = "2014-11-01",
+   stationid = z)
+}$data)
+
 # Displays all stations within GHCN-Daily (100 Stations per page limit)
 ncdc_stations(datasetid='GHCND')
 ncdc_stations(datasetid=c('GHCND', 'ANNUAL'))

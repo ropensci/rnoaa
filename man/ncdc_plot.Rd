@@ -9,8 +9,8 @@ ncdc_plot(..., breaks = NULL, dateformat = "\%d/\%m/\%y")
 \arguments{
 \item{...}{Input noaa object or objects.}
 
-\item{breaks}{Regularly spaced date breaks for x-axis. See examples for usage. 
-See \code{\link{date_breaks}}. Default: \code{NULL} (uses ggplot2 default break 
+\item{breaks}{Regularly spaced date breaks for x-axis. See examples for usage.
+See \code{\link{date_breaks}}. Default: \code{NULL} (uses ggplot2 default break
 sformatting)}
 
 \item{dateformat}{Date format using standard POSIX specification for labels on

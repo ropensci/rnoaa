@@ -2,8 +2,8 @@
 #'
 #' @export
 #' @param ... Input noaa object or objects.
-#' @param breaks Regularly spaced date breaks for x-axis. See examples for usage. 
-#' See \code{\link{date_breaks}}. Default: \code{NULL} (uses ggplot2 default break 
+#' @param breaks Regularly spaced date breaks for x-axis. See examples for usage.
+#' See \code{\link{date_breaks}}. Default: \code{NULL} (uses ggplot2 default break
 #' sformatting)
 #' @param dateformat Date format using standard POSIX specification for labels on
 #' x-axis. See \code{\link{date_format}}
@@ -11,7 +11,7 @@
 #' @details
 #' This function accepts directly output from the \code{\link[rnoaa]{ncdc}} function,
 #' not other functions.
-#' 
+#'
 #' This is a simple wrapper function around some ggplot2 code. There is indeed a lot you
 #' can modify in your plots, so this function just does some basic stuff. Look at the internals
 #' for what the function does.
@@ -81,7 +81,7 @@ plot_template <- function(df, breaks, dateformat) {
   )
   if (!is.null(breaks)) {
     c(tt, scale_x_date(date_breaks = breaks, date_labels = dateformat))
-    #c(tt, scale_x_datetime(breaks = date_breaks(breaks), labels = date_format(dateformat)))
+
   } else {
     tt
   }
