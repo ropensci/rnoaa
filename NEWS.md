@@ -1,3 +1,31 @@
+rnoaa 0.5.6
+===============
+
+### MINOR IMPROVEMENTS
+
+* Fixes for new `httr` version to call encoding explicitly (#135)
+* Fix to broken link for reference to source code used in `gefs` functions (#121)
+* Speed ups implemented for the `isd()` function - it's a time consuming task
+as we have to parse a nasty string of characters line by line - more speed 
+ups to come in future versions (#146)
+* Replace `dplyr::rbind_all()` with `dplyr::bind_rows()` as the former is
+being deprecated (#152)
+
+### BUG FIXES
+
+* Fix for `isd()` function - was failing on some station names that had 
+leading zeros. (#136)
+* Fix for `ncdc_stations()` - used to allow more than one station id to 
+be passed in, but internally only handled one. This is a restriction 
+due to the NOAA NCDC API. Documentation now shows an example of how 
+to deal with many station ids (#138)
+* Fixes to the suite of `ncdc_*()` functions to allow multiple inputs
+to those parameters where allowed (#139)
+* Fixed bug in `ncdc_plot()` due to new `ggplot2` version (#153)
+* Fixed bugs in `argo()` functions: a) with new `httr`, box input of a vector 
+no longer works, now manually make a character vector; b) errant file param 
+being passed into the http request, removed (#155)
+
 rnoaa 0.5.2
 ===============
 
