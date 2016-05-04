@@ -1,19 +1,26 @@
-language: r
-sudo: false
-cache: packages
+language: c
+sudo: required
+dist: trusty
+script: ./travis-tool.sh run_tests
 
-addons:
-  apt:
-    packages:
-      - libv8-dev
+before_script:
+  - sudo apt-get --yes --force-yes update -qq
+  - sudo apt-get install -y gdal-bin libgdal-dev libgdal1-dev netcdf-bin libproj-dev libv8-dev
+  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+  - chmod 755 ./travis-tool.sh
+  - ./travis-tool.sh bootstrap
+  - ./travis-tool.sh install_deps
 
-after_success:
-  - Rscript -e 'covr::codecov()'
+install_github:
+ - ropensci/gistr
+
+after_failure:
+  - ./travis-tool.sh dump_logs
 
 notifications:
   email:
-    on_success: change
-    on_failure: change
+    on_success: never
+    on_failure: never
   slack:
     secure: fee+yd3SW53ASTFm0ZH3/HKD7wUn1zJL+LHbwJErIMhAemo2FcNaLDGF5TXLuVCSMMnIE+rc8c8NEH0Mf+Jw4+EiZEfEsbu4Ai5xxx81jCJV3sCRAQZG+Tpes+zR3rnxxs7LyM9EcVGf/ypMCLREdAM1rluNrbAe14DZI0b4pjw=
 
