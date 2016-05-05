@@ -40,10 +40,6 @@ ncdc_plot(out, breaks="14 days")
 ncdc_plot(out, breaks="1 month", dateformat="\%d/\%m")
 ncdc_plot(out, breaks="1 month", dateformat="\%d/\%m")
 
-out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
-   startdate = '2010-05-01', enddate = '2010-05-15', limit=500)
-ncdc_plot(out2, breaks="6 hours", dateformat="\%H")
-
 # Combine many calls to ncdc function
 out1 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
    startdate = '2010-03-01', enddate = '2010-05-31', limit=500)

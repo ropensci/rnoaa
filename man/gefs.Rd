@@ -108,7 +108,7 @@ gefs(var, lat, lon, date = date, forecast_time = "1800", ens_idx=2:4, time_idx=1
 
 #One ensemble, all latitudes and longitudes (this is a big file) for the
 # next 3 days.
-gefs(var, ens=1, time=1:12)
+# gefs(var, ens=1, time=1:12)
 }
 
 }
