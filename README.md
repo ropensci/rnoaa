@@ -34,7 +34,7 @@ rnoaa
 
 ## Help
 
-There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.rstudio.com/package=rnoaa). The tutorials:
+There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](https://cran.r-project.org/package=rnoaa). The tutorials:
 
 * NOAA Buoy vignette
 * NOAA National Climatic Data Center (NCDC) vignette (examples)
