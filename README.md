@@ -7,10 +7,10 @@ rnoaa
 [![Build status](https://ci.appveyor.com/api/projects/status/8daqtllo2sg6me07/branch/master)](https://ci.appveyor.com/project/sckott/rnoaa/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rnoaa/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rnoaa?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rnoaa?color=C9A115)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/rnoaa)](http://cran.rstudio.com/package=rnoaa)
+[![cran version](http://www.r-pkg.org/badges/version/rnoaa)](https://cran.r-project.org/package=rnoaa)
 
 
-`rnoaa` is an R interface to many NOAA data sources. We don't cover all of them, but we include many commonly used sources, and add we are always adding new sources. We focus on easy to use interfaces for getting NOAA data, and giving back data in easy to use formats downstream. We currently don't do much in the way of plots or analysis. 
+`rnoaa` is an R interface to many NOAA data sources. We don't cover all of them, but we include many commonly used sources, and add we are always adding new sources. We focus on easy to use interfaces for getting NOAA data, and giving back data in easy to use formats downstream. We currently don't do much in the way of plots or analysis.
 
 ## Data sources in rnoaa
 
@@ -144,17 +144,17 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> $meta
 #> $meta$totalCount
 #> [1] 1980
-#> 
+#>
 #> $meta$pageCount
 #> [1] 25
-#> 
+#>
 #> $meta$offset
 #> [1] 1
-#> 
-#> 
+#>
+#>
 #> $data
 #> Source: local data frame [25 x 5]
-#> 
+#>
 #>       mindate    maxdate             name datacoverage            id
 #>         (chr)      (chr)            (chr)        (dbl)         (chr)
 #> 1  1892-08-01 2015-11-30       Zwolle, NL       1.0000 CITY:NL000012
@@ -168,7 +168,7 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 9  1941-01-01 2015-11-12     Zaragoza, SP       1.0000 CITY:SP000021
 #> 10 1936-01-01 2009-06-17 Zaporiyhzhya, UP       0.9739 CITY:UP000024
 #> ..        ...        ...              ...          ...           ...
-#> 
+#>
 #> attr(,"class")
 #> [1] "ncdc_locs"
 ```
@@ -180,13 +180,13 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
 #> $meta
 #> NULL
-#> 
+#>
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
 #> 1      12.2 1899-02-01 2016-01-16  28.8029 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS  -82.3126
-#> 
+#>
 #> attr(,"class")
 #> [1] "ncdc_stations"
 ```
@@ -205,7 +205,7 @@ out <- ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='d
 ```r
 head( out$data )
 #> Source: local data frame [6 x 5]
-#> 
+#>
 #>                  date        datatype           station value  fl_c
 #>                 (chr)           (chr)             (chr) (int) (chr)
 #> 1 2010-05-01T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   652     S
@@ -247,17 +247,17 @@ ncdc_datasets()
 #> $meta
 #> $meta$offset
 #> [1] 1
-#> 
+#>
 #> $meta$count
 #> [1] 11
-#> 
+#>
 #> $meta$limit
 #> [1] 25
-#> 
-#> 
+#>
+#>
 #> $data
 #> Source: local data frame [11 x 6]
-#> 
+#>
 #>                     uid    mindate    maxdate                      name
 #>                   (chr)      (chr)      (chr)                     (chr)
 #> 1  gov.noaa.ncdc:C00040 1831-02-01 2015-06-01          Annual Summaries
@@ -272,7 +272,7 @@ ncdc_datasets()
 #> 10 gov.noaa.ncdc:C00505 1970-05-12 2014-01-01   Precipitation 15 Minute
 #> 11 gov.noaa.ncdc:C00313 1900-01-01 2014-01-01      Precipitation Hourly
 #> Variables not shown: datacoverage (dbl), id (chr)
-#> 
+#>
 #> attr(,"class")
 #> [1] "ncdc_datasets"
 ```
@@ -285,17 +285,17 @@ ncdc_datacats(locationid = 'CITY:US390029')
 #> $meta
 #> $meta$totalCount
 #> [1] 37
-#> 
+#>
 #> $meta$pageCount
 #> [1] 25
-#> 
+#>
 #> $meta$offset
 #> [1] 1
-#> 
-#> 
+#>
+#>
 #> $data
 #> Source: local data frame [25 x 2]
-#> 
+#>
 #>                     name      id
 #>                    (chr)   (chr)
 #> 1    Annual Agricultural  ANNAGR
@@ -309,7 +309,7 @@ ncdc_datacats(locationid = 'CITY:US390029')
 #> 9               Computed    COMP
 #> 10 Computed Agricultural COMPAGR
 #> ..                   ...     ...
-#> 
+#>
 #> attr(,"class")
 #> [1] "ncdc_datacats"
 ```
@@ -321,7 +321,7 @@ The function `tornadoes()` simply gets __all the data__. So the call takes a whi
 
 ```r
 shp <- tornadoes()
-#> OGR data source with driver: ESRI Shapefile 
+#> OGR data source with driver: ESRI Shapefile
 #> Source: "/Users/sacmac/.rnoaa/tornadoes/tornadoes", layer: "tornado"
 #> with 57988 features and 21 fields
 #> Feature type: wkbLineString with 2 dimensions
@@ -329,7 +329,7 @@ library('sp')
 plot(shp)
 ```
 
-![plot of chunk unnamed-chunk-16](inst/img/unnamed-chunk-16-1.png) 
+![plot of chunk unnamed-chunk-16](inst/img/unnamed-chunk-16-1.png)
 
 ## HOMR metadata
 
@@ -341,22 +341,22 @@ homr(qid = 'COOP:046742')
 #> $`20002078`
 #> $`20002078`$id
 #> [1] "20002078"
-#> 
+#>
 #> $`20002078`$head
 #>                  preferredName latitude_dec longitude_dec precision
 #> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283    DDMMSS
 #>             por.beginDate por.endDate
 #> 1 1949-10-05T00:00:00.000     Present
-#> 
+#>
 #> $`20002078`$namez
 #> Source: local data frame [3 x 2]
-#> 
+#>
 #>                         name  nameType
 #>                        (chr)     (chr)
 #> 1   PASO ROBLES MUNICIPAL AP      COOP
 #> 2   PASO ROBLES MUNICIPAL AP PRINCIPAL
 #> 3 PASO ROBLES MUNICIPAL ARPT       PUB
-#> 
+#>
 #> $`20002078`$identifiers
 ...
 ```
@@ -370,7 +370,7 @@ Get storm data for the year 2010
 storm_data(year = 2010)
 #> <NOAA Storm Data>
 #> Size: 2855 X 195
-#> 
+#>
 #>       serial_num season num basin sub_basin name            iso_time
 #> 1  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 06:00:00
 #> 2  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 12:00:00
@@ -441,17 +441,17 @@ coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
 #> $metadata
 #> $metadata$id
 #> [1] "9063053"
-#> 
+#>
 #> $metadata$name
 #> [1] "Fairport"
-#> 
+#>
 #> $metadata$lat
 #> [1] "41.7598"
-#> 
+#>
 #> $metadata$lon
 #> [1] "-81.2811"
-#> 
-#> 
+#>
+#>
 #> $data
 #>            t       v   f
 #> 1 2015-09-27 174.480 0,0
