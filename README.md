@@ -53,19 +53,21 @@ Functions to work with buoy data use netcdf files. You'll need the `ncdf` packag
 
 There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unkown reason. This relates to `ncdc_*()` functions only.
 
-| Dataset | Description | Start date | End date |
-|---------|-------------|------------|----------|
-| ANNUAL | Annual Summaries | 1831-02-01 | 2013-11-01 |
-| GHCND | Daily Summaries | 1763-01-01 | 2014-03-15 |
-| GHCNDMS | Monthly Summaries | 1763-01-01 | 2014-01-01 |
-| NORMAL_ANN | Normals Annual/Seasonal | 2010-01-01 | 2010-01-01 |
-| NORMAL_DLY | Normals Daily | 2010-01-01 | 2010-12-31 |
-| NORMAL_HLY | Normals Hourly | 2010-01-01 | 2010-12-31 |
-| NORMAL_MLY | Normals Monthly | 2010-01-01 | 2010-12-01 |
-| PRECIP_15 | Precipitation 15 Minute | 1970-05-12 | 2013-03-01 |
-| PRECIP_HLY | Precipitation Hourly | 1900-01-01 | 2013-03-01 |
-| NEXRAD2 | Nexrad Level II | 1991-06-05 | 2014-03-14 |
-| NEXRAD3 | Nexrad Level III | 1994-05-20 | 2014-03-11 |
+
+|Dataset    |Description               |Start Date |End Date   | Data Coverage|
+|:----------|:-------------------------|:----------|:----------|-------------:|
+|ANNUAL     |Annual Summaries          |1831-02-01 |2015-11-01 |          1.00|
+|GHCND      |Daily Summaries           |1763-01-01 |2016-06-28 |          1.00|
+|GHCNDMS    |Monthly Summaries         |1763-01-01 |2016-03-01 |          1.00|
+|NEXRAD2    |Weather Radar (Level II)  |1991-06-05 |2016-06-29 |          0.95|
+|NEXRAD3    |Weather Radar (Level III) |1994-05-20 |2016-06-26 |          0.95|
+|NORMAL_ANN |Normals Annual/Seasonal   |2010-01-01 |2010-01-01 |          1.00|
+|NORMAL_DLY |Normals Daily             |2010-01-01 |2010-12-31 |          1.00|
+|NORMAL_HLY |Normals Hourly            |2010-01-01 |2010-12-31 |          1.00|
+|NORMAL_MLY |Normals Monthly           |2010-01-01 |2010-12-01 |          1.00|
+|PRECIP_15  |Precipitation 15 Minute   |1970-05-12 |2014-01-01 |          0.25|
+|PRECIP_HLY |Precipitation Hourly      |1900-01-01 |2014-01-01 |          1.00|
+
 
 ## NOAA NCDC Attributes
 
@@ -144,31 +146,42 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> $meta
 #> $meta$totalCount
 #> [1] 1980
-#>
+#> 
 #> $meta$pageCount
 #> [1] 25
-#>
+#> 
 #> $meta$offset
 #> [1] 1
-#>
-#>
+#> 
+#> 
 #> $data
-#> Source: local data frame [25 x 5]
-#>
-#>       mindate    maxdate             name datacoverage            id
-#>         (chr)      (chr)            (chr)        (dbl)         (chr)
-#> 1  1892-08-01 2015-11-30       Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2016-01-07       Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2016-01-07    Zonguldak, TU       0.8632 CITY:TU000057
-#> 4  1906-01-01 2016-01-07       Zinder, NG       0.9023 CITY:NG000004
-#> 5  1973-01-01 2016-01-16   Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2016-01-07    Zhytomyra, UP       0.9722 CITY:UP000025
-#> 7  1948-03-01 2016-01-07   Zhezkazgan, KZ       0.9299 CITY:KZ000017
-#> 8  1951-01-01 2016-01-06    Zhengzhou, CH       1.0000 CITY:CH000045
-#> 9  1941-01-01 2015-11-12     Zaragoza, SP       1.0000 CITY:SP000021
-#> 10 1936-01-01 2009-06-17 Zaporiyhzhya, UP       0.9739 CITY:UP000024
-#> ..        ...        ...              ...          ...           ...
-#>
+#>       mindate    maxdate                  name datacoverage            id
+#> 1  1892-08-01 2016-05-31            Zwolle, NL       1.0000 CITY:NL000012
+#> 2  1901-01-01 2016-06-26            Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2016-06-26         Zonguldak, TU       0.8638 CITY:TU000057
+#> 4  1906-01-01 2016-06-26            Zinder, NG       0.9025 CITY:NG000004
+#> 5  1973-01-01 2016-06-26        Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2016-06-26         Zhytomyra, UP       0.9723 CITY:UP000025
+#> 7  1948-03-01 2016-06-26        Zhezkazgan, KZ       0.9302 CITY:KZ000017
+#> 8  1951-01-01 2016-06-26         Zhengzhou, CH       1.0000 CITY:CH000045
+#> 9  1941-01-01 2016-06-02          Zaragoza, SP       1.0000 CITY:SP000021
+#> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       0.9739 CITY:UP000024
+#> 11 1957-01-01 2016-06-26          Zanzibar, TZ       0.8016 CITY:TZ000019
+#> 12 1973-01-01 2016-06-26            Zanjan, IR       0.9105 CITY:IR000020
+#> 13 1893-01-01 2016-06-29     Zanesville, OH US       1.0000 CITY:US390029
+#> 14 1912-01-01 2016-06-26             Zahle, LE       0.9772 CITY:LE000004
+#> 15 1951-01-01 2016-06-26           Zahedan, IR       0.9975 CITY:IR000019
+#> 16 1860-12-01 2016-06-26            Zagreb, HR       1.0000 CITY:HR000002
+#> 17 1975-08-29 2016-06-26         Zacatecas, MX       0.9306 CITY:MX000036
+#> 18 1947-01-01 2016-06-26 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
+#> 19 1893-01-01 2016-06-29           Yuma, AZ US       1.0000 CITY:US040015
+#> 20 1942-02-01 2016-06-29   Yucca Valley, CA US       1.0000 CITY:US060048
+#> 21 1885-01-01 2016-06-29      Yuba City, CA US       1.0000 CITY:US060047
+#> 22 1998-02-01 2016-06-26            Yozgat, TU       0.9910 CITY:TU000056
+#> 23 1893-01-01 2016-06-29     Youngstown, OH US       1.0000 CITY:US390028
+#> 24 1894-01-01 2016-06-29           York, PA US       1.0000 CITY:US420024
+#> 25 1876-01-01 2016-06-29        Yonkers, NY US       1.0000 CITY:US360031
+#> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
 ```
@@ -180,13 +193,13 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
 #> $meta
 #> NULL
-#>
+#> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
-#> 1      12.2 1899-02-01 2016-01-16  28.8029 INVERNESS 3 SE, FL US
+#> 1      12.2 1899-02-01 2016-06-26  28.8029 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS  -82.3126
-#>
+#> 
 #> attr(,"class")
 #> [1] "ncdc_stations"
 ```
@@ -204,16 +217,13 @@ out <- ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='d
 
 ```r
 head( out$data )
-#> Source: local data frame [6 x 5]
-#>
-#>                  date        datatype           station value  fl_c
-#>                 (chr)           (chr)             (chr) (int) (chr)
-#> 1 2010-05-01T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   652     S
-#> 2 2010-05-02T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   655     S
-#> 3 2010-05-03T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   658     S
-#> 4 2010-05-04T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   661     S
-#> 5 2010-05-05T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   663     S
-#> 6 2010-05-06T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   666     S
+#>                  date        datatype           station value fl_c
+#> 1 2010-05-01T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   652    S
+#> 2 2010-05-02T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   655    S
+#> 3 2010-05-03T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   658    S
+#> 4 2010-05-04T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   661    S
+#> 5 2010-05-05T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   663    S
+#> 6 2010-05-06T00:00:00 DLY-TMAX-NORMAL GHCND:USW00014895   666    S
 ```
 
 ### Plot data, super simple, but it's a start
@@ -224,7 +234,7 @@ out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
-![plot of chunk unnamed-chunk-12](inst/img/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-25](inst/img/unnamed-chunk-25-1.png)
 
 ### More plotting
 
@@ -237,7 +247,7 @@ out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP'
 ncdc_plot(out1, out2, breaks="45 days")
 ```
 
-![plot of chunk unnamed-chunk-13](inst/img/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-26](inst/img/unnamed-chunk-26-1.png)
 
 ### Get table of all datasets
 
@@ -247,32 +257,40 @@ ncdc_datasets()
 #> $meta
 #> $meta$offset
 #> [1] 1
-#>
+#> 
 #> $meta$count
 #> [1] 11
-#>
+#> 
 #> $meta$limit
 #> [1] 25
-#>
-#>
+#> 
+#> 
 #> $data
-#> Source: local data frame [11 x 6]
-#>
 #>                     uid    mindate    maxdate                      name
-#>                   (chr)      (chr)      (chr)                     (chr)
-#> 1  gov.noaa.ncdc:C00040 1831-02-01 2015-06-01          Annual Summaries
-#> 2  gov.noaa.ncdc:C00861 1763-01-01 2016-01-17           Daily Summaries
-#> 3  gov.noaa.ncdc:C00841 1763-01-01 2015-12-01         Monthly Summaries
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2016-01-20  Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2016-01-17 Weather Radar (Level III)
+#> 1  gov.noaa.ncdc:C00040 1831-02-01 2015-11-01          Annual Summaries
+#> 2  gov.noaa.ncdc:C00861 1763-01-01 2016-06-28           Daily Summaries
+#> 3  gov.noaa.ncdc:C00841 1763-01-01 2016-03-01         Monthly Summaries
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2016-06-29  Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2016-06-26 Weather Radar (Level III)
 #> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01   Normals Annual/Seasonal
 #> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31             Normals Daily
 #> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31            Normals Hourly
 #> 9  gov.noaa.ncdc:C00822 2010-01-01 2010-12-01           Normals Monthly
 #> 10 gov.noaa.ncdc:C00505 1970-05-12 2014-01-01   Precipitation 15 Minute
 #> 11 gov.noaa.ncdc:C00313 1900-01-01 2014-01-01      Precipitation Hourly
-#> Variables not shown: datacoverage (dbl), id (chr)
-#>
+#>    datacoverage         id
+#> 1          1.00     ANNUAL
+#> 2          1.00      GHCND
+#> 3          1.00    GHCNDMS
+#> 4          0.95    NEXRAD2
+#> 5          0.95    NEXRAD3
+#> 6          1.00 NORMAL_ANN
+#> 7          1.00 NORMAL_DLY
+#> 8          1.00 NORMAL_HLY
+#> 9          1.00 NORMAL_MLY
+#> 10         0.25  PRECIP_15
+#> 11         1.00 PRECIP_HLY
+#> 
 #> attr(,"class")
 #> [1] "ncdc_datasets"
 ```
@@ -285,31 +303,42 @@ ncdc_datacats(locationid = 'CITY:US390029')
 #> $meta
 #> $meta$totalCount
 #> [1] 37
-#>
+#> 
 #> $meta$pageCount
 #> [1] 25
-#>
+#> 
 #> $meta$offset
 #> [1] 1
-#>
-#>
+#> 
+#> 
 #> $data
-#> Source: local data frame [25 x 2]
-#>
-#>                     name      id
-#>                    (chr)   (chr)
-#> 1    Annual Agricultural  ANNAGR
-#> 2     Annual Degree Days   ANNDD
-#> 3   Annual Precipitation ANNPRCP
-#> 4     Annual Temperature ANNTEMP
-#> 5    Autumn Agricultural   AUAGR
-#> 6     Autumn Degree Days    AUDD
-#> 7   Autumn Precipitation  AUPRCP
-#> 8     Autumn Temperature  AUTEMP
-#> 9               Computed    COMP
-#> 10 Computed Agricultural COMPAGR
-#> ..                   ...     ...
-#>
+#>                     name            id
+#> 1    Annual Agricultural        ANNAGR
+#> 2     Annual Degree Days         ANNDD
+#> 3   Annual Precipitation       ANNPRCP
+#> 4     Annual Temperature       ANNTEMP
+#> 5    Autumn Agricultural         AUAGR
+#> 6     Autumn Degree Days          AUDD
+#> 7   Autumn Precipitation        AUPRCP
+#> 8     Autumn Temperature        AUTEMP
+#> 9               Computed          COMP
+#> 10 Computed Agricultural       COMPAGR
+#> 11           Degree Days            DD
+#> 12      Dual-Pol Moments DUALPOLMOMENT
+#> 13             Echo Tops       ECHOTOP
+#> 14      Hydrometeor Type   HYDROMETEOR
+#> 15                 Other         OTHER
+#> 16               Overlay       OVERLAY
+#> 17         Precipitation          PRCP
+#> 18          Reflectivity  REFLECTIVITY
+#> 19    Sky cover & clouds           SKY
+#> 20   Spring Agricultural         SPAGR
+#> 21    Spring Degree Days          SPDD
+#> 22  Spring Precipitation        SPPRCP
+#> 23    Spring Temperature        SPTEMP
+#> 24   Summer Agricultural         SUAGR
+#> 25    Summer Degree Days          SUDD
+#> 
 #> attr(,"class")
 #> [1] "ncdc_datacats"
 ```
@@ -321,15 +350,15 @@ The function `tornadoes()` simply gets __all the data__. So the call takes a whi
 
 ```r
 shp <- tornadoes()
-#> OGR data source with driver: ESRI Shapefile
+#> OGR data source with driver: ESRI Shapefile 
 #> Source: "/Users/sacmac/.rnoaa/tornadoes/tornadoes", layer: "tornado"
-#> with 57988 features and 21 fields
-#> Feature type: wkbLineString with 2 dimensions
+#> with 57988 features
+#> It has 21 fields
 library('sp')
 plot(shp)
 ```
 
-![plot of chunk unnamed-chunk-16](inst/img/unnamed-chunk-16-1.png)
+![plot of chunk unnamed-chunk-29](inst/img/unnamed-chunk-29-1.png)
 
 ## HOMR metadata
 
@@ -341,23 +370,23 @@ homr(qid = 'COOP:046742')
 #> $`20002078`
 #> $`20002078`$id
 #> [1] "20002078"
-#>
+#> 
 #> $`20002078`$head
 #>                  preferredName latitude_dec longitude_dec precision
 #> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283    DDMMSS
 #>             por.beginDate por.endDate
 #> 1 1949-10-05T00:00:00.000     Present
-#>
+#> 
 #> $`20002078`$namez
-#> Source: local data frame [3 x 2]
-#>
 #>                         name  nameType
-#>                        (chr)     (chr)
 #> 1   PASO ROBLES MUNICIPAL AP      COOP
 #> 2   PASO ROBLES MUNICIPAL AP PRINCIPAL
 #> 3 PASO ROBLES MUNICIPAL ARPT       PUB
-#>
+#> 
 #> $`20002078`$identifiers
+#>      idType          id
+#> 1     GHCND USW00093209
+#> 2   GHCNMLT USW00093209
 ...
 ```
 
@@ -370,7 +399,7 @@ Get storm data for the year 2010
 storm_data(year = 2010)
 #> <NOAA Storm Data>
 #> Size: 2855 X 195
-#>
+#> 
 #>       serial_num season num basin sub_basin name            iso_time
 #> 1  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 06:00:00
 #> 2  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 12:00:00
@@ -399,13 +428,13 @@ Get forecast for a certain variable.
 ```r
 res <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat = 46.28125, lon = -116.2188)
 head(res$data)
-#>   lon lat ens time2 Total_precipitation_surface_6_Hour_Accumulation_ens
-#> 1 244  46   0     6                                                   0
-#> 2 244  46   1    12                                                   0
-#> 3 244  46   2    18                                                   0
-#> 4 244  46   3    24                                                   0
-#> 5 244  46   4    30                                                   0
-#> 6 244  46   5    36                                                   0
+#>   Total_precipitation_surface_6_Hour_Accumulation_ens lon lat ens time1
+#> 1                                                0.25 244  46   0     6
+#> 2                                                0.18 244  46   1    12
+#> 3                                                1.89 244  46   2    18
+#> 4                                                0.02 244  46   3    24
+#> 5                                                0.01 244  46   4    30
+#> 6                                                0.12 244  46   5    36
 ```
 
 ## Argo buoys data
@@ -441,21 +470,21 @@ coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
 #> $metadata
 #> $metadata$id
 #> [1] "9063053"
-#>
+#> 
 #> $metadata$name
 #> [1] "Fairport"
-#>
+#> 
 #> $metadata$lat
 #> [1] "41.7598"
-#>
+#> 
 #> $metadata$lon
 #> [1] "-81.2811"
-#>
-#>
+#> 
+#> 
 #> $data
 #>            t       v   f
-#> 1 2015-09-27 174.480 0,0
-#> 2 2015-09-28 174.472 0,0
+#> 1 2015-09-27 174.430 0,0
+#> 2 2015-09-28 174.422 0,0
 ```
 
 ## Meta
