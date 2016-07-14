@@ -185,7 +185,11 @@ plot(lightning_shp_albers)
 ```
 
  
+<<<<<<< HEAD
 ```{r eval = FALSE}
+=======
+```{r}
+>>>>>>> 7964c7d323c453e6c9ca3a74d5e18d492a979b37
 library(dplyr)
 ## BA: Directly pulled from http://afsmaps.blm.gov/imf_firehistory/imf.jsp?site=firehistory
 lightning_dir <- "~/Downloads/Lightning1986Thru2015"
