@@ -61,7 +61,7 @@ buoy(dataset = 'cwind', buoyid = 41001, year = 2008, datatype = "cc")
 buoy(dataset = 'cwind', buoyid = 41001, year = 2008, datatype = "cc")
 
 # Other datasets
-buoy(dataset = 'ocean', buoyid = 42856)
+buoy(dataset = 'ocean', buoyid = 41029)
 
 # curl debugging
 library('httr')

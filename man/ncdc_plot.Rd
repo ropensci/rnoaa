@@ -9,8 +9,8 @@ ncdc_plot(..., breaks = NULL, dateformat = "\%d/\%m/\%y")
 \arguments{
 \item{...}{Input noaa object or objects.}
 
-\item{breaks}{Regularly spaced date breaks for x-axis. See examples for usage. 
-See \code{\link{date_breaks}}. Default: \code{NULL} (uses ggplot2 default break 
+\item{breaks}{Regularly spaced date breaks for x-axis. See examples for usage.
+See \code{\link{date_breaks}}. Default: \code{NULL} (uses ggplot2 default break
 sformatting)}
 
 \item{dateformat}{Date format using standard POSIX specification for labels on
@@ -20,10 +20,12 @@ x-axis. See \code{\link{date_format}}}
 ggplot2 plot
 }
 \description{
-This function accepts directly output from the \code{\link[rnoaa]{ncdc}} function,
-not other functions.
+Plot NOAA climate data.
 }
 \details{
+This function accepts directly output from the \code{\link[rnoaa]{ncdc}} function,
+not other functions.
+
 This is a simple wrapper function around some ggplot2 code. There is indeed a lot you
 can modify in your plots, so this function just does some basic stuff. Look at the internals
 for what the function does.
@@ -37,10 +39,6 @@ ncdc_plot(out)
 ncdc_plot(out, breaks="14 days")
 ncdc_plot(out, breaks="1 month", dateformat="\%d/\%m")
 ncdc_plot(out, breaks="1 month", dateformat="\%d/\%m")
-
-out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
-   startdate = '2010-05-01', enddate = '2010-05-03', limit=100)
-ncdc_plot(out2, breaks="6 hours", dateformat="\%H")
 
 # Combine many calls to ncdc function
 out1 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',

@@ -42,10 +42,10 @@ knitr::opts_chunk$set(
 [![Build status](https://ci.appveyor.com/api/projects/status/8daqtllo2sg6me07/branch/master)](https://ci.appveyor.com/project/sckott/rnoaa/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rnoaa/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rnoaa?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rnoaa?color=C9A115)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/rnoaa)](http://cran.rstudio.com/package=rnoaa)
+[![cran version](http://www.r-pkg.org/badges/version/rnoaa)](https://cran.r-project.org/package=rnoaa)
 
 
-`rnoaa` is an R interface to many NOAA data sources. We don't cover all of them, but we include many commonly used sources, and add we are always adding new sources. We focus on easy to use interfaces for getting NOAA data, and giving back data in easy to use formats downstream. We currently don't do much in the way of plots or analysis. 
+`rnoaa` is an R interface to many NOAA data sources. We don't cover all of them, but we include many commonly used sources, and add we are always adding new sources. We focus on easy to use interfaces for getting NOAA data, and giving back data in easy to use formats downstream. We currently don't do much in the way of plots or analysis.
 
 ## Data sources in rnoaa
 
@@ -69,7 +69,7 @@ knitr::opts_chunk$set(
 
 ## Help
 
-There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](http://cran.rstudio.com/package=rnoaa). The tutorials:
+There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](https://cran.r-project.org/package=rnoaa). The tutorials:
 
 * NOAA Buoy vignette
 * NOAA National Climatic Data Center (NCDC) vignette (examples)
@@ -88,19 +88,13 @@ Functions to work with buoy data use netcdf files. You'll need the `ncdf` packag
 
 There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unkown reason. This relates to `ncdc_*()` functions only.
 
-| Dataset | Description | Start date | End date |
-|---------|-------------|------------|----------|
-| ANNUAL | Annual Summaries | 1831-02-01 | 2013-11-01 |
-| GHCND | Daily Summaries | 1763-01-01 | 2014-03-15 |
-| GHCNDMS | Monthly Summaries | 1763-01-01 | 2014-01-01 |
-| NORMAL_ANN | Normals Annual/Seasonal | 2010-01-01 | 2010-01-01 |
-| NORMAL_DLY | Normals Daily | 2010-01-01 | 2010-12-31 |
-| NORMAL_HLY | Normals Hourly | 2010-01-01 | 2010-12-31 |
-| NORMAL_MLY | Normals Monthly | 2010-01-01 | 2010-12-01 |
-| PRECIP_15 | Precipitation 15 Minute | 1970-05-12 | 2013-03-01 |
-| PRECIP_HLY | Precipitation Hourly | 1900-01-01 | 2013-03-01 |
-| NEXRAD2 | Nexrad Level II | 1991-06-05 | 2014-03-14 |
-| NEXRAD3 | Nexrad Level III | 1994-05-20 | 2014-03-11 |
+```{r echo=FALSE}
+dat <- ncdc_datasets()$data
+dat <- dat[, !names(dat) %in% 'uid']
+dat <- dat[, c('id', 'name', 'mindate', 'maxdate', 'datacoverage')]
+names(dat) <- c('Dataset', 'Description', 'Start Date', 'End Date', 'Data Coverage')
+knitr::kable(dat)
+```
 
 ## NOAA NCDC Attributes
 

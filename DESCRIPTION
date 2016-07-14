@@ -7,7 +7,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 0.5.2.9996
+Version: 0.5.6.9300
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut","cre"), email = "myrmecocystus@gmail.com"),
@@ -47,8 +47,7 @@ Suggests:
     geojsonio,
     lawn,
     rgdal,
-    covr,
     rmarkdown,
-    purrr
-Remotes: ropensci/geojsonio
+    purrr,
+    covr
 RoxygenNote: 5.0.1

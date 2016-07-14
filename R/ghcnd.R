@@ -295,7 +295,7 @@ ghcnd_splitvars <- function(x){
     ydat <- tmp[ tmp$element == y, ]
 
     dd <- ydat %>%
-      dplyr::select(-contains("FLAG")) %>%
+      dplyr::select(-dplyr::contains("FLAG")) %>%
       tidyr::gather(var, value, -id, -year, -month, -element) %>%
       dplyr::mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
       dplyr::filter(!is.na(date)) %>%
@@ -303,7 +303,7 @@ ghcnd_splitvars <- function(x){
     dd <- setNames(dd, c("id", tolower(y), "date"))
 
     mflag <- ydat %>%
-      dplyr::select(-contains("VALUE"), -contains("QFLAG"), -contains("SFLAG")) %>%
+      dplyr::select(-dplyr::contains("VALUE"), -dplyr::contains("QFLAG"), -dplyr::contains("SFLAG")) %>%
       tidyr::gather(var, value, -id, -year, -month, -element) %>%
       dplyr::mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
       dplyr::filter(!is.na(date)) %>%
@@ -311,7 +311,7 @@ ghcnd_splitvars <- function(x){
       dplyr::rename(mflag = value)
 
     qflag <- ydat %>%
-      dplyr::select(-contains("VALUE"), -contains("MFLAG"), -contains("SFLAG")) %>%
+      dplyr::select(-dplyr::contains("VALUE"), -dplyr::contains("MFLAG"), -dplyr::contains("SFLAG")) %>%
       tidyr::gather(var, value, -id, -year, -month, -element) %>%
       dplyr::mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
       dplyr::filter(!is.na(date)) %>%
@@ -319,7 +319,7 @@ ghcnd_splitvars <- function(x){
       dplyr::rename(qflag = value)
 
     sflag <- ydat %>%
-      dplyr::select(-contains("VALUE"), -contains("QFLAG"), -contains("MFLAG")) %>%
+      dplyr::select(-dplyr::contains("VALUE"), -dplyr::contains("QFLAG"), -dplyr::contains("MFLAG")) %>%
       tidyr::gather(var, value, -id, -year, -month, -element) %>%
       dplyr::mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
       dplyr::filter(!is.na(date)) %>%

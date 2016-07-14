@@ -69,7 +69,7 @@
 #'
 #' #One ensemble, all latitudes and longitudes (this is a big file) for the
 #' # next 3 days.
-#' gefs(var, ens=1, time=1:12)
+#' # gefs(var, ens=1, time=1:12)
 #' }
 #'
 gefs <- function(var, lat, lon, ...) {

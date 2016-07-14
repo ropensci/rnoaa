@@ -36,6 +36,7 @@
 #' functions. You'll get an informative error telling you to install \code{ncdf4}
 #' if you don't have it and you try to use the buoy functions.
 #'
+
 #' @section The \code{meteo} family of functions:
 #'
 #' The \code{meteo} family of functions are prefixed with \code{meteo_} and provide
@@ -46,6 +47,7 @@
 #'   \item Retrieve complete data for one or more stations (\code{meteo_coverage()})
 #' }
 #'
+
 #' @importFrom methods is
 #' @importFrom stats var setNames complete.cases
 #' @importFrom utils head download.file read.csv read.delim read.fwf read.table
@@ -53,15 +55,15 @@
 #' @importFrom lubridate ymd year today month
 #' @importFrom scales date_breaks date_format
 #' @importFrom ggplot2 ggplot aes facet_wrap theme theme_bw geom_line labs
-#' guides guide_legend fortify scale_x_datetime element_blank
+#' guides guide_legend fortify scale_x_date scale_x_datetime element_blank
 #' @importFrom httr GET add_headers content warn_for_status stop_for_status
 #' write_disk parse_url build_url http_status
 #' @importFrom XML xpathSApply xpathApply xmlValue xmlParse xmlToList htmlParse
 #' @importFrom jsonlite fromJSON
 #' @importFrom tidyr gather
-#' @importFrom dplyr %>% rbind_all select mutate rename tbl_df filter bind_rows as_data_frame
 #' @importFrom rappdirs user_cache_dir
 #' @importFrom gridExtra grid.arrange
+#' @importFrom dplyr %>% rbind_all select mutate rename tbl_df filter bind_rows as_data_frame contains
 #' @name rnoaa-package
 #' @aliases rnoaa
 #' @docType package
