@@ -2,7 +2,7 @@
 % Please edit documentation in R/vis_miss.R
 \name{vis_miss}
 \alias{vis_miss}
-\title{vis_miss}
+\title{Visualize missingness for daily surface data}
 \usage{
 vis_miss(x, cluster = FALSE, sort_miss = FALSE)
 }
@@ -17,6 +17,8 @@ vis_miss(x, cluster = FALSE, sort_miss = FALSE)
 \code{vis_miss} gives you an at-a-glance ggplot of the missingness inside a dataframe, colouring cells according to missingness, where black indicates a present cell and grey indicates a missing cell. As it returns a ggplot object, it is very easy to customize and change labels, and so on.
 }
 \details{
-\code{vis_miss} visualises a data.frame to display missingness. This is taken from the visdat package, currently only available on github: https://github.com/tierneyn/visdat
+\code{vis_miss} visualises a data.frame to display missingness. This is
+taken from the visdat package, currently only available on github:
+\url{https://github.com/tierneyn/visdat}
 }
 

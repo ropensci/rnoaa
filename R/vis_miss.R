@@ -1,14 +1,21 @@
-#' vis_miss
+#' Visualize missingness in a dataframe
 #'
-#' \code{vis_miss} visualises a data.frame to display missingness. This is taken from the visdat package, currently only available on github: https://github.com/tierneyn/visdat
+#' Gives you an at-a-glance ggplot of the missingness inside a dataframe,
+#' colouring cells according to missingness, where black indicates a present
+#' cell and grey indicates a missing cell. As it returns a \code{ggplot} object,
+#' it is very easy to customize and change labels, and so on.
 #'
-#' @description \code{vis_miss} gives you an at-a-glance ggplot of the missingness inside a dataframe, colouring cells according to missingness, where black indicates a present cell and grey indicates a missing cell. As it returns a ggplot object, it is very easy to customize and change labels, and so on.
+#' @details \code{vis_miss} visualises a data.frame to display missingness. This is
+#' taken from the visdat package, currently only available on github:
+#' \url{https://github.com/tierneyn/visdat}
 #'
 #' @param x a data.frame
 #'
-#' @param cluster logical TRUE/FALSE. TRUE specifies that you want to use hierarchical clustering (mcquitty method) to arrange rows according to missingness. FALSE specifies that you want to leave it as is
-#'
-#' @param sort_miss logical TRUE/FALSE. TRUE arranges the columns in order of missingness
+#' @param cluster logical TRUE/FALSE. TRUE specifies that you want to use
+#'    hierarchical clustering (mcquitty method) to arrange rows according to
+#'    missingness. FALSE specifies that you want to leave it as is.
+#' @param sort_miss logical TRUE/FALSE. TRUE arranges the columns in order of
+#'    missingness.
 #'
 #' @export
 vis_miss <- function(x,
