@@ -7,7 +7,7 @@
 #'
 #' There is an \code{autoplot} method for the output of this function.
 #' @importFrom scales comma
-#' @param meteo_df an \emph{meteo} \code{data.frame}
+#' @param meteo_df a \emph{meteo} \code{data.frame}
 #' @param obs_start_date specify either or both (obs_start_date, obs_end_date) to constrain
 #'        coverate tests. These should be \code{Date} objects.
 #' @param obs_end_date specify either or both (obs_start_date, obs_end_date) to constrain
@@ -21,8 +21,8 @@
 #' $ end_date   (time)
 #' $ total_obs  (int)
 #' }
-#' with additional fields (and their coverage percent) depending on what
-#' was available for the weather station.
+#' with additional fields (and their coverage percent) depending on which
+#' weather variables were queried and available for the weather station.
 #' @export
 #' @examples
 #' monitors <- c("ASN00095063", "ASN00024025", "ASN00040112", "ASN00041023",
