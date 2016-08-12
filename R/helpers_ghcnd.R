@@ -54,7 +54,10 @@
 #' README file for the NCDC's Daily Global Historical Climatology Network's
 #' data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
 #'
-#' @note This function may take a while to run.
+#' @note This function converts any value of -9999 to a missing value. However,
+#'    for some weather observations, there still may be missing values coded
+#'    using a series of "9"s of some length. You will want to check your final
+#'    data to see if there are lurking missing values given with series of "9"s.
 #'
 #' @author Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
