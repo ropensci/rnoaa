@@ -106,7 +106,6 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
                                   var = "all", year_min = NULL,
                                   year_max = NULL, radius = NULL,
                                   limit = NULL){
-
   var <- tolower(var)
 
   # Handle generic values for `var`, `year_min`, and `year_max` arguments
@@ -123,7 +122,7 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
     dplyr::distinct_()
 
   location_stations <- as.data.frame(lat_lon_df) %>%
-    split(.[, lat_colname], .[, lon_colname]) %>%
+    split(.[, id]) %>%
     purrr::map(function(x) {
       station_ids <- meteo_distance(station_data = station_data,
                                     lat = x[ , lat_colname],
@@ -132,7 +131,6 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
                                     limit = limit)
       return(station_ids)
     })
-  names(location_stations) <- lat_lon_df$id
   return(location_stations)
 }
 
