@@ -47,5 +47,6 @@ Suggests:
     rgdal,
     rmarkdown,
     purrr,
-    covr
+    covr,
+    ggmap
 RoxygenNote: 5.0.1
