@@ -179,7 +179,7 @@ meteo_tidy_ghcnd <- function(stationid, keep_flags = FALSE, var = "all",
   which_vars_to_clean <- which(colnames(cleaned_df) %in%
                                 c("prcp", "tmax", "tmin", "tavg", "snow", "snwd"))
   cleaned_df <- dplyr::tbl_df(cleaned_df)
-  cleaned_df[, which_vars_tenths] <- vapply(cleaned_df[ , which_vars_to_clean],
+  cleaned_df[, which_vars_to_clean] <- vapply(cleaned_df[ , which_vars_to_clean],
                                              FUN.VALUE = numeric(nrow(cleaned_df)),
                                              FUN = function(x){
                                                x <- ifelse(x == -9999, NA, x)
