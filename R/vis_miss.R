@@ -17,6 +17,12 @@
 #' @param sort_miss logical TRUE/FALSE. TRUE arranges the columns in order of
 #'    missingness.
 #'
+#' @examples \dontrun{
+#'   monitors <- c("ASN00003003", "ASM00094299")
+#'   weather_df <- meteo_pull_monitors(monitors)
+#'   vis_miss(weather_df)
+#' }
+#'
 #' @export
 vis_miss <- function(x,
                      cluster = FALSE,
@@ -30,10 +36,10 @@ vis_miss <- function(x,
 
     # this retrieves a row order of the clustered missingness
     row_order_index <-
-      dist(x.na*1) %>%
-      hclust(method = "mcquitty") %>%
-      as.dendrogram %>%
-      order.dendrogram
+      stats::dist(x.na*1) %>%
+      stats::hclust(method = "mcquitty") %>%
+      stats::as.dendrogram %>%
+      stats::order.dendrogram
   } else {
     row_order_index <- 1:nrow(x)
   } # end else
@@ -66,7 +72,7 @@ vis_miss <- function(x,
 
   d <- x.na[row_order_index , ] %>%
     as.data.frame %>%
-    mutate(rows = row_number()) %>%
+    dplyr::mutate_(rows = ~ row_number()) %>%
     # gather the variables together for plotting
     # here we now have a column of the row number (row),
     # then the variable(variables),
@@ -75,26 +81,25 @@ vis_miss <- function(x,
                    value_col = "valueType",
                    gather_cols = names(.)[-length(.)])
 
-  d$value <- tidyr::gather_(x, "variables", "value", names(x))$value
+  d$value <- suppressWarnings(tidyr::gather_(x, "variables", "value",
+                                             names(x))$value)
 
   # then we plot it
   ggplot(data = d,
-         aes_string(x = "variables",
-                    y = "rows",
-                    # text assists with plotly mouseover
-                    text = "value")) +
-    geom_raster(aes_string(fill = "valueType")) +
+         ggplot2::aes_string(x = "variables",
+                             y = "rows",
+                             # text assists with plotly mouseover
+                             text = "value")) +
+    ggplot2::geom_raster(ggplot2::aes_string(fill = "valueType")) +
     # change the colour, so that missing is grey, present is black
-    scale_fill_grey(name = "",
-                    labels = c("Present",
-                               "Missing")) +
-    theme_minimal() +
-    theme(axis.text.x = element_text(angle = 45,
-                                     vjust = 1,
-                                     hjust = 1)) +
-    labs(x = "Variables in Data",
-         y = "Observations") +
-    scale_x_discrete(limits = col_order_index)
+    ggplot2::scale_fill_grey(name = "", labels = c("Present", "Missing")) +
+    ggplot2::theme_minimal() +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45,
+                                                       vjust = 1,
+                                                       hjust = 1)) +
+    ggplot2::labs(x = "Variables in Data",
+                  y = "Observations") +
+    ggplot2::scale_x_discrete(limits = col_order_index)
   # Thanks to http://www.markhneedham.com/blog/2015/02/27/rggplot-controlling-x-axis-order/
   # For the tip on using scale_x_discrete
 
