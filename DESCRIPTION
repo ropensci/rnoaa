@@ -27,7 +27,6 @@ Imports:
     utils,
     httr (>= 1.0.0),
     lubridate,
-    shiny,
     dplyr,
     tidyr,
     ggplot2,
@@ -38,7 +37,6 @@ Imports:
     gridExtra
 Suggests:
     testthat,
-    shinydashboard,
     roxygen2,
     knitr,
     taxize,
