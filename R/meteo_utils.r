@@ -24,13 +24,16 @@
 #' with additional fields (and their coverage percent) depending on which
 #' weather variables were queried and available for the weather station.
 #' @export
-#' @examples
+#' @examples \dontrun{
+#'
 #' monitors <- c("ASN00095063", "ASN00024025", "ASN00040112", "ASN00041023",
 #'              "ASN00009998", "ASN00066078", "ASN00003069", "ASN00090162",
 #'              "ASN00040126", "ASN00058161")
 #' obs <- meteo_pull_monitors(monitors)
 #' obs_covr <- meteo_coverage(obs)
 #' autoplot(obs_covr)
+#'
+#' }
 meteo_coverage <- function(meteo_df,
                            obs_start_date=NULL,
                            obs_end_date=NULL,
@@ -101,7 +104,7 @@ autoplot.meteo_coverage <- function(df) {
                            gather_cols = colnames(df_reduced[-1]))
 
   gg <- ggplot2::ggplot(df_long)
-  gg <- gg + ggplot2::geom_segment(aes_(x = 0, xend = ~ value,
+  gg <- gg + ggplot2::geom_segment(ggplot2::aes_(x = 0, xend = ~ value,
                               y = ~ observation, yend = ~ observation,
                               group = ~ id))
   #gg <- gg + ggplot2::scale_x_continuous(labels = percent, limits = c(0, 1))
@@ -116,7 +119,8 @@ autoplot.meteo_coverage <- function(df) {
   gg <- gg + ggplot2::theme(panel.grid.minor = ggplot2::element_blank())
   gg <- gg + ggplot2::theme(panel.border = ggplot2::element_blank())
   gg <- gg + ggplot2::theme(axis.ticks = ggplot2::element_blank())
-  gg <- gg + ggplot2::theme(plot.title = ggplot2::element_text(margin = margin(b = 12)))
+  gg <- gg + ggplot2::theme(plot.title = ggplot2::element_text(margin =
+                                                                 ggplot2::margin(b = 12)))
   gg <- gg + ggplot2::theme(strip.background = ggplot2::element_blank())
   gg <- gg + ggplot2::theme(strip.text = ggplot2::element_text(hjust = 0))
   gg <- gg + ggplot2::theme(panel.margin.x = grid::unit(12, "pt"))
