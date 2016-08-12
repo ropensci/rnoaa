@@ -54,10 +54,13 @@
 #' README file for the NCDC's Daily Global Historical Climatology Network's
 #' data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
 #'
-#' @note This function converts any value of -9999 to a missing value. However,
+#' @note This function converts any value of -9999 to a missing value for the
+#'    variables "prcp", "tmax", "tmin", "tavg", "snow", and "snwd". However,
 #'    for some weather observations, there still may be missing values coded
 #'    using a series of "9"s of some length. You will want to check your final
 #'    data to see if there are lurking missing values given with series of "9"s.
+#'
+#' @note This function may take a while to run.
 #'
 #' @author Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
@@ -155,7 +158,9 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
 #' @examples
 #' \dontrun{
 #' # One station in Australia is ASM00094275
-#' cleaned_df <- meteo_tidy_ghcnd(stationid = "ASN00003003")
+#' meteo_tidy_ghcnd(stationid = "ASN00003003")
+#' meteo_tidy_ghcnd(stationid = "ASN00003003", var = "tavg")
+#' meteo_tidy_ghcnd(stationid = "ASN00003003", date_min = "1950-01-01")
 #' }
 #'
 #' @importFrom dplyr %>%
@@ -171,10 +176,10 @@ meteo_tidy_ghcnd <- function(stationid, keep_flags = FALSE, var = "all",
     cleaned_df <- do.call(rbind.data.frame, dat) %>%
       tidyr::spread_("key", "value")
 
-  which_vars_tenths <- which(colnames(cleaned_df) %in%
+  which_vars_to_clean <- which(colnames(cleaned_df) %in%
                                 c("prcp", "tmax", "tmin", "tavg", "snow", "snwd"))
   cleaned_df <- dplyr::tbl_df(cleaned_df)
-  cleaned_df[, which_vars_tenths] <- vapply(cleaned_df[ , which_vars_tenths],
+  cleaned_df[, which_vars_tenths] <- vapply(cleaned_df[ , which_vars_to_clean],
                                              FUN.VALUE = numeric(nrow(cleaned_df)),
                                              FUN = function(x){
                                                x <- ifelse(x == -9999, NA, x)
