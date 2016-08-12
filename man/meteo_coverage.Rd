@@ -40,11 +40,15 @@ the coverage test will be limited to that date range.
 There is an \code{autoplot} method for the output of this function.
 }
 \examples{
+\dontrun{
+
 monitors <- c("ASN00095063", "ASN00024025", "ASN00040112", "ASN00041023",
              "ASN00009998", "ASN00066078", "ASN00003069", "ASN00090162",
              "ASN00040126", "ASN00058161")
 obs <- meteo_pull_monitors(monitors)
 obs_covr <- meteo_coverage(obs)
 autoplot(obs_covr)
+
+}
 }
 
