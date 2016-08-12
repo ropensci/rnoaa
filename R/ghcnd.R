@@ -1,7 +1,7 @@
 #' Get a cleaned version of GHCND data from a single weather site
 #'
 #' This function uses ftp to access the Global Historical Climatology Network
-#' daily weather data from NOAA's FTP server for a single weather site. It
+#' daily weather data from NOAA's FTP server for a single weather monitor site. It
 #' requires the site identification number for that site and will pull the
 #' entire weather dataset for the site. It will then clean this data to convert
 #' it to a tidier format and will also, if requested, filter it to a certain
@@ -64,7 +64,7 @@
 #' ghcnd_search("AGE00147704", date_min = "1920-01-01", date_max = "1925-01-01")
 #' ghcnd_search("AGE00147704", var = c("PRCP","TMIN"))
 #' ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
-#' ghcnd_search("AGE00147704", var="adfdf")
+#' ghcnd_search("AGE00147704", var = "adfdf")
 #'
 #' }
 #'
@@ -145,7 +145,7 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all
 #' ghcnd(stations$data$id[80300])
 #'
 #' library("dplyr")
-#' ghcnd(stations$data$id[80300])$data %>% select(id, element) %>% head
+#' ghcnd(stations$data$id[80300])$data %>% select(id, element) %>% slice(1:3)
 #'
 #' # manipulate data
 #' ## using built in fxns
