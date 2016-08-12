@@ -53,10 +53,10 @@ A data frame of daily weather data for multiple weather monitors,
    \itemize{
    \item \code{id}: Character string with the weather station site id
    \item \code{date}: Date of the observation
-   \item \code{prcp}: Precipitation, in mm
-   \item \code{tavg}: Average temperature, in degrees Celsius
-   \item \code{tmax}: Maximum temperature, in degrees Celsius
-   \item \code{tmin}: Minimum temperature, in degrees Celsius
+   \item \code{prcp}: Precipitation, in tenths of mm
+   \item \code{tavg}: Average temperature, in tenths of degrees Celsius
+   \item \code{tmax}: Maximum temperature, in tenths of degrees Celsius
+   \item \code{tmin}: Minimum temperature, in tenths of degrees Celsius
    \item \code{awnd}: Average daily wind speed, in meters / second
    \item \code{wsfg}: Peak gust wind speed, in meters / second
    }
@@ -65,10 +65,11 @@ A data frame of daily weather data for multiple weather monitors,
    \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt} for a full
    list. If the \code{var} argument is something other than "all", then
    only variables included in that argument will be included in the output
-   data frame. The variables \code{prcp}, \code{tmax}, \code{tmin}, and \code{tavg}
-   have all been converted from tenths of their metric to the metric (e.g.,
-   from tenths of degrees Celsius to degrees Celsius). All other variables
-   are in the units specified in the linked file.
+   data frame. All variables are in the units specified in the linked file
+   (note that, in many cases, measurements are given in tenths of the units
+   more often used, e.g., tenths of degrees for temperature). All column names
+   correspond to variable names in the linked file, but with  all uppercase
+   letters changed to lowercase.
 }
 \description{
 This function takes a vector of one or more weather station IDs. It will pull
@@ -93,6 +94,12 @@ The weather flags, which are kept by specifying
 More information on the interpretation of these flags can be found in the
 README file for the NCDC's Daily Global Historical Climatology Network's
 data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
+
+This function converts any value of -9999 to a missing value for the
+   variables "prcp", "tmax", "tmin", "tavg", "snow", and "snwd". However,
+   for some weather observations, there still may be missing values coded
+   using a series of "9"s of some length. You will want to check your final
+   data to see if there are lurking missing values given with series of "9"s.
 
 This function may take a while to run.
 }

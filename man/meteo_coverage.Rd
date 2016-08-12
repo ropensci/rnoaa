@@ -8,7 +8,7 @@ meteo_coverage(meteo_df, obs_start_date = NULL, obs_end_date = NULL,
   verbose = FALSE)
 }
 \arguments{
-\item{meteo_df}{an \emph{meteo} \code{data.frame}}
+\item{meteo_df}{a \emph{meteo} \code{data.frame}}
 
 \item{obs_start_date}{specify either or both (obs_start_date, obs_end_date) to constrain
 coverate tests. These should be \code{Date} objects.}
@@ -27,8 +27,8 @@ $ start_date (time)
 $ end_date   (time)
 $ total_obs  (int)
 }
-with additional fields (and their coverage percent) depending on what
-was available for the weather station.
+with additional fields (and their coverage percent) depending on which
+weather variables were queried and available for the weather station.
 }
 \description{
 Call this function after pulling down observations for a set of stations

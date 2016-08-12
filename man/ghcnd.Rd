@@ -52,7 +52,7 @@ ghcnd(stations$data$id[80000])
 ghcnd(stations$data$id[80300])
 
 library("dplyr")
-ghcnd(stations$data$id[80300])$data \%>\% select(id, element) \%>\% head
+ghcnd(stations$data$id[80300])$data \%>\% select(id, element) \%>\% slice(1:3)
 
 # manipulate data
 ## using built in fxns

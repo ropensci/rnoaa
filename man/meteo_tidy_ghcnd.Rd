@@ -91,7 +91,9 @@ data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
 \examples{
 \dontrun{
 # One station in Australia is ASM00094275
-cleaned_df <- meteo_tidy_ghcnd(stationid = "ASN00003003")
+meteo_tidy_ghcnd(stationid = "ASN00003003")
+meteo_tidy_ghcnd(stationid = "ASN00003003", var = "tavg")
+meteo_tidy_ghcnd(stationid = "ASN00003003", date_min = "1950-01-01")
 }
 
 }
