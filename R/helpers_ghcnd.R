@@ -21,10 +21,10 @@
 #'    \itemize{
 #'    \item \code{id}: Character string with the weather station site id
 #'    \item \code{date}: Date of the observation
-#'    \item \code{prcp}: Precipitation, in mm
-#'    \item \code{tavg}: Average temperature, in degrees Celsius
-#'    \item \code{tmax}: Maximum temperature, in degrees Celsius
-#'    \item \code{tmin}: Minimum temperature, in degrees Celsius
+#'    \item \code{prcp}: Precipitation, in tenths of mm
+#'    \item \code{tavg}: Average temperature, in tenths of degrees Celsius
+#'    \item \code{tmax}: Maximum temperature, in tenths of degrees Celsius
+#'    \item \code{tmin}: Minimum temperature, in tenths of degrees Celsius
 #'    \item \code{awnd}: Average daily wind speed, in meters / second
 #'    \item \code{wsfg}: Peak gust wind speed, in meters / second
 #'    }
@@ -33,10 +33,11 @@
 #'    \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt} for a full
 #'    list. If the \code{var} argument is something other than "all", then
 #'    only variables included in that argument will be included in the output
-#'    data frame. The variables \code{prcp}, \code{tmax}, \code{tmin}, and \code{tavg}
-#'    have all been converted from tenths of their metric to the metric (e.g.,
-#'    from tenths of degrees Celsius to degrees Celsius). All other variables
-#'    are in the units specified in the linked file.
+#'    data frame. All variables are in the units specified in the linked file
+#'    (note that, in many cases, measurements are given in tenths of the units
+#'    more often used, e.g., tenths of degrees for temperature). All column names
+#'    correspond to variable names in the linked file, but with  all uppercase
+#'    letters changed to lowercase.
 #'
 #' @note The weather flags, which are kept by specifying
 #' \code{keep_flags = TRUE} are:
@@ -168,19 +169,9 @@ meteo_tidy_ghcnd <- function(stationid, keep_flags = FALSE, var = "all",
       tidyr::spread_("key", "value")
 
   which_vars_tenths <- which(colnames(cleaned_df) %in%
-                                c("prcp", "tmax", "tmin", "tavg"))
+                                c("prcp", "tmax", "tmin", "tavg", "snow", "snwd"))
   cleaned_df <- dplyr::tbl_df(cleaned_df)
-  # All these variables are in tenths of units
-  cleaned_df[, which_vars_tenths] <- vapply(cleaned_df[, which_vars_tenths],
-                                             FUN.VALUE = numeric(nrow(cleaned_df)),
-                                             FUN = function(x){
-                                               x <- ifelse(x == -9999, NA, x)
-                                               x <- as.numeric(x) / 10
-                                             })
-
-  which_other_vars <- which(colnames(cleaned_df) %in%
-                             c("snow", "snwd"))
-  cleaned_df[, which_other_vars] <- vapply(cleaned_df[, which_other_vars],
+  cleaned_df[, which_vars_tenths] <- vapply(cleaned_df[ , which_vars_tenths],
                                              FUN.VALUE = numeric(nrow(cleaned_df)),
                                              FUN = function(x){
                                                x <- ifelse(x == -9999, NA, x)
