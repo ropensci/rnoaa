@@ -122,7 +122,7 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
     dplyr::distinct_()
 
   location_stations <- as.data.frame(lat_lon_df) %>%
-    split(.[, id]) %>%
+    split(.[, "id"]) %>%
     purrr::map(function(x) {
       station_ids <- meteo_distance(station_data = station_data,
                                     lat = x[ , lat_colname],
