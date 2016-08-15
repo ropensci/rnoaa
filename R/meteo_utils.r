@@ -31,7 +31,7 @@
 #'              "ASN00040126", "ASN00058161")
 #' obs <- meteo_pull_monitors(monitors)
 #' obs_covr <- meteo_coverage(obs)
-#' autoplot(obs_covr)
+#' autoplot.meteo_coverage(obs_covr)
 #'
 #' }
 meteo_coverage <- function(meteo_df,
@@ -76,6 +76,7 @@ meteo_coverage <- function(meteo_df,
   out
 }
 
+#' @export
 autoplot.meteo_coverage <- function(df) {
 
   gg <- ggplot2::ggplot(df)
