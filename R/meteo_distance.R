@@ -108,6 +108,9 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
                                   limit = NULL){
   var <- tolower(var)
 
+  # Ensure `id` in `lat_lon_df` is character, not factor
+  lat_lon_df$id <- as.character(lat_lon_df$id)
+
   # Handle generic values for `var`, `year_min`, and `year_max` arguments
   if(is.null(year_min)) year_min <- min(station_data$first_year, na.rm = TRUE)
   if(is.null(year_max)) year_max <- max(station_data$last_year, na.rm = TRUE)
