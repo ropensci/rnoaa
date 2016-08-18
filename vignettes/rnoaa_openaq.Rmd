@@ -86,7 +86,7 @@ stationsDelhi <- meteo_nearby_stations(lat_lon_df = as.data.frame(lat_lon_df),
                                        radius = 15,
                                        year_min = 2016,
                                        var = c("TAVG", "PRCP"))
-stationsDelhi <- unique(rbind_all(stationsDelhi) %>% select(- distance))
+stationsDelhi <- unique(bind_rows(stationsDelhi) %>% select(- distance))
 
 save(stationsDelhi, file = "data/stationsDelhi.RData")
 
