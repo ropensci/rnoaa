@@ -21,6 +21,9 @@ coverate tests. These should be \code{Date} objects.}
 
 \item{verbose}{if \code{TRUE} will display the coverage summary along
 with returning the coverage data.frame}
+
+\item{df}{The dataframe resulting from a call to \code{meteo_coverage},
+used as an input to \code{autoplot.meteo_coverage}}
 }
 \value{
 a \code{data.frame} with the coverage for each station, minimally

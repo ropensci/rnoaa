@@ -14,6 +14,8 @@
 #'        coverate tests. These should be \code{Date} objects.
 #' @param verbose if \code{TRUE} will display the coverage summary along
 #'        with returning the coverage data.frame
+#' @param df The dataframe resulting from a call to \code{meteo_coverage},
+#'        used as an input to \code{autoplot.meteo_coverage}
 #' @return a \code{data.frame} with the coverage for each station, minimally
 #' containing: \preformatted{
 #' $ id         (chr)
