@@ -84,10 +84,10 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all
     warning(sprintf("%s not in the dataset\nAvailable variables: %s", paste0(vars_null, collapse = ", "), possvars), call. = FALSE)
   }
   if (!is.null(date_min)) {
-    dat <- lapply(dat, function(z) z %>% dplyr::filter(date > date_min))
+    dat <- lapply(dat, function(z) z %>% dplyr::filter(date >= date_min))
   }
   if (!is.null(date_max)) {
-    dat <- lapply(dat, function(z) z %>% dplyr::filter(date < date_max))
+    dat <- lapply(dat, function(z) z %>% dplyr::filter(date <= date_max))
   }
   dat
 }
