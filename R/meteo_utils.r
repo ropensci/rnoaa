@@ -77,6 +77,7 @@ meteo_coverage <- function(meteo_df,
 }
 
 #' @export
+#' @rdname meteo_coverage
 autoplot.meteo_coverage <- function(df) {
 
   gg <- ggplot2::ggplot(df)
