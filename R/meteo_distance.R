@@ -97,8 +97,6 @@
 #'                       year_min = 1992, year_max = 1992)
 #' }
 #'
-#' @importFrom dplyr %>%
-#'
 #' @export
 meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
                                   lon_colname = "longitude",

@@ -163,8 +163,6 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
 #' meteo_tidy_ghcnd(stationid = "ASN00003003", date_min = "1950-01-01")
 #' }
 #'
-#' @importFrom dplyr %>%
-#'
 #' @export
 meteo_tidy_ghcnd <- function(stationid, keep_flags = FALSE, var = "all",
                         date_min = NULL, date_max = NULL){
