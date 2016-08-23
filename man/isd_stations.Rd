@@ -11,7 +11,7 @@ isd_stations_search(lat = NULL, lon = NULL, radius = NULL, bbox = NULL,
   ...)
 }
 \arguments{
-\item{refresh}{(logical) Download station data from NOAA ftp server again. 
+\item{refresh}{(logical) Download station data from NOAA ftp server again.
 Default: \code{FALSE}}
 
 \item{path}{(character) If \code{refresh=TRUE}, this is the path where file is saved.
@@ -25,7 +25,7 @@ If \code{refresh=FALSE}, this argument is ignored.}
 
 \item{radius}{(numeric) Radius (in km) to search from the lat,lon coordinates}
 
-\item{bbox}{(numeric) Bounding box, of the form: min-longitude, min-latitude, 
+\item{bbox}{(numeric) Bounding box, of the form: min-longitude, min-latitude,
 max-longitude, max-latitude}
 }
 \value{
@@ -51,13 +51,13 @@ as listed above
 Get NOAA ISD/ISH station data from NOAA FTP server.
 }
 \details{
-\code{\link{isd_stations_search}} requires \pkg{geojsonio} and \pkg{lawn}, 
-but are not imported in this package, so they aren't required for the rest of the 
-package to operate - only this function. Install those from CRAN if you don't 
+\code{\link{isd_stations_search}} requires \pkg{geojsonio} and \pkg{lawn},
+but are not imported in this package, so they aren't required for the rest of the
+package to operate - only this function. Install those from CRAN if you don't
 already have them.
 
 When using \code{isd_station_search} we clean up the data.frame, removing
-stations with no lat/long coordinates, those with impossible lat/long coordinates, 
+stations with no lat/long coordinates, those with impossible lat/long coordinates,
 and those at 0,0.
 }
 \examples{

@@ -36,12 +36,12 @@ This function first looks for whether the data for your specific query has
 already been downloaded previously in the directory given by the \code{path}
 parameter. If not found, the data is requested form NOAA's FTP server. The first time
 a dataset is pulled down we must a) download the data, b) process the data, and c) save
-a compressed .rds file to disk. The next time the same data is requested, we only have 
-to read back in the .rds file, and is quite fast. The benfit of writing to .rds files 
-is that data is compressed, taking up less space on your disk, and data is read back in 
-quickly, without changing any data classes in your data, whereas we'd have to jump 
+a compressed .rds file to disk. The next time the same data is requested, we only have
+to read back in the .rds file, and is quite fast. The benfit of writing to .rds files
+is that data is compressed, taking up less space on your disk, and data is read back in
+quickly, without changing any data classes in your data, whereas we'd have to jump
 through hoops to do that with reading in csv. The processing can take quite a long time
-since the data is quite messy and takes a bunch of regex to split apart text strings. 
+since the data is quite messy and takes a bunch of regex to split apart text strings.
 We hope to speed this process up in the future. See examples below for different behavior.
 }
 \examples{
@@ -94,7 +94,7 @@ res_all <- res_all \%>\% filter(temperature < 900)
 ## plot
 library("ggplot2")
 ggplot(res_all, aes(date_time, temperature)) +
-  geom_line() + 
+  geom_line() +
   facet_wrap(~usaf_station, scales = "free_x")
 }
 }

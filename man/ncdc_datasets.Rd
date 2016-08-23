@@ -10,7 +10,7 @@ ncdc_datasets(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   dataset = NULL, page = NULL, year = NULL, month = NULL, ...)
 }
 \arguments{
-\item{datasetid}{(optional) Accepts a single valid dataset id. Data returned will be 
+\item{datasetid}{(optional) Accepts a single valid dataset id. Data returned will be
 from the dataset specified.}
 
 \item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.

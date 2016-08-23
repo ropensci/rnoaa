@@ -8,7 +8,7 @@
 #' @template rnoaa
 #' @template rnoaa2
 #' @template datasets
-#' @param datasetid (optional) Accepts a single valid dataset id. Data returned will be 
+#' @param datasetid (optional) Accepts a single valid dataset id. Data returned will be
 #'    from the dataset specified.
 #' @param stationid Accepts a valid station id or a vector or list of station ids
 #' @return A data.frame for all datasets, or a list of length two, each with a data.frame.
@@ -32,7 +32,7 @@
 #' # Multiple datatypeid's
 #' ncdc_datasets(datatypeid=c('ACMC','ACMH','ACSC'))
 #' ncdc_datasets(datasetid='ANNUAL', datatypeid=c('ACMC','ACMH','ACSC'))
-#' 
+#'
 #' # Multiple locationid's
 #' ncdc_datasets(locationid="FIPS:30091")
 #' ncdc_datasets(locationid=c("FIPS:30103", "FIPS:30091"))
@@ -69,7 +69,7 @@ ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
   if (length(args) == 0) args <- NULL
   temp <- GET(url, query = args, add_headers("token" = token), ...)
   tt <- check_response(temp)
-  if (is(tt, "character")) {
+  if (inherits(tt, "character")) {
     all <- list(meta = NULL, data = NULL)
   } else {
     if (!is.null(datasetid)) {

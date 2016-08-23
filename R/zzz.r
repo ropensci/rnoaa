@@ -71,26 +71,26 @@ long2utm <- function(lon, lat) {
 #' Check response from NOAA, including status codes, server error messages, mime-type, etc.
 #' @keywords internal
 check_response <- function(x){
-  if (!x$status_code == 200) { 
+  if (!x$status_code == 200) {
     stnames <- names(jsonlite::fromJSON(utcf8(x), FALSE))
     if (!is.null(stnames)) {
       if ('developerMessage' %in% stnames || 'message' %in% stnames) {
         warning(sprintf("Error: (%s) - %s", x$status_code,
-            noaa_compact(list(jsonlite::fromJSON(utcf8(x), FALSE)$developerMessage, jsonlite::fromJSON(utcf8(x), FALSE)$message))), 
+            noaa_compact(list(jsonlite::fromJSON(utcf8(x), FALSE)$developerMessage, jsonlite::fromJSON(utcf8(x), FALSE)$message))),
             call. = FALSE)
-      } else { 
+      } else {
         warning(sprintf("Error: (%s)", x$status_code), call. = FALSE)
       }
-    } else { 
-      warn_for_status(x) 
+    } else {
+      warn_for_status(x)
     }
   } else {
     stopifnot(x$headers$`content-type` == 'application/json;charset=UTF-8')
     res <- utcf8(x)
     out <- jsonlite::fromJSON(res, simplifyVector = FALSE)
     if (!'results' %in% names(out)) {
-      if (length(out) == 0) { 
-        warning("Sorry, no data found", call. = FALSE) 
+      if (length(out) == 0) {
+        warning("Sorry, no data found", call. = FALSE)
       }
     } else {
       if ( class(try(out$results, silent = TRUE)) == "try-error" || is.null(try(out$results, silent = TRUE)) ) {
@@ -114,11 +114,11 @@ check_response_swdi <- function(x, format){
     if (!is.null(err)) {
       if (grepl('ERROR', err, ignore.case = TRUE)) {
         warning(sprintf("(%s) - %s", x$status_code, err))
-      } else { 
-        warn_for_status(x) 
+      } else {
+        warn_for_status(x)
       }
-    } else { 
-      warn_for_status(x) 
+    } else {
+      warn_for_status(x)
     }
   } else {
     if (format == 'csv') {
@@ -141,7 +141,7 @@ read_csv <- function(x){
 }
 
 read_table <- function(x){
-  if(is(x, "response")) {
+  if(inherits(x, "response")) {
     txt <- gsub('\n$', '', utcf8(x))
     read.csv(text = txt, sep = ",", stringsAsFactors=FALSE,
              blank.lines.skip=FALSE)[-1, , drop=FALSE]

@@ -12,7 +12,7 @@
 #' @examples \dontrun{
 #' ## Limit to 10 results
 #' ncdc_datacats(limit=10)
-#' 
+#'
 #' ## by datasetid
 #' ncdc_datacats(datasetid="ANNUAL")
 #' ncdc_datacats(datasetid=c("ANNUAL", "PRECIP_HLY"))
@@ -26,7 +26,7 @@
 #'
 #' ## Data categories for a given date
 #' ncdc_datacats(startdate = '2013-10-01')
-#' 
+#'
 #' # Get data categories with data for a series of the same parameter arg, in this case
 #' # stationid's
 #' ncdc_datacats(stationid='COOP:310090')
@@ -61,7 +61,7 @@ ncdc_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
   if (length(args) == 0) args <- NULL
   temp <- GET(url, query = args, add_headers("token" = token), ...)
   tt <- check_response(temp)
-  if (is(tt, "character")) {
+  if (inherits(tt, "character")) {
     all <- list(meta = NULL, data = NULL)
   } else {
     if (!is.null(datacategoryid)) {

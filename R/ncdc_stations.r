@@ -9,9 +9,9 @@
 #' @template rnoaa
 #' @template rnoaa2
 #' @template stations
-#' @param datasetid (optional) Accepts a valid dataset id or a vector or list of them. Data 
+#' @param datasetid (optional) Accepts a valid dataset id or a vector or list of them. Data
 #'    returned will be from the dataset specified.
-#' @param stationid A single valid station id, with datasetid namespace, 
+#' @param stationid A single valid station id, with datasetid namespace,
 #' e.g., GHCND:USW00014895
 #' @return A list of metadata.
 #' @examples \dontrun{
@@ -21,7 +21,7 @@
 #'
 #' # Get metadata on a single station
 #' ncdc_stations(stationid='COOP:010008')
-#' 
+#'
 #' # For many stations use lapply or similar
 #' lapply(c("COOP:010008", "COOP:010063", "COOP:010116"), function(z) {
 #'   ncdc_stations(
@@ -36,16 +36,16 @@
 #'
 #' # Station
 #' ncdc_stations(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895')
-#' 
+#'
 #' # datatypeid
 #' ncdc_stations(datatypeid="ANN-HTDD-NORMAL")
 #' ncdc_stations(datatypeid=c("ANN-HTDD-NORMAL", "ACSC"))
-#' 
+#'
 #' # locationid
 #' ncdc_stations(locationid="CITY:AG000001")
 #' ncdc_stations(locationid="FIPS:30091")
 #' ncdc_stations(locationid=c("FIPS:30103", "FIPS:30091"))
-#' 
+#'
 #' # datacategoryid
 #' ncdc_stations(datacategoryid="ANNPRCP")
 #' ncdc_stations(datacategoryid="AUAGR")
@@ -89,11 +89,11 @@ ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
     url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/stations'
     if (!is.null(extent)) {
       stopifnot(length(extent) == 4)
-      stopifnot(is(extent, "numeric"))
+      stopifnot(inherits(extent, "numeric"))
       extent <- paste0(extent, collapse = ",")
     }
-    args <- noaa_compact(list(startdate = startdate, enddate = enddate, 
-          sortfield = sortfield, sortorder = sortorder, limit = limit, 
+    args <- noaa_compact(list(startdate = startdate, enddate = enddate,
+          sortfield = sortfield, sortorder = sortorder, limit = limit,
           offset = offset, extent = extent))
   }
 
@@ -111,11 +111,11 @@ ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
   }
   args <- c(args, datasetid, datatypeid, locationid, datacategoryid)
   args <- as.list(unlist(args))
-  
+
   if (length(args) == 0) args <- NULL
   temp <- GET(url, query = args, add_headers("token" = token), ...)
   tt <- check_response(temp)
-  if (is(temp, "character")) {
+  if (inherits(temp, "character")) {
     all <- list(meta = NULL, data = NULL)
   } else {
     if (!is.null(stationid)) {

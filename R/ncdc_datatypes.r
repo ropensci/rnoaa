@@ -7,11 +7,11 @@
 #' @template rnoaa
 #' @template rnoaa2
 #' @template datatypes
-#' @param datasetid (optional) Accepts a valid dataset id or a vector or list of them. Data 
+#' @param datasetid (optional) Accepts a valid dataset id or a vector or list of them. Data
 #'    returned will be from the dataset specified.
 #' @param stationid Accepts a valid station id or a vector or list of station ids
 #' @param datacategoryid Optional. Accepts a valid data category id or a vector or list
-#'    of data category ids (although it is rare to have a data type with more than 
+#'    of data category ids (although it is rare to have a data type with more than
 #'    one data category)
 #' @return A \code{data.frame} for all datasets, or a list of length two, each with
 #'    a data.frame.
@@ -22,7 +22,7 @@
 #' # Fetch more information about the ACMH data type id, or the ACSC
 #' ncdc_datatypes(datatypeid="ACMH")
 #' ncdc_datatypes(datatypeid="ACSC")
-#' 
+#'
 #' # datasetid, one or many
 #' ncdc_datatypes(datasetid="ANNUAL")
 #' ncdc_datatypes(datasetid=c("ANNUAL", "PRECIP_HLY"))
@@ -34,7 +34,7 @@
 #' # Fetch data types that support a given set of stations
 #' ncdc_datatypes(stationid='COOP:310090')
 #' ncdc_datatypes(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
-#' 
+#'
 #' # Fetch data types that support a given set of loncationids
 #' ncdc_datatypes(locationid='CITY:AG000001')
 #' ncdc_datatypes(locationid=c('CITY:AG000001','CITY:AG000004'))
@@ -54,11 +54,11 @@ ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
 
   if (!is.null(datatypeid)) {
     url <- sprintf("http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes/%s", datatypeid)
-  } else { 
-    url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes" 
+  } else {
+    url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes"
   }
 
-  args <- noaa_compact(list(startdate=startdate, enddate=enddate, 
+  args <- noaa_compact(list(startdate=startdate, enddate=enddate,
                             sortfield=sortfield, sortorder=sortorder,
                             limit=limit, offset=offset))
   if (!is.null(datasetid)) {
@@ -79,7 +79,7 @@ ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   if (length(args) == 0) args <- NULL
   temp <- GET(url, query = args, add_headers("token" = token), ...)
   out <- check_response(temp)
-  if (is(out, "character")) {
+  if (inherits(out, "character")) {
     all <- list(meta = NULL, data = NULL)
   } else {
     if (!is.null(datatypeid)) {

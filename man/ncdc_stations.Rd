@@ -11,10 +11,10 @@ ncdc_stations(stationid = NULL, datasetid = NULL, datatypeid = NULL,
   location = NULL, locationtype = NULL, page = NULL, ...)
 }
 \arguments{
-\item{stationid}{A single valid station id, with datasetid namespace, 
+\item{stationid}{A single valid station id, with datasetid namespace,
 e.g., GHCND:USW00014895}
 
-\item{datasetid}{(optional) Accepts a valid dataset id or a vector or list of them. Data 
+\item{datasetid}{(optional) Accepts a valid dataset id or a vector or list of them. Data
 returned will be from the dataset specified.}
 
 \item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.

@@ -22,9 +22,9 @@
 #'
 #' # Fetch all U.S. States
 #' ncdc_locs(locationcategoryid='ST', limit=52)
-#' 
+#'
 #' # Many locationcategoryid's
-#' ## this apparently works, but returns nothing often with multiple 
+#' ## this apparently works, but returns nothing often with multiple
 #' ## locationcategoryid's
 #' ncdc_locs(locationcategoryid=c('ST', 'ZIP'))
 #'
@@ -54,7 +54,7 @@ ncdc_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
   if (length(args) == 0) args <- NULL
   temp <- GET(url, query=args, add_headers("token" = token), ...)
   tt <- check_response(temp)
-  if(is(tt, "character")){
+  if(inherits(tt, "character")){
     all <- list(meta=NULL, data=NULL)
   } else {
     if(!is.null(locationid)){

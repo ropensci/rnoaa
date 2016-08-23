@@ -68,7 +68,7 @@ ncdc_locs(datasetid=c('GHCND', 'GHCNDMS'))
 ncdc_locs(locationcategoryid='ST', limit=52)
 
 # Many locationcategoryid's
-## this apparently works, but returns nothing often with multiple 
+## this apparently works, but returns nothing often with multiple
 ## locationcategoryid's
 ncdc_locs(locationcategoryid=c('ST', 'ZIP'))
 

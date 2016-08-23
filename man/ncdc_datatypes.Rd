@@ -10,14 +10,14 @@ ncdc_datatypes(datasetid = NULL, datatypeid = NULL, datacategoryid = NULL,
   token = NULL, dataset = NULL, page = NULL, filter = NULL, ...)
 }
 \arguments{
-\item{datasetid}{(optional) Accepts a valid dataset id or a vector or list of them. Data 
+\item{datasetid}{(optional) Accepts a valid dataset id or a vector or list of them. Data
 returned will be from the dataset specified.}
 
 \item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.
 (optional)}
 
 \item{datacategoryid}{Optional. Accepts a valid data category id or a vector or list
-of data category ids (although it is rare to have a data type with more than 
+of data category ids (although it is rare to have a data type with more than
 one data category)}
 
 \item{stationid}{Accepts a valid station id or a vector or list of station ids}

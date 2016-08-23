@@ -18,7 +18,7 @@
 #'
 #' # Displays available location categories within GHCN-Daily dataset
 #' ncdc_locs_cats(datasetid='GHCND')
-#' 
+#'
 #' # multiple datasetid's
 #' ncdc_locs_cats(datasetid=c('GHCND', 'GHCNDMS'))
 #'
@@ -45,7 +45,7 @@ ncdc_locs_cats <- function(datasetid=NULL, locationcategoryid=NULL,
   if (length(args) == 0) args <- NULL
   temp <- GET(url, query=args, add_headers("token" = token), ...)
   tt <- check_response(temp)
-  if(is(tt, "character")){
+  if(inherits(tt, "character")){
     all <- list(meta=NULL, data=NULL)
   } else {
     if(!is.null(locationcategoryid)){

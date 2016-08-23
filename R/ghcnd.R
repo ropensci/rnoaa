@@ -243,7 +243,7 @@ get_stations <- function(...){
   df <- read.fwf(textConnection(utcf8(res)), widths = c(11, 9, 11, 7, 33, 5, 10),
                  header = FALSE, strip.white = TRUE, comment.char = "", stringsAsFactors = FALSE)
   nms <- c("id","latitude", "longitude", "elevation", "name", "gsn_flag", "wmo_id")
-  setNames(df, nms)
+  stats::setNames(df, nms)
 }
 
 get_inventory <- function(...){
@@ -251,7 +251,7 @@ get_inventory <- function(...){
   df <- read.fwf(textConnection(utcf8(res)), widths = c(11, 9, 10, 5, 5, 5),
                  header = FALSE, strip.white = TRUE, comment.char = "", stringsAsFactors = FALSE)
   nms <- c("id","latitude", "longitude", "element", "first_year", "last_year")
-  setNames(df, nms)
+  stats::setNames(df, nms)
 }
 
 #' Print out GHCND stations
@@ -300,7 +300,7 @@ ghcnd_splitvars <- function(x){
       dplyr::mutate(day = strex(var), date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
       dplyr::filter(!is.na(date)) %>%
       dplyr::select_(quote(-element), quote(-var), quote(-year), quote(-month), quote(-day))
-    dd <- setNames(dd, c("id", tolower(y), "date"))
+    dd <- stats::setNames(dd, c("id", tolower(y), "date"))
 
     mflag <- ydat %>%
       dplyr::select(-dplyr::contains("VALUE"), -dplyr::contains("QFLAG"), -dplyr::contains("SFLAG")) %>%
@@ -328,7 +328,7 @@ ghcnd_splitvars <- function(x){
 
     dplyr::tbl_df(cbind(dd, mflag, qflag, sflag))
   })
-  setNames(out, tolower(unique(tmp$element)))
+  stats::setNames(out, tolower(unique(tmp$element)))
 }
 
 strex <- function(x) str_extract_(x, "[0-9]+")
@@ -418,7 +418,7 @@ ghcnd_GET <- function(bp, stationid, ...){
   vars <- c("id","year","month","element",do.call("c", lapply(1:31, function(x) paste0(c("VALUE","MFLAG","QFLAG","SFLAG"), x))))
   df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)),
                  na.strings = "-9999")
-  dat <- setNames(df, vars)
+  dat <- stats::setNames(df, vars)
   write.csv(dat, fp, row.names = FALSE)
   return(dat)
 }

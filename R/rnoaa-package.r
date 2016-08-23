@@ -47,9 +47,6 @@
 #'   \item Retrieve complete data for one or more stations (\code{meteo_coverage()})
 #' }
 #'
-
-#' @importFrom methods is
-#' @importFrom stats var setNames complete.cases
 #' @importFrom utils head download.file read.csv read.delim read.fwf read.table
 #' write.csv untar unzip
 #' @importFrom lubridate ymd year today month

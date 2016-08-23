@@ -13,27 +13,27 @@
 #' function execution. Processing data takes up a lot of time, so we cache a cleaned version
 #' of the data. Cleaning up will save you on disk space. Default: \code{TRUE}
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
-#' 
+#'
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' @seealso \code{\link{isd_stations}}
-#' 
+#'
 #' @details This function first looks for whether the data for your specific query has
 #' already been downloaded previously in the directory given by the \code{path}
 #' parameter. If not found, the data is requested form NOAA's FTP server. The first time
 #' a dataset is pulled down we must a) download the data, b) process the data, and c) save
-#' a compressed .rds file to disk. The next time the same data is requested, we only have 
-#' to read back in the .rds file, and is quite fast. The benfit of writing to .rds files 
-#' is that data is compressed, taking up less space on your disk, and data is read back in 
-#' quickly, without changing any data classes in your data, whereas we'd have to jump 
+#' a compressed .rds file to disk. The next time the same data is requested, we only have
+#' to read back in the .rds file, and is quite fast. The benfit of writing to .rds files
+#' is that data is compressed, taking up less space on your disk, and data is read back in
+#' quickly, without changing any data classes in your data, whereas we'd have to jump
 #' through hoops to do that with reading in csv. The processing can take quite a long time
-#' since the data is quite messy and takes a bunch of regex to split apart text strings. 
+#' since the data is quite messy and takes a bunch of regex to split apart text strings.
 #' We hope to speed this process up in the future. See examples below for different behavior.
-#' 
+#'
 #' @examples \dontrun{
 #' # Get station table
 #' stations <- isd_stations()
 #' head(stations)
-#' 
+#'
 #' ## plot stations
 #' ### remove incomplete cases, those at 0,0
 #' df <- stations[complete.cases(stations$lat, stations$lon), ]
@@ -78,7 +78,7 @@
 #' ## plot
 #' library("ggplot2")
 #' ggplot(res_all, aes(date_time, temperature)) +
-#'   geom_line() + 
+#'   geom_line() +
 #'   facet_wrap(~usaf_station, scales = "free_x")
 #' }
 isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, cleanup = TRUE, ...) {
@@ -111,7 +111,7 @@ print.isd <- function(x, ..., n = 10) {
 isd_GET <- function(bp, usaf, wban, year, overwrite, ...) {
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- isd_local(usaf, wban, year, bp)
-  tryget <- tryCatch(suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite), ...)), 
+  tryget <- tryCatch(suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite), ...)),
            error = function(e) e)
   if (inherits(tryget, "error")) {
     unlink(fp)
@@ -174,14 +174,14 @@ trans_vars <- function(w) {
   w$temperature_dewpoint <- trans_var(trycol(w$temperature_dewpoint), 10)
   w$air_pressure <- trans_var(trycol(w$air_pressure), 10)
   w$precipitation <- trans_var(trycol(w$precipitation), 10)
-  
+
   # as date
   w$date <- as.Date(w$date, "%Y%m%d")
-  
+
   # change class
   w$wind_direction <- as.numeric(w$wind_direction)
   w$total_chars <- as.numeric(w$total_chars)
-  
+
   return(w)
 }
 
@@ -266,7 +266,7 @@ proc_other <- function(x){
   unlist(lapply(other, function(z) {
     nms <- names(z)
     tmp <- if (!is_named(z[[1]])) z[[1]][[1]] else z[[1]]
-    setNames(tmp, paste(nms, names(tmp), sep = "_"))
+    stats::setNames(tmp, paste(nms, names(tmp), sep = "_"))
   }), FALSE)
 }
 
@@ -275,7 +275,7 @@ is_named <- function(x) !is.null(names(x))
 check_get <- function(string, pattern, fxn) {
   yy <- regexpr(pattern, string)
   tt <- if (yy > 0) fxn(string) else NULL
-  setNames(list(tt), pattern)
+  stats::setNames(list(tt), pattern)
 }
 
 # str_match_len(x, "SA1", 8)
@@ -294,7 +294,7 @@ str_from_to <- function(x, a, b){
 
 str_pieces <- function(z, pieces, nms=NULL){
   tmp <- lapply(pieces, function(x) substring(z, x[1], if (x[2] == 999) nchar(z) else x[2]))
-  if (is.null(nms)) tmp else setNames(tmp, nms)
+  if (is.null(nms)) tmp else stats::setNames(tmp, nms)
 }
 
 # sea surface temperature data

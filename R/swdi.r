@@ -145,7 +145,7 @@ swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit
     temp <- GET(url, query = args, ...)
     temp <- check_response_swdi(temp, format)
 
-    if (is(temp, "character")) {
+    if (inherits(temp, "character")) {
       all <- list(meta = NA, data = NA, shape = NA)
     } else {
       if (format == 'csv') {
