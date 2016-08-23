@@ -54,20 +54,21 @@ Functions to work with buoy data use netcdf files. You'll need the `ncdf` packag
 There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unkown reason. This relates to `ncdc_*()` functions only.
 
 
-|Dataset    |Description               |Start Date |End Date   | Data Coverage|
-|:----------|:-------------------------|:----------|:----------|-------------:|
-|ANNUAL     |Annual Summaries          |1831-02-01 |2015-11-01 |          1.00|
-|GHCND      |Daily Summaries           |1763-01-01 |2016-06-28 |          1.00|
-|GHCNDMS    |Monthly Summaries         |1763-01-01 |2016-03-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)  |1991-06-05 |2016-06-29 |          0.95|
-|NEXRAD3    |Weather Radar (Level III) |1994-05-20 |2016-06-26 |          0.95|
-|NORMAL_ANN |Normals Annual/Seasonal   |2010-01-01 |2010-01-01 |          1.00|
-|NORMAL_DLY |Normals Daily             |2010-01-01 |2010-12-31 |          1.00|
-|NORMAL_HLY |Normals Hourly            |2010-01-01 |2010-12-31 |          1.00|
-|NORMAL_MLY |Normals Monthly           |2010-01-01 |2010-12-01 |          1.00|
-|PRECIP_15  |Precipitation 15 Minute   |1970-05-12 |2014-01-01 |          0.25|
-|PRECIP_HLY |Precipitation Hourly      |1900-01-01 |2014-01-01 |          1.00|
-
+|Dataset    |Description                 |Start Date |End Date   | Data Coverage|
+|:----------|:---------------------------|:----------|:----------|-------------:|
+|ANNUAL     |Annual Summaries            |1831-02-01 |2015-11-01 |          1.00|
+|GHCND      |Daily Summaries             |1763-01-01 |2016-08-21 |          1.00|
+|GHCNDMS    |Monthly Summaries           |1763-01-01 |2016-03-01 |          1.00|
+|GSOM       |Global Summary of the Month |1763-01-01 |2016-07-01 |          1.00|
+|GSOY       |Global Summary of the Year  |1763-01-01 |2016-01-01 |          1.00|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2016-08-22 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2016-08-19 |          0.95|
+|NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
+|NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
+|NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
+|NORMAL_MLY |Normals Monthly             |2010-01-01 |2010-12-01 |          1.00|
+|PRECIP_15  |Precipitation 15 Minute     |1970-05-12 |2014-01-01 |          0.25|
+|PRECIP_HLY |Precipitation Hourly        |1900-01-01 |2014-01-01 |          1.00|
 
 ## NOAA NCDC Attributes
 
@@ -156,31 +157,31 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 
 #> $data
 #>       mindate    maxdate                  name datacoverage            id
-#> 1  1892-08-01 2016-05-31            Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2016-06-26            Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2016-06-26         Zonguldak, TU       0.8638 CITY:TU000057
-#> 4  1906-01-01 2016-06-26            Zinder, NG       0.9025 CITY:NG000004
-#> 5  1973-01-01 2016-06-26        Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2016-06-26         Zhytomyra, UP       0.9723 CITY:UP000025
-#> 7  1948-03-01 2016-06-26        Zhezkazgan, KZ       0.9302 CITY:KZ000017
-#> 8  1951-01-01 2016-06-26         Zhengzhou, CH       1.0000 CITY:CH000045
-#> 9  1941-01-01 2016-06-02          Zaragoza, SP       1.0000 CITY:SP000021
-#> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       0.9739 CITY:UP000024
-#> 11 1957-01-01 2016-06-26          Zanzibar, TZ       0.8016 CITY:TZ000019
-#> 12 1973-01-01 2016-06-26            Zanjan, IR       0.9105 CITY:IR000020
-#> 13 1893-01-01 2016-06-29     Zanesville, OH US       1.0000 CITY:US390029
-#> 14 1912-01-01 2016-06-26             Zahle, LE       0.9772 CITY:LE000004
-#> 15 1951-01-01 2016-06-26           Zahedan, IR       0.9975 CITY:IR000019
-#> 16 1860-12-01 2016-06-26            Zagreb, HR       1.0000 CITY:HR000002
-#> 17 1975-08-29 2016-06-26         Zacatecas, MX       0.9306 CITY:MX000036
-#> 18 1947-01-01 2016-06-26 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
-#> 19 1893-01-01 2016-06-29           Yuma, AZ US       1.0000 CITY:US040015
-#> 20 1942-02-01 2016-06-29   Yucca Valley, CA US       1.0000 CITY:US060048
-#> 21 1885-01-01 2016-06-29      Yuba City, CA US       1.0000 CITY:US060047
-#> 22 1998-02-01 2016-06-26            Yozgat, TU       0.9910 CITY:TU000056
-#> 23 1893-01-01 2016-06-29     Youngstown, OH US       1.0000 CITY:US390028
-#> 24 1894-01-01 2016-06-29           York, PA US       1.0000 CITY:US420024
-#> 25 1876-01-01 2016-06-29        Yonkers, NY US       1.0000 CITY:US360031
+#> 1  1892-08-01 2016-07-31            Zwolle, NL       1.0000 CITY:NL000012
+#> 2  1901-01-01 2016-08-19            Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2016-08-19         Zonguldak, TU       1.0000 CITY:TU000057
+#> 4  1906-01-01 2016-08-19            Zinder, NG       0.9025 CITY:NG000004
+#> 5  1973-01-01 2016-08-19        Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2016-08-19         Zhytomyra, UP       0.9723 CITY:UP000025
+#> 7  1948-03-01 2016-08-19        Zhezkazgan, KZ       0.9302 CITY:KZ000017
+#> 8  1951-01-01 2016-08-19         Zhengzhou, CH       1.0000 CITY:CH000045
+#> 9  1941-01-01 2016-07-31          Zaragoza, SP       1.0000 CITY:SP000021
+#> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       1.0000 CITY:UP000024
+#> 11 1957-01-01 2016-08-19          Zanzibar, TZ       0.8016 CITY:TZ000019
+#> 12 1973-01-01 2016-08-19            Zanjan, IR       0.9105 CITY:IR000020
+#> 13 1893-01-01 2016-08-22     Zanesville, OH US       1.0000 CITY:US390029
+#> 14 1912-01-01 2016-08-19             Zahle, LE       0.9819 CITY:LE000004
+#> 15 1951-01-01 2016-08-19           Zahedan, IR       0.9975 CITY:IR000019
+#> 16 1860-12-01 2016-08-19            Zagreb, HR       1.0000 CITY:HR000002
+#> 17 1975-08-29 2016-08-19         Zacatecas, MX       0.9993 CITY:MX000036
+#> 18 1947-01-01 2016-08-19 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
+#> 19 1893-01-01 2016-08-22           Yuma, AZ US       1.0000 CITY:US040015
+#> 20 1942-02-01 2016-08-22   Yucca Valley, CA US       1.0000 CITY:US060048
+#> 21 1885-01-01 2016-08-22      Yuba City, CA US       1.0000 CITY:US060047
+#> 22 1998-02-01 2016-08-19            Yozgat, TU       1.0000 CITY:TU000056
+#> 23 1893-01-01 2016-08-22     Youngstown, OH US       1.0000 CITY:US390028
+#> 24 1894-01-01 2016-08-22           York, PA US       1.0000 CITY:US420024
+#> 25 1876-01-01 2016-08-22        Yonkers, NY US       1.0000 CITY:US360031
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -196,7 +197,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
-#> 1      12.2 1899-02-01 2016-06-26  28.8029 INVERNESS 3 SE, FL US
+#> 1      12.2 1899-02-01 2016-08-20  28.8029 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS  -82.3126
 #> 
@@ -234,7 +235,7 @@ out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
-![plot of chunk unnamed-chunk-25](inst/img/unnamed-chunk-25-1.png)
+![plot of chunk unnamed-chunk-13](inst/img/unnamed-chunk-13-1.png)
 
 ### More plotting
 
@@ -247,7 +248,7 @@ out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP'
 ncdc_plot(out1, out2, breaks="45 days")
 ```
 
-![plot of chunk unnamed-chunk-26](inst/img/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-14](inst/img/unnamed-chunk-14-1.png)
 
 ### Get table of all datasets
 
@@ -259,37 +260,41 @@ ncdc_datasets()
 #> [1] 1
 #> 
 #> $meta$count
-#> [1] 11
+#> [1] 13
 #> 
 #> $meta$limit
 #> [1] 25
 #> 
 #> 
 #> $data
-#>                     uid    mindate    maxdate                      name
-#> 1  gov.noaa.ncdc:C00040 1831-02-01 2015-11-01          Annual Summaries
-#> 2  gov.noaa.ncdc:C00861 1763-01-01 2016-06-28           Daily Summaries
-#> 3  gov.noaa.ncdc:C00841 1763-01-01 2016-03-01         Monthly Summaries
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2016-06-29  Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2016-06-26 Weather Radar (Level III)
-#> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01   Normals Annual/Seasonal
-#> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31             Normals Daily
-#> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31            Normals Hourly
-#> 9  gov.noaa.ncdc:C00822 2010-01-01 2010-12-01           Normals Monthly
-#> 10 gov.noaa.ncdc:C00505 1970-05-12 2014-01-01   Precipitation 15 Minute
-#> 11 gov.noaa.ncdc:C00313 1900-01-01 2014-01-01      Precipitation Hourly
+#>                     uid    mindate    maxdate                        name
+#> 1  gov.noaa.ncdc:C00040 1831-02-01 2015-11-01            Annual Summaries
+#> 2  gov.noaa.ncdc:C00861 1763-01-01 2016-08-21             Daily Summaries
+#> 3  gov.noaa.ncdc:C00841 1763-01-01 2016-03-01           Monthly Summaries
+#> 4  gov.noaa.ncdc:C00946 1763-01-01 2016-07-01 Global Summary of the Month
+#> 5  gov.noaa.ncdc:C00947 1763-01-01 2016-01-01  Global Summary of the Year
+#> 6  gov.noaa.ncdc:C00345 1991-06-05 2016-08-22    Weather Radar (Level II)
+#> 7  gov.noaa.ncdc:C00708 1994-05-20 2016-08-19   Weather Radar (Level III)
+#> 8  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01     Normals Annual/Seasonal
+#> 9  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31               Normals Daily
+#> 10 gov.noaa.ncdc:C00824 2010-01-01 2010-12-31              Normals Hourly
+#> 11 gov.noaa.ncdc:C00822 2010-01-01 2010-12-01             Normals Monthly
+#> 12 gov.noaa.ncdc:C00505 1970-05-12 2014-01-01     Precipitation 15 Minute
+#> 13 gov.noaa.ncdc:C00313 1900-01-01 2014-01-01        Precipitation Hourly
 #>    datacoverage         id
 #> 1          1.00     ANNUAL
 #> 2          1.00      GHCND
 #> 3          1.00    GHCNDMS
-#> 4          0.95    NEXRAD2
-#> 5          0.95    NEXRAD3
-#> 6          1.00 NORMAL_ANN
-#> 7          1.00 NORMAL_DLY
-#> 8          1.00 NORMAL_HLY
-#> 9          1.00 NORMAL_MLY
-#> 10         0.25  PRECIP_15
-#> 11         1.00 PRECIP_HLY
+#> 4          1.00       GSOM
+#> 5          1.00       GSOY
+#> 6          0.95    NEXRAD2
+#> 7          0.95    NEXRAD3
+#> 8          1.00 NORMAL_ANN
+#> 9          1.00 NORMAL_DLY
+#> 10         1.00 NORMAL_HLY
+#> 11         1.00 NORMAL_MLY
+#> 12         0.25  PRECIP_15
+#> 13         1.00 PRECIP_HLY
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datasets"
@@ -302,7 +307,7 @@ ncdc_datasets()
 ncdc_datacats(locationid = 'CITY:US390029')
 #> $meta
 #> $meta$totalCount
-#> [1] 37
+#> [1] 38
 #> 
 #> $meta$pageCount
 #> [1] 25
@@ -327,17 +332,17 @@ ncdc_datacats(locationid = 'CITY:US390029')
 #> 12      Dual-Pol Moments DUALPOLMOMENT
 #> 13             Echo Tops       ECHOTOP
 #> 14      Hydrometeor Type   HYDROMETEOR
-#> 15                 Other         OTHER
-#> 16               Overlay       OVERLAY
-#> 17         Precipitation          PRCP
-#> 18          Reflectivity  REFLECTIVITY
-#> 19    Sky cover & clouds           SKY
-#> 20   Spring Agricultural         SPAGR
-#> 21    Spring Degree Days          SPDD
-#> 22  Spring Precipitation        SPPRCP
-#> 23    Spring Temperature        SPTEMP
-#> 24   Summer Agricultural         SUAGR
-#> 25    Summer Degree Days          SUDD
+#> 15            Miscellany          MISC
+#> 16                 Other         OTHER
+#> 17               Overlay       OVERLAY
+#> 18         Precipitation          PRCP
+#> 19          Reflectivity  REFLECTIVITY
+#> 20    Sky cover & clouds           SKY
+#> 21   Spring Agricultural         SPAGR
+#> 22    Spring Degree Days          SPDD
+#> 23  Spring Precipitation        SPPRCP
+#> 24    Spring Temperature        SPTEMP
+#> 25   Summer Agricultural         SUAGR
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datacats"
@@ -358,7 +363,7 @@ library('sp')
 plot(shp)
 ```
 
-![plot of chunk unnamed-chunk-29](inst/img/unnamed-chunk-29-1.png)
+![plot of chunk unnamed-chunk-17](inst/img/unnamed-chunk-17-1.png) 
 
 ## HOMR metadata
 
@@ -429,12 +434,12 @@ Get forecast for a certain variable.
 res <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat = 46.28125, lon = -116.2188)
 head(res$data)
 #>   Total_precipitation_surface_6_Hour_Accumulation_ens lon lat ens time1
-#> 1                                                0.25 244  46   0     6
-#> 2                                                0.18 244  46   1    12
-#> 3                                                1.89 244  46   2    18
-#> 4                                                0.02 244  46   3    24
-#> 5                                                0.01 244  46   4    30
-#> 6                                                0.12 244  46   5    36
+#> 1                                                   0 244  46   0     6
+#> 2                                                   0 244  46   1    12
+#> 3                                                   0 244  46   2    18
+#> 4                                                   0 244  46   3    24
+#> 5                                                   0 244  46   4    30
+#> 6                                                   0 244  46   5    36
 ```
 
 ## Argo buoys data
@@ -486,6 +491,15 @@ coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
 #> 1 2015-09-27 174.430 0,0
 #> 2 2015-09-28 174.422 0,0
 ```
+
+## Contributors
+
+* [Scott Chamberlain](https://github.com/sckott)
+* [Brooke Anderson](https://github.com/geanders)
+* [Maëlle Salmon](https://github.com/masalmon)
+* [Adam Erickson](https://github.com/adam-erickson)
+* [Nicholas Potter](https://github.com/potterzot)
+* [Joseph Stachelek](https://github.com/jsta)
 
 ## Meta
 

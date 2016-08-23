@@ -7,15 +7,18 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 0.5.6.9348
+Version: 0.5.7.9100
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut","cre"), email = "myrmecocystus@gmail.com"),
-    person("Karthik", "Ram", role = "ctb", email = "karthik.ram@gmail.com"),
-    person("Adam", "Erickson", role = "ctb", email = "adam.erickson@ubc.ca"),
-    person("Nicholas", "Potter", role = "ctb", email = "potterzot@gmail.com"),
-    person("Joseph", "Stachelek", role = "ctb", email = "jstachel@sfwmd.gov"),
-    person("Hart", "Edmund", role = "ctb", email = "Edmund.m.hart@gmail.com")
+    person("Brooke", "Anderson", role = "ctb"),
+    person("Maëlle", "Salmon", role = "ctb"),
+    person("Adam", "Erickson", role = "ctb"),
+    person("Nicholas", "Potter", role = "ctb"),
+    person("Joseph", "Stachelek", role = "ctb"),
+    person("Alex", "Simmons", role = "ctb"),
+    person("Karthik", "Ram", role = "ctb"),
+    person("Hart", "Edmund", role = "ctb")
   )
 URL: https://github.com/ropensci/rnoaa
 BugReports: http://www.github.com/ropensci/rnoaa/issues
