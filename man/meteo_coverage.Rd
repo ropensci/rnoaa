@@ -8,7 +8,7 @@
 meteo_coverage(meteo_df, obs_start_date = NULL, obs_end_date = NULL,
   verbose = FALSE)
 
-autoplot.meteo_coverage(df)
+\method{autoplot}{meteo_coverage}(df)
 }
 \arguments{
 \item{meteo_df}{a \emph{meteo} \code{data.frame}}
