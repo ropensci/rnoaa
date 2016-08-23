@@ -54,7 +54,7 @@
 #' write.csv untar unzip
 #' @importFrom lubridate ymd year today month
 #' @importFrom scales date_breaks date_format
-#' @importFrom ggplot2 ggplot aes facet_wrap theme theme_bw geom_line labs
+#' @importFrom ggplot2 autoplot ggplot aes facet_wrap theme theme_bw geom_line labs
 #' guides guide_legend fortify scale_x_date scale_x_datetime element_blank
 #' @importFrom httr GET add_headers content warn_for_status stop_for_status
 #' write_disk parse_url build_url http_status
@@ -63,7 +63,9 @@
 #' @importFrom tidyr gather
 #' @importFrom rappdirs user_cache_dir
 #' @importFrom gridExtra grid.arrange
-#' @importFrom dplyr %>% rbind_all select mutate rename tbl_df filter bind_rows as_data_frame contains
+#' @importFrom dplyr %>% rbind_all select mutate rename tbl_df filter bind_rows
+#' as_data_frame contains
+#' @importFrom scales comma
 #' @name rnoaa-package
 #' @aliases rnoaa
 #' @docType package
