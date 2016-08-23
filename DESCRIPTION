@@ -32,7 +32,9 @@ Imports:
     ggplot2,
     scales,
     XML,
-    jsonlite
+    jsonlite,
+    rappdirs,
+    gridExtra
 Suggests:
     testthat,
     roxygen2,
@@ -43,5 +45,8 @@ Suggests:
     geojsonio,
     lawn,
     rgdal,
-    covr
+    rmarkdown,
+    purrr,
+    covr,
+    ggmap
 RoxygenNote: 5.0.1

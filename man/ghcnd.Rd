@@ -2,76 +2,49 @@
 % Please edit documentation in R/ghcnd.R
 \name{ghcnd}
 \alias{ghcnd}
-\alias{ghcnd_countries}
-\alias{ghcnd_search}
-\alias{ghcnd_splitvars}
-\alias{ghcnd_states}
-\alias{ghcnd_stations}
-\alias{ghcnd_version}
-\title{Get GHCND daily data from NOAA FTP server}
+\title{Get all GHCND data from a single weather site}
 \usage{
 ghcnd(stationid, path = "~/.rnoaa/ghcnd", ...)
-
-ghcnd_search(stationid, date_min = NULL, date_max = NULL, var = "all",
-  path = "~/.rnoaa/ghcnd", ...)
-
-ghcnd_splitvars(x)
-
-ghcnd_stations(..., n = 10)
-
-ghcnd_states(...)
-
-ghcnd_countries(...)
-
-ghcnd_version(...)
 }
 \arguments{
-\item{stationid}{Stationid to get}
+\item{stationid}{A character string giving the identification of the weather
+station for which the user would like to pull data. To get a full and
+current list of stations, the user can use the \code{\link{ghcnd_stations}}
+function. To identify stations within a certain radius of a location, the
+user can use the \code{\link{meteo_nearby_stations}} function.}
 
-\item{path}{(character) A path to store the files, Default: \code{~/.rnoaa/isd}}
+\item{path}{A character vector giving the path to the directory to cache
+the files locally. By default, the function uses \code{~/.rnoaa/isd}.}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}}
-
-\item{date_min, date_max}{(character) Minimum and maximum dates. Use together to get a
-date range}
-
-\item{var}{(character) Variable to get, defaults to "all", which gives back all variables
-in a list. To see what variables are available for a dataset, look at the dataset returned
-from \code{ghcnd()}.}
-
-\item{x}{Input object to print methods. For \code{ghcnd_splitvars()}, the output of a call
-to \code{ghcnd()}.}
-
-\item{n}{Number of rows to print}
+\item{...}{Additional curl options to pass through to \code{\link[httr]{GET}}.}
+}
+\value{
+A list object with a single slot, \code{data}, which contains the
+   dataframe pulled from NOAA's FTP for the queried weather site. A README
+   file with more information about the format of this file is available
+   from NOAA (\url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}).
+   This file is formatted so each line of the file gives the daily weather
+   observations for a single weather variable for all days of one month of
+   one year. In addition to measurements, columns are included for certain
+   flags, which add information on observation sources and quality and are
+   further explained in NOAA's README file for the data.
 }
 \description{
-Get GHCND daily data from NOAA FTP server
+This function uses ftp to access the Global Historical Climatology Network
+daily weather data from NOAA's FTP server for a single weather site. It
+requires the site identification number for that site and will pull the
+entire weather dataset for the site.
 }
-\details{
-Functions:
-\itemize{
- \item \code{ghcnd_version} - Get current version of GHCND data
- \item \code{ghcnd_stations} - Get GHCND stations and their metadata
- \item \code{ghcnd_states} - Get US/Canada state names and 2-letter codes
- \item \code{ghcnd_countries} - Get country names and 2-letter codes
- \item \code{ghcnd_search} - Search GHCND data
- \item \code{ghcnd} - Get GHCND data
- \item \code{ghcnd_splitvars} - Split variables in data returned from \code{ghcnd}
- \item \code{ghcnd_clear_cache} - Clear cache of locally stored files
-}
+\note{
+This function saves the full set of weather data for the queried
+site locally in the directory specified by the \code{path} argument.
 }
 \examples{
 \dontrun{
-# Get metadata
-ghcnd_states()
-ghcnd_countries()
-ghcnd_version()
-
-# Get stations, ghcnd-stations and ghcnd-inventory merged
-(stations <- ghcnd_stations())
-
 # Get data
 ghcnd(stationid = "AGE00147704")
+
+stations <- ghcnd_stations()
 ghcnd(stations$data$id[40])
 ghcnd(stations$data$id[4000])
 ghcnd(stations$data$id[10000])
@@ -79,7 +52,7 @@ ghcnd(stations$data$id[80000])
 ghcnd(stations$data$id[80300])
 
 library("dplyr")
-ghcnd(stations$data$id[80300])$data \%>\% select(id, element) \%>\% head
+ghcnd(stations$data$id[80300])$data \%>\% select(id, element) \%>\% slice(1:3)
 
 # manipulate data
 ## using built in fxns
@@ -94,19 +67,20 @@ dat <- ghcnd(stationid="AGE00147704")
 dat$data \%>\%
  filter(element == "PRCP", year == 1909)
 
-# Search based on variable and/or date
-ghcnd_search("AGE00147704", var = "PRCP")
-ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01")
-ghcnd_search("AGE00147704", var = "PRCP", date_max = "1915-01-01")
-ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01", date_max = "1925-01-01")
-ghcnd_search("AGE00147704", date_min = "1920-01-01", date_max = "1925-01-01")
-ghcnd_search("AGE00147704", var = c("PRCP","TMIN"))
-ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
-ghcnd_search("AGE00147704", var="adfdf")
 }
+
 }
 \author{
 Scott Chamberlain \email{myrmecocystus@gmail.com},
 Adam Erickson \email{adam.erickson@ubc.ca}
+}
+\seealso{
+To generate a weather dataset for a single weather site that has been
+cleaned to a tidier weather format, the user should use the
+\code{\link{ghcnd_search}} function, which calls \code{\link{ghcnd}} and then
+processes the output, or \code{\link{meteo_tidy_ghcnd}}, which wraps the
+\code{\link{ghcnd_search}} function to output a tidy dataframe rather than a
+list object. To pull GHCND data from multiple monitors, see
+\code{\link{meteo_pull_monitors}}.
 }
 

@@ -18,7 +18,7 @@ swdi(dataset = NULL, format = "xml", startdate = NULL, enddate = NULL,
 
 \item{enddate}{End date. See details.}
 
-\item{limit}{Number of results to return. Defaults to 25. Any number from 1 to 10000000.}
+\item{limit}{Number of results to return. Defaults to 25. Any number from 1 to 10000000. Time out issues likely to occur at higher limits.}
 
 \item{offset}{Any number from 1 to 10000000. Default is NULL, no offset, start from 1.}
 

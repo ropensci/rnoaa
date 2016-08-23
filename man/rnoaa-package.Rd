@@ -45,5 +45,17 @@ this package, meaning you only need \code{ncdf4} if you are using the buoy
 functions. You'll get an informative error telling you to install \code{ncdf4}
 if you don't have it and you try to use the buoy functions.
 }
+
+\section{The \code{meteo} family of functions}{
+
+
+The \code{meteo} family of functions are prefixed with \code{meteo_} and provide
+a set of helper functions to:
+
+\itemize{
+  \item Identify candidate stations from a latitude/longitude pair
+  \item Retrieve complete data for one or more stations (\code{meteo_coverage()})
+}
+}
 \keyword{package}
 

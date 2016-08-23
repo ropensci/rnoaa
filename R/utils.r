@@ -131,3 +131,4 @@ contains <- function(vars, match, ignore.case = TRUE){
 is.string <- function(x){
   is.character(x) && length(x) == 1
 }
+
