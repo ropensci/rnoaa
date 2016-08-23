@@ -50,6 +50,16 @@ of all available monitors, sorted by distance to the location. The
 \code{limit} argument can be used to limit the output dataframe to the [x]
 closest monitors to the location.
 }
+\examples{
+\dontrun{
+station_data <- ghcnd_stations()[[1]]
+meteo_distance(station_data, -33, 151, radius = 10, limit = 10)
+meteo_distance(station_data, -33, 151, radius = 10, limit = 3)
+
+# FIXME - units param is ignored
+#meteo_distance(station_data, -33, 151, units = 'rad', radius = 10, limit = 3)
+}
+}
 \author{
 Alex Simmons \email{a2.simmons@qut.edu.au},
    Brooke Anderson \email{brooke.anderson@colostate.edu}

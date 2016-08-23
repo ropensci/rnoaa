@@ -11,6 +11,8 @@
 #' Great circle distance is used to determine whether a weather monitor is
 #' within the required radius.
 #'
+#' @export
+#'
 #' @param lat_lon_df A dataframe that contains the latitude, longitude, and
 #'    a unique identifier for each location (\code{id}). For an example of the
 #'    proper format for this dataframe, see the examples below. Latitude and
@@ -96,8 +98,6 @@
 #'                       limit = 10, var = c("PRCP", "TMAX"),
 #'                       year_min = 1992, year_max = 1992)
 #' }
-#'
-#' @export
 meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
                                   lon_colname = "longitude",
                                   station_data = ghcnd_stations()[[1]],
@@ -143,6 +143,7 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
 #' \code{limit} argument can be used to limit the output dataframe to the [x]
 #' closest monitors to the location.
 #'
+#' @export
 #' @param lat Latitude of the location. Southern latitudes should be given
 #'    as negative values.
 #' @param long Longitude of the location. Western longitudes should be given as
@@ -162,7 +163,14 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
 #' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
 #'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
-#' @export
+#' @examples \dontrun{
+#' station_data <- ghcnd_stations()[[1]]
+#' meteo_distance(station_data, -33, 151, radius = 10, limit = 10)
+#' meteo_distance(station_data, -33, 151, radius = 10, limit = 3)
+#'
+#' # FIXME - units param is ignored
+#' #meteo_distance(station_data, -33, 151, units = 'rad', radius = 10, limit = 3)
+#' }
 meteo_distance <- function(station_data, lat, long,
                            units = 'deg', radius = NULL, limit = NULL) {
 
@@ -191,6 +199,7 @@ meteo_distance <- function(station_data, lat, long,
 #' the input location. The station dataset is then sorted from closest to
 #' furthest distance to the location and returned as the function output.
 #'
+#' @export
 #' @inheritParams meteo_distance
 #'
 #' @return The \code{station_data} dataframe that is input, but with a
@@ -201,7 +210,10 @@ meteo_distance <- function(station_data, lat, long,
 #' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
 #'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
-#' @export
+#' @examples \dontrun{
+#' station_data <- ghcnd_stations()[[1]]
+#' meteo_process_geographic_data(station_data, -33, 151)
+#' }
 meteo_process_geographic_data <- function(station_data,
                                           lat,
                                           long,
@@ -227,6 +239,7 @@ meteo_process_geographic_data <- function(station_data,
 #' This function uses the haversine formula to calculate the great circle
 #' distance between two locations, identified by their latitudes and longitudes.
 #'
+#' @export
 #' @param lat1 Latitude of the first location.
 #' @param long1 Longitude of the first location.
 #' @param lat2 Latitude of the second location.
@@ -245,8 +258,6 @@ meteo_process_geographic_data <- function(station_data,
 #'
 #' meteo_spherical_distance(lat1 = -27.4667, long1 = 153.0217,
 #'                          lat2 = -27.4710, long2 = 153.0234)
-#'
-#' @export
 meteo_spherical_distance <- function(lat1, long1, lat2, long2, units = 'deg') {
 
   radius_earth <- 6371

@@ -124,7 +124,6 @@ meteo_nearby_stations(lat_lon_df = miami, station_data = station_data,
                       limit = 10, var = c("PRCP", "TMAX"),
                       year_min = 1992, year_max = 1992)
 }
-
 }
 \author{
 Alex Simmons \email{a2.simmons@qut.edu.au},

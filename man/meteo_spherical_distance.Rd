@@ -37,7 +37,6 @@ This function assumes an earth radius of 6,371 km.
 
 meteo_spherical_distance(lat1 = -27.4667, long1 = 153.0217,
                          lat2 = -27.4710, long2 = 153.0234)
-
 }
 \author{
 Alex Simmons \email{a2.simmons@qut.edu.au},

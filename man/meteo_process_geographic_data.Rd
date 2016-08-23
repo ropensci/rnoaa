@@ -44,6 +44,12 @@ available weather stations giving the distance between each station and
 the input location. The station dataset is then sorted from closest to
 furthest distance to the location and returned as the function output.
 }
+\examples{
+\dontrun{
+station_data <- ghcnd_stations()[[1]]
+meteo_process_geographic_data(station_data, -33, 151)
+}
+}
 \author{
 Alex Simmons \email{a2.simmons@qut.edu.au},
    Brooke Anderson \email{brooke.anderson@colostate.edu}
