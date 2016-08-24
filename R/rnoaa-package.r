@@ -62,6 +62,7 @@
 #' @importFrom gridExtra grid.arrange
 #' @importFrom dplyr %>% rbind_all select mutate rename tbl_df filter bind_rows
 #' as_data_frame contains
+#' @importFrom tibble as_data_frame
 #' @importFrom scales comma
 #' @name rnoaa-package
 #' @aliases rnoaa

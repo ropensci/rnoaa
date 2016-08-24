@@ -1,4 +1,18 @@
-if(getRversion() >= "2.15.1")
-  utils::globalVariables(c('storm_columns','storm_names','value','id','element',
-                           'day', '.', 'var'))
-
+if (getRversion() >= "2.15.1") {
+  utils::globalVariables(
+    c(
+      'storm_columns',
+      'storm_names',
+      'value',
+      'id',
+      'element',
+      'day',
+      '.',
+      'var',
+      'grid_size_lat',
+      'grid_size_lon',
+      'dist',
+      'lat_rad'
+    )
+  )
+}

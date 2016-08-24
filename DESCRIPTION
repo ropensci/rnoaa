@@ -7,8 +7,9 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 0.5.7.9100
+Version: 0.5.9.9100
 License: MIT + file LICENSE
+Encoding: UTF-8
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut","cre"), email = "myrmecocystus@gmail.com"),
     person("Brooke", "Anderson", role = "ctb"),
@@ -35,16 +36,15 @@ Imports:
     XML,
     jsonlite,
     rappdirs,
-    gridExtra
+    gridExtra,
+    tibble
 Suggests:
+    roxygen2 (>= 5.0.1),
     testthat,
-    roxygen2,
     knitr,
     taxize,
     ncdf4,
     leaflet,
-    geojsonio,
-    lawn,
     rgdal,
     rmarkdown,
     purrr,

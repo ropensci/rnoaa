@@ -2,34 +2,18 @@
 % Please edit documentation in R/isd_stations.R
 \name{isd_stations}
 \alias{isd_stations}
-\alias{isd_stations_search}
 \title{Get NOAA ISD/ISH station data from NOAA FTP server.}
 \usage{
-isd_stations(refresh = FALSE, path = NULL, ...)
-
-isd_stations_search(lat = NULL, lon = NULL, radius = NULL, bbox = NULL,
-  ...)
+isd_stations(refresh = FALSE, ...)
 }
 \arguments{
 \item{refresh}{(logical) Download station data from NOAA ftp server again.
 Default: \code{FALSE}}
 
-\item{path}{(character) If \code{refresh=TRUE}, this is the path where file is saved.
-If \code{refresh=FALSE}, this argument is ignored.}
-
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}}
-
-\item{lat}{(numeric) Latitude, in decimal degree}
-
-\item{lon}{(numeric) Latitude, in decimal degree}
-
-\item{radius}{(numeric) Radius (in km) to search from the lat,lon coordinates}
-
-\item{bbox}{(numeric) Bounding box, of the form: min-longitude, min-latitude,
-max-longitude, max-latitude}
 }
 \value{
-\code{isd_stations} returns a data.frame with the columns:
+a tibble (data.frame) with the columns:
 \itemize{
  \item usaf - USAF number, character
  \item wban - WBAN number, character
@@ -43,28 +27,18 @@ max-longitude, max-latitude}
  \item begin - Begin date of data coverage, of form YYYYMMDD, numeric
  \item end - End date of data coverage, of form YYYYMMDD, numeric
 }
-
-\code{isd_stations_search} returns a data.frame, if any matches, with the same columns
-as listed above
 }
 \description{
 Get NOAA ISD/ISH station data from NOAA FTP server.
 }
 \details{
-\code{\link{isd_stations_search}} requires \pkg{geojsonio} and \pkg{lawn},
-but are not imported in this package, so they aren't required for the rest of the
-package to operate - only this function. Install those from CRAN if you don't
-already have them.
-
-When using \code{isd_station_search} we clean up the data.frame, removing
-stations with no lat/long coordinates, those with impossible lat/long coordinates,
-and those at 0,0.
+The data table is cached, but you can force download of data from NOAA
+by setting \code{refresh=TRUE}
 }
 \examples{
 \dontrun{
 # Get station table
-stations <- isd_stations()
-head(stations)
+(stations <- isd_stations())
 
 ## plot stations
 ### remove incomplete cases, those at 0,0
@@ -75,22 +49,12 @@ library("leaflet")
 leaflet(data = df) \%>\%
   addTiles() \%>\%
   addCircles()
-
-# Search for stations by various inputs
-## bounding box
-bbox <- c(-125.0, 38.4, -121.8, 40.9)
-(out <- isd_stations_search(bbox = bbox))
-
-## lat, long, radius
-isd_stations_search(lat = 38.4, lon = -123, radius = 250)
-
-### then plot...
 }
 }
 \references{
 ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 }
 \seealso{
-\code{\link{isd}}
+\code{\link{isd}}, \code{\link{isd_stations_search}}
 }
 
