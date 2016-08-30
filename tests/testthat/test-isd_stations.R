@@ -26,16 +26,16 @@ test_that("search for stations - by bounding box", {
   expect_gt(bbox[4], max(out$lat))
 })
 
-# test_that("search for stations - by lat/lon/radius", {
-#   skip_on_cran()
-#
-#   lat = 38.4
-#   lon = -123
-#   radius = 250
-#   out <- suppressMessages(isd_stations_search(lat = lat, lon = lon, radius = radius))
-#
-#   expect_is(out, "data.frame")
-#   expect_is(out$lon, "numeric")
-#   expect_is(out$lat, "numeric")
-#   expect_is(out$state, "character")
-# })
+test_that("search for stations - by lat/lon/radius", {
+  skip_on_cran()
+
+  lat = 38.4
+  lon = -123
+  radius = 250
+  out <- suppressMessages(isd_stations_search(lat = lat, lon = lon, radius = radius))
+
+  expect_is(out, "data.frame")
+  expect_is(out$longitude, "numeric")
+  expect_is(out$latitude, "numeric")
+  expect_is(out$state, "character")
+})

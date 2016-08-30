@@ -39,10 +39,14 @@ Search for NOAA ISD/ISH station data from NOAA FTP server.
 }
 \details{
 We internally call \code{\link{isd_stations}} to get the data.frame
-of ISD stations, which is quite fast as long as it's not the first time called
-since we cache the table. Before searching, we clean up the data.frame, removing
-stations with no lat/long coordinates, those with impossible lat/long coordinates,
-and those at 0,0.
+of ISD stations, which is quite fast as long as it's not the first time
+called since we cache the table. Before searching, we clean up the
+data.frame, removing stations with no lat/long coordinates, those with
+impossible lat/long coordinates, and those at 0,0.
+
+When lat/lon/radius input we use \code{\link{meteo_distance}} to search
+for stations, while when bbox is input, we simply use
+\code{\link[dplyr]{filter}}
 }
 \examples{
 \dontrun{
@@ -55,8 +59,8 @@ if (requireNamespace("leaflet")) {
   library("leaflet")
   leaflet() \%>\%
     addTiles() \%>\%
-    addCircles(lng = x$lon,
-               lat = x$lat,
+    addCircles(lng = x$longitude,
+               lat = x$latitude,
                popup = x$station_name) \%>\%
     clearBounds()
 }
@@ -70,6 +74,7 @@ isd_stations_search(bbox = bbox)
 ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 }
 \seealso{
-\code{\link{isd}}, \code{\link{isd_stations}}
+\code{\link{isd}}, \code{\link{isd_stations}},
+\code{\link{meteo_distance}}
 }
 
