@@ -268,8 +268,8 @@ meteo_spherical_distance <- function(lat1, long1, lat2, long2, units = 'deg') {
     long1 <- deg2rad(long1)
     lat2 <- deg2rad(lat2)
     long2 <- deg2rad(long2)
-  } else if(units != 'rad'){
-    stop("The `units` argument must be `deg` or `rad`.")
+  } else if (units != 'rad') {
+    stop("The `units` argument must be `deg` or `rad`.", call. = FALSE)
   }
 
   # Determine distance using the haversine formula, assuming a spherical earth

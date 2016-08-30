@@ -60,8 +60,6 @@
 #' isd_stations_search(bbox = bbox)
 #' }
 isd_stations_search <- function(lat = NULL, lon = NULL, radius = NULL, bbox = NULL) {
-  search_lat <- lat; search_lon <- lon
-  rm(lat, lon)
   stations <- dplyr::filter_(
     isd_stations(),
     "!(is.na(lat) | is.na(lon) | (lat == 0 & lon == 0) | abs(lon) > 180 | abs(lat) > 90)"
