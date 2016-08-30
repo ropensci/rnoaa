@@ -71,6 +71,6 @@ isd_stations_search <- function(lat = NULL, lon = NULL, radius = NULL, bbox = NU
     filter(stations, lat >= bbox[2] & lat <= bbox[4], lon >= bbox[1] & lon <= bbox[3])
   } else {
     stations <- rename(stations, latitude = lat, longitude = lon)
-    meteo_distance(stations, lat, lon, radius = radius)
+    meteo_distance(stations, lat = lat, long = lon, radius = radius)
   }
 }

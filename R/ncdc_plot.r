@@ -65,7 +65,7 @@ ncdc_plot.ncdc_data <- function(..., breaks = NULL, dateformat='%d/%m/%y') {
 }
 
 #' @export
-ncdc_plot.default <- function(...,  breaks = NULL, dateformat='%d/%m/%y') {
+ncdc_plot.default <- function(...,  breaks = NULL, dateformat = '%d/%m/%y') {
   stop("No method for ", class(list(...)[[1]]), call. = FALSE)
 }
 
@@ -77,7 +77,6 @@ plot_template <- function(df, breaks, dateformat) {
   )
   if (!is.null(breaks)) {
     c(tt, scale_x_date(date_breaks = breaks, date_labels = dateformat))
-
   } else {
     tt
   }

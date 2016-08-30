@@ -1,3 +1,46 @@
+rnoaa 0.6.0
+===============
+
+### NEW FEATURES
+
+* A large PR was merged with a suite of functions. Most functions added 
+a prefixed with `meteo_*`, and are meant to find weather monitors near 
+locations (`meteo_nearby_stations`), find all monitors within a radius 
+of a location (`meteo_distance`), calculate the distances between a 
+location and all available stations (`meteo_process_geographic_data`),  
+calculate the distance between two locations (`meteo_spherical_distance`),
+pull GHCND weather data for multiple weather monitors (`meteo_pull_monitors`), 
+create a tidy GHCND dataset from a single monitor (`meteo_tidy_ghcnd`), 
+and determine the "coverage" for a station data frame (`meteo_coverage()`). 
+In addition, `vis_miss()` added to visualize missingness in a data.frame. See 
+the [PR diff against master](https://github.com/ropensci/rnoaa/pull/159/files)
+for all the changes. (#159) Thanks a ton to @geanders _et al_. (@hrbrmstr, 
+@masalmon, @jdunic, @njtierney, @leighseverson, @RyanGan, @mandilin, @jferreri, 
+@cpatrizio88, @ryan-hicks, @Ewen2015, @mgutilla, @hakessler, @rodlammers)
+
+### MINOR IMPROVEMENTS
+
+* `isd_stations_search()` changed internal structure. We replaced 
+usage of `geojsonio` and `lawn` for faster `dplyr::filter` for 
+bbox inputs, and `meteo_distance()` for `lat/long/radius` inputs
+. This speeds up this function significantly. Thanks to @lukas-rokka 
+(#157)
+* `isd_stations_search()` and `isd_stations()` now return 
+tibble's instead of data.frame's
+* Removed cached ISD stations dataset within package to reduce
+package size. Only change is now that on first use of the function
+the user has to download the entire thing, but on subsquent 
+uses it will pull from the cached version on the users machine. 
+`isd_stations_search()` now caches using `rappdirs` (#161)
+* Convert all `is()` uses to `inherits()`
+
+### BUG FIXES
+
+* Fixed `seaiceeurls()` function that's used to generate urls for 
+the `seaice()` function - due to change in NOAA urls (#160)
+* Fix to function `ghncd_split_vars()` to not fail on `dplyr::contains` 
+call (#156) thanks @lawinslow !
+
 rnoaa 0.5.6
 ===============
 
@@ -6,24 +49,24 @@ rnoaa 0.5.6
 * Fixes for new `httr` version to call encoding explicitly (#135)
 * Fix to broken link for reference to source code used in `gefs` functions (#121)
 * Speed ups implemented for the `isd()` function - it's a time consuming task
-as we have to parse a nasty string of characters line by line - more speed 
+as we have to parse a nasty string of characters line by line - more speed
 ups to come in future versions (#146)
 * Replace `dplyr::rbind_all()` with `dplyr::bind_rows()` as the former is
 being deprecated (#152)
 
 ### BUG FIXES
 
-* Fix for `isd()` function - was failing on some station names that had 
+* Fix for `isd()` function - was failing on some station names that had
 leading zeros. (#136)
-* Fix for `ncdc_stations()` - used to allow more than one station id to 
-be passed in, but internally only handled one. This is a restriction 
-due to the NOAA NCDC API. Documentation now shows an example of how 
+* Fix for `ncdc_stations()` - used to allow more than one station id to
+be passed in, but internally only handled one. This is a restriction
+due to the NOAA NCDC API. Documentation now shows an example of how
 to deal with many station ids (#138)
 * Fixes to the suite of `ncdc_*()` functions to allow multiple inputs
 to those parameters where allowed (#139)
 * Fixed bug in `ncdc_plot()` due to new `ggplot2` version (#153)
-* Fixed bugs in `argo()` functions: a) with new `httr`, box input of a vector 
-no longer works, now manually make a character vector; b) errant file param 
+* Fixed bugs in `argo()` functions: a) with new `httr`, box input of a vector
+no longer works, now manually make a character vector; b) errant file param
 being passed into the http request, removed (#155)
 
 rnoaa 0.5.2
@@ -33,7 +76,7 @@ rnoaa 0.5.2
 
 * New data source added: ARGO buoy data. See functions starting with `argo()` (#123)
 for more, see http://www.argo.ucsd.edu/
-* New data source added: CO-OPS tide and current data. See function `coops_search()` 
+* New data source added: CO-OPS tide and current data. See function `coops_search()`
 (#111) for idea from @fmichonneau (#124) for implementing @jsta See http://co-ops.nos.noaa.gov/api/
 also (#126) (#128)
 
@@ -48,35 +91,35 @@ rnoaa 0.5.0
 
 ### NEW FEATURES
 
-* New data source added: NOAA Global Ensemble Forecast System (GEFS) data. 
-See functions `gefs()`, `gefs_dimension_values()`, `gefs_dimensions()`, `gefs_latitudes()`, 
-`gefs_longitudes()`, and `gefs_variables()` (#106) (#119)  thanks @potterzot - he's 
+* New data source added: NOAA Global Ensemble Forecast System (GEFS) data.
+See functions `gefs()`, `gefs_dimension_values()`, `gefs_dimensions()`, `gefs_latitudes()`,
+`gefs_longitudes()`, and `gefs_variables()` (#106) (#119)  thanks @potterzot - he's
 now an author too
-* New data source added: NOAA Extended Reconstructed Sea Surface Temperature 
+* New data source added: NOAA Extended Reconstructed Sea Surface Temperature
 (ERSST) data. See function `ersst()` (#96)
 * New function `isd_stations()` to get ISD station data.
 * Added code of conduct to code repository
 
 ### MINOR IMPROVEMENTS
 
-* Swapped `ncdf` package for `ncdf4` package. Windows binaries weren't 
+* Swapped `ncdf` package for `ncdf4` package. Windows binaries weren't
 availiable for `ncdf4` prior to now. (#117)
 * Proper license info added for javascript modules used inside the
 package (#116)
-* Improvements to `isd()` function to do transformations of certain 
+* Improvements to `isd()` function to do transformations of certain
 variables to give back data that makes more sense (#115)
-* `leaflet`, `geojsonio`, and `lawn` added in Suggests, used in a few 
+* `leaflet`, `geojsonio`, and `lawn` added in Suggests, used in a few
 functions.
-* Note added to `swdi()` function man page that the `nldn` dataset is 
+* Note added to `swdi()` function man page that the `nldn` dataset is
 available to military users only (#107)
 
 ### BUG FIXES
 
-* Fix to `buoy()` function to accept character class inputs for the 
-`buoyid` parameter. the error occurred because matching was not 
+* Fix to `buoy()` function to accept character class inputs for the
+`buoyid` parameter. the error occurred because matching was not
 case-insensitive, now works regardless of case (#118)
 * Fixes for new `ggplot2` version (#113)
-* Built in `GET` request retries for `ghncd` functions as 
+* Built in `GET` request retries for `ghncd` functions as
 some URLs fail unpredictably (#110)
 
 rnoaa 0.4.2

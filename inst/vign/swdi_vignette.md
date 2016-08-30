@@ -44,14 +44,11 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.368
+#> [1] 0.065
 #> 
 #> 
 #> $data
-#> Source: local data frame [25 x 8]
-#> 
 #>                   ztime wsr_id cell_id cell_type range azimuth max_shear
-#>                   (chr)  (chr)   (chr)     (chr) (chr)   (chr)     (chr)
 #> 1  2006-05-05T00:05:50Z   KBMX      Q0       TVS     7     217       403
 #> 2  2006-05-05T00:10:02Z   KBMX      Q0       TVS     5     208       421
 #> 3  2006-05-05T00:12:34Z   KSJT      P2       TVS    49     106        17
@@ -62,8 +59,47 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> 8  2006-05-05T00:37:37Z   KMAF      H4       TVS    50     334        34
 #> 9  2006-05-05T00:41:51Z   KMAF      H4       TVS    51     335        29
 #> 10 2006-05-05T00:44:33Z   KLBB      N0       TVS    46     245        35
-#> ..                  ...    ...     ...       ...   ...     ...       ...
-#> Variables not shown: mxdv (chr)
+#> 11 2006-05-05T00:46:03Z   KMAF      H4       TVS    49     335        41
+#> 12 2006-05-05T00:48:55Z   KLBB      N0       TVS    44     246        44
+#> 13 2006-05-05T00:50:16Z   KMAF      H4       TVS    49     337        33
+#> 14 2006-05-05T00:54:29Z   KMAF      H4       TVS    47     337        42
+#> 15 2006-05-05T00:57:42Z   KLBB      N0       TVS    41     251        46
+#> 16 2006-05-05T00:58:41Z   KMAF      H4       TVS    46     340        29
+#> 17 2006-05-05T01:02:04Z   KLBB      N0       TVS    39     251        42
+#> 18 2006-05-05T01:02:53Z   KMAF      H4       TVS    46     339        35
+#> 19 2006-05-05T01:02:53Z   KMAF      H4       TVS    50     338        27
+#> 20 2006-05-05T01:06:26Z   KLBB      N0       TVS    36     251        31
+#> 21 2006-05-05T01:07:06Z   KMAF      F5       TVS    45     342        44
+#> 22 2006-05-05T01:10:48Z   KLBB      N0       TVS    36     256        37
+#> 23 2006-05-05T01:11:18Z   KMAF      F5       TVS    45     343        39
+#> 24 2006-05-05T01:15:30Z   KMAF      F5       TVS    44     344        30
+#> 25 2006-05-05T01:15:30Z   KMAF      H4       TVS    49     341        26
+#>    mxdv
+#> 1   116
+#> 2   120
+#> 3    52
+#> 4    62
+#> 5   111
+#> 6    78
+#> 7   145
+#> 8   107
+#> 9    91
+#> 10  100
+#> 11  127
+#> 12  121
+#> 13   98
+#> 14  126
+#> 15  117
+#> 16   85
+#> 17  102
+#> 18  101
+#> 19   84
+#> 20   70
+#> 21  120
+#> 22   83
+#> 23  108
+#> 24   78
+#> 25   81
 #> 
 #> $shape
 #>                                         shape
@@ -108,21 +144,24 @@ list(out$meta, head(out$data), head(out$shape))
 #> numeric(0)
 #> 
 #> [[1]]$totalTimeInSeconds
-#> [1] 3.908
+#> [1] 0.848
 #> 
 #> 
 #> [[2]]
-#> Source: local data frame [6 x 6]
-#> 
 #>            ztime_start            ztime_end     id         warningtype
-#>                  (chr)                (chr)  (chr)               (chr)
 #> 1 2006-05-05T22:53:00Z 2006-05-06T00:00:00Z 397428 SEVERE THUNDERSTORM
 #> 2 2006-05-05T22:55:00Z 2006-05-06T00:00:00Z 397429 SEVERE THUNDERSTORM
 #> 3 2006-05-05T22:55:00Z 2006-05-06T00:00:00Z 397430 SEVERE THUNDERSTORM
 #> 4 2006-05-05T22:57:00Z 2006-05-06T00:00:00Z 397431 SEVERE THUNDERSTORM
 #> 5 2006-05-05T23:03:00Z 2006-05-06T00:00:00Z 397434 SEVERE THUNDERSTORM
 #> 6 2006-05-05T23:14:00Z 2006-05-06T00:15:00Z 397437 SEVERE THUNDERSTORM
-#> Variables not shown: issuewfo (chr), messageid (chr)
+#>   issuewfo messageid
+#> 1     KLCH    052252
+#> 2     KLUB    052256
+#> 3     KLUB    052256
+#> 4     KMAF    052258
+#> 5     KMAF    052305
+#> 6     KLUB    052315
 #> 
 #> [[3]]
 #>                                                                                                                                                          shape
@@ -148,16 +187,18 @@ swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90
 #> 
 #> 
 #> $data
-#> Source: local data frame [5 x 8]
-#> 
 #>                  ztime     id        event magnitude            city
-#>                  (chr)  (chr)        (chr)     (chr)           (chr)
 #> 1 2006-05-09T02:20:00Z 427540         HAIL         1    5 E KENTWOOD
 #> 2 2006-05-09T02:40:00Z 427536         HAIL         1    MOUNT HERMAN
 #> 3 2006-05-09T02:40:00Z 427537 TSTM WND DMG     -9999    MOUNT HERMAN
 #> 4 2006-05-09T03:00:00Z 427199         HAIL         0     FRANKLINTON
 #> 5 2006-05-09T03:17:00Z 427200      TORNADO     -9999 5 S FRANKLINTON
-#> Variables not shown: county (chr), state (chr), source (chr)
+#>       county state          source
+#> 1 TANGIPAHOA    LA TRAINED SPOTTER
+#> 2 WASHINGTON    LA TRAINED SPOTTER
+#> 3 WASHINGTON    LA TRAINED SPOTTER
+#> 4 WASHINGTON    LA   AMATEUR RADIO
+#> 5 WASHINGTON    LA LAW ENFORCEMENT
 #> 
 #> $shape
 #>                  shape
@@ -185,16 +226,18 @@ swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,
 #> 
 #> 
 #> $data
-#> Source: local data frame [5 x 8]
-#> 
 #>                  ztime wsr_id cell_id cell_type range azimuth max_shear
-#>                  (chr)  (chr)   (chr)     (chr) (chr)   (chr)     (chr)
 #> 1 2006-05-06T00:41:29Z   KMAF      D9       TVS    37       6        39
 #> 2 2006-05-06T03:56:18Z   KMAF      N4       TVS    39       3        30
 #> 3 2006-05-06T03:56:18Z   KMAF      N4       TVS    42       4        20
 #> 4 2006-05-06T04:00:30Z   KMAF      N4       TVS    38       5        35
 #> 5 2006-05-06T04:04:44Z   KMAF      N4       TVS    41       8        24
-#> Variables not shown: mxdv (chr)
+#>   mxdv
+#> 1   85
+#> 2   73
+#> 3   52
+#> 4   86
+#> 5   62
 #> 
 #> $shape
 #>                                        shape
@@ -226,19 +269,16 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.001
+#> [1] 0
 #> 
 #> 
 #> $data
-#> Source: local data frame [5 x 4]
-#> 
 #>          day centerlat centerlon fcount
-#>        (chr)     (chr)     (chr)  (chr)
-#> 1 2009-04-11      32.7      -102      1
-#> 2 2007-09-07      32.7      -102      1
-#> 3 2007-03-29      32.7      -102      2
-#> 4 2008-06-20      32.7      -102      2
-#> 5 2008-05-27      32.7      -102      4
+#> 1 2007-09-07      32.7      -102      1
+#> 2 2007-03-29      32.7      -102      2
+#> 3 2008-05-27      32.7      -102      4
+#> 4 2009-04-11      32.7      -102      1
+#> 5 2008-06-20      32.7      -102      2
 #> 
 #> $shape
 #>                                                                                   shape

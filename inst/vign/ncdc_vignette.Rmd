@@ -81,13 +81,14 @@ ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 Search for data
 
 ```{r}
-out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-05-03', limit=100)
+out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
+            startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
 ```
 
 Make a plot, with 6 hour breaks, and date format with only hour
 
 ```{r}
-ncdc_plot(out2, breaks="6 hours", dateformat="%H")
+ncdc_plot(out, breaks = "1 month", dateformat = "%d/%m")
 ```
 
 ## Combine many calls to noaa function
