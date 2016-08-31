@@ -1,5 +1,5 @@
-Hi! Thanks for openinng an issue!  If you are reporting a bug or have a question about
-how to use this package, paste in the output of `sessionInfo()` or
-`devtools::session_info()` along with your question. In addition,
-please try to include an example or small dataset to reproduce your problem. If not
-reporting a bug, nevermind, and proceed with your question/etc. (delete this paragraph)
+<!-- If this issue relates to usage of the package, whether a question, bug or similar, along with your query, please paste your devtools::session_info() or sessionInfo() into the code block below. If not, delete all this and proceed :) -->
+
+```
+
+```
