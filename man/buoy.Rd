@@ -10,7 +10,8 @@ buoy(dataset, buoyid, year = NULL, datatype = NULL, ...)
 buoys(dataset, ...)
 }
 \arguments{
-\item{dataset}{(character) Dataset name to query. See below for Details. Required}
+\item{dataset}{(character) Dataset name to query. See below for Details.
+Required}
 
 \item{buoyid}{Buoy ID, can be numeric/integer/character. Required}
 
@@ -27,7 +28,8 @@ Get NOAA buoy data from the National Buoy Data Center
 Functions:
 \itemize{
  \item buoys Get available buoys given a dataset name
- \item buoy Get data given some combination of dataset name, buoy ID, year, and datatype
+ \item buoy Get data given some combination of dataset name, buoy ID,
+ year, and datatype
 }
 
 Options for the dataset parameter. One of:
@@ -74,6 +76,6 @@ buoy(dataset = "dart", buoyid = "dartu")
 }
 }
 \references{
-\url{http://www.ndbc.noaa.gov/} and \url{http://dods.ndbc.noaa.gov/}
+\url{http://www.ndbc.noaa.gov/}, \url{http://dods.ndbc.noaa.gov/}
 }
 

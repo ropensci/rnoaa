@@ -106,18 +106,20 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all
 #'    the files locally. By default, the function uses \code{~/.rnoaa/isd}.
 #' @param ... Additional curl options to pass through to \code{\link[httr]{GET}}.
 #'
-#' @return A list object with a single slot, \code{data}, which contains the
-#'    dataframe pulled from NOAA's FTP for the queried weather site. A README
-#'    file with more information about the format of this file is available
-#'    from NOAA (\url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}).
-#'    This file is formatted so each line of the file gives the daily weather
-#'    observations for a single weather variable for all days of one month of
-#'    one year. In addition to measurements, columns are included for certain
-#'    flags, which add information on observation sources and quality and are
-#'    further explained in NOAA's README file for the data.
+#' @return A tibble (data.frame) which contains data pulled from NOAA's FTP
+#' server for the queried weather site. A README file with more information
+#' about the format of this file is available from NOAA
+#' (\url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}).
+#' This file is formatted so each line of the file gives the daily weather
+#' observations for a single weather variable for all days of one month of
+#' one year. In addition to measurements, columns are included for certain
+#' flags, which add information on observation sources and quality and are
+#' further explained in NOAA's README file for the data.
 #'
-#' @note This function saves the full set of weather data for the queried
+#' @details  This function saves the full set of weather data for the queried
 #' site locally in the directory specified by the \code{path} argument.
+#'
+#' You can access the path for the cached file via \code{attr(x, "source")}
 #'
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com},
 #' Adam Erickson \email{adam.erickson@@ubc.ca}
@@ -126,12 +128,10 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all
 #' cleaned to a tidier weather format, the user should use the
 #' \code{\link{ghcnd_search}} function, which calls \code{\link{ghcnd}} and then
 #' processes the output, or \code{\link{meteo_tidy_ghcnd}}, which wraps the
-#' \code{\link{ghcnd_search}} function to output a tidy dataframe rather than a
-#' list object. To pull GHCND data from multiple monitors, see
-#' \code{\link{meteo_pull_monitors}}.
+#' \code{\link{ghcnd_search}} function to output a tidy dataframe. To pull
+#' GHCND data from multiple monitors, see \code{\link{meteo_pull_monitors}}.
 #'
-#' @examples
-#' \dontrun{
+#' @examples \dontrun{
 #' # Get data
 #' ghcnd(stationid = "AGE00147704")
 #'

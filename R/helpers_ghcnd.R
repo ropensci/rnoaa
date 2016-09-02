@@ -93,7 +93,7 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
 
   check_station <- sapply(all_monitors_clean, function(x) is.null(x$result))
   bad_stations <- monitors[check_station]
-  if(length(bad_stations) > 0){
+  if (length(bad_stations) > 0) {
     warning(paste("The following stations could not be pulled from",
                   "the GHCN ftp:\n", paste(bad_stations, collapse = ", "),
                   "\nAny other monitors were successfully pulled from GHCN."))
@@ -167,33 +167,34 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
 meteo_tidy_ghcnd <- function(stationid, keep_flags = FALSE, var = "all",
                         date_min = NULL, date_max = NULL){
 
-    dat <- suppressWarnings(ghcnd_search(stationid = stationid, var = var,
-                                         date_min = date_min,
-                                         date_max = date_max)) %>%
-      lapply(meteo_tidy_ghcnd_element, keep_flags = keep_flags)
-    cleaned_df <- do.call(rbind.data.frame, dat) %>%
-      tidyr::spread_("key", "value")
+  dat <- suppressWarnings(ghcnd_search(stationid = stationid, var = var,
+                                       date_min = date_min,
+                                       date_max = date_max)) %>%
+    lapply(meteo_tidy_ghcnd_element, keep_flags = keep_flags)
+  cleaned_df <- do.call(rbind.data.frame, dat) %>%
+    tidyr::spread_("key", "value")
 
-  which_vars_to_clean <- which(colnames(cleaned_df) %in%
-                                c("prcp", "tmax", "tmin", "tavg", "snow", "snwd"))
+  which_vars_to_clean <-
+    which(colnames(cleaned_df) %in%
+            c("prcp", "tmax", "tmin", "tavg", "snow", "snwd"))
   cleaned_df <- dplyr::tbl_df(cleaned_df)
-  cleaned_df[, which_vars_to_clean] <- vapply(cleaned_df[ , which_vars_to_clean],
-                                             FUN.VALUE = numeric(nrow(cleaned_df)),
-                                             FUN = function(x){
-                                               x <- ifelse(x == -9999, NA, x)
-                                               x <- as.numeric(x)
-                                             })
+  cleaned_df[, which_vars_to_clean] <-
+    vapply(cleaned_df[ , which_vars_to_clean],
+           FUN.VALUE = numeric(nrow(cleaned_df)),
+           FUN = function(x){
+             x <- ifelse(x == -9999, NA, x)
+             x <- as.numeric(x)
+           })
   return(cleaned_df)
 }
 
 #' Restructure element of ghcnd_search list
 #'
-#' This function restructures a single element of the list object created
-#' by \code{\link{ghcnd_search}}, to add a column giving the variable name
-#' (\code{key}) and change the name of the variable column to \code{value}.
-#' These changes facilitate combining all elements from the list created by
-#' \code{\link{ghcnd_search}}, to create a tidy dataframe of the weather
-#' observations from the station.
+#' This function restructures the output of \code{\link{ghcnd_search}}
+#' to add a column giving the variable name (\code{key}) and change the
+#' name of the variable column to \code{value}. These changes facilitate
+#' combining all elements from the list created by \code{\link{ghcnd_search}},
+#' to create a tidy dataframe of the weather observations from the station.
 #'
 #' @param x A dataframe with daily observations for a single monitor for a
 #'    single weather variable. This dataframe is one of the elements returned
@@ -206,7 +207,7 @@ meteo_tidy_ghcnd <- function(stationid, keep_flags = FALSE, var = "all",
 #' @author Brooke Anderson \email{brooke.anderson@@colostate.edu}
 meteo_tidy_ghcnd_element <- function(x, keep_flags = FALSE){
   var_name <- colnames(x)[2]
-  if(keep_flags){
+  if (keep_flags) {
     flag_locs <- grep("flag", colnames(x))
     colnames(x)[flag_locs] <- paste(colnames(x)[flag_locs], var_name, sep = "_")
     x <- tidyr::gather_(x, "key", "value",

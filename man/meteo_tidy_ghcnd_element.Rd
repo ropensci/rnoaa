@@ -20,12 +20,11 @@ A dataframe reformatted to allow easy aggregation of all weather
    variables for a single monitor.
 }
 \description{
-This function restructures a single element of the list object created
-by \code{\link{ghcnd_search}}, to add a column giving the variable name
-(\code{key}) and change the name of the variable column to \code{value}.
-These changes facilitate combining all elements from the list created by
-\code{\link{ghcnd_search}}, to create a tidy dataframe of the weather
-observations from the station.
+This function restructures the output of \code{\link{ghcnd_search}}
+to add a column giving the variable name (\code{key}) and change the
+name of the variable column to \code{value}. These changes facilitate
+combining all elements from the list created by \code{\link{ghcnd_search}},
+to create a tidy dataframe of the weather observations from the station.
 }
 \author{
 Brooke Anderson \email{brooke.anderson@colostate.edu}
