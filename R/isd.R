@@ -9,30 +9,39 @@
 #' \code{~/.rnoaa/isd}. Required.
 #' @param overwrite (logical) To overwrite the path to store files in or not,
 #' Default: \code{TRUE}
-#' @param cleanup (logical) If \code{TRUE}, remove compressed \code{.gz} file at end of
-#' function execution. Processing data takes up a lot of time, so we cache a cleaned version
-#' of the data. Cleaning up will save you on disk space. Default: \code{TRUE}
+#' @param cleanup (logical) If \code{TRUE}, remove compressed \code{.gz} file
+#' at end of function execution. Processing data takes up a lot of time, so we
+#' cache a cleaned version of the data. Cleaning up will save you on disk
+#' space. Default: \code{TRUE}
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #'
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' @seealso \code{\link{isd_stations}}
 #'
-#' @details This function first looks for whether the data for your specific query has
-#' already been downloaded previously in the directory given by the \code{path}
-#' parameter. If not found, the data is requested form NOAA's FTP server. The first time
-#' a dataset is pulled down we must a) download the data, b) process the data, and c) save
-#' a compressed .rds file to disk. The next time the same data is requested, we only have
-#' to read back in the .rds file, and is quite fast. The benfit of writing to .rds files
-#' is that data is compressed, taking up less space on your disk, and data is read back in
-#' quickly, without changing any data classes in your data, whereas we'd have to jump
-#' through hoops to do that with reading in csv. The processing can take quite a long time
-#' since the data is quite messy and takes a bunch of regex to split apart text strings.
-#' We hope to speed this process up in the future. See examples below for different behavior.
+#' @details  This function saves the full set of weather data for the queried
+#' site locally in the directory specified by the \code{path} argument.
+#'
+#' You can access the path for the cached file via \code{attr(x, "source")}
+#'
+#' @return A tibble (data.frame).
+#'
+#' @details This function first looks for whether the data for your specific
+#' query has already been downloaded previously in the directory given by
+#' the \code{path} parameter. If not found, the data is requested form NOAA's
+#' FTP server. The first time a dataset is pulled down we must a) download the
+#' data, b) process the data, and c) save a compressed .rds file to disk. The
+#' next time the same data is requested, we only have to read back in the
+#' .rds file, and is quite fast. The benfit of writing to .rds files is that
+#' data is compressed, taking up less space on your disk, and data is read
+#' back in quickly, without changing any data classes in your data, whereas
+#' we'd have to jump through hoops to do that with reading in csv. The
+#' processing can take quite a long time since the data is quite messy and
+#' takes a bunch of regex to split apart text strings. We hope to speed
+#' this process up in the future. See examples below for different behavior.
 #'
 #' @examples \dontrun{
 #' # Get station table
-#' stations <- isd_stations()
-#' head(stations)
+#' (stations <- isd_stations())
 #'
 #' ## plot stations
 #' ### remove incomplete cases, those at 0,0
@@ -65,15 +74,14 @@
 #' res3 <- isd(usaf="702700", wban="00489", year=2015)
 #' res4 <- isd(usaf="109711", wban=99999, year=1970)
 #' ## combine data
-#' ### uses rbind.isd (all inputs of which must be of class isd)
-#' res_all <- rbind(res1, res2, res3, res4)
+#' library(dplyr)
+#' res_all <- bind_rows(res1, res2, res3, res4)
 #' # add date time
 #' library("lubridate")
 #' res_all$date_time <- ymd_hm(
 #'   sprintf("%s %s", as.character(res_all$date), res_all$time)
 #' )
 #' ## remove 999's
-#' library("dplyr")
 #' res_all <- res_all %>% filter(temperature < 900)
 #' ## plot
 #' library("ggplot2")
@@ -87,25 +95,9 @@ isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, clean
     isd_GET(bp = path, usaf, wban, year, overwrite, ...)
   }
   message(sprintf("<path>%s", rdspath), "\n")
-  structure(list(data = read_isd(x = rdspath, sections, cleanup)), class = "isd")
-}
-
-#' @export
-#' @rdname isd
-rbind.isd <- function(...) {
-  input <- list(...)
-  if (!all(sapply(input, class) == "isd")) {
-    stop("All inputs must be of class isd", call. = FALSE)
-  }
-  input <- lapply(input, "[[", "data")
-  bind_rows(input)
-}
-
-#' @export
-print.isd <- function(x, ..., n = 10) {
-  cat("<ISD Data>", sep = "\n")
-  cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
-  trunc_mat_(x$data, n = n)
+  df <- read_isd(x = rdspath, sections, cleanup)
+  attr(df, "source") <- rdspath
+  df
 }
 
 isd_GET <- function(bp, usaf, wban, year, overwrite, ...) {
