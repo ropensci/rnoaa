@@ -73,7 +73,6 @@ This function calls \code{\link{ghcnd}}, which will download and save
 }
 \examples{
 \dontrun{
-
 # Search based on variable and/or date
 ghcnd_search("AGE00147704", var = "PRCP")
 ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01")
@@ -84,9 +83,7 @@ ghcnd_search("AGE00147704", date_min = "1920-01-01", date_max = "1925-01-01")
 ghcnd_search("AGE00147704", var = c("PRCP","TMIN"))
 ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
 ghcnd_search("AGE00147704", var = "adfdf")
-
 }
-
 }
 \author{
 Scott Chamberlain \email{myrmecocystus@gmail.com},

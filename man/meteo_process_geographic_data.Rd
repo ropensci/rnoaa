@@ -7,14 +7,14 @@
 meteo_process_geographic_data(station_data, lat, long, units = "deg")
 }
 \arguments{
-\item{station_data}{The output of \code{ghcnd_stations()[[1]]}, which is
+\item{station_data}{The output of \code{ghcnd_stations()}, which is
 a current list of weather stations available through NOAA for the GHCND
 dataset. The format of this is a dataframe
 with one row per weather station. Latitude and longitude for the station
 locations should be in columns with the names "latitude" and "longitude",
-consistent with the output from \code{ghcnd_stations()[[1]]}. To save time, run the
-\code{ghcnd_stations} call and save the output to an object, rather than
-rerunning the default every time (see the examples in
+consistent with the output from \code{ghcnd_stations()}. To save time,
+run the \code{ghcnd_stations} call and save the output to an object,
+rather than rerunning the default every time (see the examples in
 \code{\link{meteo_nearby_stations}}).}
 
 \item{lat}{Latitude of the location. Southern latitudes should be given
@@ -46,7 +46,7 @@ furthest distance to the location and returned as the function output.
 }
 \examples{
 \dontrun{
-station_data <- ghcnd_stations()[[1]]
+station_data <- ghcnd_stations()
 meteo_process_geographic_data(station_data, -33, 151)
 }
 }

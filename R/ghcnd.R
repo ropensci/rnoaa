@@ -7,6 +7,7 @@
 #' it to a tidier format and will also, if requested, filter it to a certain
 #' date range and to certain weather variables.
 #'
+#' @export
 #' @inheritParams ghcnd
 #' @param date_min A character string giving the earliest
 #'    date of the daily weather time series that the user would
@@ -54,7 +55,6 @@
 #' @seealso \code{\link{meteo_pull_monitors}}, \code{\link{meteo_tidy_ghcnd}}
 #'
 #' @examples \dontrun{
-#'
 #' # Search based on variable and/or date
 #' ghcnd_search("AGE00147704", var = "PRCP")
 #' ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01")
@@ -65,10 +65,7 @@
 #' ghcnd_search("AGE00147704", var = c("PRCP","TMIN"))
 #' ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
 #' ghcnd_search("AGE00147704", var = "adfdf")
-#'
 #' }
-#'
-#' @export
 ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all",
                          path = "~/.rnoaa/ghcnd", ...){
 
@@ -189,11 +186,12 @@ fm <- function(n) {
 #' This function returns an object with a dataframe with meta-information about
 #' all available GHCND weather stations.
 #'
+#' @export
 #' @inheritParams ghcnd
 #'
-#' @return This function returns a list with a single element-- a dataframe with
-#'    a weather station on each row with the following columns:
-#'    \itemize{
+#' @return This function returns a tibble (dataframe) with a weather
+#' station on each row with the following columns:
+#' \itemize{
 #'    \item \code{id}: The weather station's ID number. The first two letters
 #'    denote the country (using FIPS country codes).
 #'    \item \code{latitude}: The station's latitude, in decimal degrees.
@@ -213,9 +211,10 @@ fm <- function(n) {
 #'    for that weather element.
 #'    \item \code{last_year}: The last year of data available at that station
 #'    for that weather element.
-#'    }
-#'    If a weather station has data on more than one weather variable, it will
-#'    be represented in multiple rows of this output dataframe.
+#' }
+#'
+#' If a weather station has data on more than one weather variable, it will
+#' be represented in multiple rows of this output dataframe.
 #'
 #' @note Since this function is pulling a large dataset by ftp, it may take
 #' a while to run.
@@ -225,55 +224,55 @@ fm <- function(n) {
 #' For more documentation on the returned dataset, see
 #' \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
 #'
-#' @examples
-#' \dontrun{
+#' @examples \dontrun{
 #' # Get stations, ghcnd-stations and ghcnd-inventory merged
-#' stations <- ghcnd_stations()
-#' }
+#' (stations <- ghcnd_stations())
 #'
-#' @export
+#' library(dplyr)
+#' # filter by state
+#' stations %>% filter(state == "IL")
+#' stations %>% filter(state == "OR")
+#' # those without state values
+#' stations %>% filter(state == "")
+#' # filter by element
+#' stations %>% filter(element == "PRCP")
+#' # filter by id prefix
+#' stations %>% filter(grepl("^AF", id))
+#' stations %>% filter(grepl("^AFM", id))
+#' # filter by station long name
+#' stations %>% filter(name == "CALLATHARRA")
+#' }
 ghcnd_stations <- function(...){
   sta <- get_stations(...)
   inv <- get_inventory(...)
-  structure(list(data = merge(sta, inv[,-c(2,3)], by = "id")), class = "ghcnd_stations")
+  tibble::as_data_frame(merge(sta, inv[, -c(2, 3)], by = "id"))
 }
 
 get_stations <- function(...){
-  res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt", ...)
-  df <- read.fwf(textConnection(utcf8(res)), widths = c(11, 9, 11, 7, 33, 5, 10),
-                 header = FALSE, strip.white = TRUE, comment.char = "", stringsAsFactors = FALSE)
-  nms <- c("id","latitude", "longitude", "elevation", "name", "gsn_flag", "wmo_id")
+  res <- GET_retry(
+    "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt",
+    ...)
+  df <- read.fwf(
+    textConnection(utcf8(res)),
+    widths = c(11, 9, 11, 7, 2, 31, 5, 10),
+    header = FALSE, strip.white = TRUE, comment.char = "",
+    stringsAsFactors = FALSE)
+  nms <- c("id","latitude", "longitude", "elevation",
+           "state", "name", "gsn_flag", "wmo_id")
   stats::setNames(df, nms)
 }
 
 get_inventory <- function(...){
-  res <- GET_retry("ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt", ...)
-  df <- read.fwf(textConnection(utcf8(res)), widths = c(11, 9, 10, 5, 5, 5),
-                 header = FALSE, strip.white = TRUE, comment.char = "", stringsAsFactors = FALSE)
-  nms <- c("id","latitude", "longitude", "element", "first_year", "last_year")
+  res <- GET_retry(
+    "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt", ...)
+  df <- read.fwf(
+    textConnection(utcf8(res)),
+    widths = c(11, 9, 10, 5, 5, 5),
+    header = FALSE, strip.white = TRUE, comment.char = "",
+    stringsAsFactors = FALSE)
+  nms <- c("id","latitude", "longitude",
+           "element", "first_year", "last_year")
   stats::setNames(df, nms)
-}
-
-#' Print out GHCND stations
-#'
-#' This function prints out, in a nice format, the object returned by
-#' \code{\link{ghcnd_stations}}.
-#'
-#' @param x The object returned by a call to \code{\link{ghcnd_stations}}.
-#' @param n Number of rows of station data to print.
-#' @param ... Other parameters to pass to \code{print}.
-#'
-#' @examples
-#' \dontrun{
-#' stations <- ghcnd_stations()
-#' print(stations)
-#' }
-#'
-#' @export
-print.ghcnd_stations <- function(x, ..., n = 10){
-  cat("<GHCND Station Data>", sep = "\n")
-  cat(sprintf("Size: %s X %s\n", NROW(x$data), NCOL(x$data)), sep = "\n")
-  trunc_mat_(x$data, n = n)
 }
 
 #' Split variables in data returned from \code{ghcnd}

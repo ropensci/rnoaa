@@ -22,14 +22,14 @@
 #'    in the \code{lat_lon_df} dataframe.
 #' @param lon_colname A character string giving the name of the longitude column
 #'    in the \code{lat_lon_df} dataframe.
-#' @param station_data The output of \code{ghcnd_stations()[[1]]}, which is
+#' @param station_data The output of \code{ghcnd_stations()}, which is
 #'    a current list of weather stations available through NOAA for the GHCND
 #'    dataset. The format of this is a dataframe
 #'    with one row per weather station. Latitude and longitude for the station
 #'    locations should be in columns with the names "latitude" and "longitude",
-#'    consistent with the output from \code{ghcnd_stations()[[1]]}. To save time, run the
-#'    \code{ghcnd_stations} call and save the output to an object, rather than
-#'    rerunning the default every time (see the examples in
+#'    consistent with the output from \code{ghcnd_stations()}. To save time,
+#'    run the \code{ghcnd_stations} call and save the output to an object,
+#'    rather than rerunning the default every time (see the examples in
 #'    \code{\link{meteo_nearby_stations}}).
 #' @param year_min A numeric value giving the earliest year from which you
 #'    ultimately want weather data (e.g., 2013, if you only are interested in
@@ -43,8 +43,8 @@
 #'    (pull everything available, within the radius if the radius is specified).
 #' @inheritParams ghcnd_search
 #'
-#' @return A list containing dataframes with the sets of unique weather stations within
-#'    the search radius for each location. Site IDs for the weather stations
+#' @return A list containing dataframes with the sets of unique weather stations
+#'    within the search radius for each location. Site IDs for the weather stations
 #'    given in this dataframe can be used in conjunction with other functions in the
 #'    \code{rnoaa} package to pull weather data for the station. The dataframe
 #'    for each location includes:
@@ -79,7 +79,7 @@
 #' @examples
 #' \dontrun{
 #'
-#' station_data <- ghcnd_stations()[[1]] # Takes a while to run
+#' station_data <- ghcnd_stations() # Takes a while to run
 #'
 #' lat_lon_df <- data.frame(id = c("sydney", "brisbane"),
 #'                          latitude = c(-33.8675, -27.4710),
@@ -100,7 +100,7 @@
 #' }
 meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
                                   lon_colname = "longitude",
-                                  station_data = ghcnd_stations()[[1]],
+                                  station_data = ghcnd_stations(),
                                   var = "all", year_min = NULL,
                                   year_max = NULL, radius = NULL,
                                   limit = NULL){
@@ -164,7 +164,7 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
 #'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
 #' @examples \dontrun{
-#' station_data <- ghcnd_stations()[[1]]
+#' station_data <- ghcnd_stations()
 #' meteo_distance(station_data, -33, 151, radius = 10, limit = 10)
 #' meteo_distance(station_data, -33, 151, radius = 10, limit = 3)
 #'
@@ -180,11 +180,11 @@ meteo_distance <- function(station_data, lat, long,
     long = long
   )
 
-  if(!is.null(radius)) {
+  if (!is.null(radius)) {
     data <- data[data$distance < radius, ]
   }
 
-  if(!is.null(limit)) {
+  if (!is.null(limit)) {
     data <- data[1:min(limit, nrow(data)), ]
   }
   return(data)
@@ -211,7 +211,7 @@ meteo_distance <- function(station_data, lat, long,
 #'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
 #' @examples \dontrun{
-#' station_data <- ghcnd_stations()[[1]]
+#' station_data <- ghcnd_stations()
 #' meteo_process_geographic_data(station_data, -33, 151)
 #' }
 meteo_process_geographic_data <- function(station_data,

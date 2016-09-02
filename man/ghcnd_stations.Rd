@@ -10,9 +10,9 @@ ghcnd_stations(...)
 \item{...}{Additional curl options to pass through to \code{\link[httr]{GET}}.}
 }
 \value{
-This function returns a list with a single element-- a dataframe with
-   a weather station on each row with the following columns:
-   \itemize{
+This function returns a tibble (dataframe) with a weather
+station on each row with the following columns:
+\itemize{
    \item \code{id}: The weather station's ID number. The first two letters
    denote the country (using FIPS country codes).
    \item \code{latitude}: The station's latitude, in decimal degrees.
@@ -32,9 +32,10 @@ This function returns a list with a single element-- a dataframe with
    for that weather element.
    \item \code{last_year}: The last year of data available at that station
    for that weather element.
-   }
-   If a weather station has data on more than one weather variable, it will
-   be represented in multiple rows of this output dataframe.
+}
+
+If a weather station has data on more than one weather variable, it will
+be represented in multiple rows of this output dataframe.
 }
 \description{
 This function returns an object with a dataframe with meta-information about
@@ -47,9 +48,22 @@ a while to run.
 \examples{
 \dontrun{
 # Get stations, ghcnd-stations and ghcnd-inventory merged
-stations <- ghcnd_stations()
-}
+(stations <- ghcnd_stations())
 
+library(dplyr)
+# filter by state
+stations \%>\% filter(state == "IL")
+stations \%>\% filter(state == "OR")
+# those without state values
+stations \%>\% filter(state == "")
+# filter by element
+stations \%>\% filter(element == "PRCP")
+# filter by id prefix
+stations \%>\% filter(grepl("^AF", id))
+stations \%>\% filter(grepl("^AFM", id))
+# filter by station long name
+stations \%>\% filter(name == "CALLATHARRA")
+}
 }
 \references{
 For more documentation on the returned dataset, see

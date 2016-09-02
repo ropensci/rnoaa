@@ -5,9 +5,8 @@
 \title{Find weather monitors near locations}
 \usage{
 meteo_nearby_stations(lat_lon_df, lat_colname = "latitude",
-  lon_colname = "longitude", station_data = ghcnd_stations()[[1]],
-  var = "all", year_min = NULL, year_max = NULL, radius = NULL,
-  limit = NULL)
+  lon_colname = "longitude", station_data = ghcnd_stations(), var = "all",
+  year_min = NULL, year_max = NULL, radius = NULL, limit = NULL)
 }
 \arguments{
 \item{lat_lon_df}{A dataframe that contains the latitude, longitude, and
@@ -22,14 +21,14 @@ in the \code{lat_lon_df} dataframe.}
 \item{lon_colname}{A character string giving the name of the longitude column
 in the \code{lat_lon_df} dataframe.}
 
-\item{station_data}{The output of \code{ghcnd_stations()[[1]]}, which is
+\item{station_data}{The output of \code{ghcnd_stations()}, which is
 a current list of weather stations available through NOAA for the GHCND
 dataset. The format of this is a dataframe
 with one row per weather station. Latitude and longitude for the station
 locations should be in columns with the names "latitude" and "longitude",
-consistent with the output from \code{ghcnd_stations()[[1]]}. To save time, run the
-\code{ghcnd_stations} call and save the output to an object, rather than
-rerunning the default every time (see the examples in
+consistent with the output from \code{ghcnd_stations()}. To save time,
+run the \code{ghcnd_stations} call and save the output to an object,
+rather than rerunning the default every time (see the examples in
 \code{\link{meteo_nearby_stations}}).}
 
 \item{var}{A character vector specifying either \code{"all"} (pull all
@@ -63,8 +62,8 @@ each location. The [x] closest monitors will be kept. Default is NULL
 (pull everything available, within the radius if the radius is specified).}
 }
 \value{
-A list containing dataframes with the sets of unique weather stations within
-   the search radius for each location. Site IDs for the weather stations
+A list containing dataframes with the sets of unique weather stations
+   within the search radius for each location. Site IDs for the weather stations
    given in this dataframe can be used in conjunction with other functions in the
    \code{rnoaa} package to pull weather data for the station. The dataframe
    for each location includes:
@@ -105,7 +104,7 @@ By default, this function will pull the full station list from NOAA
 \examples{
 \dontrun{
 
-station_data <- ghcnd_stations()[[1]] # Takes a while to run
+station_data <- ghcnd_stations() # Takes a while to run
 
 lat_lon_df <- data.frame(id = c("sydney", "brisbane"),
                          latitude = c(-33.8675, -27.4710),
