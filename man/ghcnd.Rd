@@ -52,23 +52,21 @@ ghcnd(stations$data$id[80000])
 ghcnd(stations$data$id[80300])
 
 library("dplyr")
-ghcnd(stations$data$id[80300])$data \%>\% select(id, element) \%>\% slice(1:3)
+ghcnd(stations$data$id[80300]) \%>\% select(id, element) \%>\% slice(1:3)
 
 # manipulate data
 ## using built in fxns
-dat <- ghcnd(stationid="AGE00147704")
+dat <- ghcnd(stationid = "AGE00147704")
 (alldat <- ghcnd_splitvars(dat))
 library("ggplot2")
 ggplot(subset(alldat$tmax, tmax >= 0), aes(date, tmax)) + geom_point()
 
 ## using dplyr
 library("dplyr")
-dat <- ghcnd(stationid="AGE00147704")
-dat$data \%>\%
+dat <- ghcnd(stationid = "AGE00147704")
+dat \%>\%
  filter(element == "PRCP", year == 1909)
-
 }
-
 }
 \author{
 Scott Chamberlain \email{myrmecocystus@gmail.com},

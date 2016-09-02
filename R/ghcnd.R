@@ -96,6 +96,7 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all
 #' requires the site identification number for that site and will pull the
 #' entire weather dataset for the site.
 #'
+#' @export
 #' @param stationid A character string giving the identification of the weather
 #'    station for which the user would like to pull data. To get a full and
 #'    current list of stations, the user can use the \code{\link{ghcnd_stations}}
@@ -142,39 +143,31 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL, var = "all
 #' ghcnd(stations$data$id[80300])
 #'
 #' library("dplyr")
-#' ghcnd(stations$data$id[80300])$data %>% select(id, element) %>% slice(1:3)
+#' ghcnd(stations$data$id[80300]) %>% select(id, element) %>% slice(1:3)
 #'
 #' # manipulate data
 #' ## using built in fxns
-#' dat <- ghcnd(stationid="AGE00147704")
+#' dat <- ghcnd(stationid = "AGE00147704")
 #' (alldat <- ghcnd_splitvars(dat))
 #' library("ggplot2")
 #' ggplot(subset(alldat$tmax, tmax >= 0), aes(date, tmax)) + geom_point()
 #'
 #' ## using dplyr
 #' library("dplyr")
-#' dat <- ghcnd(stationid="AGE00147704")
-#' dat$data %>%
+#' dat <- ghcnd(stationid = "AGE00147704")
+#' dat %>%
 #'  filter(element == "PRCP", year == 1909)
-#'
 #' }
-#'
-#' @export
 ghcnd <- function(stationid, path = "~/.rnoaa/ghcnd", ...){
   csvpath <- ghcnd_local(stationid, path)
   if (!is_ghcnd(x = csvpath)) {
-    structure(list(data = ghcnd_GET(path, stationid, ...)), class = "ghcnd", source = csvpath)
+    res <- ghcnd_GET(path, stationid, ...)
   } else {
-    structure(list(data = read.csv(csvpath, stringsAsFactors = FALSE)), class = "ghcnd", source = csvpath)
+    res <- read.csv(csvpath, stringsAsFactors = FALSE)
   }
-}
-
-#' @export
-print.ghcnd <- function(x, ..., n = 10){
-  cat("<GHCND Data>", sep = "\n")
-  cat(sprintf("Size: %s X %s", NROW(x$data), NCOL(x$data)), sep = "\n")
-  cat(sprintf("Source: %s\n", attr(x, "source")), sep = "\n")
-  trunc_mat_(x$data, n = n)
+  res <- tibble::as_data_frame(res)
+  attr(res, 'source') <- csvpath
+  res
 }
 
 fm <- function(n) {
@@ -288,10 +281,9 @@ get_inventory <- function(...){
 #'
 #' @export
 ghcnd_splitvars <- function(x){
-  tmp <- x$data
-  tmp <- tmp[!is.na(tmp$id), ]
-  out <- lapply(as.character(unique(tmp$element)), function(y){
-    ydat <- tmp[ tmp$element == y, ]
+  x <- x[!is.na(x$id), ]
+  out <- lapply(as.character(unique(x$element)), function(y){
+    ydat <- x[ x$element == y, ]
 
     dd <- ydat %>%
       dplyr::select(-dplyr::contains("FLAG")) %>%
@@ -327,7 +319,7 @@ ghcnd_splitvars <- function(x){
 
     dplyr::tbl_df(cbind(dd, mflag, qflag, sflag))
   })
-  stats::setNames(out, tolower(unique(tmp$element)))
+  stats::setNames(out, tolower(unique(x$element)))
 }
 
 strex <- function(x) str_extract_(x, "[0-9]+")
