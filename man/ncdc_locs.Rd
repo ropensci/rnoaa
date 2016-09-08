@@ -32,13 +32,9 @@ datacoverage fields (optional)}
 
 \item{offset}{Defaults to 0, used to offset the resultlist (optional)}
 
-\item{token}{This must be a valid token token supplied to you by NCDC's Climate
-Data Online access token generator. (required) Get an API key (=token) at
-http://www.ncdc.noaa.gov/cdo-web/token. You can pass your token in as
-an argument or store it in your .Rprofile file with an entry like
-\itemize{
-  \item options("noaakey" = "your-noaa-token")
-}}
+\item{token}{This must be a valid token token supplied to you by NCDC's
+Climate Data Online access token generator. (required) See
+\strong{Authentication} section below for more details.}
 
 \item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
 \code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
@@ -48,8 +44,24 @@ an argument or store it in your .Rprofile file with an entry like
 A list containing metadata and the data, or a single data.frame.
 }
 \description{
-From the NOAA NCDC API docs: Locations can be a specific latitude/longitude point
-such as a station, or a label representing a bounding area such as a city.
+From the NOAA NCDC API docs: Locations can be a specific latitude/longitude
+point such as a station, or a label representing a bounding area such as
+a city.
+}
+\section{Authentication}{
+
+Get an API key (aka, token) at \url{http://www.ncdc.noaa.gov/cdo-web/token}.
+You can pass your token in as an argument or store it one of two places:
+
+\itemize{
+  \item your .Rprofile file with an entry like
+  \code{options(noaakey = "your-noaa-token")}
+  \item your .Renviron file with an entry like
+  \code{NOAA_KEY=your-noaa-token}
+}
+
+See \code{\link{Startup}} for information on how to create/find your
+.Rrofile and .Renviron files
 }
 \examples{
 \dontrun{
@@ -75,5 +87,12 @@ ncdc_locs(locationcategoryid=c('ST', 'ZIP'))
 # Fetch list of city locations in descending order
 ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 }
+}
+\seealso{
+Other ncdc: \code{\link{ncdc_combine}},
+  \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},
+  \code{\link{ncdc_datatypes}},
+  \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_plot}},
+  \code{\link{ncdc_stations}}, \code{\link{ncdc}}
 }
 

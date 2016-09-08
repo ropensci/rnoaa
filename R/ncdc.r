@@ -3,6 +3,7 @@
 #' @export
 #' @template rnoaa
 #' @template noaa
+#' @template token
 #' @param stationid Accepts a valid station id or a vector or list of station ids
 #' @param includemetadata Used to improve response time by preventing the calculation of
 #' result metadata. Default: TRUE. This does not affect the return object, in that the named part
@@ -42,6 +43,8 @@
 #' @return An S3 list of length two, a slot of metadata (meta), and a slot for data (data).
 #' The meta slot is a list of metadata elements, and the data slot is a data.frame,
 #' possibly of length zero if no data is found.
+#'
+#' @family ncdc
 #'
 #' @examples \dontrun{
 #' # GHCN-Daily (or GHCND) data, for a specific station

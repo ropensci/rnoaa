@@ -1,13 +1,16 @@
 #' Get metadata about NOAA NCDC locations.
 #'
-#' From the NOAA NCDC API docs: Locations can be a specific latitude/longitude point
-#' such as a station, or a label representing a bounding area such as a city.
+#' From the NOAA NCDC API docs: Locations can be a specific latitude/longitude
+#' point such as a station, or a label representing a bounding area such as
+#' a city.
 #'
 #' @export
 #'
 #' @template location
+#' @template token
 #' @param locationid A valid location id or a vector or list of location ids.
 #' @return A list containing metadata and the data, or a single data.frame.
+#' @family ncdc
 #' @examples \dontrun{
 #' # All locations, first 25 results
 #' ncdc_locs()

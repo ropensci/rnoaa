@@ -8,6 +8,7 @@
 #' @param dateformat Date format using standard POSIX specification for labels on
 #' x-axis. See \code{\link{date_format}}
 #' @return ggplot2 plot
+#' @family ncdc
 #' @details
 #' This function accepts directly output from the \code{\link[rnoaa]{ncdc}} function,
 #' not other functions.

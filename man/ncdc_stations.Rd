@@ -14,8 +14,8 @@ ncdc_stations(stationid = NULL, datasetid = NULL, datatypeid = NULL,
 \item{stationid}{A single valid station id, with datasetid namespace,
 e.g., GHCND:USW00014895}
 
-\item{datasetid}{(optional) Accepts a valid dataset id or a vector or list of them. Data
-returned will be from the dataset specified.}
+\item{datasetid}{(optional) Accepts a valid dataset id or a vector or
+list of them. Data returned will be from the dataset specified.}
 
 \item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.
 (optional)}
@@ -49,13 +49,9 @@ search. Give four values that defines a bounding box, lat and long for the
 southwest corner, then lat and long for the northeast corner. For example: 
 \code{c(minlat, minlong, maxlat, maxlong)}.}
 
-\item{token}{This must be a valid token token supplied to you by NCDC's Climate
-Data Online access token generator. (required) Get an API key (=token) at
-http://www.ncdc.noaa.gov/cdo-web/token. You can pass your token in as
-an argument or store it in your .Rprofile file with an entry like
-\itemize{
-  \item options("noaakey" = "your-noaa-token")
-}}
+\item{token}{This must be a valid token token supplied to you by NCDC's
+Climate Data Online access token generator. (required) See
+\strong{Authentication} section below for more details.}
 
 \item{dataset}{THIS IS A DEPRECATED ARGUMENT. See datasetid.}
 
@@ -75,9 +71,25 @@ of the NOAA API.}
 A list of metadata.
 }
 \description{
-From the NOAA NCDC API docs: Stations are where the data comes from (for most datasets)
-and can be considered the smallest granual of location data. If you know what
-station you want, you can quickly get all manner of data from it
+From the NOAA NCDC API docs: Stations are where the data comes from
+(for most datasets) and can be considered the smallest granual of location
+data. If you know what station you want, you can quickly get all manner of
+data from it
+}
+\section{Authentication}{
+
+Get an API key (aka, token) at \url{http://www.ncdc.noaa.gov/cdo-web/token}.
+You can pass your token in as an argument or store it one of two places:
+
+\itemize{
+  \item your .Rprofile file with an entry like
+  \code{options(noaakey = "your-noaa-token")}
+  \item your .Renviron file with an entry like
+  \code{NOAA_KEY=your-noaa-token}
+}
+
+See \code{\link{Startup}} for information on how to create/find your
+.Rrofile and .Renviron files
 }
 \examples{
 \dontrun{
@@ -139,5 +151,12 @@ ncdc_stations(datasetid='PRECIP_HLY', startdate='19900101', enddate='19901231')
 ## Search using a bounding box, w/ lat/long of the SW corner, then of NE corner
 ncdc_stations(extent=c(47.5204,-122.2047,47.6139,-122.1065))
 }
+}
+\seealso{
+Other ncdc: \code{\link{ncdc_combine}},
+  \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},
+  \code{\link{ncdc_datatypes}},
+  \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
+  \code{\link{ncdc_plot}}, \code{\link{ncdc}}
 }
 

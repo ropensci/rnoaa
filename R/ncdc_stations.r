@@ -1,19 +1,22 @@
 #' Get metadata about NOAA NCDC stations.
 #'
-#' From the NOAA NCDC API docs: Stations are where the data comes from (for most datasets)
-#' and can be considered the smallest granual of location data. If you know what
-#' station you want, you can quickly get all manner of data from it
+#' From the NOAA NCDC API docs: Stations are where the data comes from
+#' (for most datasets) and can be considered the smallest granual of location
+#' data. If you know what station you want, you can quickly get all manner of
+#' data from it
 #'
 #' @export
 #'
 #' @template rnoaa
 #' @template rnoaa2
 #' @template stations
-#' @param datasetid (optional) Accepts a valid dataset id or a vector or list of them. Data
-#'    returned will be from the dataset specified.
+#' @template token
+#' @param datasetid (optional) Accepts a valid dataset id or a vector or
+#' list of them. Data returned will be from the dataset specified.
 #' @param stationid A single valid station id, with datasetid namespace,
 #' e.g., GHCND:USW00014895
 #' @return A list of metadata.
+#' @family ncdc
 #' @examples \dontrun{
 #' # Get metadata on all stations
 #' ncdc_stations()

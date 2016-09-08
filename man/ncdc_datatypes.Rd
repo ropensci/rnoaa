@@ -10,17 +10,18 @@ ncdc_datatypes(datasetid = NULL, datatypeid = NULL, datacategoryid = NULL,
   token = NULL, dataset = NULL, page = NULL, filter = NULL, ...)
 }
 \arguments{
-\item{datasetid}{(optional) Accepts a valid dataset id or a vector or list of them. Data
-returned will be from the dataset specified.}
+\item{datasetid}{(optional) Accepts a valid dataset id or a vector or list
+of them. Data returned will be from the dataset specified.}
 
 \item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.
 (optional)}
 
-\item{datacategoryid}{Optional. Accepts a valid data category id or a vector or list
-of data category ids (although it is rare to have a data type with more than
-one data category)}
+\item{datacategoryid}{Optional. Accepts a valid data category id or a vector
+or list of data category ids (although it is rare to have a data type with
+more than one data category)}
 
-\item{stationid}{Accepts a valid station id or a vector or list of station ids}
+\item{stationid}{Accepts a valid station id or a vector or list of
+station ids}
 
 \item{locationid}{Accepts a valid location id or a vector or list of location ids
 (optional)}
@@ -43,13 +44,9 @@ datacoverage fields (optional)}
 
 \item{offset}{Defaults to 0, used to offset the resultlist (optional)}
 
-\item{token}{This must be a valid token token supplied to you by NCDC's Climate
-Data Online access token generator. (required) Get an API key (=token) at
-http://www.ncdc.noaa.gov/cdo-web/token. You can pass your token in as
-an argument or store it in your .Rprofile file with an entry like
-\itemize{
-  \item options("noaakey" = "your-noaa-token")
-}}
+\item{token}{This must be a valid token token supplied to you by NCDC's
+Climate Data Online access token generator. (required) See
+\strong{Authentication} section below for more details.}
 
 \item{dataset}{THIS IS A DEPRECATED ARGUMENT. See datasetid.}
 
@@ -62,12 +59,28 @@ of the NOAA API.}
 \item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
 \value{
-A \code{data.frame} for all datasets, or a list of length two, each with
-   a data.frame.
+A \code{data.frame} for all datasets, or a list of length two,
+each with a data.frame
 }
 \description{
-From the NOAA API docs: Describes the type of data, acts as a label. If it's 64
-degrees out right now, then the data type is Air Temperature and the data is 64.
+From the NOAA API docs: Describes the type of data, acts as a label.
+For example: If it's 64 degrees out right now, then the data type is
+Air Temperature and the data is 64.
+}
+\section{Authentication}{
+
+Get an API key (aka, token) at \url{http://www.ncdc.noaa.gov/cdo-web/token}.
+You can pass your token in as an argument or store it one of two places:
+
+\itemize{
+  \item your .Rprofile file with an entry like
+  \code{options(noaakey = "your-noaa-token")}
+  \item your .Renviron file with an entry like
+  \code{NOAA_KEY=your-noaa-token}
+}
+
+See \code{\link{Startup}} for information on how to create/find your
+.Rrofile and .Renviron files
 }
 \examples{
 \dontrun{
@@ -94,5 +107,12 @@ ncdc_datatypes(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
 ncdc_datatypes(locationid='CITY:AG000001')
 ncdc_datatypes(locationid=c('CITY:AG000001','CITY:AG000004'))
 }
+}
+\seealso{
+Other ncdc: \code{\link{ncdc_combine}},
+  \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},
+  \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
+  \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}},
+  \code{\link{ncdc}}
 }
 

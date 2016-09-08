@@ -4,6 +4,7 @@
 #'
 #' @param ... Objects from another ncdc_* function.
 #' @return A data.frame
+#' @family ncdc
 #' @examples \dontrun{
 #' # data
 #' out1 <- ncdc(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01',

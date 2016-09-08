@@ -51,4 +51,11 @@ ncdc_plot(df)
 ncdc_plot(out1, out2, breaks="45 days")
 }
 }
+\seealso{
+Other ncdc: \code{\link{ncdc_combine}},
+  \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},
+  \code{\link{ncdc_datatypes}},
+  \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
+  \code{\link{ncdc_stations}}, \code{\link{ncdc}}
+}
 

@@ -4,11 +4,13 @@
 #'
 #' @export
 #' @template datacats
+#' @template token
 #' @template all
 #' @return A \code{data.frame} for all datasets, or a list of length two, each
 #'    with a data.frame.
 #' @details Note that calls with both startdate and enddate don't seem to work, though specifying
 #'    one or the other mostly works.
+#' @family ncdc
 #' @examples \dontrun{
 #' ## Limit to 10 results
 #' ncdc_datacats(limit=10)

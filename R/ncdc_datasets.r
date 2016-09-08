@@ -8,10 +8,14 @@
 #' @template rnoaa
 #' @template rnoaa2
 #' @template datasets
-#' @param datasetid (optional) Accepts a single valid dataset id. Data returned will be
-#'    from the dataset specified.
-#' @param stationid Accepts a valid station id or a vector or list of station ids
-#' @return A data.frame for all datasets, or a list of length two, each with a data.frame.
+#' @template token
+#' @param datasetid (optional) Accepts a single valid dataset id. Data returned
+#' will be from the dataset specified.
+#' @param stationid Accepts a valid station id or a vector or list of station
+#' ids
+#' @return A data.frame for all datasets, or a list of length two, each with
+#' a data.frame.
+#' @family ncdc
 #' @examples \dontrun{
 #' # Get a table of all datasets
 #' ncdc_datasets()

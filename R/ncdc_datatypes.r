@@ -1,20 +1,24 @@
 #' Get possible data types for a particular dataset
 #'
-#' From the NOAA API docs: Describes the type of data, acts as a label. If it's 64
-#' degrees out right now, then the data type is Air Temperature and the data is 64.
+#' From the NOAA API docs: Describes the type of data, acts as a label.
+#' For example: If it's 64 degrees out right now, then the data type is
+#' Air Temperature and the data is 64.
 #'
 #' @export
 #' @template rnoaa
 #' @template rnoaa2
 #' @template datatypes
-#' @param datasetid (optional) Accepts a valid dataset id or a vector or list of them. Data
-#'    returned will be from the dataset specified.
-#' @param stationid Accepts a valid station id or a vector or list of station ids
-#' @param datacategoryid Optional. Accepts a valid data category id or a vector or list
-#'    of data category ids (although it is rare to have a data type with more than
-#'    one data category)
-#' @return A \code{data.frame} for all datasets, or a list of length two, each with
-#'    a data.frame.
+#' @template token
+#' @param datasetid (optional) Accepts a valid dataset id or a vector or list
+#' of them. Data returned will be from the dataset specified.
+#' @param stationid Accepts a valid station id or a vector or list of
+#' station ids
+#' @param datacategoryid Optional. Accepts a valid data category id or a vector
+#' or list of data category ids (although it is rare to have a data type with
+#' more than one data category)
+#' @return A \code{data.frame} for all datasets, or a list of length two,
+#' each with a data.frame
+#' @family ncdc
 #' @examples \dontrun{
 #' # Fetch available data types
 #' ncdc_datatypes()
