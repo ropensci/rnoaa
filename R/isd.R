@@ -158,14 +158,14 @@ cache_rds <- function(x, y) {
 
 trans_vars <- function(w) {
   # fix scaled variables
-  w$latitude <- trans_var(trycol(w$latitude), 1000)
-  w$longitude <- trans_var(trycol(w$longitude), 1000)
-  w$elevation <- trans_var(trycol(w$elevation), 10)
-  w$wind_speed <- trans_var(trycol(w$wind_speed), 10)
-  w$temperature <- trans_var(trycol(w$temperature), 10)
-  w$temperature_dewpoint <- trans_var(trycol(w$temperature_dewpoint), 10)
-  w$air_pressure <- trans_var(trycol(w$air_pressure), 10)
-  w$precipitation <- trans_var(trycol(w$precipitation), 10)
+  w$latitude <- trans_var(trycol(suppressWarnings(w$latitude)), 1000)
+  w$longitude <- trans_var(trycol(suppressWarnings(w$longitude)), 1000)
+  w$elevation <- trans_var(trycol(suppressWarnings(w$elevation)), 10)
+  w$wind_speed <- trans_var(trycol(suppressWarnings(w$wind_speed)), 10)
+  w$temperature <- trans_var(trycol(suppressWarnings(w$temperature)), 10)
+  w$temperature_dewpoint <- trans_var(trycol(suppressWarnings(w$temperature_dewpoint)), 10)
+  w$air_pressure <- trans_var(trycol(suppressWarnings(w$air_pressure)), 10)
+  w$precipitation <- trans_var(trycol(suppressWarnings(w$precipitation)), 10)
 
   # as date
   w$date <- as.Date(w$date, "%Y%m%d")
