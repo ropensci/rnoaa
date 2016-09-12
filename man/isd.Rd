@@ -33,10 +33,9 @@ A tibble (data.frame).
 Get NOAA ISD/ISH data from NOAA FTP server.
 }
 \details{
-This function saves the full set of weather data for the queried
-site locally in the directory specified by the \code{path} argument.
-
-You can access the path for the cached file via \code{attr(x, "source")}
+\code{isd} saves the full set of weather data for the queried
+site locally in the directory specified by the \code{path} argument. You
+can access the path for the cached file via \code{attr(x, "source")}
 
 This function first looks for whether the data for your specific
 query has already been downloaded previously in the directory given by
@@ -108,6 +107,8 @@ ggplot(res_all, aes(date_time, temperature)) +
 ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 }
 \seealso{
-\code{\link{isd_stations}}
+Other isd: \code{\link{isd_read}},
+  \code{\link{isd_stations_search}},
+  \code{\link{isd_stations}}
 }
 

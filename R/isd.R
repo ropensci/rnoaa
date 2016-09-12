@@ -16,12 +16,11 @@
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #'
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
-#' @seealso \code{\link{isd_stations}}
+#' @family isd
 #'
-#' @details  This function saves the full set of weather data for the queried
-#' site locally in the directory specified by the \code{path} argument.
-#'
-#' You can access the path for the cached file via \code{attr(x, "source")}
+#' @details \code{isd} saves the full set of weather data for the queried
+#' site locally in the directory specified by the \code{path} argument. You
+#' can access the path for the cached file via \code{attr(x, "source")}
 #'
 #' @return A tibble (data.frame).
 #'

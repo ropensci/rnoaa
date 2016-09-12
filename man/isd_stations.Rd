@@ -55,6 +55,7 @@ leaflet(data = df) \%>\%
 ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 }
 \seealso{
-\code{\link{isd}}, \code{\link{isd_stations_search}}
+Other isd: \code{\link{isd_read}},
+  \code{\link{isd_stations_search}}, \code{\link{isd}}
 }
 

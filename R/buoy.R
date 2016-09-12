@@ -7,12 +7,17 @@
 #' @param buoyid Buoy ID, can be numeric/integer/character. Required
 #' @param datatype (character) Data type, one of 'c', 'cc', 'p', 'o'. Optional
 #' @param year (integer) Year of data collection. Optional
+#' @param refresh (logical) Whether to use cached data (\code{FALSE}) or get
+#' new data (\code{FALSE}). Default: \code{FALSE}
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}. Optional
 #'
 #' @details Functions:
 #' \itemize{
-#'  \item buoys Get available buoys given a dataset name
-#'  \item buoy Get data given some combination of dataset name, buoy ID,
+#'  \item buoy_stations - Get buoy stations. A cached version of the dataset
+#'  is available in the package. Beware, takes a long time to run if you
+#'  do \code{refresh = TRUE}
+#'  \item buoys - Get available buoys given a dataset name
+#'  \item buoy - Get data given some combination of dataset name, buoy ID,
 #'  year, and datatype
 #' }
 #'
@@ -31,6 +36,13 @@
 #' }
 #' @references \url{http://www.ndbc.noaa.gov/}, \url{http://dods.ndbc.noaa.gov/}
 #' @examples \dontrun{
+#' # Get buoy station information
+#' x <- buoy_stations()
+#' library("leaflet")
+#' leaflet(data = na.omit(x)) %>%
+#'   leaflet::addTiles() %>%
+#'   leaflet::addCircles(~lon, ~lat, opacity = 0.5)
+#'
 #' # Get available buoys
 #' buoys(dataset = 'cwind')
 #'
@@ -57,7 +69,7 @@
 #' buoy(dataset = "stdmet", buoyid = "wplf1")
 #' buoy(dataset = "dart", buoyid = "dartu")
 #' }
-buoy <- function(dataset, buoyid, year=NULL, datatype=NULL, ...) {
+buoy <- function(dataset, buoyid, year = NULL, datatype = NULL, ...) {
   check4pkg("ncdf4")
   availbuoys <- buoys(dataset, ...)
   buoyid <- tolower(buoyid)
@@ -174,4 +186,55 @@ print.buoy <- function(x, ..., n = 10) {
 convert_time <- function(n = NULL, isoTime = NULL) {
   format(as.POSIXct(noaa_compact(list(n, isoTime))[[1]], origin = "1970-01-01T00:00:00Z", tz = "UTC"),
          format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
+}
+
+#' @export
+#' @rdname buoy
+buoy_stations <- function(refresh = FALSE, ...) {
+  if (refresh) {
+    # get station urls
+    res <- GET('http://www.ndbc.noaa.gov/to_station.shtml', ...)
+    html <- read_html(utcf8(res))
+    sta_urls <- file.path(
+      'http://www.ndbc.noaa.gov',
+      xml_attr(
+        xml_find_all(
+          html,
+          "//a[contains(@href,'station_page.php?station')]"),
+        "href"
+      )
+    )
+    # get individual station metadata
+    bind_rows(lapply(sta_urls, function(w) {
+      out <- GET(w)
+      html <- read_html(utcf8(out))
+      dc <- sapply(xml_find_all(html, "//meta[@name]"), function(z) {
+        as.list(setNames(xml_attr(z, "content"), xml_attr(z, "name")))
+      })
+      as_data_frame(c(
+        station = str_extract_(w, "[0-9]+$"),
+        lat = {
+          val <- str_extract_(dc$DC.description, "[0-9]+\\.[0-9]+[NS]")
+          num <- as.numeric(str_extract_(val, "[0-9]+\\.[0-9]+"))
+          if (length(num) == 0) {
+            NA
+          } else {
+            if (grepl("S", val)) num * -1 else num
+          }
+        },
+        lon = {
+          val <- str_extract_(dc$DC.description, "[0-9]+\\.[0-9]+[EW]")
+          num <- as.numeric(str_extract_(val, "[0-9]+\\.[0-9]+"))
+          if (length(num) == 0) {
+            NA
+          } else {
+            if (grepl("W", val)) num * -1 else num
+          }
+        },
+        dc
+      ))
+    }))
+  } else {
+    readRDS(system.file("extdata", "buoy_station_data.rds", package = "rnoaa"))
+  }
 }

@@ -36,8 +36,7 @@
 #' for stations, while when bbox is input, we simply use
 #' \code{\link[dplyr]{filter}}
 #'
-#' @seealso \code{\link{isd}}, \code{\link{isd_stations}},
-#' \code{\link{meteo_distance}}
+#' @family isd
 #'
 #' @examples \dontrun{
 #' ## lat, long, radius

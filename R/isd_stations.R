@@ -6,7 +6,7 @@
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #'
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
-#' @seealso \code{\link{isd}}, \code{\link{isd_stations_search}}
+#' @family isd
 #' @details The data table is cached, but you can force download of data from NOAA
 #' by setting \code{refresh=TRUE}
 #' @return a tibble (data.frame) with the columns:

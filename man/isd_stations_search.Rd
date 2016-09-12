@@ -74,7 +74,7 @@ isd_stations_search(bbox = bbox)
 ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 }
 \seealso{
-\code{\link{isd}}, \code{\link{isd_stations}},
-\code{\link{meteo_distance}}
+Other isd: \code{\link{isd_read}},
+  \code{\link{isd_stations}}, \code{\link{isd}}
 }
 
