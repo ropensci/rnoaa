@@ -51,6 +51,13 @@ processing can take quite a long time since the data is quite messy and
 takes a bunch of regex to split apart text strings. We hope to speed
 this process up in the future. See examples below for different behavior.
 }
+\section{Errors}{
+
+Note that when you get an error similar to \code{Error: download failed for
+ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz}, the
+file does not exist on NOAA's ftp servers. If your internet is down,
+you'll get a different error.
+}
 \examples{
 \dontrun{
 # Get station table
