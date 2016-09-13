@@ -89,7 +89,7 @@
 #'   facet_wrap(~usaf_station, scales = "free_x")
 #' }
 isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, cleanup = TRUE, ...) {
-  rdspath <- isd_local(usaf, wban, year, path)
+  rdspath <- isd_local(usaf, wban, year, path, ".rds")
   if (!is_isd(x = rdspath)) {
     isd_GET(bp = path, usaf, wban, year, overwrite, ...)
   }
@@ -101,7 +101,7 @@ isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, clean
 
 isd_GET <- function(bp, usaf, wban, year, overwrite, ...) {
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
-  fp <- isd_local(usaf, wban, year, bp)
+  fp <- isd_local(usaf, wban, year, bp, ".gz")
   tryget <- tryCatch(suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite), ...)),
            error = function(e) e)
   if (inherits(tryget, "error")) {
@@ -116,8 +116,8 @@ isd_remote <- function(usaf, wban, year) {
   file.path(isdbase(), year, sprintf("%s-%s-%s%s", usaf, wban, year, ".gz"))
 }
 
-isd_local <- function(usaf, wban, year, path) {
-  file.path(path, sprintf("%s-%s-%s%s", usaf, wban, year, ".gz"))
+isd_local <- function(usaf, wban, year, path, ext) {
+  file.path(path, sprintf("%s-%s-%s%s", usaf, wban, year, ext))
 }
 
 is_isd <- function(x) {
@@ -127,17 +127,18 @@ is_isd <- function(x) {
 isdbase <- function() 'ftp://ftp.ncdc.noaa.gov/pub/data/noaa'
 
 read_isd <- function(x, sections, cleanup) {
-  path_rds <- sub("gz", "rds", x)
+  #path_rds <- sub("gz", "rds", x)
+  path_rds <- x
   if (file.exists(path_rds)) {
     df <- readRDS(path_rds)
   } else {
-    lns <- readLines(x)
+    lns <- readLines(sub("rds", "gz", x), encoding = "latin1")
     linesproc <- lapply(lns, each_line, sections = sections)
     df <- bind_rows(linesproc)
     df <- trans_vars(df)
     cache_rds(path_rds, df)
     if (cleanup) {
-      unlink(x)
+      unlink(sub("rds", "gz", x))
     }
   }
   return(df)
