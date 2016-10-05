@@ -13,6 +13,7 @@ before_script:
 
 install_github:
  - ropensci/gistr
+ - dkahle/ggmap
 
 after_failure:
   - ./travis-tool.sh dump_logs

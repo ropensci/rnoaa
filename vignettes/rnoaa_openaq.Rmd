@@ -18,20 +18,17 @@ First, we need to know how many measures are available for Delhi for March 2016.
 ```{r, message = FALSE, warning = FALSE, eval = FALSE, echo = TRUE}
 library("ropenaq")
 
-countMeasures <- aq_measurements(city = "Delhi",
-                                     parameter = "pm25",
-                                     date_from = "2016-03-01",
-                                 date_to = "2016-03-31",
-                                     limit = 1)$meta$found
+res <- aq_measurements(
+  city = "Delhi", parameter = "pm25",
+  date_from = "2016-03-01", date_to = "2016-03-31", limit = 1)
+countMeasures <- attr(res, "meta")$found
 measurementsDelhi <- NULL
 for (page in 1:ceiling(countMeasures/1000)){
-  measurementsDelhi <- rbind(measurementsDelhi,
-                             aq_measurements(city = "Delhi",
-                                     parameter = "pm25",
-                                     date_from = "2016-03-01",
-                                 date_to = "2016-03-31",
-                                     limit = 1000, 
-                                     page = page)$results)
+  measurementsDelhi <- rbind(
+    measurementsDelhi,
+    aq_measurements(city = "Delhi", parameter = "pm25",
+                    date_from = "2016-03-01", date_to = "2016-03-31",
+                    limit = 1000, page = page))
 }
 save(measurementsDelhi, file = "data/measurementsDelhi.RData")
 ```
@@ -72,7 +69,7 @@ Here we query stations with a less than 15km distance from the air quality stati
 
 ```{r, eval = FALSE, echo = TRUE}
 library("rnoaa")
-station_data <- ghcnd_stations()[[1]]
+station_data <- ghcnd_stations()
 lat_lon_df <- select(measurementsDelhi,
                      location, 
                      latitude,
