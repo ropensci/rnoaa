@@ -57,9 +57,12 @@ seaiceeurls <- function(yr=NULL, mo=NULL, pole=NULL) {
     paste(eachmonth, 'extent_', x, '_', yrs_months, '_polygon_v2.zip', sep = '')
   }))
 
-  months_thisyr <- paste0(0, seq(1,month(today())))
+  months_thisyr <- paste0(0, seq(1, lubridate::month(lubridate::today())))
   yrs_months_thisyr <- paste0(2013, months_thisyr)
-  eachmonth_thiyr <- eachmonth[1:grep(month(today() - months(1), label = TRUE, abbr = TRUE), eachmonth)]
+  eachmonth_thiyr <- eachmonth[1:grep(
+    lubridate::month(
+      lubridate::today() - lubridate::period(month = 1),
+      label = TRUE, abbr = TRUE), eachmonth)]
   urls_thisyr <- do.call(c, lapply(c('S', 'N'), function(x) {
     paste(eachmonth_thiyr, 'extent_', x, '_', yrs_months_thisyr, '_polygon_v2.zip', sep = '')
   }))
