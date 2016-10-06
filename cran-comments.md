@@ -23,5 +23,11 @@ There are no reverse dependencies.
 This release changes all functions that previously wrote to the users
 home directory.
 
+-----
+
+This is a re-submission of this package after being archived earlier today.
+I have read and agree to the the CRAN policies at
+https://cran.r-project.org/web/packages/policies.html
+
 Thanks.
 Scott Chamberlain
