@@ -95,7 +95,9 @@ stationsDelhi %>% knitr::kable()
 
 Now let us plot the AQ and weather stations on a quick and dirty map with no legend, red for AQ stations, blue for weather stations.
 
-```{r, message = FALSE, warning = FALSE, fig.width = 10, fig.height = 10}
+> Not shown
+
+```{r, message = FALSE, warning = FALSE, fig.width = 10, fig.height = 10, eval=FALSE}
 library("ggmap")
 map <- get_map(location = "Delhi", zoom = 11)
 ggmap(map) +

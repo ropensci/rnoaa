@@ -130,6 +130,8 @@ stationsDelhi %>% knitr::kable()
 
 Now let us plot the AQ and weather stations on a quick and dirty map with no legend, red for AQ stations, blue for weather stations.
 
+> Not shown
+
 
 ```r
 library("ggmap")
@@ -140,8 +142,6 @@ ggmap(map) +
   geom_point(aes(x = longitude, y = latitude),
              data = measurementsDelhi, col = "red", size = 4)
 ```
-
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
 
 # Query weather data for these stations
