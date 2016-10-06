@@ -21,8 +21,7 @@ There are no reverse dependencies.
 -----
 
 This release changes all functions that previously wrote to the users
-home directory to instead use rappdirs package to write to the appropriate
-cache directory based on the operating system.
+home directory.
 
 Thanks.
 Scott Chamberlain
