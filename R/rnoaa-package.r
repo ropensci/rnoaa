@@ -56,6 +56,7 @@
 #' @importFrom httr GET add_headers content warn_for_status stop_for_status
 #' write_disk parse_url build_url http_status
 #' @importFrom XML xpathSApply xpathApply xmlValue xmlParse xmlToList htmlParse
+#' @importFrom xml2 read_html xml_find_all xml_attr
 #' @importFrom jsonlite fromJSON
 #' @importFrom tidyr gather
 #' @importFrom rappdirs user_cache_dir

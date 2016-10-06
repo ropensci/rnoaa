@@ -9,6 +9,7 @@ move:
 		cp inst/vign/homr_vignette.md vignettes;\
 		cp inst/vign/storms_vignette.md vignettes;\
 		cp inst/vign/buoy_vignette.md vignettes;\
+		cp inst/vign/rnoaa_ropenaq.md vignettes;\
 		cp -r inst/vign/figure/* vignettes/figure
 
 rmd2md:
@@ -20,4 +21,5 @@ rmd2md:
 		mv swdi_vignette.md swdi_vignette.Rmd;\
 		mv homr_vignette.md homr_vignette.Rmd;\
 		mv storms_vignette.md storms_vignette.Rmd;\
-		mv buoy_vignette.md buoy_vignette.Rmd
+		mv buoy_vignette.md buoy_vignette.Rmd;\
+		mv rnoaa_ropenaq.md rnoaa_ropenaq.Rmd

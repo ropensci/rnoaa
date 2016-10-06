@@ -90,7 +90,7 @@ ncdc_datasets(stationid = id)
 #> [1] 1
 #> 
 #> $meta$count
-#> [1] 3
+#> [1] 2
 #> 
 #> $meta$limit
 #> [1] 25
@@ -98,13 +98,11 @@ ncdc_datasets(stationid = id)
 #> 
 #> $data
 #>                    uid    mindate    maxdate                        name
-#> 1 gov.noaa.ncdc:C00861 1763-01-01 2016-08-29             Daily Summaries
-#> 2 gov.noaa.ncdc:C00841 1763-01-01 2016-03-01           Monthly Summaries
-#> 3 gov.noaa.ncdc:C00946 1763-01-01 2016-07-01 Global Summary of the Month
-#>   datacoverage      id
-#> 1            1   GHCND
-#> 2            1 GHCNDMS
-#> 3            1    GSOM
+#> 1 gov.noaa.ncdc:C00861 1763-01-01 2016-10-05             Daily Summaries
+#> 2 gov.noaa.ncdc:C00946 1763-01-01 2016-09-01 Global Summary of the Month
+#>   datacoverage    id
+#> 1            1 GHCND
+#> 2            1  GSOM
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datasets"
@@ -121,8 +119,8 @@ ncdc_datatypes(datasetid = "GHCND", stationid = id)
 #> 
 #> $data
 #>      mindate    maxdate          name datacoverage   id
-#> 1 1781-01-01 2016-08-29 Precipitation            1 PRCP
-#> 2 1840-05-01 2016-08-28      Snowfall            1 SNOW
+#> 1 1781-01-01 2016-10-04 Precipitation            1 PRCP
+#> 2 1840-05-01 2016-10-04      Snowfall            1 SNOW
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datatypes"

@@ -209,7 +209,7 @@ buoy_stations <- function(refresh = FALSE, ...) {
       out <- GET(w)
       html <- read_html(utcf8(out))
       dc <- sapply(xml_find_all(html, "//meta[@name]"), function(z) {
-        as.list(setNames(xml_attr(z, "content"), xml_attr(z, "name")))
+        as.list(stats::setNames(xml_attr(z, "content"), xml_attr(z, "name")))
       })
       as_data_frame(c(
         station = str_extract_(w, "[0-9]+$"),
