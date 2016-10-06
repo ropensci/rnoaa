@@ -4,7 +4,7 @@
 \alias{ghcnd}
 \title{Get all GHCND data from a single weather site}
 \usage{
-ghcnd(stationid, path = "~/.rnoaa/ghcnd", ...)
+ghcnd(stationid, ...)
 }
 \arguments{
 \item{stationid}{A character string giving the identification of the weather
@@ -12,9 +12,6 @@ station for which the user would like to pull data. To get a full and
 current list of stations, the user can use the \code{\link{ghcnd_stations}}
 function. To identify stations within a certain radius of a location, the
 user can use the \code{\link{meteo_nearby_stations}} function.}
-
-\item{path}{A character vector giving the path to the directory to cache
-the files locally. By default, the function uses \code{~/.rnoaa/isd}.}
 
 \item{...}{Additional curl options to pass through to \code{\link[httr]{GET}}.}
 }
@@ -43,18 +40,20 @@ You can access the path for the cached file via \code{attr(x, "source")}
 }
 \examples{
 \dontrun{
+stations <- ghcnd_stations()
+
 # Get data
 ghcnd(stationid = "AGE00147704")
 
 stations <- ghcnd_stations()
-ghcnd(stations$data$id[40])
-ghcnd(stations$data$id[4000])
-ghcnd(stations$data$id[10000])
-ghcnd(stations$data$id[80000])
-ghcnd(stations$data$id[80300])
+ghcnd(stations$id[40])
+ghcnd(stations$id[4000])
+ghcnd(stations$id[10000])
+ghcnd(stations$id[80000])
+ghcnd(stations$id[80300])
 
 library("dplyr")
-ghcnd(stations$data$id[80300]) \%>\% select(id, element) \%>\% slice(1:3)
+ghcnd(stations$id[80300]) \%>\% select(id, element) \%>\% slice(1:3)
 
 # manipulate data
 ## using built in fxns

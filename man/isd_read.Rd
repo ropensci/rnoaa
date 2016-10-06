@@ -16,7 +16,7 @@ A tibble (data.frame)
 Read NOAA ISD/ISH local file
 }
 \details{
-\item \code{isd_read} - read a \code{.gz} file as downloaded
+\code{isd_read} - read a \code{.gz} file as downloaded
 from NOAA's website
 }
 \examples{

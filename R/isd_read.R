@@ -5,7 +5,7 @@
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' @seealso \code{\link{isd}}, \code{\link{isd_stations}},
 #' \code{\link{isd_stations_search}}
-#' @details \item \code{isd_read} - read a \code{.gz} file as downloaded
+#' @details \code{isd_read} - read a \code{.gz} file as downloaded
 #' from NOAA's website
 #' @return A tibble (data.frame)
 #' @family isd

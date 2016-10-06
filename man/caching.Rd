@@ -5,17 +5,23 @@
 \alias{ghcnd_clear_cache}
 \title{Clear cached files}
 \usage{
-ghcnd_clear_cache(path = "~/.rnoaa/ghcnd", force = FALSE)
+ghcnd_clear_cache(force = FALSE)
 }
 \arguments{
-\item{path}{Path to location of cached files. Defaults to \code{disk()$path}}
-
-\item{force}{(logical) Should we force removal of files if permissions say otherwise?}
+\item{force}{(logical) Should we force removal of files if permissions
+say otherwise?. Default: \code{FALSE}}
 }
 \description{
 Clear cached files
 }
 \details{
 BEWARE: this will clear all cached files.
+}
+\section{File storage}{
+
+We use \pkg{rappdirs} to store files, see
+\code{\link[rappdirs]{user_cache_dir}} for how
+we determine the directory on your machine to save files to, and run
+\code{user_cache_dir("rnoaa")} to get that directory.
 }
 

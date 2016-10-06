@@ -4,12 +4,10 @@
 \alias{tornadoes}
 \title{Get NOAA tornado data.}
 \usage{
-tornadoes(path = "~/.rnoaa/tornadoes", overwrite = TRUE, ...)
+tornadoes(overwrite = TRUE, ...)
 }
 \arguments{
-\item{path}{A path to store the files, Default: \code{~/.ots/kelp}}
-
-\item{overwrite}{(logical) To overwrite the path to store files in or not, Default: TRUE.}
+\item{overwrite}{(logical) To overwrite the path to store files in or not, Default: \code{TRUE}}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
@@ -18,6 +16,12 @@ A Spatial object is returned of class SpatialLinesDataFrame.
 }
 \description{
 Get NOAA tornado data.
+}
+\section{File storage}{
+
+We use \pkg{rappdirs} to store files, see \code{\link[rappdirs]{user_cache_dir}} for how
+we determine the directory on your machine to save files to, and run
+\code{user_cache_dir("rnoaa")} to get that directory.
 }
 \examples{
 \dontrun{

@@ -4,17 +4,14 @@
 \alias{ersst}
 \title{NOAA Extended Reconstructed Sea Surface Temperature (ERSST) data}
 \usage{
-ersst(year, month, path = "~/.rnoaa/ersst", overwrite = TRUE, ...)
+ersst(year, month, overwrite = TRUE, ...)
 }
 \arguments{
-\item{year}{(numeric) A year. Must be > 1853. The max value is whatever 
+\item{year}{(numeric) A year. Must be > 1853. The max value is whatever
 the current year is. Required}
 
 \item{month}{A month, character or numeric. If single digit (e.g. 8), we
 add a zero in front (e.g., 08). Required}
-
-\item{path}{(character) A path to store the files, a directory. Default:
-\code{~/.rnoaa/ersst}. Required.}
 
 \item{overwrite}{(logical) To overwrite the path to store files in or not,
 Default: \code{TRUE}}
@@ -28,13 +25,15 @@ perhaps a data.frame. See \pkg{ncdf4} for parsing the output.
 \description{
 NOAA Extended Reconstructed Sea Surface Temperature (ERSST) data
 }
-\details{
-NetCDF files are downloaded, stored, and read from the directory given in the 
-\code{path} parameter. The default is \code{~/.rnoaa/ersst}, and files are 
-saved within whatever that directory is.
+\section{File storage}{
 
-Files are quite small, so we don't worry about reading in cached data to 
-save time, as we do in other functions in this package.
+We use \pkg{rappdirs} to store files, see
+\code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
+your machine to save files to, and run \code{user_cache_dir("rnoaa")}
+to get that directory.
+
+Files are quite small, so we don't worry about reading in cached data to
+save time, as we do in some of the other functions in this package.
 }
 \examples{
 \dontrun{

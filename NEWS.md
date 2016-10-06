@@ -1,3 +1,27 @@
+rnoaa 0.6.4
+===========
+
+### NEW FEATURES
+
+* xxx (#xxx)
+* xxx (#xxx)
+* xxx (#xxx)
+
+### MINOR IMPROVEMENTS
+
+* `storm_data()` now returns a tibble/data.frame not inside of a list. We used 
+to return a list with a single slot `data` with a data.frame, but this was 
+unnecessary.
+* xxx (#xxx)
+* xxx (#xxx)
+
+### BUG FIXES
+
+* xxx (#xxx)
+* xxx (#xxx)
+* xxx (#xxx)
+
+
 rnoaa 0.6.0
 ===============
 

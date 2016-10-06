@@ -23,13 +23,13 @@ test_that("storms data", {
   storm <- suppressMessages(storm_data(storm = '1970143N19091'))
   yr <- suppressMessages(storm_data(year = 1940))
 
-  expect_is(storm, "storm_data")
-  expect_is(yr, "storm_data")
-  expect_is(storm$data, "data.frame")
-  expect_is(yr$data, "data.frame")
-  expect_is(storm$data$serial_num, "character")
+  expect_is(storm, "tbl_df")
+  expect_is(yr, "tbl_df")
+  expect_is(storm, "data.frame")
+  expect_is(yr, "data.frame")
+  expect_is(storm$serial_num, "character")
 
-  expect_equal(unique(storm$data$serial_num), '1970143N19091')
+  expect_equal(unique(storm$serial_num), '1970143N19091')
 })
 
 test_that("storms shape data", {

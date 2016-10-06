@@ -5,36 +5,41 @@
 \alias{storm_meta}
 \alias{storm_shp}
 \alias{storm_shp_read}
+\alias{storms}
 \title{Get NOAA wind storm tabular data, metadata, or shp files from IBTrACS}
 \usage{
 storm_shp(basin = NULL, storm = NULL, year = NULL, type = "points",
-  path = "~/.rnoaa/storms", overwrite = TRUE)
+  overwrite = TRUE)
 
 storm_shp_read(x)
 
-storm_data(basin = NULL, storm = NULL, year = NULL,
-  path = "~/.rnoaa/storms", overwrite = TRUE, ...)
+storm_data(basin = NULL, storm = NULL, year = NULL, overwrite = TRUE,
+  ...)
 
 storm_meta(what = "storm_columns")
 }
 \arguments{
 \item{basin}{(character) A basin name, one of EP, NA, NI, SA, SI, SP, or WP.}
 
-\item{storm}{(character) A storm serial number of the form YYYYJJJHTTNNN. See Details.}
+\item{storm}{(character) A storm serial number of the form YYYYJJJHTTNNN.
+See Details.}
 
 \item{year}{(numeric) One of the years from 1842 to 2014}
 
-\item{type}{(character) One of points or lines. This gives shp files with points, or with lines.}
+\item{type}{(character) One of points or lines. This gives shp files with
+points, or with lines.}
 
-\item{path}{(character) A path to store the files, Default: \code{~/.rnoaa/storms}}
-
-\item{overwrite}{(logical) To overwrite the path to store files in or not, Default: TRUE.}
+\item{overwrite}{(logical) To overwrite the path to store files in or not,
+Default: \code{TRUE}}
 
 \item{x}{Output from \code{storm_shp}, a path to shp file to read in.}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 
 \item{what}{(character) One of storm_columns or storm_names.}
+}
+\value{
+A tibble (data.frame)
 }
 \description{
 Get NOAA wind storm tabular data, metadata, or shp files from IBTrACS
@@ -44,21 +49,31 @@ International Best Track Archive for Climate Stewardship (IBTrACS)
 
 Details for storm serial numbers:
 \itemize{
- \item YYYY is the corresponding year of the first recorded observation of the storm
+ \item YYYY is the corresponding year of the first recorded observation of
+ the storm
  \item JJJ is the day of year of the first recorded observation of the storm
  \item H is the hemisphere of the storm: N=Northern, S=Southern
- \item TT is the absolute value of the rounded latitude of the first recorded observation of the
- storm (range 0-90, if basin=SA or SH, then TT in reality is negative)
- \item NNN is the rounded longitude of the first recorded observation of the storm (range 0-359)
+ \item TT is the absolute value of the rounded latitude of the first
+ recorded observation of the storm (range 0-90, if basin=SA or SH, then TT
+ in reality is negative)
+ \item NNN is the rounded longitude of the first recorded observation of
+ the storm (range 0-359)
 }
 
-For example: \code{1970143N19091} is a storm in the North Atlantic which started on
-May 23, 1970 near 19N 91E
+For example: \code{1970143N19091} is a storm in the North Atlantic which
+started on May 23, 1970 near 19N 91E
 
-See \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering} for more.
+See \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering} for more
 
 The datasets included in the package \code{\link{storm_names}}, and
 \code{\link{storm_columns}} may help in using these storm functions.
+}
+\section{File storage}{
+
+We use \pkg{rappdirs} to store files, see
+\code{\link[rappdirs]{user_cache_dir}} for how
+we determine the directory on your machine to save files to, and run
+\code{user_cache_dir("rnoaa")} to get that directory.
 }
 \examples{
 \dontrun{

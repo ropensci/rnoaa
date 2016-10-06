@@ -5,8 +5,6 @@
 #' @param usaf,wban (character) USAF and WBAN code. Required
 #' @param year (numeric) One of the years from 1901 to the current year.
 #' Required.
-#' @param path (character) A path to store the files, a directory. Default:
-#' \code{~/.rnoaa/isd}. Required.
 #' @param overwrite (logical) To overwrite the path to store files in or not,
 #' Default: \code{TRUE}
 #' @param cleanup (logical) If \code{TRUE}, remove compressed \code{.gz} file
@@ -43,6 +41,12 @@
 #' ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz}, the
 #' file does not exist on NOAA's ftp servers. If your internet is down,
 #' you'll get a different error.
+#'
+#' @section File storage:
+#' We use \pkg{rappdirs} to store files, see
+#' \code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
+#' your machine to save files to, and run \code{user_cache_dir("rnoaa")}
+#' to get that directory.
 #'
 #' @examples \dontrun{
 #' # Get station table
@@ -94,7 +98,15 @@
 #'   geom_line() +
 #'   facet_wrap(~usaf_station, scales = "free_x")
 #' }
-isd <- function(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE, cleanup = TRUE, ...) {
+isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, ...) {
+  calls <- names(sapply(match.call(), deparse))[-1]
+  calls_vec <- "path" %in% calls
+  if (any(calls_vec)) {
+    stop("The parameter path has been removed, see docs for ?isd",
+         call. = FALSE)
+  }
+
+  path <- file.path(rnoaa_cache_dir, "isd")
   rdspath <- isd_local(usaf, wban, year, path, ".rds")
   if (!is_isd(x = rdspath)) {
     isd_GET(bp = path, usaf, wban, year, overwrite, ...)

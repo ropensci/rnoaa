@@ -4,17 +4,13 @@
 \alias{isd}
 \title{Get NOAA ISD/ISH data from NOAA FTP server.}
 \usage{
-isd(usaf, wban, year, path = "~/.rnoaa/isd", overwrite = TRUE,
-  cleanup = TRUE, ...)
+isd(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, ...)
 }
 \arguments{
 \item{usaf, wban}{(character) USAF and WBAN code. Required}
 
 \item{year}{(numeric) One of the years from 1901 to the current year.
 Required.}
-
-\item{path}{(character) A path to store the files, a directory. Default:
-\code{~/.rnoaa/isd}. Required.}
 
 \item{overwrite}{(logical) To overwrite the path to store files in or not,
 Default: \code{TRUE}}
@@ -57,6 +53,14 @@ Note that when you get an error similar to \code{Error: download failed for
 ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz}, the
 file does not exist on NOAA's ftp servers. If your internet is down,
 you'll get a different error.
+}
+
+\section{File storage}{
+
+We use \pkg{rappdirs} to store files, see
+\code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
+your machine to save files to, and run \code{user_cache_dir("rnoaa")}
+to get that directory.
 }
 \examples{
 \dontrun{

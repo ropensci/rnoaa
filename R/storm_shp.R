@@ -1,13 +1,20 @@
 #' @export
 #' @rdname storms
-storm_shp <- function(basin=NULL, storm=NULL, year=NULL, type="points", 
-                      path="~/.rnoaa/storms", overwrite = TRUE) {
-  
+storm_shp <- function(basin=NULL, storm=NULL, year=NULL, type="points",
+                      overwrite = TRUE) {
+  calls <- names(sapply(match.call(), deparse))[-1]
+  calls_vec <- "path" %in% calls
+  if (any(calls_vec)) {
+    stop("The parameter path has been removed, see ?storms",
+         call. = FALSE)
+  }
+
+  path <- file.path(rnoaa_cache_dir, "storms")
   shppath <- shp_local(basin, storm, year, path, type)
   if (!is_shpstorm(x = shppath)) {
     shppath <- shpstorm_GET(path, basin, storm, year, type, overwrite)
   }
-  structure(list(path = spth(shppath)), class = "storm_shp", 
+  structure(list(path = spth(shppath)), class = "storm_shp",
             basin = basin, storm = storm, year = year, type = type)
 }
 
@@ -15,12 +22,13 @@ storm_shp <- function(basin=NULL, storm=NULL, year=NULL, type="points",
 #' @rdname storms
 storm_shp_read <- function(x) {
   check4pkg("rgdal")
-  readshp2(x$path, filepath2(attr(x, 'basin'), attr(x, 'storm'), attr(x, 'year'), attr(x, 'type')))
+  readshp2(x$path, filepath2(attr(x, 'basin'), attr(x, 'storm'),
+                             attr(x, 'year'), attr(x, 'type')))
 }
 
-an <- function(x, y) { 
+an <- function(x, y) {
   tmp <- attr(x, y)
-  if (is.null(tmp)) '<NA>' else tmp 
+  if (is.null(tmp)) '<NA>' else tmp
 }
 
 spth <- function(x) grep("\\.shp", x, value = TRUE)
@@ -36,16 +44,20 @@ print.storm_shp <- function(x, ...) {
 }
 
 shpstorm_GET <- function(bp, basin, storm, year, type, overwrite) {
-  dir.create(local_base(basin, storm, year, bp), showWarnings = FALSE, recursive = TRUE)
+  dir.create(local_base(basin, storm, year, bp), showWarnings = FALSE,
+             recursive = TRUE)
   fp <- shp_local(basin, storm, year, bp, type)
-  paths <- Map(function(x, y) suppressWarnings(GET(x, write_disk(y, overwrite))), shp_remote(basin, storm, year, type), fp)  
+  paths <- Map(function(x, y)
+    suppressWarnings(GET(x, write_disk(y, overwrite))),
+    shp_remote(basin, storm, year, type), fp)
   vapply(paths, function(z) z$request$output$path, "", USE.NAMES = FALSE)
 }
 
 shpfileext <- function(basin, storm, year, type) {
   tt <- filepath(basin, storm, year)
   if (grepl("Allstorms", tt)) {
-    paste0(tt, '.ibtracs_all_', type, '.v03r06.', c('dbf','prj','shp','shx'), '.gz')
+    paste0(tt, '.ibtracs_all_', type, '.v03r06.', c('dbf','prj','shp','shx'),
+           '.gz')
   } else {
     paste0(tt, '.ibtracs_all_', type, '.v03r06.', c('dbf','prj','shp','shx'))
   }
@@ -61,7 +73,17 @@ filepath2 <- function(basin, storm, year, type) {
   )
 }
 
-shp_remote <- function(basin, storm, year, type) file.path(stormurl("shp"), shpfileext(basin, storm, year, type))
-shp_local <- function(basin, storm, year, path, type) file.path(path, shpfileext(basin, storm, year, type))
+shp_remote <- function(basin, storm, year, type) {
+  file.path(stormurl("shp"), shpfileext(basin, storm, year, type))
+}
+shp_local <- function(basin, storm, year, path, type) {
+  file.path(path, shpfileext(basin, storm, year, type))
+}
 is_shpstorm <- function(x) if (all(file.exists(x))) TRUE else FALSE
-readshp2 <- function(x, layer) rgdal::readOGR(dsn = path.expand(x), layer = layer, stringsAsFactors = FALSE, verbose = FALSE)
+readshp2 <- function(x, layer) {
+  rgdal::readOGR(
+    dsn = path.expand(x),
+    layer = layer,
+    stringsAsFactors = FALSE,
+    verbose = FALSE)
+}

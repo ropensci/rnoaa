@@ -17,8 +17,8 @@ test_that("ncdc_datasets returns the correct class", {
   expect_is(uu$meta, "NULL")
 
   # dimensions
-  expect_equal(dim(tt$data), c(13,6))
-  expect_equal(length(tt$data$id), 13)
+  expect_equal(dim(tt$data), c(11,6))
+  expect_equal(length(tt$data$id), 11)
   expect_equal(length(uu), 2)
   expect_equal(dim(uu$data), c(1,5))
 })

@@ -4,18 +4,18 @@
 #' @name argo
 #' @template argo_params
 #' @template argo_egs
-argo_search <- function(func = NULL, of = NULL, qwmo = NULL, wmo = NULL, box=NULL, 
-                        area = NULL, around = NULL, year = NULL, yearmin = NULL, 
-                        yearmax = NULL, month = NULL, monthmin = NULL, monthmax = NULL, 
-                        lr = NULL, from =NULL, to = NULL, dmode = NULL, 
-                        pres_qc = NULL, temp_qc = NULL, psal_qc = NULL, doxy_qc = NULL, 
+argo_search <- function(func = NULL, of = NULL, qwmo = NULL, wmo = NULL, box=NULL,
+                        area = NULL, around = NULL, year = NULL, yearmin = NULL,
+                        yearmax = NULL, month = NULL, monthmin = NULL, monthmax = NULL,
+                        lr = NULL, from =NULL, to = NULL, dmode = NULL,
+                        pres_qc = NULL, temp_qc = NULL, psal_qc = NULL, doxy_qc = NULL,
                         ticket = NULL, limit = 10, ...) {
-  
+
   if (!is.null(box)) box <- paste0(box, collapse = ",")
   args <- noaa_compact(list(get = func, of = of, qwmo = qwmo, wmo = wmo,
-      box = box, area = area, around = around, year = year, yearmin = yearmin, 
+      box = box, area = area, around = around, year = year, yearmin = yearmin,
       yearmax = yearmax, month = month, monthmin = monthmin, monthmax = monthmax,
-      lr = lr, from = from, to = to, dmode = dmode, pres_qc = pres_qc, temp_qc = temp_qc, 
+      lr = lr, from = from, to = to, dmode = dmode, pres_qc = pres_qc, temp_qc = temp_qc,
       psal_qc = psal_qc, doxy_qc = doxy_qc, ticket = ticket, limit = limit))
   res <- argo_GET(url = argo_api(), args, ...)
   jsonlite::fromJSON(utcf8(res))
@@ -58,7 +58,15 @@ argo_buoy_files <- function(dac, id, ...) {
 
 #' @export
 #' @rdname argo
-argo <- function(dac, id, cycle, dtype, path = "~/.rnoaa/argo", overwrite = TRUE, ...) {
+argo <- function(dac, id, cycle, dtype, overwrite = TRUE, ...) {
+  calls <- names(sapply(match.call(), deparse))[-1]
+  calls_vec <- "path" %in% calls
+  if (any(calls_vec)) {
+    stop("The parameter path has been removed, see docs for ?argo",
+         call. = FALSE)
+  }
+
+  path <- file.path(rnoaa_cache_dir, "argo")
   path <- file.path(path, dac)
   apath <- a_local(dac, id, cycle, dtype, path)
   if (!is_isd(apath)) {
