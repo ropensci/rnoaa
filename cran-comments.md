@@ -20,8 +20,9 @@ There are no reverse dependencies.
 
 -----
 
-This release adds some new functions, improves performance
-in a function, fixes a few bugs.
+This release changes all functions that previously wrote to the users
+home directory to instead use rappdirs package to write to the appropriate
+cache directory based on the operating system.
 
-Thanks!
+Thanks.
 Scott Chamberlain

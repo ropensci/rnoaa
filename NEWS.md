@@ -3,24 +3,35 @@ rnoaa 0.6.4
 
 ### NEW FEATURES
 
-* xxx (#xxx)
-* xxx (#xxx)
-* xxx (#xxx)
+* New function `isd_read()` to read ISD output from `isd()` manually
+instead of letting `isd()` read in the data. This is useful when you 
+use `isd()` but need to read the file in later when it's already cached. 
+(#169)
+* Some functions in `rnoaa` cache files that are downloaded from 
+various NOAA web services. File caching is usually done when data comes
+from FTP servers. In some of these functions where we cache data, we used
+to write to your home directory, but have now changed all these functions 
+to write to a proper cache directory in a platform independent way. 
+We determine the cache directory using `rappdirs::user_cache_dir()`. 
+Note that this may change your workflow if you'd been depending on 
+cached files to be a in particular place on your file system. In addition,
+the `path` parameter in the changed functions is now defunct, but you 
+get an informative warning about it (#171)
 
 ### MINOR IMPROVEMENTS
 
 * `storm_data()` now returns a tibble/data.frame not inside of a list. We used 
 to return a list with a single slot `data` with a data.frame, but this was 
 unnecessary.
-* xxx (#xxx)
-* xxx (#xxx)
-
-### BUG FIXES
-
-* xxx (#xxx)
-* xxx (#xxx)
-* xxx (#xxx)
-
+* `ghcnd_stations()` now outputs a data.frame (`tbl_df`) by itself,
+instead of a data.frame nested in a list. This may change how 
+you access data from this function. (#163)
+* Improved docs on token usage for NCDC functions (with prefix 
+`ncdc_*()`) (#167)
+* Added note to `isd()` docs that when you get an error similar to 
+`Error: download failed for ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz`, 
+the file does not exist on NOAA's ftp servers. If your internet is down, 
+you'll get a different error saying as much (#170)
 
 rnoaa 0.6.0
 ===============
