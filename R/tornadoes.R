@@ -8,9 +8,10 @@
 #' @references \url{http://www.spc.noaa.gov/gis/svrgis/}
 #'
 #' @section File storage:
-#' We use \pkg{rappdirs} to store files, see \code{\link[rappdirs]{user_cache_dir}} for how
+#' We use \pkg{rappdirs} to store files, see
+#' \code{\link[rappdirs]{user_cache_dir}} for how
 #' we determine the directory on your machine to save files to, and run
-#' \code{user_cache_dir("rnoaa")} to get that directory.
+#' \code{rappdirs::user_cache_dir("rnoaa/tornadoes")} to get that directory.
 #'
 #' @examples \dontrun{
 #' shp <- tornadoes()
@@ -26,7 +27,7 @@ tornadoes <- function(overwrite = TRUE, ...) {
   }
 
   check4pkg('rgdal')
-  path <- file.path(rnoaa_cache_dir, "tornadoes")
+  path <- file.path(rnoaa_cache_dir(), "tornadoes")
   if (!is_tornadoes(path)) {
     url <- 'http://spc.noaa.gov/gis/svrgis/zipped/tornado.zip'
     tornadoes_GET(path, url, overwrite, ...)

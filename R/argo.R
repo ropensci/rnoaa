@@ -66,7 +66,7 @@ argo <- function(dac, id, cycle, dtype, overwrite = TRUE, ...) {
          call. = FALSE)
   }
 
-  path <- file.path(rnoaa_cache_dir, "argo")
+  path <- file.path(rnoaa_cache_dir(), "argo")
   path <- file.path(path, dac)
   apath <- a_local(dac, id, cycle, dtype, path)
   if (!is_isd(apath)) {

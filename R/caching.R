@@ -22,7 +22,7 @@ ghcnd_clear_cache <- function(force = FALSE) {
          call. = FALSE)
   }
 
-  path <- file.path(rnoaa_cache_dir, "ghcnd")
+  path <- file.path(rnoaa_cache_dir(), "ghcnd")
   files <- list.files(path, full.names = TRUE)
   unlink(files, recursive = TRUE, force = force)
 }

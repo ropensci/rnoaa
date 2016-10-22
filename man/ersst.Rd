@@ -29,7 +29,8 @@ NOAA Extended Reconstructed Sea Surface Temperature (ERSST) data
 
 We use \pkg{rappdirs} to store files, see
 \code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
-your machine to save files to, and run \code{user_cache_dir("rnoaa")}
+your machine to save files to, and run
+\code{rappdirs::user_cache_dir("rnoaa/ersst")}
 to get that directory.
 
 Files are quite small, so we don't worry about reading in cached data to

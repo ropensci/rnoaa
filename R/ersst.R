@@ -17,7 +17,8 @@
 #' @section File storage:
 #' We use \pkg{rappdirs} to store files, see
 #' \code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
-#' your machine to save files to, and run \code{user_cache_dir("rnoaa")}
+#' your machine to save files to, and run
+#' \code{rappdirs::user_cache_dir("rnoaa/ersst")}
 #' to get that directory.
 #'
 #' Files are quite small, so we don't worry about reading in cached data to
@@ -53,7 +54,7 @@ ersst <- function(year, month, overwrite = TRUE, ...) {
          call. = FALSE)
   }
   check4pkg("ncdf4")
-  path <- file.path(rnoaa_cache_dir, "ersst")
+  path <- file.path(rnoaa_cache_dir(), "ersst")
   ff <- ersst_local(path, year, month)
   dpath <- ersst_GET(make_ersst(year, month), path = ff, overwrite, ...)
   ncdf4::nc_open(dpath)
