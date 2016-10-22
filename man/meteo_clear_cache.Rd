@@ -4,7 +4,10 @@
 \alias{meteo_clear_cache}
 \title{Clear \emph{meteo} cached files}
 \usage{
-meteo_clear_cache()
+meteo_clear_cache(force = FALSE)
+}
+\arguments{
+\item{force}{(logical) force delete. default: \code{FALSE}}
 }
 \description{
 The \emph{meteo} functions use an aplication

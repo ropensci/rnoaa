@@ -60,7 +60,7 @@ you'll get a different error.
 We use \pkg{rappdirs} to store files, see
 \code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
 your machine to save files to, and run
-\code{rappdirs::user_cache_dir("rnoaa")} to get that directory.
+\code{rappdirs::user_cache_dir("rnoaa/isd")} to get that directory.
 }
 \examples{
 \dontrun{

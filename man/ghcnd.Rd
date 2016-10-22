@@ -38,10 +38,15 @@ site locally in the directory specified by the \code{path} argument.
 
 You can access the path for the cached file via \code{attr(x, "source")}
 }
+\section{File storage}{
+
+We use \pkg{rappdirs} to store files, see
+\code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
+your machine to save files to, and run
+\code{rappdirs::user_cache_dir("rnoaa/ghcnd")} to get that directory.
+}
 \examples{
 \dontrun{
-stations <- ghcnd_stations()
-
 # Get data
 ghcnd(stationid = "AGE00147704")
 
@@ -74,8 +79,8 @@ Scott Chamberlain \email{myrmecocystus@gmail.com},
 Adam Erickson \email{adam.erickson@ubc.ca}
 }
 \seealso{
-To generate a weather dataset for a single weather site that has been
-cleaned to a tidier weather format, the user should use the
+To generate a weather dataset for a single weather site that has
+been cleaned to a tidier weather format, the user should use the
 \code{\link{ghcnd_search}} function, which calls \code{\link{ghcnd}} and then
 processes the output, or \code{\link{meteo_tidy_ghcnd}}, which wraps the
 \code{\link{ghcnd_search}} function to output a tidy dataframe. To pull

@@ -39,7 +39,7 @@
 #'   addCircles()
 #' }
 isd_stations <- function(refresh = FALSE, ...) {
-  path <- file.path(rnoaa_cache_dir, "isd_stations.rds")
+  path <- file.path(rnoaa_cache_dir(), "isd_stations.rds")
   if (refresh || !file.exists(path)) {
     res <- suppressWarnings(GET(paste0(isdbase(), "/isd-history.csv"), ...))
     df <- read.csv(text = utcf8(res), header = TRUE, colClasses = 'character')

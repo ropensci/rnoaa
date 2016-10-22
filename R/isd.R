@@ -46,7 +46,7 @@
 #' We use \pkg{rappdirs} to store files, see
 #' \code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
 #' your machine to save files to, and run
-#' \code{rappdirs::user_cache_dir("rnoaa")} to get that directory.
+#' \code{rappdirs::user_cache_dir("rnoaa/isd")} to get that directory.
 #'
 #' @examples \dontrun{
 #' # Get station table
@@ -106,7 +106,7 @@ isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, ...) {
          call. = FALSE)
   }
 
-  path <- file.path(rnoaa_cache_dir, "isd")
+  path <- file.path(rnoaa_cache_dir(), "isd")
   rdspath <- isd_local(usaf, wban, year, path, ".rds")
   if (!is_isd(x = rdspath)) {
     isd_GET(bp = path, usaf, wban, year, overwrite, ...)

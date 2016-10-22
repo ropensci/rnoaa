@@ -2,8 +2,8 @@
 #'
 #' This function inputs a dataframe with latitudes and longitudes of locations
 #' and creates a dataframe with monitors within a certain radius of those
-#' locations. The function can also be used, with the \code{limit} argument, to pull
-#' a certain number of the closest weather monitors to each location.
+#' locations. The function can also be used, with the \code{limit} argument, to
+#' pull a certain number of the closest weather monitors to each location.
 #' The weather monitor IDs in the output dataframe can be used with other
 #' \code{rnoaa} functions to pull data from all available weather stations near
 #' a location (e.g., \code{\link{meteo_pull_monitors}}).
@@ -44,18 +44,18 @@
 #' @inheritParams ghcnd_search
 #'
 #' @return A list containing dataframes with the sets of unique weather stations
-#'    within the search radius for each location. Site IDs for the weather stations
-#'    given in this dataframe can be used in conjunction with other functions in the
-#'    \code{rnoaa} package to pull weather data for the station. The dataframe
-#'    for each location includes:
+#'    within the search radius for each location. Site IDs for the weather
+#'    stations given in this dataframe can be used in conjunction with other
+#'    functions in the \code{rnoaa} package to pull weather data for the
+#'    station. The dataframe for each location includes:
 #'    \itemize{
 #'    \item \code{id}: The weather station ID, which can be used in other
 #'    functions to pull weather data from the station;
 #'    \item \code{name}: The weather station name;
-#'    \item \code{latitude}: The station's latitude, in decimal degrees. Southern
-#'    latitudes will be negative;
-#'    \item \code{longitude}: The station's longitude, in decimal degrees. Western
-#'    longitudes will be negative;
+#'    \item \code{latitude}: The station's latitude, in decimal degrees.
+#'    Southern latitudes will be negative;
+#'    \item \code{longitude}: The station's longitude, in decimal degrees.
+#'    Western longitudes will be negative;
 #'    \item \code{distance}: The station's distance, in kilometers, from the
 #'    location.
 #'    }
@@ -110,11 +110,9 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
   lat_lon_df$id <- as.character(lat_lon_df$id)
 
   # Handle generic values for `var`, `year_min`, and `year_max` arguments
-  if(is.null(year_min)) year_min <- min(station_data$first_year, na.rm = TRUE)
-  if(is.null(year_max)) year_max <- max(station_data$last_year, na.rm = TRUE)
-  if(length(var) == 1 && var == "all"){
-    var <- unique(station_data$element)
-  }
+  if (is.null(year_min)) year_min <- min(station_data$first_year, na.rm = TRUE)
+  if (is.null(year_max)) year_max <- max(station_data$last_year, na.rm = TRUE)
+  if (length(var) == 1 && var == "all") var <- unique(station_data$element)
 
   dots <- list(~last_year >= year_min & first_year <= year_max &
                  element %in% toupper(var) & !is.na(element))

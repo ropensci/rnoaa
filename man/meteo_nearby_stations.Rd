@@ -34,7 +34,8 @@ rather than rerunning the default every time (see the examples in
 \item{var}{A character vector specifying either \code{"all"} (pull all
 available weather parameters for the site) or the weather parameters to
 keep in the final data (e.g., \code{c("TMAX", "TMIN")} to only keep
-maximum and minimum temperature). Example choices for this argument include:
+maximum and minimum temperature). Example choices for this argument
+include:
 \itemize{
 \item \code{PRCP}: Precipitation, in tenths of millimeters
 \item \code{TAVG}: Average temperature, in tenths of degrees Celsius
@@ -64,18 +65,18 @@ each location. The [x] closest monitors will be kept. Default is NULL
 }
 \value{
 A list containing dataframes with the sets of unique weather stations
-   within the search radius for each location. Site IDs for the weather stations
-   given in this dataframe can be used in conjunction with other functions in the
-   \code{rnoaa} package to pull weather data for the station. The dataframe
-   for each location includes:
+   within the search radius for each location. Site IDs for the weather
+   stations given in this dataframe can be used in conjunction with other
+   functions in the \code{rnoaa} package to pull weather data for the
+   station. The dataframe for each location includes:
    \itemize{
    \item \code{id}: The weather station ID, which can be used in other
    functions to pull weather data from the station;
    \item \code{name}: The weather station name;
-   \item \code{latitude}: The station's latitude, in decimal degrees. Southern
-   latitudes will be negative;
-   \item \code{longitude}: The station's longitude, in decimal degrees. Western
-   longitudes will be negative;
+   \item \code{latitude}: The station's latitude, in decimal degrees.
+   Southern latitudes will be negative;
+   \item \code{longitude}: The station's longitude, in decimal degrees.
+   Western longitudes will be negative;
    \item \code{distance}: The station's distance, in kilometers, from the
    location.
    }
@@ -83,8 +84,8 @@ A list containing dataframes with the sets of unique weather stations
 \description{
 This function inputs a dataframe with latitudes and longitudes of locations
 and creates a dataframe with monitors within a certain radius of those
-locations. The function can also be used, with the \code{limit} argument, to pull
-a certain number of the closest weather monitors to each location.
+locations. The function can also be used, with the \code{limit} argument, to
+pull a certain number of the closest weather monitors to each location.
 The weather monitor IDs in the output dataframe can be used with other
 \code{rnoaa} functions to pull data from all available weather stations near
 a location (e.g., \code{\link{meteo_pull_monitors}}).

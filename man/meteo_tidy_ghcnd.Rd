@@ -21,7 +21,8 @@ See the note below for more information on these flags.}
 \item{var}{A character vector specifying either \code{"all"} (pull all
 available weather parameters for the site) or the weather parameters to
 keep in the final data (e.g., \code{c("TMAX", "TMIN")} to only keep
-maximum and minimum temperature). Example choices for this argument include:
+maximum and minimum temperature). Example choices for this argument
+include:
 \itemize{
 \item \code{PRCP}: Precipitation, in tenths of millimeters
 \item \code{TAVG}: Average temperature, in tenths of degrees Celsius

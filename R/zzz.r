@@ -171,3 +171,5 @@ is_windows <- function() {
 }
 
 utcf8 <- function(x) httr::content(x, "text", encoding = "UTF-8")
+
+rnoaa_cache_dir <- function() rappdirs::user_cache_dir("rnoaa")

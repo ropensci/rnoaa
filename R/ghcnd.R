@@ -22,7 +22,8 @@
 #' @param var A character vector specifying either \code{"all"} (pull all
 #'    available weather parameters for the site) or the weather parameters to
 #'    keep in the final data (e.g., \code{c("TMAX", "TMIN")} to only keep
-#'    maximum and minimum temperature). Example choices for this argument include:
+#'    maximum and minimum temperature). Example choices for this argument
+#'    include:
 #'    \itemize{
 #'    \item \code{PRCP}: Precipitation, in tenths of millimeters
 #'    \item \code{TAVG}: Average temperature, in tenths of degrees Celsius
@@ -76,7 +77,6 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
          call. = FALSE)
   }
 
-  path <- file.path(rnoaa_cache_dir, "ghcnd")
   dat <- ghcnd_splitvars(ghcnd(stationid))
   possvars <- paste0(names(dat), collapse = ", ")
 
@@ -132,16 +132,20 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com},
 #' Adam Erickson \email{adam.erickson@@ubc.ca}
 #'
-#' @seealso To generate a weather dataset for a single weather site that has been
-#' cleaned to a tidier weather format, the user should use the
+#' @seealso To generate a weather dataset for a single weather site that has
+#' been cleaned to a tidier weather format, the user should use the
 #' \code{\link{ghcnd_search}} function, which calls \code{\link{ghcnd}} and then
 #' processes the output, or \code{\link{meteo_tidy_ghcnd}}, which wraps the
 #' \code{\link{ghcnd_search}} function to output a tidy dataframe. To pull
 #' GHCND data from multiple monitors, see \code{\link{meteo_pull_monitors}}.
 #'
-#' @examples \dontrun{
-#' stations <- ghcnd_stations()
+#' @section File storage:
+#' We use \pkg{rappdirs} to store files, see
+#' \code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
+#' your machine to save files to, and run
+#' \code{rappdirs::user_cache_dir("rnoaa/ghcnd")} to get that directory.
 #'
+#' @examples \dontrun{
 #' # Get data
 #' ghcnd(stationid = "AGE00147704")
 #'
@@ -176,7 +180,7 @@ ghcnd <- function(stationid, ...){
          call. = FALSE)
   }
 
-  path <- file.path(rnoaa_cache_dir, "ghcnd")
+  path <- file.path(rnoaa_cache_dir(), "ghcnd")
   csvpath <- ghcnd_local(stationid, path)
   if (!is_ghcnd(x = csvpath)) {
     res <- ghcnd_GET(path, stationid, ...)
