@@ -30,7 +30,7 @@ organization. Optional}
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}
 }
 \value{
-List, of length one or two. 
+List, of length one or two.
 \itemize{
  \item metadata A list of metadata with slots id, name, lat, lon
  \item data A data.frame with data
@@ -49,7 +49,7 @@ Options for the product paramter. One of:
  \item air_pressure - Barometric pressure as measured at the station
  \item air_gap - Air Gap (distance between a bridge and the water's surface) at the station
  \item conductivity - The water's conductivity as measured at the station
- \item visibility - Visibility from the station's visibility sensor. A measure of 
+ \item visibility - Visibility from the station's visibility sensor. A measure of
  atmospheric clarity
  \item humidity - Relative humidity as measured at the station
  \item salinity - Salinity and specific gravity data for the station
@@ -80,15 +80,15 @@ Options for the datum paramter. One of:
 # Get monthly mean sea level data at Vaca Key (8723970)
 coops_search(station_name = 8723970, begin_date = 19820301, end_date = 20141001,
  datum = "stnd", product = "monthly_mean")
- 
+
 # Get verified water level data at Vaca Key (8723970)
 coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
  datum = "stnd", product = "water_level")
- 
+
 # Get daily mean water level data at Fairport, OH (9063053)
  coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
   product = "daily_mean", datum = "stnd", time_zone = "lst")
- 
+
 # Get air temperature at Vaca Key (8723970)
 coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
  product = "air_temperature")
@@ -96,19 +96,11 @@ coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
 # Get water temperature at Vaca Key (8723970)
 coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
  product = "water_temperature")
- 
+
 # Get air pressure at Vaca Key (8723970)
 coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
  product = "air_pressure")
 
-# Get conductivity at Eugene Island, LA (8764314)
-coops_search(station_name = 8764314, begin_date = 20151223, end_date = 20151224,
- product = "conductivity")
-
-# Get salinity at Eugene Island, LA (8764314)
-coops_search(station_name = 8764314, begin_date = 20150927, end_date = 20150928,
- product = "salinity")
- 
 # Get humidity at Eugene Island, LA (8764314)
 coops_search(station_name = 8764314, begin_date = 20150927, end_date = 20150928,
  product = "humidity")
@@ -116,19 +108,19 @@ coops_search(station_name = 8764314, begin_date = 20150927, end_date = 20150928,
 # Get wind at Vaca Key (8723970)
 coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
  product = "wind")
- 
+
 # Get hourly water level height at Key West (8724580)
 coops_search(station_name = 8724580, begin_date = 20140927, end_date = 20140928,
  product = "hourly_height", datum = "stnd")
- 
+
 # Get high-low water level at Key West (8724580)
 coops_search(station_name = 8724580, begin_date = 20140927, end_date = 20140928,
  product = "high_low", datum = "stnd")
- 
+
 # Get currents data at Pascagoula Harbor (ps0401)
 coops_search(station_name = "ps0401", begin_date = 20151221, end_date = 20151222,
  product = "currents")
- 
+
 # Get one-minute water level at Vaca Key (8723970)
 coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
  datum = "stnd", product = "one_minute_water_level")
