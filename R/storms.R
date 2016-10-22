@@ -43,7 +43,7 @@
 #' We use \pkg{rappdirs} to store files, see
 #' \code{\link[rappdirs]{user_cache_dir}} for how
 #' we determine the directory on your machine to save files to, and run
-#' \code{user_cache_dir("rnoaa")} to get that directory.
+#' \code{rappdirs::user_cache_dir("rnoaa/storms")} to get that directory.
 #'
 #' @references \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data}
 #'
@@ -100,7 +100,7 @@ storm_data <- function(basin = NULL, storm = NULL, year = NULL,
          call. = FALSE)
   }
 
-  path <- file.path(rnoaa_cache_dir, "storms")
+  path <- file.path(rnoaa_cache_dir(), "storms")
   csvpath <- csv_local(basin, storm, year, path)
   if (!is_storm(x = csvpath)) {
     csvpath <- storm_GET(path, basin, storm, year, overwrite, ...)

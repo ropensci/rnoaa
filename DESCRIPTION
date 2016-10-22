@@ -26,6 +26,7 @@ BugReports: http://www.github.com/ropensci/rnoaa/issues
 LazyData: true
 VignetteBuilder: knitr
 Imports:
+    methods,
     utils,
     httr (>= 1.0.0),
     lubridate,

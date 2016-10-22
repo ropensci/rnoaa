@@ -9,7 +9,7 @@ storm_shp <- function(basin=NULL, storm=NULL, year=NULL, type="points",
          call. = FALSE)
   }
 
-  path <- file.path(rnoaa_cache_dir, "storms")
+  path <- file.path(rnoaa_cache_dir(), "storms")
   shppath <- shp_local(basin, storm, year, path, type)
   if (!is_shpstorm(x = shppath)) {
     shppath <- shpstorm_GET(path, basin, storm, year, type, overwrite)
