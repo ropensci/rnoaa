@@ -7,7 +7,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 0.6.4.9000
+Version: 0.6.5
 License: MIT + file LICENSE
 Encoding: UTF-8
 Authors@R: c(
@@ -26,7 +26,6 @@ BugReports: http://www.github.com/ropensci/rnoaa/issues
 LazyData: true
 VignetteBuilder: knitr
 Imports:
-    methods,
     utils,
     httr (>= 1.0.0),
     lubridate,

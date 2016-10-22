@@ -1,36 +1,56 @@
+rnoaa 0.6.5
+===========
+
+### MINOR IMPROVEMENTS
+
+* Added notes to docs of functions that do file caching - where
+to find cached files.
+* `meteo_clear_cache` gains parameter `force` to control `force`
+parameter in `unlink()`
+* Removed `lubridate` usage in `seaiceurls()` function, just using
+base R functions.
+
+### BUG FIXES
+
+* Fixed bug which was affecting binary installs only. We accidentally
+determined a path on package build, such that the user
+of the CRAN binary build machine got inserted into the path.
+This is now fixed. (#173)
+
+
 rnoaa 0.6.4
 ===========
 
 ### NEW FEATURES
 
 * New function `isd_read()` to read ISD output from `isd()` manually
-instead of letting `isd()` read in the data. This is useful when you 
-use `isd()` but need to read the file in later when it's already cached. 
+instead of letting `isd()` read in the data. This is useful when you
+use `isd()` but need to read the file in later when it's already cached.
 (#169)
-* Some functions in `rnoaa` cache files that are downloaded from 
+* Some functions in `rnoaa` cache files that are downloaded from
 various NOAA web services. File caching is usually done when data comes
 from FTP servers. In some of these functions where we cache data, we used
-to write to your home directory, but have now changed all these functions 
-to write to a proper cache directory in a platform independent way. 
-We determine the cache directory using `rappdirs::user_cache_dir()`. 
-Note that this may change your workflow if you'd been depending on 
+to write to your home directory, but have now changed all these functions
+to write to a proper cache directory in a platform independent way.
+We determine the cache directory using `rappdirs::user_cache_dir()`.
+Note that this may change your workflow if you'd been depending on
 cached files to be a in particular place on your file system. In addition,
-the `path` parameter in the changed functions is now defunct, but you 
+the `path` parameter in the changed functions is now defunct, but you
 get an informative warning about it (#171)
 
 ### MINOR IMPROVEMENTS
 
-* `storm_data()` now returns a tibble/data.frame not inside of a list. We used 
-to return a list with a single slot `data` with a data.frame, but this was 
+* `storm_data()` now returns a tibble/data.frame not inside of a list. We used
+to return a list with a single slot `data` with a data.frame, but this was
 unnecessary.
 * `ghcnd_stations()` now outputs a data.frame (`tbl_df`) by itself,
-instead of a data.frame nested in a list. This may change how 
+instead of a data.frame nested in a list. This may change how
 you access data from this function. (#163)
-* Improved docs on token usage for NCDC functions (with prefix 
+* Improved docs on token usage for NCDC functions (with prefix
 `ncdc_*()`) (#167)
-* Added note to `isd()` docs that when you get an error similar to 
-`Error: download failed for ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz`, 
-the file does not exist on NOAA's ftp servers. If your internet is down, 
+* Added note to `isd()` docs that when you get an error similar to
+`Error: download failed for ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz`,
+the file does not exist on NOAA's ftp servers. If your internet is down,
 you'll get a different error saying as much (#170)
 
 rnoaa 0.6.0
@@ -38,42 +58,42 @@ rnoaa 0.6.0
 
 ### NEW FEATURES
 
-* A large PR was merged with a suite of functions. Most functions added 
-a prefixed with `meteo_*`, and are meant to find weather monitors near 
-locations (`meteo_nearby_stations`), find all monitors within a radius 
-of a location (`meteo_distance`), calculate the distances between a 
-location and all available stations (`meteo_process_geographic_data`),  
+* A large PR was merged with a suite of functions. Most functions added
+a prefixed with `meteo_*`, and are meant to find weather monitors near
+locations (`meteo_nearby_stations`), find all monitors within a radius
+of a location (`meteo_distance`), calculate the distances between a
+location and all available stations (`meteo_process_geographic_data`),
 calculate the distance between two locations (`meteo_spherical_distance`),
-pull GHCND weather data for multiple weather monitors (`meteo_pull_monitors`), 
-create a tidy GHCND dataset from a single monitor (`meteo_tidy_ghcnd`), 
-and determine the "coverage" for a station data frame (`meteo_coverage()`). 
-In addition, `vis_miss()` added to visualize missingness in a data.frame. See 
+pull GHCND weather data for multiple weather monitors (`meteo_pull_monitors`),
+create a tidy GHCND dataset from a single monitor (`meteo_tidy_ghcnd`),
+and determine the "coverage" for a station data frame (`meteo_coverage()`).
+In addition, `vis_miss()` added to visualize missingness in a data.frame. See
 the [PR diff against master](https://github.com/ropensci/rnoaa/pull/159/files)
-for all the changes. (#159) Thanks a ton to @geanders _et al_. (@hrbrmstr, 
-@masalmon, @jdunic, @njtierney, @leighseverson, @RyanGan, @mandilin, @jferreri, 
+for all the changes. (#159) Thanks a ton to @geanders _et al_. (@hrbrmstr,
+@masalmon, @jdunic, @njtierney, @leighseverson, @RyanGan, @mandilin, @jferreri,
 @cpatrizio88, @ryan-hicks, @Ewen2015, @mgutilla, @hakessler, @rodlammers)
 
 ### MINOR IMPROVEMENTS
 
-* `isd_stations_search()` changed internal structure. We replaced 
-usage of `geojsonio` and `lawn` for faster `dplyr::filter` for 
+* `isd_stations_search()` changed internal structure. We replaced
+usage of `geojsonio` and `lawn` for faster `dplyr::filter` for
 bbox inputs, and `meteo_distance()` for `lat/long/radius` inputs
-. This speeds up this function significantly. Thanks to @lukas-rokka 
+. This speeds up this function significantly. Thanks to @lukas-rokka
 (#157)
-* `isd_stations_search()` and `isd_stations()` now return 
+* `isd_stations_search()` and `isd_stations()` now return
 tibble's instead of data.frame's
 * Removed cached ISD stations dataset within package to reduce
 package size. Only change is now that on first use of the function
-the user has to download the entire thing, but on subsquent 
-uses it will pull from the cached version on the users machine. 
+the user has to download the entire thing, but on subsquent
+uses it will pull from the cached version on the users machine.
 `isd_stations_search()` now caches using `rappdirs` (#161)
 * Convert all `is()` uses to `inherits()`
 
 ### BUG FIXES
 
-* Fixed `seaiceeurls()` function that's used to generate urls for 
+* Fixed `seaiceeurls()` function that's used to generate urls for
 the `seaice()` function - due to change in NOAA urls (#160)
-* Fix to function `ghncd_split_vars()` to not fail on `dplyr::contains` 
+* Fix to function `ghncd_split_vars()` to not fail on `dplyr::contains`
 call (#156) thanks @lawinslow !
 
 rnoaa 0.5.6
