@@ -35,6 +35,13 @@ Get NOAA ISD/ISH station data from NOAA FTP server.
 The data table is cached, but you can force download of data from NOAA
 by setting \code{refresh=TRUE}
 }
+\section{File storage}{
+
+We use \pkg{rappdirs} to store files, see
+\code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
+your machine to save files to, and run
+\code{rappdirs::user_cache_dir("rnoaa")} to get that directory.
+}
 \examples{
 \dontrun{
 # Get station table

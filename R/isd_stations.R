@@ -24,6 +24,12 @@
 #'  \item end - End date of data coverage, of form YYYYMMDD, numeric
 #' }
 #'
+#' @section File storage:
+#' We use \pkg{rappdirs} to store files, see
+#' \code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
+#' your machine to save files to, and run
+#' \code{rappdirs::user_cache_dir("rnoaa")} to get that directory.
+#'
 #' @examples \dontrun{
 #' # Get station table
 #' (stations <- isd_stations())
