@@ -26,11 +26,4 @@ isd_read <- function(path, parallel = FALSE, cores = getOption("cl.cores", 2),
     parallel = parallel, cores = cores,
     progress = progress
   )
-  # if (!file.exists(as.character(path))) {
-  #   stop("file does not exist / can not be found", call. = FALSE)
-  # }
-  # lns <- readLines(path)
-  # linesproc <- lapply(lns, each_line, sections = sections)
-  # df <- bind_rows(linesproc)
-  # trans_vars(df)
 }
