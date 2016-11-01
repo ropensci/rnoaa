@@ -11,6 +11,12 @@
 #' at end of function execution. Processing data takes up a lot of time, so we
 #' cache a cleaned version of the data. Cleaning up will save you on disk
 #' space. Default: \code{TRUE}
+#' @param parallel (logical) do processing in parallel. Default: \code{FALSE}
+#' @param cores (integer) number of cores to use: Default: 2. We look in
+#' your option "cl.cores", but use default value if not found.
+#' @param progress (logical) print progress - ignored if \code{parallel=TRUE}.
+#' The default is \code{FALSE} because printing progress adds a small bit of
+#' time, so if processing time is important, then keep as \code{FALSE}
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #'
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
@@ -19,6 +25,9 @@
 #' @details \code{isd} saves the full set of weather data for the queried
 #' site locally in the directory specified by the \code{path} argument. You
 #' can access the path for the cached file via \code{attr(x, "source")}
+#'
+#' We use \pkg{isdparser} internally to parse ISD files. They are
+#' relatively complex to parse, so a separate package takes care of that.
 #'
 #' @return A tibble (data.frame).
 #'
@@ -97,8 +106,17 @@
 #' ggplot(res_all, aes(date_time, temperature)) +
 #'   geom_line() +
 #'   facet_wrap(~usaf_station, scales = "free_x")
+#'
+#' # print progress
+#' (res <- isd(usaf="011690", wban="99999", year=1993, progress=TRUE))
+#'
+#' # parallelize processing
+#' (res <- isd(usaf="172007", wban="99999", year=2015, parallel=TRUE))
 #' }
-isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, ...) {
+isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE,
+                parallel = FALSE, cores = getOption("cl.cores", 2),
+                progress = FALSE, ...) {
+
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- "path" %in% calls
   if (any(calls_vec)) {
@@ -111,8 +129,7 @@ isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, ...) {
   if (!is_isd(x = rdspath)) {
     isd_GET(bp = path, usaf, wban, year, overwrite, ...)
   }
-  message(sprintf("<path>%s", rdspath), "\n")
-  df <- read_isd(x = rdspath, sections, cleanup)
+  df <- read_isd(x = rdspath, sections, cleanup, parallel, cores, progress)
   attr(df, "source") <- rdspath
   df
 }
@@ -120,11 +137,16 @@ isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, ...) {
 isd_GET <- function(bp, usaf, wban, year, overwrite, ...) {
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- isd_local(usaf, wban, year, bp, ".gz")
-  tryget <- tryCatch(suppressWarnings(GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite), ...)),
-           error = function(e) e)
+  tryget <- tryCatch(
+    suppressWarnings(
+      GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite), ...)
+    ),
+    error = function(e) e
+  )
   if (inherits(tryget, "error")) {
     unlink(fp)
-    stop("download failed for\n   ", isd_remote(usaf, wban, year), call. = FALSE)
+    stop("download failed for\n   ", isd_remote(usaf, wban, year),
+         call. = FALSE)
   } else {
     tryget
   }
@@ -144,16 +166,18 @@ is_isd <- function(x) {
 
 isdbase <- function() 'ftp://ftp.ncdc.noaa.gov/pub/data/noaa'
 
-read_isd <- function(x, sections, cleanup) {
-  #path_rds <- sub("gz", "rds", x)
+read_isd <- function(x, sections, cleanup, parallel, cores, progress) {
   path_rds <- x
   if (file.exists(path_rds)) {
+    message("found in cache")
     df <- readRDS(path_rds)
   } else {
-    lns <- readLines(sub("rds", "gz", x), encoding = "latin1")
-    linesproc <- lapply(lns, each_line, sections = sections)
-    df <- bind_rows(linesproc)
-    df <- trans_vars(df)
+    df <- isdparser::isd_parse(sub("rds", "gz", x), parallel = parallel,
+                               cores = cores, progress = progress)
+    # lns <- readLines(sub("rds", "gz", x), encoding = "latin1")
+    # linesproc <- lapply(lns, each_line, sections = sections)
+    # df <- bind_rows(linesproc)
+    # df <- trans_vars(df)
     cache_rds(path_rds, df)
     if (cleanup) {
       unlink(sub("rds", "gz", x))
@@ -166,250 +190,4 @@ cache_rds <- function(x, y) {
   if (!file.exists(x)) {
     saveRDS(y, file = x)
   }
-}
-
-# cache_csv <- function(x, y) {
-#   if (!file.exists(x)) {
-#     write.csv(y, file = x, row.names = FALSE)
-#   }
-# }
-
-trans_vars <- function(w) {
-  # fix scaled variables
-  w$latitude <- trans_var(trycol(suppressWarnings(w$latitude)), 1000)
-  w$longitude <- trans_var(trycol(suppressWarnings(w$longitude)), 1000)
-  w$elevation <- trans_var(trycol(suppressWarnings(w$elevation)), 10)
-  w$wind_speed <- trans_var(trycol(suppressWarnings(w$wind_speed)), 10)
-  w$temperature <- trans_var(trycol(suppressWarnings(w$temperature)), 10)
-  w$temperature_dewpoint <- trans_var(trycol(suppressWarnings(w$temperature_dewpoint)), 10)
-  w$air_pressure <- trans_var(trycol(suppressWarnings(w$air_pressure)), 10)
-  w$precipitation <- trans_var(trycol(suppressWarnings(w$precipitation)), 10)
-
-  # as date
-  w$date <- as.Date(w$date, "%Y%m%d")
-
-  # change class
-  w$wind_direction <- as.numeric(w$wind_direction)
-  w$total_chars <- as.numeric(w$total_chars)
-
-  return(w)
-}
-
-trycol <- function(x) {
-  tt <- tryCatch(x, error = function(e) e)
-  if (inherits(tt, "error")) NULL else tt
-}
-
-trans_var <- function(x, n) {
-  if (is.null(x)) {
-    x
-  } else {
-    as.numeric(x)/n
-  }
-}
-
-each_line <- function(y, sections){
-  normal <- Map(function(a,b) subs(y, a, b), pluck(sections, "start"), pluck(sections, "stop"))
-  other <- gsub("\\s+$", "", substring(y, 106, nchar(y)))
-  oth <- proc_other(other)
-  if (is.null(oth)) {
-    dplyr::as_data_frame(normal)
-    #data.frame(normal, stringsAsFactors = FALSE)
-  } else {
-    dplyr::as_data_frame(c(normal, oth))
-    #data.frame(normal, oth, stringsAsFactors = FALSE)
-  }
-}
-
-pluck <- function(input, x) vapply(input, "[[", numeric(1), x)
-
-subs <- function(z, start, stop) substring(z, start, stop)
-
-sections <- list(
-  total_chars = list(start = 1,stop = 4),
-  usaf_station = list(start = 5,stop = 10),
-  wban_station = list(start = 11,stop = 15),
-  date = list(start = 16,stop = 23),
-  time = list(start = 24,stop = 27),
-  date_flag = list(start = 28,stop = 28),
-  latitude = list(start = 29,stop = 34),
-  longitude = list(start = 35,stop = 41),
-  type_code = list(start = 42,stop = 46),
-  elevation = list(start = 47,stop = 51),
-  call_letter = list(start = 52,stop = 56),
-  quality = list(start = 57,stop = 60),
-  wind_direction = list(start = 61,stop = 63),
-  wind_direction_quality = list(start = 64,stop = 64),
-  wind_code = list(start = 65,stop = 65),
-  wind_speed = list(start = 66,stop = 69),
-  wind_speed_quality = list(start = 70,stop = 70),
-  ceiling_height = list(start = 71,stop = 75),
-  ceiling_height_quality = list(start = 76,stop = 76),
-  ceiling_height_determination = list(start = 77,stop = 77),
-  ceiling_height_cavok = list(start = 78,stop = 78),
-  visibility_distance = list(start = 79,stop = 84),
-  visibility_distance_quality = list(start = 85,stop = 85),
-  visibility_code = list(start = 86,stop = 86),
-  visibility_code_quality = list(start = 87,stop = 87),
-  temperature = list(start = 88,stop = 92),
-  temperature_quality = list(start = 93,stop = 93),
-  temperature_dewpoint = list(start = 94,stop = 98),
-  temperature_dewpoint_quality = list(start = 99,stop = 99),
-  air_pressure = list(start = 100,stop = 104),
-  air_pressure_quality = list(start = 105,stop = 105)
-)
-
-proc_other <- function(x){
-  # x <- substring(x, 4, nchar(x))
-  tt <- list(check_get(x, "SA1", sa1),
-       check_get(x, "REM", rem),
-       check_get(x, "AY1", ay1),
-       check_get(x, "AY2", ay2),
-       check_get(x, "AG1", ag1),
-       check_get(x, "GF1", gf1),
-       check_get(x, "KA1", ka1),
-       check_get(x, "EQD", eqd),
-       check_get(x, "MD1", md1),
-       check_get(x, "MW1", mw1)
-  )
-  other <- tt[!vapply(tt, function(x) is.null(x[[1]]), TRUE)]
-  unlist(lapply(other, function(z) {
-    nms <- names(z)
-    tmp <- if (!is_named(z[[1]])) z[[1]][[1]] else z[[1]]
-    stats::setNames(tmp, paste(nms, names(tmp), sep = "_"))
-  }), FALSE)
-}
-
-is_named <- function(x) !is.null(names(x))
-
-check_get <- function(string, pattern, fxn) {
-  yy <- regexpr(pattern, string)
-  tt <- if (yy > 0) fxn(string) else NULL
-  stats::setNames(list(tt), pattern)
-}
-
-# str_match_len(x, "SA1", 8)
-str_match_len <- function(x, index, length){
-  sa1 <- regexpr(index, x)
-  if (sa1 > 0) {
-    substring(x, sa1[1], sa1[1] + (length - 1))
-  } else {
-    NULL
-  }
-}
-
-str_from_to <- function(x, a, b){
-  substring(x, a, a + b)
-}
-
-str_pieces <- function(z, pieces, nms=NULL){
-  tmp <- lapply(pieces, function(x) substring(z, x[1], if (x[2] == 999) nchar(z) else x[2]))
-  if (is.null(nms)) tmp else stats::setNames(tmp, nms)
-}
-
-# sea surface temperature data
-# sa1(x)
-sa1 <- function(x) {
-  str_pieces(
-    str_match_len(x, "SA1", 8),
-    list(c(1,3),c(4,7),c(8,8)),
-    c('sea_surface','temp','quality')
-  )
-}
-
-# remarks section
-# rem(x)
-rem <- function(x){
-  str_pieces(
-    str_match_len(x, "REM", nchar(x)),
-    list(c(1,3),c(4,6),c(7,9),c(10,999)),
-    c('remarks','identifier','length_quantity','comment')
-  )
-}
-
-# past weather manual observation
-# ay1(x)
-ay1 <- function(x){
-  str_pieces(
-    str_match_len(x, "AY1", 8),
-    list(c(1,3),c(4,4),c(5,5),c(6,7),c(8,8)),
-    c('manual_occurrence','condition_code','condition_quality','period','period_quality')
-  )
-}
-
-# past weather manual observation
-# ay2(x)
-ay2 <- function(x){
-  str_pieces(
-    str_match_len(x, "AY2", 8),
-    list(c(1,3),c(4,4),c(5,5),c(6,7),c(8,8)),
-    c('manual_occurrence','condition_code','condition_quality','period','period_quality')
-  )
-}
-
-# PRECIPITATION-ESTIMATED-OBSERVATION identifier
-# ag1(x)
-ag1 <- function(x){
-  str_pieces(
-    str_match_len(x, "AG1", 7),
-    list(c(1,3),c(4,4),c(5,7)),
-    c('precipitation','discrepancy','est_water_depth')
-  )
-}
-
-# sky condition
-# gf1(x)
-gf1 <- function(x){
-  str_pieces(
-    str_match_len(x, "GF1", 26),
-    list(c(1,3),c(4,5),c(6,7),c(8,8),c(9,10),c(11,11),c(12,13),c(14,14),c(15,19),c(20,20),c(21,22),c(23,23),c(24,25),c(26,26)),
-    c('sky_condition','coverage','opaque_coverage','coverage_quality','lowest_cover','lowest_cover_quality',
-      'low_cloud_genus','low_cloud_genus_quality','lowest_cloud_base_height','lowest_cloud_base_height_quality',
-      'mid_cloud_genus','mid_cloud_genus_quality','high_cloud_genus','high_cloud_genus_quality')
-  )
-}
-
-# extreme air temperature
-# ka1(x)
-ka1 <- function(x){
-  str_pieces(
-    str_match_len(x, "KA1", 13),
-    list(c(1,3),c(4,6),c(7,7),c(8,12),c(13,13)),
-    c('extreme_temp','period_quantity','max_min','temp','temp_quality')
-  )
-}
-
-# element data quality section
-# eqd(x)
-eqd <- function(x){
-  eqdtmp <- str_match_len(x, "EQD", nchar(x))
-  eqdmtchs <- gregexpr("Q[0-9]{2}", eqdtmp)
-  segments <- str_from_to(eqdtmp, eqdmtchs[[1]], 13)
-  lapply(segments, function(m){
-    str_pieces(m,
-               list(c(1,3),c(4,9),c(10,10),c(11,16)),
-               c('observation_identifier','observation_text','reason_code','parameter')
-    )
-  })
-}
-
-# atmospheric pressure change
-# md1(x)
-md1 <- function(x){
-  str_pieces(
-    str_match_len(x, "MD1", 14),
-    list(c(1,3),c(4,4),c(5,5),c(6,8),c(9,9),c(10,13),c(14,14)),
-    c('atmospheric_change','tendency','tendency_quality','three_hr','three_hr_quality',
-      'twentyfour_hr','twentyfour_hr_quality')
-  )
-}
-
-# PRESENT-WEATHER-OBSERVATION manual occurrence identifier, MW1=first weather reported
-# mw1(x)
-mw1 <- function(x){
-  str_pieces(
-    str_match_len(x, "MW1", 6),
-    list(c(1,3),c(4,5),c(6,6)),
-    c('first_weather_reported','condition','condition_quality')
-  )
 }

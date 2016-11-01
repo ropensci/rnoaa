@@ -4,7 +4,7 @@ test_that("isd_read gets data", {
   skip_on_cran()
 
   file <- system.file("examples", "011490-99999-1986.gz", package = "rnoaa")
-  aa <- isd_read(file)
+  aa <- suppressMessages(isd_read(file))
 
   expect_is(aa, "tbl_df")
   expect_is(aa$quality, "character")
@@ -20,8 +20,8 @@ test_that("isd fails well", {
                "\"path\" is missing")
 
   expect_error(isd_read(5),
-               "file does not exist")
+               "invalid 'file' argument")
 
   expect_error(isd_read("stuffthings"),
-               "file does not exist")
+               "file not found")
 })
