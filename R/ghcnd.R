@@ -290,11 +290,13 @@ get_inventory <- function(...){
   stats::setNames(df, nms)
 }
 
+strex <- function(x) str_extract_(x, "[0-9]+")
+
 #' Split variables in data returned from \code{ghcnd}
 #'
 #' This function is a helper function for \code{\link{ghcnd_search}}. It helps
 #' with cleaning up the data returned from \code{\link{ghcnd}}, to get it in a
-#' format that is easier to work with using R.
+#' format that is easier to work with.
 #'
 #' @param x An object returned from \code{\link{ghcnd}}.
 #'
@@ -303,6 +305,8 @@ get_inventory <- function(...){
 #'
 #' @export
 ghcnd_splitvars <- function(x){
+  if (!inherits(x, "data.frame")) stop("input must be a data.frame", call. = FALSE)
+  if (!"id" %in% names(x)) stop("input not of correct format", call. = FALSE)
   x <- x[!is.na(x$id), ]
   out <- lapply(as.character(unique(x$element)), function(y){
     ydat <- x[ x$element == y, ]
@@ -359,8 +363,6 @@ ghcnd_splitvars <- function(x){
   })
   stats::setNames(out, tolower(unique(x$element)))
 }
-
-strex <- function(x) str_extract_(x, "[0-9]+")
 
 # ghcnd_mergevars <- function(x){
 #   merge(x[[2]], x[[3]] %>% select(-id), by='date')
