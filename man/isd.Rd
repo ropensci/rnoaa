@@ -2,9 +2,10 @@
 % Please edit documentation in R/isd.R
 \name{isd}
 \alias{isd}
-\title{Get NOAA ISD/ISH data from NOAA FTP server.}
+\title{Get and parse NOAA ISD/ISH data}
 \usage{
-isd(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, ...)
+isd(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, parallel = FALSE,
+  cores = getOption("cl.cores", 2), progress = FALSE, ...)
 }
 \arguments{
 \item{usaf, wban}{(character) USAF and WBAN code. Required}
@@ -20,18 +21,30 @@ at end of function execution. Processing data takes up a lot of time, so we
 cache a cleaned version of the data. Cleaning up will save you on disk
 space. Default: \code{TRUE}}
 
+\item{parallel}{(logical) do processing in parallel. Default: \code{FALSE}}
+
+\item{cores}{(integer) number of cores to use: Default: 2. We look in
+your option "cl.cores", but use default value if not found.}
+
+\item{progress}{(logical) print progress - ignored if \code{parallel=TRUE}.
+The default is \code{FALSE} because printing progress adds a small bit of
+time, so if processing time is important, then keep as \code{FALSE}}
+
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}}
 }
 \value{
 A tibble (data.frame).
 }
 \description{
-Get NOAA ISD/ISH data from NOAA FTP server.
+Get and parse NOAA ISD/ISH data
 }
 \details{
 \code{isd} saves the full set of weather data for the queried
 site locally in the directory specified by the \code{path} argument. You
 can access the path for the cached file via \code{attr(x, "source")}
+
+We use \pkg{isdparser} internally to parse ISD files. They are
+relatively complex to parse, so a separate package takes care of that.
 
 This function first looks for whether the data for your specific
 query has already been downloaded previously in the directory given by
@@ -112,6 +125,12 @@ library("ggplot2")
 ggplot(res_all, aes(date_time, temperature)) +
   geom_line() +
   facet_wrap(~usaf_station, scales = "free_x")
+
+# print progress
+(res <- isd(usaf="011690", wban="99999", year=1993, progress=TRUE))
+
+# parallelize processing
+(res <- isd(usaf="172007", wban="99999", year=2015, parallel=TRUE))
 }
 }
 \references{

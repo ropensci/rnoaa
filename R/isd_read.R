@@ -2,6 +2,12 @@
 #'
 #' @export
 #' @param path (character) path to the file. required.
+#' @param parallel (logical) do processing in parallel. Default: \code{FALSE}
+#' @param cores (integer) number of cores to use: Default: 2. We look in
+#' your option "cl.cores", but use default value if not found.
+#' @param progress (logical) print progress - ignored if \code{parallel=TRUE}.
+#' The default is \code{FALSE} because printing progress adds a small bit of
+#' time, so if processing time is important, then keep as \code{FALSE}
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' @seealso \code{\link{isd}}, \code{\link{isd_stations}},
 #' \code{\link{isd_stations_search}}
@@ -13,12 +19,12 @@
 #' file <- system.file("examples", "011490-99999-1986.gz", package = "rnoaa")
 #' isd_read(file)
 #' }
-isd_read <- function(path) {
-  if (!file.exists(as.character(path))) {
-    stop("file does not exist / can not be found", call. = FALSE)
-  }
-  lns <- readLines(path)
-  linesproc <- lapply(lns, each_line, sections = sections)
-  df <- bind_rows(linesproc)
-  trans_vars(df)
+isd_read <- function(path, parallel = FALSE, cores = getOption("cl.cores", 2),
+                     progress = FALSE) {
+  isdparser::isd_parse(
+    path = path,
+    parallel = parallel,
+    cores = cores,
+    progress = progress
+  )
 }

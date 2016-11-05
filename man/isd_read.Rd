@@ -4,10 +4,20 @@
 \alias{isd_read}
 \title{Read NOAA ISD/ISH local file}
 \usage{
-isd_read(path)
+isd_read(path, parallel = FALSE, cores = getOption("cl.cores", 2),
+  progress = FALSE)
 }
 \arguments{
 \item{path}{(character) path to the file. required.}
+
+\item{parallel}{(logical) do processing in parallel. Default: \code{FALSE}}
+
+\item{cores}{(integer) number of cores to use: Default: 2. We look in
+your option "cl.cores", but use default value if not found.}
+
+\item{progress}{(logical) print progress - ignored if \code{parallel=TRUE}.
+The default is \code{FALSE} because printing progress adds a small bit of
+time, so if processing time is important, then keep as \code{FALSE}}
 }
 \value{
 A tibble (data.frame)
