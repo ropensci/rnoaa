@@ -53,5 +53,4 @@ Suggests:
     covr,
     ggmap,
     ropenaq
-Remotes: ropenscilabs/isdparser
 RoxygenNote: 5.0.1
