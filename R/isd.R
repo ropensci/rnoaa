@@ -1,4 +1,4 @@
-#' Get NOAA ISD/ISH data from NOAA FTP server.
+#' Get and parse NOAA ISD/ISH data
 #'
 #' @export
 #'
@@ -174,10 +174,6 @@ read_isd <- function(x, sections, cleanup, parallel, cores, progress) {
   } else {
     df <- isdparser::isd_parse(sub("rds", "gz", x), parallel = parallel,
                                cores = cores, progress = progress)
-    # lns <- readLines(sub("rds", "gz", x), encoding = "latin1")
-    # linesproc <- lapply(lns, each_line, sections = sections)
-    # df <- bind_rows(linesproc)
-    # df <- trans_vars(df)
     cache_rds(path_rds, df)
     if (cleanup) {
       unlink(sub("rds", "gz", x))

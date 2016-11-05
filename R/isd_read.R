@@ -23,7 +23,8 @@ isd_read <- function(path, parallel = FALSE, cores = getOption("cl.cores", 2),
                      progress = FALSE) {
   isdparser::isd_parse(
     path = path,
-    parallel = parallel, cores = cores,
+    parallel = parallel,
+    cores = cores,
     progress = progress
   )
 }

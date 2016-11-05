@@ -2,7 +2,7 @@
 % Please edit documentation in R/isd.R
 \name{isd}
 \alias{isd}
-\title{Get NOAA ISD/ISH data from NOAA FTP server.}
+\title{Get and parse NOAA ISD/ISH data}
 \usage{
 isd(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, parallel = FALSE,
   cores = getOption("cl.cores", 2), progress = FALSE, ...)
@@ -36,7 +36,7 @@ time, so if processing time is important, then keep as \code{FALSE}}
 A tibble (data.frame).
 }
 \description{
-Get NOAA ISD/ISH data from NOAA FTP server.
+Get and parse NOAA ISD/ISH data
 }
 \details{
 \code{isd} saves the full set of weather data for the queried
