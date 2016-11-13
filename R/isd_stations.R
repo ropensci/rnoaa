@@ -46,6 +46,7 @@
 #' }
 isd_stations <- function(refresh = FALSE, ...) {
   path <- normalizePath(file.path(rnoaa_cache_dir(), "isd_stations.rds"))
+  basedir <- normalizePath(dirname(path), winslash = "/")
   if (refresh || !file.exists(path)) {
     #res <- suppressWarnings(GET(paste0(isdbase(), "/isd-history.csv"), ...))
     #df <- read.csv(text = utcf8(res), header = TRUE, colClasses = 'character')
@@ -58,6 +59,7 @@ isd_stations <- function(refresh = FALSE, ...) {
     df$BEGIN <- as.numeric(df$BEGIN)
     df$END <- as.numeric(df$END)
     dat <- stats::setNames(df, gsub("_$", "", gsub("\\.", "_", tolower(names(df)))))
+    if (!file.exist(basedir)) dir.create(basedir, recursive = TRUE)
     saveRDS(dat, file = path)
     as_data_frame(dat)
   } else {
