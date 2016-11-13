@@ -47,8 +47,11 @@
 isd_stations <- function(refresh = FALSE, ...) {
   path <- file.path(rnoaa_cache_dir(), "isd_stations.rds")
   if (refresh || !file.exists(path)) {
-    res <- suppressWarnings(GET(paste0(isdbase(), "/isd-history.csv"), ...))
-    df <- read.csv(text = utcf8(res), header = TRUE, colClasses = 'character')
+    #res <- suppressWarnings(GET(paste0(isdbase(), "/isd-history.csv"), ...))
+    #df <- read.csv(text = utcf8(res), header = TRUE, colClasses = 'character')
+    df <- read.csv(paste0(isdbase(), "/isd-history.csv"),
+                   header = TRUE, colClasses = 'character',
+                   encoding = "UTF-8")
     df$LAT <- as.numeric(df$LAT)
     df$LON <- as.numeric(df$LON)
     df$ELEV.M. <- as.numeric(df$ELEV.M.)
