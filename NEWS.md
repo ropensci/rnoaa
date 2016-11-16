@@ -1,3 +1,28 @@
+rnoaa 0.6.6
+===========
+
+### NEW FEATURES
+
+* `isd()` now using a new package `isdparser` to parse 
+NOAA ISD files. We still fetch the file within `rnoaa`, but the 
+file parsing is done by `isdparser` (#176) (#177) (#180) thanks @mrubayet 
+for the push
+
+### MINOR IMPROVEMENTS
+
+* Fixed precipitation units in docs for `meteo_*` functions (#178)
+thanks @mrubayet
+
+### BUG FIXES
+
+* Fixed bug in `ghcnd()` where internal unexported function 
+was not found (#179)
+* Fix to `isd_stations()` and `isd_stations_search()` to work 
+correctly on Windows (#181) thanks @GuodongZhu
+* Changed base URL for all NOAA NCDC functions (those starting with 
+`ncdc`) to `https` from `http` (#182) thanks @maspotts
+
+
 rnoaa 0.6.5
 ===========
 

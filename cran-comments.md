@@ -1,9 +1,9 @@
 ## Test environments
 
-* local OS X install, R 3.3.1
-* ubuntu 12.04 (on travis-ci), R 3.3.1
+* local OS X install, R 3.3.2
+* ubuntu 12.04 (on travis-ci), R 3.3.2
 * win-builder (devel and release)
-* R-hub (Windows devel and release)
+* R-hub (Ubuntu Linux R-release, Fedora Linux R-devel, Windows R-oldrel)
 
 ## R CMD check results
 
@@ -17,12 +17,12 @@
 
 ## Reverse dependencies
 
-There are no reverse dependencies.
+Checked on the 1 reverse dependency - no problems were found.
 
 -----
 
-This submission includes an important bug fix, and some
+This submission includes some important bug fixes, and some
 minor improvements.
 
-Thanks.
+Thanks!
 Scott Chamberlain
