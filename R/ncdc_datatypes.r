@@ -57,9 +57,9 @@ ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   token <- check_key(token)
 
   if (!is.null(datatypeid)) {
-    url <- sprintf("http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes/%s", datatypeid)
+    url <- sprintf("%sdatatypes/%s", ncdc_base(), datatypeid)
   } else {
-    url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes"
+    url <- paste0(ncdc_base(), "datatypes")
   }
 
   args <- noaa_compact(list(startdate=startdate, enddate=enddate,

@@ -53,7 +53,7 @@ ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
 
   token <- check_key(token)
 
-  url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datasets"
+  url <- paste0(ncdc_base(), "datasets")
   if (!is.null(datasetid)) url <- paste(url, "/", datasetid, sep = "")
   args <- noaa_compact(list(startdate=startdate,
                        enddate=enddate, sortfield=sortfield, sortorder=sortorder,

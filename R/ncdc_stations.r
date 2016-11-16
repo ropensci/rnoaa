@@ -86,10 +86,10 @@ ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
 
   if (!is.null(stationid)) {
     if (length(stationid) > 1) stop("stationid must be of length 1", call. = FALSE)
-    url <- sprintf('http://www.ncdc.noaa.gov/cdo-web/api/v2/stations/%s', stationid)
+    url <- sprintf('%sstations/%s', ncdc_base(), stationid)
     args <- list()
   } else {
-    url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/stations'
+    url <- paste0(ncdc_base(), "stations")
     if (!is.null(extent)) {
       stopifnot(length(extent) == 4)
       stopifnot(inherits(extent, "numeric"))

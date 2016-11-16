@@ -148,7 +148,6 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
     stop("The parameters name, code, modifiedsince, startindex, and maxresults \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa")
 
   token <- check_key(token)
-  base = 'http://www.ncdc.noaa.gov/cdo-web/api/v2/data'
   args <- noaa_compact(list(datasetid=datasetid, startdate=startdate,
                          enddate=enddate, sortfield=sortfield, sortorder=sortorder,
                          limit=limit, offset=offset, includemetadata=includemetadata))
@@ -165,7 +164,7 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
   if (length(args) == 0) args <- NULL
-  temp <- GET(base, query=args, add_headers("token" = token), ...)
+  temp <- GET(paste0(ncdc_base(), "data"), query=args, add_headers("token" = token), ...)
   tt <- check_response(temp)
   if(inherits(tt, "character")){
     all <- list(meta=NA, data=NA)
@@ -200,9 +199,11 @@ split_atts <- function(x, ds="GHCNDMS"){
 
 parse_ncdc <- function(y, headings){
   res <- strsplit(y, ',')[[1]]
-  if(grepl(",$", y)){
+  if (grepl(",$", y)) {
     res <- c(res, "")
   }
   names(res) <- headings
   as.list(res)
 }
+
+ncdc_base <- function() 'https://www.ncdc.noaa.gov/cdo-web/api/v2/'

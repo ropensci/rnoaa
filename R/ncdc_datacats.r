@@ -44,7 +44,7 @@ ncdc_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
   limit=25, offset=NULL, token=NULL, ...)
 {
   token <- check_key(token)
-  url <- "http://www.ncdc.noaa.gov/cdo-web/api/v2/datacategories"
+  url <- paste0(ncdc_base(), "datacategories")
   if (!is.null(datacategoryid)) url <- paste(url, "/", datacategoryid, sep = "")
   args <- noaa_compact(list(startdate=startdate, enddate=enddate, sortfield=sortfield,
             sortorder=sortorder, limit=limit, offset=offset))

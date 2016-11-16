@@ -40,9 +40,10 @@ ncdc_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
   limit=25, offset=NULL, token=NULL, ...)
 {
   token <- check_key(token)
-  url <- 'http://www.ncdc.noaa.gov/cdo-web/api/v2/locations'
-  if(!is.null(locationid))
-    url <- paste(url, "/", locationid, sep="")
+  url <- paste0(ncdc_base(), "locations")
+  if (!is.null(locationid)) {
+    url <- paste(url, "/", locationid, sep = "")
+  }
   args <- noaa_compact(list(locationid=locationid, startdate=startdate,
                        enddate=enddate, token=token, sortfield=sortfield,
                        sortorder=sortorder, limit=limit, offset=offset))
@@ -57,16 +58,15 @@ ncdc_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
   if (length(args) == 0) args <- NULL
   temp <- GET(url, query=args, add_headers("token" = token), ...)
   tt <- check_response(temp)
-  if(inherits(tt, "character")){
+  if (inherits(tt, "character")){
     all <- list(meta=NULL, data=NULL)
   } else {
-    if(!is.null(locationid)){
+    if (!is.null(locationid)){
       dat <- data.frame(tt, stringsAsFactors=FALSE)
       all <- list(meta=NULL, data=dat)
-    } else
-    {
-      if(class(try(tt$results, silent=TRUE))=="try-error"){
-        all <- list(meta=NULL, data=NULL)
+    } else {
+      if (class(try(tt$results, silent = TRUE)) == "try-error"){
+        all <- list(meta = NULL, data = NULL)
         warning("Sorry, no data found")
       } else {
         dat <- dplyr::bind_rows(lapply(tt$results, function(x) data.frame(x,stringsAsFactors=FALSE)))
