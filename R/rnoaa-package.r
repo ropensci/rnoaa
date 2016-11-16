@@ -5,10 +5,10 @@
 #' @section Data Sources:
 #' Many functions in this package interact with the National Climatic Data
 #' Center application programming interface (API) at
-#' http://www.ncdc.noaa.gov/cdo-web/webservices/v2, all of
-#' which functions start with \code{ncdc_}. An access token, or API key, is required to use all
-#' the \code{ncdc_} functions. The key is required by NOAA, not us. Go to the link given above
-#' to get an API key.
+#' https://www.ncdc.noaa.gov/cdo-web/webservices/v2, all of
+#' which functions start with \code{ncdc_}. An access token, or API key, is
+#' required to use all the \code{ncdc_} functions. The key is required by NOAA,
+#' not us. Go to the link given above to get an API key.
 #'
 #' More NOAA data sources are being added through time. Data sources and their
 #' function prefixes are:
@@ -18,8 +18,10 @@
 #'  \item \code{gefs_*} - GEFS forecast ensemble data
 #'  \item \code{ghcnd_*} - GHCND daily data from NOAA
 #'  \item \code{isd_*} - ISD/ISH data from NOAA
-#'  \item \code{homr_*} - Historical Observing Metadata Repository (HOMR) vignette
-#'  \item \code{ncdc_*} - NOAA National Climatic Data Center (NCDC) vignette (examples)
+#'  \item \code{homr_*} - Historical Observing Metadata Repository (HOMR)
+#'  vignette
+#'  \item \code{ncdc_*} - NOAA National Climatic Data Center (NCDC) vignette
+#'  (examples)
 #'  \item \code{seaice} - Sea ice vignette
 #'  \item \code{storm_} - Storms (IBTrACS) vignette
 #'  \item \code{swdi} - Severe Weather Data Inventory (SWDI) vignette
@@ -30,29 +32,30 @@
 #'
 #' @section A note about NCDF data:
 #'
-#' Functions to work with buoy data use netcdf files. You'll need the \code{ncdf4}
-#' package for those functions, and those only. \code{ncdf4} is in Suggests in
-#' this package, meaning you only need \code{ncdf4} if you are using the buoy
-#' functions. You'll get an informative error telling you to install \code{ncdf4}
-#' if you don't have it and you try to use the buoy functions.
-#'
+#' Functions to work with buoy data use netcdf files. You'll need the
+#' \code{ncdf4} package for those functions, and those only. \code{ncdf4} is
+#' in Suggests in this package, meaning you only need \code{ncdf4} if you are
+#' using the buoy functions. You'll get an informative error telling you to
+#' install \code{ncdf4} if you don't have it and you try to use the
+#' buoy functions.
 
 #' @section The \code{meteo} family of functions:
 #'
-#' The \code{meteo} family of functions are prefixed with \code{meteo_} and provide
-#' a set of helper functions to:
+#' The \code{meteo} family of functions are prefixed with \code{meteo_} and
+#' provide a set of helper functions to:
 #'
 #' \itemize{
 #'   \item Identify candidate stations from a latitude/longitude pair
-#'   \item Retrieve complete data for one or more stations (\code{meteo_coverage()})
+#'   \item Retrieve complete data for one or more stations
+#'   (\code{meteo_coverage()})
 #' }
 #'
 #' @importFrom utils head download.file read.csv read.delim read.fwf read.table
 #' write.csv untar unzip
 #' @importFrom lubridate ymd year today month
 #' @importFrom scales date_breaks date_format
-#' @importFrom ggplot2 autoplot ggplot aes facet_wrap theme theme_bw geom_line labs
-#' guides guide_legend fortify scale_x_date scale_x_datetime element_blank
+#' @importFrom ggplot2 autoplot ggplot aes facet_wrap theme theme_bw geom_line
+#' labs guides guide_legend fortify scale_x_date scale_x_datetime element_blank
 #' @importFrom httr GET add_headers content warn_for_status stop_for_status
 #' write_disk parse_url build_url http_status
 #' @importFrom XML xpathSApply xpathApply xmlValue xmlParse xmlToList htmlParse
@@ -92,8 +95,8 @@ NULL
 
 #' NOAA storm column descriptions for data from IBTrACS
 #'
-#' This dataset includes description of the columns of each dataset acquired using
-#' \code{\link[rnoaa]{storm_data}}
+#' This dataset includes description of the columns of each dataset acquired
+#' using \code{\link[rnoaa]{storm_data}}
 #'
 #' @docType data
 #' @keywords datasets
@@ -103,8 +106,9 @@ NULL
 
 #' NOAA storm names from IBTrACS
 #'
-#' This dataset includes a crosswalk from storm serial numbers to their names. Storm serial numbers
-#' are used to search for storms in the \code{\link[rnoaa]{storm_data}} function.
+#' This dataset includes a crosswalk from storm serial numbers to their names.
+#' Storm serial numbers are used to search for storms in the
+#' \code{\link[rnoaa]{storm_data}} function.
 #'
 #' @docType data
 #' @keywords datasets

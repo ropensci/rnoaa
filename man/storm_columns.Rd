@@ -6,8 +6,8 @@
 \title{NOAA storm column descriptions for data from IBTrACS}
 \format{A data frame with 195 rows and 8 variables}
 \description{
-This dataset includes description of the columns of each dataset acquired using
-\code{\link[rnoaa]{storm_data}}
+This dataset includes description of the columns of each dataset acquired
+using \code{\link[rnoaa]{storm_data}}
 }
 \keyword{datasets}
 
