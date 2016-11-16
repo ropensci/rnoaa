@@ -10,51 +10,59 @@ homr(qid = NULL, qidMod = NULL, station = NULL, state = NULL,
   headersOnly = FALSE, phrData = NULL, combine = FALSE, ...)
 }
 \arguments{
-\item{qid}{One of COOP, FAA, GHCND, ICAO, NCDCSTNID, NWSLI, TRANS, WBAN, or WMO, or any
+\item{qid}{One of COOP, FAA, GHCND, ICAO, NCDCSTNID, NWSLI, TRANS, WBAN, or
+WMO, or any
 of those plus \code{[a-z0-9]}, or just \code{[a-z0-9]}. (qid = qualified ID)}
 
-\item{qidMod}{(character) One of: is, starts, ends, contains. Specifies how the ID portion of
-the qid parameter should be applied within the search. If a qid is passed but the qidMod
-parameter is not used, qidMod is assumed to be IS.}
+\item{qidMod}{(character) One of: is, starts, ends, contains. Specifies
+how the ID portion of the qid parameter should be applied within the search.
+If a qid is passed but the qidMod parameter is not used, qidMod is
+assumed to be IS.}
 
 \item{station}{(character) A station id.}
 
-\item{state}{(character) A two-letter state abbreviation. Two-letter code for US states,
-Canadian provinces, and other Island areas.}
+\item{state}{(character) A two-letter state abbreviation. Two-letter code
+for US states, Canadian provinces, and other Island areas.}
 
-\item{county}{(character) A two letter county code. US county names, best used with a state
-identifier.}
+\item{county}{(character) A two letter county code. US county names, best
+used with a state identifier.}
 
-\item{country}{(character) A two letter country code. See here for a list of valid country
-names.}
+\item{country}{(character) A two letter country code. See here for a list
+of valid country names.}
 
-\item{name}{(character) One of name=[0-9A-Z]+. Searches on any type of name we have for the
-station.}
+\item{name}{(character) One of name=[0-9A-Z]+. Searches on any type of
+name we have for the station.}
 
-\item{nameMod}{(character) [is|starts|ends|contains]. Specifies how the name parameter should
-be applied within the search. If a name is passed but the nameMod parameter is not used,
-nameMod is assumed to be IS.}
+\item{nameMod}{(character) [is|starts|ends|contains]. Specifies how the
+name parameter should be applied within the search. If a name is passed but
+the nameMod parameter is not used, nameMod is assumed to be IS.}
 
-\item{platform}{(character) (aka network) [ASOS|USCRN|USHCN|NEXRAD|AL USRCRN|USRCRN|COOP].
-Limit the search to stations of a certain platform/network type.}
+\item{platform}{(character) (aka network) [ASOS|USCRN|USHCN|NEXRAD|AL
+USRCRN|USRCRN|COOP]. Limit the search to stations of a certain
+platform/network type.}
 
-\item{date}{(character) [YYYY-MM-DD|all] Limits values to only those that occurred on a
-specific date. Alternatively, date=all will return all values for matched stations. If this
-field is omitted, the search will return only the most recent values for each field.}
+\item{date}{(character) [YYYY-MM-DD|all] Limits values to only those that
+occurred on a specific date. Alternatively, date=all will return all values
+for matched stations. If this field is omitted, the search will return only
+the most recent values for each field.}
 
-\item{begindate, enddate}{[YYYY-MM-DD]. Limits values to only those that occurred within a
-date range.}
+\item{begindate, enddate}{[YYYY-MM-DD]. Limits values to only those that
+occurred within a date range.}
 
-\item{headersOnly}{(logical) Returns only minimal information for each station found (NCDC
-Station ID, Preferred Name, Station Begin Date, and Station End Date), but is much quicker than a
-full query. If you are performing a search that returns a large number of stations and intend
-to choose only one from that list to examine in detail, headersOnly may give you enough
-information to find the NCDC Station ID for the station that you actually want.}
+\item{headersOnly}{(logical) Returns only minimal information for each
+station found (NCDC Station ID, Preferred Name, Station Begin Date, and
+Station End Date), but is much quicker than a full query. If you are
+performing a search that returns a large number of stations and intend to
+choose only one from that list to examine in detail, headersOnly may give
+you enough information to find the NCDC Station ID for the station that
+you actually want.}
 
-\item{phrData}{(logical) The HOMR web service now includes PHR (element-level) data when
-available, in an elements section. Because of how this data is structured, it can substantially
-increase the size of any result which includes it. If you don't need this data you can omit it
-by including phrData=false. If the parameter is not set, it will default to phrData=true.}
+\item{phrData}{(logical) The HOMR web service now includes PHR
+(element-level) data when available, in an elements section. Because of
+how this data is structured, it can substantially increase the size of any
+result which includes it. If you don't need this data you can omit it
+by including phrData=false. If the parameter is not set, it will default
+to phrData=true.}
 
 \item{combine}{(logical) Combine station metadata or not.}
 
@@ -67,9 +75,9 @@ A list, with elements named by the station ids.
 Historical Observing Metadata Repository (HOMR) station metadata
 }
 \details{
-Since the definitions for variables are always the same, we don't include the ability
-to get description data in this function. Use \code{link[rnoaa]{homr_descriptions}} to get
-descriptions information.
+Since the definitions for variables are always the same, we don't
+include the ability to get description data in this function. Use
+\code{link[rnoaa]{homr_descriptions}} to get descriptions information.
 }
 \examples{
 \dontrun{
@@ -98,6 +106,6 @@ homr(headersOnly=TRUE, state='NC', county='BUNCOMBE', config=verbose())
 }
 }
 \references{
-\url{http://www.ncdc.noaa.gov/homr/api}
+\url{https://www.ncdc.noaa.gov/homr/api}
 }
 
