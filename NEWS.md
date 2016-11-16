@@ -21,6 +21,8 @@ was not found (#179)
 correctly on Windows (#181) thanks @GuodongZhu
 * Changed base URL for all NOAA NCDC functions (those starting with 
 `ncdc`) to `https` from `http` (#182) thanks @maspotts
+* Changed base URL for all NOAA HOMR functions (those starting with 
+`homr`) to `https` from `http` (#183)
 
 
 rnoaa 0.6.5

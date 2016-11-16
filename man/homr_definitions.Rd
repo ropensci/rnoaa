@@ -2,7 +2,8 @@
 % Please edit documentation in R/homr_definitions.R
 \name{homr_definitions}
 \alias{homr_definitions}
-\title{Historical Observing Metadata Repository (HOMR) station metadata - definitions}
+\title{Historical Observing Metadata Repository (HOMR) station metadata -
+definitions}
 \usage{
 homr_definitions(...)
 }
@@ -10,7 +11,8 @@ homr_definitions(...)
 \item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
 \description{
-Historical Observing Metadata Repository (HOMR) station metadata - definitions
+Historical Observing Metadata Repository (HOMR) station metadata -
+definitions
 }
 \examples{
 \dontrun{
