@@ -110,9 +110,9 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
 #' This function inputs an object created by \code{\link{ghcnd}} and cleans up
 #' the data into a tidy form.
 #'
-#' @param keep_flags TRUE / FALSE for whether the user would like to keep all the flags
-#'    for each weather variable. The default is to not keep the flags (FALSE).
-#'    See the note below for more information on these flags.
+#' @param keep_flags TRUE / FALSE for whether the user would like to keep all
+#' the flags for each weather variable. The default is to not keep the
+#' flags (FALSE). See the note below for more information on these flags.
 #' @inheritParams ghcnd_search
 #'
 #' @return A data frame of daily weather data for a single weather monitor,
@@ -121,7 +121,7 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
 #'    \itemize{
 #'    \item \code{id}: Character string with the weather station site id
 #'    \item \code{date}: Date of the observation
-#'    \item \code{prcp}: Precipitation, in mm
+#'    \item \code{prcp}: Precipitation, in tenths of mm
 #'    \item \code{tavg}: Average temperature, in degrees Celsius
 #'    \item \code{tmax}: Maximum temperature, in degrees Celsius
 #'    \item \code{tmin}: Minimum temperature, in degrees Celsius

@@ -11,9 +11,9 @@ meteo_tidy_ghcnd_element(x, keep_flags = FALSE)
 single weather variable. This dataframe is one of the elements returned
 by \code{\link{ghcnd_search}}.}
 
-\item{keep_flags}{TRUE / FALSE for whether the user would like to keep all the flags
-for each weather variable. The default is to not keep the flags (FALSE).
-See the note below for more information on these flags.}
+\item{keep_flags}{TRUE / FALSE for whether the user would like to keep all
+the flags for each weather variable. The default is to not keep the
+flags (FALSE). See the note below for more information on these flags.}
 }
 \value{
 A dataframe reformatted to allow easy aggregation of all weather
