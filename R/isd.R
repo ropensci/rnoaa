@@ -129,7 +129,7 @@ isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE,
   if (!is_isd(x = rdspath)) {
     isd_GET(bp = path, usaf, wban, year, overwrite, ...)
   }
-  df <- read_isd(x = rdspath, sections, cleanup, parallel, cores, progress)
+  df <- read_isd(x = rdspath, cleanup, parallel, cores, progress)
   attr(df, "source") <- rdspath
   df
 }
@@ -166,7 +166,7 @@ is_isd <- function(x) {
 
 isdbase <- function() 'ftp://ftp.ncdc.noaa.gov/pub/data/noaa'
 
-read_isd <- function(x, sections, cleanup, parallel, cores, progress) {
+read_isd <- function(x, cleanup, parallel, cores, progress) {
   path_rds <- x
   if (file.exists(path_rds)) {
     message("found in cache")
