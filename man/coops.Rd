@@ -16,16 +16,21 @@ coops_search(begin_date = NULL, end_date = NULL, station_name = NULL,
 
 \item{station_name}{(numeric)}
 
-\item{product}{(character) Specify the data type. See below for Details. Required}
+\item{product}{(character) Specify the data type. See below for Details.
+Required}
 
-\item{datum}{(character) See below for Details. Required for all water level products.}
+\item{datum}{(character) See below for Details. Required for all water
+level products.}
 
-\item{units}{(character) Specify metric or english (imperial) units, one of 'metric', 'english'.}
+\item{units}{(character) Specify metric or english (imperial) units,
+one of 'metric', 'english'.}
 
-\item{time_zone}{(character) Time zone, one of 'gmt', 'lst', 'lst_ldt'.}
+\item{time_zone}{(character) Time zone, one of 'gmt', 'lst', 'lst_ldt'.
+For GMT, we convert time stamps to GMT. For LST, we look up the time zone
+of the station with its lat/lon values, and assign that time zone.}
 
-\item{application}{(character) If called within an external package, set to the name of your
-organization. Optional}
+\item{application}{(character) If called within an external package, set
+to the name of your organization. Optional}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}
 }
@@ -42,18 +47,21 @@ Get NOAA co-ops data
 \details{
 Options for the product paramter. One of:
 \itemize{
- \item water_level - Preliminary or verified water levels, depending on availability
+ \item water_level - Preliminary or verified water levels, depending on
+ availability
  \item air_temperature - Air temperature as measured at the station
  \item water_temperature - Water temperature as measured at the station
  \item wind - Wind speed, direction, and gusts as measured at the station
  \item air_pressure - Barometric pressure as measured at the station
- \item air_gap - Air Gap (distance between a bridge and the water's surface) at the station
+ \item air_gap - Air Gap (distance between a bridge and the water's surface)
+ at the station
  \item conductivity - The water's conductivity as measured at the station
- \item visibility - Visibility from the station's visibility sensor. A measure of
- atmospheric clarity
+ \item visibility - Visibility from the station's visibility sensor. A
+ measure of atmospheric clarity
  \item humidity - Relative humidity as measured at the station
  \item salinity - Salinity and specific gravity data for the station
- \item hourly_height - Verified hourly height water level data for the station
+ \item hourly_height - Verified hourly height water level data for
+ the station
  \item high_low - Verified high/low water level data for the station
  \item daily_mean - Verified daily mean water level data for the station
  \item monthly_mean - Verified monthly mean water level data for the station
@@ -78,65 +86,66 @@ Options for the datum paramter. One of:
 \examples{
 \dontrun{
 # Get monthly mean sea level data at Vaca Key (8723970)
-coops_search(station_name = 8723970, begin_date = 19820301, end_date = 20141001,
- datum = "stnd", product = "monthly_mean")
+coops_search(station_name = 8723970, begin_date = 19820301,
+  end_date = 20141001, datum = "stnd", product = "monthly_mean")
 
 # Get verified water level data at Vaca Key (8723970)
-coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
- datum = "stnd", product = "water_level")
+coops_search(station_name = 8723970, begin_date = 20140927,
+  end_date = 20140928, datum = "stnd", product = "water_level")
 
 # Get daily mean water level data at Fairport, OH (9063053)
- coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
-  product = "daily_mean", datum = "stnd", time_zone = "lst")
+coops_search(station_name = 9063053, begin_date = 20150927,
+  end_date = 20150928, product = "daily_mean", datum = "stnd",
+  time_zone = "lst")
 
 # Get air temperature at Vaca Key (8723970)
-coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
- product = "air_temperature")
+coops_search(station_name = 8723970, begin_date = 20140927,
+  end_date = 20140928, product = "air_temperature")
 
 # Get water temperature at Vaca Key (8723970)
-coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
- product = "water_temperature")
+coops_search(station_name = 8723970, begin_date = 20140927,
+  end_date = 20140928, product = "water_temperature")
 
 # Get air pressure at Vaca Key (8723970)
-coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
- product = "air_pressure")
+coops_search(station_name = 8723970, begin_date = 20140927,
+  end_date = 20140928, product = "air_pressure")
 
 # Get humidity at Eugene Island, LA (8764314)
-coops_search(station_name = 8764314, begin_date = 20150927, end_date = 20150928,
- product = "humidity")
+coops_search(station_name = 8764314, begin_date = 20150927,
+  end_date = 20150928, product = "humidity")
 
 # Get wind at Vaca Key (8723970)
-coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
- product = "wind")
+coops_search(station_name = 8723970, begin_date = 20140927,
+  end_date = 20140928, product = "wind")
 
 # Get hourly water level height at Key West (8724580)
-coops_search(station_name = 8724580, begin_date = 20140927, end_date = 20140928,
- product = "hourly_height", datum = "stnd")
+coops_search(station_name = 8724580, begin_date = 20140927,
+  end_date = 20140928, product = "hourly_height", datum = "stnd")
 
 # Get high-low water level at Key West (8724580)
-coops_search(station_name = 8724580, begin_date = 20140927, end_date = 20140928,
- product = "high_low", datum = "stnd")
+coops_search(station_name = 8724580, begin_date = 20140927,
+  end_date = 20140928, product = "high_low", datum = "stnd")
 
 # Get currents data at Pascagoula Harbor (ps0401)
-coops_search(station_name = "ps0401", begin_date = 20151221, end_date = 20151222,
- product = "currents")
+coops_search(station_name = "ps0401", begin_date = 20151221,
+  end_date = 20151222, product = "currents")
 
 # Get one-minute water level at Vaca Key (8723970)
-coops_search(station_name = 8723970, begin_date = 20140927, end_date = 20140928,
- datum = "stnd", product = "one_minute_water_level")
+coops_search(station_name = 8723970, begin_date = 20140927,
+  end_date = 20140928, datum = "stnd", product = "one_minute_water_level")
 
 # Get datums at Fort Myers, FL (8725520)
 coops_search(station_name = 8725520, product = "datums")
 
 # Get water level predictions at Vaca Key (8723970)
-coops_search(station_name = 8723970, begin_date = 20140928, end_date = 20140929,
- datum = "stnd", product = "predictions")
+coops_search(station_name = 8723970, begin_date = 20140928,
+  end_date = 20140929, datum = "stnd", product = "predictions")
 
 }
 }
 \references{
-\url{http://co-ops.nos.noaa.gov/api/}
+\url{https://tidesandcurrents.noaa.gov/api/}
 
-\url{http://tidesandcurrents.noaa.gov/map/}
+\url{https://tidesandcurrents.noaa.gov/map/}
 }
 
