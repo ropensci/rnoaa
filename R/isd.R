@@ -11,12 +11,18 @@
 #' at end of function execution. Processing data takes up a lot of time, so we
 #' cache a cleaned version of the data. Cleaning up will save you on disk
 #' space. Default: \code{TRUE}
+#' @param additional (logical) include additional and remarks data sections
+#' in output. Default: \code{TRUE}. Passed on to
+#' \code{\link[isdparser]{isd_parse}}
 #' @param parallel (logical) do processing in parallel. Default: \code{FALSE}
 #' @param cores (integer) number of cores to use: Default: 2. We look in
 #' your option "cl.cores", but use default value if not found.
 #' @param progress (logical) print progress - ignored if \code{parallel=TRUE}.
 #' The default is \code{FALSE} because printing progress adds a small bit of
 #' time, so if processing time is important, then keep as \code{FALSE}
+#' @param force (logical) force download? Default: \code{FALSE}
+#' We use a cached version (an .rds compressed file) if it exists, but
+#' this will override that behavior.
 #' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #'
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
@@ -74,9 +80,13 @@
 #' # Get data
 #' (res <- isd(usaf="011490", wban="99999", year=1986))
 #' (res <- isd(usaf="011690", wban="99999", year=1993))
-#' (res <- isd(usaf="172007", wban="99999", year=2015))
-#' (res <- isd(usaf="702700", wban="00489", year=2015))
 #' (res <- isd(usaf="109711", wban=99999, year=1970))
+#'
+#' # "additional" and "remarks" data sections included by default
+#' # can toggle that parameter to not include those in output, saves time
+#' (res1 <- isd(usaf="011490", wban="99999", year=1986, force = TRUE))
+#' (res2 <- isd(usaf="011490", wban="99999", year=1986, force = TRUE,
+#'   additional = FALSE))
 #'
 #' # The first time a dataset is requested takes longer
 #' system.time( isd(usaf="782680", wban="99999", year=2011) )
@@ -114,8 +124,9 @@
 #' (res <- isd(usaf="172007", wban="99999", year=2015, parallel=TRUE))
 #' }
 isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE,
-                parallel = FALSE, cores = getOption("cl.cores", 2),
-                progress = FALSE, ...) {
+                additional = TRUE, parallel = FALSE,
+                cores = getOption("cl.cores", 2), progress = FALSE,
+                force = FALSE, ...) {
 
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- "path" %in% calls
@@ -126,10 +137,11 @@ isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE,
 
   path <- file.path(rnoaa_cache_dir(), "isd")
   rdspath <- isd_local(usaf, wban, year, path, ".rds")
-  if (!is_isd(x = rdspath)) {
+  if (!is_isd(x = rdspath) || force) {
     isd_GET(bp = path, usaf, wban, year, overwrite, ...)
   }
-  df <- read_isd(x = rdspath, cleanup, parallel, cores, progress)
+  df <- read_isd(x = rdspath, cleanup, force, additional,
+                 parallel, cores, progress)
   attr(df, "source") <- rdspath
   df
 }
@@ -139,7 +151,7 @@ isd_GET <- function(bp, usaf, wban, year, overwrite, ...) {
   fp <- isd_local(usaf, wban, year, bp, ".gz")
   tryget <- tryCatch(
     suppressWarnings(
-      GET(isd_remote(usaf, wban, year), write_disk(fp, overwrite), ...)
+      httr::GET(isd_remote(usaf, wban, year), httr::write_disk(fp, overwrite), ...)
     ),
     error = function(e) e
   )
@@ -166,14 +178,16 @@ is_isd <- function(x) {
 
 isdbase <- function() 'ftp://ftp.ncdc.noaa.gov/pub/data/noaa'
 
-read_isd <- function(x, cleanup, parallel, cores, progress) {
+read_isd <- function(x, cleanup, force, additional, parallel, cores, progress) {
   path_rds <- x
-  if (file.exists(path_rds)) {
+  if (file.exists(path_rds) && !force) {
     message("found in cache")
     df <- readRDS(path_rds)
   } else {
-    df <- isdparser::isd_parse(sub("rds", "gz", x), parallel = parallel,
-                               cores = cores, progress = progress)
+    df <- isdparser::isd_parse(
+      sub("rds", "gz", x), additional = additional, parallel = parallel,
+      cores = cores, progress = progress
+    )
     cache_rds(path_rds, df)
     if (cleanup) {
       unlink(sub("rds", "gz", x))

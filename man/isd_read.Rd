@@ -4,11 +4,15 @@
 \alias{isd_read}
 \title{Read NOAA ISD/ISH local file}
 \usage{
-isd_read(path, parallel = FALSE, cores = getOption("cl.cores", 2),
-  progress = FALSE)
+isd_read(path, additional = TRUE, parallel = FALSE,
+  cores = getOption("cl.cores", 2), progress = FALSE)
 }
 \arguments{
 \item{path}{(character) path to the file. required.}
+
+\item{additional}{(logical) include additional and remarks data sections
+in output. Default: \code{TRUE}. Passed on to
+\code{\link[isdparser]{isd_parse}}}
 
 \item{parallel}{(logical) do processing in parallel. Default: \code{FALSE}}
 
@@ -33,6 +37,7 @@ from NOAA's website
 \dontrun{
 file <- system.file("examples", "011490-99999-1986.gz", package = "rnoaa")
 isd_read(file)
+isd_read(file, additional = FALSE)
 }
 }
 \references{

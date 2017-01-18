@@ -4,8 +4,9 @@
 \alias{isd}
 \title{Get and parse NOAA ISD/ISH data}
 \usage{
-isd(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, parallel = FALSE,
-  cores = getOption("cl.cores", 2), progress = FALSE, ...)
+isd(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, additional = TRUE,
+  parallel = FALSE, cores = getOption("cl.cores", 2), progress = FALSE,
+  force = FALSE, ...)
 }
 \arguments{
 \item{usaf, wban}{(character) USAF and WBAN code. Required}
@@ -21,6 +22,10 @@ at end of function execution. Processing data takes up a lot of time, so we
 cache a cleaned version of the data. Cleaning up will save you on disk
 space. Default: \code{TRUE}}
 
+\item{additional}{(logical) include additional and remarks data sections
+in output. Default: \code{TRUE}. Passed on to
+\code{\link[isdparser]{isd_parse}}}
+
 \item{parallel}{(logical) do processing in parallel. Default: \code{FALSE}}
 
 \item{cores}{(integer) number of cores to use: Default: 2. We look in
@@ -29,6 +34,10 @@ your option "cl.cores", but use default value if not found.}
 \item{progress}{(logical) print progress - ignored if \code{parallel=TRUE}.
 The default is \code{FALSE} because printing progress adds a small bit of
 time, so if processing time is important, then keep as \code{FALSE}}
+
+\item{force}{(logical) force download? Default: \code{FALSE}
+We use a cached version (an .rds compressed file) if it exists, but
+this will override that behavior.}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}}}
 }
@@ -93,9 +102,13 @@ leaflet(data = df) \%>\%
 # Get data
 (res <- isd(usaf="011490", wban="99999", year=1986))
 (res <- isd(usaf="011690", wban="99999", year=1993))
-(res <- isd(usaf="172007", wban="99999", year=2015))
-(res <- isd(usaf="702700", wban="00489", year=2015))
 (res <- isd(usaf="109711", wban=99999, year=1970))
+
+# "additional" and "remarks" data sections included by default
+# can toggle that parameter to not include those in output, saves time
+(res1 <- isd(usaf="011490", wban="99999", year=1986, force = TRUE))
+(res2 <- isd(usaf="011490", wban="99999", year=1986, force = TRUE,
+  additional = FALSE))
 
 # The first time a dataset is requested takes longer
 system.time( isd(usaf="782680", wban="99999", year=2011) )
