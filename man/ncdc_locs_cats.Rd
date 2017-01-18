@@ -81,6 +81,9 @@ ncdc_locs_cats(datasetid=c('GHCND', 'GHCNDMS'))
 ncdc_locs_cats(startdate='1970-01-01')
 }
 }
+\references{
+\url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
+}
 \seealso{
 Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},

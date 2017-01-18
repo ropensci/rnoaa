@@ -19,6 +19,7 @@
 #' @return A \code{data.frame} for all datasets, or a list of length two,
 #' each with a data.frame
 #' @family ncdc
+#' @references \url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
 #' @examples \dontrun{
 #' # Fetch available data types
 #' ncdc_datatypes()

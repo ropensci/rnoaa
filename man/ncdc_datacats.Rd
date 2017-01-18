@@ -100,6 +100,8 @@ out <- ncdc_datacats(limit=10, config=progress())
 }
 \references{
 Vignette at \url{http://ropensci.org/tutorials/rnoaa_tutorial.html}
+
+\url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
 }
 \seealso{
 Other ncdc: \code{\link{ncdc_combine}},

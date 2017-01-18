@@ -11,6 +11,7 @@
 #' @template token
 #' @return A list containing metadata and the data, or a single data.frame.
 #' @family ncdc
+#' @references \url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
 #' @examples \dontrun{
 #' # All location categories, first 25 results
 #' ncdc_locs_cats()

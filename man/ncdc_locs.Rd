@@ -88,6 +88,9 @@ ncdc_locs(locationcategoryid=c('ST', 'ZIP'))
 ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 }
 }
+\references{
+\url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
+}
 \seealso{
 Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},

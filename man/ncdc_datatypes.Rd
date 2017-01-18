@@ -108,6 +108,9 @@ ncdc_datatypes(locationid='CITY:AG000001')
 ncdc_datatypes(locationid=c('CITY:AG000001','CITY:AG000004'))
 }
 }
+\references{
+\url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
+}
 \seealso{
 Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},

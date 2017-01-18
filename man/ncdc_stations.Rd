@@ -152,6 +152,9 @@ ncdc_stations(datasetid='PRECIP_HLY', startdate='19900101', enddate='19901231')
 ncdc_stations(extent=c(47.5204,-122.2047,47.6139,-122.1065))
 }
 }
+\references{
+\url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
+}
 \seealso{
 Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},

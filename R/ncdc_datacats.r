@@ -11,6 +11,7 @@
 #' @details Note that calls with both startdate and enddate don't seem to work, though specifying
 #'    one or the other mostly works.
 #' @family ncdc
+#' @references \url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
 #' @examples \dontrun{
 #' ## Limit to 10 results
 #' ncdc_datacats(limit=10)

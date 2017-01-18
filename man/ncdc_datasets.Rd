@@ -107,6 +107,9 @@ ncdc_datasets(locationid="FIPS:30091")
 ncdc_datasets(locationid=c("FIPS:30103", "FIPS:30091"))
 }
 }
+\references{
+\url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
+}
 \seealso{
 Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_datacats}},
