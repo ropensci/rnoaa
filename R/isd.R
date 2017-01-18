@@ -35,6 +35,13 @@
 #' We use \pkg{isdparser} internally to parse ISD files. They are
 #' relatively complex to parse, so a separate package takes care of that.
 #'
+#' @note There are now no transformations (scaling, class changes, etc.)
+#' done on the output data. This may change in the future with parameters
+#' to toggle transformations, but none are done for now. See
+#' \code{\link[isdparser]{isd_transform}} for transformation help.
+#' Comprehensive transformations for all variables are not yet available
+#' but should be available in the next version of this package.
+#'
 #' @return A tibble (data.frame).
 #'
 #' @details This function first looks for whether the data for your specific

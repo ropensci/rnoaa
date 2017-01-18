@@ -69,6 +69,14 @@ processing can take quite a long time since the data is quite messy and
 takes a bunch of regex to split apart text strings. We hope to speed
 this process up in the future. See examples below for different behavior.
 }
+\note{
+There are now no transformations (scaling, class changes, etc.)
+done on the output data. This may change in the future with parameters
+to toggle transformations, but none are done for now. See
+\code{\link[isdparser]{isd_transform}} for transformation help.
+Comprehensive transformations for all variables are not yet available
+but should be available in the next version of this package.
+}
 \section{Errors}{
 
 Note that when you get an error similar to \code{Error: download failed for
