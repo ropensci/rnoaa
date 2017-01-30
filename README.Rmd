@@ -86,7 +86,7 @@ Functions to work with buoy data use netcdf files. You'll need the `ncdf` packag
 
 ## NOAA NCDC Datasets
 
-There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unkown reason. This relates to `ncdc_*()` functions only.
+There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unknown reason. This relates to `ncdc_*()` functions only.
 
 ```{r echo=FALSE}
 dat <- ncdc_datasets()$data
