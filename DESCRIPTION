@@ -40,7 +40,8 @@ Imports:
     gridExtra,
     tibble,
     isdparser (>= 0.2.0),
-    geonames
+    geonames,
+    hoardr
 Suggests:
     roxygen2 (>= 5.0.1),
     testthat,
@@ -54,5 +55,5 @@ Suggests:
     covr,
     ggmap,
     ropenaq
-Remotes: ropensci/isdparser
+Remotes: ropensci/isdparser ropensci/hoardr
 RoxygenNote: 5.0.1

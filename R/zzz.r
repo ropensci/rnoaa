@@ -173,3 +173,19 @@ is_windows <- function() {
 utcf8 <- function(x) httr::content(x, "text", encoding = "UTF-8")
 
 rnoaa_cache_dir <- function() rappdirs::user_cache_dir("rnoaa")
+
+assert_range <- function(x, y) {
+  if (!x %in% y) {
+    stop(sprintf("%s must be between %s and %s",
+                 deparse(substitute(x)), min(y), max(y)), call. = FALSE)
+  }
+}
+
+assert <- function(x, y) {
+  if (!is.null(x)) {
+    if (!class(x) %in% y) {
+      stop(deparse(substitute(x)), " must be of class ",
+           paste0(y, collapse = ", "), call. = FALSE)
+    }
+  }
+}
