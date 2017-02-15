@@ -2,16 +2,16 @@
 % Please edit documentation in R/utils.r
 \name{type_summ}
 \alias{type_summ}
-\alias{type_summ.Date}
-\alias{type_summ.POSIXt}
-\alias{type_summ.array}
-\alias{type_summ.character}
 \alias{type_summ.default}
+\alias{type_summ.character}
+\alias{type_summ.Date}
 \alias{type_summ.factor}
 \alias{type_summ.integer}
 \alias{type_summ.logical}
+\alias{type_summ.array}
 \alias{type_summ.matrix}
 \alias{type_summ.numeric}
+\alias{type_summ.POSIXt}
 \title{Type summary}
 \usage{
 type_summ(x)
@@ -40,4 +40,3 @@ type_summ(x)
 Type summary
 }
 \keyword{internal}
-

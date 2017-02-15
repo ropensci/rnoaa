@@ -10,4 +10,3 @@ This dataset includes description of the columns of each dataset acquired
 using \code{\link[rnoaa]{storm_data}}
 }
 \keyword{datasets}
-

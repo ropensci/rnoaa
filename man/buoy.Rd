@@ -2,8 +2,8 @@
 % Please edit documentation in R/buoy.R
 \name{buoy}
 \alias{buoy}
-\alias{buoy_stations}
 \alias{buoys}
+\alias{buoy_stations}
 \title{Get NOAA buoy data from the National Buoy Data Center}
 \usage{
 buoy(dataset, buoyid, year = NULL, datatype = NULL, ...)
@@ -94,4 +94,3 @@ buoy(dataset = "dart", buoyid = "dartu")
 \references{
 \url{http://www.ndbc.noaa.gov/}, \url{http://dods.ndbc.noaa.gov/}
 }
-

@@ -64,4 +64,3 @@ meteo_distance(station_data, -33, 151, radius = 10, limit = 3)
 Alex Simmons \email{a2.simmons@qut.edu.au},
    Brooke Anderson \email{brooke.anderson@colostate.edu}
 }
-

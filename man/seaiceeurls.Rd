@@ -35,4 +35,3 @@ seaiceeurls(yr=1980, mo='Feb', pole='S')
 }
 }
 \keyword{internal}
-

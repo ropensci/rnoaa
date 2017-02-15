@@ -10,4 +10,3 @@ ncdc_theme()
 Theme for plotting NOAA data
 }
 \keyword{internal}
-

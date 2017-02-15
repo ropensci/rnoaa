@@ -35,4 +35,3 @@ taken from the visdat package, currently only available on github:
 }
 
 }
-

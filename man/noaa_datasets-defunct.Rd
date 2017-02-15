@@ -10,4 +10,3 @@ noaa_datasets(...)
 This function is defunct.
 }
 \keyword{internal}
-

@@ -18,4 +18,3 @@ autoplot method for meteo_coverage objects
 \details{
 see \code{\link{meteo_coverage}} for examples
 }
-

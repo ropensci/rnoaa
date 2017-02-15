@@ -10,4 +10,3 @@ theme_ice()
 ggplot2 map theme
 }
 \keyword{internal}
-

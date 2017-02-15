@@ -10,4 +10,3 @@ noaa_locs(...)
 This function is defunct.
 }
 \keyword{internal}
-

@@ -469,3 +469,6 @@ is_ghcnd <- function(x) if (file.exists(x)) TRUE else FALSE
 str_extract_ <- function(string, pattern) {
   regmatches(string, regexpr(pattern, string))
 }
+str_extract_all_ <- function(string, pattern) {
+  regmatches(string, gregexpr(pattern, string))
+}

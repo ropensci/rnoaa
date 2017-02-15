@@ -58,4 +58,3 @@ Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
   \code{\link{ncdc_stations}}, \code{\link{ncdc}}
 }
-

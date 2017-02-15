@@ -11,4 +11,3 @@ Storm serial numbers are used to search for storms in the
 \code{\link[rnoaa]{storm_data}} function.
 }
 \keyword{datasets}
-

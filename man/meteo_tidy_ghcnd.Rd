@@ -99,10 +99,9 @@ meteo_tidy_ghcnd(stationid = "ASN00003003", date_min = "1950-01-01")
 }
 
 }
-\author{
-Brooke Anderson \email{brooke.anderson@colostate.edu}
-}
 \seealso{
 \code{\link{meteo_pull_monitors}}
 }
-
+\author{
+Brooke Anderson \email{brooke.anderson@colostate.edu}
+}

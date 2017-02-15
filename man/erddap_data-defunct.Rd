@@ -10,4 +10,3 @@ erddap_data()
 This function is defunct.
 }
 \keyword{internal}
-

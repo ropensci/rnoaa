@@ -19,4 +19,3 @@ definitions
 head( homr_definitions() )
 }
 }
-

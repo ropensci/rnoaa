@@ -18,4 +18,3 @@ An object of class sp
 Function to read shapefiles
 }
 \keyword{internal}
-

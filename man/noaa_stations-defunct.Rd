@@ -10,4 +10,3 @@ noaa_stations(...)
 This function is defunct.
 }
 \keyword{internal}
-

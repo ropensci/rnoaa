@@ -10,4 +10,3 @@ ncdc_leg_data()
 This function is defunct.
 }
 \keyword{internal}
-

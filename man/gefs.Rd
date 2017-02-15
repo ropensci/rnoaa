@@ -4,11 +4,11 @@
 \alias{gefs}
 \alias{gefs_CONNECT}
 \alias{gefs_GET}
-\alias{gefs_dimension_values}
-\alias{gefs_dimensions}
 \alias{gefs_latitudes}
 \alias{gefs_longitudes}
 \alias{gefs_variables}
+\alias{gefs_dimensions}
+\alias{gefs_dimension_values}
 \title{Get GEFS ensemble forecast data for a specific lat/lon.}
 \usage{
 gefs(var, lat, lon, ...)
@@ -112,13 +112,12 @@ gefs(var, lat, lon, date = date, forecast_time = "1800", ens_idx=2:4, time_idx=1
 }
 
 }
-\author{
-Nicholas Potter \email{potterzot@gmail.com}
-}
 \references{
 \itemize{
  \item Data description - \url{http://bit.ly/noaagefs}.
  \item Adapted from Python code written by Von P. Walden, Washington State University.
 }
 }
-
+\author{
+Nicholas Potter \email{potterzot@gmail.com}
+}

@@ -84,11 +84,10 @@ ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
 ghcnd_search("AGE00147704", var = "adfdf")
 }
 }
+\seealso{
+\code{\link{meteo_pull_monitors}}, \code{\link{meteo_tidy_ghcnd}}
+}
 \author{
 Scott Chamberlain \email{myrmecocystus@gmail.com},
 Adam Erickson \email{adam.erickson@ubc.ca}
 }
-\seealso{
-\code{\link{meteo_pull_monitors}}, \code{\link{meteo_tidy_ghcnd}}
-}
-

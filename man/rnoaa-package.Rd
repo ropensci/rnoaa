@@ -2,8 +2,8 @@
 % Please edit documentation in R/rnoaa-package.r
 \docType{package}
 \name{rnoaa-package}
-\alias{rnoaa}
 \alias{rnoaa-package}
+\alias{rnoaa}
 \title{rnoaa}
 \description{
 rnoaa is an R interface to NOAA climate data.
@@ -61,5 +61,5 @@ provide a set of helper functions to:
   (\code{meteo_coverage()})
 }
 }
-\keyword{package}
 
+\keyword{package}

@@ -29,4 +29,3 @@ to create a tidy dataframe of the weather observations from the station.
 \author{
 Brooke Anderson \email{brooke.anderson@colostate.edu}
 }
-

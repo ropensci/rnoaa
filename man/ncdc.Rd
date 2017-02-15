@@ -130,6 +130,7 @@ You can pass your token in as an argument or store it one of two places:
 See \code{\link{Startup}} for information on how to create/find your
 .Rrofile and .Renviron files
 }
+
 \examples{
 \dontrun{
 # GHCN-Daily (or GHCND) data, for a specific station
@@ -228,4 +229,3 @@ Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
   \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}}
 }
-

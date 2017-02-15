@@ -10,4 +10,3 @@ noaa_locs_cats(...)
 This function is defunct.
 }
 \keyword{internal}
-

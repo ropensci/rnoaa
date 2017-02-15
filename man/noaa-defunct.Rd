@@ -10,4 +10,3 @@ noaa(...)
 This function is defunct.
 }
 \keyword{internal}
-

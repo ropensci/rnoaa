@@ -10,4 +10,3 @@ erddap_grid()
 This function is defunct.
 }
 \keyword{internal}
-

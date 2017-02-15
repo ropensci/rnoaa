@@ -114,9 +114,6 @@ all_monitors_clean <- meteo_pull_monitors(monitors)
 }
 
 }
-\author{
-Brooke Anderson \email{brooke.anderson@colostate.edu}
-}
 \references{
 For more information about the data pulled with this function, see:
 
@@ -125,4 +122,6 @@ An overview of the Global Historical Climatology Network-Daily Database.
 Journal of Atmospheric and Oceanic Technology, 29, 897-910,
 doi:10.1175/JTECH-D-11-00103.1.
 }
-
+\author{
+Brooke Anderson \email{brooke.anderson@colostate.edu}
+}
