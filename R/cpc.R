@@ -32,6 +32,7 @@
 #' cpc_prcp(date = "2009-08-03", us = TRUE)
 cpc_prcp <- function(date, us = FALSE, ...) {
   assert(date, c("character", "Date"))
+  assert(us, 'logical')
   dates <- str_extract_all_(date, "[0-9]+")[[1]]
   assert_range(dates[1], 1979:format(Sys.Date(), "%Y"))
   assert_range(as.numeric(dates[2]), 1:12)
