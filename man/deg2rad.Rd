@@ -15,4 +15,3 @@ The input numeric vector, converted to units of radians.
 \description{
 Convert from degrees to radians
 }
-

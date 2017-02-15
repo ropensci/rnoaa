@@ -10,4 +10,3 @@ check_response(x)
 Check response from NOAA, including status codes, server error messages, mime-type, etc.
 }
 \keyword{internal}
-

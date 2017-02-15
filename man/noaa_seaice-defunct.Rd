@@ -10,4 +10,3 @@ noaa_seaice(...)
 This function is defunct.
 }
 \keyword{internal}
-

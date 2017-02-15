@@ -10,4 +10,3 @@ noaa_plot(...)
 This function is defunct.
 }
 \keyword{internal}
-

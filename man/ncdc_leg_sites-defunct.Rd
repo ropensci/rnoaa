@@ -10,4 +10,3 @@ ncdc_leg_sites()
 This function is defunct.
 }
 \keyword{internal}
-

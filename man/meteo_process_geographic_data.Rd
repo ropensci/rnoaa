@@ -54,4 +54,3 @@ meteo_process_geographic_data(station_data, -33, 151)
 Alex Simmons \email{a2.simmons@qut.edu.au},
    Brooke Anderson \email{brooke.anderson@colostate.edu}
 }
-

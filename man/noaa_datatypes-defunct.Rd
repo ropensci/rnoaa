@@ -10,4 +10,3 @@ noaa_datatypes(...)
 This function is defunct.
 }
 \keyword{internal}
-

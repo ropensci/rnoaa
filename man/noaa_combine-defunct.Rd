@@ -10,4 +10,3 @@ noaa_combine(...)
 This function is defunct.
 }
 \keyword{internal}
-

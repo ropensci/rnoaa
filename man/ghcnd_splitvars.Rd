@@ -18,4 +18,3 @@ format that is easier to work with.
 Scott Chamberlain \email{myrmecocystus@gmail.com},
 Adam Erickson \email{adam.erickson@ubc.ca}
 }
-

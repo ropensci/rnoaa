@@ -2,11 +2,12 @@
 % Please edit documentation in R/argo.R
 \name{argo}
 \alias{argo}
-\alias{argo_buoy_files}
-\alias{argo_files}
-\alias{argo_plan}
-\alias{argo_qwmo}
 \alias{argo_search}
+\alias{argo_files}
+\alias{argo_qwmo}
+\alias{argo_plan}
+\alias{argo_buoy_files}
+\alias{argo}
 \title{Get Argo buoy data}
 \usage{
 argo_search(func = NULL, of = NULL, qwmo = NULL, wmo = NULL,
@@ -160,6 +161,7 @@ your machine to save files to, and run
 The \code{path} parameter used to be used to set where files are stored
 on your machine.
 }
+
 \examples{
 \dontrun{
 # Search Argo metadata 
@@ -246,4 +248,3 @@ argo(dac = "meds", id = 4900881, cycle = 127, dtype = "D")
 \references{
 \url{http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html}
 }
-

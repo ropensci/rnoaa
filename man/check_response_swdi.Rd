@@ -12,4 +12,3 @@ Check response from NOAA SWDI service, including status codes, server error mess
 mime-type, etc.
 }
 \keyword{internal}
-

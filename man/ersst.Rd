@@ -36,6 +36,7 @@ to get that directory.
 Files are quite small, so we don't worry about reading in cached data to
 save time, as we do in some of the other functions in this package.
 }
+
 \examples{
 \dontrun{
 # October, 2015
@@ -64,4 +65,3 @@ ersst(year = 2015, month = 10, config=verbose())
 \references{
 \url{https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4}
 }
-

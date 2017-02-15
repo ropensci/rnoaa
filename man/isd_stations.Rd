@@ -42,6 +42,7 @@ We use \pkg{rappdirs} to store files, see
 your machine to save files to, and run
 \code{rappdirs::user_cache_dir("rnoaa")} to get that directory.
 }
+
 \examples{
 \dontrun{
 # Get station table
@@ -65,4 +66,3 @@ ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 Other isd: \code{\link{isd_read}},
   \code{\link{isd_stations_search}}, \code{\link{isd}}
 }
-

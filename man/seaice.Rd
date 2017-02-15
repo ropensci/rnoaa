@@ -38,4 +38,3 @@ ggplot(out, aes(long, lat, group=group)) +
    theme_ice()
 }
 }
-

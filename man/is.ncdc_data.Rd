@@ -2,9 +2,9 @@
 % Please edit documentation in R/zzz.r
 \name{is.ncdc_data}
 \alias{is.ncdc_data}
-\alias{is.ncdc_datacats}
 \alias{is.ncdc_datasets}
 \alias{is.ncdc_datatypes}
+\alias{is.ncdc_datacats}
 \alias{is.ncdc_locs}
 \alias{is.ncdc_locs_cats}
 \alias{is.ncdc_stations}
@@ -33,4 +33,3 @@ ncdc_datatypes, ncdc_datacats, ncdc_locs, ncdc_locs_cats,
 or ncdc_stations
 }
 \keyword{internal}
-

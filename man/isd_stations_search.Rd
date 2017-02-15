@@ -77,4 +77,3 @@ ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 Other isd: \code{\link{isd_read}},
   \code{\link{isd_stations}}, \code{\link{isd}}
 }
-

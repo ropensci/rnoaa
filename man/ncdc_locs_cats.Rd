@@ -63,6 +63,7 @@ You can pass your token in as an argument or store it one of two places:
 See \code{\link{Startup}} for information on how to create/find your
 .Rrofile and .Renviron files
 }
+
 \examples{
 \dontrun{
 # All location categories, first 25 results
@@ -91,4 +92,3 @@ Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}},
   \code{\link{ncdc}}
 }
-

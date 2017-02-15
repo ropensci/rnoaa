@@ -19,4 +19,3 @@ A dataset containing the FIPS codes for 51 US states
 }
 }
 \keyword{datasets}
-

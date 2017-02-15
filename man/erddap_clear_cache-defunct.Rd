@@ -10,4 +10,3 @@ erddap_clear_cache()
 This function is defunct.
 }
 \keyword{internal}
-
