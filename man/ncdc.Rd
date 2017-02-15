@@ -12,32 +12,34 @@ ncdc(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   day = NULL, includemetadata = TRUE, results = NULL, ...)
 }
 \arguments{
-\item{datasetid}{(required) Accepts a single valid dataset id. Data returned will be from the
-dataset specified, see datasets()}
+\item{datasetid}{(required) Accepts a single valid dataset id. Data
+returned will be from the dataset specified, see \code{\link{ncdc_datasets}}}
 
-\item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.
-(optional)}
+\item{datatypeid}{Accepts a valid data type id or a vector or list of data
+type ids. (optional)}
 
-\item{stationid}{Accepts a valid station id or a vector or list of station ids}
+\item{stationid}{Accepts a valid station id or a vector or list of station
+ids}
 
-\item{locationid}{Accepts a valid location id or a vector or list of location ids
-(optional)}
+\item{locationid}{Accepts a valid location id or a vector or list of
+location ids (optional)}
 
-\item{startdate}{(required) Accepts valid ISO formated date (yyyy-mm-dd) or date time
-(YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The
-date range must be less than 1 year.}
+\item{startdate}{(required) Accepts valid ISO formated date (yyyy-mm-dd)
+or date time (YYYY-MM-DDThh:mm:ss). Data returned will have data after the
+specified date. The date range must be less than 1 year.}
 
-\item{enddate}{(required) Accepts valid ISO formated date (yyyy-mm-dd) or date time
-(YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The
-date range must be less than 1 year.}
+\item{enddate}{(required) Accepts valid ISO formated date (yyyy-mm-dd) or
+date time (YYYY-MM-DDThh:mm:ss). Data returned will have data before the
+specified date. The date range must be less than 1 year.}
 
-\item{sortfield}{The field to sort results by. Supports id, name, mindate, maxdate, and
-datacoverage fields (optional)}
+\item{sortfield}{The field to sort results by. Supports id, name, mindate,
+maxdate, and datacoverage fields (optional)}
 
-\item{sortorder}{Which order to sort by, asc or desc. Defaults to asc (optional)}
+\item{sortorder}{Which order to sort by, asc or desc. Defaults to
+asc (optional)}
 
-\item{limit}{Defaults to 25, limits the number of results in the response. Maximum is
-1000 (optional)}
+\item{limit}{Defaults to 25, limits the number of results in the response.
+Maximum is 1000 (optional)}
 
 \item{offset}{Defaults to 0, used to offset the resultlist (optional)}
 
@@ -53,54 +55,59 @@ Climate Data Online access token generator. (required) See
 
 \item{location}{THIS IS A DEPRECATED ARGUMENT. See locationid.}
 
-\item{locationtype}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
-of the NOAA API.}
+\item{locationtype}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent
+argument in v2 of the NOAA API.}
 
-\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
-of the NOAA API.}
+\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument
+in v2 of the NOAA API.}
 
-\item{year}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
-arguments.}
+\item{year}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate
+and enddate arguments.}
 
-\item{month}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
-arguments.}
+\item{month}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate
+and enddate arguments.}
 
-\item{day}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
-arguments.}
+\item{day}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate
+and enddate arguments.}
 
-\item{includemetadata}{Used to improve response time by preventing the calculation of
-result metadata. Default: TRUE. This does not affect the return object, in that the named part
-of the output list called "meta' is still returned, but is NULL. In practice, I haven't seen
-response time's improve, but perhaps they will for you.}
+\item{includemetadata}{Used to improve response time by preventing the
+calculation of result metadata. Default: TRUE. This does not affect the
+return object, in that the named part of the output list called "meta"
+is still returned, but is NULL. In practice, I haven't seen response
+time's improve, but perhaps they will for you.}
 
 \item{results}{THIS IS A DEPRECATED ARGUMENT. See limit.}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
 \value{
-An S3 list of length two, a slot of metadata (meta), and a slot for data (data).
-The meta slot is a list of metadata elements, and the data slot is a data.frame,
-possibly of length zero if no data is found.
+An S3 list of length two, a slot of metadata (meta), and a slot
+for data (data). The meta slot is a list of metadata elements, and the
+data slot is a data.frame, possibly of length zero if no data is found.
 }
 \description{
 Search for and get NOAA NCDC data.
 }
 \details{
-Note that NOAA NCDC API calls can take a long time depending on the call. The NOAA API doesn't
-perform well with very long timespans, and will time out and make you angry - beware.
+Note that NOAA NCDC API calls can take a long time depending on the call.
+The NOAA API doesn't perform well with very long timespans, and will
+time out and make you angry - beware.
 
-Keep in mind that three parameters, datasetid, startdate, and enddate are required.
+Keep in mind that three parameters, datasetid, startdate, and enddate
+are required.
 
-Note that the default limit (no. records returned) is 25. Look at the metadata in \code{$meta}
-to see how many records were found. If more were found than 25, you could set the parameter
-\code{limit} to something higher than 25.
+Note that the default limit (no. records returned) is 25. Look at the
+metadata in \code{$meta} to see how many records were found. If more were
+found than 25, you could set the parameter \code{limit} to
+something higher than 25.
 
-The attributes, or "flags", for each row of the output for data may have a flag
-with it. Each \code{datasetid} has it's own set of flags. The following are flag
-columns, and what they stand for. \code{fl_} is the beginning of each flag
-column name, then one or more characters to describe the flag, keeping it short
-to maintain a compact data frame. Some of these fields are the same across
-datasetids. See the vignette \code{vignette("rnoaa_attributes", "rnoaa")} for
+The attributes, or "flags", for each row of the output for data may have
+a flag with it. Each \code{datasetid} has it's own set of flags. The
+following are flag columns, and what they stand for. \code{fl_} is the
+beginning of each flag column name, then one or more characters to describe
+the flag, keeping it short to maintain a compact data frame. Some of
+these fields are the same across datasetids. See the vignette
+\code{vignette("rnoaa_attributes", "rnoaa")} for
 description of possible values for each flag.
 
 \itemize{
@@ -134,8 +141,8 @@ See \code{\link{Startup}} for information on how to create/find your
 \examples{
 \dontrun{
 # GHCN-Daily (or GHCND) data, for a specific station
-ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
-   enddate = '2013-12-01')
+ncdc(datasetid='GHCND', stationid='GHCND:USW00014895',
+   startdate = '2013-10-01', enddate = '2013-12-01')
 
 # GHCND data, for a location by FIPS code
 ncdc(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01',
@@ -144,15 +151,18 @@ ncdc(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01',
 # GHCND data from October 1 2013 to December 1 2013
 ncdc(datasetid='GHCND', startdate = '2013-10-01', enddate = '2013-10-05')
 
-# GHCN-Monthly (or GHCNDMS) data from October 1 2013 to December 1 2013
-ncdc(datasetid='GHCNDMS', startdate = '2013-10-01', enddate = '2013-12-01')
+# GHCN-Monthly (or GSOM) data from October 1 2013 to December 1 2013
+ncdc(datasetid='GSOM', startdate = '2013-10-01', enddate = '2013-12-01')
+ncdc(datasetid='GSOM', startdate = '2013-10-01', enddate = '2013-12-01',
+   stationid = "GHCND:AE000041196")
 
 # Normals Daily (or NORMAL_DLY) GHCND:USW00014895 dly-tmax-normal data
-ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', startdate = '2010-05-01',
-   enddate = '2010-05-10')
+ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895',
+   startdate = '2010-05-01', enddate = '2010-05-10')
 
 # Dataset, and location in Australia
-ncdc(datasetid='GHCND', locationid='FIPS:AS', startdate = '2010-05-01', enddate = '2010-05-31')
+ncdc(datasetid='GHCND', locationid='FIPS:AS', startdate = '2010-05-01',
+    enddate = '2010-05-31')
 
 # Dataset, location and datatype for PRECIP_HLY data
 ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
@@ -167,19 +177,21 @@ ncdc(datasetid='PRECIP_HLY', locationid=c("FIPS:30103", "FIPS:30091"),
    startdate = '2010-05-01', enddate = '2010-05-10')
 
 # Dataset, location, station and datatype
-ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP',
+ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801',
+   stationid='COOP:310301', datatypeid='HPCP',
    startdate = '2010-05-01', enddate = '2010-05-10')
 
 # Dataset, location, and datatype for GHCND
-ncdc(datasetid='GHCND', locationid='FIPS:BR', datatypeid='PRCP', startdate = '2010-05-01',
-   enddate = '2010-05-10')
+ncdc(datasetid='GHCND', locationid='FIPS:BR', datatypeid='PRCP',
+   startdate = '2010-05-01', enddate = '2010-05-10')
 
 # Normals Daily GHCND dly-tmax-normal data
-ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', startdate = '2010-05-01',
-   enddate = '2010-05-10')
+ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal',
+   startdate = '2010-05-01', enddate = '2010-05-10')
 
 # Normals Daily GHCND:USW00014895 dly-tmax-normal
-ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal',
+ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895',
+   datatypeid='dly-tmax-normal',
    startdate = '2010-05-01', enddate = '2010-05-10')
 
 # Hourly Precipitation data for ZIP code 28801
@@ -187,32 +199,33 @@ ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
    startdate = '2010-05-01', enddate = '2010-05-10')
 
 # 15 min Precipitation data for ZIP code 28801
-ncdc(datasetid='PRECIP_15', datatypeid='QPCP', startdate = '2010-05-01', enddate = '2010-05-02')
+ncdc(datasetid='PRECIP_15', datatypeid='QPCP',
+   startdate = '2010-05-01', enddate = '2010-05-02')
 
 # Search the NORMAL_HLY dataset
-ncdc(datasetid='NORMAL_HLY', stationid = 'GHCND:USW00003812', startdate = '2010-05-01',
-   enddate = '2010-05-10')
+ncdc(datasetid='NORMAL_HLY', stationid = 'GHCND:USW00003812',
+   startdate = '2010-05-01', enddate = '2010-05-10')
 
-# Search the ANNUAL dataset
+# Search the GSOY dataset
 ncdc(datasetid='ANNUAL', locationid='ZIP:28801', startdate = '2010-05-01',
    enddate = '2010-05-10')
 
 # Search the NORMAL_ANN dataset
-ncdc(datasetid='NORMAL_ANN', datatypeid='ANN-DUTR-NORMAL', startdate = '2010-01-01',
-   enddate = '2010-01-01')
+ncdc(datasetid='NORMAL_ANN', datatypeid='ANN-DUTR-NORMAL',
+   startdate = '2010-01-01', enddate = '2010-01-01')
 
 # Include metadata or not
-ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
-   enddate = '2013-12-01')
-ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', startdate = '2013-10-01',
-   enddate = '2013-12-01', includemetadata=FALSE)
+ncdc(datasetid='GHCND', stationid='GHCND:USW00014895',
+   startdate = '2013-10-01', enddate = '2013-12-01')
+ncdc(datasetid='GHCND', stationid='GHCND:USW00014895',
+   startdate = '2013-10-01', enddate = '2013-12-01', includemetadata=FALSE)
 
 # Many stationid's
 stat <- ncdc_stations(startdate = "2000-01-01", enddate = "2016-01-01")
 ## find out what datasets might be available for these stations
 ncdc_datasets(stationid = stat$data$id[1])
 ## get some data
-ncdc(datasetid = "ANNUAL", stationid = stat$data$id[1:10],
+ncdc(datasetid = "GSOY", stationid = stat$data$id[1:10],
    startdate = "2010-01-01", enddate = "2011-01-01")
 }
 

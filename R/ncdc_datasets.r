@@ -37,6 +37,7 @@
 #' # Multiple datatypeid's
 #' ncdc_datasets(datatypeid=c('ACMC','ACMH','ACSC'))
 #' ncdc_datasets(datasetid='ANNUAL', datatypeid=c('ACMC','ACMH','ACSC'))
+#' ncdc_datasets(datasetid='GSOY', datatypeid=c('ACMC','ACMH','ACSC'))
 #'
 #' # Multiple locationid's
 #' ncdc_datasets(locationid="FIPS:30091")

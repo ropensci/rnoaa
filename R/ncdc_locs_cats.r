@@ -21,9 +21,11 @@
 #'
 #' # Displays available location categories within GHCN-Daily dataset
 #' ncdc_locs_cats(datasetid='GHCND')
+#' ncdc_locs_cats(datasetid='GSOY')
+#' ncdc_locs_cats(datasetid='ANNUAL')
 #'
 #' # multiple datasetid's
-#' ncdc_locs_cats(datasetid=c('GHCND', 'GHCNDMS'))
+#' ncdc_locs_cats(datasetid=c('GHCND', 'GSOM'))
 #'
 #' # Displays available location categories from start date 1970-01-01
 #' ncdc_locs_cats(startdate='1970-01-01')

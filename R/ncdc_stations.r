@@ -35,8 +35,9 @@
 #' }$data)
 #'
 #' # Displays all stations within GHCN-Daily (100 Stations per page limit)
-#' ncdc_stations(datasetid='GHCND')
-#' ncdc_stations(datasetid=c('GHCND', 'ANNUAL'))
+#' ncdc_stations(datasetid = 'GHCND')
+#' ncdc_stations(datasetid = 'ANNUAL')
+#' ncdc_stations(datasetid = 'GSOY')
 #'
 #' # Station
 #' ncdc_stations(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895')

@@ -22,7 +22,8 @@
 #' # Fetch available locations for the GHCND (Daily Summaries) dataset
 #' ncdc_locs(datasetid='GHCND')
 #' ncdc_locs(datasetid=c('GHCND', 'ANNUAL'))
-#' ncdc_locs(datasetid=c('GHCND', 'GHCNDMS'))
+#' ncdc_locs(datasetid=c('GSOY', 'ANNUAL'))
+#' ncdc_locs(datasetid=c('GHCND', 'GSOM'))
 #'
 #' # Fetch all U.S. States
 #' ncdc_locs(locationcategoryid='ST', limit=52)

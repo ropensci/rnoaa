@@ -26,9 +26,9 @@ below details on each dataset.
 
 __Datasets__
 
-* [ANNUAL](#annual)
 * [GHCND](#ghcnd)
-* [GHCNDMS](#ghcndms)
+* [GSOM](#gsom)
+* [GSOY](#gsoy)
 * [NORMAL_ANN](#normalann)
 * [NORMAL_DLY](#normaldly)
 * [NORMAL_HLY](#normalhly)
@@ -38,60 +38,6 @@ __Datasets__
 * NEXRAD2 - not working yet
 * NEXRAD3 - not working yet
 
-### <a href="#annual" name="annual"/>#</a> Dataset: ANNUAL
-
-__More info:__ [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/ANNUAL_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/ANNUAL_documentation.pdf)
-
-#### fl_m (Measurement flag)
-
-* __A:__ Accumulated amount. This value is a total that may include data from a previous month or months
-(TPCP).
-* __B:__ Adjusted Total. Monthly value totals based on proportional available data across the entire month.
-(CLDD, HTDD)
-* __E:__ An estimated monthly or annual total.
-* __I:__ Monthly means or totals based on incomplete time series. 1 to 9 days are missing. (MMNT,MMXP,
-MMXT, MNTM, TPCP, TSNW)
-* __M:__ used to indicate data element missing.
-* __S:__ Precipitation for the amount is continuing to be accumulated. Total will be included in a
-__subsequent value (TPCP). Example:__ Days 1-20 had 1.35 inches of precipitation, then a period of accumulation began. The element TPCP would then be 00135S and the total accumulated amount value appears in a subsequent monthly value. If TPCP = 0 there was no precipitation measured during the month. flag 1 is set to "S" and the total accumulated amount appears in a subsequent monthly value.
-* __T:__ Trace of precipitation, snowfall, or snow depth. The precipitation data value will = "00000".
-(EMXP, MXSD, TPCP, TSNW)
-* __+:__ The phenomena in question occurred on several days. The date in the DAY field is the last day
-of occurrence.
-* __Blank:__ No report
-
-#### fl_q (Quality flag)
-
-* __A:__ Accumulated amount
-* __E:__ Estimated value
-* __+:__ Value occurred on more than one day, last date of occurrence is used
-
-#### fl_d (Number of days flag )
-
-Number of days is given as 00 when all days in the month are considered in
-computing data value or otherwise the maximum number of consecutive days in the month considered
-in computing the data value.
-
-#### fl_u (Units flag)
-
-* __C:__ Whole degree Celsius
-* __D:__ Whole Fahrenheit Degree Day
-* __F:__ Whole degree Fahrenheit
-* __HI:__ Hundredths of inches
-* __I:__ Whole inches
-* __M:__ Whole miles
-* __MH:__ Miles per hour
-* __MM:__ Millimeters
-* __NA:__ No units applicable (dimensionless)
-* __TC:__ Tenths of degrees Celsius
-* __TF:__ Tenths of degrees Fahrenheit
-* __TI:__ Tenths of inches
-* __TM:__ Tenths of millimeters
-* __1:__ Soils, degrees Fahrenheit, soil depths in inches and hundredths
-* __2:__ Soils, degrees Celsius, soil depth in whole centimeters
-* __3:__ Soils, degrees Celsius, soil, soil depth in inches and hundredths
-* __4:__ Soils, degrees Fahrenheit, soil depth in whole centimeters
-* __5:__ Soils, If the soil station closed during the current month, '5' indicates the station has closed.
 
 ### <a href="#ghcnd" name="ghcnd"/>#</a> Dataset: GHCND
 
@@ -159,7 +105,11 @@ in computing the data value.
 Is the (2 digit hour, 2 digit minute) 24 hour clock time of the observation given as the
 local time at the station of record.
 
-### <a href="#ghcndms" name="ghcndms"/>#</a> Dataset: GHCNDMS
+
+
+### <a href="#gsom" name="gsom"/>#</a> Dataset: GSOM
+
+__More info:__ <https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/gsom-gsoy.pdf>
 
 Observations are synonymous with elements or values, and defined in Table A below. 9999 indicates missing data or data that has not been received.
 
@@ -172,6 +122,64 @@ Defined as total number of days observation/element is missing in that month. Th
 #### fl_cmiss (Consecutive missing flag)
 
 Defined as the maximum number of consecutive days in the month that an  observation/element is missing.
+
+
+
+### <a href="#gsoy" name="gsoy"/>#</a> Dataset: GSOY
+
+__More info:__ <https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/gsom-gsoy.pdf>
+
+#### fl_m (Measurement flag)
+
+* __A:__ Accumulated amount. This value is a total that may include data from a previous month or months
+(TPCP).
+* __B:__ Adjusted Total. Monthly value totals based on proportional available data across the entire month.
+(CLDD, HTDD)
+* __E:__ An estimated monthly or annual total.
+* __I:__ Monthly means or totals based on incomplete time series. 1 to 9 days are missing. (MMNT,MMXP,
+MMXT, MNTM, TPCP, TSNW)
+* __M:__ used to indicate data element missing.
+* __S:__ Precipitation for the amount is continuing to be accumulated. Total will be included in a
+__subsequent value (TPCP). Example:__ Days 1-20 had 1.35 inches of precipitation, then a period of accumulation began. The element TPCP would then be 00135S and the total accumulated amount value appears in a subsequent monthly value. If TPCP = 0 there was no precipitation measured during the month. flag 1 is set to "S" and the total accumulated amount appears in a subsequent monthly value.
+* __T:__ Trace of precipitation, snowfall, or snow depth. The precipitation data value will = "00000".
+(EMXP, MXSD, TPCP, TSNW)
+* __+:__ The phenomena in question occurred on several days. The date in the DAY field is the last day
+of occurrence.
+* __Blank:__ No report
+
+#### fl_q (Quality flag)
+
+* __A:__ Accumulated amount
+* __E:__ Estimated value
+* __+:__ Value occurred on more than one day, last date of occurrence is used
+
+#### fl_d (Number of days flag )
+
+Number of days is given as 00 when all days in the month are considered in
+computing data value or otherwise the maximum number of consecutive days in the month considered
+in computing the data value.
+
+#### fl_u (Units flag)
+
+* __C:__ Whole degree Celsius
+* __D:__ Whole Fahrenheit Degree Day
+* __F:__ Whole degree Fahrenheit
+* __HI:__ Hundredths of inches
+* __I:__ Whole inches
+* __M:__ Whole miles
+* __MH:__ Miles per hour
+* __MM:__ Millimeters
+* __NA:__ No units applicable (dimensionless)
+* __TC:__ Tenths of degrees Celsius
+* __TF:__ Tenths of degrees Fahrenheit
+* __TI:__ Tenths of inches
+* __TM:__ Tenths of millimeters
+* __1:__ Soils, degrees Fahrenheit, soil depths in inches and hundredths
+* __2:__ Soils, degrees Celsius, soil depth in whole centimeters
+* __3:__ Soils, degrees Celsius, soil, soil depth in inches and hundredths
+* __4:__ Soils, degrees Fahrenheit, soil depth in whole centimeters
+* __5:__ Soils, If the soil station closed during the current month, '5' indicates the station has closed.
+
 
 
 ### <a href="#normalann" name="normalann"/>#</a> Dataset: NORMAL_ANN

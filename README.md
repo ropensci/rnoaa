@@ -51,18 +51,16 @@ Functions to work with buoy data use netcdf files. You'll need the `ncdf` packag
 
 ## NOAA NCDC Datasets
 
-There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unkown reason. This relates to `ncdc_*()` functions only.
+There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unknown reason. This relates to `ncdc_*()` functions only.
 
 
 |Dataset    |Description                 |Start Date |End Date   | Data Coverage|
 |:----------|:---------------------------|:----------|:----------|-------------:|
-|ANNUAL     |Annual Summaries            |1831-02-01 |2015-11-01 |          1.00|
-|GHCND      |Daily Summaries             |1763-01-01 |2016-08-21 |          1.00|
-|GHCNDMS    |Monthly Summaries           |1763-01-01 |2016-03-01 |          1.00|
-|GSOM       |Global Summary of the Month |1763-01-01 |2016-07-01 |          1.00|
+|GHCND      |Daily Summaries             |1763-01-01 |2017-02-14 |          1.00|
+|GSOM       |Global Summary of the Month |1763-01-01 |2016-11-01 |          1.00|
 |GSOY       |Global Summary of the Year  |1763-01-01 |2016-01-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2016-08-22 |          0.95|
-|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2016-08-19 |          0.95|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2017-02-14 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2017-02-10 |          0.95|
 |NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
 |NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
 |NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
@@ -157,31 +155,31 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 
 #> $data
 #>       mindate    maxdate                  name datacoverage            id
-#> 1  1892-08-01 2016-07-31            Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2016-08-19            Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2016-08-19         Zonguldak, TU       1.0000 CITY:TU000057
-#> 4  1906-01-01 2016-08-19            Zinder, NG       0.9025 CITY:NG000004
-#> 5  1973-01-01 2016-08-19        Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2016-08-19         Zhytomyra, UP       0.9723 CITY:UP000025
-#> 7  1948-03-01 2016-08-19        Zhezkazgan, KZ       0.9302 CITY:KZ000017
-#> 8  1951-01-01 2016-08-19         Zhengzhou, CH       1.0000 CITY:CH000045
-#> 9  1941-01-01 2016-07-31          Zaragoza, SP       1.0000 CITY:SP000021
+#> 1  1892-08-01 2016-12-31            Zwolle, NL       1.0000 CITY:NL000012
+#> 2  1901-01-01 2017-02-08            Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2017-02-07         Zonguldak, TU       1.0000 CITY:TU000057
+#> 4  1906-01-01 2017-02-08            Zinder, NG       0.9025 CITY:NG000004
+#> 5  1973-01-01 2017-02-07        Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2017-02-08         Zhytomyra, UP       0.9723 CITY:UP000025
+#> 7  1948-03-01 2017-02-08        Zhezkazgan, KZ       0.9302 CITY:KZ000017
+#> 8  1951-01-01 2017-02-08         Zhengzhou, CH       1.0000 CITY:CH000045
+#> 9  1941-01-01 2016-12-31          Zaragoza, SP       1.0000 CITY:SP000021
 #> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       1.0000 CITY:UP000024
-#> 11 1957-01-01 2016-08-19          Zanzibar, TZ       0.8016 CITY:TZ000019
-#> 12 1973-01-01 2016-08-19            Zanjan, IR       0.9105 CITY:IR000020
-#> 13 1893-01-01 2016-08-22     Zanesville, OH US       1.0000 CITY:US390029
-#> 14 1912-01-01 2016-08-19             Zahle, LE       0.9819 CITY:LE000004
-#> 15 1951-01-01 2016-08-19           Zahedan, IR       0.9975 CITY:IR000019
-#> 16 1860-12-01 2016-08-19            Zagreb, HR       1.0000 CITY:HR000002
-#> 17 1975-08-29 2016-08-19         Zacatecas, MX       0.9993 CITY:MX000036
-#> 18 1947-01-01 2016-08-19 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
-#> 19 1893-01-01 2016-08-22           Yuma, AZ US       1.0000 CITY:US040015
-#> 20 1942-02-01 2016-08-22   Yucca Valley, CA US       1.0000 CITY:US060048
-#> 21 1885-01-01 2016-08-22      Yuba City, CA US       1.0000 CITY:US060047
-#> 22 1998-02-01 2016-08-19            Yozgat, TU       1.0000 CITY:TU000056
-#> 23 1893-01-01 2016-08-22     Youngstown, OH US       1.0000 CITY:US390028
-#> 24 1894-01-01 2016-08-22           York, PA US       1.0000 CITY:US420024
-#> 25 1876-01-01 2016-08-22        Yonkers, NY US       1.0000 CITY:US360031
+#> 11 1957-01-01 2017-02-10          Zanzibar, TZ       0.8016 CITY:TZ000019
+#> 12 1973-01-01 2017-02-08            Zanjan, IR       0.9105 CITY:IR000020
+#> 13 1893-01-01 2017-02-14     Zanesville, OH US       1.0000 CITY:US390029
+#> 14 1912-01-01 2017-02-07             Zahle, LE       0.9819 CITY:LE000004
+#> 15 1951-01-01 2017-02-08           Zahedan, IR       0.9975 CITY:IR000019
+#> 16 1860-12-01 2017-02-08            Zagreb, HR       1.0000 CITY:HR000002
+#> 17 1975-08-29 2017-02-08         Zacatecas, MX       0.9993 CITY:MX000036
+#> 18 1947-01-01 2017-02-08 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
+#> 19 1893-01-01 2017-02-14           Yuma, AZ US       1.0000 CITY:US040015
+#> 20 1942-02-01 2017-02-14   Yucca Valley, CA US       1.0000 CITY:US060048
+#> 21 1885-01-01 2017-02-14      Yuba City, CA US       1.0000 CITY:US060047
+#> 22 1998-02-01 2017-02-08            Yozgat, TU       1.0000 CITY:TU000056
+#> 23 1893-01-01 2017-02-14     Youngstown, OH US       1.0000 CITY:US390028
+#> 24 1894-01-01 2017-02-14           York, PA US       1.0000 CITY:US420024
+#> 25 1876-01-01 2017-02-14        Yonkers, NY US       1.0000 CITY:US360031
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -197,7 +195,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
-#> 1      12.2 1899-02-01 2016-08-20  28.8029 INVERNESS 3 SE, FL US
+#> 1      12.2 1899-02-01 2017-02-13  28.8029 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS  -82.3126
 #> 
@@ -260,7 +258,7 @@ ncdc_datasets()
 #> [1] 1
 #> 
 #> $meta$count
-#> [1] 13
+#> [1] 11
 #> 
 #> $meta$limit
 #> [1] 25
@@ -268,33 +266,29 @@ ncdc_datasets()
 #> 
 #> $data
 #>                     uid    mindate    maxdate                        name
-#> 1  gov.noaa.ncdc:C00040 1831-02-01 2015-11-01            Annual Summaries
-#> 2  gov.noaa.ncdc:C00861 1763-01-01 2016-08-21             Daily Summaries
-#> 3  gov.noaa.ncdc:C00841 1763-01-01 2016-03-01           Monthly Summaries
-#> 4  gov.noaa.ncdc:C00946 1763-01-01 2016-07-01 Global Summary of the Month
-#> 5  gov.noaa.ncdc:C00947 1763-01-01 2016-01-01  Global Summary of the Year
-#> 6  gov.noaa.ncdc:C00345 1991-06-05 2016-08-22    Weather Radar (Level II)
-#> 7  gov.noaa.ncdc:C00708 1994-05-20 2016-08-19   Weather Radar (Level III)
-#> 8  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01     Normals Annual/Seasonal
-#> 9  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31               Normals Daily
-#> 10 gov.noaa.ncdc:C00824 2010-01-01 2010-12-31              Normals Hourly
-#> 11 gov.noaa.ncdc:C00822 2010-01-01 2010-12-01             Normals Monthly
-#> 12 gov.noaa.ncdc:C00505 1970-05-12 2014-01-01     Precipitation 15 Minute
-#> 13 gov.noaa.ncdc:C00313 1900-01-01 2014-01-01        Precipitation Hourly
+#> 1  gov.noaa.ncdc:C00861 1763-01-01 2017-02-14             Daily Summaries
+#> 2  gov.noaa.ncdc:C00946 1763-01-01 2016-11-01 Global Summary of the Month
+#> 3  gov.noaa.ncdc:C00947 1763-01-01 2016-01-01  Global Summary of the Year
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2017-02-14    Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2017-02-10   Weather Radar (Level III)
+#> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01     Normals Annual/Seasonal
+#> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31               Normals Daily
+#> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31              Normals Hourly
+#> 9  gov.noaa.ncdc:C00822 2010-01-01 2010-12-01             Normals Monthly
+#> 10 gov.noaa.ncdc:C00505 1970-05-12 2014-01-01     Precipitation 15 Minute
+#> 11 gov.noaa.ncdc:C00313 1900-01-01 2014-01-01        Precipitation Hourly
 #>    datacoverage         id
-#> 1          1.00     ANNUAL
-#> 2          1.00      GHCND
-#> 3          1.00    GHCNDMS
-#> 4          1.00       GSOM
-#> 5          1.00       GSOY
-#> 6          0.95    NEXRAD2
-#> 7          0.95    NEXRAD3
-#> 8          1.00 NORMAL_ANN
-#> 9          1.00 NORMAL_DLY
-#> 10         1.00 NORMAL_HLY
-#> 11         1.00 NORMAL_MLY
-#> 12         0.25  PRECIP_15
-#> 13         1.00 PRECIP_HLY
+#> 1          1.00      GHCND
+#> 2          1.00       GSOM
+#> 3          1.00       GSOY
+#> 4          0.95    NEXRAD2
+#> 5          0.95    NEXRAD3
+#> 6          1.00 NORMAL_ANN
+#> 7          1.00 NORMAL_DLY
+#> 8          1.00 NORMAL_HLY
+#> 9          1.00 NORMAL_MLY
+#> 10         0.25  PRECIP_15
+#> 11         1.00 PRECIP_HLY
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datasets"
@@ -402,26 +396,26 @@ Get storm data for the year 2010
 
 ```r
 storm_data(year = 2010)
-#> <NOAA Storm Data>
-#> Size: 2855 X 195
-#> 
-#>       serial_num season num basin sub_basin name            iso_time
-#> 1  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 06:00:00
-#> 2  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 12:00:00
-#> 3  2009317S10073   2010   1    SI        MM ANJA 2009-11-13 18:00:00
-#> 4  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 00:00:00
-#> 5  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 06:00:00
-#> 6  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 12:00:00
-#> 7  2009317S10073   2010   1    SI        MM ANJA 2009-11-14 18:00:00
-#> 8  2009317S10073   2010   1    SI        MM ANJA 2009-11-15 00:00:00
-#> 9  2009317S10073   2010   1    SI        MM ANJA 2009-11-15 06:00:00
-#> 10 2009317S10073   2010   1    SI        MM ANJA 2009-11-15 12:00:00
-#> ..           ...    ... ...   ...       ...  ...                 ...
-#> Variables not shown: nature (chr), latitude (dbl), longitude (dbl),
-#>      wind.wmo. (dbl), pres.wmo. (dbl), center (chr), wind.wmo..percentile
-#>      (dbl), pres.wmo..percentile (dbl), track_type (chr),
-#>      latitude_for_mapping (dbl), longitude_for_mapping (dbl),
-#>      current.basin (chr), hurdat_atl_lat (dbl), hurdat_atl_lon (dbl),
+#> # A tibble: 2,855 × 195
+#>       serial_num season   num basin sub_basin  name            iso_time
+#>            <chr>  <int> <int> <chr>     <chr> <chr>               <chr>
+#> 1  2009317S10073   2010     1    SI        MM  ANJA 2009-11-13 06:00:00
+#> 2  2009317S10073   2010     1    SI        MM  ANJA 2009-11-13 12:00:00
+#> 3  2009317S10073   2010     1    SI        MM  ANJA 2009-11-13 18:00:00
+#> 4  2009317S10073   2010     1    SI        MM  ANJA 2009-11-14 00:00:00
+#> 5  2009317S10073   2010     1    SI        MM  ANJA 2009-11-14 06:00:00
+#> 6  2009317S10073   2010     1    SI        MM  ANJA 2009-11-14 12:00:00
+#> 7  2009317S10073   2010     1    SI        MM  ANJA 2009-11-14 18:00:00
+#> 8  2009317S10073   2010     1    SI        MM  ANJA 2009-11-15 00:00:00
+#> 9  2009317S10073   2010     1    SI        MM  ANJA 2009-11-15 06:00:00
+#> 10 2009317S10073   2010     1    SI        MM  ANJA 2009-11-15 12:00:00
+#> # ... with 2,845 more rows, and 188 more variables: nature <chr>,
+#> #   latitude <dbl>, longitude <dbl>, wind.wmo. <dbl>, pres.wmo. <dbl>,
+#> #   center <chr>, wind.wmo..percentile <dbl>, pres.wmo..percentile <dbl>,
+#> #   track_type <chr>, latitude_for_mapping <dbl>,
+#> #   longitude_for_mapping <dbl>, current.basin <chr>,
+#> #   hurdat_atl_lat <dbl>, hurdat_atl_lon <dbl>, hurdat_atl_grade <dbl>,
+#> #   hurdat_atl_wind <dbl>, hurdat_atl_pres <dbl>, td9636_lat <dbl>,
 ...
 ```
 
@@ -508,4 +502,4 @@ coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
 * Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-[![rofooter](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

@@ -29,7 +29,10 @@
 #' ncdc_datatypes(datatypeid="ACSC")
 #'
 #' # datasetid, one or many
+#' ## ANNUAL should be replaced by GSOY, but both exist and give
+#' ## different answers
 #' ncdc_datatypes(datasetid="ANNUAL")
+#' ncdc_datatypes(datasetid="GSOY")
 #' ncdc_datatypes(datasetid=c("ANNUAL", "PRECIP_HLY"))
 #'
 #' # Fetch data types with the air temperature data category

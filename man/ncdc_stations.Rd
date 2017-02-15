@@ -17,11 +17,11 @@ e.g., GHCND:USW00014895}
 \item{datasetid}{(optional) Accepts a valid dataset id or a vector or
 list of them. Data returned will be from the dataset specified.}
 
-\item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.
-(optional)}
+\item{datatypeid}{Accepts a valid data type id or a vector or list of data
+type ids. (optional)}
 
-\item{locationid}{Accepts a valid location id or a vector or list of location ids
-(optional)}
+\item{locationid}{Accepts a valid location id or a vector or list of
+location ids (optional)}
 
 \item{startdate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time
 (YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The
@@ -31,13 +31,14 @@ date range must be less than 1 year.}
 (YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The
 date range must be less than 1 year.}
 
-\item{sortfield}{The field to sort results by. Supports id, name, mindate, maxdate, and
-datacoverage fields (optional)}
+\item{sortfield}{The field to sort results by. Supports id, name, mindate,
+maxdate, and datacoverage fields (optional)}
 
-\item{sortorder}{Which order to sort by, asc or desc. Defaults to asc (optional)}
+\item{sortorder}{Which order to sort by, asc or desc. Defaults to
+asc (optional)}
 
-\item{limit}{Defaults to 25, limits the number of results in the response. Maximum is
-1000 (optional)}
+\item{limit}{Defaults to 25, limits the number of results in the response.
+Maximum is 1000 (optional)}
 
 \item{offset}{Defaults to 0, used to offset the resultlist (optional)}
 
@@ -110,8 +111,9 @@ lapply(c("COOP:010008", "COOP:010063", "COOP:010116"), function(z) {
 }$data)
 
 # Displays all stations within GHCN-Daily (100 Stations per page limit)
-ncdc_stations(datasetid='GHCND')
-ncdc_stations(datasetid=c('GHCND', 'ANNUAL'))
+ncdc_stations(datasetid = 'GHCND')
+ncdc_stations(datasetid = 'ANNUAL')
+ncdc_stations(datasetid = 'GSOY')
 
 # Station
 ncdc_stations(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895')

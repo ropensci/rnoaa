@@ -13,8 +13,8 @@ ncdc_datatypes(datasetid = NULL, datatypeid = NULL, datacategoryid = NULL,
 \item{datasetid}{(optional) Accepts a valid dataset id or a vector or list
 of them. Data returned will be from the dataset specified.}
 
-\item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.
-(optional)}
+\item{datatypeid}{Accepts a valid data type id or a vector or list of data
+type ids. (optional)}
 
 \item{datacategoryid}{Optional. Accepts a valid data category id or a vector
 or list of data category ids (although it is rare to have a data type with
@@ -23,8 +23,8 @@ more than one data category)}
 \item{stationid}{Accepts a valid station id or a vector or list of
 station ids}
 
-\item{locationid}{Accepts a valid location id or a vector or list of location ids
-(optional)}
+\item{locationid}{Accepts a valid location id or a vector or list of
+location ids (optional)}
 
 \item{startdate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time
 (YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The
@@ -34,13 +34,14 @@ date range must be less than 1 year.}
 (YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The
 date range must be less than 1 year.}
 
-\item{sortfield}{The field to sort results by. Supports id, name, mindate, maxdate, and
-datacoverage fields (optional)}
+\item{sortfield}{The field to sort results by. Supports id, name, mindate,
+maxdate, and datacoverage fields (optional)}
 
-\item{sortorder}{Which order to sort by, asc or desc. Defaults to asc (optional)}
+\item{sortorder}{Which order to sort by, asc or desc. Defaults to
+asc (optional)}
 
-\item{limit}{Defaults to 25, limits the number of results in the response. Maximum is
-1000 (optional)}
+\item{limit}{Defaults to 25, limits the number of results in the response.
+Maximum is 1000 (optional)}
 
 \item{offset}{Defaults to 0, used to offset the resultlist (optional)}
 
@@ -93,7 +94,10 @@ ncdc_datatypes(datatypeid="ACMH")
 ncdc_datatypes(datatypeid="ACSC")
 
 # datasetid, one or many
+## ANNUAL should be replaced by GSOY, but both exist and give
+## different answers
 ncdc_datatypes(datasetid="ANNUAL")
+ncdc_datatypes(datasetid="GSOY")
 ncdc_datatypes(datasetid=c("ANNUAL", "PRECIP_HLY"))
 
 # Fetch data types with the air temperature data category

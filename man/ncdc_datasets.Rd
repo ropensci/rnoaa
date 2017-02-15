@@ -13,14 +13,14 @@ ncdc_datasets(datasetid = NULL, datatypeid = NULL, stationid = NULL,
 \item{datasetid}{(optional) Accepts a single valid dataset id. Data returned
 will be from the dataset specified.}
 
-\item{datatypeid}{Accepts a valid data type id or a vector or list of data type ids.
-(optional)}
+\item{datatypeid}{Accepts a valid data type id or a vector or list of data
+type ids. (optional)}
 
 \item{stationid}{Accepts a valid station id or a vector or list of station
 ids}
 
-\item{locationid}{Accepts a valid location id or a vector or list of location ids
-(optional)}
+\item{locationid}{Accepts a valid location id or a vector or list of
+location ids (optional)}
 
 \item{startdate}{(optional) Accepts valid ISO formated date (yyyy-mm-dd) or date time
 (YYYY-MM-DDThh:mm:ss). Data returned will have data after the specified date. The
@@ -30,13 +30,14 @@ date range must be less than 1 year.}
 (YYYY-MM-DDThh:mm:ss). Data returned will have data before the specified date. The
 date range must be less than 1 year.}
 
-\item{sortfield}{The field to sort results by. Supports id, name, mindate, maxdate, and
-datacoverage fields (optional)}
+\item{sortfield}{The field to sort results by. Supports id, name, mindate,
+maxdate, and datacoverage fields (optional)}
 
-\item{sortorder}{Which order to sort by, asc or desc. Defaults to asc (optional)}
+\item{sortorder}{Which order to sort by, asc or desc. Defaults to
+asc (optional)}
 
-\item{limit}{Defaults to 25, limits the number of results in the response. Maximum is
-1000 (optional)}
+\item{limit}{Defaults to 25, limits the number of results in the response.
+Maximum is 1000 (optional)}
 
 \item{offset}{Defaults to 0, used to offset the resultlist (optional)}
 
@@ -102,6 +103,7 @@ ncdc_datasets(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
 # Multiple datatypeid's
 ncdc_datasets(datatypeid=c('ACMC','ACMH','ACSC'))
 ncdc_datasets(datasetid='ANNUAL', datatypeid=c('ACMC','ACMH','ACSC'))
+ncdc_datasets(datasetid='GSOY', datatypeid=c('ACMC','ACMH','ACSC'))
 
 # Multiple locationid's
 ncdc_datasets(locationid="FIPS:30091")
