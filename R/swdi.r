@@ -119,9 +119,9 @@ swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL, limit
   bbox <- if (!is.null(bbox)) paste(bbox, collapse = ",")
   tile <- if (!is.null(tile)) paste(tile, collapse = ",")
   if (is.null(offset)) {
-    url <- sprintf('http://www.ncdc.noaa.gov/swdiws/%s/%s/%s/%s', format, dataset, daterange, limit)
+    url <- sprintf('https://www.ncdc.noaa.gov/swdiws/%s/%s/%s/%s', format, dataset, daterange, limit)
   } else if (!is.null(offset)) {
-    url <- sprintf('http://www.ncdc.noaa.gov/swdiws/%s/%s/%s/%s/%s', format, dataset, daterange, limit, offset)
+    url <- sprintf('https://www.ncdc.noaa.gov/swdiws/%s/%s/%s/%s/%s', format, dataset, daterange, limit, offset)
   }
   args <- noaa_compact(list(radius = radius, center = center, bbox = bbox, tile = tile, stat = stat))
 

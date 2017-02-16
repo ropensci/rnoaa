@@ -1,7 +1,8 @@
 #' Get NOAA tornado data.
 #'
 #' @export
-#' @param overwrite (logical) To overwrite the path to store files in or not, Default: \code{TRUE}
+#' @param overwrite (logical) To overwrite the path to store files in or not,
+#' Default: \code{TRUE}
 #' @param ... Curl options passed on to \code{\link[httr]{GET}} (optional)
 #'
 #' @return A Spatial object is returned of class SpatialLinesDataFrame.
@@ -23,13 +24,13 @@ tornadoes <- function(overwrite = TRUE, ...) {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- "path" %in% calls
   if (any(calls_vec)) {
-    stop("The parameter path has been removed, see docs for ?tornadoes", call. = FALSE)
+    stop("The parameter path has been removed, see docs for ?tornadoes")
   }
 
   check4pkg('rgdal')
   path <- file.path(rnoaa_cache_dir(), "tornadoes")
   if (!is_tornadoes(path)) {
-    url <- 'http://spc.noaa.gov/gis/svrgis/zipped/tornado.zip'
+    url <- 'http://www.spc.noaa.gov/gis/svrgis/zipped/tornado.zip'
     tornadoes_GET(path, url, overwrite, ...)
   }
   readshp(file.path(path, "torn"))
@@ -51,7 +52,8 @@ is_tornadoes <- function(x){
   }
 }
 
-readshp <- function(x) rgdal::readOGR(dsn = path.expand(x), layer = "torn", stringsAsFactors = FALSE)
+readshp <- function(x) rgdal::readOGR(dsn = path.expand(x), layer = "torn",
+                                      stringsAsFactors = FALSE)
 
 tornadoes_files <-
   c("torn.dbf","torn.prj","torn.cpg","torn.shp","torn.shx")

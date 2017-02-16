@@ -67,7 +67,7 @@ make_ersst <- function(year, month) {
 }
 
 ersst_base <- function(ver = "v4") {
-  sprintf("http://www1.ncdc.noaa.gov/pub/data/cmb/ersst/%s/netcdf/ersst.%s",
+  sprintf("https://www1.ncdc.noaa.gov/pub/data/cmb/ersst/%s/netcdf/ersst.%s",
           ver, ver)
 }
 

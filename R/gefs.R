@@ -52,20 +52,21 @@
 #' lon <- -116.2188
 #'
 #' #Get forecast for a certain variable.
-#' forecast <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat, lon)
+#' forecast <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens",
+#'   lat, lon)
 #'
 #' #Fetch a different date (available up to 10 days prior to today)
-#' forecast_yesterday_prec <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens",
-#'                                lat,
-#'                                lon,
-#'                                date=format(as.Date(Sys.time()) - 1, "%Y%m%d"))
+#' forecast_yesterday_prec <- gefs(
+#'    "Total_precipitation_surface_6_Hour_Accumulation_ens",
+#'    lat, lon, date=format(as.Date(Sys.time()) - 1, "%Y%m%d"))
 #'
 #' #specific ensemble and times, for the 1800 forecast.
 #' # here ensembles 1-3 (ensembles are numbered starting with 0)
 #' # and time for 2 days from today at 1800
-#' date=format(as.Date(Sys.time()) - 1, "%Y%m%d")
+#' date <- format(as.Date(Sys.time()) - 1, "%Y%m%d")
 #' var <- "Temperature_height_above_ground_ens"
-#' gefs(var, lat, lon, date = date, forecast_time = "1800", ens_idx=2:4, time_idx=1:8)
+#' gefs(var, lat, lon, date = date, forecast_time = "1800", ens_idx=2:4,
+#'   time_idx=1:8)
 #'
 #' #One ensemble, all latitudes and longitudes (this is a big file) for the
 #' # next 3 days.
@@ -81,10 +82,10 @@ gefs <- function(var, lat, lon, ...) {
 gefs_CONNECT <- function(date = format(Sys.time(), "%Y%m%d"),
                          forecast_time = c("0000", "0600", "1200", "1800")) {
 
-  
+
   # Until bug #127 is resolved
   if (is_windows()) stop("gefs not implemented on windows yet", .call = FALSE)
-  
+
   #forecast time
   forecast_time <- match.arg(forecast_time)
 
