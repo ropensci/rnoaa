@@ -28,6 +28,7 @@ VignetteBuilder: knitr
 Imports:
     utils,
     httr (>= 1.0.0),
+    crul (>= 0.2.0),
     lubridate,
     dplyr,
     tidyr,

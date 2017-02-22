@@ -1,4 +1,4 @@
-#' Precipitation data from NOAA Climate Prediction Center
+#' Precipitation data from NOAA CPC Morphing Tecchnique (CMORPH)
 #'
 #' @export
 #' @param date (date/character) date in YYYY-MM-DD format
@@ -11,28 +11,34 @@
 #'  \item precip - precipitation (in mm)
 #' }
 #'
-#' @references \url{http://www.cpc.ncep.noaa.gov/}
-#' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP
-#' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_CONUS/DOCU/PRCP_CU_GAUGE_V1.0CONUS_0.25deg.README
-#' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_GLB/DOCU/PRCP_CU_GAUGE_V1.0GLB_0.50deg_README.txt
-#' https://www.esrl.noaa.gov/psd/data/gridded/data.unified.daily.conus.html
+#' @references
+#' \url{http://www.cpc.ncep.noaa.gov/products/janowiak/cmorph_description.html}
+#'
+#' ftp://ftp.cpc.ncep.noaa.gov/precip/global_CMORPH/
+#' ftp://ftp.cpc.ncep.noaa.gov/precip/global_CMORPH/30min_8km
+#' ftp://ftp.cpc.ncep.noaa.gov/precip/global_CMORPH/3-hourly_025deg
+#' ftp://ftp.cpc.ncep.noaa.gov/precip/global_CMORPH/daily_025deg
+#' ftp://ftp.cpc.ncep.noaa.gov/precip/global_CMORPH/3-hourly_025deg
+#'
+#' ftp://ftp.cpc.ncep.noaa.gov/precip/qmorph/
+#' ftp://ftp.cpc.ncep.noaa.gov/precip/qmorph/30min_8km
+#' ftp://ftp.cpc.ncep.noaa.gov/precip/qmorph/30min_025deg
 #'
 #' @details
-#' Rainfall data for the world (1979-present, resolution 50 km), and
-#' the US (1948-present, resolution 25 km).
+#' 8 KM - 30 MIN:
+#' Filename: CMORPH_8KM-30MIN_YYYYMMDDHH.Z
+#'
+#'
+#'
+#' @details
+#' xxx
 #'
 #' @examples
-#' cpc_prcp(date = "2017-01-15")
-#' cpc_prcp(date = "2015-06-05")
-#' cpc_prcp(date = "2017-01-15")
-#'
-#' cpc_prcp(date = "2005-07-09")
-#'
-#' cpc_prcp(date = "2005-07-09", us = TRUE)
-#' cpc_prcp(date = "2009-08-03", us = TRUE)
-cpc_prcp <- function(date, us = FALSE, ...) {
+#' cmorph(date = "2017-01-15")
+cmorph <- function(date, us = FALSE, ...) {
   assert(date, c("character", "Date"))
   assert(us, 'logical')
+
   dates <- str_extract_all_(date, "[0-9]+")[[1]]
   assert_range(dates[1], 1979:format(Sys.Date(), "%Y"))
   assert_range(as.numeric(dates[2]), 1:12)
