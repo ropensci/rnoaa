@@ -7,14 +7,14 @@
 seaiceeurls(yr = NULL, mo = NULL, pole = NULL)
 }
 \arguments{
-\item{yr}{Year (numeric)}
+\item{yr}{(numeric) a year}
 
-\item{mo}{Month, as character abbrevation of a month  (character)}
+\item{mo}{(character) a month, as character abbrevation of a month}
 
-\item{Pole}{One of S (south) or N (north) (character)}
+\item{pole}{(character) one of S (south) or N (north)}
 }
 \value{
-A list of urls
+A vector of urls (character)
 }
 \description{
 Make all urls for sea ice data

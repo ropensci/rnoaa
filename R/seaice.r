@@ -9,7 +9,8 @@
 #' \code{\link{readshpfile}} to read in shape file, then reproject, and so on.
 #' @examples \dontrun{
 #' # Look at data.frame's for a series of years for Feb, South pole
-#' urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x, mo='Feb', pole='S'))
+#' urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x,
+#'   mo='Feb', pole='S'))
 #' out <- lapply(urls, seaice)
 #' lapply(out, head)
 #'
@@ -29,10 +30,12 @@ seaice <- function(url, ...) {
 
 #' Make all urls for sea ice data
 #'
-#' @param yr Year (numeric)
-#' @param mo Month, as character abbrevation of a month  (character)
-#' @param Pole One of S (south) or N (north) (character)
-#' @return A list of urls
+#' @export
+#' @keywords internal
+#' @param yr (numeric) a year
+#' @param mo (character) a month, as character abbrevation of a month
+#' @param pole (character) one of S (south) or N (north)
+#' @return A vector of urls (character)
 #' @examples \dontrun{
 #' # Get all urls
 #' seaiceeurls()
@@ -46,27 +49,30 @@ seaice <- function(url, ...) {
 #' # Get urls for Feb of 1980, just S pole
 #' seaiceeurls(yr=1980, mo='Feb', pole='S')
 #' }
-#' @export
-#' @keywords internal
-seaiceeurls <- function(yr=NULL, mo=NULL, pole=NULL) {
-  eachmonth <- sprintf(seaiceftp(), month.abb)
+seaiceeurls <- function(yr = NULL, mo = NULL, pole = NULL) {
+  # previous years
   yrs_prev <- seq(1979, year(today()) - 1, 1)
   months_prevyr <- c(paste0(0, seq(1, 9)), c(10, 11, 12))
-  yrs_months <- do.call(c, lapply(yrs_prev, function(x) paste(x, months_prevyr, sep = '')))
-  urls <- do.call(c, lapply(c('S', 'N'), function(x) {
-    paste(eachmonth, 'extent_', x, '_', yrs_months, '_polygon_v2.zip', sep = '')
-  }))
+  yrs_months <- do.call(c, lapply(yrs_prev, function(x)
+    paste(x, months_prevyr, sep = '')))
+  urls <- make_seaice_urls(yrs_months, month.abb)
 
+  # this year
   months_thisyr <- seq(1, as.numeric(format(Sys.Date(), "%m")))
-  months_thisyr <- vapply(months_thisyr, function(z) {
-    if (nchar(z) == 1) paste0(0, z) else as.character(z)
-  }, "")
-  yrs_months_thisyr <- paste0(format(Sys.Date(), "%Y"), months_thisyr)
-  eachmonth_thiyr <- eachmonth[1:grep(format(Sys.Date() - months(1), "%b"), eachmonth)]
-  urls_thisyr <- do.call(c, lapply(c('S', 'N'), function(x) {
-    paste(eachmonth_thiyr, 'extent_', x, '_', yrs_months_thisyr, '_polygon_v2.zip', sep = '')
-  }))
+  months_thisyr <- months_thisyr[-length(months_thisyr)]
+  if (!length(months_thisyr) == 0) {
+    months_thisyr <- vapply(months_thisyr, function(z) {
+      if (nchar(z) == 1) paste0(0, z) else as.character(z)
+    }, "")
+    yrs_months_thisyr <- paste0(format(Sys.Date(), "%Y"), months_thisyr)
+    eachmonth_thiyr <- month.abb[1:grep(format(Sys.Date() - months(1), "%b"),
+                                        month.abb)]
+    urls_thisyr <- make_seaice_urls(yrs_months_thisyr, eachmonth_thiyr)
+  } else {
+    urls_thisyr <- c()
+  }
 
+  # all urls
   allurls <- c(urls, urls_thisyr)
 
   if (!is.null(pole)) pole <- sprintf("_%s_", pole)
@@ -86,19 +92,42 @@ seaiceeurls <- function(yr=NULL, mo=NULL, pole=NULL) {
   if (is.null(yr) & !is.null(mo) & !is.null(pole))
     ss <- grep(pole, grep(mo, allurls, value = TRUE), value = TRUE)
   if (!is.null(yr) & !is.null(mo) & !is.null(pole))
-    ss <- grep(yr, grep(pole, grep(mo, allurls, value = TRUE), value = TRUE), value = TRUE)
+    ss <- grep(yr, grep(pole, grep(mo, allurls, value = TRUE),
+                        value = TRUE), value = TRUE)
 
   return( ss )
 }
 
-seaiceftp <- function() 'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles/%s/shp_extent/'
+make_seaice_urls <- function(yrs_months, mos) {
+  do.call(
+    "c",
+    lapply(c('south', 'north'), function(x) {
+      mm <- paste(
+        vapply(seq_along(mos), function(z) {
+          if (nchar(z) == 1) paste0(0, z) else as.character(z)
+        }, ""),
+        mos,
+        sep = "_"
+      )
+      tmp <- sprintf(seaiceftp, x, mm)
+      route <- paste('extent_', switch(x, south = "S", north = "N"),
+                     '_', yrs_months, '_polygon_v2.1.zip',
+                     sep = '')
+      file.path(tmp, route)
+    })
+  )
+}
+
+seaiceftp <-
+  'ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/%s/monthly/shapefiles/shp_extent/%s'
 
 #' Function to read shapefiles
+#'
+#' @export
+#' @keywords internal
 #' @param x A url
 #' @param storepath Path to store data in
 #' @return An object of class sp
-#' @export
-#' @keywords internal
 readshpfile <- function(x, storepath = NULL) {
   filename <- strsplit(x, '/')[[1]][length(strsplit(x, '/')[[1]])]
   filename_noending <- strsplit(filename, "\\.")[[1]][[1]]

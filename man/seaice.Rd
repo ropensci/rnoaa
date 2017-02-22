@@ -25,7 +25,8 @@ If you want to reproject the shape files, use
 \examples{
 \dontrun{
 # Look at data.frame's for a series of years for Feb, South pole
-urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x, mo='Feb', pole='S'))
+urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x,
+  mo='Feb', pole='S'))
 out <- lapply(urls, seaice)
 lapply(out, head)
 
