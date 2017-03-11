@@ -11,10 +11,6 @@ before_install:
   - sudo apt-get --yes --force-yes update -qq
   - sudo apt-get install -y libudunits2-dev libproj-dev libgeos-dev libgdal-dev netcdf-bin libv8-dev
 
-r_binary_packages:
-  - gistr
-  - ggmap
-
 after_success:
 - Rscript -e 'covr::codecov()'
 
