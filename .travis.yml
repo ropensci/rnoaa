@@ -3,6 +3,9 @@ sudo: required
 cache: packages
 dist: trusty
 
+compiler:
+  - clang
+
 apt_packages:
   - libudunits2-dev
 
