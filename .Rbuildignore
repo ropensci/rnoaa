@@ -22,4 +22,5 @@ user_test_cases/
 ^cran-comments\.md$
 ^issue_template\.md$
 ^revdep$
+.github
 
