@@ -8,9 +8,9 @@ test_that("isd_read gets data", {
 
   expect_is(aa, "tbl_df")
   expect_is(aa$quality, "character")
-  expect_type(aa$total_chars, "double")
-  expect_type(aa$latitude, "double")
-  expect_type(aa$longitude, "double")
+  expect_type(aa$total_chars, "character")
+  expect_type(aa$latitude, "character")
+  expect_type(aa$longitude, "character")
 })
 
 test_that("isd fails well", {
