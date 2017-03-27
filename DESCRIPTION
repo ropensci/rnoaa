@@ -56,5 +56,5 @@ Suggests:
     covr,
     ggmap,
     ropenaq
-Remotes: ropensci/isdparser ropensci/hoardr
+Remotes: ropensci/isdparser, ropensci/hoardr
 RoxygenNote: 6.0.1
