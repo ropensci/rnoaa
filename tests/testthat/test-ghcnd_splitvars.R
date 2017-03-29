@@ -12,7 +12,6 @@ test_that("ghcnd_splitvars for data", {
   expect_is(aa$tmax, "data.frame")
   expect_is(aa$tmin, "data.frame")
 
-  expect_is(aa$tmin$id, "character")
   expect_equal(length(unique(aa$tmin$id)), 1)
 })
 
