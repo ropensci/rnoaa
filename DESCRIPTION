@@ -53,7 +53,6 @@ Suggests:
     rgdal,
     rmarkdown,
     purrr,
-    covr,
     ggmap,
     ropenaq
 Remotes: ropensci/isdparser, ropensci/hoardr
