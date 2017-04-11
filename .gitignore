@@ -6,3 +6,5 @@ inst/ignore/bath.r
 inst/cache/
 inst/vign/cache
 inst/doc
+inst/ignore/GSOMReadme.txt
+inst/ignore/GSOYReadme.txt
