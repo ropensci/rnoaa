@@ -10,7 +10,7 @@ __Author__ Maëlle Salmon
 
 # Introduction: getting air quality data
 
-This vignette aims at explaining how you can complement a data.frame with weather data using rnoaa. In this vignette we shall use air quality data from the OpenAQ platform queried with the ropenaq package, for India. Using [ropenaq](https://github.com/masalmon/ropenaq) one can get e.g. PM2.5 values over time in Delhi in March 2016. For getting all data for march we'll loop over several pages.
+This vignette aims at explaining how you can complement a data.frame with weather data using rnoaa. In this vignette we shall use air quality data from the OpenAQ platform queried with the ropenaq package, for India. Using [ropenaq](https://github.com/ropensci/ropenaq) one can get e.g. PM2.5 values over time in Delhi in March 2016. For getting all data for march we'll loop over several pages.
 
 First, we need to know how many measures are available for Delhi for March 2016.
 
@@ -19,7 +19,7 @@ First, we need to know how many measures are available for Delhi for March 2016.
 library("ropenaq")
 
 measurementsDelhi <- aq_measurements(city = "Delhi", parameter = "pm25",
-                                     date_from = "2016-03-01", 
+                                     date_from = "2016-03-01",
                                      date_to = "2016-03-31")
 
 save(measurementsDelhi, file = "data/measurementsDelhi.RData")

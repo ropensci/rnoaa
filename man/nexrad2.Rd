@@ -4,10 +4,22 @@
 \alias{nexrad2}
 \title{NEXRAD II data}
 \usage{
-nexrad2(year, month, day, station, filename, out, ...)
+nexrad2(year, month, day, station, filename, path, ...)
 }
 \arguments{
-\item{x}{xx}
+\item{year}{xx}
+
+\item{month}{xx}
+
+\item{day}{xx}
+
+\item{station}{xx}
+
+\item{filename}{xx}
+
+\item{path}{xx}
+
+\item{...}{curl options}
 }
 \value{
 data.frame

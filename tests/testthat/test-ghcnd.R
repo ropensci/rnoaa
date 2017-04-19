@@ -69,7 +69,15 @@ test_that("get data", {
   expect_is(aa, "data.frame")
   expect_is(bb, "data.frame")
   expect_is(cc, "data.frame")
+
+  expect_is(aa$id, "character")
+  expect_is(aa$year, "integer")
+  expect_is(aa$month, "integer")
   expect_is(aa$element, "character")
+  expect_is(aa$VALUE1, "integer")
+  expect_is(aa$MFLAG1, "character")
+  expect_is(aa$QFLAG1, "character")
+  expect_is(aa$SFLAG1, "character")
 
   expect_lt(NROW(cc), NROW(aa))
   expect_lt(NROW(aa), NROW(bb))

@@ -1,7 +1,13 @@
 #' NEXRAD II data
 #'
 #' @export
-#' @param x xx
+#' @param year xx
+#' @param month xx
+#' @param day xx
+#' @param station xx
+#' @param filename xx
+#' @param path xx
+#' @param ... curl options
 #' @details
 #' xx
 #' @return data.frame
@@ -9,9 +15,9 @@
 #' f <- tempfile(fileext = ".zip")
 #' nexrad2(2017, 4, 1, 'KAMX', 'KAMX20170401_002500_V06', f)
 #' }
-nexrad2 <- function(year, month, day, station, filename, out, ...) {
+nexrad2 <- function(year, month, day, station, filename, path, ...) {
   url <- file.path(nexs3base(), year, add0(month), add0(day), station, filename)
-  res <- GET(url, write_disk(path, TRUE), verbose())
+  res <- httr::GET(url, write_disk(path, TRUE), httr::verbose())
 }
 
 nexs3base <- function() 'https://noaa-nexrad-level2.s3.amazonaws.com'

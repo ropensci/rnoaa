@@ -282,7 +282,7 @@ coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
 
 * [Scott Chamberlain](https://github.com/sckott)
 * [Brooke Anderson](https://github.com/geanders)
-* [Maëlle Salmon](https://github.com/masalmon)
+* [Maëlle Salmon](https://github.com/maelle)
 * [Adam Erickson](https://github.com/adam-erickson)
 * [Nicholas Potter](https://github.com/potterzot)
 * [Joseph Stachelek](https://github.com/jsta)

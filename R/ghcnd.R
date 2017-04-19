@@ -185,12 +185,19 @@ ghcnd <- function(stationid, ...){
   if (!is_ghcnd(x = csvpath)) {
     res <- ghcnd_GET(path, stationid, ...)
   } else {
-    res <- read.csv(csvpath, stringsAsFactors = FALSE)
+    # res <- read.csv(csvpath, stringsAsFactors = FALSE)
+    res <- read.csv(csvpath, stringsAsFactors = FALSE,
+                    colClasses = ghcnd_col_classes)
   }
   res <- tibble::as_data_frame(res)
   attr(res, 'source') <- csvpath
   res
 }
+
+ghcnd_col_classes <- c(
+  "character", "integer", "integer", "character",
+  rep(c("integer", "character", "character", "character"), times = 31)
+)
 
 fm <- function(n) {
   gsub("\\s", "0", n)
@@ -453,6 +460,9 @@ ghcnd_GET <- function(bp, stationid, ...){
       lapply(1:31, function(x) paste0(c("VALUE","MFLAG","QFLAG","SFLAG"), x))))
   df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)),
                  na.strings = "-9999")
+  df[] <- Map(function(a, b) {
+    eval(parse(text = paste0("as.", b)))(a)
+  }, df, ghcnd_col_classes)
   dat <- stats::setNames(df, vars)
   write.csv(dat, fp, row.names = FALSE)
   return(dat)
