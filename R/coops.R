@@ -146,7 +146,7 @@ coops_search <- function(begin_date = NULL, end_date = NULL,
     "water_level",  "air_temperature",  "water_temperature",  "wind", 
     "air_pressure", "air_gap", "conductivity", "visibility", "humidity", 
     "salinity", "one_minute_water_level", "predictions")
-                        )
+                        
   group2_products <- c(                       # hourly to sub-daily products with 1 year max
     "hourly_height", "high_low")
   group3_products <- c(                       # daily or longer products with 10 year max
