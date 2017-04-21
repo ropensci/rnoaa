@@ -163,7 +163,7 @@ coops_search <- function(begin_date = NULL, end_date = NULL,
   ed <- as.Date(as.character(end_date),format="%Y%m%d")
   req_dur <- ed - bd
   if (req_dur > maxdur) {
-    stop(paste("The maximum duration NOAA API supports a single call for ", product, " is ", maxdur, "days\n", 
+    stop(paste("The maximum duration NOAA API supports a single call for\n", product, " is ", maxdur, " days\n", 
                begin_date, " to ", end_date, " is ", req_dur, " days\n",sep=""), call. = FALSE)
   }
   # bottom check for too long of duration  
