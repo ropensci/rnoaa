@@ -159,13 +159,15 @@ coops_search <- function(begin_date = NULL, end_date = NULL,
     maxdur <- 3653
   } else maxdur <- 365000
   
-  bd <- as.Date(as.character(begin_date),format="%Y%m%d")
-  ed <- as.Date(as.character(end_date),format="%Y%m%d")
-  req_dur <- ed - bd
-  if (req_dur > maxdur) {
-    stop(paste("The maximum duration NOAA API supports a single call for\n", product, " is ", maxdur, " days\n", 
-               begin_date, " to ", end_date, " is ", req_dur, " days\n",sep=""), call. = FALSE)
-  }
+  if (!is.null(begin_date)&!is.null(end_date)) {
+    bd <- as.Date(as.character(begin_date),format="%Y%m%d")
+    ed <- as.Date(as.character(end_date),format="%Y%m%d")
+    req_dur <- ed - bd
+    if (req_dur > maxdur) {
+      stop(paste("The maximum duration NOAA API supports a single call for\n", product, " is ", maxdur, " days\n", 
+                 begin_date, " to ", end_date, " is ", req_dur, " days\n",sep=""), call. = FALSE)
+    } # if (req_dur > maxdur)
+  } # if (!is.null(begin_date...  
   # bottom check for too long of duration  
     
   args <- noaa_compact(list(begin_date = begin_date, end_date = end_date,
