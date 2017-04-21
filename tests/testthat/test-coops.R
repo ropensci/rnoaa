@@ -42,3 +42,25 @@ test_that("coops fails well", {
   
 })
 
+test_that("coops fails well", {
+  skip_on_cran()
+  skip_on_travis()
+  skip_on_appveyor()
+  
+  expect_error(coops_search(station_name = 8724580, begin_date = 20040927, end_date = 20140928,
+ product = "high_low", datum = "stnd"), "The maximum duration NOAA API") 
+  
+})
+
+
+test_that("coops fails well", {
+  skip_on_cran()
+  skip_on_travis()
+  skip_on_appveyor()
+  
+  expect_error(coops_search(station_name = "ps0401", begin_date = 20151121, end_date = 20151231,
+ product = "currents"), "The maximum duration NOAA API") 
+  
+})
+
+
