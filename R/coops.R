@@ -145,7 +145,7 @@ coops_search <- function(begin_date = NULL, end_date = NULL,
   group1_products <- c(                       # sub-hourly products with 31 day max
     "water_level",  "air_temperature",  "water_temperature",  "wind", 
     "air_pressure", "air_gap", "conductivity", "visibility", "humidity", 
-    "salinity", "one_minute_water_level", "predictions")
+    "salinity", "one_minute_water_level", "predictions", "currents")
                         
   group2_products <- c(                       # hourly to sub-daily products with 1 year max
     "hourly_height", "high_low")
