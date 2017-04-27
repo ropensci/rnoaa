@@ -47,11 +47,11 @@
 #'
 #' Maximum Durations in a Single Call:
 #' \itemize{
-#' \item Products water_level through predictions allow requests for up to 
+#' \item Products water_level through predictions allow requests for up to
 #` 31 days of data.
-#' \item Products hourly_heignt and high_low allow requests for up to 
+#' \item Products hourly_heignt and high_low allow requests for up to
 #` 1 year (366 days) of data.
-#' \item Products daily_mean and monthly_mean allow requests for up to 
+#' \item Products daily_mean and monthly_mean allow requests for up to
 #` 10 years of data.
 #' }#'
 #' Options for the datum paramter. One of:
@@ -78,7 +78,7 @@
 #' }
 #' @examples \dontrun{
 #' # Get monthly mean sea level data at Vaca Key (8723970)
-#' coops_search(station_name = 8723970, begin_date = 19820301,
+#' coops_search(station_name = 8723970, begin_date = 20120301,
 #'   end_date = 20141001, datum = "stnd", product = "monthly_mean")
 #'
 #' # Get verified water level data at Vaca Key (8723970)
@@ -101,10 +101,6 @@
 #' # Get air pressure at Vaca Key (8723970)
 #' coops_search(station_name = 8723970, begin_date = 20140927,
 #'   end_date = 20140928, product = "air_pressure")
-#'
-#' # Get humidity at Eugene Island, LA (8764314)
-#' coops_search(station_name = 8764314, begin_date = 20150927,
-#'   end_date = 20150928, product = "humidity")
 #'
 #' # Get wind at Vaca Key (8723970)
 #' coops_search(station_name = 8723970, begin_date = 20140927,
@@ -144,14 +140,14 @@ coops_search <- function(begin_date = NULL, end_date = NULL,
   if (product %in% water_level_products & length(datum) < 1) {
     stop("Must specify a datum for water level products", call. = FALSE)
   }
-  
+
   # check for duration longer than NOAA will return
   group1_products <- c(           # sub-hourly products with 31 day max
     "water_level",  "air_temperature",  "water_temperature",
-    "wind", "air_pressure", "air_gap", "conductivity", 
-    "visibility", "humidity", "salinity", "one_minute_water_level", 
+    "wind", "air_pressure", "air_gap", "conductivity",
+    "visibility", "humidity", "salinity", "one_minute_water_level",
     "predictions", "currents")
-                        
+
   group2_products <- c(   # hourly to sub-daily products with 1 year max
     "hourly_height", "high_low")
   group3_products <- c(      # daily or longer products with 10 year max
@@ -163,20 +159,20 @@ coops_search <- function(begin_date = NULL, end_date = NULL,
   } else if (product %in% group3_products) {
     maxdur <- 3653
   } else maxdur <- 365000
-  
+
   if (!is.null(begin_date) && !is.null(end_date)) {
     bd <- as.Date(as.character(begin_date), format = "%Y%m%d")
     ed <- as.Date(as.character(end_date), format = "%Y%m%d")
     req_dur <- ed - bd
     if (req_dur > maxdur) {
       stop(paste("The maximum duration the NOAA API allows in a",
-                 "single call for\n", product, " is ", maxdur, 
-                 " days\n", begin_date, " to ", end_date, " is ", 
+                 "single call for\n", product, " is ", maxdur,
+                 " days\n", begin_date, " to ", end_date, " is ",
                  req_dur, " days\n", sep=""), call. = FALSE)
     } # if (req_dur > maxdur)
-  } # if (!is.null(begin_date...  
-  # bottom check for too long of duration  
-    
+  } # if (!is.null(begin_date...
+  # bottom check for too long of duration
+
   args <- noaa_compact(list(begin_date = begin_date, end_date = end_date,
                             station = station_name, product = product,
                             datum = datum, units = units, time_zone = time_zone,
