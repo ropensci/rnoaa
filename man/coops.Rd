@@ -150,3 +150,6 @@ coops_search(station_name = 8723970, begin_date = 20140928,
 
 \url{https://tidesandcurrents.noaa.gov/map/}
 }
+\author{
+Scott Chamberlain, Joseph Stachelek, Tom Philippi
+}

@@ -71,6 +71,8 @@
 #'
 #' \url{https://tidesandcurrents.noaa.gov/map/}
 #'
+#' @author Scott Chamberlain, Joseph Stachelek, Tom Philippi
+#'
 #' @return List, of length one or two.
 #' \itemize{
 #'  \item metadata A list of metadata with slots id, name, lat, lon
