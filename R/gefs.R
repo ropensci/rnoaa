@@ -84,7 +84,7 @@ gefs_CONNECT <- function(date = format(Sys.time(), "%Y%m%d"),
 
 
   # Until bug #127 is resolved
-  if (is_windows()) stop("gefs not implemented on windows yet", .call = FALSE)
+  if (is_windows()) warning("gefs not implemented on windows yet", .call = FALSE)
 
   #forecast time
   forecast_time <- match.arg(forecast_time)
