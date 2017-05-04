@@ -185,7 +185,6 @@ ghcnd <- function(stationid, ...){
   if (!is_ghcnd(x = csvpath)) {
     res <- ghcnd_GET(path, stationid, ...)
   } else {
-    # res <- read.csv(csvpath, stringsAsFactors = FALSE)
     res <- read.csv(csvpath, stringsAsFactors = FALSE,
                     colClasses = ghcnd_col_classes)
   }
@@ -461,6 +460,9 @@ ghcnd_GET <- function(bp, stationid, ...){
   df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)),
                  na.strings = "-9999")
   df[] <- Map(function(a, b) {
+    if (b == "integer") {
+      a <- as.character(a)
+    }
     eval(parse(text = paste0("as.", b)))(a)
   }, df, ghcnd_col_classes)
   dat <- stats::setNames(df, vars)
