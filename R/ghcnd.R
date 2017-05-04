@@ -463,7 +463,7 @@ ghcnd_GET <- function(bp, stationid, ...){
     if (b == "integer") {
       a <- as.character(a)
     }
-    eval(parse(text = paste0("as.", b)))(a)
+    suppressWarnings(eval(parse(text = paste0("as.", b)))(a))
   }, df, ghcnd_col_classes)
   dat <- stats::setNames(df, vars)
   write.csv(dat, fp, row.names = FALSE)
