@@ -11,11 +11,11 @@ Note that some NOAA datasets have changed names:
 * `isd()` gains new parameters `additional` to toggle whether the 
 non-mandatory ISD fields (additional + remarks) are parsed and 
 returned & `force` to toggle whether download new version or use
-cached version (#190)
+cached version. `isd_read()` gains new parameter `additional` 
+(see description above) (#190)
 * New function for Climate Prediction Center data: `cpc_prcp()` (#193)
 * New function `arc2()` to get data from Africa Rainfall Climatology 
 version 2 (#201)
-* xx (#xxx)
 
 ### MINOR IMPROVEMENTS
 

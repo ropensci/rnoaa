@@ -22,8 +22,8 @@ Checked on the 1 reverse dependency - no problems were found
 
 -----
 
-This submission includes some important bug fixes, and some
-minor improvements.
+This version includes some important bug fixes, some new functions for
+new NOAA data sources, some minor improvements and bug fixes.
 
 Thanks!
 Scott Chamberlain
