@@ -145,6 +145,10 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' your machine to save files to, and run
 #' \code{rappdirs::user_cache_dir("rnoaa/ghcnd")} to get that directory.
 #'
+#' Note that between versions of \pkg{rnoaa} you may want to clear your
+#' cache of ghcnd files IF there are changes in ghcnd functions. See
+#' \code{\link{ghcnd_clear_cache}} or you can do so manually.
+#'
 #' @examples \dontrun{
 #' # Get data
 #' ghcnd(stationid = "AGE00147704")

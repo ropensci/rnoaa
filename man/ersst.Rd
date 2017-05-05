@@ -55,11 +55,7 @@ res <- ersst(year = 1890, month = 2)
 ## varibles
 names(res$var)
 ## get a variable
-ncdf4::ncvar_get(res, "lon_bnds")
-
-# curl debugging
-library('httr')
-ersst(year = 2015, month = 10, config=verbose())
+ncdf4::ncvar_get(res, "ssta")
 }
 }
 \references{
