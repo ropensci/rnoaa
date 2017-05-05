@@ -56,11 +56,11 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 |Dataset    |Description                 |Start Date |End Date   | Data Coverage|
 |:----------|:---------------------------|:----------|:----------|-------------:|
-|GHCND      |Daily Summaries             |1763-01-01 |2017-02-14 |          1.00|
-|GSOM       |Global Summary of the Month |1763-01-01 |2016-11-01 |          1.00|
+|GHCND      |Daily Summaries             |1763-01-01 |2017-05-01 |          1.00|
+|GSOM       |Global Summary of the Month |1763-01-01 |2017-04-01 |          1.00|
 |GSOY       |Global Summary of the Year  |1763-01-01 |2016-01-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2017-02-14 |          0.95|
-|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2017-02-10 |          0.95|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2017-05-01 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2017-04-07 |          0.95|
 |NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
 |NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
 |NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
@@ -145,42 +145,42 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> $meta
 #> $meta$totalCount
 #> [1] 1980
-#>
+#> 
 #> $meta$pageCount
 #> [1] 25
-#>
+#> 
 #> $meta$offset
 #> [1] 1
-#>
-#>
+#> 
+#> 
 #> $data
 #>       mindate    maxdate                  name datacoverage            id
-#> 1  1892-08-01 2016-12-31            Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2017-02-08            Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2017-02-07         Zonguldak, TU       1.0000 CITY:TU000057
-#> 4  1906-01-01 2017-02-08            Zinder, NG       0.9025 CITY:NG000004
-#> 5  1973-01-01 2017-02-07        Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2017-02-08         Zhytomyra, UP       0.9723 CITY:UP000025
-#> 7  1948-03-01 2017-02-08        Zhezkazgan, KZ       0.9302 CITY:KZ000017
-#> 8  1951-01-01 2017-02-08         Zhengzhou, CH       1.0000 CITY:CH000045
-#> 9  1941-01-01 2016-12-31          Zaragoza, SP       1.0000 CITY:SP000021
+#> 1  1892-08-01 2017-03-31            Zwolle, NL       1.0000 CITY:NL000012
+#> 2  1901-01-01 2017-04-29            Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2017-04-29         Zonguldak, TU       1.0000 CITY:TU000057
+#> 4  1906-01-01 2017-04-29            Zinder, NG       0.9025 CITY:NG000004
+#> 5  1973-01-01 2017-04-29        Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2017-04-29         Zhytomyra, UP       0.9723 CITY:UP000025
+#> 7  1948-03-01 2017-04-29        Zhezkazgan, KZ       0.9302 CITY:KZ000017
+#> 8  1951-01-01 2017-04-29         Zhengzhou, CH       1.0000 CITY:CH000045
+#> 9  1941-01-01 2017-03-31          Zaragoza, SP       1.0000 CITY:SP000021
 #> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       1.0000 CITY:UP000024
-#> 11 1957-01-01 2017-02-10          Zanzibar, TZ       0.8016 CITY:TZ000019
-#> 12 1973-01-01 2017-02-08            Zanjan, IR       0.9105 CITY:IR000020
-#> 13 1893-01-01 2017-02-14     Zanesville, OH US       1.0000 CITY:US390029
-#> 14 1912-01-01 2017-02-07             Zahle, LE       0.9819 CITY:LE000004
-#> 15 1951-01-01 2017-02-08           Zahedan, IR       0.9975 CITY:IR000019
-#> 16 1860-12-01 2017-02-08            Zagreb, HR       1.0000 CITY:HR000002
-#> 17 1975-08-29 2017-02-08         Zacatecas, MX       0.9993 CITY:MX000036
-#> 18 1947-01-01 2017-02-08 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
-#> 19 1893-01-01 2017-02-14           Yuma, AZ US       1.0000 CITY:US040015
-#> 20 1942-02-01 2017-02-14   Yucca Valley, CA US       1.0000 CITY:US060048
-#> 21 1885-01-01 2017-02-14      Yuba City, CA US       1.0000 CITY:US060047
-#> 22 1998-02-01 2017-02-08            Yozgat, TU       1.0000 CITY:TU000056
-#> 23 1893-01-01 2017-02-14     Youngstown, OH US       1.0000 CITY:US390028
-#> 24 1894-01-01 2017-02-14           York, PA US       1.0000 CITY:US420024
-#> 25 1876-01-01 2017-02-14        Yonkers, NY US       1.0000 CITY:US360031
-#>
+#> 11 1957-01-01 2017-04-29          Zanzibar, TZ       0.8016 CITY:TZ000019
+#> 12 1973-01-01 2017-04-29            Zanjan, IR       0.9105 CITY:IR000020
+#> 13 1893-01-01 2017-05-01     Zanesville, OH US       1.0000 CITY:US390029
+#> 14 1912-01-01 2017-04-29             Zahle, LE       0.9819 CITY:LE000004
+#> 15 1951-01-01 2017-04-29           Zahedan, IR       0.9975 CITY:IR000019
+#> 16 1860-12-01 2017-04-29            Zagreb, HR       1.0000 CITY:HR000002
+#> 17 1975-08-29 2017-04-29         Zacatecas, MX       0.9306 CITY:MX000036
+#> 18 1947-01-01 2017-04-29 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
+#> 19 1893-01-01 2017-05-01           Yuma, AZ US       1.0000 CITY:US040015
+#> 20 1942-02-01 2017-05-01   Yucca Valley, CA US       1.0000 CITY:US060048
+#> 21 1885-01-01 2017-05-01      Yuba City, CA US       1.0000 CITY:US060047
+#> 22 1998-02-01 2017-04-29            Yozgat, TU       1.0000 CITY:TU000056
+#> 23 1893-01-01 2017-05-01     Youngstown, OH US       1.0000 CITY:US390028
+#> 24 1894-01-01 2017-05-01           York, PA US       1.0000 CITY:US420024
+#> 25 1869-01-01 2017-05-01        Yonkers, NY US       1.0000 CITY:US360031
+#> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
 ```
@@ -192,13 +192,13 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
 #> $meta
 #> NULL
-#>
+#> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
-#> 1      12.2 1899-02-01 2017-02-13  28.8029 INVERNESS 3 SE, FL US
+#> 1      12.2 1899-02-01 2017-04-30  28.8029 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS  -82.3126
-#>
+#> 
 #> attr(,"class")
 #> [1] "ncdc_stations"
 ```
@@ -233,7 +233,7 @@ out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
-![plot of chunk unnamed-chunk-13](inst/img/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-13](tools/unnamed-chunk-13-1.png)
 
 ### More plotting
 
@@ -246,7 +246,7 @@ out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP'
 ncdc_plot(out1, out2, breaks="45 days")
 ```
 
-![plot of chunk unnamed-chunk-14](inst/img/unnamed-chunk-14-1.png)
+![plot of chunk unnamed-chunk-14](tools/unnamed-chunk-14-1.png)
 
 ### Get table of all datasets
 
@@ -256,21 +256,21 @@ ncdc_datasets()
 #> $meta
 #> $meta$offset
 #> [1] 1
-#>
+#> 
 #> $meta$count
 #> [1] 11
-#>
+#> 
 #> $meta$limit
 #> [1] 25
-#>
-#>
+#> 
+#> 
 #> $data
 #>                     uid    mindate    maxdate                        name
-#> 1  gov.noaa.ncdc:C00861 1763-01-01 2017-02-14             Daily Summaries
-#> 2  gov.noaa.ncdc:C00946 1763-01-01 2016-11-01 Global Summary of the Month
+#> 1  gov.noaa.ncdc:C00861 1763-01-01 2017-05-01             Daily Summaries
+#> 2  gov.noaa.ncdc:C00946 1763-01-01 2017-04-01 Global Summary of the Month
 #> 3  gov.noaa.ncdc:C00947 1763-01-01 2016-01-01  Global Summary of the Year
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2017-02-14    Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2017-02-10   Weather Radar (Level III)
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2017-05-01    Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2017-04-07   Weather Radar (Level III)
 #> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01     Normals Annual/Seasonal
 #> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31               Normals Daily
 #> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31              Normals Hourly
@@ -289,7 +289,7 @@ ncdc_datasets()
 #> 9          1.00 NORMAL_MLY
 #> 10         0.25  PRECIP_15
 #> 11         1.00 PRECIP_HLY
-#>
+#> 
 #> attr(,"class")
 #> [1] "ncdc_datasets"
 ```
@@ -302,14 +302,14 @@ ncdc_datacats(locationid = 'CITY:US390029')
 #> $meta
 #> $meta$totalCount
 #> [1] 38
-#>
+#> 
 #> $meta$pageCount
 #> [1] 25
-#>
+#> 
 #> $meta$offset
 #> [1] 1
-#>
-#>
+#> 
+#> 
 #> $data
 #>                     name            id
 #> 1    Annual Agricultural        ANNAGR
@@ -337,7 +337,7 @@ ncdc_datacats(locationid = 'CITY:US390029')
 #> 23  Spring Precipitation        SPPRCP
 #> 24    Spring Temperature        SPTEMP
 #> 25   Summer Agricultural         SUAGR
-#>
+#> 
 #> attr(,"class")
 #> [1] "ncdc_datacats"
 ```
@@ -349,15 +349,16 @@ The function `tornadoes()` simply gets __all the data__. So the call takes a whi
 
 ```r
 shp <- tornadoes()
-#> OGR data source with driver: ESRI Shapefile
-#> Source: "/Users/sacmac/.rnoaa/tornadoes/tornadoes", layer: "tornado"
-#> with 57988 features
-#> It has 21 fields
+#> OGR data source with driver: ESRI Shapefile 
+#> Source: "/Users/sacmac/Library/Caches/rnoaa/tornadoes/torn", layer: "torn"
+#> with 60114 features
+#> It has 22 fields
+#> Integer64 fields read as strings:  om yr mo dy tz stf stn mag inj fat wid fc
 library('sp')
 plot(shp)
 ```
 
-![plot of chunk unnamed-chunk-17](inst/img/unnamed-chunk-17-1.png)
+![plot of chunk unnamed-chunk-17](tools/unnamed-chunk-17-1.png)
 
 ## HOMR metadata
 
@@ -369,19 +370,19 @@ homr(qid = 'COOP:046742')
 #> $`20002078`
 #> $`20002078`$id
 #> [1] "20002078"
-#>
+#> 
 #> $`20002078`$head
 #>                  preferredName latitude_dec longitude_dec precision
-#> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283    DDMMSS
+#> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283   DDddddd
 #>             por.beginDate por.endDate
 #> 1 1949-10-05T00:00:00.000     Present
-#>
+#> 
 #> $`20002078`$namez
 #>                         name  nameType
 #> 1   PASO ROBLES MUNICIPAL AP      COOP
 #> 2   PASO ROBLES MUNICIPAL AP PRINCIPAL
 #> 3 PASO ROBLES MUNICIPAL ARPT       PUB
-#>
+#> 
 #> $`20002078`$identifiers
 #>      idType          id
 #> 1     GHCND USW00093209
@@ -427,7 +428,7 @@ Get forecast for a certain variable.
 ```r
 res <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat = 46.28125, lon = -116.2188)
 head(res$data)
-#>   Total_precipitation_surface_6_Hour_Accumulation_ens lon lat ens time1
+#>   Total_precipitation_surface_6_Hour_Accumulation_ens lon lat ens time2
 #> 1                                                   0 244  46   0     6
 #> 2                                                   0 244  46   1    12
 #> 3                                                   0 244  46   2    18
@@ -469,17 +470,17 @@ coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
 #> $metadata
 #> $metadata$id
 #> [1] "9063053"
-#>
+#> 
 #> $metadata$name
 #> [1] "Fairport"
-#>
+#> 
 #> $metadata$lat
 #> [1] "41.7598"
-#>
+#> 
 #> $metadata$lon
 #> [1] "-81.2811"
-#>
-#>
+#> 
+#> 
 #> $data
 #>            t       v   f
 #> 1 2015-09-27 174.430 0,0

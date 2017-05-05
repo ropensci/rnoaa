@@ -1,7 +1,7 @@
 ## Test environments
 
-* local OS X install, R 3.3.2
-* ubuntu 12.04 (on travis-ci), R 3.3.2
+* local OS X install, R 3.4.0 patched
+* ubuntu 12.04 (on travis-ci), R 3.4.0
 * win-builder (devel and release)
 * R-hub (Ubuntu Linux R-release, Fedora Linux R-devel, Windows R-oldrel)
 
@@ -12,7 +12,7 @@
    License components with restrictions and base license permitting such:
      MIT + file LICENSE
    File 'LICENSE':
-     YEAR: 2016
+     YEAR: 2017
      COPYRIGHT HOLDER: Scott Chamberlain
 
 ## Reverse dependencies

@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
   fig.width = 10,
-  fig.path = "inst/img/",
+  fig.path = "tools/",
   cache.path = "inst/cache/"
 )
 ```

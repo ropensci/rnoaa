@@ -1,3 +1,31 @@
+rnoaa 0.7.0
+===========
+
+### NEW FEATURES
+
+* xx (#xxx)
+* xx (#xxx)
+* xx (#xxx)
+* xx (#xxx)
+* xx (#xxx)
+
+### MINOR IMPROVEMENTS
+
+* xx (#xxx)
+* xx (#xxx)
+* xx (#xxx)
+* xx (#xxx)
+* xx (#xxx)
+
+### BUG FIXES
+
+* xx (#xxx)
+* xx (#xxx)
+* xx (#xxx)
+* xx (#xxx)
+* xx (#xxx)
+
+
 rnoaa 0.6.6
 ===========
 
