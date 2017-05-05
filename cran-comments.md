@@ -2,8 +2,7 @@
 
 * local OS X install, R 3.4.0 patched
 * ubuntu 12.04 (on travis-ci), R 3.4.0
-* win-builder (devel and release)
-* R-hub (Ubuntu Linux R-release, Fedora Linux R-devel, Windows R-oldrel)
+* win-builder (release)
 
 ## R CMD check results
 
