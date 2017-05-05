@@ -1,0 +1,515 @@
+[
+  {
+    "key": "AWND",
+    "description": "Annual Average Wind Speed. Given in miles per hour or meters per second depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "CDSD",
+    "description": "Cooling Degree Days (season-to-date). Running total of monthly cooling degree days through the end of the season. Each month is summed to produce a season-to-date total. Season starts in January in Northern Hemisphere and July in Southern Hemisphere. Given in Celsius or Fahrenheit degrees depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "CLDD",
+    "description": "Cooling Degree Days. Computed when daily average temperature is more than 65 degrees Fahrenheit/18.3 degrees Celsius. (CDD = mean daily temperature - 65 degrees Fahrenheit/18.3 degrees Celsius). Each month is summed to produce an annual total. Annual totals are computed based on a January – December year in Northern Hemisphere and July – June year in Southern Hemisphere). Given in Celsius or Fahrenheit degrees depending on user specification.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided"
+    }
+  },
+  {
+    "key": "DP01",
+    "description": "Number of days with >= 0.01 inch/0.254 millimeter in the year.  Values originally recorded in inches as 0.01 are stored as 3 tenths of a millimeter.  Technically, this test is for values greater than or equal to 3 tenths of a millimeter.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DP10",
+    "description": "Number of days with >= 0.1 inch/2.54 millimeter in the year.  Values originally recorded in inches as 0.10 are stored as 25 tenths of a millimeter.  Technically, this test is for values greater than or equal to 25 tenths of a millimeter.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DP1X",
+    "description": "Number of days with >= 1.00 inch/25.4 millimeters in the year.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DSND",
+    "description": "Number of days with snow depth >= 1 inch/25 millimeters.",
+    "attributes": [],
+    "attributes_description": {}
+  },
+  {
+    "key": "DSNW",
+    "description": "Number of days with snowfall >= 1 inch/25 millimeters",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided"
+    }
+  },
+  {
+    "key": "DT00",
+    "description": "Number of days with maximum temperature <= 0 degrees Fahrenheit/-17.8 degrees Celsius.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DT32",
+    "description": "Number of days with minimum temperature <= 32 degrees Fahrenheit/0 degrees Celsius.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DX32",
+    "description": "Number of days with maximum temperature <= 32 degrees Fahrenheit/0 degrees Celsius.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DX70",
+    "description": "Number of days with maximum temperature >= 70 degrees Fahrenheit/21.1 degrees Celsius.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DX90",
+    "description": "Number of days with maximum temperature >= 90 degrees Fahrenheit/32.2 degrees Celsius",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "EMNT",
+    "description": "Extreme minimum temperature for the year. Lowest daily minimum temperature for the year. Given in Celsius or Fahrenheit depending on user specification.",
+    "attributes": ["S", "cccc", "d"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date during the year when the EMNT value occurred; if it occurs more than once, it's the last date during the year for which it occurred (originates from the DYNT element within the Raw GSOY Files)",
+      "d": "+ if there's more than one date during the year when EMNT value occurred more than once blank if it only occurred once (originates from the DYNT element within the Raw GSOY Files)"
+    }
+  },
+  {
+    "key": "EMSD",
+    "description": "Highest daily snow depth in the year. Given in inches or millimeters depending on user specification.",
+    "attributes": ["M", "S", "cccc", "d"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit/month two-digit date when the EMSD value occurred; if it occurs more than once, it's the last date during the year for which it occurred (originates from the DYSD element within the Raw GSOY Files)",
+      "d": "+ if there's more than one date during the year when EMSD value occurred more than once blank if it only occurred once (originates from the DYSD element within the Raw GSOY Files)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)"
+    }
+  },
+  {
+    "key": "EMSN",
+    "description": "Highest daily snowfall in the year. Given in inches or millimeters depending on user specification.",
+    "attributes": ["M", "S", "cccc", "d"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit/month two-digit date when the EMSN value occurred; if it occurs more than once, it's the last date during the year for which it occurred (originates from the DYSN element within the Raw GSOY Files)",
+      "d": "+ if there's more than one date during the year when EMSN value occurred more than once blank if it only occurred once (originates from the DYSN element within the Raw GSOY Files)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)"
+    }
+  },
+  {
+    "key": "EMXP",
+    "description": "Highest daily total of precipitation in the year. Given in inches or millimeters depending on user specification.",
+    "attributes": ["M", "S", "cccc", "d"],
+    "attributes_description": {
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the EMXP value occurred; if it occurs more than once, it's the last date during the year for which it occurred (originates from the DYXP element within the Raw GSOY Files)",
+      "d": "+ if there's more than one date during the year when EMXP value occurred more than once blank if it only occurred once (originates from the DYXP element within the Raw GSOY Files)"
+    }
+  },
+  {
+    "key": "EMXT",
+    "description": "Extreme maximum temperature for the year. Highest daily maximum temperature for the year. Given in Celsius or Fahrenheit depending on user specification.",
+    "attributes": ["S", "cccc", "d"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the EMXT value occurred; if it occurs more than once, it's the last date during the year for which it occurred (originates from the DYXT element within the Raw GSOY Files)",
+      "d": "+ if there's more than one date during the year when EMXT value occurred more than once blank if it only occurred once (originates from the DYXT element within the Raw GSOY Files)"
+    }
+  },
+  {
+    "key": "EVAP",
+    "description": "Total Annual Evaporation. Given in inches or millimeters depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "FZF0",
+    "description": "Temperature Value of First Freeze (at or less than 32 Degrees Fahrenheit/0 Degrees Celsius during August-December",
+    "attributes": ["S", "cccc"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the FZF0 value occurred"
+    }
+  },
+  {
+    "key": "FZF1",
+    "description": "Temperature Value of First Freeze (at or less than 28 Degrees Fahrenheit/-2.2 Degrees Celsius during August-December",
+    "attributes": ["S", "cccc"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the FZF1 value occurred"
+    }
+  },
+  {
+    "key": "FZF2",
+    "description": "Temperature Value of First Freeze (at or less than 24 Degrees Fahrenheit/-4.4 Degrees Celsius during August-December",
+    "attributes": ["S", "cccc"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the FZF2 value occurred"
+    }
+  },
+  {
+    "key": "FZF3",
+    "description": "Temperature Value of First Freeze (at or less than 20 Degrees Fahrenheit/-6.7 Degrees Celsius during August-December",
+    "attributes": ["S", "cccc"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the FZF3 value occurred"
+    }
+  },
+  {
+    "key": "FZF4",
+    "description": "Temperature Value of First Freeze (at or less than 16 Degrees Fahrenheit/-8.9 Degrees Celsius during August-December",
+    "attributes": ["S", "cccc"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the FZF4 value occurred"
+    }
+  },
+  {
+    "key": "FZF5",
+    "description": "Temperature Value of Last Freeze (at or less than 32 Degrees Fahrenheit/-0.0 Degrees Celsius during January through July",
+    "attributes": ["S", "cccc"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the FZF5 value occurred"
+    }
+  },
+  {
+    "key": "FZF6",
+    "description": "Temperature Value of Last Freeze (at or less than 28 Degrees Fahrenheit/-2.2 Degrees Celsius during January through July",
+    "attributes": ["S", "cccc"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the FZF6 value occurred"
+    }
+  },
+  {
+    "key": "FZF7",
+    "description": "Temperature Value of Last Freeze (at or less than 24 Degrees Fahrenheit/-4.4 Degrees Celsius during January through July",
+    "attributes": ["S", "cccc"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the FZF7 value occurred"
+    }
+  },
+  {
+    "key": "FZF8",
+    "description": "Temperature Value of Last Freeze (at or less than 20 Degrees Fahrenheit/-6.7 Degrees Celsius during January through July",
+    "attributes": ["S", "cccc"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the FZF8 value occurred"
+    }
+  },
+  {
+    "key": "FZF9",
+    "description": "Temperature Value of Last Freeze (at or less than 16 Degrees Fahrenheit/-8.9 Degrees Celsius during January through July",
+    "attributes": ["S", "cccc"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cccc": "two-digit month/two-digit date when the FZF9 value occurred"
+    }
+  },
+  {
+    "key": "HDSD",
+    "description": "Heating Degree Days (season-to-date). Running total of monthly heating degree days through the end of the season. Each month is summed to produce a season-to-date total. Season starts in July in Northern Hemisphere and January in Southern Hemisphere. Given in Celsius or Fahrenheit degrees depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "HNyz",
+    "description": "Highest minimum soil temperature for the year given in Celsius or Fahrenheit depending on user specification. (See Section 1.3.a.i for details on what 'y' and 'z' mean within this element header of HNyz.)",
+    "attributes": ["S", "y", "z"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "y": "Ground Cover Code <--BK Note to Ron: What is P for USC00042294.csv?>",
+      "z": "Soil Depth Code <--BK Note to Ron: What is N for USC00042294.csv?>"
+    }
+  },
+  {
+    "key": "HTDD",
+    "description": "Heating Degree Days. Computed when daily average temperature is less than 65 degree Fahrenheit/18.3 degrees Celsius. (HDD = 65(F)/18.3(C) – mean daily temperature). Each month is summed t produce an annual total. Annual totals are computed based on a July – June year in Northern Hemisphere an January – December year in Southern Hemisphere. Given in Celsius or Fahrenheit degrees depending on user specification.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided"
+    }
+  },
+  {
+    "key": "HXyz",
+    "description": "Highest maximum soil temperature for the year given in Celsius or Fahrenheit depending on user specification. (See Section 1.3.a.i for details on what 'y' and 'z' mean within this element header of HXyz.)",
+    "attributes": ["S", "y", "z"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "y": "Ground Cover Code <--BK Note to Ron: What is P for USC00042294.csv?>",
+      "z": "Soil Depth Code <--BK Note to Ron: What is N for USC00042294.csv?>"
+    }
+  },
+  {
+    "key": "LNyz",
+    "description": "Lowest minimum soil temperature for the year given in Celsius or Fahrenheit dependin on user specification. (See Section 1.3.a.i for details on what 'y' and 'z' mean within this element header of LNyz.)",
+    "attributes": ["S", "y", "z"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "y": "Ground Cover Code <--BK Note to Ron: What is P for USC00042294.csv?>",
+      "z": "Soil Depth Code <--BK Note to Ron: What is N for USC00042294.csv?>"
+    }
+  },
+  {
+    "key": "LXyz",
+    "description": "Lowest maximum soil temperature for the year given in Celsius or Fahrenheit dependin on user specification. (See Section 1.3.a.i for details on what 'y' and 'z' mean within this element header of LXyz.)",
+    "attributes": ["S", "y", "z"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "y": "Ground Cover Code <--BK Note to Ron: What is P for USC00042294.csv?>",
+      "z": "Soil Depth Code <--BK Note to Ron: What is N for USC00042294.csv?>"
+    }
+  },
+  {
+    "key": "MNPN",
+    "description": "Annual Mean Minimum Temperature of evaporation pan water. Given in Celsius o Fahrenheit depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "MNyz",
+    "description": "Annual Mean of daily minimum soil temperature given in Celsius or Fahrenheit depending on user specification. (See Section 1.3.a.i for details on what 'y' and 'z' mean within this element header of MNyz.)",
+    "attributes": ["S", "y", "z"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "y": "Ground Cover Code <--BK Note to Ron: What is P for USC00042294.csv?>",
+      "z": "Soil Depth Code <--BK Note to Ron: What is N for USC00042294.csv?>"
+    }
+  },
+  {
+    "key": "MXPN",
+    "description": "Annual Mean Maximum Temperature of evaporation pan water. Given in Celsius o Fahrenheit depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "MXyz",
+    "description": "Annual Mean of daily maximum soil temperature given in Celsius or Fahrenhei depending on user specification. (See Section 1.3.a.i for details on what 'y' and 'z' mean within this element header of MXyz.)",
+    "attributes": ["S", "y", "z"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "y": "Ground Cover Code <--BK Note to Ron: What is P for USC00042294.csv?>",
+      "z": "Soil Depth Code <--BK Note to Ron: What is N for USC00042294.csv?>"
+    }
+  },
+  {
+    "key": "PRCP",
+    "description": "Total Annual Precipitation. Given in inches or millimeters depending on user specification.",
+    "attributes": ["M", "S"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "Measurement Flag, a is used for any accumulation within the year. T is used for Trace amount; Trace flag supersedes an accumulation flag. blank is used if no days are missing"
+    }
+  },
+  {
+    "key": "PSUN",
+    "description": "Annual average of the daily percents of possible sunshine.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "SNOW",
+    "description": "Total Annual Snowfall. Given in inches or millimeters depending on user specification.",
+    "attributes": ["M", "S"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "Measurement Flag, T is used for Trace amount; Trace flag supersedes an accumulation flag."
+    }
+  },
+  {
+    "key": "TAVG",
+    "description": "Average Annual Temperature. Computed by adding the unrounded monthly average temperatures and dividing by 12. Given in Celsius or Fahrenheit depending on user specification. Missing if one or more months ar missing or flagged.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "TMAX",
+    "description": "Average Annual Maximum Temperature. Average of the mean monthly maximum temperatures given i Celsius or Fahrenheit depending on user specification. Missing if one or more months ar missing or flagged.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "TMIN",
+    "description": "Average Annual Minimum Temperature. Average of the mean monthly minimum temperatures given i Celsius or Fahrenheit depending on user specification. Missing if one or more months ar missing or flagged.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "TSUN",
+    "description": "Annual total sunshine in minutes.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "a": "<--BK Note:  As Ron about this as it appears blank for USW00003812's GSOY File-->"
+    }
+  },
+  {
+    "key": "WDF1",
+    "description": "Wind Direction for Maximum Wind Speed/Fastest 1-Minute (WSF1). Given in 360-degre compass point directions (e.g. 360 = north, 180 = south, etc.).",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDF2",
+    "description": "Wind Direction for Maximum Wind Speed/Fastest 2-Minute (WSF2). Given in 360-degre compass point directions (e.g. 360 = north, 180 = south, etc.).",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDF5",
+    "description": "Wind Direction for Peak Wind Gust Speed – Fastest 5-second (WSF5). Given in 360-degre compass point directions (e.g. 360 = north, 180 = south, etc.).",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDFG",
+    "description": "Wind Direction for Peak Wind Gust Speed (WSFG). Given in 360-degree compass poin directions (e.g. 360 = north, 180 = south, etc.).",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDFI",
+    "description": "Direction of highest instantaneous wind speed (WDFI).  Given in 360-degree compass poin directions (e.g. 360 = north, 180 = south, etc.). Missing if more than 5 days within the month are missin or flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided"
+    }
+  },
+  {
+    "key": "WDFM",
+    "description": "Wind Direction for Maximum Wind Speed/Fastest Mile (WSFM). Given in 360-degree compas point directions (e.g. 360 = north, 180 = south, etc.).",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDMV",
+    "description": "Total Annual Wind Movement over evaporation pan. Given in miles or kilometer depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WSF1",
+    "description": "Maximum Wind Speed/Fastest 1-minute. Maximum wind speed for the year reported a the fastest 1-minute.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WSF2",
+    "description": "Maximum Wind Speed/Fastest 2-minute. Maximum wind speed for the year reported a the fastest 2-minute. Given in miles per hour or meters per second depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WSF5",
+    "description": "Peak Wind Gust Speed – Fastest 5-second wind. Maximum wind gust for the year. Give in miles per hour or second depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WSFG",
+    "description": "Peak Wind Gust Speed. Maximum wind gust for the year. Given in miles per hour o second depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WSFI",
+    "description": "Highest instantaneous wind speed for the year.  Given in miles per hour o second depending on user specification. Missing if more than 5 days within the month are missing o flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Fla indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided"
+    }
+  },
+  {
+    "key": "WSFM",
+    "description": "Maximum Wind Speed/Fastest Mile. Maximum wind speed for the year reported as th fastest mile. Given in miles per hour or meters per second depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  }
+]

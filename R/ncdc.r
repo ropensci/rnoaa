@@ -25,6 +25,7 @@
 #' found than 25, you could set the parameter \code{limit} to
 #' something higher than 25.
 #'
+#' @section Flags:
 #' The attributes, or "flags", for each row of the output for data may have
 #' a flag with it. Each \code{datasetid} has it's own set of flags. The
 #' following are flag columns, and what they stand for. \code{fl_} is the
@@ -45,6 +46,18 @@
 #'  \item fl_miss missing
 #'  \item fl_u units
 #' }
+#'
+#' @section GSOM/GSOY Flags:
+#' Note that flags are different for GSOM and GSOY datasets. They have their
+#' own set of flags per data class. See
+#' \code{system.file("extdata/gsom.json", package = "rnoaa")} for GSOM
+#' and \code{system.file("extdata/gsom.json", package = "rnoaa")} for GSOY.
+#' Those are JSON files. The \code{system.file} call gives you then path,
+#' then read in with \code{jsonlite::fromJSON} which will give a data.frame
+#' of the metadata. For more detailed info but plain text, open
+#' \code{system.file("extdata/gsom_readme.txt", package = "rnoaa")}
+#' and \code{system.file("extdata/gsoy_readme.txt", package = "rnoaa")}
+#' in a text editor.
 #'
 #' @return An S3 list of length two, a slot of metadata (meta), and a slot
 #' for data (data). The meta slot is a list of metadata elements, and the
@@ -136,7 +149,7 @@
 #' # Many stationid's
 #' stat <- ncdc_stations(startdate = "2000-01-01", enddate = "2016-01-01")
 #' ## find out what datasets might be available for these stations
-#' ncdc_datasets(stationid = stat$data$id[1])
+#' ncdc_datasets(stationid = stat$data$id[10])
 #' ## get some data
 #' ncdc(datasetid = "GSOY", stationid = stat$data$id[1:10],
 #'    startdate = "2010-01-01", enddate = "2011-01-01")
@@ -197,35 +210,62 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
 }
 
 split_atts <- function(x, ds = "GSOM"){
-  tmp <- x$attributes
-  out <- switch(ds,
-         GHCND = parse_ncdc(tmp, c('fl_m','fl_q','fl_so','fl_t')),
-         # leave in duplicate for now
-         GHCNDMS = parse_ncdc(tmp, c('fl_miss','fl_cmiss')),
-         GSOM = parse_ncdc(tmp, c('fl_miss','fl_cmiss')),
-         # leave in duplicate for now
-         ANNUAL = parse_ncdc(tmp, c('fl_m','fl_q','fl_d','fl_u')),
-         GSOY = parse_ncdc(tmp, c('fl_m','fl_q','fl_d','fl_u')),
-         # no data returned, fix when data returned
-         NEXRAD2 = parse_ncdc(tmp, c('x','x')),
-         # no data returned, fix when data returned
-         NEXRAD3 = parse_ncdc(tmp, c('x','x')),
-         NORMAL_ANN = parse_ncdc(tmp, 'fl_c'),
-         NORMAL_DLY = parse_ncdc(tmp, 'fl_c'),
-         NORMAL_HLY = parse_ncdc(tmp, 'fl_c'),
-         NORMAL_MLY = parse_ncdc(tmp, 'fl_c'),
-         PRECIP_15 = parse_ncdc(tmp, c('fl_m','fl_q','fl_u')),
-         PRECIP_HLY = parse_ncdc(tmp, c('fl_m','fl_q')))
+  #tmp <- x$attributes
+  out <- switch(
+    ds,
+    GHCND = parse_ncdc(x, c('fl_m','fl_q','fl_so','fl_t')),
+    # leave in duplicate for now
+    GHCNDMS = parse_ncdc(x, c('fl_miss','fl_cmiss')),
+    GSOM = parse_ncdc(x, fun = gsom_mapper),
+    # leave in duplicate for now
+    ANNUAL = parse_ncdc(x, c('fl_m','fl_q','fl_d','fl_u')),
+    GSOY = parse_ncdc(x, fun = gsoy_mapper),
+    # no data returned, fix when data returned
+    NEXRAD2 = parse_ncdc(x, c('x','x')),
+    # no data returned, fix when data returned
+    NEXRAD3 = parse_ncdc(x, c('x','x')),
+    NORMAL_ANN = parse_ncdc(x, 'fl_c'),
+    NORMAL_DLY = parse_ncdc(x, 'fl_c'),
+    NORMAL_HLY = parse_ncdc(x, 'fl_c'),
+    NORMAL_MLY = parse_ncdc(x, 'fl_c'),
+    PRECIP_15 = parse_ncdc(x, c('fl_m','fl_q','fl_u')),
+    PRECIP_HLY = parse_ncdc(x, c('fl_m','fl_q')))
   notatts <- x[!names(x) == "attributes"]
   c(notatts, out)
 }
 
-parse_ncdc <- function(y, headings){
+# return: vector of flag names
+gsom_mapper <- function(x) {
+  gsf <- system.file("extdata/gsom.json", package = "rnoaa")
+  gsom <- jsonlite::fromJSON(gsf)
+  dat <- gsom[gsom$key == x$datatype, ]
+  if (NROW(dat) == 0) {
+    paste0('fl_unknown_', seq_along(strsplit(x$attributes, ",")[[1]]))
+  } else {
+    paste0("fl_", dat$attributes[[1]])
+  }
+}
+
+# return: vector of flag names
+gsoy_mapper <- function(x) {
+  gsf <- system.file("extdata/gsoy.json", package = "rnoaa")
+  gsoy <- jsonlite::fromJSON(gsf)
+  dat <- gsoy[gsoy$key == x$datatype, ]
+  if (NROW(dat) == 0) {
+    paste0('fl_unknown_', seq_along(strsplit(x$attributes, ",")[[1]]))
+  } else {
+    paste0("fl_", dat$attributes[[1]])
+  }
+}
+
+parse_ncdc <- function(x, headings = NULL, fun = NULL){
+  y <- x$attributes
   res <- strsplit(y, ',')[[1]]
   if (grepl(",$", y)) {
     res <- c(res, "")
   }
-  names(res) <- headings
+  if (is.null(fun)) names(res) <- headings
+  if (is.null(headings)) names(res) <- fun(x)
   as.list(res)
 }
 
