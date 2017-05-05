@@ -1,0 +1,494 @@
+[
+  {
+    "key": "AWND",
+    "description": "Monthly Average Wind Speed. Given in miles per hour or meters per second depending on user specification. Missing if more than 5 days within the month are missing or flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "CDSD",
+    "description": "Cooling Degree Days (season-to-date). Running total of monthly cooling degree days through the end of the most recent month. Each month is summed to produce a season-to-date total. Season starts in Januar      in Northern Hemisphere and July in Southern Hemisphere. Given in Celsius or Fahrenheit degrees depending on use      specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "CLDD",
+    "description": "Cooling Degree Days. Computed when daily average temperature is more than 65 degrees Fahrenheit/18.3 degree Celsius. CDD = mean daily temperature - 65 degrees Fahrenheit/18.3 degrees Celsius. Each day is summed to produce  monthly total. Given in Celsius or Fahrenheit degrees depending on user specification.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DP01",
+    "description": "Number of days with >= 0.01 inch/0.254 millimeter in the month.  Values originally recorded in inches as 0.0 are stored as 3 tenths of a millimeter.  Technically, this test is for values greater than or equal to 3 tenths of a millimeter.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DP10",
+    "description": "Number of days with >= 0.1 inch/2.54 millimeter in the month.  Values originally recorded in inches as 0.10 ar stored as 25 tenths of a millimeter.  Technically, this test is for values greater than or equal to 25 tenths o a millimeter.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DP1X",
+    "description": "Number of days with >= 1.00 inch/25.4 millimeters in the month.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DSND",
+    "description": "Number of days with snow depth >= 1 inch/25 millimeters.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DSNW",
+    "description": "Number of days with snowfall >= 1 inch/25 millimeters",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DT00",
+    "description": "Number of days with maximum temperature <= 0 degrees Fahrenheit/-17.8 degrees Celsius.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DT32",
+    "description": "Number of days with minimum temperature <= 32 degrees Fahrenheit/0 degrees Celsius.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DX32",
+    "description": "Number of days with maximum temperature <= 32 degrees Fahrenheit/0 degrees Celsius.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DX70",
+    "description": "Number of days with maximum temperature >= 70 degrees Fahrenheit/21.1 degrees Celsius.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "DX90",
+    "description": "Number of days with maximum temperature >= 90 degrees Fahrenheit/32.2 degrees Celsius",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "EMNT",
+    "description": "Extreme minimum temperature for month. Lowest daily minimum temperature for the month. Given in Celsius or Fahrenheit depending on user specification.",
+    "attributes": ["a", "S", "cc", "d"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provide blank if no days are missing or flagged",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cc": "two-digit date during the month when the EMNT value occurred; if it occurs more than once, it's the last date during the month for which it occurre (originates from the DYNT element within the Raw GSOM Files)",
+      "d": "+ if there's more than one date during the month when EMNT value occurred more than onc blank if it only occurred onc (originates from the DYNT element within the Raw GSOM Files)"
+    }
+  },
+  {
+    "key": "EMSD",
+    "description": "Highest daily snow depth in the month. Given in inches or millimeters depending on user specification.",
+    "attributes": ["a", "M", "S", "cc", "d"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provide blank if no days are missing or flagged",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cc": "two-digit date during the month when the EMSD value occurred; if it occurs more than once, it's the last date during the month for which it occurre (originates from the DYSD element within the Raw GSOM Files)",
+      "d": "+ if there's more than one date during the month when EMSD value occurred more than onc blank if it only occurred onc (originates from the DYSD element within the Raw GSOM Files)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)"
+    }
+  },
+  {
+    "key": "EMSN",
+    "description": "Highest daily snowfall in the month. Given in inches or millimeters depending on user specification.",
+    "attributes": ["a", "M", "S", "cc", "d"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provide blank if no days are missing or flagged",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cc": "two-digit date during the month when the EMSN value occurred; if it occurs more than onc it's the last date during the month for which it occurre (originates from the DYSN element within the Raw GSOM Files)",
+      "d": "+ if there's more than one date during the month when EMSN value occurred more than onc blank if it only occurred onc (originates from the DYSN element within the Raw GSOM Files)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)"
+    }
+  },
+  {
+    "key": "EMXP",
+    "description": "Highest daily total of precipitation in the month. Given in inches or millimeters dependin on user specification.",
+    "attributes": ["a", "M", "S", "cc", "d"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provide blank if no days are missing or flagged",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cc": "two-digit date during the month when the EMXP value occurred; if it occurs more than onc it's the last date during the month for which it occurre (originates from the DYXP element within the Raw GSOM Files)",
+      "d": "+ if there's more than one date during the month when EMXP value occurred more than onc blank if it only occurred onc (originates from the DYXP element within the Raw GSOM Files)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)"
+    }
+  },
+  {
+    "key": "EMXT",
+    "description": "Extreme maximum temperature for month. Highest daily maximum temperature for th month. Given in Celsius or Fahrenheit depending on user specification.",
+    "attributes": ["a", "S", "cc", "d"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provide blank if no days are missing or flagged",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "cc": "two-digit date during the month when the EMXT value occurred; if it occurs more than onc it's the last date during the month for which it occurre (originates from the DYXT element within the Raw GSOM Files)",
+      "d": "+ if there's more than one date during the month when EMXT value occurred more than onc blank if it only occurred onc (originates from the DYXT element within the Raw GSOM Files)"
+    }
+  },
+  {
+    "key": "EVAP",
+    "description": "Total Monthly Evaporation. Given in inches or millimeters depending on use specification. Measurement Flags: T is used for trace amount, a is used for any accumulation within  month that includes missing days. If no days are missing, no flag is used. Source Flag: Source fla from GHCN-Daily (see separate documentation for GHCN-Daily). Days Miss Flag: Number of days missin or flagged.",
+    "attributes": ["a", "M", "Q", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)"
+    }
+  },
+  {
+    "key": "HDSD",
+    "description": "Heating Degree Days (season-to-date). Running total of monthly heating degree days throug the end of the most recent month. Each month is summed to produce a season-to-date total. Seaso starts in July in Northern Hemisphere and January in Southern Hemisphere. Given in Celsius o Fahrenheit degrees depending on user specification.",
+    "attributes": "S",
+    "attributes_description": {
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "HNyz",
+    "description": "Highest minimum soil temperature for the month given in Celsius or Fahrenheit dependin on user specification. Missing if more than 5 days within the month are missing or flagged or if mor than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicating numbe of days missing or flagged (from 1 to 5). (See Section 1.3.a.i for details on what 'y' and 'z' mea within this element header of HNyz.)",
+    "attributes": ["a", "M", "Q", "S", "y", "z"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)",
+      "y": "Ground Cover Code",
+      "z": "Soil Depth Code"
+    }
+  },
+  {
+    "key": "HTDD",
+    "description": "Heating Degree Days. Computed when daily average temperature is less than 65 degree Fahrenheit/18.3 degrees Celsius. HDD = 65(F)/18.3(C) – mean daily temperature. Each day is summed t produce a monthly total.  Given in Celsius or Fahrenheit degrees depending on user specification.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "HXyz",
+    "description": "Highest maximum soil temperature for the month given in Celsius or Fahrenheit dependin on user specification. Missing if more than 5 days within the month are missing or flagged or if mor than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicating numbe of days missing or flagged (from 1 to 5). (See Section 1.3.a.i for details on what 'y' and 'z' mean within this element header of HXyz.)",
+    "attributes": ["a", "M", "Q", "S", "y", "z"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)",
+      "y": "Ground Cover Code",
+      "z": "Soil Depth Code"
+    }
+  },
+  {
+    "key": "LNyz",
+    "description": "Lowest minimum soil temperature for the month given in Celsius or Fahrenheit dependin on user specification. Missing if more than 5 days within the month are missing or flagged or if mor than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicating numbe of days missing or flagged (from 1 to 5). (See Section 1.3.a.i for details on what 'y' and 'z' mean within this element header of LNyz.)",
+    "attributes": ["a", "M", "Q", "S", "y", "z"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)",
+      "y": "Ground Cover Code",
+      "z": "Soil Depth Code"
+    }
+  },
+  {
+    "key": "LXyz",
+    "description": "Lowest maximum soil temperature for the month given in Celsius or Fahrenheit dependin on user specification. Missing if more than 5 days within the month are missing or flagged or if mor than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicating numbe of days missing or flagged (from 1 to 5). (See Section 1.3.a.i for details on what 'y' and 'z' mean within this element header of LXyz.)",
+    "attributes": ["a", "M", "Q", "S", "y", "z"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)",
+      "y": "Ground Cover Code",
+      "z": "Soil Depth Code"
+    }
+  },
+  {
+    "key": "MNPN",
+    "description": "Monthly Mean Minimum Temperature of evaporation pan water. Given in Celsius o Fahrenheit depending on user specification. Missing if more than 5 days within the month are missing o flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Fla indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "M", "Q", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)"
+    }
+  },
+  {
+    "key": "MNyz",
+    "description": "Monthly Mean of daily minimum soil temperature given in Celsius or Fahrenhei depending on user specification. Missing if more than 5 days within the month are missing or flagged o if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicatin number of days missing or flagged (from 1 to 5). (See Section 1.3.a.i for details on what 'y' and 'z' mean within this element header of MNyz.)",
+    "attributes": ["a", "M", "Q", "S", "y", "z"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)",
+      "y": "Ground Cover Code",
+      "z": "Soil Depth Code"
+    }
+  },
+  {
+    "key": "MXPN",
+    "description": "Monthly Mean Maximum Temperature of evaporation pan water. Given in Celsius o Fahrenheit depending on user specification. Missing if more than 5 days within the month are missing o flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Fla indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "M", "Q", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)"
+    }
+  },
+  {
+    "key": "MXyz",
+    "description": "Monthly Mean of daily maximum soil temperature given in Celsius or Fahrenhei depending on user specification. Missing if more than 5 days within the month are missing or flagged o if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicatin number of days missing or flagged (from 1 to 5). (See Section 1.3.a.i for details on what 'y' and 'z' mean within this element header of MXyz.)",
+    "attributes": ["a", "M", "Q", "S", "y", "z"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)",
+      "y": "Ground Cover Code",
+      "z": "Soil Depth Code"
+    }
+  },
+  {
+    "key": "PRCP",
+    "description": "Total Monthly Precipitation. Given in inches or millimeters depending on use specification. Measurement Flags: T is used for trace amount, a is used for any accumulation within  month that includes missing days. If no days are missing, no flag is used.",
+    "attributes": ["a", "M", "Q", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)"
+    }
+  },
+  {
+    "key": "PSUN",
+    "description": "Monthly Average of the daily percents of possible sunshine. Days Miss Flag: Number o days missing or flagged.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "SNOW",
+    "description": "Total Monthly Snowfall. Given in inches or millimeters depending on user specification. Measurement Flags:  T is used for trace amount, a is used for any accumulation within a month tha includes missing days. If no days are missing, no flag is used.",
+    "attributes": ["a", "M", "Q", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)"
+    }
+  },
+  {
+    "key": "TAVG",
+    "description": "Average Monthly Temperature. Computed by adding the unrounded monthl maximum and minimum temperatures and dividing by 2. Given in Celsius or Fahrenheit depending o user specification. Missing if more than 5 days within the month are missing or flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicating number of day missing or flagged (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "TMAX",
+    "description": "Monthly Maximum Temperature. Average of daily maximum temperature given i Celsius or Fahrenheit depending on user specification. Missing if more than 5 days within the month ar missing or flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "M", "Q", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)"
+    }
+  },
+  {
+    "key": "TMIN",
+    "description": "Monthly Minimum Temperature. Average of daily minimum temperature given i Celsius or Fahrenheit depending on user specification. Missing if more than 5 days within the month ar missing or flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "M", "Q", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)"
+    }
+  },
+  {
+    "key": "TSUN",
+    "description": "Daily total sunshine in minutes. Days Miss Flag: Number of days missing or flagged.",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDF1",
+    "description": "Wind Direction for Maximum Wind Speed/Fastest 1-Minute (WSF1). Given in 360-degre compass point directions (e.g. 360 = north, 180 = south, etc.). Missing if more than 5 days within th month are missing or flagged or if more than 3 consecutive values within the month are missing o flagged. DaysMissing: Flag indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDF2",
+    "description": "Wind Direction for Maximum Wind Speed/Fastest 2-Minute (WSF2). Given in 360-degre compass point directions (e.g. 360 = north, 180 = south, etc.).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDF5",
+    "description": "Wind Direction for Peak Wind Gust Speed – Fastest 5-second (WSF5). Given in 360-degre compass point directions (e.g. 360 = north, 180 = south, etc.). Missing if more than 5 days within th month are missing or flagged or if more than 3 consecutive values within the month are missing o flagged. DaysMissing: Flag indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDFG",
+    "description": "Wind Direction for Peak Wind Gust Speed (WSFG). Given in 360-degree compass poin directions (e.g. 360 = north, 180 = south, etc.). Missing if more than 5 days within the month are missin or flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDFI",
+    "description": "Direction of highest instantaneous wind speed (WDFI).  Given in 360-degree compass poin directions (e.g. 360 = north, 180 = south, etc.). Missing if more than 5 days within the month are missin or flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Flag indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDFM",
+    "description": "Wind Direction for Maximum Wind Speed/Fastest Mile (WSFM). Given in 360-degree compas point directions (e.g. 360 = north, 180 = south, etc.).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WDMV",
+    "description": "Total Monthly Wind Movement over evaporation pan. Given in miles or kilometer depending on user specification. Days Miss Flag: Number of days missing or flagged.",
+    "attributes": ["a", "M", "Q", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)",
+      "M": "GHCN-Daily Dataset Measurement Flag (see Section 1.3.a.ii for more details)",
+      "Q": "GHCN-Daily Dataset Quality Flag (see Section 1.3.a.iii for more details)"
+    }
+  },
+  {
+    "key": "WSF1",
+    "description": "Maximum Wind Speed/Fastest 1-minute. Maximum wind speed for the month reported a the fastest 1-minute. Given in miles per hour or meters per second depending on user specification. Missing if more than 5 days within the month are missing or flagged or if more than 3 consecutive value within the month are missing or flagged. DaysMissing: Flag indicating number of days missing or flagge (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WSF2",
+    "description": "Maximum Wind Speed/Fastest 2-minute. Maximum wind speed for the month reported a the fastest 2-minute. Given in miles per hour or meters per second depending on user specification. Missing if more than 5 days within the month are missing or flagged or if more than 3 consecutive value within the month are missing or flagged. DaysMissing: Flag indicating number of days missing or flagge (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WSF5",
+    "description": "Peak Wind Gust Speed – Fastest 5-second wind. Maximum wind gust for the month. Give in miles per hour or second depending on user specification. Missing if more than 5 days within th month are missing or flagged or if more than 3 consecutive values within the month are missing o flagged. DaysMissing: Flag indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WSFG",
+    "description": "Peak Wind Gust Speed. Maximum wind gust for the month. Given in miles per hour o second depending on user specification. Missing if more than 5 days within the month are missing o flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Fla indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WSFI",
+    "description": "Highest instantaneous wind speed for the month.  Given in miles per hour o second depending on user specification. Missing if more than 5 days within the month are missing o flagged or if more than 3 consecutive values within the month are missing or flagged. DaysMissing: Fla indicating number of days missing or flagged (from 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  },
+  {
+    "key": "WSFM",
+    "description": "Maximum Wind Speed/Fastest Mile. Maximum wind speed for the month reported as th fastest mile. Given in miles per hour or meters per second depending on user specification. Missing i more than 5 days within the month are missing or flagged or if more than 3 consecutive values withi the month are missing or flagged. DaysMissing: Flag indicating number of days missing or flagged (fro 1 to 5).",
+    "attributes": ["a", "S"],
+    "attributes_description": {
+      "a": "DaysMissing (Numeric value): The number of days (from 1 to 5) missing or flagged is provided",
+      "S": "GHCN-Daily Dataset Source Code (see Section 1.3.a.iv for more details)"
+    }
+  }
+]

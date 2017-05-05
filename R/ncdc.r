@@ -206,8 +206,10 @@ split_atts <- function(x, ds = "GSOM"){
          # leave in duplicate for now
          ANNUAL = parse_ncdc(tmp, c('fl_m','fl_q','fl_d','fl_u')),
          GSOY = parse_ncdc(tmp, c('fl_m','fl_q','fl_d','fl_u')),
-         NEXRAD2 = parse_ncdc(tmp, c('x','x')), # no data returned, fix when data returned
-         NEXRAD3 = parse_ncdc(tmp, c('x','x')), # no data returned, fix when data returned
+         # no data returned, fix when data returned
+         NEXRAD2 = parse_ncdc(tmp, c('x','x')),
+         # no data returned, fix when data returned
+         NEXRAD3 = parse_ncdc(tmp, c('x','x')),
          NORMAL_ANN = parse_ncdc(tmp, 'fl_c'),
          NORMAL_DLY = parse_ncdc(tmp, 'fl_c'),
          NORMAL_HLY = parse_ncdc(tmp, 'fl_c'),
