@@ -13,18 +13,6 @@ Get sea ice data at [ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles](
 
 ********************
 
-### Install `rnoaa`
-
-Install and load `rnoaa` into the R session.
-
-If you're on Windows, you may have to install Rtools. Run `devtools::has_devel()`. If you get a `TRUE`, you're okay. If not, [install Rtools](https://cran.r-project.org/bin/windows/Rtools/).
-
-
-```r
-install.packages("devtools")
-devtools::install_github("ropensci/rnoaa")
-```
-
 
 ```r
 library('rnoaa')
@@ -38,13 +26,13 @@ library('plyr')
 urls <- sapply(seq(1979, 1990, 1), function(x) seaiceeurls(yr = x, mo = 'Feb', pole = 'S'))
 out <- lapply(urls, seaice)
 head(out[[1]])
-#>       long     lat order  hole piece id group
-#> 1 -2125000 1950000     1 FALSE     1  0   0.1
-#> 2 -2050000 1950000     2 FALSE     1  0   0.1
-#> 3 -2050000 1925000     3 FALSE     1  0   0.1
-#> 4 -1925000 1925000     4 FALSE     1  0   0.1
-#> 5 -1925000 1900000     5 FALSE     1  0   0.1
-#> 6 -1875000 1900000     6 FALSE     1  0   0.1
+#>      long     lat order  hole piece id group
+#> 1  650000 2200000     1 FALSE     1  0   0.1
+#> 2  675000 2200000     2 FALSE     1  0   0.1
+#> 3  675000 2150000     3 FALSE     1  0   0.1
+#> 4  650000 2150000     4 FALSE     1  0   0.1
+#> 5  650000 2200000     5 FALSE     1  0   0.1
+#> 6 -275000 2325000     1 FALSE     1  1   1.1
 ```
 
 ### Map a single year/month/pole combo

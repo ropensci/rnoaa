@@ -44,7 +44,7 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.029
+#> [1] 0.105
 #> 
 #> 
 #> $data
@@ -144,7 +144,7 @@ list(out$meta, head(out$data), head(out$shape))
 #> numeric(0)
 #> 
 #> [[1]]$totalTimeInSeconds
-#> [1] 0.618
+#> [1] 3.465
 #> 
 #> 
 #> [[2]]
@@ -183,7 +183,7 @@ swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.001
+#> [1] 0
 #> 
 #> 
 #> $data
@@ -269,16 +269,16 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-
 #> numeric(0)
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0
+#> [1] 0.001
 #> 
 #> 
 #> $data
 #>          day centerlat centerlon fcount
-#> 1 2008-05-27      32.7      -102      4
-#> 2 2008-06-20      32.7      -102      2
-#> 3 2007-03-29      32.7      -102      2
-#> 4 2009-04-11      32.7      -102      1
-#> 5 2007-09-07      32.7      -102      1
+#> 1 2007-09-07      32.7      -102      1
+#> 2 2008-05-27      32.7      -102      4
+#> 3 2009-04-11      32.7      -102      1
+#> 4 2007-03-29      32.7      -102      2
+#> 5 2008-06-20      32.7      -102      2
 #> 
 #> $shape
 #>                                                                                   shape

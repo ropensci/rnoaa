@@ -20,18 +20,7 @@ Get sea ice data at [ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles](
 
 ********************
 
-### Install `rnoaa`
-
-Install and load `rnoaa` into the R session.
-
-If you're on Windows, you may have to install Rtools. Run `devtools::has_devel()`. If you get a `TRUE`, you're okay. If not, [install Rtools](https://cran.r-project.org/bin/windows/Rtools/).
-
-```{r install, eval=FALSE}
-install.packages("devtools")
-devtools::install_github("ropensci/rnoaa")
-```
-
-```{r load}
+```{r}
 library('rnoaa')
 library('plyr')
 ```

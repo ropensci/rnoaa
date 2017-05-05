@@ -157,20 +157,34 @@ Then combine with a call to `ncdc_combine`
 ```r
 df <- ncdc_combine(out1, out2)
 head(df[[1]]); tail(df[[1]])
-#>                  date datatype           station value fl_m fl_q fl_so fl_t
-#> 1 2010-03-01T00:00:00     PRCP GHCND:USW00014895     0    T          0 2400
-#> 2 2010-03-02T00:00:00     PRCP GHCND:USW00014895     0    T          0 2400
-#> 3 2010-03-03T00:00:00     PRCP GHCND:USW00014895     0    T          0 2400
-#> 4 2010-03-04T00:00:00     PRCP GHCND:USW00014895     0               0 2400
-#> 5 2010-03-05T00:00:00     PRCP GHCND:USW00014895     0               0 2400
-#> 6 2010-03-06T00:00:00     PRCP GHCND:USW00014895     0               0 2400
-#>                    date datatype           station value fl_m fl_q fl_so fl_t
-#> 148 2010-10-26T00:00:00     PRCP GHCND:USW00014895   221               0 2400
-#> 149 2010-10-27T00:00:00     PRCP GHCND:USW00014895     0               0 2400
-#> 150 2010-10-28T00:00:00     PRCP GHCND:USW00014895     0    T          0 2400
-#> 151 2010-10-29T00:00:00     PRCP GHCND:USW00014895     0    T          0 2400
-#> 152 2010-10-30T00:00:00     PRCP GHCND:USW00014895     0               0 2400
-#> 153 2010-10-31T00:00:00     PRCP GHCND:USW00014895     0               0 2400
+#>                  date datatype           station value fl_m fl_q fl_so
+#> 1 2010-03-01T00:00:00     PRCP GHCND:USW00014895     0    T          0
+#> 2 2010-03-02T00:00:00     PRCP GHCND:USW00014895     0    T          0
+#> 3 2010-03-03T00:00:00     PRCP GHCND:USW00014895     0    T          0
+#> 4 2010-03-04T00:00:00     PRCP GHCND:USW00014895     0               0
+#> 5 2010-03-05T00:00:00     PRCP GHCND:USW00014895     0               0
+#> 6 2010-03-06T00:00:00     PRCP GHCND:USW00014895     0               0
+#>   fl_t
+#> 1 2400
+#> 2 2400
+#> 3 2400
+#> 4 2400
+#> 5 2400
+#> 6 2400
+#>                    date datatype           station value fl_m fl_q fl_so
+#> 148 2010-10-26T00:00:00     PRCP GHCND:USW00014895   221               0
+#> 149 2010-10-27T00:00:00     PRCP GHCND:USW00014895     0               0
+#> 150 2010-10-28T00:00:00     PRCP GHCND:USW00014895     0    T          0
+#> 151 2010-10-29T00:00:00     PRCP GHCND:USW00014895     0    T          0
+#> 152 2010-10-30T00:00:00     PRCP GHCND:USW00014895     0               0
+#> 153 2010-10-31T00:00:00     PRCP GHCND:USW00014895     0               0
+#>     fl_t
+#> 148 2400
+#> 149 2400
+#> 150 2400
+#> 151 2400
+#> 152 2400
+#> 153 2400
 ```
 
 Then plot - the default passing in the combined plot plots the data together. In this case it looks kind of weird since a straight line combines two distant dates.
