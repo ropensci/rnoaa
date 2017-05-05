@@ -66,6 +66,8 @@ knitr::opts_chunk$set(
 * [Extended Reconstructed Sea Surface Temperature (ERSST) data](https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4)
 * [Argo buoys](http://www.argo.ucsd.edu/) - a global array of more than 3,000 free-drifting profiling floats that measures thetemperature and salinity of the upper 2000 m of the ocean
 * [NOAA CO-OPS - tides and currents data](http://tidesandcurrents.noaa.gov/)
+* [NOAA Climate Prediction Center (CPC)](http://www.cpc.ncep.noaa.gov/)
+* [Africa Rainfall Climatology version 2](ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt)
 
 ## Help
 
