@@ -2,22 +2,22 @@
 
 ## Platform
 
-|setting  |value                        |
-|:--------|:----------------------------|
-|version  |R version 3.3.2 (2016-10-31) |
-|system   |x86_64, darwin13.4.0         |
-|ui       |RStudio (1.0.117)            |
-|language |(EN)                         |
-|collate  |en_US.UTF-8                  |
-|tz       |America/Los_Angeles          |
-|date     |2016-11-16                   |
+|setting  |value                                       |
+|:--------|:-------------------------------------------|
+|version  |R version 3.4.0 Patched (2017-04-24 r72617) |
+|system   |x86_64, darwin15.6.0                        |
+|ui       |RStudio (1.1.204)                           |
+|language |(EN)                                        |
+|collate  |en_US.UTF-8                                 |
+|tz       |America/Vancouver                           |
+|date     |2017-05-05                                  |
 
 ## Packages
 
-|package |*  |version |date       |source                    |
-|:-------|:--|:-------|:----------|:-------------------------|
-|rgdal   |   |1.2-4   |2016-11-15 |cran (@1.2-4)             |
-|rnoaa   |   |0.6.6   |2016-11-16 |local (ropensci/rnoaa@NA) |
+|package |*  |version    |date       |source                          |
+|:-------|:--|:----------|:----------|:-------------------------------|
+|rnoaa   |   |0.6.9.9110 |2017-05-05 |local (ropensci/rnoaa@NA)       |
+|taxize  |   |0.8.5.9114 |2017-05-05 |local (ropensci/taxize@0c92393) |
 
 # Check results
 1 packages
