@@ -2,7 +2,7 @@
 % Please edit documentation in R/arc2.R
 \name{arc2}
 \alias{arc2}
-\title{Arc2 data}
+\title{Arc2 - Africa Rainfall Climatology version 2}
 \usage{
 arc2(date, ...)
 }
@@ -20,7 +20,7 @@ a tibble/data.frame with columns:
 }
 }
 \description{
-Arc2 data
+Arc2 - Africa Rainfall Climatology version 2
 }
 \examples{
 \dontrun{

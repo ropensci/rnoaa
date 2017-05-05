@@ -1,4 +1,4 @@
-#' Arc2 data
+#' Arc2 - Africa Rainfall Climatology version 2
 #'
 #' @export
 #' @param date a date of form YYYY-MM-DD

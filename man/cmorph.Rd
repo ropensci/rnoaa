@@ -31,7 +31,10 @@ Filename: CMORPH_8KM-30MIN_YYYYMMDDHH.Z
 xxx
 }
 \examples{
+\dontrun{
 cmorph(date = "2017-01-15")
+cmorph(date = "2017-02-15")
+}
 }
 \references{
 \url{http://www.cpc.ncep.noaa.gov/products/janowiak/cmorph_description.html}
