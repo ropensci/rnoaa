@@ -49,12 +49,12 @@
 #' \itemize{
 #' \item Products water_level through predictions allow requests for up to
 #` 31 days of data.
-#' \item Products hourly_heignt and high_low allow requests for up to
+#' \item Products hourly_height and high_low allow requests for up to
 #` 1 year (366 days) of data.
 #' \item Products daily_mean and monthly_mean allow requests for up to
 #` 10 years of data.
 #' }#'
-#' Options for the datum paramter. One of:
+#' Options for the datum parameter. One of:
 #' \itemize{
 #'  \item MHHW - Mean higher high water
 #'  \item MHW - Mean high water
