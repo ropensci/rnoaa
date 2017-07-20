@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @name coops
-#' @param station_name (numeric)
+#' @param station_name (numeric) a station name. Required
 #' @param begin_date (numeric) Date in yyyymmdd format. Required
 #' @param end_date (numeric) Date in yyyymmdd format. Required
 #' @param product (character) Specify the data type. See below for Details.

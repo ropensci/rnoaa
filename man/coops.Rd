@@ -14,7 +14,7 @@ coops_search(begin_date = NULL, end_date = NULL, station_name = NULL,
 
 \item{end_date}{(numeric) Date in yyyymmdd format. Required}
 
-\item{station_name}{(numeric)}
+\item{station_name}{(numeric) a station name. Required}
 
 \item{product}{(character) Specify the data type. See below for Details.
 Required}
