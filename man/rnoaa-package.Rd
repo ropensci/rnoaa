@@ -35,6 +35,10 @@ function prefixes are:
  \item \code{tornadoes} - From the NOAA Storm Prediction Center
  \item \code{argo_*} - Argo buoys
  \item \code{coops_search} - NOAA CO-OPS - tides and currents data
+ \item \code{cpc_prcp} - rainfall data from the NOAA Climate
+ Prediction Center (CPC)
+ \item \code{arc2} - rainfall data from Africa Rainfall Climatology
+ version 2
 }
 }
 

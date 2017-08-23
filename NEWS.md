@@ -1,3 +1,50 @@
+rnoaa 0.7.0
+===========
+
+Note that some NOAA datasets have changed names:
+
+* `GHCNDMS` is now `GSOM` (Global Summary of the Month)
+* `ANNUAL` is now `GSOY` (Global Summary of the Year)
+
+### NEW FEATURES
+
+* `isd()` gains new parameters `additional` to toggle whether the 
+non-mandatory ISD fields (additional + remarks) are parsed and 
+returned & `force` to toggle whether download new version or use
+cached version. `isd_read()` gains new parameter `additional` 
+(see description above) (#190)
+* New function for Climate Prediction Center data: `cpc_prcp()` (#193)
+* New function `arc2()` to get data from Africa Rainfall Climatology 
+version 2 (#201)
+
+### MINOR IMPROVEMENTS
+
+* A number of NOAA services now use `https` - changed internal code 
+to use `https` from `http` for coops, swdi, ersst, and tornadoes
+data sources (#187)
+* Changes to sea ice URLs - just internal (#185)
+* Fixes to `coops_search()` to handle requests better: only certain
+date combinations allowed for certain COOPS products (#213) (#214) 
+thanks @tphilippi !
+* Now using `hoardr` package to manage caching in some functions. Will
+roll out to all functions that cache soon (#191)
+* README img location fix requested by CRAN (#207)
+* `GHCNDMS` is now `GSOM` and `ANNUAL` is now `GSOY` - added to docs
+and examples of using GSOM and GSOY (#189)
+
+### BUG FIXES
+
+* A number of fixes to `isd()` (#168)
+* Fixes to `coops_search()` to fix time zone problems (#184) thanks @drf5n
+* Fixes to `ghcnd()` - fix some column types that were of inappropriate
+type before (#211)
+* Fix to `ghcnd()`: we were coercing factors to integers, which caused
+nonsense output - first coercing to character now, then integer (#221)
+* There were problems in parsing flags (attributes) for some datasets 
+via `ncdc()` function. Added metadata to the package to help parse 
+flags (#199)
+
+
 rnoaa 0.6.6
 ===========
 

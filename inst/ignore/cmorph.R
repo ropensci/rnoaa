@@ -33,8 +33,10 @@
 #' @details
 #' xxx
 #'
-#' @examples
+#' @examples \dontrun{
 #' cmorph(date = "2017-01-15")
+#' cmorph(date = "2017-02-15")
+#' }
 cmorph <- function(date, us = FALSE, ...) {
   assert(date, c("character", "Date"))
   assert(us, 'logical')
@@ -101,20 +103,15 @@ cpc_read <- function(x, us) {
   conn <- file(x, "rb")
   on.exit(close(conn))
 
-  if (us) {
-    bites <- 120 * 300 * 2
-    lats <- seq(from = 20.125, to = 49.875, by = 0.25)
-    longs <- seq(from = 230.125, to = 304.875, by = 0.25)
-  } else {
-    bites <- 360 * 720 * 2
-    lats <- seq(from = 0.25, to = 89.75, by = 0.5)
-    lats <- c(rev(lats * -1), lats)
-    longs <- seq(from = 0.25, to = 359.75, by = 0.5)
-  }
+  bites <- 1649 * 4948
+  lats <- seq(from = -60.036385377, to = 59.963614, by = 0.072771377)
+  longs <- seq(from = 0.036378335, to = 360, by = 0.072756669)
 
   # read data
-  tmp <- readBin(conn, numeric(), n = bites, size = 4, endian = "little")
-  tmp <- tmp[seq_len(bites/2)] * 0.1
+  conn <- file(x, "rb")
+  tmp <- readBin(conn, what = "double", n = bites, size = 4, endian = "little")
+  tmp <- tmp * 0.2
+  #tmp <- tmp[seq_len(bites/2)] * 0.1
 
   # make data.frame
   tibble::as_data_frame(

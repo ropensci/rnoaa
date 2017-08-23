@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @name coops
-#' @param station_name (numeric)
+#' @param station_name (numeric) a station name. Required
 #' @param begin_date (numeric) Date in yyyymmdd format. Required
 #' @param end_date (numeric) Date in yyyymmdd format. Required
 #' @param product (character) Specify the data type. See below for Details.
@@ -34,18 +34,27 @@
 #'  measure of atmospheric clarity
 #'  \item humidity - Relative humidity as measured at the station
 #'  \item salinity - Salinity and specific gravity data for the station
+#'  \item one_minute_water_level - One minute water level data for the station
+#'  \item predictions - 6 minute predictions water level data for the station
 #'  \item hourly_height - Verified hourly height water level data for
 #'  the station
 #'  \item high_low - Verified high/low water level data for the station
 #'  \item daily_mean - Verified daily mean water level data for the station
 #'  \item monthly_mean - Verified monthly mean water level data for the station
-#'  \item one_minute_water_level - One minute water level data for the station
-#'  \item predictions - 6 minute predictions water level data for the station
 #'  \item datums - datums data for the stations
 #'  \item currents - Currents data for currents stations
 #' }
 #'
-#' Options for the datum paramter. One of:
+#' Maximum Durations in a Single Call:
+#' \itemize{
+#' \item Products water_level through predictions allow requests for up to
+#` 31 days of data.
+#' \item Products hourly_height and high_low allow requests for up to
+#` 1 year (366 days) of data.
+#' \item Products daily_mean and monthly_mean allow requests for up to
+#` 10 years of data.
+#' }#'
+#' Options for the datum parameter. One of:
 #' \itemize{
 #'  \item MHHW - Mean higher high water
 #'  \item MHW - Mean high water
@@ -62,6 +71,8 @@
 #'
 #' \url{https://tidesandcurrents.noaa.gov/map/}
 #'
+#' @author Scott Chamberlain, Joseph Stachelek, Tom Philippi
+#'
 #' @return List, of length one or two.
 #' \itemize{
 #'  \item metadata A list of metadata with slots id, name, lat, lon
@@ -69,7 +80,7 @@
 #' }
 #' @examples \dontrun{
 #' # Get monthly mean sea level data at Vaca Key (8723970)
-#' coops_search(station_name = 8723970, begin_date = 19820301,
+#' coops_search(station_name = 8723970, begin_date = 20120301,
 #'   end_date = 20141001, datum = "stnd", product = "monthly_mean")
 #'
 #' # Get verified water level data at Vaca Key (8723970)
@@ -92,10 +103,6 @@
 #' # Get air pressure at Vaca Key (8723970)
 #' coops_search(station_name = 8723970, begin_date = 20140927,
 #'   end_date = 20140928, product = "air_pressure")
-#'
-#' # Get humidity at Eugene Island, LA (8764314)
-#' coops_search(station_name = 8764314, begin_date = 20150927,
-#'   end_date = 20150928, product = "humidity")
 #'
 #' # Get wind at Vaca Key (8723970)
 #' coops_search(station_name = 8723970, begin_date = 20140927,
@@ -135,6 +142,38 @@ coops_search <- function(begin_date = NULL, end_date = NULL,
   if (product %in% water_level_products & length(datum) < 1) {
     stop("Must specify a datum for water level products", call. = FALSE)
   }
+
+  # check for duration longer than NOAA will return
+  group1_products <- c(           # sub-hourly products with 31 day max
+    "water_level",  "air_temperature",  "water_temperature",
+    "wind", "air_pressure", "air_gap", "conductivity",
+    "visibility", "humidity", "salinity", "one_minute_water_level",
+    "predictions", "currents")
+
+  group2_products <- c(   # hourly to sub-daily products with 1 year max
+    "hourly_height", "high_low")
+  group3_products <- c(      # daily or longer products with 10 year max
+    "daily_mean", "monthly_mean")
+  if (product %in% group1_products) {
+    maxdur <- 31
+  } else if (product %in% group2_products) {
+    maxdur <- 366
+  } else if (product %in% group3_products) {
+    maxdur <- 3653
+  } else maxdur <- 365000
+
+  if (!is.null(begin_date) && !is.null(end_date)) {
+    bd <- as.Date(as.character(begin_date), format = "%Y%m%d")
+    ed <- as.Date(as.character(end_date), format = "%Y%m%d")
+    req_dur <- ed - bd
+    if (req_dur > maxdur) {
+      stop(paste("The maximum duration the NOAA API allows in a",
+                 "single call for\n", product, " is ", maxdur,
+                 " days\n", begin_date, " to ", end_date, " is ",
+                 req_dur, " days\n", sep=""), call. = FALSE)
+    } # if (req_dur > maxdur)
+  } # if (!is.null(begin_date...
+  # bottom check for too long of duration
 
   args <- noaa_compact(list(begin_date = begin_date, end_date = end_date,
                             station = station_name, product = product,

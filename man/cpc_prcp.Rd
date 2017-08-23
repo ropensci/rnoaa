@@ -2,7 +2,7 @@
 % Please edit documentation in R/cpc.R
 \name{cpc_prcp}
 \alias{cpc_prcp}
-\title{Precipitation data from NOAA Climate Prediction Center}
+\title{Precipitation data from NOAA Climate Prediction Center (CPC)}
 \usage{
 cpc_prcp(date, us = FALSE, ...)
 }
@@ -22,13 +22,14 @@ a data.frame, with columns:
 }
 }
 \description{
-Precipitation data from NOAA Climate Prediction Center
+Precipitation data from NOAA Climate Prediction Center (CPC)
 }
 \details{
 Rainfall data for the world (1979-present, resolution 50 km), and
 the US (1948-present, resolution 25 km).
 }
 \examples{
+\dontrun{
 cpc_prcp(date = "2017-01-15")
 cpc_prcp(date = "2015-06-05")
 cpc_prcp(date = "2017-01-15")
@@ -37,6 +38,7 @@ cpc_prcp(date = "2005-07-09")
 
 cpc_prcp(date = "2005-07-09", us = TRUE)
 cpc_prcp(date = "2009-08-03", us = TRUE)
+}
 }
 \references{
 \url{http://www.cpc.ncep.noaa.gov/}

@@ -14,7 +14,7 @@ coops_search(begin_date = NULL, end_date = NULL, station_name = NULL,
 
 \item{end_date}{(numeric) Date in yyyymmdd format. Required}
 
-\item{station_name}{(numeric)}
+\item{station_name}{(numeric) a station name. Required}
 
 \item{product}{(character) Specify the data type. See below for Details.
 Required}
@@ -60,18 +60,24 @@ Options for the product paramter. One of:
  measure of atmospheric clarity
  \item humidity - Relative humidity as measured at the station
  \item salinity - Salinity and specific gravity data for the station
+ \item one_minute_water_level - One minute water level data for the station
+ \item predictions - 6 minute predictions water level data for the station
  \item hourly_height - Verified hourly height water level data for
  the station
  \item high_low - Verified high/low water level data for the station
  \item daily_mean - Verified daily mean water level data for the station
  \item monthly_mean - Verified monthly mean water level data for the station
- \item one_minute_water_level - One minute water level data for the station
- \item predictions - 6 minute predictions water level data for the station
  \item datums - datums data for the stations
  \item currents - Currents data for currents stations
 }
 
-Options for the datum paramter. One of:
+Maximum Durations in a Single Call:
+\itemize{
+\item Products water_level through predictions allow requests for up to
+\item Products hourly_height and high_low allow requests for up to
+\item Products daily_mean and monthly_mean allow requests for up to
+}#'
+Options for the datum parameter. One of:
 \itemize{
  \item MHHW - Mean higher high water
  \item MHW - Mean high water
@@ -86,7 +92,7 @@ Options for the datum paramter. One of:
 \examples{
 \dontrun{
 # Get monthly mean sea level data at Vaca Key (8723970)
-coops_search(station_name = 8723970, begin_date = 19820301,
+coops_search(station_name = 8723970, begin_date = 20120301,
   end_date = 20141001, datum = "stnd", product = "monthly_mean")
 
 # Get verified water level data at Vaca Key (8723970)
@@ -109,10 +115,6 @@ coops_search(station_name = 8723970, begin_date = 20140927,
 # Get air pressure at Vaca Key (8723970)
 coops_search(station_name = 8723970, begin_date = 20140927,
   end_date = 20140928, product = "air_pressure")
-
-# Get humidity at Eugene Island, LA (8764314)
-coops_search(station_name = 8764314, begin_date = 20150927,
-  end_date = 20150928, product = "humidity")
 
 # Get wind at Vaca Key (8723970)
 coops_search(station_name = 8723970, begin_date = 20140927,
@@ -147,4 +149,7 @@ coops_search(station_name = 8723970, begin_date = 20140928,
 \url{https://tidesandcurrents.noaa.gov/api/}
 
 \url{https://tidesandcurrents.noaa.gov/map/}
+}
+\author{
+Scott Chamberlain, Joseph Stachelek, Tom Philippi
 }

@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
   comment = "#>", 
   warning = FALSE, 
   message = FALSE,
-  cache = TRUE
+  cache = FALSE
 )
 ```
 
@@ -50,13 +50,13 @@ You can get tabular data for basins, storms, or years, (or all data). `storm_dat
 
 First, by basin (one of EP, NA, NI, SA, SI, SP, or WP)
 
-```{r}
+```{r cache=TRUE}
 storm_data(basin='WP')
 ```
 
 Or by storm id, see `storm_meta('storm_names')` for storm ids and their names.
 
-```{r}
+```{r cache=TRUE}
 storm_data(storm='1970143N19091')
 ```
 

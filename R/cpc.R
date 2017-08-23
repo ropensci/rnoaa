@@ -1,4 +1,4 @@
-#' Precipitation data from NOAA Climate Prediction Center
+#' Precipitation data from NOAA Climate Prediction Center (CPC)
 #'
 #' @export
 #' @param date (date/character) date in YYYY-MM-DD format
@@ -21,7 +21,7 @@
 #' Rainfall data for the world (1979-present, resolution 50 km), and
 #' the US (1948-present, resolution 25 km).
 #'
-#' @examples
+#' @examples \dontrun{
 #' cpc_prcp(date = "2017-01-15")
 #' cpc_prcp(date = "2015-06-05")
 #' cpc_prcp(date = "2017-01-15")
@@ -30,6 +30,7 @@
 #'
 #' cpc_prcp(date = "2005-07-09", us = TRUE)
 #' cpc_prcp(date = "2009-08-03", us = TRUE)
+#' }
 cpc_prcp <- function(date, us = FALSE, ...) {
   assert(date, c("character", "Date"))
   assert(us, 'logical')

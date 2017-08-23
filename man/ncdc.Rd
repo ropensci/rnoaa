@@ -100,6 +100,24 @@ Note that the default limit (no. records returned) is 25. Look at the
 metadata in \code{$meta} to see how many records were found. If more were
 found than 25, you could set the parameter \code{limit} to
 something higher than 25.
+}
+\section{Authentication}{
+
+Get an API key (aka, token) at \url{http://www.ncdc.noaa.gov/cdo-web/token}.
+You can pass your token in as an argument or store it one of two places:
+
+\itemize{
+  \item your .Rprofile file with an entry like
+  \code{options(noaakey = "your-noaa-token")}
+  \item your .Renviron file with an entry like
+  \code{NOAA_KEY=your-noaa-token}
+}
+
+See \code{\link{Startup}} for information on how to create/find your
+.Rrofile and .Renviron files
+}
+
+\section{Flags}{
 
 The attributes, or "flags", for each row of the output for data may have
 a flag with it. Each \code{datasetid} has it's own set of flags. The
@@ -122,20 +140,19 @@ description of possible values for each flag.
  \item fl_u units
 }
 }
-\section{Authentication}{
 
-Get an API key (aka, token) at \url{http://www.ncdc.noaa.gov/cdo-web/token}.
-You can pass your token in as an argument or store it one of two places:
+\section{GSOM/GSOY Flags}{
 
-\itemize{
-  \item your .Rprofile file with an entry like
-  \code{options(noaakey = "your-noaa-token")}
-  \item your .Renviron file with an entry like
-  \code{NOAA_KEY=your-noaa-token}
-}
-
-See \code{\link{Startup}} for information on how to create/find your
-.Rrofile and .Renviron files
+Note that flags are different for GSOM and GSOY datasets. They have their
+own set of flags per data class. See
+\code{system.file("extdata/gsom.json", package = "rnoaa")} for GSOM
+and \code{system.file("extdata/gsom.json", package = "rnoaa")} for GSOY.
+Those are JSON files. The \code{system.file} call gives you then path,
+then read in with \code{jsonlite::fromJSON} which will give a data.frame
+of the metadata. For more detailed info but plain text, open
+\code{system.file("extdata/gsom_readme.txt", package = "rnoaa")}
+and \code{system.file("extdata/gsoy_readme.txt", package = "rnoaa")}
+in a text editor.
 }
 
 \examples{
@@ -223,7 +240,7 @@ ncdc(datasetid='GHCND', stationid='GHCND:USW00014895',
 # Many stationid's
 stat <- ncdc_stations(startdate = "2000-01-01", enddate = "2016-01-01")
 ## find out what datasets might be available for these stations
-ncdc_datasets(stationid = stat$data$id[1])
+ncdc_datasets(stationid = stat$data$id[10])
 ## get some data
 ncdc(datasetid = "GSOY", stationid = stat$data$id[1:10],
    startdate = "2010-01-01", enddate = "2011-01-01")
