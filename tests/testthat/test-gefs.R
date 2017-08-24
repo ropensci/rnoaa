@@ -24,10 +24,9 @@ test_that("gefs time and ensemble selection returns correct indices.", {
   time_idx = 5:10
   d = gefs(var, lat, lon, ens_idx = ens_idx, time_idx = time_idx)
 
+  time_var <- names(d$data)[6]
   expect_equal(dim(d$data), c(length(ens_idx) * length(time_idx), 6))
   expect_equal(unique(d$data$ens), ens_idx - 1)
-  ## FIXME, fails, haven't looked into why yet
-  #expect_equal(unique(d$data$time), (time_idx-1) * 6)
 })
 
 test_that("gefs metadata", {

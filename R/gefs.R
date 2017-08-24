@@ -49,7 +49,7 @@
 #'
 #' #example location.
 #' lat <- 46.28125
-#' lon <- -116.2188
+#' lon <- -118.2188
 #'
 #' #Get forecast for a certain variable.
 #' forecast <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens",
@@ -84,7 +84,7 @@ gefs_CONNECT <- function(date = format(Sys.time(), "%Y%m%d"),
 
 
   # Until bug #127 is resolved
-  if (is_windows()) stop("gefs not implemented on windows yet", .call = FALSE)
+  if (is_windows()) warning("gefs not implemented on windows yet", .call = FALSE)
 
   #forecast time
   forecast_time <- match.arg(forecast_time)
@@ -132,9 +132,9 @@ gefs_GET <- function(var, lat, lon,
   #indices of dimensions to read from data
   start <- rep(1,ndims) #number of dims
   start[1] <- lon_start_idx #first is always longitude
-  start[2] <- lat_start_idx #first is always latitude
-  start[ndims - 1] <- ens_idx[1] #first ensemble
-  start[ndims] <- time_idx[1] #first time
+  start[2] <- lat_start_idx #second is always latitude
+  start[ndims - 1] <- ens_idx[1] #first ensemble index
+  start[ndims] <- time_idx[1] #first time index
 
   count_n <- rep(1,ndims)
 
@@ -151,8 +151,10 @@ gefs_GET <- function(var, lat, lon,
   count_n[ndims] <- min(varsize[ndims], length(time_idx))
 
   # actual data
-  # Do not modify the data, so don't convert (- 273.15) * 1.8 + 32. #convert from K to F
-  #d <- ncvar_get(con, v, start = start, count = count_n, ...) #ncdf4 version
+  # Do not modify the data, so don't convert (- 273.15) * 1.8 + 32.
+  #d <- ncvar_get(con, v, start = start, count = count_n, ...)
+
+  ##ncdf4 version
   d <- ncdf4::ncvar_get(con, v, start = start, count = count_n, ...)
 
   #create the data frame
@@ -160,7 +162,8 @@ gefs_GET <- function(var, lat, lon,
   if (raw==FALSE) {
     d = as.data.frame(as.vector(d))
 
-    for (i in 1:length(count_n)) {
+    #get the dimension values for all but the time variable
+    for (i in 1:(length(count_n)-1)) {
       dim_vals <- v$dim[[i]]$vals
       if(count_n[i]==1) {
         d[dims[i]] <- dim_vals[start[i]]
@@ -169,6 +172,10 @@ gefs_GET <- function(var, lat, lon,
         d[dims[i]] <- dim_vals[0:(count_n[i]-1) + start[i]]
       }
     }
+    #get the dimension values for the time variable
+    time_vals <- v$dim[[ndims]]$vals[0:(count_n[ndims] - 1) + start[ndims]]
+    d[dims[ndims]] <- as.vector(sapply(time_vals, function(t) { rep(t, count_n[ndims-1])}))
+
     names(d) <- c(var, dims)
   }
 
