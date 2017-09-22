@@ -88,7 +88,7 @@ gefs_dimension_values("height_above_ground")
 
 #example location.
 lat <- 46.28125
-lon <- -116.2188
+lon <- -118.2188
 
 #Get forecast for a certain variable.
 forecast <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens",

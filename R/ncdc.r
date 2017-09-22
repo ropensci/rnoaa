@@ -210,7 +210,6 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
 }
 
 split_atts <- function(x, ds = "GSOM"){
-  #tmp <- x$attributes
   out <- switch(
     ds,
     GHCND = parse_ncdc(x, c('fl_m','fl_q','fl_so','fl_t')),
@@ -229,7 +228,8 @@ split_atts <- function(x, ds = "GSOM"){
     NORMAL_HLY = parse_ncdc(x, 'fl_c'),
     NORMAL_MLY = parse_ncdc(x, 'fl_c'),
     PRECIP_15 = parse_ncdc(x, c('fl_m','fl_q','fl_u')),
-    PRECIP_HLY = parse_ncdc(x, c('fl_m','fl_q')))
+    PRECIP_HLY = parse_ncdc(x, c('fl_m','fl_q'))
+  )
   notatts <- x[!names(x) == "attributes"]
   c(notatts, out)
 }
@@ -260,6 +260,7 @@ gsoy_mapper <- function(x) {
 
 parse_ncdc <- function(x, headings = NULL, fun = NULL){
   y <- x$attributes
+  if (is.null(y)) return(NULL)
   res <- strsplit(y, ',')[[1]]
   if (grepl(",$", y)) {
     res <- c(res, "")
