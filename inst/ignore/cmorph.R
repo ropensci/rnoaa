@@ -34,7 +34,7 @@
 #' xxx
 #'
 #' @examples \dontrun{
-#' cmorph(date = "2017-01-15")
+#' res <- cmorph(date = "2017-01-15")
 #' cmorph(date = "2017-02-15")
 #' }
 cmorph <- function(date, us = FALSE, ...) {
@@ -108,15 +108,17 @@ cpc_read <- function(x, us) {
   longs <- seq(from = 0.036378335, to = 360, by = 0.072756669)
 
   # read data
-  conn <- file(x, "rb")
-  tmp <- readBin(conn, what = "double", n = bites, size = 4, endian = "little")
+  #conn <- file(x, "rb")
+  tmp <- readBin(conn, numeric(), n = bites, size = 4, endian = "little")
   tmp <- tmp * 0.2
   #tmp <- tmp[seq_len(bites/2)] * 0.1
 
   # make data.frame
   tibble::as_data_frame(
     stats::setNames(
-      cbind(expand.grid(longs, lats), tmp),
+      cbind(
+        expand.grid(longs, lats, KEEP.OUT.ATTRS = FALSE,
+                    stringsAsFactors = FALSE), tmp),
       c('lon', 'lat', 'precip')
     )
   )
