@@ -1,0 +1,27 @@
+context("defunct")
+
+test_that("Defunct functions return error messages", {
+
+  expect_error(noaa(), "function name has been changed")
+  expect_error(noaa_datacats(), "function name has been changed")
+  expect_error(noaa_datasets(), "function name has been changed")
+  expect_error(noaa_datatypes(), "function name has been changed")
+  expect_error(noaa_locs(), "function name has been changed")
+  expect_error(noaa_locs_cats(), "function name has been changed")
+  expect_error(noaa_stations(), "function name has been changed")
+  expect_error(noaa_plot(), "function name has been changed")
+  expect_error(noaa_combine(), "function name has been changed")
+  expect_error(noaa_seaice(), "function name has been changed")
+  expect_error(erddap_data(), "functions erddap_grid and erddap_table")
+  expect_error(erddap_clear_cache(), "package rerddap")
+  expect_error(erddap_datasets(), "package rerddap")
+  expect_error(erddap_grid(), "package rerddap")
+  expect_error(erddap_info(), "package rerddap")
+  expect_error(erddap_search(), "package rerddap")
+  expect_error(erddap_table(), "package rerddap")
+  expect_error(ncdc_leg_variables(), "function is defunct")
+  expect_error(ncdc_leg_sites(), "function is defunct")
+  expect_error(ncdc_leg_site_info(), "function is defunct")
+  expect_error(ncdc_leg_data(), "function is defunct")
+
+})
