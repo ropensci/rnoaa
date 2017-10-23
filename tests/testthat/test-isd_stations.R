@@ -1,14 +1,30 @@
 context("isd_stations")
 
+expect_is_valid_generic_df <- function(stations) {
+  expect_is(stations, "data.frame")
+  expect_is(stations$usaf, "character")
+  expect_is(stations$wban, "character")
+  expect_is(stations$station_name, "character")
+  expect_is(stations$ctry, "character")
+  expect_is(stations$state, "character")
+  expect_is(stations$icao, "character")
+  expect_is(stations$elev_m, "numeric")
+  expect_is(stations$begin, "numeric")
+  expect_is(stations$end, "numeric")
+}
+
+
 test_that("list stations", {
   skip_on_cran()
 
-  aa <- isd_stations()
+  out <- isd_stations()
 
-  expect_is(aa, "data.frame")
-  expect_is(aa$usaf, "character")
+  #Valid type and dimension tests
+  expect_is_valid_generic_df(out)
+  expect_is(stations$lat, "numeric")
+  expect_is(stations$lon, "numeric")
+  expect_equal(NCOL(out), 11)
 
-  expect_equal(NCOL(aa), 11)
 })
 
 test_that("search for stations - by bounding box", {
@@ -17,8 +33,13 @@ test_that("search for stations - by bounding box", {
   bbox <- c(-125.0, 38.4, -121.8, 40.9)
   out <- suppressMessages(isd_stations_search(bbox = bbox))
 
-  expect_is(out, "data.frame")
+  #Valid type and dimension tests
+  expect_is_valid_generic_df(out)
+  expect_is(stations$lat, "numeric")
+  expect_is(stations$lon, "numeric")
+  expect_equal(NCOL(out), 11)
 
+  #Logic tests
   expect_lt(bbox[1], min(out$lon))
   expect_gt(bbox[3], max(out$lon))
 
@@ -34,8 +55,13 @@ test_that("search for stations - by lat/lon/radius", {
   radius = 250
   out <- suppressMessages(isd_stations_search(lat = lat, lon = lon, radius = radius))
 
-  expect_is(out, "data.frame")
-  expect_is(out$longitude, "numeric")
+  #Valid type and dimension tests
+  expect_is_valid_generic_df(out)
   expect_is(out$latitude, "numeric")
-  expect_is(out$state, "character")
+  expect_is(out$longitude, "numeric")
+  expect_is(out$distance, "numeric")
+  expect_equal(NCOL(out), 12)
+
+  #Logic tests
+  expect_lt(max(out$distance), radius)
 })
