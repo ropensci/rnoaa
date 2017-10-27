@@ -1,6 +1,5 @@
 context("swdi")
 
-
 get_cordinates_df <- function(swdi_output) {
   swdi_output$shape %>%
     dplyr::mutate(shape = sub(".*POINT.*\\(","",shape)) %>%
@@ -75,5 +74,5 @@ test_that("Radius coordinates return correctly", {
 
   coordinates$distance <- meteo_spherical_distance(lat1=center[2], long1=center[1], lat2=coordinates[2][[1]], long2=coordinates[1][[1]])
 
-  expect_true(reduce(coordinates$distance < radius * 1.609344))
+  expect_true(Reduce("&",coordinates$distance < radius * 1.609344))
   })
