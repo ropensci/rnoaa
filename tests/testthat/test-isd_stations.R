@@ -21,8 +21,8 @@ test_that("list stations", {
 
   #Valid type and dimension tests
   expect_is_valid_generic_df(out)
-  expect_is(stations$lat, "numeric")
-  expect_is(stations$lon, "numeric")
+  expect_is(out$lat, "numeric")
+  expect_is(out$lon, "numeric")
   expect_equal(NCOL(out), 11)
 
 })
@@ -35,8 +35,8 @@ test_that("search for stations - by bounding box", {
 
   #Valid type and dimension tests
   expect_is_valid_generic_df(out)
-  expect_is(stations$lat, "numeric")
-  expect_is(stations$lon, "numeric")
+  expect_is(out$lat, "numeric")
+  expect_is(out$lon, "numeric")
   expect_equal(NCOL(out), 11)
 
   #Logic tests
