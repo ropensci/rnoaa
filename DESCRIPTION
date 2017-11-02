@@ -23,7 +23,7 @@ Authors@R: c(
   )
 URL: https://github.com/ropensci/rnoaa
 BugReports: https://github.com/ropensci/rnoaa/issues
-LazyD ata: true
+LazyData: true
 VignetteBuilder: knitr
 Imports:
     utils,
