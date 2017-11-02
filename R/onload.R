@@ -1,6 +1,7 @@
 cpc_cache <- NULL
 cmorph_cache <- NULL
 arc2_cache <- NULL
+lcd_cache <- NULL
 
 .onLoad <- function(libname, pkgname){
   x <- hoardr::hoard()
@@ -14,4 +15,8 @@ arc2_cache <- NULL
   z <- hoardr::hoard()
   z$cache_path_set("noaa_cmorph")
   cmorph_cache <<- z
+
+  z <- hoardr::hoard()
+  z$cache_path_set("noaa_lcd")
+  lcd_cache <<- z
 }
