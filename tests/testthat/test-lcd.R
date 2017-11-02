@@ -14,9 +14,9 @@ test_that("lcd works", {
   expect_type(aa$station, 'integer')
   expect_type(aa$date, 'character')
   expect_type(aa$latitude, 'double')
-  expect_type(bb$longitude, 'double')
-  expect_type(bb$elevation, 'double')
-  expect_type(bb$wnd, 'character')
+  expect_type(aa$longitude, 'double')
+  expect_type(aa$elevation, 'double')
+  expect_type(aa$wnd, 'character')
 })
 
 test_that("lcd fails well", {

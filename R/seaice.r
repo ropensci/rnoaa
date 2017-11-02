@@ -111,7 +111,7 @@ make_seaice_urls <- function(yrs_months, mos) {
       )
       tmp <- sprintf(seaiceftp, x, mm)
       route <- paste('extent_', switch(x, south = "S", north = "N"),
-                     '_', yrs_months, '_polygon_v2.1.zip',
+                     '_', yrs_months, '_polygon_v3.0.zip',
                      sep = '')
       file.path(tmp, route)
     })
