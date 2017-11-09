@@ -33,11 +33,13 @@ the US (1948-present, resolution 25 km).
 cpc_prcp(date = "2017-01-15")
 cpc_prcp(date = "2015-06-05")
 cpc_prcp(date = "2017-01-15")
-
 cpc_prcp(date = "2005-07-09")
+cpc_prcp(date = "1979-07-19")
 
+# US only
 cpc_prcp(date = "2005-07-09", us = TRUE)
 cpc_prcp(date = "2009-08-03", us = TRUE)
+cpc_prcp(date = "1998-04-23", us = TRUE)
 }
 }
 \references{

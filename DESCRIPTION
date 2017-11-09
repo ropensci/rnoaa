@@ -7,7 +7,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 0.7.1.9100
+Version: 0.7.1.9141
 License: MIT + file LICENSE
 Encoding: UTF-8
 Authors@R: c(

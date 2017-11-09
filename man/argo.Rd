@@ -163,8 +163,7 @@ on your machine.
 }
 
 \examples{
-\dontrun{
-# Search Argo metadata 
+# Search Argo metadata
 ## Number of profiles
 argo_search("np", limit = 3)
 ## Number of floats
@@ -243,7 +242,6 @@ argo_buoy_files(dac = "kma", id = 2900308)
 # Get data
 x <- argo_buoy_files(dac = "meds", id = 4900881)
 argo(dac = "meds", id = 4900881, cycle = 127, dtype = "D")
-}
 }
 \references{
 \url{http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html}

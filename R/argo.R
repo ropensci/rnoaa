@@ -52,8 +52,8 @@ argo_buoy_files <- function(dac, id, ...) {
   url <- paste0(argo_ftp(), sprintf('dac/%s/%s/profiles/', dac, id))
   download.file(url, destfile = tfile, quiet = TRUE)
   res <- readLines(tfile, warn = FALSE)
-  tab <- read.table(text = res, stringsAsFactors = FALSE)
-  tab[,NCOL(tab)]
+  tab <- read.table(text = res, stringsAsFactors = FALSE, allowEscapes = TRUE)
+  tab[, NCOL(tab)]
 }
 
 #' @export

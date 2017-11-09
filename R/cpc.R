@@ -25,11 +25,13 @@
 #' cpc_prcp(date = "2017-01-15")
 #' cpc_prcp(date = "2015-06-05")
 #' cpc_prcp(date = "2017-01-15")
-#'
 #' cpc_prcp(date = "2005-07-09")
+#' cpc_prcp(date = "1979-07-19")
 #'
+#' # US only
 #' cpc_prcp(date = "2005-07-09", us = TRUE)
 #' cpc_prcp(date = "2009-08-03", us = TRUE)
+#' cpc_prcp(date = "1998-04-23", us = TRUE)
 #' }
 cpc_prcp <- function(date, us = FALSE, ...) {
   assert(date, c("character", "Date"))
@@ -84,12 +86,23 @@ cpc_base_file <- function(x) {
 
 cpc_key <- function(year, month, day, us) {
   sprintf("%s/%s/%s/%s%s%s",
-          cpc_base_ftp(us),
-          if (year < 2006) "V1.0" else "RT",
-          year,
-          cpc_base_file(us),
-          paste0(year, month, day),
-          if (year < 2006) ".gz" else ".RT")
+    cpc_base_ftp(us),
+    if (year < 2006) "V1.0" else "RT",
+    year,
+    cpc_base_file(us),
+    paste0(year, month, day),
+    if (year < 2006) {
+      ".gz"
+    } else if (year > 2005 && year < 2009) {
+      if (us && year == 2006) {
+        ".gz"
+      } else {
+        ".RT.gz"
+      }
+    } else {
+      ".RT"
+    }
+  )
 }
 
 cpc_read <- function(x, us) {
