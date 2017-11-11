@@ -128,3 +128,7 @@ res$data
 class(res$data)
 }
 }
+\references{
+\url{https://www.ncdc.noaa.gov/swdi/#Intro}
+\url{https://www.ncdc.noaa.gov/swdiws/}
+}

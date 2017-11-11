@@ -23,7 +23,7 @@ Data available in SWDI are:
 * Preliminary Local Storm Reports from the NOAA National Weather Service
 * Lightning Strikes from Vaisala NLDN
 
-Find out more about SWDI at [http://www.ncdc.noaa.gov/swdi/#Intro](http://www.ncdc.noaa.gov/swdi/#Intro).
+Find out more about SWDI at [https://www.ncdc.noaa.gov/swdi/#Intro](https://www.ncdc.noaa.gov/swdi/#Intro).
 
 
 ## Load rnoaa
@@ -42,11 +42,11 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> $meta
 #> $meta$totalCount
 #> numeric(0)
-#> 
+#>
 #> $meta$totalTimeInSeconds
 #> [1] 0.105
-#> 
-#> 
+#>
+#>
 #> $data
 #>                   ztime wsr_id cell_id cell_type range azimuth max_shear
 #> 1  2006-05-05T00:05:50Z   KBMX      Q0       TVS     7     217       403
@@ -100,7 +100,7 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> 23  108
 #> 24   78
 #> 25   81
-#> 
+#>
 #> $shape
 #>                                         shape
 #> 1  POINT (-86.8535716274277 33.0786326913943)
@@ -128,7 +128,7 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> 23 POINT (-102.448763863447 32.6613484943994)
 #> 24   POINT (-102.42842159557 32.649061124799)
 #> 25 POINT (-102.504158884526 32.7162751126854)
-#> 
+#>
 #> attr(,"class")
 #> [1] "swdi"
 ```
@@ -142,11 +142,11 @@ list(out$meta, head(out$data), head(out$shape))
 #> [[1]]
 #> [[1]]$totalCount
 #> numeric(0)
-#> 
+#>
 #> [[1]]$totalTimeInSeconds
 #> [1] 3.465
-#> 
-#> 
+#>
+#>
 #> [[2]]
 #>            ztime_start            ztime_end     id         warningtype
 #> 1 2006-05-05T22:53:00Z 2006-05-06T00:00:00Z 397428 SEVERE THUNDERSTORM
@@ -162,7 +162,7 @@ list(out$meta, head(out$data), head(out$shape))
 #> 4     KMAF    052258
 #> 5     KMAF    052305
 #> 6     KLUB    052315
-#> 
+#>
 #> [[3]]
 #>                                                                                                                                                          shape
 #> 1                                                                             POLYGON ((-93.27 30.38, -93.29 30.18, -93.02 30.18, -93.04 30.37, -93.27 30.38))
@@ -181,11 +181,11 @@ swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90
 #> $meta
 #> $meta$totalCount
 #> numeric(0)
-#> 
+#>
 #> $meta$totalTimeInSeconds
 #> [1] 0
-#> 
-#> 
+#>
+#>
 #> $data
 #>                  ztime     id        event magnitude            city
 #> 1 2006-05-09T02:20:00Z 427540         HAIL         1    5 E KENTWOOD
@@ -199,7 +199,7 @@ swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90
 #> 3 WASHINGTON    LA TRAINED SPOTTER
 #> 4 WASHINGTON    LA   AMATEUR RADIO
 #> 5 WASHINGTON    LA LAW ENFORCEMENT
-#> 
+#>
 #> $shape
 #>                  shape
 #> 1 POINT (-90.43 30.93)
@@ -207,7 +207,7 @@ swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90
 #> 3  POINT (-90.3 30.96)
 #> 4 POINT (-90.14 30.85)
 #> 5 POINT (-90.14 30.78)
-#> 
+#>
 #> attr(,"class")
 #> [1] "swdi"
 ```
@@ -220,11 +220,11 @@ swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,
 #> $meta
 #> $meta$totalCount
 #> numeric(0)
-#> 
+#>
 #> $meta$totalTimeInSeconds
 #> [1] 0.001
-#> 
-#> 
+#>
+#>
 #> $data
 #>                  ztime wsr_id cell_id cell_type range azimuth max_shear
 #> 1 2006-05-06T00:41:29Z   KMAF      D9       TVS    37       6        39
@@ -238,7 +238,7 @@ swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,
 #> 3   52
 #> 4   86
 #> 5   62
-#> 
+#>
 #> $shape
 #>                                        shape
 #> 1 POINT (-102.112726356403 32.5574494581267)
@@ -246,7 +246,7 @@ swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,
 #> 3 POINT (-102.131167022161 32.6426287452898)
 #> 4 POINT (-102.123671677514 32.5751241756203)
 #> 5 POINT (-102.076389686189 32.6209390786829)
-#> 
+#>
 #> attr(,"class")
 #> [1] "swdi"
 ```
@@ -267,11 +267,11 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-
 #> $meta
 #> $meta$totalCount
 #> numeric(0)
-#> 
+#>
 #> $meta$totalTimeInSeconds
 #> [1] 0.001
-#> 
-#> 
+#>
+#>
 #> $data
 #>          day centerlat centerlon fcount
 #> 1 2007-09-07      32.7      -102      1
@@ -279,7 +279,7 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-
 #> 3 2009-04-11      32.7      -102      1
 #> 4 2007-03-29      32.7      -102      2
 #> 5 2008-06-20      32.7      -102      2
-#> 
+#>
 #> $shape
 #>                                                                                   shape
 #> 1 POLYGON ((-102.05 32.65, -102.05 32.75, -101.95 32.75, -101.95 32.65, -102.05 32.65))
@@ -287,7 +287,7 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-
 #> 3 POLYGON ((-102.05 32.65, -102.05 32.75, -101.95 32.75, -101.95 32.65, -102.05 32.65))
 #> 4 POLYGON ((-102.05 32.65, -102.05 32.75, -101.95 32.75, -101.95 32.65, -102.05 32.65))
 #> 5 POLYGON ((-102.05 32.65, -102.05 32.75, -101.95 32.75, -101.95 32.65, -102.05 32.65))
-#> 
+#>
 #> attr(,"class")
 #> [1] "swdi"
 ```
