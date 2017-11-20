@@ -41,7 +41,7 @@ We now transform these data into daily data.
 measurementsIndianapolis <- filter(measurementsIndianapolis, !is.na(latitude))
 # now transform to daily data
 measurementsIndianapolis <- measurementsIndianapolis %>%
-  mutate(day = as.Date(dateLocal)) %>%
+  #mutate(day = as.Date(dateLocal)) %>%
   group_by(location, day) %>%
   summarize(value = mean(value),
             longitude = longitude[1],
