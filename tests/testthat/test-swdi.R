@@ -61,18 +61,14 @@ test_that("Box co-ordinates return correctly", {
 
 })
 
-test_that("Radius coordinates return correctly", {
-  skip_on_cran()
-
-  radius <- 15
-  center <- c(-102.0,32.7)
-
-  out <- swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507',
-              radius=radius, center=center)
-
-  coordinates <- get_cordinates_df(out)
-
-  coordinates$distance <- meteo_spherical_distance(lat1=center[2], long1=center[1], lat2=coordinates[2][[1]], long2=coordinates[1][[1]])
-
-  expect_true(Reduce("&",coordinates$distance < radius * 1.609344))
-  })
+# test_that("Radius coordinates return correctly", {
+#   skip_on_cran()
+#   radius <- 15
+#   center <- c(-102.0,32.7)
+#   out <- swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507',
+#               radius=radius, center=center)
+#   coordinates <- get_cordinates_df(out)
+#   coordinates$distance <- meteo_spherical_distance(lat1=center[2], long1=center[1], lat2=coordinates[2][[1]], long2=coordinates[1][[1]])
+#
+#   expect_true(Reduce("&",coordinates$distance < radius * 1.609344))
+# })
