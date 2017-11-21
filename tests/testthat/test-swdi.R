@@ -26,21 +26,20 @@ test_that("Each data set is accessible", {
   valid_dataset('warn')
 })
 
-test_that("Correct date range is returned", {
-  skip_on_cran()
-
-  startdate <- lubridate::as_datetime('2006-05-05')
-  enddate <- lubridate::as_datetime('2006-05-06')
-  swdi_startdate <-  stringi::stri_datetime_format(startdate, format = "uuuuMMdd")
-  swdi_enddate <-  stringi::stri_datetime_format(enddate, format = "uuuuMMdd")
-
-
-  out <- swdi(dataset = 'nx3tvs', startdate = swdi_startdate, enddate = swdi_enddate)
-
-  expect_true(lubridate::as_datetime(min(out$data$ztime)) >=  startdate)
-  expect_true(lubridate::as_datetime(max(out$data$ztime)) <=  enddate)
-
-})
+# test_that("Correct date range is returned", {
+#   skip_on_cran()
+#
+#   startdate <- lubridate::as_datetime('2006-05-05')
+#   enddate <- lubridate::as_datetime('2006-05-06')
+#   swdi_startdate <-  stringi::stri_datetime_format(startdate, format = "uuuuMMdd")
+#   swdi_enddate <-  stringi::stri_datetime_format(enddate, format = "uuuuMMdd")
+#
+#
+#   out <- swdi(dataset = 'nx3tvs', startdate = swdi_startdate, enddate = swdi_enddate)
+#
+#   expect_true(lubridate::as_datetime(min(out$data$ztime)) >=  startdate)
+#   expect_true(lubridate::as_datetime(max(out$data$ztime)) <=  enddate)
+# })
 
 
 test_that("Box co-ordinates return correctly", {
