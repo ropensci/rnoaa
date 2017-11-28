@@ -147,14 +147,14 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> $meta
 #> $meta$totalCount
 #> [1] 1980
-#> 
+#>
 #> $meta$pageCount
 #> [1] 25
-#> 
+#>
 #> $meta$offset
 #> [1] 1
-#> 
-#> 
+#>
+#>
 #> $data
 #>       mindate    maxdate                  name datacoverage            id
 #> 1  1892-08-01 2017-03-31            Zwolle, NL       1.0000 CITY:NL000012
@@ -182,25 +182,25 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 23 1893-01-01 2017-05-01     Youngstown, OH US       1.0000 CITY:US390028
 #> 24 1894-01-01 2017-05-01           York, PA US       1.0000 CITY:US420024
 #> 25 1869-01-01 2017-05-01        Yonkers, NY US       1.0000 CITY:US360031
-#> 
+#>
 #> attr(,"class")
 #> [1] "ncdc_locs"
 ```
 
-### Get info on a station by specifcying a dataset, locationtype, location, and station
+### Get info on a station by specifying a dataset, locationtype, location, and station
 
 
 ```r
 ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
 #> $meta
 #> NULL
-#> 
+#>
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
 #> 1      12.2 1899-02-01 2017-04-30  28.8029 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS  -82.3126
-#> 
+#>
 #> attr(,"class")
 #> [1] "ncdc_stations"
 ```
@@ -258,14 +258,14 @@ ncdc_datasets()
 #> $meta
 #> $meta$offset
 #> [1] 1
-#> 
+#>
 #> $meta$count
 #> [1] 11
-#> 
+#>
 #> $meta$limit
 #> [1] 25
-#> 
-#> 
+#>
+#>
 #> $data
 #>                     uid    mindate    maxdate                        name
 #> 1  gov.noaa.ncdc:C00861 1763-01-01 2017-05-01             Daily Summaries
@@ -291,7 +291,7 @@ ncdc_datasets()
 #> 9          1.00 NORMAL_MLY
 #> 10         0.25  PRECIP_15
 #> 11         1.00 PRECIP_HLY
-#> 
+#>
 #> attr(,"class")
 #> [1] "ncdc_datasets"
 ```
@@ -304,14 +304,14 @@ ncdc_datacats(locationid = 'CITY:US390029')
 #> $meta
 #> $meta$totalCount
 #> [1] 38
-#> 
+#>
 #> $meta$pageCount
 #> [1] 25
-#> 
+#>
 #> $meta$offset
 #> [1] 1
-#> 
-#> 
+#>
+#>
 #> $data
 #>                     name            id
 #> 1    Annual Agricultural        ANNAGR
@@ -339,7 +339,7 @@ ncdc_datacats(locationid = 'CITY:US390029')
 #> 23  Spring Precipitation        SPPRCP
 #> 24    Spring Temperature        SPTEMP
 #> 25   Summer Agricultural         SUAGR
-#> 
+#>
 #> attr(,"class")
 #> [1] "ncdc_datacats"
 ```
@@ -351,7 +351,7 @@ The function `tornadoes()` simply gets __all the data__. So the call takes a whi
 
 ```r
 shp <- tornadoes()
-#> OGR data source with driver: ESRI Shapefile 
+#> OGR data source with driver: ESRI Shapefile
 #> Source: "/Users/sacmac/Library/Caches/rnoaa/tornadoes/torn", layer: "torn"
 #> with 60114 features
 #> It has 22 fields
@@ -372,19 +372,19 @@ homr(qid = 'COOP:046742')
 #> $`20002078`
 #> $`20002078`$id
 #> [1] "20002078"
-#> 
+#>
 #> $`20002078`$head
 #>                  preferredName latitude_dec longitude_dec precision
 #> 1 PASO ROBLES MUNICIPAL AP, CA      35.6697     -120.6283   DDddddd
 #>             por.beginDate por.endDate
 #> 1 1949-10-05T00:00:00.000     Present
-#> 
+#>
 #> $`20002078`$namez
 #>                         name  nameType
 #> 1   PASO ROBLES MUNICIPAL AP      COOP
 #> 2   PASO ROBLES MUNICIPAL AP PRINCIPAL
 #> 3 PASO ROBLES MUNICIPAL ARPT       PUB
-#> 
+#>
 #> $`20002078`$identifiers
 #>      idType          id
 #> 1     GHCND USW00093209
@@ -472,17 +472,17 @@ coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
 #> $metadata
 #> $metadata$id
 #> [1] "9063053"
-#> 
+#>
 #> $metadata$name
 #> [1] "Fairport"
-#> 
+#>
 #> $metadata$lat
 #> [1] "41.7598"
-#> 
+#>
 #> $metadata$lon
 #> [1] "-81.2811"
-#> 
-#> 
+#>
+#>
 #> $data
 #>            t       v   f
 #> 1 2015-09-27 174.430 0,0

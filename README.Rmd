@@ -167,7 +167,7 @@ library('rnoaa')
 ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 ```
 
-### Get info on a station by specifcying a dataset, locationtype, location, and station
+### Get info on a station by specifying a dataset, locationtype, location, and station
 
 ```{r}
 ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
