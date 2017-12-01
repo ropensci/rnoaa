@@ -49,6 +49,7 @@ Suggests:
     knitr,
     taxize,
     ncdf4,
+    raster,
     leaflet,
     rgdal,
     rmarkdown,
