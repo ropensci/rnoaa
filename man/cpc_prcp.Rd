@@ -4,12 +4,16 @@
 \alias{cpc_prcp}
 \title{Precipitation data from NOAA Climate Prediction Center (CPC)}
 \usage{
-cpc_prcp(date, us = FALSE, ...)
+cpc_prcp(date, us = FALSE, drop_undefined = FALSE, ...)
 }
 \arguments{
 \item{date}{(date/character) date in YYYY-MM-DD format}
 
 \item{us}{(logical) US data only? default: \code{FALSE}}
+
+\item{drop_undefined}{(logical) drop undefined precipitation 
+values (values in the \code{precip} column in the output data.frame). 
+default: \code{FALSE}}
 
 \item{...}{curl options passed on to \code{\link[crul]{HttpClient}}}
 }
@@ -18,7 +22,7 @@ a data.frame, with columns:
 \itemize{
  \item lon - longitude (0 to 360)
  \item lat - latitude (-90 to 90)
- \item precip - precipitation (in mm)
+ \item precip - precipitation (in mm) (see Details for more information)
 }
 }
 \description{
@@ -28,6 +32,18 @@ Precipitation data from NOAA Climate Prediction Center (CPC)
 Rainfall data for the world (1979-present, resolution 50 km), and
 the US (1948-present, resolution 25 km).
 }
+\section{Data processing in this function}{
+
+Internally we multiply all precipitation measurements by 0.1 as 
+per the CPC documentation. 
+
+Values of -99.0 are classified as "undefined". These values can be
+removed by setting \code{drop_undefined = TRUE} in the \code{cpc_prcp} 
+function call. These undefined values are not dropped by default - 
+so do remember to set \code{drop_undefined = TRUE} to drop them; or
+you can easily do it yourself by e.g., \code{subset(x, precip >= 0)}
+}
+
 \examples{
 \dontrun{
 cpc_prcp(date = "2017-01-15")
@@ -36,10 +52,13 @@ cpc_prcp(date = "2017-01-15")
 cpc_prcp(date = "2005-07-09")
 cpc_prcp(date = "1979-07-19")
 
-# US only
+# United States data only
 cpc_prcp(date = "2005-07-09", us = TRUE)
 cpc_prcp(date = "2009-08-03", us = TRUE)
 cpc_prcp(date = "1998-04-23", us = TRUE)
+
+# drop undefined values (those given as -99.0)
+cpc_prcp(date = "1998-04-23", drop_undefined = TRUE)
 }
 }
 \references{

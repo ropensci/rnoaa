@@ -12,7 +12,8 @@ if (getRversion() >= "2.15.1") {
       'grid_size_lat',
       'grid_size_lon',
       'dist',
-      'lat_rad'
+      'lat_rad',
+      'precip'
     )
   )
 }
