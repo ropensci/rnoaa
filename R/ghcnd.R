@@ -42,7 +42,8 @@
 #'    dataframe with daily observations, as well as flag values, for one of
 #'    the weather variables. The flag values give information on the quality
 #'    and source of each observation; see the NOAA README file linked above
-#'    for more information.
+#'    for more information. Each data.frame is sorted by date, with the 
+#'    earliest date first.
 #'
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com},
 #' Adam Erickson \email{adam.erickson@@ubc.ca}
@@ -91,12 +92,14 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
               paste0(vars_null, collapse = ", "), possvars), call. = FALSE)
   }
   if (!is.null(date_min)) {
-    dat <- lapply(dat, function(z) z %>% dplyr::filter(date >= date_min))
+    dat <- lapply(dat, function(z) dplyr::filter(z, date >= date_min))
   }
   if (!is.null(date_max)) {
-    dat <- lapply(dat, function(z) z %>% dplyr::filter(date <= date_max))
+    dat <- lapply(dat, function(z) dplyr::filter(z, date <= date_max))
   }
-  dat
+  # arrange by "day", not "month"
+  dat <- lapply(dat, function(z) dplyr::arrange(z, date))
+  return(dat)
 }
 
 #' Get all GHCND data from a single weather site

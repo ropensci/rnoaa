@@ -52,7 +52,8 @@ A list object with slots for each of the available specified
    dataframe with daily observations, as well as flag values, for one of
    the weather variables. The flag values give information on the quality
    and source of each observation; see the NOAA README file linked above
-   for more information.
+   for more information. Each data.frame is sorted by date, with the 
+   earliest date first.
 }
 \description{
 This function uses ftp to access the Global Historical Climatology Network
