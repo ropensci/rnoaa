@@ -110,12 +110,16 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' entire weather dataset for the site.
 #'
 #' @export
-#' @param stationid A character string giving the identification of the weather
-#'    station for which the user would like to pull data. To get a full and
-#'    current list of stations, the user can use the \code{\link{ghcnd_stations}}
-#'    function. To identify stations within a certain radius of a location, the
-#'    user can use the \code{\link{meteo_nearby_stations}} function.
-#' @param ... Additional curl options to pass through to \code{\link[httr]{GET}}.
+#' @param stationid (character) A character string giving the identification of 
+#' the weather station for which the user would like to pull data. To get a full 
+#' and current list of stations, the user can use the \code{\link{ghcnd_stations}}
+#' function. To identify stations within a certain radius of a location, the
+#' user can use the \code{\link{meteo_nearby_stations}} function.
+#' @param path (character) a path to a file with a \code{.dly} extension - already
+#' downloaded on your computer
+#' @param ... In the case of \code{ghcnd} additional curl options to pass 
+#' through to \code{\link[httr]{GET}}. In the case of \code{ghcnd_read} 
+#' further options passed on to \code{read.csv} 
 #'
 #' @return A tibble (data.frame) which contains data pulled from NOAA's FTP
 #' server for the queried weather site. A README file with more information
@@ -179,6 +183,11 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' dat %>%
 #'  filter(element == "PRCP", year == 1909)
 #' }
+#' 
+#' # Read in a .dly file you've already downloaded
+#' path <- system.file("examples/AGE00147704.dly", package = "rnoaa")
+#' ghcnd_read(path)
+
 ghcnd <- function(stationid, ...){
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- "path" %in% calls
@@ -197,9 +206,25 @@ ghcnd <- function(stationid, ...){
   }
   res <- tibble::as_data_frame(res)
   attr(res, 'source') <- csvpath
-  res
+  return(res)
 }
 
+#' @export
+#' @rdname ghcnd
+ghcnd_read <- function(path, ...) {
+  if (!file.exists(path)) stop("file does not exist")
+  if (!grepl("\\.dly", path)) {
+    warning(".dly extension not detected; file may not be read correctly")
+  }
+  res <- read.csv(path, stringsAsFactors = FALSE,
+                  colClasses = ghcnd_col_classes, ...)
+  res <- tibble::as_data_frame(res)
+  attr(res, 'source') <- path
+  return(res)
+}
+
+
+## helpers -------
 ghcnd_col_classes <- c(
   "character", "integer", "integer", "character",
   rep(c("integer", "character", "character", "character"), times = 31)

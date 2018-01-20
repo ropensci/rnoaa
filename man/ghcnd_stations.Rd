@@ -7,7 +7,9 @@
 ghcnd_stations(...)
 }
 \arguments{
-\item{...}{Additional curl options to pass through to \code{\link[httr]{GET}}.}
+\item{...}{In the case of \code{ghcnd} additional curl options to pass 
+through to \code{\link[httr]{GET}}. In the case of \code{ghcnd_read} 
+further options passed on to \code{read.csv}}
 }
 \value{
 This function returns a tibble (dataframe) with a weather

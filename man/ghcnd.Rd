@@ -2,18 +2,26 @@
 % Please edit documentation in R/ghcnd.R
 \name{ghcnd}
 \alias{ghcnd}
+\alias{ghcnd_read}
 \title{Get all GHCND data from a single weather site}
 \usage{
 ghcnd(stationid, ...)
+
+ghcnd_read(path, ...)
 }
 \arguments{
-\item{stationid}{A character string giving the identification of the weather
-station for which the user would like to pull data. To get a full and
-current list of stations, the user can use the \code{\link{ghcnd_stations}}
+\item{stationid}{(character) A character string giving the identification of 
+the weather station for which the user would like to pull data. To get a full 
+and current list of stations, the user can use the \code{\link{ghcnd_stations}}
 function. To identify stations within a certain radius of a location, the
 user can use the \code{\link{meteo_nearby_stations}} function.}
 
-\item{...}{Additional curl options to pass through to \code{\link[httr]{GET}}.}
+\item{...}{In the case of \code{ghcnd} additional curl options to pass 
+through to \code{\link[httr]{GET}}. In the case of \code{ghcnd_read} 
+further options passed on to \code{read.csv}}
+
+\item{path}{(character) a path to a file with a \code{.dly} extension - already
+downloaded on your computer}
 }
 \value{
 A tibble (data.frame) which contains data pulled from NOAA's FTP
@@ -78,6 +86,10 @@ dat <- ghcnd(stationid = "AGE00147704")
 dat \%>\%
  filter(element == "PRCP", year == 1909)
 }
+
+# Read in a .dly file you've already downloaded
+path <- system.file("examples/AGE00147704.dly", package = "rnoaa")
+ghcnd_read(path)
 }
 \seealso{
 To generate a weather dataset for a single weather site that has

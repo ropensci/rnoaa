@@ -8,9 +8,9 @@ meteo_tidy_ghcnd(stationid, keep_flags = FALSE, var = "all",
   date_min = NULL, date_max = NULL)
 }
 \arguments{
-\item{stationid}{A character string giving the identification of the weather
-station for which the user would like to pull data. To get a full and
-current list of stations, the user can use the \code{\link{ghcnd_stations}}
+\item{stationid}{(character) A character string giving the identification of 
+the weather station for which the user would like to pull data. To get a full 
+and current list of stations, the user can use the \code{\link{ghcnd_stations}}
 function. To identify stations within a certain radius of a location, the
 user can use the \code{\link{meteo_nearby_stations}} function.}
 
