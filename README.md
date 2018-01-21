@@ -15,7 +15,7 @@ rnoaa
 ## Data sources in rnoaa
 
 * NOAA NCDC climate data:
-    * We are using the NOAA API version 2
+d    * We are using the NOAA API version 2
     * Docs for the NCDC API are at http://www.ncdc.noaa.gov/cdo-web/webservices/v2
     * GHCN Daily data is available at http://www.ncdc.noaa.gov/oa/climate/ghcn-daily/ via FTP and HTTP
 * Severe weather data docs are at http://www.ncdc.noaa.gov/swdiws/
@@ -503,6 +503,6 @@ coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
 * Please [report any issues or bugs](https://github.com/ropensci/rnoaa/issues).
 * License: MIT
 * Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

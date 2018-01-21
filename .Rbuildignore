@@ -17,7 +17,7 @@ inst/cache
 inst/vign/cache
 README.Rmd
 vignettes/figure
-^CONDUCT\.md$
+^CODE_OF_CONDUCT\.md$
 user_test_cases/
 ^cran-comments\.md$
 ^issue_template\.md$
