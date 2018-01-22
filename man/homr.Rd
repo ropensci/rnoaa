@@ -66,7 +66,7 @@ to phrData=true.}
 
 \item{combine}{(logical) Combine station metadata or not.}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} (optional)}
 }
 \value{
 A list, with elements named by the station ids.
@@ -102,7 +102,7 @@ homr(station=20002078)
 homr(station=20002078, date='all', phrData=FALSE)
 
 # Optionally pass in curl options
-homr(headersOnly=TRUE, state='NC', county='BUNCOMBE', config=verbose())
+homr(headersOnly=TRUE, state='NC', county='BUNCOMBE', verbose = TRUE)
 }
 }
 \references{

@@ -44,7 +44,7 @@
 #' by including phrData=false. If the parameter is not set, it will default
 #' to phrData=true.
 #' @param combine (logical) Combine station metadata or not.
-#' @param ... Curl options passed on to \code{\link[httr]{GET}} (optional)
+#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}} (optional)
 #'
 #' @details Since the definitions for variables are always the same, we don't
 #' include the ability to get description data in this function. Use
@@ -76,7 +76,7 @@
 #' homr(station=20002078, date='all', phrData=FALSE)
 #'
 #' # Optionally pass in curl options
-#' homr(headersOnly=TRUE, state='NC', county='BUNCOMBE', config=verbose())
+#' homr(headersOnly=TRUE, state='NC', county='BUNCOMBE', verbose = TRUE)
 #' }
 
 homr <- function(qid=NULL, qidMod=NULL, station=NULL, state=NULL, county=NULL,
@@ -96,8 +96,13 @@ homr <- function(qid=NULL, qidMod=NULL, station=NULL, state=NULL, county=NULL,
   if (length(args) == 0) args <- NULL
   url <- if (is.null(station)) paste0(homr_base(), "search") else
     paste0(homr_base(), station)
-  res <- GET(url, query = args, ...)
-  out <- utcf8(res)
+  cli <- crul::HttpClient$new(url = url, opts = list(...))
+  res <- cli$get(query = args)
+  res$raise_for_status()
+  if (!grepl("json", res$response_headers$`content-type`)) {
+    stop("an error occurred - expected JSON content type response")
+  }
+  out <- res$parse("UTF-8")
   json <- jsonlite::fromJSON(out, FALSE)
   sts <- lapply(json$stationCollection$stations, parse_stations,
                 headersOnly = headersOnly)
