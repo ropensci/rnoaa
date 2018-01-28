@@ -24,3 +24,4 @@ user_test_cases/
 ^revdep$
 .github
 
+^codemeta\.json$
