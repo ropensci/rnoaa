@@ -9,17 +9,17 @@ ncdc_locs(datasetid = NULL, locationid = NULL, locationcategoryid = NULL,
   limit = 25, offset = NULL, token = NULL, ...)
 }
 \arguments{
-\item{datasetid}{A valid dataset id or a vecto or list of dataset id's. Data returned will be from the
+\item{datasetid}{A valid dataset id or a vector or list of dataset id's. Data returned will be from the
 dataset specified, see datasets() (required)}
 
 \item{locationid}{A valid location id or a vector or list of location ids.}
 
 \item{locationcategoryid}{A valid location id or a vector or list of location category ids}
 
-\item{startdate}{A valid ISO formated date (yyyy-mm-dd). Data returned will have
+\item{startdate}{A valid ISO formatted date (yyyy-mm-dd). Data returned will have
 data after the specified date. Paramater can be use independently of enddate (optional)}
 
-\item{enddate}{Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have data
+\item{enddate}{Accepts valid ISO formatted date (yyyy-mm-dd). Data returned will have data
 before the specified date. Paramater can be use independently of startdate (optional)}
 
 \item{sortfield}{The field to sort results by. Supports id, name, mindate, maxdate, and
