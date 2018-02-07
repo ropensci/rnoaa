@@ -1,9 +1,9 @@
-#' @param datasetid A valid dataset id or a vecto or list of dataset id's. Data returned will be from the
+#' @param datasetid A valid dataset id or a vector or list of dataset id's. Data returned will be from the
 #'    dataset specified, see datasets() (required)
 #' @param locationcategoryid A valid location id or a vector or list of location category ids
-#' @param startdate A valid ISO formated date (yyyy-mm-dd). Data returned will have
+#' @param startdate A valid ISO formatted date (yyyy-mm-dd). Data returned will have
 #'    data after the specified date. Paramater can be use independently of enddate (optional)
-#' @param enddate Accepts valid ISO formated date (yyyy-mm-dd). Data returned will have data
+#' @param enddate Accepts valid ISO formatted date (yyyy-mm-dd). Data returned will have data
 #'    before the specified date. Paramater can be use independently of startdate (optional)
 #' @param sortfield The field to sort results by. Supports id, name, mindate, maxdate, and
 #'    datacoverage fields (optional)
