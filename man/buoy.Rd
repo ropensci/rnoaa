@@ -8,7 +8,7 @@
 \usage{
 buoy(dataset, buoyid, year = NULL, datatype = NULL, ...)
 
-buoys(dataset, ...)
+buoys(dataset)
 
 buoy_stations(refresh = FALSE, ...)
 }
@@ -23,7 +23,9 @@ Required}
 \item{datatype}{(character) Data type, one of 'c', 'cc', 'p', 'o'. Optional}
 
 \item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}. 
-Optional}
+Optional. A number of different HTTP requests are made internally, but 
+we only pass this on to the request to get the netcdf file in the internal 
+function \code{get_ncdf_file()}}
 
 \item{refresh}{(logical) Whether to use cached data (\code{FALSE}) or get
 new data (\code{FALSE}). Default: \code{FALSE}}
@@ -79,15 +81,14 @@ buoy(dataset = 'cwind', buoyid = 46085)
 buoy(dataset = 'cwind', buoyid = 41001, year = 1999)
 
 # Including specific year and datatype
-buoy(dataset = 'cwind', buoyid = 41001, year = 2008, datatype = "cc")
-buoy(dataset = 'cwind', buoyid = 41001, year = 2008, datatype = "cc")
+buoy(dataset = 'cwind', buoyid = 45005, year = 2008, datatype = "c")
+buoy(dataset = 'cwind', buoyid = 41001, year = 1997, datatype = "c")
 
 # Other datasets
 buoy(dataset = 'ocean', buoyid = 41029)
 
 # curl debugging
-library('httr')
-buoy(dataset = 'cwind', buoyid = 46085, config=verbose())
+buoy(dataset = 'cwind', buoyid = 46085, verbose = TRUE)
 
 # some buoy ids are character, case doesn't matter, we'll account for it
 buoy(dataset = "stdmet", buoyid = "VCAF1")

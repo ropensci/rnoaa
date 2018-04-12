@@ -28,7 +28,7 @@ test_that("buoy works", {
   skip_on_travis()
   skip_on_appveyor()
 
-  one <- buoy(dataset = 'cwind', buoyid = 41001, year = 2008, datatype = "cc")
+  one <- buoy(dataset = 'cwind', buoyid = 41001, year = 1997, datatype = "c")
 
   # class
   expect_is(one, "buoy")
