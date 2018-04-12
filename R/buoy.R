@@ -9,7 +9,8 @@
 #' @param year (integer) Year of data collection. Optional
 #' @param refresh (logical) Whether to use cached data (\code{FALSE}) or get
 #' new data (\code{FALSE}). Default: \code{FALSE}
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}. Optional
+#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}. 
+#' Optional
 #'
 #' @details Functions:
 #' \itemize{
@@ -38,6 +39,9 @@
 #' @examples \dontrun{
 #' # Get buoy station information
 #' x <- buoy_stations()
+#' # refresh stations as needed, takes a while to run
+#' # you shouldn't need to update very often
+#' # x <- buoy_stations(refresh = TRUE)
 #' library("leaflet")
 #' leaflet(data = na.omit(x)) %>%
 #'   leaflet::addTiles() %>%
@@ -193,8 +197,11 @@ convert_time <- function(n = NULL, isoTime = NULL) {
 buoy_stations <- function(refresh = FALSE, ...) {
   if (refresh) {
     # get station urls
-    res <- GET('http://www.ndbc.noaa.gov/to_station.shtml', ...)
-    html <- read_html(utcf8(res))
+    cli <- crul::HttpClient$new('http://www.ndbc.noaa.gov/to_station.shtml', 
+      opts = list(...))
+    res <- cli$get()
+    html <- read_html(res$parse("UTF-8"))
+
     sta_urls <- file.path(
       'http://www.ndbc.noaa.gov',
       xml_attr(
@@ -204,15 +211,27 @@ buoy_stations <- function(refresh = FALSE, ...) {
         "href"
       )
     )
+
+    # async it
+    sta_urls_cli <- crul::Async$new(urls = sta_urls)
+    sta_out <- sta_urls_cli$get()
+    # FIXME: just remove failures for now. 
+    #   probably should do some error catching here ....
+    sta_out <- Filter(function(x) x$status_code < 300, sta_out)
+
+    # get station IDs
+    stations <- vapply(sta_out, function(z) {
+      strsplit(str_extract_(z$url, "station=.+"), "=")[[1]][[2]]
+    }, "")
+
     # get individual station metadata
-    bind_rows(lapply(sta_urls, function(w) {
-      out <- GET(w)
-      html <- read_html(utcf8(out))
+    tt <- Map(function(w, sttt) {
+      html <- read_html(w$parse("UTF-8"))
       dc <- sapply(xml_find_all(html, "//meta[@name]"), function(z) {
         as.list(stats::setNames(xml_attr(z, "content"), xml_attr(z, "name")))
       })
       as_data_frame(c(
-        station = str_extract_(w, "[0-9]+$"),
+        station = sttt,
         lat = {
           val <- str_extract_(dc$DC.description, "[0-9]+\\.[0-9]+[NS]")
           num <- as.numeric(str_extract_(val, "[0-9]+\\.[0-9]+"))
@@ -233,7 +252,8 @@ buoy_stations <- function(refresh = FALSE, ...) {
         },
         dc
       ))
-    }))
+    }, sta_out, stations)
+    dplyr::bind_rows(tt)
   } else {
     readRDS(system.file("extdata", "buoy_station_data.rds", package = "rnoaa"))
   }

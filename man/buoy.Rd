@@ -22,7 +22,8 @@ Required}
 
 \item{datatype}{(character) Data type, one of 'c', 'cc', 'p', 'o'. Optional}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}. 
+Optional}
 
 \item{refresh}{(logical) Whether to use cached data (\code{FALSE}) or get
 new data (\code{FALSE}). Default: \code{FALSE}}
@@ -59,6 +60,9 @@ Options for the dataset parameter. One of:
 \dontrun{
 # Get buoy station information
 x <- buoy_stations()
+# refresh stations as needed, takes a while to run
+# you shouldn't need to update very often
+# x <- buoy_stations(refresh = TRUE)
 library("leaflet")
 leaflet(data = na.omit(x)) \%>\%
   leaflet::addTiles() \%>\%
