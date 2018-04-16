@@ -17,9 +17,6 @@ r_packages:
   - ggmap
   - ropenaq
 
-r_github_packages:
-  - jimhester/covr
-
 notifications:
   email:
     on_success: never

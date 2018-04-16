@@ -1,4 +1,4 @@
-#' @examples
+#' @examples \dontrun{
 #' # Search Argo metadata
 #' ## Number of profiles
 #' argo_search("np", limit = 3)
@@ -78,3 +78,4 @@
 #' # Get data
 #' x <- argo_buoy_files(dac = "meds", id = 4900881)
 #' argo(dac = "meds", id = 4900881, cycle = 127, dtype = "D")
+#' }
