@@ -34,7 +34,7 @@ test_that("gefs metadata", {
   skip_on_travis()
   skip_on_appveyor()
 
-  today = format(as.Date(Sys.time()) - 1, "%Y%m%d")
+  today = format(as.Date(Sys.time()) - 2, "%Y%m%d")
   forecast_time = "0600"
   d = gefs(var, lat, lon, ens=1, date=today, forecast_time=forecast_time)
 

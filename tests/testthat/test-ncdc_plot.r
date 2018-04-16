@@ -11,6 +11,6 @@ test_that("ncdc_plot returns the correct class", {
   p <- ncdc_plot(out)
   
   expect_is(p, "ggplot")
-  expect_is(p$mapping$x, "name")
+  expect_is(p$mapping$x, "quosure")
   expect_named(p$mapping, c("x", "y"))
 })
