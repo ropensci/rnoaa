@@ -32,27 +32,27 @@ test_that("storms data", {
   expect_equal(unique(storm$serial_num), '1970143N19091')
 })
 
-test_that("storms shape data", {
-  skip_on_cran()
-  skip_on_travis()
+# test_that("storms shape data", {
+#   skip_on_cran()
+#   skip_on_travis()
 
-  # basin
-  res <- storm_shp(basin = 'EP')
+#   # basin
+#   res <- storm_shp(basin = 'EP')
 
-  # storm
-  res2 <- storm_shp(storm = '1970143N19091')
+#   # storm
+#   res2 <- storm_shp(storm = '1970143N19091')
 
-  # year
-  res3 <- storm_shp(year = 1940)
-  shpread <- storm_shp_read(res3)
+#   # year
+#   res3 <- storm_shp(year = 1940)
+#   shpread <- storm_shp_read(res3)
 
-  expect_is(res, "storm_shp")
-  expect_is(res2, "storm_shp")
-  expect_is(res3, "storm_shp")
+#   expect_is(res, "storm_shp")
+#   expect_is(res2, "storm_shp")
+#   expect_is(res3, "storm_shp")
 
-  expect_is(res$path, "character")
-  expect_equal(attr(res, "basin"), "EP")
+#   expect_is(res$path, "character")
+#   expect_equal(attr(res, "basin"), "EP")
 
-  expect_is(shpread, "SpatialPointsDataFrame")
-  expect_is(shpread@data, "data.frame")
-})
+#   expect_is(shpread, "SpatialPointsDataFrame")
+#   expect_is(shpread@data, "data.frame")
+# })
