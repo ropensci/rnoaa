@@ -5,9 +5,10 @@
 \title{Search NOAA datasets}
 \usage{
 ncdc_datasets(datasetid = NULL, datatypeid = NULL, stationid = NULL,
-  locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
-  sortorder = NULL, limit = 25, offset = NULL, token = NULL,
-  dataset = NULL, page = NULL, year = NULL, month = NULL, ...)
+  locationid = NULL, startdate = NULL, enddate = NULL,
+  sortfield = NULL, sortorder = NULL, limit = 25, offset = NULL,
+  token = NULL, dataset = NULL, page = NULL, year = NULL,
+  month = NULL, ...)
 }
 \arguments{
 \item{datasetid}{(optional) Accepts a single valid dataset id. Data returned
@@ -121,3 +122,4 @@ Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}},
   \code{\link{ncdc}}
 }
+\concept{ncdc}

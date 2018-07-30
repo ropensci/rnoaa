@@ -5,8 +5,8 @@
 \title{Get metadata about NOAA location categories.}
 \usage{
 ncdc_locs_cats(datasetid = NULL, locationcategoryid = NULL,
-  startdate = NULL, enddate = NULL, sortfield = NULL, sortorder = NULL,
-  limit = 25, offset = NULL, token = NULL, ...)
+  startdate = NULL, enddate = NULL, sortfield = NULL,
+  sortorder = NULL, limit = 25, offset = NULL, token = NULL, ...)
 }
 \arguments{
 \item{datasetid}{A valid dataset id or a vector or list of dataset id's. Data returned will be from the
@@ -94,3 +94,4 @@ Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}},
   \code{\link{ncdc}}
 }
+\concept{ncdc}

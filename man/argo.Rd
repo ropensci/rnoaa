@@ -7,15 +7,14 @@
 \alias{argo_qwmo}
 \alias{argo_plan}
 \alias{argo_buoy_files}
-\alias{argo}
 \title{Get Argo buoy data}
 \usage{
 argo_search(func = NULL, of = NULL, qwmo = NULL, wmo = NULL,
-  box = NULL, area = NULL, around = NULL, year = NULL, yearmin = NULL,
-  yearmax = NULL, month = NULL, monthmin = NULL, monthmax = NULL,
-  lr = NULL, from = NULL, to = NULL, dmode = NULL, pres_qc = NULL,
-  temp_qc = NULL, psal_qc = NULL, doxy_qc = NULL, ticket = NULL,
-  limit = 10, ...)
+  box = NULL, area = NULL, around = NULL, year = NULL,
+  yearmin = NULL, yearmax = NULL, month = NULL, monthmin = NULL,
+  monthmax = NULL, lr = NULL, from = NULL, to = NULL,
+  dmode = NULL, pres_qc = NULL, temp_qc = NULL, psal_qc = NULL,
+  doxy_qc = NULL, ticket = NULL, limit = 10, ...)
 
 argo_files(wmo = NULL, cyc = NULL, ...)
 

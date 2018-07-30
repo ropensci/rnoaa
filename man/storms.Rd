@@ -13,8 +13,8 @@ storm_shp(basin = NULL, storm = NULL, year = NULL, type = "points",
 
 storm_shp_read(x)
 
-storm_data(basin = NULL, storm = NULL, year = NULL, overwrite = TRUE,
-  ...)
+storm_data(basin = NULL, storm = NULL, year = NULL,
+  overwrite = TRUE, ...)
 
 storm_meta(what = "storm_columns")
 }

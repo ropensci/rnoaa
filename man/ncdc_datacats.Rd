@@ -4,9 +4,10 @@
 \alias{ncdc_datacats}
 \title{Get possible data categories for a particular datasetid, locationid, stationid, etc.}
 \usage{
-ncdc_datacats(datasetid = NULL, datacategoryid = NULL, stationid = NULL,
-  locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
-  sortorder = NULL, limit = 25, offset = NULL, token = NULL, ...)
+ncdc_datacats(datasetid = NULL, datacategoryid = NULL,
+  stationid = NULL, locationid = NULL, startdate = NULL,
+  enddate = NULL, sortfield = NULL, sortorder = NULL, limit = 25,
+  offset = NULL, token = NULL, ...)
 }
 \arguments{
 \item{datasetid}{Accepts a valid dataset id or a vector or list of dataset id's. Data returned
@@ -112,3 +113,4 @@ Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}},
   \code{\link{ncdc}}
 }
+\concept{ncdc}

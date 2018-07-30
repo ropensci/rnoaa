@@ -298,7 +298,8 @@ fm <- function(n) {
 ghcnd_stations <- function(...){
   sta <- get_stations(...)
   inv <- get_inventory(...)
-  tibble::as_data_frame(merge(sta, inv[, -c(2, 3)], by = "id"))
+  df <- merge(sta, inv[, -c(2, 3)], by = "id")
+  tibble::as_data_frame(df[complete.cases(df), ])
 }
 
 get_stations <- function(...){

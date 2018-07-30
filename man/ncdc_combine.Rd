@@ -73,3 +73,4 @@ Other ncdc: \code{\link{ncdc_datacats}},
   \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}},
   \code{\link{ncdc}}
 }
+\concept{ncdc}

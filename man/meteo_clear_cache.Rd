@@ -18,3 +18,4 @@ This function will clear all cached \emph{meteo} files.
 \seealso{
 Other meteo: \code{\link{meteo_show_cache}}
 }
+\concept{meteo}

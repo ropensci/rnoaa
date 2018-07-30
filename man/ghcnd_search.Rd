@@ -4,8 +4,8 @@
 \alias{ghcnd_search}
 \title{Get a cleaned version of GHCND data from a single weather site}
 \usage{
-ghcnd_search(stationid, date_min = NULL, date_max = NULL, var = "all",
-  ...)
+ghcnd_search(stationid, date_min = NULL, date_max = NULL,
+  var = "all", ...)
 }
 \arguments{
 \item{stationid}{(character) A character string giving the identification of 

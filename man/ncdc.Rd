@@ -5,11 +5,12 @@
 \title{Search for and get NOAA NCDC data.}
 \usage{
 ncdc(datasetid = NULL, datatypeid = NULL, stationid = NULL,
-  locationid = NULL, startdate = NULL, enddate = NULL, sortfield = NULL,
-  sortorder = NULL, limit = 25, offset = NULL, token = NULL,
-  dataset = NULL, datatype = NULL, station = NULL, location = NULL,
-  locationtype = NULL, page = NULL, year = NULL, month = NULL,
-  day = NULL, includemetadata = TRUE, results = NULL, ...)
+  locationid = NULL, startdate = NULL, enddate = NULL,
+  sortfield = NULL, sortorder = NULL, limit = 25, offset = NULL,
+  token = NULL, dataset = NULL, datatype = NULL, station = NULL,
+  location = NULL, locationtype = NULL, page = NULL, year = NULL,
+  month = NULL, day = NULL, includemetadata = TRUE, results = NULL,
+  ...)
 }
 \arguments{
 \item{datasetid}{(required) Accepts a single valid dataset id. Data
@@ -259,3 +260,4 @@ Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
   \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}}
 }
+\concept{ncdc}

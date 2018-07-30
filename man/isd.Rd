@@ -4,9 +4,9 @@
 \alias{isd}
 \title{Get and parse NOAA ISD/ISH data}
 \usage{
-isd(usaf, wban, year, overwrite = TRUE, cleanup = TRUE, additional = TRUE,
-  parallel = FALSE, cores = getOption("cl.cores", 2), progress = FALSE,
-  force = FALSE, ...)
+isd(usaf, wban, year, overwrite = TRUE, cleanup = TRUE,
+  additional = TRUE, parallel = FALSE, cores = getOption("cl.cores",
+  2), progress = FALSE, force = FALSE, ...)
 }
 \arguments{
 \item{usaf, wban}{(character) USAF and WBAN code. Required}
@@ -163,3 +163,4 @@ Other isd: \code{\link{isd_read}},
   \code{\link{isd_stations_search}},
   \code{\link{isd_stations}}
 }
+\concept{isd}
