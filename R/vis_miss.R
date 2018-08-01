@@ -72,7 +72,7 @@ vis_miss <- function(x,
 
   d <- x.na[row_order_index , ] %>%
     as.data.frame %>%
-    dplyr::mutate_(rows = ~ row_number()) %>%
+    dplyr::mutate_(rows = ~ dplyr::row_number()) %>%
     # gather the variables together for plotting
     # here we now have a column of the row number (row),
     # then the variable(variables),
