@@ -1,0 +1,26 @@
+# from https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/ANNUAL_documentation.pdf
+ncdc_units_annual <- list(
+  CLDD = list(name = "CLDD", units = "fahrenheit", description = "Cooling degree days. These are using a 65 degree Fahrenheit base (whole degrees Fahrenheit)"),
+  DP01 = list(name = "DP01", units = "number_of_days", description = "Number of days in month with greater than or equal to 0.1 inch of precipitation"),
+  DP05 = list(name = "DP05", units = "number_of_days", description = "Number of days in month with greater than or equal to 0.5 inch of precipitation"),
+  DP10 = list(name = "DP10", units = "number_of_days", description = "Number of days in month with greater than or equal to 1.0 inch of precipitation"),
+  DT00 = list(name = "DT00", units = "number_of_days", description = "Number days in month with minimum temperature less than or equal to 0.0 F "),
+  DT32 = list(name = "DT32", units = "number_of_days", description = "Number days in month with minimum temperature less than or equal to 32.0 F"),
+  DT90 = list(name = "DT90", units = "number_of_days", description = "Number days in month with maximum temperature greater than or equal 90.0 F "),
+  DX32 = list(name = "DX32", units = "number_of_days", description = "Number days in month with maximum temperature less than or equal to 32.0 F "),
+  HTDD = list(name = "HTDD", units = "fahrenheit", description = "Heating degree days. These are using a 65 degree Fahrenheit base (whole degrees Fahrenheit"),
+  EMXP = list(name = "EMXP", units = "mm_tenths", description = "Extreme maximum daily precipitation total within month (inches to hundredths), day of occurrence given on PDF output"),
+  TPCP = list(name = "TPCP", units = "mm_tenths", description = "Total precipitation amount for the month (inches to hundredths)"),
+  TSNW = list(name = "TSNW", units = "mm", description = "Total snow fall amount for the month (inches to tenths)"),
+  MXSD = list(name = "MXSD", units = "mm", description = "Maximum snow depth reported during month (inches),  day of occurrence given on PDF output"),
+  DPNP = list(name = "DPNP", units = "mm_tenths", description = "Departure from normal monthly precipitation (1981 – 2010 normal)"),
+  EMNT = list(name = "EMNT", units = "celcius_tenths", description = "Extreme minimum temperature reported in month, day of occurrence given on PDF output"),
+  EMXT = list(name = "EMXT", units = "celcius_tenths", description = "Extreme maximum temperature reported in month, day of occurrence given on PDF output"),
+  MMNT = list(name = "MMNT", units = "celcius_tenths", description = "Monthly mean minimum temperature (tenths of degrees)"),
+  MMXT = list(name = "MMXT", units = "celcius_tenths", description = "Monthly mean maximum temperature (tenths of degrees)"),
+  MNTM = list(name = "MNTM", units = "celcius_tenths", description = "Monthly mean temperature (tenths of degrees)"),
+  DPNT = list(name = "DPNT", units = "celcius_tenths", description = "Departure from normal monthly mean temperature (1981 – 2010 normal)"),
+  MMNP = list(name = "MMNP", units = "fahrenheit", description = "Mean minimum temperature for month of water within evaporation pan (Fahrenheit to tenths)"),
+  MMXP = list(name = "MMXP", units = "fahrenheit", description = "Mean maximum temperature for month of water within evaporation pan (Fahrenheit to tenths)"),
+  TEVP = list(name = "TEVP", units = "mm_tenths", description = "Total water to evaporated from evaporation pan for month (inches to hundredths)")
+)

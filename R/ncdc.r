@@ -1,4 +1,4 @@
-#' Search for and get NOAA NCDC data.
+#' Search for and get NOAA NCDC data
 #'
 #' @export
 #' @template rnoaa
@@ -95,7 +95,7 @@
 #'    startdate = '2010-05-01', enddate = '2010-05-10')
 #'
 #' # multiple datatypeid's
-#' ncdc(datasetid='PRECIP_HLY', datatypeid=c('HPCP', 'ACMC'),
+#' ncdc(datasetid='PRECIP_HLY', datatypeid = 'HPCP',
 #'    startdate = '2010-05-01', enddate = '2010-05-10')
 #'
 #' # multiple locationid's
@@ -199,8 +199,9 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   } else {
     tt$results <- lapply(tt$results, split_atts, ds = datasetid)
     dat <- dplyr::bind_rows(lapply(tt$results, function(x)
-      data.frame(x,stringsAsFactors = FALSE)))
+      data.frame(x, stringsAsFactors = FALSE)))
     meta <- tt$metadata$resultset
+    dat <- ncdc_add_units(dat, datasetid)
     atts <- list(totalCount = meta$count, pageCount = meta$limit,
                  offset = meta$offset)
     all <- list(meta = atts, data = dat)
