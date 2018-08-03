@@ -2,7 +2,7 @@
 % Please edit documentation in R/ncdc.r
 \name{ncdc}
 \alias{ncdc}
-\title{Search for and get NOAA NCDC data.}
+\title{Search for and get NOAA NCDC data}
 \usage{
 ncdc(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   locationid = NULL, startdate = NULL, enddate = NULL,
@@ -87,7 +87,7 @@ for data (data). The meta slot is a list of metadata elements, and the
 data slot is a data.frame, possibly of length zero if no data is found.
 }
 \description{
-Search for and get NOAA NCDC data.
+Search for and get NOAA NCDC data
 }
 \details{
 Note that NOAA NCDC API calls can take a long time depending on the call.
@@ -187,7 +187,7 @@ ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
    startdate = '2010-05-01', enddate = '2010-05-10')
 
 # multiple datatypeid's
-ncdc(datasetid='PRECIP_HLY', datatypeid=c('HPCP', 'ACMC'),
+ncdc(datasetid='PRECIP_HLY', datatypeid = 'HPCP',
    startdate = '2010-05-01', enddate = '2010-05-10')
 
 # multiple locationid's

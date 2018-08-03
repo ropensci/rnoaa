@@ -1,11 +1,6 @@
 ncdc_add_units <- function(x, datasetid) {
   stopifnot(is.data.frame(x))
-  unit_adder(datasetid, x)
-  # switch(
-  #   datasetid,
-  #   'GHCND' = unit_adder(x),
-  #   stop("no logic in ncdc_add_units() for dataset: ", datasetid)
-  # )
+  if (datasetid %in% c('NEXRAD2', 'NEXRAD3')) x else unit_adder(datasetid, x)
 }
 
 unit_adder <- function(datasetid, x) {
