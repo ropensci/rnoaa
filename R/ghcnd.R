@@ -188,7 +188,7 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' path <- system.file("examples/AGE00147704.dly", package = "rnoaa")
 #' ghcnd_read(path)
 
-ghcnd <- function(stationid, ...){
+ghcnd <- function(stationid, ...) {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- "path" %in% calls
   if (any(calls_vec)) {
@@ -204,9 +204,16 @@ ghcnd <- function(stationid, ...){
     res <- read.csv(csvpath, stringsAsFactors = FALSE,
                     colClasses = ghcnd_col_classes)
   }
+  # remove trailing row of NA's
+  res <- remove_na_row(res)
   res <- tibble::as_data_frame(res)
   attr(res, 'source') <- csvpath
   return(res)
+}
+
+remove_na_row <- function(x) {
+  if (!any(x[,1] == "NA") && !any(is.na(x[,1]))) return(x)
+  return(x[!as.character(x[,1]) %in% c("NA", NA_character_), ])
 }
 
 #' @export
