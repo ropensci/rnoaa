@@ -5,7 +5,7 @@
 \alias{ghcnd_read}
 \title{Get all GHCND data from a single weather site}
 \usage{
-ghcnd(stationid, ...)
+ghcnd(stationid, refresh = FALSE, ...)
 
 ghcnd_read(path, ...)
 }
@@ -15,6 +15,9 @@ the weather station for which the user would like to pull data. To get a full
 and current list of stations, the user can use the \code{\link{ghcnd_stations}}
 function. To identify stations within a certain radius of a location, the
 user can use the \code{\link{meteo_nearby_stations}} function.}
+
+\item{refresh}{(logical) If \code{TRUE} force re-download of data. 
+Default: \code{FALSE}}
 
 \item{...}{In the case of \code{ghcnd} additional curl options to pass 
 through to \code{\link[httr]{GET}}. In the case of \code{ghcnd_read} 
@@ -45,6 +48,12 @@ This function saves the full set of weather data for the queried
 site locally in the directory specified by the \code{path} argument.
 
 You can access the path for the cached file via \code{attr(x, "source")}
+
+You can access the last modified time for the cached file via 
+\code{attr(x, "file_modified")}
+
+Messages are printed to the console about file path and file last modified time
+which you can suppress with \code{suppressMessages()}
 }
 \section{File storage}{
 
@@ -56,6 +65,8 @@ your machine to save files to, and run
 Note that between versions of \pkg{rnoaa} you may want to clear your
 cache of ghcnd files IF there are changes in ghcnd functions. See
 \code{\link{ghcnd_clear_cache}} or you can do so manually.
+
+Using \code{refresh = TRUE} you can force a re-download of the data file.
 }
 
 \examples{
@@ -86,6 +97,9 @@ dat <- ghcnd(stationid = "AGE00147704")
 dat \%>\%
  filter(element == "PRCP", year == 1909)
 }
+
+# refresh the cached file
+ghcnd(stationid = "AGE00147704", refresh = TRUE)
 
 # Read in a .dly file you've already downloaded
 path <- system.file("examples/AGE00147704.dly", package = "rnoaa")
