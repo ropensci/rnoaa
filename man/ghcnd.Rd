@@ -96,7 +96,6 @@ library("dplyr")
 dat <- ghcnd(stationid = "AGE00147704")
 dat \%>\%
  filter(element == "PRCP", year == 1909)
-}
 
 # refresh the cached file
 ghcnd(stationid = "AGE00147704", refresh = TRUE)
@@ -104,6 +103,7 @@ ghcnd(stationid = "AGE00147704", refresh = TRUE)
 # Read in a .dly file you've already downloaded
 path <- system.file("examples/AGE00147704.dly", package = "rnoaa")
 ghcnd_read(path)
+}
 }
 \seealso{
 To generate a weather dataset for a single weather site that has

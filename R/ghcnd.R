@@ -203,7 +203,6 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' dat <- ghcnd(stationid = "AGE00147704")
 #' dat %>%
 #'  filter(element == "PRCP", year == 1909)
-#' }
 #' 
 #' # refresh the cached file
 #' ghcnd(stationid = "AGE00147704", refresh = TRUE)
@@ -211,6 +210,7 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' # Read in a .dly file you've already downloaded
 #' path <- system.file("examples/AGE00147704.dly", package = "rnoaa")
 #' ghcnd_read(path)
+#' }
 
 ghcnd <- function(stationid, refresh = FALSE, ...) {
   calls <- names(sapply(match.call(), deparse))[-1]
