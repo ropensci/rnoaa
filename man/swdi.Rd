@@ -24,7 +24,10 @@ from 1 to 10000000. Time out issues likely to occur at higher limits.}
 \item{offset}{Any number from 1 to 10000000. Default is NULL, no offset, 
 start from 1.}
 
-\item{radius}{Search radius in miles (current limit is 15 miles)}
+\item{radius}{Search radius in miles (current limit is 15 miles). 
+BEWARE: As far as we know, this parameter doesn't do anything, or at 
+least does not in fact limit the search to the given radius. 
+DO NOT USE.}
 
 \item{center}{Center coordinate in lon,lat decimal degree format, 
 e.g.: c(-95.45,36.88)}
@@ -48,7 +51,8 @@ the supplied values.}
 \item{filepath}{If kmz or shp chosen the file name and optionally path to 
 write to. Ignored format=xml or format=csv (optional)}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} 
+(optional)}
 }
 \value{
 If xml or csv chosen, a list of length three, a slot of metadata 
@@ -90,9 +94,9 @@ in the WGS84 datum.
 # Search for nx3tvs data from 5 May 2006 to 6 May 2006
 swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 
-# Get all 'nx3tvs' within 15 miles of latitude = 32.7 and longitude = -102.0
+# Get all 'nx3tvs' near latitude = 32.7 and longitude = -102.0
 swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507',
-radius=15, center=c(-102.0,32.7))
+center=c(-102.0,32.7))
 
 # use an id
 swdi(dataset='warn', startdate='20060506', enddate='20060507', id=533623)
@@ -109,8 +113,8 @@ tile=c(-102.12,32.62))
 ## Note: stat='count' will only return metadata, nothing in the data or shape slots
 ## Note: stat='tilesum:...' returns counts in the data slot for each date for that tile,
 ##   and shape data
-## Get number of 'nx3tvs' within 15 miles of latitude = 32.7 and longitude = -102.0
-swdi(dataset='nx3tvs', startdate='20060505', enddate='20060516', radius=15,
+## Get number of 'nx3tvs' near latitude = 32.7 and longitude = -102.0
+swdi(dataset='nx3tvs', startdate='20060505', enddate='20060516',
 center=c(-102.0,32.7), stat='count')
 
 ## Get daily count nx3tvs features on .1 degree grid centered at latitude = 32.7
@@ -127,7 +131,7 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp',
 
 # KMZ format
 swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz',
-   radius=15, filepath='myfile.kmz')
+   filepath='myfile.kmz')
 
 # csv output to SpatialPointsDataFrame
 res <- swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format="csv")
