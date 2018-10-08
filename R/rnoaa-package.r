@@ -60,10 +60,12 @@
 #' @importFrom scales date_breaks date_format
 #' @importFrom ggplot2 autoplot ggplot aes facet_wrap theme theme_bw geom_line
 #' labs guides guide_legend fortify scale_x_date scale_x_datetime element_blank
+#' @importFrom crul HttpClient
 #' @importFrom httr GET add_headers content warn_for_status stop_for_status
 #' write_disk parse_url build_url http_status
 #' @importFrom XML xpathSApply xpathApply xmlValue xmlParse xmlToList htmlParse
-#' @importFrom xml2 read_html xml_find_all xml_attr
+#' @importFrom xml2 read_html read_xml xml_find_all xml_attr as_list 
+#' xml_text xml_find_first
 #' @importFrom jsonlite fromJSON
 #' @importFrom tidyr gather
 #' @importFrom rappdirs user_cache_dir
