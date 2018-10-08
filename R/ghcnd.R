@@ -54,6 +54,10 @@
 #'    and / or weather variables, using the \code{date_min}, \code{date_max},
 #'    and \code{var} arguments, does not occur until after the full data has
 #'    been pulled.
+#' 
+#' @details 
+#' Messages are printed to the console about file path, file last modified time
+#' which you can suppress with \code{suppressMessages()}
 #'
 #' @seealso \code{\link{meteo_pull_monitors}}, \code{\link{meteo_tidy_ghcnd}}
 #'
@@ -68,9 +72,12 @@
 #' ghcnd_search("AGE00147704", var = c("PRCP","TMIN"))
 #' ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
 #' ghcnd_search("AGE00147704", var = "adfdf")
+#' 
+#' # refresh the cached file
+#' ghcnd_search("AGE00147704", var = "PRCP", refresh = TRUE)
 #' }
 ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
-                         var = "all", ...) {
+                         var = "all", refresh = FALSE, ...) {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- "path" %in% calls
   if (any(calls_vec)) {
@@ -78,9 +85,13 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
          call. = FALSE)
   }
 
-  dat <- ghcnd_splitvars(ghcnd(stationid))
-  possvars <- paste0(names(dat), collapse = ", ")
+  out <- ghcnd(stationid, refresh = refresh, ...)
+  dat <- ghcnd_splitvars(out)
 
+  # date check
+  message("file min/max dates: ", min(dat[[1]]$date), " / ", max(dat[[1]]$date))
+
+  possvars <- paste0(names(dat), collapse = ", ")
   if (any(var != "all")) {
     vars_null <- sort(tolower(var))[!sort(tolower(var)) %in% sort(names(dat))]
     dat <- dat[tolower(var)]
@@ -117,6 +128,8 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' user can use the \code{\link{meteo_nearby_stations}} function.
 #' @param path (character) a path to a file with a \code{.dly} extension - already
 #' downloaded on your computer
+#' @param refresh (logical) If \code{TRUE} force re-download of data. 
+#' Default: \code{FALSE}
 #' @param ... In the case of \code{ghcnd} additional curl options to pass 
 #' through to \code{\link[httr]{GET}}. In the case of \code{ghcnd_read} 
 #' further options passed on to \code{read.csv} 
@@ -135,6 +148,12 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' site locally in the directory specified by the \code{path} argument.
 #'
 #' You can access the path for the cached file via \code{attr(x, "source")}
+#' 
+#' You can access the last modified time for the cached file via 
+#' \code{attr(x, "file_modified")}
+#' 
+#' Messages are printed to the console about file path and file last modified time
+#' which you can suppress with \code{suppressMessages()}
 #'
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com},
 #' Adam Erickson \email{adam.erickson@@ubc.ca}
@@ -155,6 +174,8 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' Note that between versions of \pkg{rnoaa} you may want to clear your
 #' cache of ghcnd files IF there are changes in ghcnd functions. See
 #' \code{\link{ghcnd_clear_cache}} or you can do so manually.
+#' 
+#' Using \code{refresh = TRUE} you can force a re-download of the data file.
 #'
 #' @examples \dontrun{
 #' # Get data
@@ -182,13 +203,16 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' dat <- ghcnd(stationid = "AGE00147704")
 #' dat %>%
 #'  filter(element == "PRCP", year == 1909)
-#' }
+#' 
+#' # refresh the cached file
+#' ghcnd(stationid = "AGE00147704", refresh = TRUE)
 #' 
 #' # Read in a .dly file you've already downloaded
 #' path <- system.file("examples/AGE00147704.dly", package = "rnoaa")
 #' ghcnd_read(path)
+#' }
 
-ghcnd <- function(stationid, ...){
+ghcnd <- function(stationid, refresh = FALSE, ...) {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- "path" %in% calls
   if (any(calls_vec)) {
@@ -198,15 +222,25 @@ ghcnd <- function(stationid, ...){
 
   path <- file.path(rnoaa_cache_dir(), "ghcnd")
   csvpath <- ghcnd_local(stationid, path)
-  if (!is_ghcnd(x = csvpath)) {
+  if (!is_ghcnd(x = csvpath) || refresh) {
     res <- ghcnd_GET(path, stationid, ...)
   } else {
     res <- read.csv(csvpath, stringsAsFactors = FALSE,
                     colClasses = ghcnd_col_classes)
   }
+  fi <- file.info(csvpath)
+  res <- remove_na_row(res) # remove trailing row of NA's
   res <- tibble::as_data_frame(res)
   attr(res, 'source') <- csvpath
+  attr(res, 'file_modified') <- fi[['mtime']]
+  message("file path:          ", csvpath)
+  message("file last updated:  ", attr(res, "file_modified"))
   return(res)
+}
+
+remove_na_row <- function(x) {
+  if (!any(x[,1] == "NA") && !any(is.na(x[,1]))) return(x)
+  return(x[!as.character(x[,1]) %in% c("NA", NA_character_), ])
 }
 
 #' @export
@@ -508,6 +542,10 @@ ghcnd_remote <- function(stationid) {
   file.path(ghcndbase(), paste0(stationid, ".dly"))
 }
 ghcnd_local <- function(stationid, path) {
+  # if (!is.null(attributes(stationid))) {
+  #   stationid <- paste(stationid, attr(stationid, "date_min"), 
+  #     attr(stationid, "date_max"), sep = "_")
+  # }
   file.path(path, paste0(stationid, ".dly"))
 }
 is_ghcnd <- function(x) if (file.exists(x)) TRUE else FALSE
