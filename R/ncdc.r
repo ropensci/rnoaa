@@ -267,7 +267,17 @@ parse_ncdc <- function(x, headings = NULL, fun = NULL){
     res <- c(res, "")
   }
   if (is.null(fun)) names(res) <- headings
-  if (is.null(headings)) names(res) <- fun(x)
+  if (is.null(headings)) {
+    tmp <- fun(x)
+    if (length(tmp) > length(res)) { # names longer
+      res <- rep(res, length(tmp))
+      names(res) <- tmp
+    } else if (length(res) > length(tmp)) { # attr longer
+      names(res) <- rep(tmp, length(res))
+    } else { # same length
+      names(res) <- tmp
+    }
+  }
   as.list(res)
 }
 
