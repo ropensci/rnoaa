@@ -39,3 +39,24 @@ test_that("ncdc returns the correct ...", {
 #   expect_equal(dim(ii$data), c(22,5))
 #   expect_equal(length(ii$atts), 3)
 })
+
+
+context("ncdc: add units")
+test_that("ncdc add units works", {
+  skip_on_cran()
+
+  aa <- ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', 
+    startdate = '2010-05-01', enddate = '2010-05-10')
+
+  expect_is(aa, "ncdc_data")
+  expect_is(aa$data, "tbl_df")
+  expect_is(aa$data$units, "character")
+
+
+  aa <- ncdc(datasetid='GSOM', startdate = '2013-10-01', 
+    enddate = '2013-12-01', stationid = "GHCND:AE000041196")
+
+  expect_is(aa, "ncdc_data")
+  expect_is(aa$data, "tbl_df")
+  expect_is(aa$data$units, "character")
+})
