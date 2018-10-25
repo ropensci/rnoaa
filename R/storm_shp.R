@@ -48,7 +48,7 @@ shpstorm_GET <- function(bp, basin, storm, year, type, overwrite) {
              recursive = TRUE)
   fp <- shp_local(basin, storm, year, bp, type)
   paths <- Map(function(x, y)
-    suppressWarnings(GET(x, write_disk(y, overwrite))),
+    suppressWarnings(GET(x, write_disk(y, overwrite), verbose())),
     shp_remote(basin, storm, year, type), fp)
   vapply(paths, function(z) z$request$output$path, "", USE.NAMES = FALSE)
 }
@@ -56,10 +56,10 @@ shpstorm_GET <- function(bp, basin, storm, year, type, overwrite) {
 shpfileext <- function(basin, storm, year, type) {
   tt <- filepath(basin, storm, year)
   if (grepl("Allstorms", tt)) {
-    paste0(tt, '.ibtracs_all_', type, '.v03r06.', c('dbf','prj','shp','shx'),
+    paste0(tt, '.ibtracs_all_', type, '.v03r10.', c('dbf','prj','shp','shx'),
            '.gz')
   } else {
-    paste0(tt, '.ibtracs_all_', type, '.v03r06.', c('dbf','prj','shp','shx'))
+    paste0(tt, '.ibtracs_all_', type, '.v03r10.', c('dbf','prj','shp','shx'))
   }
 }
 
@@ -67,9 +67,9 @@ filepath2 <- function(basin, storm, year, type) {
   tmp <- filecheck(basin, storm, year)
   switch(names(tmp),
          all = 'Allstorms',
-         basin = paste0('Basin.', tmp[[1]], '.ibtracs_all_', type, '.v03r06'),
-         storm = paste0('Storm.', tmp[[1]], '.ibtracs_all_', type, '.v03r06'),
-         year = paste0('Year.', tmp[[1]], '.ibtracs_all_', type, '.v03r06')
+         basin = paste0('Basin.', tmp[[1]], '.ibtracs_all_', type, '.v03r10'),
+         storm = paste0('Storm.', tmp[[1]], '.ibtracs_all_', type, '.v03r10'),
+         year = paste0('Year.', tmp[[1]], '.ibtracs_all_', type, '.v03r10')
   )
 }
 
