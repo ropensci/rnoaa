@@ -3,9 +3,10 @@
 #' @export
 #' @param lat (numeric) Latitude, in decimal degree
 #' @param lon (numeric) Latitude, in decimal degree
-#' @param radius (numeric) Radius (in km) to search from the lat,lon coordinates
-#' @param bbox (numeric) Bounding box, of the form: min-longitude, min-latitude,
-#' max-longitude, max-latitude
+#' @param radius (numeric) Radius (in km) to search from the lat,lon 
+#' coordinates
+#' @param bbox (numeric) Bounding box, of the form: min-longitude, 
+#' min-latitude, max-longitude, max-latitude
 #'
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 #'
@@ -22,7 +23,7 @@
 #'  \item elev_m - Elevation, if given, numeric
 #'  \item begin - Begin date of data coverage, of form YYYYMMDD, numeric
 #'  \item end - End date of data coverage, of form YYYYMMDD, numeric
-#'  \item dist - distance (km) (only present if using lat/lon/radius
+#'  \item distance - distance (km) (only present if using lat/lon/radius
 #'  parameter combination)
 #' }
 #'
@@ -58,16 +59,21 @@
 #' bbox <- c(-125.0, 38.4, -121.8, 40.9)
 #' isd_stations_search(bbox = bbox)
 #' }
-isd_stations_search <- function(lat = NULL, lon = NULL, radius = NULL, bbox = NULL) {
+isd_stations_search <- function(lat = NULL, lon = NULL, radius = NULL, 
+  bbox = NULL) {
+
   stations <- dplyr::filter_(
     isd_stations(),
     "!(is.na(lat) | is.na(lon) | (lat == 0 & lon == 0) | abs(lon) > 180 | abs(lat) > 90)"
   )
 
   if (!is.null(bbox)) {
-    filter(stations, lat >= bbox[2] & lat <= bbox[4], lon >= bbox[1] & lon <= bbox[3])
+    filter(stations, 
+      lat >= bbox[2] & lat <= bbox[4], 
+      lon >= bbox[1] & lon <= bbox[3])
   } else {
     stations <- rename(stations, latitude = lat, longitude = lon)
-    meteo_distance(stations, lat = lat, long = lon, radius = radius)
+    tmp <- meteo_distance(stations, lat = lat, long = lon, radius = radius)
+    rename(tmp, lat = latitude, lon = longitude)
   }
 }
