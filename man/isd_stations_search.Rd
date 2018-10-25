@@ -12,10 +12,11 @@ isd_stations_search(lat = NULL, lon = NULL, radius = NULL,
 
 \item{lon}{(numeric) Latitude, in decimal degree}
 
-\item{radius}{(numeric) Radius (in km) to search from the lat,lon coordinates}
+\item{radius}{(numeric) Radius (in km) to search from the lat,lon 
+coordinates}
 
-\item{bbox}{(numeric) Bounding box, of the form: min-longitude, min-latitude,
-max-longitude, max-latitude}
+\item{bbox}{(numeric) Bounding box, of the form: min-longitude, 
+min-latitude, max-longitude, max-latitude}
 }
 \value{
 a data.frame with the columns:
@@ -31,7 +32,7 @@ a data.frame with the columns:
  \item elev_m - Elevation, if given, numeric
  \item begin - Begin date of data coverage, of form YYYYMMDD, numeric
  \item end - End date of data coverage, of form YYYYMMDD, numeric
- \item dist - distance (km) (only present if using lat/lon/radius
+ \item distance - distance (km) (only present if using lat/lon/radius
  parameter combination)
 }
 }

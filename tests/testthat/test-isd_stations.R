@@ -57,8 +57,8 @@ test_that("search for stations - by lat/lon/radius", {
 
   #Valid type and dimension tests
   expect_is_valid_generic_df(out)
-  expect_is(out$latitude, "numeric")
-  expect_is(out$longitude, "numeric")
+  expect_is(out$lat, "numeric")
+  expect_is(out$lon, "numeric")
   expect_is(out$distance, "numeric")
   expect_equal(NCOL(out), 12)
 

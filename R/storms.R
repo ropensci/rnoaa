@@ -139,9 +139,9 @@ filepath <- function(basin, storm, year){
 fileext <- function(basin, storm, year){
   tt <- filepath(basin, storm, year)
   if (grepl("Allstorms", tt)) {
-    paste0(tt, '.ibtracs_all.v03r06.csv.gz')
+    paste0(tt, '.ibtracs_all.v03r10.csv.gz')
   } else {
-    paste0(tt, '.ibtracs_all.v03r06.csv')
+    paste0(tt, '.ibtracs_all.v03r10.csv')
   }
 }
 
@@ -160,5 +160,5 @@ local_base <- function(basin, storm, year, path){
 is_storm <- function(x) if (file.exists(x)) TRUE else FALSE
 
 stormurl <- function(x = "csv") {
-  sprintf('ftp://eclipse.ncdc.noaa.gov/pub/ibtracs/v03r06/all/%s', x)
+  sprintf('ftp://eclipse.ncdc.noaa.gov/pub/ibtracs/v03r10/all/%s', x)
 }

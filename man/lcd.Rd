@@ -18,9 +18,32 @@ zeros, so it's a good idea to keep stations as character class}
 \value{
 a data.frame, with many columns, and variable rows
 depending on how frequently data was collected in the given year
+
+a data.frame with many columns. the first 10 are metadata:
+
+\itemize{
+ \item station
+ \item date
+ \item source
+ \item latitude
+ \item longitude
+ \item elevation
+ \item name
+ \item report_type
+ \item call_sign
+ \item quality_control
+}
+
+And the rest should be all data columns. See Note about data joined
+together.
 }
 \description{
 Local Climitalogical Data from NOAA
+}
+\note{
+Beware that there are multiple columns with comma-delimited data 
+joined together. In the next version of this package we'll try to have the
+data cleaning done for you.
 }
 \examples{
 \dontrun{
