@@ -20,9 +20,9 @@ test_that("Each data set is accessible", {
   skip_on_cran()
   valid_dataset('nx3tvs')
   valid_dataset('nx3meso')
-  valid_dataset('nx3hail')
-  valid_dataset('nx3structure')
-  valid_dataset('plsr')
+  # valid_dataset('nx3hail')
+  # valid_dataset('nx3structure')
+  # valid_dataset('plsr')
   valid_dataset('warn')
 })
 
