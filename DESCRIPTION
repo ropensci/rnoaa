@@ -10,6 +10,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
 Version: 0.7.9.9100
 License: MIT + file LICENSE
 Encoding: UTF-8
+Language: en-US
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut","cre"), email = "myrmecocystus@gmail.com"),
     person("Brooke", "Anderson", role = "ctb"),
