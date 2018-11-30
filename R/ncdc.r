@@ -1,4 +1,4 @@
-#' Search for and get NOAA NCDC data.
+#' Search for and get NOAA NCDC data
 #'
 #' @export
 #' @template rnoaa
@@ -11,6 +11,10 @@
 #' return object, in that the named part of the output list called "meta"
 #' is still returned, but is NULL. In practice, I haven't seen response
 #' time's improve, but perhaps they will for you.
+#' @param add_units (logical) whether to add units information or not. 
+#' default: \code{FALSE}. If \code{TRUE}, after getting data from NOAA
+#' we add a new column \code{units}. See "Adding units" in Details 
+#' for more
 #'
 #' @details
 #' Note that NOAA NCDC API calls can take a long time depending on the call.
@@ -58,6 +62,20 @@
 #' \code{system.file("extdata/gsom_readme.txt", package = "rnoaa")}
 #' and \code{system.file("extdata/gsoy_readme.txt", package = "rnoaa")}
 #' in a text editor.
+#' 
+#' @section Adding units:
+#' The \code{add_units} parameter is experimental - USE WITH CAUTION! 
+#' If \code{add_units=TRUE} we pull data from curated lists of data
+#' used by matching by datasetid and data type.
+#' 
+#' We've attempted to gather as much information as possible on the many, many
+#' data types across the many different NOAA data sets. However, we may have
+#' got some things wrong, so make sure to double check data you get if you 
+#' do add units.
+#' 
+#' Get in touch if you find some units that are wrong or missing, and 
+#' if you are able to help correct information.
+#' 
 #'
 #' @return An S3 list of length two, a slot of metadata (meta), and a slot
 #' for data (data). The meta slot is a list of metadata elements, and the
@@ -95,7 +113,7 @@
 #'    startdate = '2010-05-01', enddate = '2010-05-10')
 #'
 #' # multiple datatypeid's
-#' ncdc(datasetid='PRECIP_HLY', datatypeid=c('HPCP', 'ACMC'),
+#' ncdc(datasetid='PRECIP_HLY', datatypeid = 'HPCP',
 #'    startdate = '2010-05-01', enddate = '2010-05-10')
 #'
 #' # multiple locationid's
@@ -165,7 +183,7 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
   token=NULL, dataset=NULL, datatype=NULL, station=NULL, location=NULL,
   locationtype=NULL, page=NULL, year=NULL, month=NULL, day=NULL, includemetadata=TRUE,
-  results=NULL, ...)
+  results=NULL, add_units=FALSE, ...)
 {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- c("dataset","datatype","station","location","locationtype","page","year","month","day","results") %in% calls
@@ -195,12 +213,13 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
               add_headers("token" = token), ...)
   tt <- check_response(temp)
   if (inherits(tt, "character")) {
-    all <- list(meta = NA, data = NA)
+    all <- list(meta = NA, data = tibble::data_frame())
   } else {
     tt$results <- lapply(tt$results, split_atts, ds = datasetid)
     dat <- dplyr::bind_rows(lapply(tt$results, function(x)
-      data.frame(x,stringsAsFactors = FALSE)))
+      data.frame(x, stringsAsFactors = FALSE)))
     meta <- tt$metadata$resultset
+    dat <- if (add_units) ncdc_add_units(dat, datasetid) else tibble::as_data_frame(dat)
     atts <- list(totalCount = meta$count, pageCount = meta$limit,
                  offset = meta$offset)
     all <- list(meta = atts, data = dat)

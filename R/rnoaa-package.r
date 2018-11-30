@@ -71,8 +71,8 @@
 #' @importFrom rappdirs user_cache_dir
 #' @importFrom gridExtra grid.arrange
 #' @importFrom dplyr %>% select mutate rename tbl_df filter bind_rows
-#' as_data_frame contains
-#' @importFrom tibble as_data_frame
+#' as_data_frame contains rowwise do bind_cols ungroup
+#' @importFrom tibble as_data_frame data_frame
 #' @importFrom scales comma
 #' @name rnoaa-package
 #' @aliases rnoaa

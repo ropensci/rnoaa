@@ -2,7 +2,7 @@
 % Please edit documentation in R/ncdc.r
 \name{ncdc}
 \alias{ncdc}
-\title{Search for and get NOAA NCDC data.}
+\title{Search for and get NOAA NCDC data}
 \usage{
 ncdc(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   locationid = NULL, startdate = NULL, enddate = NULL,
@@ -10,7 +10,7 @@ ncdc(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   token = NULL, dataset = NULL, datatype = NULL, station = NULL,
   location = NULL, locationtype = NULL, page = NULL, year = NULL,
   month = NULL, day = NULL, includemetadata = TRUE, results = NULL,
-  ...)
+  add_units = FALSE, ...)
 }
 \arguments{
 \item{datasetid}{(required) Accepts a single valid dataset id. Data
@@ -79,6 +79,11 @@ time's improve, but perhaps they will for you.}
 
 \item{results}{THIS IS A DEPRECATED ARGUMENT. See limit.}
 
+\item{add_units}{(logical) whether to add units information or not. 
+default: \code{FALSE}. If \code{TRUE}, after getting data from NOAA
+we add a new column \code{units}. See "Adding units" in Details 
+for more}
+
 \item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
 \value{
@@ -87,7 +92,7 @@ for data (data). The meta slot is a list of metadata elements, and the
 data slot is a data.frame, possibly of length zero if no data is found.
 }
 \description{
-Search for and get NOAA NCDC data.
+Search for and get NOAA NCDC data
 }
 \details{
 Note that NOAA NCDC API calls can take a long time depending on the call.
@@ -156,6 +161,21 @@ and \code{system.file("extdata/gsoy_readme.txt", package = "rnoaa")}
 in a text editor.
 }
 
+\section{Adding units}{
+
+The \code{add_units} parameter is experimental - USE WITH CAUTION! 
+If \code{add_units=TRUE} we pull data from curated lists of data
+used by matching by datasetid and data type.
+
+We've attempted to gather as much information as possible on the many, many
+data types across the many different NOAA data sets. However, we may have
+got some things wrong, so make sure to double check data you get if you 
+do add units.
+
+Get in touch if you find some units that are wrong or missing, and 
+if you are able to help correct information.
+}
+
 \examples{
 \dontrun{
 # GHCN-Daily (or GHCND) data, for a specific station
@@ -187,7 +207,7 @@ ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
    startdate = '2010-05-01', enddate = '2010-05-10')
 
 # multiple datatypeid's
-ncdc(datasetid='PRECIP_HLY', datatypeid=c('HPCP', 'ACMC'),
+ncdc(datasetid='PRECIP_HLY', datatypeid = 'HPCP',
    startdate = '2010-05-01', enddate = '2010-05-10')
 
 # multiple locationid's
