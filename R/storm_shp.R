@@ -48,7 +48,7 @@ shpstorm_GET <- function(bp, basin, storm, year, type, overwrite) {
              recursive = TRUE)
   fp <- shp_local(basin, storm, year, bp, type)
   paths <- Map(function(x, y)
-    suppressWarnings(GET(x, write_disk(y, overwrite), verbose())),
+    suppressWarnings(GET(x, write_disk(y, overwrite), ...)),
     shp_remote(basin, storm, year, type), fp)
   vapply(paths, function(z) z$request$output$path, "", USE.NAMES = FALSE)
 }
