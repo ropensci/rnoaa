@@ -44,7 +44,7 @@ Imports:
     geonames,
     hoardr
 Suggests:
-    roxygen2 (>= 6.1.0),
+    roxygen2 (>= 6.1.1),
     testthat,
     knitr,
     taxize,
