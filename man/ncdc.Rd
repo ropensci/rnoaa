@@ -10,7 +10,7 @@ ncdc(datasetid = NULL, datatypeid = NULL, stationid = NULL,
   token = NULL, dataset = NULL, datatype = NULL, station = NULL,
   location = NULL, locationtype = NULL, page = NULL, year = NULL,
   month = NULL, day = NULL, includemetadata = TRUE, results = NULL,
-  ...)
+  add_units = FALSE, ...)
 }
 \arguments{
 \item{datasetid}{(required) Accepts a single valid dataset id. Data
@@ -78,6 +78,11 @@ is still returned, but is NULL. In practice, I haven't seen response
 time's improve, but perhaps they will for you.}
 
 \item{results}{THIS IS A DEPRECATED ARGUMENT. See limit.}
+
+\item{add_units}{(logical) whether to add units information or not. 
+default: \code{FALSE}. If \code{TRUE}, after getting data from NOAA
+we add a new column \code{units}. See "Adding units" in Details 
+for more}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
@@ -154,6 +159,21 @@ of the metadata. For more detailed info but plain text, open
 \code{system.file("extdata/gsom_readme.txt", package = "rnoaa")}
 and \code{system.file("extdata/gsoy_readme.txt", package = "rnoaa")}
 in a text editor.
+}
+
+\section{Adding units}{
+
+The \code{add_units} parameter is experimental - USE WITH CAUTION! 
+If \code{add_units=TRUE} we pull data from curated lists of data
+used by matching by datasetid and data type.
+
+We've attempted to gather as much information as possible on the many, many
+data types across the many different NOAA data sets. However, we may have
+got some things wrong, so make sure to double check data you get if you 
+do add units.
+
+Get in touch if you find some units that are wrong or missing, and 
+if you are able to help correct information.
 }
 
 \examples{

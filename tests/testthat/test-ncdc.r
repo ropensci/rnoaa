@@ -45,18 +45,36 @@ context("ncdc: add units")
 test_that("ncdc add units works", {
   skip_on_cran()
 
+  # not add units
   aa <- ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', 
     startdate = '2010-05-01', enddate = '2010-05-10')
 
   expect_is(aa, "ncdc_data")
   expect_is(aa$data, "tbl_df")
-  expect_is(aa$data$units, "character")
+  expect_null(suppressWarnings(aa$data$units))
+
+  # add units
+  bb <- ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', 
+    startdate = '2010-05-01', enddate = '2010-05-10', add_units = TRUE)
+
+  expect_is(bb, "ncdc_data")
+  expect_is(bb$data, "tbl_df")
+  expect_is(bb$data$units, "character")
 
 
-  aa <- ncdc(datasetid='GSOM', startdate = '2013-10-01', 
+  # not add units
+  cc <- ncdc(datasetid='GSOM', startdate = '2013-10-01', 
     enddate = '2013-12-01', stationid = "GHCND:AE000041196")
 
-  expect_is(aa, "ncdc_data")
-  expect_is(aa$data, "tbl_df")
-  expect_is(aa$data$units, "character")
+  expect_is(cc, "ncdc_data")
+  expect_is(cc$data, "tbl_df")
+  expect_null(suppressWarnings(cc$data$units))
+
+  # add units
+  dd <- ncdc(datasetid='GSOM', startdate = '2013-10-01', 
+    enddate = '2013-12-01', stationid = "GHCND:AE000041196", add_units = TRUE)
+
+  expect_is(dd, "ncdc_data")
+  expect_is(dd$data, "tbl_df")
+  expect_is(dd$data$units, "character")
 })
