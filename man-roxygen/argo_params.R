@@ -48,9 +48,8 @@
 #' @param id (numeric) Buoy identifier
 #' @param cycle (numeric) Cycle number
 #' @param dtype (character) Data type, one of \code{D} for delayed, or \code{R} for real-time
-#' @param overwrite (logical) Will only overwrite existing path if \code{TRUE}
 #' @param limit (integer) number to return
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}. Optional
+#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}. Optional
 #' @references \url{http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html}
 #' @details
 #' \code{area} parameter definitions:

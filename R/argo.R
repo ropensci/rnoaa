@@ -17,32 +17,32 @@ argo_search <- function(func = NULL, of = NULL, qwmo = NULL, wmo = NULL,
       monthmax = monthmax, lr = lr, from = from, to = to, dmode = dmode,
       pres_qc = pres_qc, temp_qc = temp_qc,
       psal_qc = psal_qc, doxy_qc = doxy_qc, ticket = ticket, limit = limit))
-  res <- argo_GET(url = argo_api(), args, ...)
-  jsonlite::fromJSON(utcf8(res))
+  res <- argo_GET(argo_base, argo_api, args, ...)
+  jsonlite::fromJSON(parse_argo(res))
 }
 
 #' @export
 #' @rdname argo
 argo_files <- function(wmo = NULL, cyc = NULL, ...) {
   args <- noaa_compact(list(wmo = wmo, cyc = cyc, file = ""))
-  res <- argo_GET(argo_api(), args, ...)
-  jsonlite::fromJSON(utcf8(res))
+  res <- argo_GET(argo_base, argo_api, args, ...)
+  jsonlite::fromJSON(parse_argo(res))
 }
 
 #' @export
 #' @rdname argo
 argo_qwmo <- function(qwmo, limit = 10, ...) {
   args <- noaa_compact(list(qwmo = qwmo, limit = limit))
-  res <- argo_GET(argo_api(), args, ...)
-  jsonlite::fromJSON(utcf8(res))
+  res <- argo_GET(argo_base, argo_api, args, ...)
+  jsonlite::fromJSON(parse_argo(res))
 }
 
 #' @export
 #' @rdname argo
 argo_plan <- function(...) {
   args <- noaa_compact(list(plan = ""))
-  res <- argo_GET(argo_api(), args, ...)
-  jsonlite::fromJSON(utcf8(res))
+  res <- argo_GET(argo_base, argo_api, args, ...)
+  jsonlite::fromJSON(parse_argo(res))
 }
 
 #' @export
@@ -52,13 +52,14 @@ argo_buoy_files <- function(dac, id, ...) {
   url <- paste0(argo_ftp(), sprintf('dac/%s/%s/profiles/', dac, id))
   download.file(url, destfile = tfile, quiet = TRUE)
   res <- readLines(tfile, warn = FALSE)
-  tab <- read.table(text = res, stringsAsFactors = FALSE, allowEscapes = TRUE)
+  tab <- read.table(text = res, stringsAsFactors = FALSE, 
+    allowEscapes = TRUE, fill = TRUE)
   tab[, NCOL(tab)]
 }
 
 #' @export
 #' @rdname argo
-argo <- function(dac, id, cycle, dtype, overwrite = TRUE, ...) {
+argo <- function(dac, id, cycle, dtype, ...) {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- "path" %in% calls
   if (any(calls_vec)) {
@@ -71,22 +72,37 @@ argo <- function(dac, id, cycle, dtype, overwrite = TRUE, ...) {
   apath <- a_local(dac, id, cycle, dtype, path)
   if (!is_isd(apath)) {
     dir.create(path, showWarnings = FALSE, recursive = TRUE)
-    suppressWarnings(argo_GET(a_remote(dac, id, cycle, dtype), list(),
-                              write_disk(apath, overwrite), ...))
+    url <- a_remote(dac, id, cycle, dtype)
+    f <- tryCatch(
+      suppressWarnings(argo_GET_disk(url, apath, ...)), 
+      error = function(e) e
+    )
+    if (inherits(f, "error")) {
+      unlink(apath)
+      stop("download failed for\n   ", url, call. = FALSE)
+    }
   }
   message(sprintf("<path> %s", apath), "\n")
   ncdf4::nc_open(apath)
 }
 
 # helpers -----------------------------------
-argo_GET <- function(url, args = list(), ...) {
-  res <- GET(url, query = args, ...)
-  stop_for_status(res)
+argo_GET <- function(url, path, args = list(), ...) {
+  cli <- crul::HttpClient$new(url = url, opts = list(...))
+  res <- cli$get(path, query = args)
+  res$raise_for_status()
   res
 }
 
-argo_base <- function() "http://www.ifremer.fr/"
-argo_api <- function() paste0(argo_base(), "lpo/naarc/api/v1/")
+argo_GET_disk <- function(url, file, ...) {
+  cli <- crul::HttpClient$new(url = url, opts = list(...))
+  cli$get(disk = file)
+}
+
+parse_argo <- function(x) x$parse("UTF-8")
+
+argo_base <- "http://www.umr-lops.fr"
+argo_api <- "naarc/api/v1/"
 argo_ftp <- function() "ftp://ftp.ifremer.fr/ifremer/argo/"
 
 a_local <- function(dac, id, cycle, dtype, path) {

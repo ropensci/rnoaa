@@ -22,8 +22,8 @@
 #' argo_search("list", "year", limit = 5)
 #'
 #' ## coord or fullcoord with specific buoy id
-#' argo_search("coord", wmo = 4900881, limit = 3)
-#' argo_search("fullcoord", wmo = 4900881, limit = 3)
+#' argo_search("coord", wmo = 13857, limit = 3)
+#' argo_search("fullcoord", wmo = 13857, limit = 3)
 #'
 #' # Spatial search
 #' ### search by bounding box (see param def above)
@@ -41,8 +41,6 @@
 #' argo_search("coord", yearmin = 2007, yearmax = 2009)
 #' ### search by month
 #' argo_search("coord", month = '12,1,2')
-#' ### search by lr
-#' argo_search("coord", lr = 7)
 #' ### search by from or to
 #' argo_search("coord", from = 20090212)
 #' argo_search("coord", to = 20051129)
@@ -57,16 +55,16 @@
 #' argo_search("coord", pres_qc = "A", temp_qc = "A")
 #'
 #' # Ticket search
-#' argo_search("coord", ticket = 1)
+#' argo_search("coord", ticket = 0)
 #'
 #' ## Search on partial float id number
 #' argo_qwmo(qwmo = 49)
 #' argo_qwmo(qwmo = 49, limit = 2)
 #'
 #' ## Get files
-#' argo_files(wmo = 6900087)
-#' argo_files(wmo = 6900087, cyc = 12)
-#' argo_files(wmo = 6900087, cyc = 45)
+#' argo_files(wmo = 13857)
+#' argo_files(wmo = 13857, cyc = 12)
+#' argo_files(wmo = 13857, cyc = 45)
 #'
 #' ## Get planned buoys data, accepts no parameters
 #' argo_plan()
