@@ -88,10 +88,10 @@ ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
 
   if (!is.null(stationid)) {
     if (length(stationid) > 1) stop("stationid must be of length 1", call. = FALSE)
-    url <- sprintf('%sstations/%s', ncdc_base(), stationid)
+    path <- paste0('stations/', stationid)
     args <- list()
   } else {
-    url <- paste0(ncdc_base(), "stations")
+    path <- "stations"
     if (!is.null(extent)) {
       stopifnot(length(extent) == 4)
       stopifnot(inherits(extent, "numeric"))
@@ -118,9 +118,8 @@ ncdc_stations <- function(stationid=NULL, datasetid=NULL, datatypeid=NULL, locat
   args <- as.list(unlist(args))
 
   if (length(args) == 0) args <- NULL
-  temp <- GET(url, query = args, add_headers("token" = token), ...)
-  tt <- check_response(temp)
-  if (inherits(temp, "character")) {
+  tt <- check_response(ncdc_GET(path, args, token, ...))
+  if (inherits(tt, "character")) {
     all <- list(meta = NULL, data = NULL)
   } else {
     if (!is.null(stationid)) {

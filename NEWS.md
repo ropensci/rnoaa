@@ -6,7 +6,7 @@ rnoaa 0.8.0
 * gains function `bsw()` for Blended Sea Winds data (#246)
 * gains function `ghcnd_read()` - to read .dly files directly, e.g., files already downloaded (#223) thanks @shabbychef for the feature request
 * gains function `lcd()` for Local Climatological Data (#212)
-* gains functions `se_data()` and `se_files()` (#xxx)
+* gains functions `se_data()` and `se_files()` for the Storm Events Database  (#282)
 * `ghcnd()` and `ghcnd_search()` gain a `refresh` parameter to refresh data for the query even if it's already cached locally. in addition, these functions now print messages to tell the user what file path the data is locally cached in, and the min and max dates when using `ghcnd_search()` (#269) thanks @kgmccann
 * `ncdc()` gains `add_units` parameter (boolean) to toggle adding units to the output data.frame. default is `add_units=FALSE`. if `add_units=TRUE` we match dataset id and data type id and return units if we have them. do be in touch if you see a problem with these units! `ncdc()` now returns tibbles in the `data` slot (#233) (#266) (#289) (#287)
 

@@ -4,13 +4,11 @@
 \alias{isd_stations}
 \title{Get NOAA ISD/ISH station data from NOAA FTP server.}
 \usage{
-isd_stations(refresh = FALSE, ...)
+isd_stations(refresh = FALSE)
 }
 \arguments{
 \item{refresh}{(logical) Download station data from NOAA ftp server again.
 Default: \code{FALSE}}
-
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}}
 }
 \value{
 a tibble (data.frame) with the columns:

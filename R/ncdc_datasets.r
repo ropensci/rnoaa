@@ -73,8 +73,7 @@ ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
   if (length(args) == 0) args <- NULL
-  temp <- GET(url, query = args, add_headers("token" = token), ...)
-  tt <- check_response(temp)
+  tt <- check_response(ncdc_GET("datasets", args, token, ...))
   if (inherits(tt, "character")) {
     all <- list(meta = NULL, data = NULL)
   } else {

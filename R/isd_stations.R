@@ -3,7 +3,6 @@
 #' @export
 #' @param refresh (logical) Download station data from NOAA ftp server again.
 #' Default: \code{FALSE}
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}
 #'
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' @family isd
@@ -44,7 +43,7 @@
 #'   addTiles() %>%
 #'   addCircles()
 #' }
-isd_stations <- function(refresh = FALSE, ...) {
+isd_stations <- function(refresh = FALSE) {
   path <- normalizePath(file.path(rnoaa_cache_dir(), "isd_stations.rds"))
   basedir <- normalizePath(dirname(path), winslash = "/")
   if (refresh || !file.exists(path)) {

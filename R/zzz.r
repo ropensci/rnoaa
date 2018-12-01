@@ -72,21 +72,22 @@ long2utm <- function(lon, lat) {
 #' @keywords internal
 check_response <- function(x){
   if (!x$status_code == 200) {
-    stnames <- names(jsonlite::fromJSON(utcf8(x), FALSE))
+    stnames <- names(jsonlite::fromJSON(x$parse("UTF-8"), FALSE))
     if (!is.null(stnames)) {
       if ('developerMessage' %in% stnames || 'message' %in% stnames) {
         warning(sprintf("Error: (%s) - %s", x$status_code,
-            noaa_compact(list(jsonlite::fromJSON(utcf8(x), FALSE)$developerMessage, jsonlite::fromJSON(utcf8(x), FALSE)$message))),
+            noaa_compact(list(jsonlite::fromJSON(x$parse("UTF-8"), FALSE)$developerMessage, jsonlite::fromJSON(x$parse("UTF-8"), FALSE)$message))),
             call. = FALSE)
       } else {
         warning(sprintf("Error: (%s)", x$status_code), call. = FALSE)
       }
     } else {
-      warn_for_status(x)
+      z <- x$status_http()
+      warning(z$status, ": ", z$message)
     }
   } else {
-    stopifnot(x$headers$`content-type` == 'application/json;charset=UTF-8')
-    res <- utcf8(x)
+    stopifnot(x$response_headers$`content-type` == 'application/json;charset=UTF-8')
+    res <- x$parse("UTF-8")
     out <- jsonlite::fromJSON(res, simplifyVector = FALSE)
     if (!'results' %in% names(out)) {
       if (length(out) == 0) {
@@ -144,17 +145,6 @@ read_csv <- function(x){
   tmp
 }
 
-read_table <- function(x){
-  if(inherits(x, "response")) {
-    txt <- gsub('\n$', '', utcf8(x))
-    read.csv(text = txt, sep = ",", stringsAsFactors=FALSE,
-             blank.lines.skip=FALSE)[-1, , drop=FALSE]
-  } else {
-    read.delim(x, sep=",", stringsAsFactors=FALSE,
-               blank.lines.skip=FALSE)[-1, , drop=FALSE]
-  }
-}
-
 check_key <- function(x){
   tmp <- if(is.null(x)) Sys.getenv("NOAA_KEY", "") else x
   if(tmp == "") getOption("noaakey", stop("need an API key for NOAA data")) else tmp
@@ -169,12 +159,10 @@ check4pkg <- function(x) {
   }
 }
 
-#Check operating system is windows
+# Check operating system is windows
 is_windows <- function() {
-      .Platform$OS.type == "windows"
+  .Platform$OS.type == "windows"
 }
-
-utcf8 <- function(x) httr::content(x, "text", encoding = "UTF-8")
 
 rnoaa_cache_dir <- function() rappdirs::user_cache_dir("rnoaa")
 

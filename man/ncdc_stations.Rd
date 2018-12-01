@@ -67,7 +67,8 @@ of the NOAA API.}
 \item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2 
 of the NOAA API.}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} 
+(optional)}
 }
 \value{
 A list of metadata.

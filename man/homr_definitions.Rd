@@ -8,7 +8,8 @@ definitions}
 homr_definitions(...)
 }
 \arguments{
-\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}.
+optional}
 }
 \description{
 Historical Observing Metadata Repository (HOMR) station metadata -

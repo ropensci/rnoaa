@@ -37,9 +37,7 @@ datacoverage fields (optional)}
 Climate Data Online access token generator. (required) See
 \strong{Authentication} section below for more details.}
 
-\item{...}{Further named parameters, such as \code{query}, \code{path}, etc, passed on to
-\code{\link[httr]{modify_url}}. Unnamed parameters will be combined with
-\code{\link[httr]{config}}.}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}}
 }
 \value{
 A list containing metadata and the data, or a single data.frame.

@@ -23,7 +23,7 @@
 #' @param force (logical) force download? Default: \code{FALSE}
 #' We use a cached version (an .rds compressed file) if it exists, but
 #' this will override that behavior.
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}
+#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}
 #'
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' @family isd
@@ -156,10 +156,9 @@ isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE,
 isd_GET <- function(bp, usaf, wban, year, overwrite, ...) {
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- isd_local(usaf, wban, year, bp, ".gz")
+  cli <- crul::HttpClient$new(isd_remote(usaf, wban, year), opts = list(...))
   tryget <- tryCatch(
-    suppressWarnings(
-      httr::GET(isd_remote(usaf, wban, year), httr::write_disk(fp, overwrite), ...)
-    ),
+    suppressWarnings(cli$get(disk = fp)),
     error = function(e) e
   )
   if (inherits(tryget, "error")) {

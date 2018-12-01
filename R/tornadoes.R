@@ -3,7 +3,8 @@
 #' @export
 #' @param overwrite (logical) To overwrite the path to store files in or not,
 #' Default: \code{TRUE}
-#' @param ... Curl options passed on to \code{\link[httr]{GET}} (optional)
+#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}  
+#' (optional)
 #'
 #' @return A Spatial object is returned of class SpatialLinesDataFrame.
 #' @references \url{http://www.spc.noaa.gov/gis/svrgis/}
@@ -19,7 +20,6 @@
 #' library('sp')
 #' plot(shp) # may take 10 sec or so to render
 #' }
-
 tornadoes <- function(overwrite = TRUE, ...) {
   calls <- names(sapply(match.call(), deparse))[-1]
   calls_vec <- "path" %in% calls
@@ -39,8 +39,12 @@ tornadoes <- function(overwrite = TRUE, ...) {
 tornadoes_GET <- function(bp, url, overwrite, ...){
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- file.path(bp, "tornadoes.zip")
-  res <- GET(url, write_disk(fp, overwrite), ...)
-  stop_for_status(res)
+  if (!overwrite && file.exists(fp)) {
+    stop("file exists and overwrite=FALSE")
+  }
+  cli <- crul::HttpClient$new(url, opts = list(...))
+  res <- cli$get(disk = fp)
+  res$raise_for_status()
   unzip(fp, exdir = bp)
 }
 

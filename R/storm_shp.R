@@ -48,9 +48,9 @@ shpstorm_GET <- function(bp, basin, storm, year, type, overwrite) {
              recursive = TRUE)
   fp <- shp_local(basin, storm, year, bp, type)
   paths <- Map(function(x, y)
-    suppressWarnings(GET(x, write_disk(y, overwrite))),
+    suppressWarnings(crul::HttpClient$new(x)$get(disk = y)),
     shp_remote(basin, storm, year, type), fp)
-  vapply(paths, function(z) z$request$output$path, "", USE.NAMES = FALSE)
+  vapply(paths, function(z) z$content, "", USE.NAMES = FALSE)
 }
 
 shpfileext <- function(basin, storm, year, type) {

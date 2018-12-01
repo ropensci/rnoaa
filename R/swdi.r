@@ -146,9 +146,10 @@ swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL,
 
   if (format %in% c('kmz','shp')) {
     make_key <- function(url, args) {
-      tmp <- parse_url(url)
-      tmp$query <- args
-      build_url(tmp)
+      tmp <- crul::url_parse(url)
+      tmp$parameter <- args
+      base <- paste0(tmp$scheme, "://", tmp$domain)
+      crul::url_build(base, tmp$path, tmp$parameter)
     }
     url <- make_key(url, args)
     if (format == 'shp') {

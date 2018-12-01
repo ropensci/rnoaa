@@ -131,7 +131,7 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' @param refresh (logical) If \code{TRUE} force re-download of data. 
 #' Default: \code{FALSE}
 #' @param ... In the case of \code{ghcnd} additional curl options to pass 
-#' through to \code{\link[httr]{GET}}. In the case of \code{ghcnd_read} 
+#' through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read} 
 #' further options passed on to \code{read.csv} 
 #'
 #' @return A tibble (data.frame) which contains data pulled from NOAA's FTP
@@ -183,10 +183,6 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #'
 #' stations <- ghcnd_stations()
 #' ghcnd(stations$id[40])
-#' ghcnd(stations$id[4000])
-#' ghcnd(stations$id[10000])
-#' ghcnd(stations$id[80000])
-#' ghcnd(stations$id[80300])
 #'
 #' library("dplyr")
 #' ghcnd(stations$id[80300]) %>% select(id, element) %>% slice(1:3)
@@ -195,8 +191,6 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' ## using built in fxns
 #' dat <- ghcnd(stationid = "AGE00147704")
 #' (alldat <- ghcnd_splitvars(dat))
-#' library("ggplot2")
-#' ggplot(subset(alldat$tmax, tmax >= 0), aes(date, tmax)) + geom_point()
 #'
 #' ## using dplyr
 #' library("dplyr")
@@ -341,7 +335,7 @@ get_stations <- function(...){
     "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt",
     ...)
   df <- read.fwf(
-    textConnection(utcf8(res)),
+    textConnection(res$parse("UTF-8")),
     widths = c(11, 9, 11, 7, 2, 31, 5, 10),
     header = FALSE, strip.white = TRUE, comment.char = "",
     stringsAsFactors = FALSE)
@@ -354,7 +348,7 @@ get_inventory <- function(...){
   res <- GET_retry(
     "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt", ...)
   df <- read.fwf(
-    textConnection(utcf8(res)),
+    textConnection(res$parse("UTF-8")),
     widths = c(11, 9, 10, 5, 5, 5),
     header = FALSE, strip.white = TRUE, comment.char = "",
     stringsAsFactors = FALSE)
@@ -471,7 +465,7 @@ ghcnd_splitvars <- function(x){
 ghcnd_states <- function(...){
   res <- GET_retry(
     "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-states.txt", ...)
-  df <- read.fwf(textConnection(utcf8(res)), widths = c(2, 27),
+  df <- read.fwf(textConnection(res$parse("UTF-8")), widths = c(2, 27),
                  header = FALSE, strip.white = TRUE, comment.char = "",
                  stringsAsFactors = FALSE, col.names = c("code","name"))
   df[ -NROW(df) ,]
@@ -482,7 +476,7 @@ ghcnd_states <- function(...){
 ghcnd_countries <- function(...){
   res <- GET_retry(
     "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-countries.txt", ...)
-  df <- read.fwf(textConnection(utcf8(res)), widths = c(2, 47),
+  df <- read.fwf(textConnection(res$parse("UTF-8")), widths = c(2, 47),
                  header = FALSE, strip.white = TRUE, comment.char = "",
                  stringsAsFactors = FALSE, col.names = c("code","name"))
   df[ -NROW(df) ,]
@@ -493,18 +487,19 @@ ghcnd_countries <- function(...){
 ghcnd_version <- function(...){
   res <- GET_retry(
     "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-version.txt", ...)
-  utcf8(res)
+  res$parse("UTF-8")
 }
 
 GET_retry <- function(url, ..., times = 3) {
-  res <- suppressWarnings(GET(url, ...))
+  cliret <- crul::HttpClient$new(url)
+  res <- suppressWarnings(cliret$get(...))
   if (res$status_code > 226) {
     message("Request failed - Retrying")
     stat <- 500
     i <- 0
     while (stat > 226 && i <= times) {
       i <- i + 1
-      res <- suppressWarnings(GET(url, ...))
+      res <- suppressWarnings(cliret$get(...))
       stat <- res$status_code
     }
     if (res$status_code > 226) stop("Request failed, try again", call. = FALSE)
@@ -519,8 +514,9 @@ ghcnd_zip <- function(x){
 ghcnd_GET <- function(bp, stationid, ...){
   dir.create(bp, showWarnings = FALSE, recursive = TRUE)
   fp <- ghcnd_local(stationid, bp)
-  res <- suppressWarnings(httr::GET(ghcnd_remote(stationid), ...))
-  tt <- utcf8(res)
+  cli <- crul::HttpClient$new(ghcnd_remote(stationid), opts = list(...))
+  res <- suppressWarnings(cli$get())
+  tt <- res$parse("UTF-8")
   vars <- c("id","year","month","element",
             do.call("c",
       lapply(1:31, function(x) paste0(c("VALUE","MFLAG","QFLAG","SFLAG"), x))))

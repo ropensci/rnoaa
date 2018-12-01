@@ -57,7 +57,8 @@ arguments.}
 \item{month}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
 arguments.}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} 
+(optional)}
 }
 \value{
 A data.frame for all datasets, or a list of length two, each with

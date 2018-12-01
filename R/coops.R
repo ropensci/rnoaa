@@ -16,7 +16,8 @@
 #' of the station with its lat/lon values, and assign that time zone.
 #' @param application (character) If called within an external package, set
 #' to the name of your organization. Optional
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}. Optional
+#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}. 
+#' Optional
 #'
 #' @details
 #' Options for the product paramter. One of:
@@ -176,9 +177,9 @@ coops_search <- function(begin_date = NULL, end_date = NULL,
   # bottom check for too long of duration
 
   args <- noaa_compact(list(begin_date = begin_date, end_date = end_date,
-                            station = station_name, product = product,
-                            datum = datum, units = units, time_zone = time_zone,
-                            application = application, format = "json"))
+    station = station_name, product = product,
+    datum = datum, units = units, time_zone = time_zone,
+    application = application, format = "json"))
 
   res <- coops_GET(coops_base(), args, ...)
 
@@ -207,9 +208,10 @@ coops_search <- function(begin_date = NULL, end_date = NULL,
 coops_base <- function() "https://tidesandcurrents.noaa.gov/api/datagetter"
 
 coops_GET <- function(url, args, ...) {
-  res <- httr::GET(url, query = args, ...)
-  httr::stop_for_status(res)
-  jsonlite::fromJSON(utcf8(res))
+  cli <- crul::HttpClient$new(url, opts = list(...))
+  res <- cli$get(query = args)
+  res$raise_for_status()
+  jsonlite::fromJSON(res$parse("UTF-8"))
 }
 
 time_zone <- function(x) {

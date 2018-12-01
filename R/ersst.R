@@ -7,7 +7,8 @@
 #' add a zero in front (e.g., 08). Required
 #' @param overwrite (logical) To overwrite the path to store files in or not,
 #' Default: \code{TRUE}
-#' @param ... Curl options passed on to \code{\link[httr]{GET}}. Optional
+#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}. 
+#' Optional
 #'
 #' @return An \code{ncdf4} object for now, may change output later to
 #' perhaps a data.frame. See \pkg{ncdf4} for parsing the output.
@@ -82,10 +83,10 @@ check_month <- function(x) {
 
 ersst_GET <- function(dat, path, overwrite, ...) {
   dir.create(dirname(path), showWarnings = FALSE, recursive = TRUE)
-  res <- GET(paste0(ersst_base(), dat),
-             write_disk(path, overwrite = overwrite), ...)
-  stop_for_status(res)
-  res$request$output$path
+  cli <- crul::HttpClient$new(paste0(ersst_base(), dat), opts = list(...))
+  res <- cli$get(disk = path)
+  res$raise_for_status()
+  res$content
 }
 
 ersst_local <- function(path, year, month) {

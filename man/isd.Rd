@@ -39,7 +39,7 @@ time, so if processing time is important, then keep as \code{FALSE}}
 We use a cached version (an .rds compressed file) if it exists, but
 this will override that behavior.}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}}
 }
 \value{
 A tibble (data.frame).

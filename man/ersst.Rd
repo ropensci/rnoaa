@@ -16,7 +16,8 @@ add a zero in front (e.g., 08). Required}
 \item{overwrite}{(logical) To overwrite the path to store files in or not,
 Default: \code{TRUE}}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}. 
+Optional}
 }
 \value{
 An \code{ncdf4} object for now, may change output later to

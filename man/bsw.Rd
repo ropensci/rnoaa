@@ -65,11 +65,6 @@ appreciate receiving a copy of the relevant publication."
 
 \examples{
 \dontrun{
-# cache control
-bsw_cache$list()
-bsw_cache$details()
-# bsw_cache$delete_all()
-
 # 6hrly data
 ## uv
 x <- bsw(date = "2017-10-01")

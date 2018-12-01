@@ -52,11 +52,6 @@
 #' ieee files: http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
 #'
 #' @examples \dontrun{
-#' # cache control
-#' bsw_cache$list()
-#' bsw_cache$details()
-#' # bsw_cache$delete_all()
-#' 
 #' # 6hrly data
 #' ## uv
 #' x <- bsw(date = "2017-10-01")

@@ -11,7 +11,8 @@
 #' @param type (character) One of points or lines. This gives shp files with
 #' points, or with lines.
 #' @param x Output from \code{storm_shp}, a path to shp file to read in.
-#' @param ... Curl options passed on to \code{\link[httr]{GET}} (optional)
+#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}} 
+#' (optional)
 #'
 #' @return A tibble (data.frame)
 #'
@@ -113,9 +114,9 @@ storm_GET <- function(bp, basin, storm, year, overwrite, ...){
   dir.create(local_base(basin, storm, year, bp), showWarnings = FALSE,
              recursive = TRUE)
   fp <- csv_local(basin, storm, year, bp)
-  res <- suppressWarnings(GET(csv_remote(basin, storm, year),
-                              write_disk(fp, overwrite), ...))
-  res$request$output$path
+  cli <- crul::HttpClient$new(csv_remote(basin, storm, year), opts = list(...))
+  res <- suppressWarnings(cli$get(disk = fp))
+  res$content
 }
 
 filecheck <- function(basin, storm, year){

@@ -32,7 +32,8 @@ of the station with its lat/lon values, and assign that time zone.}
 \item{application}{(character) If called within an external package, set
 to the name of your organization. Optional}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}}. Optional}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}. 
+Optional}
 }
 \value{
 List, of length one or two.

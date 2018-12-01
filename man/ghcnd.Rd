@@ -20,7 +20,7 @@ user can use the \code{\link{meteo_nearby_stations}} function.}
 Default: \code{FALSE}}
 
 \item{...}{In the case of \code{ghcnd} additional curl options to pass 
-through to \code{\link[httr]{GET}}. In the case of \code{ghcnd_read} 
+through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read} 
 further options passed on to \code{read.csv}}
 
 \item{path}{(character) a path to a file with a \code{.dly} extension - already
@@ -76,10 +76,6 @@ ghcnd(stationid = "AGE00147704")
 
 stations <- ghcnd_stations()
 ghcnd(stations$id[40])
-ghcnd(stations$id[4000])
-ghcnd(stations$id[10000])
-ghcnd(stations$id[80000])
-ghcnd(stations$id[80300])
 
 library("dplyr")
 ghcnd(stations$id[80300]) \%>\% select(id, element) \%>\% slice(1:3)
@@ -88,8 +84,6 @@ ghcnd(stations$id[80300]) \%>\% select(id, element) \%>\% slice(1:3)
 ## using built in fxns
 dat <- ghcnd(stationid = "AGE00147704")
 (alldat <- ghcnd_splitvars(dat))
-library("ggplot2")
-ggplot(subset(alldat$tmax, tmax >= 0), aes(date, tmax)) + geom_point()
 
 ## using dplyr
 library("dplyr")

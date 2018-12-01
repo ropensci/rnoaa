@@ -9,4 +9,5 @@
 #' @param limit Defaults to 25, limits the number of results in the response.
 #' Maximum is 1000 (optional)
 #' @param offset Defaults to 0, used to offset the resultlist (optional)
-#' @param ... Curl options passed on to \code{\link[httr]{GET}} (optional)
+#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}} 
+#' (optional)

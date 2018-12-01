@@ -10,7 +10,8 @@ tornadoes(overwrite = TRUE, ...)
 \item{overwrite}{(logical) To overwrite the path to store files in or not,
 Default: \code{TRUE}}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}
+(optional)}
 }
 \value{
 A Spatial object is returned of class SpatialLinesDataFrame.

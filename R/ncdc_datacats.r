@@ -45,8 +45,8 @@ ncdc_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
   limit=25, offset=NULL, token=NULL, ...)
 {
   token <- check_key(token)
-  url <- paste0(ncdc_base(), "datacategories")
-  if (!is.null(datacategoryid)) url <- paste(url, "/", datacategoryid, sep = "")
+  path <- "datacategories"
+  if (!is.null(datacategoryid)) path <- paste(path, "/", datacategoryid, sep = "")
   args <- noaa_compact(list(startdate=startdate, enddate=enddate, sortfield=sortfield,
             sortorder=sortorder, limit=limit, offset=offset))
   if (!is.null(datasetid)) {
@@ -62,8 +62,7 @@ ncdc_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
   args <- as.list(unlist(args))
   names(args) <- sapply(names(args), function(y) gsub("[0-9+]", "", y), USE.NAMES = FALSE)
   if (length(args) == 0) args <- NULL
-  temp <- GET(url, query = args, add_headers("token" = token), ...)
-  tt <- check_response(temp)
+  tt <- check_response(ncdc_GET(path, args, token, ...))
   if (inherits(tt, "character")) {
     all <- list(meta = NULL, data = NULL)
   } else {

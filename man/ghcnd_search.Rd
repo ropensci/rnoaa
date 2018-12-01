@@ -48,7 +48,7 @@ all of the variables the user specifies through this argument.}
 Default: \code{FALSE}}
 
 \item{...}{In the case of \code{ghcnd} additional curl options to pass 
-through to \code{\link[httr]{GET}}. In the case of \code{ghcnd_read} 
+through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read} 
 further options passed on to \code{read.csv}}
 }
 \value{

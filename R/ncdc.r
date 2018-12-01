@@ -209,9 +209,8 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
   if (length(args) == 0) args <- NULL
-  temp <- GET(paste0(ncdc_base(), "data"), query = args,
-              add_headers("token" = token), ...)
-  tt <- check_response(temp)
+
+  tt <- check_response(ncdc_GET("data", args, token, ...))
   if (inherits(tt, "character")) {
     all <- list(meta = NA, data = tibble::data_frame())
   } else {
@@ -226,6 +225,15 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   }
 
   structure(all, class = "ncdc_data")
+}
+
+ncdc_GET <- function(path, args, token, ...) {
+  cli <- crul::HttpClient$new(
+    url = paste0(ncdc_base(), path), 
+    headers = list(token = token),
+    opts = list(...))
+  temp <- cli$get(query = args)
+  return(temp)
 }
 
 split_atts <- function(x, ds = "GSOM"){

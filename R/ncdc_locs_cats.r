@@ -36,9 +36,9 @@ ncdc_locs_cats <- function(datasetid=NULL, locationcategoryid=NULL,
   limit=25, offset=NULL, token=NULL, ...)
 {
   token <- check_key(token)
-  url <- paste0(ncdc_base(), "locationcategories")
+  path <- "locationcategories"
   if (!is.null(locationcategoryid))
-    url <- paste(url, "/", locationcategoryid, sep = "")
+    path <- paste(path, "/", locationcategoryid, sep = "")
   args <- noaa_compact(list(locationcategoryid=locationcategoryid,
     startdate=startdate, enddate=enddate,token=token,sortfield=sortfield,
     sortorder=sortorder,limit=limit,offset=offset))
@@ -48,8 +48,7 @@ ncdc_locs_cats <- function(datasetid=NULL, locationcategoryid=NULL,
   args <- c(args, datasetid)
   args <- as.list(unlist(args))
   if (length(args) == 0) args <- NULL
-  temp <- GET(url, query = args, add_headers("token" = token), ...)
-  tt <- check_response(temp)
+  tt <- check_response(ncdc_GET(path, args, token, ...))
   if (inherits(tt, "character")) {
     all <- list(meta = NULL, data = NULL)
   } else {

@@ -61,9 +61,9 @@ ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   token <- check_key(token)
 
   if (!is.null(datatypeid)) {
-    url <- sprintf("%sdatatypes/%s", ncdc_base(), datatypeid)
+    path <- paste0("datatypes/", datatypeid)
   } else {
-    url <- paste0(ncdc_base(), "datatypes")
+    path <- "datatypes"
   }
 
   args <- noaa_compact(list(startdate=startdate, enddate=enddate,
@@ -85,8 +85,7 @@ ncdc_datatypes <- function(datasetid=NULL, datatypeid=NULL, datacategoryid=NULL,
   args <- as.list(unlist(args))
   names(args) <- gsub("[0-9]+", "", names(args))
   if (length(args) == 0) args <- NULL
-  temp <- GET(url, query = args, add_headers("token" = token), ...)
-  out <- check_response(temp)
+  out <- check_response(ncdc_GET(path, args, token, ...))
   if (inherits(out, "character")) {
     all <- list(meta = NULL, data = NULL)
   } else {

@@ -7,7 +7,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 0.7.9.9100
+Version: 0.7.9.9200
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US
@@ -28,8 +28,7 @@ LazyData: true
 VignetteBuilder: knitr
 Imports:
     utils,
-    httr (>= 1.0.0),
-    crul (>= 0.2.0),
+    crul (>= 0.6.0),
     lubridate,
     dplyr,
     tidyr,

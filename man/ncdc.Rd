@@ -84,7 +84,8 @@ default: \code{FALSE}. If \code{TRUE}, after getting data from NOAA
 we add a new column \code{units}. See "Adding units" in Details 
 for more}
 
-\item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} 
+(optional)}
 }
 \value{
 An S3 list of length two, a slot of metadata (meta), and a slot
