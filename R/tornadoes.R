@@ -41,7 +41,7 @@ tornadoes_GET <- function(bp, url, overwrite, ...){
   fp <- file.path(bp, "tornadoes.zip")
   res <- GET(url, write_disk(fp, overwrite), ...)
   stop_for_status(res)
-  untar(fp, exdir = bp)
+  unzip(fp, exdir = bp)
 }
 
 is_tornadoes <- function(x){

@@ -55,7 +55,7 @@
 #' }
 #'
 #' @importFrom utils head download.file read.csv read.delim read.fwf read.table
-#' write.csv untar unzip
+#' write.csv unzip
 #' @importFrom lubridate ymd year today month
 #' @importFrom scales date_breaks date_format
 #' @importFrom ggplot2 autoplot ggplot aes facet_wrap theme theme_bw geom_line
