@@ -64,8 +64,8 @@
 #' If kmz or shp chosen, the file is downloaded to your machine and a message 
 #' is printed.
 #'
-#' @references \url{https://www.ncdc.noaa.gov/swdi/#Intro}
-#' \url{https://www.ncdc.noaa.gov/swdiws/}
+#' @references https://www.ncdc.noaa.gov/swdi/#Intro 
+#' https://www.ncdc.noaa.gov/swdiws/
 #'
 #' @examples \dontrun{
 #' # Search for nx3tvs data from 5 May 2006 to 6 May 2006
