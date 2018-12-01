@@ -1,0 +1,36 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://tidesandcurrents.noaa.gov/api/datagetter?begin_date=20140927&end_date=20140928&station=8775244&product=air_temperature&units=metric&time_zone=gmt&application=rnoaa&format=json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:40:28 GMT
+      server: Apache-Coyote/1.1
+      cache-control: no-cache,no-store,must-revalidate
+      pragma: no-cache
+      expires: Thu, 01 Jan 1970 00:00:00 GMT
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-origin: '*'
+      content-type: text/html;charset=ISO-8859-1
+      vary: User-Agent,Accept-Encoding
+      content-encoding: gzip
+      content-length: '115'
+      strict-transport-security: max-age=31536000; includeSubDomains; preload;
+    body:
+      encoding: UTF-8
+      string: |
+        {"error": {"message":"No data was found. This product may not be offered at this station at the requested time."}}
+  recorded_at: 2018-12-01 19:40:22 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

@@ -1,0 +1,36 @@
+http_interactions:
+- request:
+    method: get
+    uri: ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-states.txt
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '226'
+      message: IM Used
+      explanation: RFC 3229
+    headers: []
+    body:
+      encoding: UTF-8
+      string: "AB ALBERTA\nAK ALASKA\nAL ALABAMA                                        \nAR
+        ARKANSAS\nAS AMERICAN SAMOA\nAZ ARIZONA\nBC BRITISH COLUMBIA\nCA CALIFORNIA\nCO
+        COLORADO\nCT CONNECTICUT\nDC DISTRICT OF COLUMBIA\nDE DELAWARE\nFL FLORIDA\nFM
+        MICRONESIA\nGA GEORGIA\nGU GUAM\nHI HAWAII\nIA IOWA\nID IDAHO\nIL ILLINOIS\nIN
+        INDIANA\nKS KANSAS\nKY KENTUCKY\nLA LOUISIANA\nMA MASSACHUSETTS\nMB MANITOBA\nMD
+        MARYLAND\nME MAINE\nMH MARSHALL ISLANDS\nMI MICHIGAN\nMN MINNESOTA\nMO MISSOURI\nMP
+        NORTHERN MARIANA ISLANDS\nMS MISSISSIPPI\nMT MONTANA\nNB NEW BRUNSWICK\nNC
+        NORTH CAROLINA\nND NORTH DAKOTA\nNE NEBRASKA\nNH NEW HAMPSHIRE\nNJ NEW JERSEY\nNL
+        NEWFOUNDLAND AND LABRADOR\nNM NEW MEXICO\nNS NOVA SCOTIA\nNT NORTHWEST TERRITORIES\nNU
+        NUNAVUT\nNV NEVADA\nNY NEW YORK\nOH OHIO\nOK OKLAHOMA\nON ONTARIO\nOR OREGON\nPA
+        PENNSYLVANIA\nPE PRINCE EDWARD ISLAND\nPI PACIFIC ISLANDS\nPR PUERTO RICO\nPW
+        PALAU\nQC QUEBEC\nRI RHODE ISLAND\nSC SOUTH CAROLINA\nSD SOUTH DAKOTA\nSK
+        SASKATCHEWAN\nTN TENNESSEE\nTX TEXAS\nUM U.S. MINOR OUTLYING ISLANDS\nUT UTAH\nVA
+        VIRGINIA\nVI VIRGIN ISLANDS\nVT VERMONT\nWA WASHINGTON\nWI WISCONSIN\nWV WEST
+        VIRGINIA\nWY WYOMING\nYT YUKON TERRITORY\n"
+  recorded_at: 2018-12-01 19:48:01 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

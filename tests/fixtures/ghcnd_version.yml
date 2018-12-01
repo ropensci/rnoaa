@@ -1,0 +1,24 @@
+http_interactions:
+- request:
+    method: get
+    uri: ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-version.txt
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '226'
+      message: IM Used
+      explanation: RFC 3229
+    headers: []
+    body:
+      encoding: UTF-8
+      string: |
+        The current version of GHCN Daily is 3.25-upd-2018113019 (i.e, an update that started at 2018113019 [yyyymmddhh] UTC; yyyy=year; mm=month; dd=day; hh=hour),
+        created by appending recently available data updates to the last fully reprocessed version: 3.25-por-2018111819.
+  recorded_at: 2018-12-01 19:48:05 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

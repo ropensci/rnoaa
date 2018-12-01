@@ -1,0 +1,178 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/swdiws/xml/nx3tvs/20060505:20060506/25
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 20:02:43 GMT
+      strict-transport-security: max-age=31536000
+      cache-control: private
+      content-type: text/xml;charset=UTF-8
+      access-control-allow-origin: '*'
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '1344'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?><swdiXmlResponse><!-- column header names[types]:  ZTIME[VARCHAR2] WSR_ID[VARCHAR2] CELL_ID[VARCHAR2] CELL_TYPE[VARCHAR2] RANGE[NUMBER] AZIMUTH[NUMBER] MAX_SHEAR[NUMBER] MXDV[NUMBER] SHAPE[MDSYS.SDO_GEOMETRY]  -->
+        <result><ztime>2006-05-05T00:05:50Z</ztime><wsr_id>KBMX</wsr_id><cell_id>Q0</cell_id><cell_type>TVS</cell_type><range>7</range><azimuth>217</azimuth><max_shear>403</max_shear><mxdv>116</mxdv><shape>POINT (-86.8535716274277 33.0786326913943)</shape></result>
+        <result><ztime>2006-05-05T00:10:02Z</ztime><wsr_id>KBMX</wsr_id><cell_id>Q0</cell_id><cell_type>TVS</cell_type><range>5</range><azimuth>208</azimuth><max_shear>421</max_shear><mxdv>120</mxdv><shape>POINT (-86.8165772540846 33.0982820681588)</shape></result>
+        <result><ztime>2006-05-05T00:12:34Z</ztime><wsr_id>KSJT</wsr_id><cell_id>P2</cell_id><cell_type>TVS</cell_type><range>49</range><azimuth>106</azimuth><max_shear>17</max_shear><mxdv>52</mxdv><shape>POINT (-99.5771091971025 31.1421609654838)</shape></result>
+        <result><ztime>2006-05-05T00:17:31Z</ztime><wsr_id>KSJT</wsr_id><cell_id>B4</cell_id><cell_type>TVS</cell_type><range>40</range><azimuth>297</azimuth><max_shear>25</max_shear><mxdv>62</mxdv><shape>POINT (-101.188161700093 31.672392833416)</shape></result>
+        <result><ztime>2006-05-05T00:29:13Z</ztime><wsr_id>KMAF</wsr_id><cell_id>H4</cell_id><cell_type>TVS</cell_type><range>53</range><azimuth>333</azimuth><max_shear>34</max_shear><mxdv>111</mxdv><shape>POINT (-102.664426480293 32.7306917937698)</shape></result>
+        <result><ztime>2006-05-05T00:31:25Z</ztime><wsr_id>KLBB</wsr_id><cell_id>N0</cell_id><cell_type>TVS</cell_type><range>51</range><azimuth>241</azimuth><max_shear>24</max_shear><mxdv>78</mxdv><shape>POINT (-102.70047613441 33.2380072329615)</shape></result>
+        <result><ztime>2006-05-05T00:33:25Z</ztime><wsr_id>KMAF</wsr_id><cell_id>H4</cell_id><cell_type>TVS</cell_type><range>52</range><azimuth>334</azimuth><max_shear>46</max_shear><mxdv>145</mxdv><shape>POINT (-102.6393683028 32.7226656893341)</shape></result>
+        <result><ztime>2006-05-05T00:37:37Z</ztime><wsr_id>KMAF</wsr_id><cell_id>H4</cell_id><cell_type>TVS</cell_type><range>50</range><azimuth>334</azimuth><max_shear>34</max_shear><mxdv>107</mxdv><shape>POINT (-102.621904684258 32.6927081076156)</shape></result>
+        <result><ztime>2006-05-05T00:41:51Z</ztime><wsr_id>KMAF</wsr_id><cell_id>H4</cell_id><cell_type>TVS</cell_type><range>51</range><azimuth>335</azimuth><max_shear>29</max_shear><mxdv>91</mxdv><shape>POINT (-102.614794815627 32.714139844846)</shape></result>
+        <result><ztime>2006-05-05T00:44:33Z</ztime><wsr_id>KLBB</wsr_id><cell_id>N0</cell_id><cell_type>TVS</cell_type><range>46</range><azimuth>245</azimuth><max_shear>35</max_shear><mxdv>100</mxdv><shape>POINT (-102.643380529494 33.3266446067682)</shape></result>
+        <result><ztime>2006-05-05T00:46:03Z</ztime><wsr_id>KMAF</wsr_id><cell_id>H4</cell_id><cell_type>TVS</cell_type><range>49</range><azimuth>335</azimuth><max_shear>41</max_shear><mxdv>127</mxdv><shape>POINT (-102.597961935071 32.6839260102062)</shape></result>
+        <result><ztime>2006-05-05T00:48:55Z</ztime><wsr_id>KLBB</wsr_id><cell_id>N0</cell_id><cell_type>TVS</cell_type><range>44</range><azimuth>246</azimuth><max_shear>44</max_shear><mxdv>121</mxdv><shape>POINT (-102.613894688178 33.3526192273658)</shape></result>
+        <result><ztime>2006-05-05T00:50:16Z</ztime><wsr_id>KMAF</wsr_id><cell_id>H4</cell_id><cell_type>TVS</cell_type><range>49</range><azimuth>337</azimuth><max_shear>33</max_shear><mxdv>98</mxdv><shape>POINT (-102.567153417051 32.6956373348052)</shape></result>
+        <result><ztime>2006-05-05T00:54:29Z</ztime><wsr_id>KMAF</wsr_id><cell_id>H4</cell_id><cell_type>TVS</cell_type><range>47</range><azimuth>337</azimuth><max_shear>42</max_shear><mxdv>126</mxdv><shape>POINT (-102.551596970251 32.664939580306)</shape></result>
+        <result><ztime>2006-05-05T00:57:42Z</ztime><wsr_id>KLBB</wsr_id><cell_id>N0</cell_id><cell_type>TVS</cell_type><range>41</range><azimuth>251</azimuth><max_shear>46</max_shear><mxdv>117</mxdv><shape>POINT (-102.586119971014 33.4287323151248)</shape></result>
+        <result><ztime>2006-05-05T00:58:41Z</ztime><wsr_id>KMAF</wsr_id><cell_id>H4</cell_id><cell_type>TVS</cell_type><range>46</range><azimuth>340</azimuth><max_shear>29</max_shear><mxdv>85</mxdv><shape>POINT (-102.499638479193 32.6644438090742)</shape></result>
+        <result><ztime>2006-05-05T01:02:04Z</ztime><wsr_id>KLBB</wsr_id><cell_id>N0</cell_id><cell_type>TVS</cell_type><range>39</range><azimuth>251</azimuth><max_shear>42</max_shear><mxdv>102</mxdv><shape>POINT (-102.5485490063 33.4398330734778)</shape></result>
+        <result><ztime>2006-05-05T01:02:53Z</ztime><wsr_id>KMAF</wsr_id><cell_id>H4</cell_id><cell_type>TVS</cell_type><range>46</range><azimuth>339</azimuth><max_shear>35</max_shear><mxdv>101</mxdv><shape>POINT (-102.51446954228 32.6597119240996)</shape></result>
+        <result><ztime>2006-05-05T01:02:53Z</ztime><wsr_id>KMAF</wsr_id><cell_id>H4</cell_id><cell_type>TVS</cell_type><range>50</range><azimuth>338</azimuth><max_shear>27</max_shear><mxdv>84</mxdv><shape>POINT (-102.559031583693 32.7166090376869)</shape></result>
+        <result><ztime>2006-05-05T01:06:26Z</ztime><wsr_id>KLBB</wsr_id><cell_id>N0</cell_id><cell_type>TVS</cell_type><range>36</range><azimuth>251</azimuth><max_shear>31</max_shear><mxdv>70</mxdv><shape>POINT (-102.492174522228 33.4564626989719)</shape></result>
+        <result><ztime>2006-05-05T01:07:06Z</ztime><wsr_id>KMAF</wsr_id><cell_id>F5</cell_id><cell_type>TVS</cell_type><range>45</range><azimuth>342</azimuth><max_shear>44</max_shear><mxdv>120</mxdv><shape>POINT (-102.463540844324 32.6573739036181)</shape></result>
+        <result><ztime>2006-05-05T01:10:48Z</ztime><wsr_id>KLBB</wsr_id><cell_id>N0</cell_id><cell_type>TVS</cell_type><range>36</range><azimuth>256</azimuth><max_shear>37</max_shear><mxdv>83</mxdv><shape>POINT (-102.510349454162 33.5066366303981)</shape></result>
+        <result><ztime>2006-05-05T01:11:18Z</ztime><wsr_id>KMAF</wsr_id><cell_id>F5</cell_id><cell_type>TVS</cell_type><range>45</range><azimuth>343</azimuth><max_shear>39</max_shear><mxdv>108</mxdv><shape>POINT (-102.448763863447 32.6613484943994)</shape></result>
+        <result><ztime>2006-05-05T01:15:30Z</ztime><wsr_id>KMAF</wsr_id><cell_id>F5</cell_id><cell_type>TVS</cell_type><range>44</range><azimuth>344</azimuth><max_shear>30</max_shear><mxdv>78</mxdv><shape>POINT (-102.42842159557 32.649061124799)</shape></result>
+        <result><ztime>2006-05-05T01:15:30Z</ztime><wsr_id>KMAF</wsr_id><cell_id>H4</cell_id><cell_type>TVS</cell_type><range>49</range><azimuth>341</azimuth><max_shear>26</max_shear><mxdv>81</mxdv><shape>POINT (-102.504158884526 32.7162751126854)</shape></result>
+        <summary><count>25</count><totalTimeInSeconds>0.012</totalTimeInSeconds></summary>
+        </swdiXmlResponse>
+  recorded_at: 2018-12-01 20:03:00 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/swdiws/xml/nx3meso/20060505:20060506/25
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 20:02:47 GMT
+      strict-transport-security: max-age=31536000
+      cache-control: private
+      content-type: text/xml;charset=UTF-8
+      access-control-allow-origin: '*'
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '1719'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?><swdiXmlResponse><!-- column header names[types]:  ZTIME[VARCHAR2] WSR_ID[VARCHAR2] CELL_ID[VARCHAR2] CELL_TYPE[VARCHAR2] RANGE[NUMBER] AZIMUTH[NUMBER] BASE_HEIGHT[NUMBER] TOP_HEIGHT[NUMBER] HEIGHT[NUMBER] RADIAL_DIAM[NUMBER] AZ_DIAM[NUMBER] SHEAR[NUMBER] SHAPE[MDSYS.SDO_GEOMETRY]  -->
+        <result><ztime>2006-05-05T00:00:45Z</ztime><wsr_id>KLBB</wsr_id><cell_id>P0</cell_id><cell_type>MESO</cell_type><range>122</range><azimuth>165</azimuth><base_height>16.5</base_height><top_height>21.5</top_height><height>16.5</height><radial_diam>1.9</radial_diam><az_diam>4.2</az_diam><shear>9</shear><shape>POINT (-101.197496803559 31.6843740429353)</shape></result>
+        <result><ztime>2006-05-05T00:00:45Z</ztime><wsr_id>KLBB</wsr_id><cell_id>G0</cell_id><cell_type>UNC SHR</cell_type><range>53</range><azimuth>226</azimuth><base_height>15</base_height><top_height>15</top_height><height>15</height><radial_diam>2</radial_diam><az_diam>3.7</az_diam><shear>7</shear><shape>POINT (-102.569931348078 33.0369811650688)</shape></result>
+        <result><ztime>2006-05-05T00:00:45Z</ztime><wsr_id>KLBB</wsr_id><cell_id>S0</cell_id><cell_type>UNC SHR</cell_type><range>73</range><azimuth>223</azimuth><base_height>13.5</base_height><top_height>13.5</top_height><height>13.5</height><radial_diam>1.8</radial_diam><az_diam>3.7</az_diam><shear>8</shear><shape>POINT (-102.798000555293 32.7586300599108)</shape></result>
+        <result><ztime>2006-05-05T00:00:54Z</ztime><wsr_id>KFWS</wsr_id><cell_id>R4</cell_id><cell_type>UNC SHR</cell_type><range>59</range><azimuth>224</azimuth><base_height>17.1</base_height><top_height>17.1</top_height><height>17.1</height><radial_diam>4</radial_diam><az_diam>3.2</az_diam><shear>32</shear><shape>POINT (-98.1051400587857 31.861696176778)</shape></result>
+        <result><ztime>2006-05-05T00:00:59Z</ztime><wsr_id>KDYX</wsr_id><cell_id>A2</cell_id><cell_type>UNC SHR</cell_type><range>114</range><azimuth>247</azimuth><base_height>16.3</base_height><top_height>16.3</top_height><height>16.3</height><radial_diam>2</radial_diam><az_diam>3.4</az_diam><shear>9</shear><shape>POINT (-101.306015945194 31.7772827698164)</shape></result>
+        <result><ztime>2006-05-05T00:00:59Z</ztime><wsr_id>KDYX</wsr_id><cell_id>Y0</cell_id><cell_type>UNC SHR</cell_type><range>97</range><azimuth>183</azimuth><base_height>23.2</base_height><top_height>23.2</top_height><height>23.2</height><radial_diam>1.5</radial_diam><az_diam>6.9</az_diam><shear>6</shear><shape>POINT (-99.3523385786414 30.9200780684841)</shape></result>
+        <result><ztime>2006-05-05T00:01:55Z</ztime><wsr_id>KIND</wsr_id><cell_id>NULL</cell_id><cell_type>UNC SHR</cell_type><range>15</range><azimuth>125</azimuth><base_height>0.9</base_height><top_height>0.9</top_height><height>0.9</height><radial_diam>2.3</radial_diam><az_diam>1.1</az_diam><shear>76</shear><shape>POINT (-86.0151526678541 39.5642056660823)</shape></result>
+        <result><ztime>2006-05-05T00:01:57Z</ztime><wsr_id>KEWX</wsr_id><cell_id>L1</cell_id><cell_type>MESO</cell_type><range>93</range><azimuth>319</azimuth><base_height>15.5</base_height><top_height>24.7</top_height><height>20</height><radial_diam>5.7</radial_diam><az_diam>7.6</az_diam><shear>12</shear><shape>POINT (-99.2095322445991 30.8712677231185)</shape></result>
+        <result><ztime>2006-05-05T00:01:57Z</ztime><wsr_id>KEWX</wsr_id><cell_id>L1</cell_id><cell_type>UNC SHR</cell_type><range>103</range><azimuth>316</azimuth><base_height>17.8</base_height><top_height>17.8</top_height><height>17.8</height><radial_diam>2</radial_diam><az_diam>2.2</az_diam><shear>8</shear><shape>POINT (-99.4144574037648 30.9345286761316)</shape></result>
+        <result><ztime>2006-05-05T00:01:57Z</ztime><wsr_id>KEWX</wsr_id><cell_id>L1</cell_id><cell_type>UNC SHR</cell_type><range>97</range><azimuth>317</azimuth><base_height>16.4</base_height><top_height>16.4</top_height><height>16.4</height><radial_diam>5.3</radial_diam><az_diam>7.6</az_diam><shear>5</shear><shape>POINT (-99.3092294394828 30.8829373004521)</shape></result>
+        <result><ztime>2006-05-05T00:02:41Z</ztime><wsr_id>KSJT</wsr_id><cell_id>N3</cell_id><cell_type>MESO</cell_type><range>42</range><azimuth>96</azimuth><base_height>7.9</base_height><top_height>26</top_height><height>20.3</height><radial_diam>1.6</radial_diam><az_diam>3.6</az_diam><shear>12</shear><shape>POINT (-99.6793632505725 31.2951046570859)</shape></result>
+        <result><ztime>2006-05-05T00:02:41Z</ztime><wsr_id>KSJT</wsr_id><cell_id>M3</cell_id><cell_type>UNC SHR</cell_type><range>37</range><azimuth>307</azimuth><base_height>24.8</base_height><top_height>24.8</top_height><height>24.8</height><radial_diam>3.1</radial_diam><az_diam>4</az_diam><shear>7</shear><shape>POINT (-101.06961446182 31.7415770107728)</shape></result>
+        <result><ztime>2006-05-05T00:02:41Z</ztime><wsr_id>KSJT</wsr_id><cell_id>K2</cell_id><cell_type>UNC SHR</cell_type><range>44</range><azimuth>307</azimuth><base_height>25.9</base_height><top_height>25.9</top_height><height>25.9</height><radial_diam>2.4</radial_diam><az_diam>4.7</az_diam><shear>5</shear><shape>POINT (-101.179404485317 31.8113923445024)</shape></result>
+        <result><ztime>2006-05-05T00:02:41Z</ztime><wsr_id>KSJT</wsr_id><cell_id>K2</cell_id><cell_type>UNC SHR</cell_type><range>41</range><azimuth>298</azimuth><base_height>23.9</base_height><top_height>23.9</top_height><height>23.9</height><radial_diam>4.2</radial_diam><az_diam>4.1</az_diam><shear>11</shear><shape>POINT (-101.199248049939 31.6905145920585)</shape></result>
+        <result><ztime>2006-05-05T00:02:41Z</ztime><wsr_id>KSJT</wsr_id><cell_id>N3</cell_id><cell_type>UNC SHR</cell_type><range>53</range><azimuth>88</azimuth><base_height>15.4</base_height><top_height>15.4</top_height><height>15.4</height><radial_diam>4.3</radial_diam><az_diam>2.6</az_diam><shear>9</shear><shape>POINT (-99.4603831066762 31.3977458973217)</shape></result>
+        <result><ztime>2006-05-05T00:02:41Z</ztime><wsr_id>KSJT</wsr_id><cell_id>N3</cell_id><cell_type>UNC SHR</cell_type><range>39</range><azimuth>93</azimuth><base_height>11.1</base_height><top_height>11.1</top_height><height>11.1</height><radial_diam>1.5</radial_diam><az_diam>2.7</az_diam><shear>8</shear><shape>POINT (-99.7339755644355 31.3346722400728)</shape></result>
+        <result><ztime>2006-05-05T00:02:41Z</ztime><wsr_id>KSJT</wsr_id><cell_id>S2</cell_id><cell_type>UNC SHR</cell_type><range>71</range><azimuth>114</azimuth><base_height>15</base_height><top_height>15</top_height><height>15</height><radial_diam>1.6</radial_diam><az_diam>5.2</az_diam><shear>6</shear><shape>POINT (-99.2355802268807 30.882501601974)</shape></result>
+        <result><ztime>2006-05-05T00:02:41Z</ztime><wsr_id>KSJT</wsr_id><cell_id>S1</cell_id><cell_type>3DC SHR</cell_type><range>67</range><azimuth>114</azimuth><base_height>14</base_height><top_height>21.5</top_height><height>14</height><radial_diam>1.5</radial_diam><az_diam>3.8</az_diam><shear>12</shear><shape>POINT (-99.3060192702504 30.9103513398234)</shape></result>
+        <result><ztime>2006-05-05T00:02:41Z</ztime><wsr_id>KSJT</wsr_id><cell_id>K2</cell_id><cell_type>MESO</cell_type><range>45</range><azimuth>298</azimuth><base_height>17.5</base_height><top_height>22</top_height><height>17.5</height><radial_diam>2</radial_diam><az_diam>2.3</az_diam><shear>11</shear><shape>POINT (-101.268504468583 31.7214775153168)</shape></result>
+        <result><ztime>2006-05-05T00:02:41Z</ztime><wsr_id>KSJT</wsr_id><cell_id>P2</cell_id><cell_type>MESO</cell_type><range>41</range><azimuth>108</azimuth><base_height>11.6</base_height><top_height>25.8</top_height><height>11.6</height><radial_diam>1.6</radial_diam><az_diam>2</az_diam><shear>11</shear><shape>POINT (-99.7344889306194 31.1571606956326)</shape></result>
+        <result><ztime>2006-05-05T00:02:41Z</ztime><wsr_id>KSJT</wsr_id><cell_id>S2</cell_id><cell_type>MESO</cell_type><range>76</range><azimuth>113</azimuth><base_height>16.3</base_height><top_height>23.6</top_height><height>16.3</height><radial_diam>4.9</radial_diam><az_diam>8.6</az_diam><shear>5</shear><shape>POINT (-99.1370589647229 30.867842291368)</shape></result>
+        <result><ztime>2006-05-05T00:03:09Z</ztime><wsr_id>KPOE</wsr_id><cell_id>C2</cell_id><cell_type>UNC SHR</cell_type><range>43</range><azimuth>27</azimuth><base_height>11.9</base_height><top_height>11.9</top_height><height>11.9</height><radial_diam>1.6</radial_diam><az_diam>2.5</az_diam><shear>8</shear><shape>POINT (-92.594204966007 31.7943043804621)</shape></result>
+        <result><ztime>2006-05-05T00:03:19Z</ztime><wsr_id>KBRO</wsr_id><cell_id>D1</cell_id><cell_type>UNC SHR</cell_type><range>123</range><azimuth>302</azimuth><base_height>17.3</base_height><top_height>17.3</top_height><height>17.3</height><radial_diam>2.3</radial_diam><az_diam>4.1</az_diam><shear>9</shear><shape>POINT (-99.365216640375 26.9924797182301)</shape></result>
+        <result><ztime>2006-05-05T00:03:19Z</ztime><wsr_id>KBRO</wsr_id><cell_id>D1</cell_id><cell_type>UNC SHR</cell_type><range>89</range><azimuth>287</azimuth><base_height>19.9</base_height><top_height>19.9</top_height><height>19.9</height><radial_diam>1.6</radial_diam><az_diam>7.1</az_diam><shear>11</shear><shape>POINT (-98.9982441509942 26.3423474151006)</shape></result>
+        <result><ztime>2006-05-05T00:03:19Z</ztime><wsr_id>KBRO</wsr_id><cell_id>E1</cell_id><cell_type>UNC SHR</cell_type><range>10</range><azimuth>298</azimuth><base_height>1.7</base_height><top_height>1.7</top_height><height>1.7</height><radial_diam>1.3</radial_diam><az_diam>6.3</az_diam><shear>3</shear><shape>POINT (-97.5823465057996 25.9943764351743)</shape></result>
+        <summary><count>25</count><totalTimeInSeconds>0.038</totalTimeInSeconds></summary>
+        </swdiXmlResponse>
+  recorded_at: 2018-12-01 20:03:00 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/swdiws/xml/warn/20060505:20060506/25
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 20:02:59 GMT
+      strict-transport-security: max-age=31536000
+      cache-control: private
+      content-type: text/xml;charset=UTF-8
+      access-control-allow-origin: '*'
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '1493'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?><swdiXmlResponse><!-- column header names[types]:  ZTIME_START[VARCHAR2] ZTIME_END[VARCHAR2] ID[VARCHAR2] WARNINGTYPE[VARCHAR2] ISSUEWFO[VARCHAR2] MESSAGEID[VARCHAR2] SHAPE[MDSYS.SDO_GEOMETRY]  -->
+        <result><ztime_start>2006-05-04T11:57:00Z</ztime_start><ztime_end>2006-05-05T05:45:00Z</ztime_end><id>397088</id><warningtype>FLASH FLOOD</warningtype><issuewfo>KSGF</issuewfo><messageid>041157</messageid><shape>POLYGON ((-95.02 37.64, -95.02 37.02, -94.57 37.03, -94.59 36.52, -94.1 36.51, -94.12 37.62, -95.02 37.64))</shape></result>
+        <result><ztime_start>2006-05-04T22:50:00Z</ztime_start><ztime_end>2006-05-05T00:15:00Z</ztime_end><id>397156</id><warningtype>SPECIAL MARINE</warningtype><issuewfo>KLIX</issuewfo><messageid>042251</messageid><shape>POLYGON ((-90.06 29.34, -89.8 29.15, -89.55 29.26, -89.61 29.27, -89.6 29.35, -89.67 29.31, -89.77 29.33, -89.75 29.41, -89.81 29.43, -89.83 29.49, -89.93 29.51, -89.94 29.48, -90.07 29.55, -90.17 29.51, -90.06 29.43, -90.06 29.34))</shape></result>
+        <result><ztime_start>2006-05-04T22:50:00Z</ztime_start><ztime_end>2006-05-05T00:15:00Z</ztime_end><id>397157</id><warningtype>SPECIAL MARINE</warningtype><issuewfo>KLIX</issuewfo><messageid>042251</messageid><shape>POLYGON ((-90.06 29.34, -89.8 29.15, -89.55 29.26, -89.61 29.27, -89.6 29.35, -89.67 29.31, -89.77 29.33, -89.75 29.41, -89.81 29.43, -89.83 29.49, -89.93 29.51, -89.94 29.48, -90.07 29.55, -90.17 29.51, -90.06 29.43, -90.06 29.34))</shape></result>
+        <result><ztime_start>2006-05-04T23:07:00Z</ztime_start><ztime_end>2006-05-05T00:00:00Z</ztime_end><id>397161</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSHV</issuewfo><messageid>042307</messageid><shape>POLYGON ((-94.09 31.63, -94.04 31.6, -93.95 31.6, -93.93 31.61, -93.84 31.6, -93.8 31.71, -93.84 31.78, -94.11 31.78, -94.13 31.63, -94.09 31.63))</shape></result>
+        <result><ztime_start>2006-05-04T23:10:00Z</ztime_start><ztime_end>2006-05-05T00:00:00Z</ztime_end><id>397162</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KJAN</issuewfo><messageid>042310</messageid><shape>POLYGON ((-91.57 33.33, -91.73 33.01, -91.17 33.02, -91.14 33.07, -91.2 33.14, -91.09 33.16, -91.14 33.29, -91.57 33.33))</shape></result>
+        <result><ztime_start>2006-05-04T23:13:00Z</ztime_start><ztime_end>2006-05-05T00:15:00Z</ztime_end><id>397163</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSJT</issuewfo><messageid>042312</messageid><shape>POLYGON ((-99.58 31.31, -99.6 31.19, -99.01 30.91, -99.08 31.35, -99.58 31.31))</shape></result>
+        <result><ztime_start>2006-05-04T23:28:00Z</ztime_start><ztime_end>2006-05-05T00:15:00Z</ztime_end><id>397164</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KJAN</issuewfo><messageid>042328</messageid><shape>POLYGON ((-91.41 33, -91.54 32.85, -90.98 32.71, -90.92 33.01, -91.41 33))</shape></result>
+        <result><ztime_start>2006-05-04T23:28:00Z</ztime_start><ztime_end>2006-05-05T00:15:00Z</ztime_end><id>397168</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSJT</issuewfo><messageid>042329</messageid><shape>POLYGON ((-99.61 31.19, -99.81 31.1, -99.34 30.7, -99.01 30.9, -99.61 31.19))</shape></result>
+        <result><ztime_start>2006-05-04T23:28:00Z</ztime_start><ztime_end>2006-05-05T00:15:00Z</ztime_end><id>397167</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSJT</issuewfo><messageid>042329</messageid><shape>POLYGON ((-99.61 31.19, -99.81 31.1, -99.34 30.7, -99.01 30.9, -99.61 31.19))</shape></result>
+        <result><ztime_start>2006-05-04T23:28:00Z</ztime_start><ztime_end>2006-05-05T00:15:00Z</ztime_end><id>397166</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSJT</issuewfo><messageid>042328</messageid><shape>POLYGON ((-99.54 31.75, -99.34 31.48, -98.99 31.5, -99.07 31.9, -99.54 31.75))</shape></result>
+        <result><ztime_start>2006-05-04T23:28:00Z</ztime_start><ztime_end>2006-05-05T00:15:00Z</ztime_end><id>397165</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSJT</issuewfo><messageid>042328</messageid><shape>POLYGON ((-99.54 31.75, -99.34 31.48, -98.99 31.5, -99.07 31.9, -99.54 31.75))</shape></result>
+        <result><ztime_start>2006-05-04T23:36:00Z</ztime_start><ztime_end>2006-05-05T00:30:00Z</ztime_end><id>397169</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSHV</issuewfo><messageid>042337</messageid><shape>POLYGON ((-92.22 32.29, -92.11 32.27, -92.02 32.3, -92 32.41, -91.9 32.53, -91.92 32.66, -91.97 32.71, -92.06 32.71, -92.23 32.59, -92.4 32.57, -92.4 32.49, -92.22 32.29))</shape></result>
+        <result><ztime_start>2006-05-04T23:44:00Z</ztime_start><ztime_end>2006-05-05T00:30:00Z</ztime_end><id>397170</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KJAN</issuewfo><messageid>042344</messageid><shape>POLYGON ((-91.03 33.29, -91.08 33.22, -91.09 33.14, -91.19 33.14, -91.11 33.06, -91.15 33.02, -90.92 33.03, -90.91 33.12, -90.68 33.11, -90.75 33.27, -91.03 33.29))</shape></result>
+        <result><ztime_start>2006-05-04T23:44:00Z</ztime_start><ztime_end>2006-05-05T00:30:00Z</ztime_end><id>397172</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KCRP</issuewfo><messageid>042345</messageid><shape>POLYGON ((-99.64 27.36, -99.54 27.2, -99.1 27.37, -99.24 27.6, -99.64 27.36))</shape></result>
+        <result><ztime_start>2006-05-04T23:45:00Z</ztime_start><ztime_end>2006-05-05T00:15:00Z</ztime_end><id>397171</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSJT</issuewfo><messageid>042345</messageid><shape>POLYGON ((-99.81 31.11, -99.6 31.19, -99.59 31.3, -99.7 31.39, -99.97 31.25, -99.81 31.11))</shape></result>
+        <result><ztime_start>2006-05-04T23:47:00Z</ztime_start><ztime_end>2006-05-05T00:45:00Z</ztime_end><id>397173</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KJAN</issuewfo><messageid>042347</messageid><shape>POLYGON ((-90.91 32.98, -90.96 32.76, -90.72 32.83, -90.65 32.93, -90.66 33.11, -90.91 32.98))</shape></result>
+        <result><ztime_start>2006-05-04T23:51:00Z</ztime_start><ztime_end>2006-05-05T00:45:00Z</ztime_end><id>397174</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KJAN</issuewfo><messageid>042351</messageid><shape>POLYGON ((-91.93 32.2, -91.89 32.17, -91.84 32.17, -91.52 32.23, -91.54 32.29, -91.5 32.31, -91.47 32.52, -91.95 32.34, -91.96 32.3, -91.93 32.2))</shape></result>
+        <result><ztime_start>2006-05-05T00:03:00Z</ztime_start><ztime_end>2006-05-05T00:30:00Z</ztime_end><id>397175</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSHV</issuewfo><messageid>050004</messageid><shape>POLYGON ((-94.1 31.6, -94.11 31.47, -94.02 31.46, -94.02 31.58, -94.1 31.6))</shape></result>
+        <result><ztime_start>2006-05-05T00:03:00Z</ztime_start><ztime_end>2006-05-05T00:30:00Z</ztime_end><id>397176</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSHV</issuewfo><messageid>050004</messageid><shape>POLYGON ((-94.1 31.6, -94.11 31.47, -94.02 31.46, -94.02 31.58, -94.1 31.6))</shape></result>
+        <result><ztime_start>2006-05-05T00:07:00Z</ztime_start><ztime_end>2006-05-05T01:00:00Z</ztime_end><id>397177</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KMAF</issuewfo><messageid>050007</messageid><shape>POLYGON ((-103.04 32.93, -103.01 32.64, -102.55 32.6, -102.44 32.94, -102.94 32.95, -103.04 32.93))</shape></result>
+        <result><ztime_start>2006-05-05T00:09:00Z</ztime_start><ztime_end>2006-05-05T00:45:00Z</ztime_end><id>397178</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSJT</issuewfo><messageid>050009</messageid><shape>POLYGON ((-99.85 31.49, -99.83 31.08, -99.29 31.12, -99.3 31.44, -99.85 31.49))</shape></result>
+        <result><ztime_start>2006-05-05T00:13:00Z</ztime_start><ztime_end>2006-05-05T02:15:00Z</ztime_end><id>397181</id><warningtype>FLASH FLOOD</warningtype><issuewfo>KSJT</issuewfo><messageid>050019</messageid><shape>POLYGON ((-99.7 31.47, -99.76 31.16, -99.45 30.85, -99.08 30.8, -99.11 31.25, -99.7 31.47))</shape></result>
+        <result><ztime_start>2006-05-05T00:14:00Z</ztime_start><ztime_end>2006-05-05T00:45:00Z</ztime_end><id>397179</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSJT</issuewfo><messageid>050013</messageid><shape>POLYGON ((-99.49 31.1, -99.51 30.81, -98.96 30.64, -98.96 30.91, -98.68 30.92, -98.7 31.21, -99.49 31.1))</shape></result>
+        <result><ztime_start>2006-05-05T00:16:00Z</ztime_start><ztime_end>2006-05-05T01:15:00Z</ztime_end><id>397180</id><warningtype>SEVERE THUNDERSTORM</warningtype><issuewfo>KSHV</issuewfo><messageid>050017</messageid><shape>POLYGON ((-94.15 32.35, -94.14 32.18, -93.91 32.23, -93.83 32.37, -94.15 32.35))</shape></result>
+        <result><ztime_start>2006-05-05T00:22:00Z</ztime_start><ztime_end>2006-05-05T01:15:00Z</ztime_end><id>397182</id><warningtype>TORNADO</warningtype><issuewfo>KMAF</issuewfo><messageid>050022</messageid><shape>POLYGON ((-102.87 32.8, -102.81 32.68, -102.61 32.56, -102.25 32.65, -102.42 32.94, -102.87 32.8))</shape></result>
+        <summary><count>25</count><totalTimeInSeconds>0.051</totalTimeInSeconds></summary>
+        </swdiXmlResponse>
+  recorded_at: 2018-12-01 20:03:00 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

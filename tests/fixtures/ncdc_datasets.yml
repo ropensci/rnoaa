@@ -1,0 +1,136 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets?limit=25
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:55:37 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '457'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":11,"limit":25}},"results":[{"uid":"gov.noaa.ncdc:C00861","mindate":"1763-01-01","maxdate":"2018-11-25","name":"Daily
+        Summaries","datacoverage":1,"id":"GHCND"},{"uid":"gov.noaa.ncdc:C00946","mindate":"1763-01-01","maxdate":"2018-10-01","name":"Global
+        Summary of the Month","datacoverage":1,"id":"GSOM"},{"uid":"gov.noaa.ncdc:C00947","mindate":"1763-01-01","maxdate":"2018-01-01","name":"Global
+        Summary of the Year","datacoverage":1,"id":"GSOY"},{"uid":"gov.noaa.ncdc:C00345","mindate":"1991-06-05","maxdate":"2018-11-26","name":"Weather
+        Radar (Level II)","datacoverage":0.95,"id":"NEXRAD2"},{"uid":"gov.noaa.ncdc:C00708","mindate":"1994-05-20","maxdate":"2018-11-23","name":"Weather
+        Radar (Level III)","datacoverage":0.95,"id":"NEXRAD3"},{"uid":"gov.noaa.ncdc:C00821","mindate":"2010-01-01","maxdate":"2010-01-01","name":"Normals
+        Annual/Seasonal","datacoverage":1,"id":"NORMAL_ANN"},{"uid":"gov.noaa.ncdc:C00823","mindate":"2010-01-01","maxdate":"2010-12-31","name":"Normals
+        Daily","datacoverage":1,"id":"NORMAL_DLY"},{"uid":"gov.noaa.ncdc:C00824","mindate":"2010-01-01","maxdate":"2010-12-31","name":"Normals
+        Hourly","datacoverage":1,"id":"NORMAL_HLY"},{"uid":"gov.noaa.ncdc:C00822","mindate":"2010-01-01","maxdate":"2010-12-01","name":"Normals
+        Monthly","datacoverage":1,"id":"NORMAL_MLY"},{"uid":"gov.noaa.ncdc:C00505","mindate":"1970-05-12","maxdate":"2014-01-01","name":"Precipitation
+        15 Minute","datacoverage":0.25,"id":"PRECIP_15"},{"uid":"gov.noaa.ncdc:C00313","mindate":"1900-01-01","maxdate":"2014-01-01","name":"Precipitation
+        Hourly","datacoverage":1,"id":"PRECIP_HLY"}]}'
+  recorded_at: 2018-12-01 19:55:39 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets?limit=25
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:55:38 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '457'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":11,"limit":25}},"results":[{"uid":"gov.noaa.ncdc:C00861","mindate":"1763-01-01","maxdate":"2018-11-25","name":"Daily
+        Summaries","datacoverage":1,"id":"GHCND"},{"uid":"gov.noaa.ncdc:C00946","mindate":"1763-01-01","maxdate":"2018-10-01","name":"Global
+        Summary of the Month","datacoverage":1,"id":"GSOM"},{"uid":"gov.noaa.ncdc:C00947","mindate":"1763-01-01","maxdate":"2018-01-01","name":"Global
+        Summary of the Year","datacoverage":1,"id":"GSOY"},{"uid":"gov.noaa.ncdc:C00345","mindate":"1991-06-05","maxdate":"2018-11-26","name":"Weather
+        Radar (Level II)","datacoverage":0.95,"id":"NEXRAD2"},{"uid":"gov.noaa.ncdc:C00708","mindate":"1994-05-20","maxdate":"2018-11-23","name":"Weather
+        Radar (Level III)","datacoverage":0.95,"id":"NEXRAD3"},{"uid":"gov.noaa.ncdc:C00821","mindate":"2010-01-01","maxdate":"2010-01-01","name":"Normals
+        Annual/Seasonal","datacoverage":1,"id":"NORMAL_ANN"},{"uid":"gov.noaa.ncdc:C00823","mindate":"2010-01-01","maxdate":"2010-12-31","name":"Normals
+        Daily","datacoverage":1,"id":"NORMAL_DLY"},{"uid":"gov.noaa.ncdc:C00824","mindate":"2010-01-01","maxdate":"2010-12-31","name":"Normals
+        Hourly","datacoverage":1,"id":"NORMAL_HLY"},{"uid":"gov.noaa.ncdc:C00822","mindate":"2010-01-01","maxdate":"2010-12-01","name":"Normals
+        Monthly","datacoverage":1,"id":"NORMAL_MLY"},{"uid":"gov.noaa.ncdc:C00505","mindate":"1970-05-12","maxdate":"2014-01-01","name":"Precipitation
+        15 Minute","datacoverage":0.25,"id":"PRECIP_15"},{"uid":"gov.noaa.ncdc:C00313","mindate":"1900-01-01","maxdate":"2014-01-01","name":"Precipitation
+        Hourly","datacoverage":1,"id":"PRECIP_HLY"}]}'
+  recorded_at: 2018-12-01 19:55:39 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets?limit=25
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:55:40 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '457'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":11,"limit":25}},"results":[{"uid":"gov.noaa.ncdc:C00861","mindate":"1763-01-01","maxdate":"2018-11-25","name":"Daily
+        Summaries","datacoverage":1,"id":"GHCND"},{"uid":"gov.noaa.ncdc:C00946","mindate":"1763-01-01","maxdate":"2018-10-01","name":"Global
+        Summary of the Month","datacoverage":1,"id":"GSOM"},{"uid":"gov.noaa.ncdc:C00947","mindate":"1763-01-01","maxdate":"2018-01-01","name":"Global
+        Summary of the Year","datacoverage":1,"id":"GSOY"},{"uid":"gov.noaa.ncdc:C00345","mindate":"1991-06-05","maxdate":"2018-11-26","name":"Weather
+        Radar (Level II)","datacoverage":0.95,"id":"NEXRAD2"},{"uid":"gov.noaa.ncdc:C00708","mindate":"1994-05-20","maxdate":"2018-11-23","name":"Weather
+        Radar (Level III)","datacoverage":0.95,"id":"NEXRAD3"},{"uid":"gov.noaa.ncdc:C00821","mindate":"2010-01-01","maxdate":"2010-01-01","name":"Normals
+        Annual/Seasonal","datacoverage":1,"id":"NORMAL_ANN"},{"uid":"gov.noaa.ncdc:C00823","mindate":"2010-01-01","maxdate":"2010-12-31","name":"Normals
+        Daily","datacoverage":1,"id":"NORMAL_DLY"},{"uid":"gov.noaa.ncdc:C00824","mindate":"2010-01-01","maxdate":"2010-12-31","name":"Normals
+        Hourly","datacoverage":1,"id":"NORMAL_HLY"},{"uid":"gov.noaa.ncdc:C00822","mindate":"2010-01-01","maxdate":"2010-12-01","name":"Normals
+        Monthly","datacoverage":1,"id":"NORMAL_MLY"},{"uid":"gov.noaa.ncdc:C00505","mindate":"1970-05-12","maxdate":"2014-01-01","name":"Precipitation
+        15 Minute","datacoverage":0.25,"id":"PRECIP_15"},{"uid":"gov.noaa.ncdc:C00313","mindate":"1900-01-01","maxdate":"2014-01-01","name":"Precipitation
+        Hourly","datacoverage":1,"id":"PRECIP_HLY"}]}'
+  recorded_at: 2018-12-01 19:55:39 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

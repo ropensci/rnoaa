@@ -1,0 +1,60 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes?limit=25&datasetid=ANNUAL
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:57:18 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '656'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":594,"limit":25}},"results":[{"mindate":"1980-01-01","maxdate":"2015-11-01","name":"Cooling
+        Degree Days","datacoverage":1,"id":"CLDD"},{"mindate":"1890-07-01","maxdate":"2015-11-01","name":"Number
+        of days with greater than or equal to 0.1 inch of precipitation","datacoverage":1,"id":"DP01"},{"mindate":"1890-07-01","maxdate":"2015-11-01","name":"Number
+        of days with greater than or equal to 0.5 inch of precipitation","datacoverage":1,"id":"DP05"},{"mindate":"1858-07-01","maxdate":"2015-11-01","name":"Number
+        of days with greater than or equal to 1.0 inch of precipitation","datacoverage":1,"id":"DP10"},{"mindate":"1888-12-01","maxdate":"2015-11-01","name":"Departure
+        from normal monthly precipitation.","datacoverage":1,"id":"DPNP"},{"mindate":"1888-06-01","maxdate":"2015-11-01","name":"Departure
+        from normal monthly temperature.","datacoverage":1,"id":"DPNT"},{"mindate":"1963-01-01","maxdate":"2015-11-01","name":"Number
+        days with snow depth > 1 inch.","datacoverage":1,"id":"DSNW"},{"mindate":"1858-07-01","maxdate":"2015-11-01","name":"Number
+        days with minimum temperature less than or equal to 0.0 F","datacoverage":1,"id":"DT00"},{"mindate":"1858-07-01","maxdate":"2015-11-01","name":"Number
+        days with minimum temperature less than or equal to 32.0 F","datacoverage":1,"id":"DT32"},{"mindate":"1942-01-01","maxdate":"1981-12-01","name":"Number
+        days with minimum temperature < 59 F. (Puerto Rico and Virgin Islands only.)","datacoverage":1,"id":"DT60"},{"mindate":"1922-01-01","maxdate":"2015-11-01","name":"Number
+        days with maximum temperature > 70 F. (Alaska only.)","datacoverage":1,"id":"DT70"},{"mindate":"1858-07-01","maxdate":"2015-11-01","name":"Number
+        days with maximum temperature greater than or equal 90.0 F","datacoverage":1,"id":"DT90"},{"mindate":"1858-07-01","maxdate":"2015-11-01","name":"Number
+        days with maximum temperature < 32 F.","datacoverage":1,"id":"DX32"},{"mindate":"1942-01-01","maxdate":"1981-12-01","name":"Number
+        days with maximum temperature < 59 F. (Puerto Rico and Virgin Islands only.)","datacoverage":1,"id":"DX60"},{"mindate":"1858-07-01","maxdate":"2015-11-01","name":"Extreme
+        minimum temperature for the period.","datacoverage":1,"id":"EMNT"},{"mindate":"1858-07-01","maxdate":"2015-11-01","name":"Extreme
+        maximum precipitation for the period.","datacoverage":1,"id":"EMXP"},{"mindate":"1858-07-01","maxdate":"2015-11-01","name":"Extreme
+        maximum temperature for the period.","datacoverage":1,"id":"EMXT"},{"mindate":"1984-01-01","maxdate":"2009-08-01","name":"Highest
+        minimum soil temperature for the month(cover: unknown","datacoverage":1,"id":"HN0190"},{"mindate":"1984-01-01","maxdate":"2010-12-01","name":"Highest
+        minimum soil temperature for the month(cover: unknown","datacoverage":1,"id":"HN0290"},{"mindate":"2011-01-01","maxdate":"2012-01-01","name":"Highest
+        minimum soil temperature for the month(cover: unknown","datacoverage":0.998,"id":"HN0299"},{"mindate":"1984-01-01","maxdate":"2009-12-01","name":"Highest
+        minimum soil temperature for the month(cover: unknown","datacoverage":1,"id":"HN0390"},{"mindate":"1984-01-01","maxdate":"2010-12-01","name":"Highest
+        minimum soil temperature for the month(cover: grass","datacoverage":0.9819,"id":"HN1190"},{"mindate":"1984-01-01","maxdate":"1985-07-01","name":"Highest
+        minimum soil temperature for the month(cover: grass","datacoverage":1,"id":"HN1191"},{"mindate":"1984-01-01","maxdate":"2010-12-01","name":"Highest
+        minimum soil temperature for the month(cover: grass","datacoverage":1,"id":"HN1290"},{"mindate":"1984-01-01","maxdate":"1989-07-01","name":"Highest
+        minimum soil temperature for the month(cover: grass","datacoverage":0.8807,"id":"HN1291"}]}'
+  recorded_at: 2018-12-01 19:57:17 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

@@ -17,13 +17,14 @@ valid_dataset <- function(dataset_name) {
 }
 
 test_that("Each data set is accessible", {
-  skip_on_cran()
-  valid_dataset('nx3tvs')
-  valid_dataset('nx3meso')
-  # valid_dataset('nx3hail')
-  # valid_dataset('nx3structure')
-  # valid_dataset('plsr')
-  valid_dataset('warn')
+  vcr::use_cassette("swdi_accessible", {
+    valid_dataset('nx3tvs')
+    valid_dataset('nx3meso')
+    # valid_dataset('nx3hail')
+    # valid_dataset('nx3structure')
+    # valid_dataset('plsr')
+    valid_dataset('warn')
+  })
 })
 
 # test_that("Correct date range is returned", {
@@ -43,21 +44,20 @@ test_that("Each data set is accessible", {
 
 
 test_that("Box co-ordinates return correctly", {
-  skip_on_cran()
+  vcr::use_cassette("swdi_bbox", {
+    bbox <- c(-91,30,-90,31)
 
-  bbox <- c(-91,30,-90,31)
+    out <- swdi(dataset='plsr', startdate='20060505', 
+      enddate='20060510', bbox = bbox)
 
-  out <- swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox = bbox)
+    coordinates <- get_cordinates_df(out)
 
-  coordinates <- get_cordinates_df(out)
+    expect_lt(bbox[1], min(coordinates$lon))
+    expect_gt(bbox[3], max(coordinates$lon))
 
-  expect_lt(bbox[1], min(coordinates$lon))
-  expect_gt(bbox[3], max(coordinates$lon))
-
-  expect_lt(bbox[2], min(coordinates$lat))
-  expect_gt(bbox[4], max(coordinates$lat))
-
-
+    expect_lt(bbox[2], min(coordinates$lat))
+    expect_gt(bbox[4], max(coordinates$lat))
+  })
 })
 
 # test_that("Radius coordinates return correctly", {

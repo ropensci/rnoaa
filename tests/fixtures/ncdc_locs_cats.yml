@@ -1,0 +1,111 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories?token=hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ&limit=25
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:58:33 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '254'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":12,"limit":25}},"results":[{"name":"City","id":"CITY"},{"name":"Climate
+        Division","id":"CLIM_DIV"},{"name":"Climate Region","id":"CLIM_REG"},{"name":"Country","id":"CNTRY"},{"name":"County","id":"CNTY"},{"name":"Hydrologic
+        Accounting Unit","id":"HYD_ACC"},{"name":"Hydrologic Cataloging Unit","id":"HYD_CAT"},{"name":"Hydrologic
+        Region","id":"HYD_REG"},{"name":"Hydrologic Subregion","id":"HYD_SUB"},{"name":"State","id":"ST"},{"name":"US
+        Territory","id":"US_TERR"},{"name":"Zip Code","id":"ZIP"}]}'
+  recorded_at: 2018-12-01 19:58:36 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories/CLIM_REG?locationcategoryid=CLIM_REG&token=hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ&limit=25
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:58:35 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      connection: close
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: '{"name":"Climate Region","id":"CLIM_REG"}'
+  recorded_at: 2018-12-01 19:58:36 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories?startdate=1970-01-01&token=hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ&limit=25
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:58:37 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '254'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":12,"limit":25}},"results":[{"name":"City","id":"CITY"},{"name":"Climate
+        Division","id":"CLIM_DIV"},{"name":"Climate Region","id":"CLIM_REG"},{"name":"Country","id":"CNTRY"},{"name":"County","id":"CNTY"},{"name":"Hydrologic
+        Accounting Unit","id":"HYD_ACC"},{"name":"Hydrologic Cataloging Unit","id":"HYD_CAT"},{"name":"Hydrologic
+        Region","id":"HYD_REG"},{"name":"Hydrologic Subregion","id":"HYD_SUB"},{"name":"State","id":"ST"},{"name":"US
+        Territory","id":"US_TERR"},{"name":"Zip Code","id":"ZIP"}]}'
+  recorded_at: 2018-12-01 19:58:36 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

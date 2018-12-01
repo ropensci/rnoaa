@@ -1,0 +1,119 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/stations/COOP:010008
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:59:00 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '169'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"elevation":139,"mindate":"1948-01-01","maxdate":"2014-01-01","latitude":31.5702,"name":"ABBEVILLE,
+        AL US","datacoverage":0.8813,"id":"COOP:010008","elevationUnit":"METERS","longitude":-85.2482}'
+  recorded_at: 2018-12-01 19:59:02 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/stations/GHCND:USW00014895?datasetid=NORMAL_DLY
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:59:01 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '184'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"elevation":369.7,"mindate":"1948-07-01","maxdate":"2018-11-24","latitude":40.9181,"name":"AKRON
+        CANTON AIRPORT, OH US","datacoverage":1,"id":"GHCND:USW00014895","elevationUnit":"METERS","longitude":-81.4435}'
+  recorded_at: 2018-12-01 19:59:02 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/stations?limit=25&datasetid=GHCND&locationid=FIPS%3A12017
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:59:02 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '727'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":14,"limit":25}},"results":[{"elevation":36.9,"mindate":"2007-09-28","maxdate":"2012-10-24","latitude":28.8303,"name":"INVERNESS
+        1.6 WSW, FL US","datacoverage":0.8905,"id":"GHCND:US1FLCT0002","elevationUnit":"METERS","longitude":-82.3688},{"elevation":14.9,"mindate":"2007-11-09","maxdate":"2012-05-06","latitude":29.0375,"name":"DUNNELLON
+        3.6 WSW, FL US","datacoverage":0.7928,"id":"GHCND:US1FLCT0005","elevationUnit":"METERS","longitude":-82.5059},{"elevation":7.9,"mindate":"2007-10-01","maxdate":"2010-02-05","latitude":28.9681,"name":"CRYSTAL
+        RIVER 5.2 NNE, FL US","datacoverage":0.9616,"id":"GHCND:US1FLCT0006","elevationUnit":"METERS","longitude":-82.5577},{"elevation":11.9,"mindate":"2007-10-11","maxdate":"2018-11-25","latitude":28.9693,"name":"CRYSTAL
+        RIVER 5.3 NNE, FL US","datacoverage":0.9946,"id":"GHCND:US1FLCT0007","elevationUnit":"METERS","longitude":-82.5587},{"elevation":27.1,"mindate":"2008-04-13","maxdate":"2018-11-23","latitude":28.871,"name":"CRYSTAL
+        RIVER 4.7 ESE, FL US","datacoverage":0.8017,"id":"GHCND:US1FLCT0008","elevationUnit":"METERS","longitude":-82.5273},{"elevation":29.9,"mindate":"2008-10-11","maxdate":"2009-11-10","latitude":29.0206,"name":"CITRUS
+        SPRINGS 1.7 NNE, FL US","datacoverage":0.8308,"id":"GHCND:US1FLCT0010","elevationUnit":"METERS","longitude":-82.4679},{"elevation":23.2,"mindate":"2009-05-19","maxdate":"2018-11-25","latitude":28.9298,"name":"HERNANDO
+        1.6 N, FL US","datacoverage":0.9934,"id":"GHCND:US1FLCT0011","elevationUnit":"METERS","longitude":-82.3704},{"elevation":34.4,"mindate":"1998-06-17","maxdate":"2018-10-29","latitude":29.0011,"name":"CITRUS
+        SPRINGS 1.7 E, FL US","datacoverage":0.2423,"id":"GHCND:US1FLCT0012","elevationUnit":"METERS","longitude":-82.4476},{"elevation":2.7,"mindate":"2013-06-27","maxdate":"2015-06-20","latitude":28.7925,"name":"HOMOSASSA
+        4.1 E, FL US","datacoverage":0.9586,"id":"GHCND:US1FLCT0013","elevationUnit":"METERS","longitude":-82.5521},{"elevation":12.5,"mindate":"2014-10-15","maxdate":"2018-11-24","latitude":28.8582,"name":"INVERNESS
+        2.6 ENE, FL US","datacoverage":0.8848,"id":"GHCND:US1FLCT0015","elevationUnit":"METERS","longitude":-82.3056},{"elevation":2.7,"mindate":"2017-05-22","maxdate":"2018-11-25","latitude":28.8511,"name":"HOMOSASSA
+        5.2 NNE, FL US","datacoverage":0.8481,"id":"GHCND:US1FLCT0023","elevationUnit":"METERS","longitude":-82.5874},{"elevation":23.2,"mindate":"2017-07-17","maxdate":"2018-11-24","latitude":28.9142,"name":"HERNANDO
+        2.9 W, FL US","datacoverage":0.8004,"id":"GHCND:US1FLCT0024","elevationUnit":"METERS","longitude":-82.4215},{"elevation":32,"mindate":"2017-08-29","maxdate":"2018-11-16","latitude":28.853,"name":"LECANTO
+        1.9 E, FL US","datacoverage":0.5079,"id":"GHCND:US1FLCT0025","elevationUnit":"METERS","longitude":-82.4547},{"elevation":12.2,"mindate":"1899-02-01","maxdate":"2018-11-25","latitude":28.8029,"name":"INVERNESS
+        3 SE, FL US","datacoverage":0.8024,"id":"GHCND:USC00084289","elevationUnit":"METERS","longitude":-82.3126}]}'
+  recorded_at: 2018-12-01 19:59:02 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

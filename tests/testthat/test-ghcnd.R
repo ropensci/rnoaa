@@ -1,36 +1,36 @@
 context("ghcnd")
 
 test_that("states metadata", {
-  skip_on_cran()
+  vcr::use_cassette("ghcnd_states", {  
+    states <- ghcnd_states()
 
-  states <- ghcnd_states()
+    expect_is(states, "data.frame")
+    expect_is(states$code, "character")
+    expect_is(states$name, "character")
 
-  expect_is(states, "data.frame")
-  expect_is(states$code, "character")
-  expect_is(states$name, "character")
-
-  expect_equal(NCOL(states), 2)
+    expect_equal(NCOL(states), 2)
+  })
 })
 
 test_that("countries metadata", {
-  skip_on_cran()
+  vcr::use_cassette("ghcnd_countries", {  
+    countries <- ghcnd_countries()
 
-  countries <- ghcnd_countries()
+    expect_is(countries, "data.frame")
+    expect_is(countries$code, "character")
+    expect_is(countries$name, "character")
 
-  expect_is(countries, "data.frame")
-  expect_is(countries$code, "character")
-  expect_is(countries$name, "character")
-
-  expect_equal(NCOL(countries), 2)
+    expect_equal(NCOL(countries), 2)
+  })
 })
 
 test_that("version metadata", {
-  skip_on_cran()
+  vcr::use_cassette("ghcnd_version", {  
+    ver <- ghcnd_version()
 
-  ver <- ghcnd_version()
-
-  expect_is(ver, "character")
-  expect_gt(nchar(ver), 200)
+    expect_is(ver, "character")
+    expect_gt(nchar(ver), 200)
+  })
 })
 
 test_that("search for data", {

@@ -1,0 +1,105 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locations?startdate=20100101&token=hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ&limit=25&datasetid=NORMAL_DLY
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:57:59 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '449'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":13532,"limit":25}},"results":[{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Vancouver,
+        CA","datacoverage":1,"id":"CITY:CA000012"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Mexicali,
+        MX","datacoverage":1,"id":"CITY:MX000019"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Mayaguez,
+        RQ","datacoverage":1,"id":"CITY:RQ000001"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Ponce,
+        RQ","datacoverage":1,"id":"CITY:RQ000002"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"San
+        Juan, RQ","datacoverage":1,"id":"CITY:RQ000003"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Washington
+        D.C., US","datacoverage":1,"id":"CITY:US000001"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Alexander
+        City, AL US","datacoverage":1,"id":"CITY:US010001"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Anniston,
+        AL US","datacoverage":1,"id":"CITY:US010002"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Auburn,
+        AL US","datacoverage":1,"id":"CITY:US010003"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Birmingham,
+        AL US","datacoverage":1,"id":"CITY:US010004"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Cullman,
+        AL US","datacoverage":1,"id":"CITY:US010005"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Dothan,
+        AL US","datacoverage":1,"id":"CITY:US010006"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Enterprise,
+        AL US","datacoverage":1,"id":"CITY:US010007"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Eufaula,
+        AL US","datacoverage":1,"id":"CITY:US010008"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Florence,
+        AL US","datacoverage":1,"id":"CITY:US010009"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Fort
+        Payne, AL US","datacoverage":1,"id":"CITY:US010010"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Gadsden,
+        AL US","datacoverage":1,"id":"CITY:US010011"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Huntsville,
+        AL US","datacoverage":1,"id":"CITY:US010012"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Jasper,
+        AL US","datacoverage":1,"id":"CITY:US010013"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Mobile,
+        AL US","datacoverage":1,"id":"CITY:US010014"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Montgomery,
+        AL US","datacoverage":1,"id":"CITY:US010015"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Selma,
+        AL US","datacoverage":1,"id":"CITY:US010016"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Talladega,
+        AL US","datacoverage":1,"id":"CITY:US010017"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Troy,
+        AL US","datacoverage":1,"id":"CITY:US010018"},{"mindate":"2010-01-01","maxdate":"2010-12-31","name":"Tuscaloosa,
+        AL US","datacoverage":1,"id":"CITY:US010019"}]}'
+  recorded_at: 2018-12-01 19:58:01 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locations?token=hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ&limit=52&locationcategoryid=ST
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:58:01 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '839'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":51,"limit":52}},"results":[{"mindate":"1888-02-01","maxdate":"2018-11-26","name":"Alabama","datacoverage":1,"id":"FIPS:01"},{"mindate":"1893-09-01","maxdate":"2018-11-26","name":"Alaska","datacoverage":1,"id":"FIPS:02"},{"mindate":"1867-08-01","maxdate":"2018-11-26","name":"Arizona","datacoverage":1,"id":"FIPS:04"},{"mindate":"1872-02-01","maxdate":"2018-11-26","name":"Arkansas","datacoverage":1,"id":"FIPS:05"},{"mindate":"1850-10-01","maxdate":"2018-11-26","name":"California","datacoverage":1,"id":"FIPS:06"},{"mindate":"1852-10-01","maxdate":"2018-11-26","name":"Colorado","datacoverage":1,"id":"FIPS:08"},{"mindate":"1884-11-01","maxdate":"2018-11-26","name":"Connecticut","datacoverage":1,"id":"FIPS:09"},{"mindate":"1893-01-01","maxdate":"2018-11-26","name":"Delaware","datacoverage":1,"id":"FIPS:10"},{"mindate":"1872-01-01","maxdate":"2018-11-26","name":"District
+        of Columbia","datacoverage":1,"id":"FIPS:11"},{"mindate":"1871-10-01","maxdate":"2018-11-26","name":"Florida","datacoverage":1,"id":"FIPS:12"},{"mindate":"1849-01-01","maxdate":"2018-11-26","name":"Georgia","datacoverage":1,"id":"FIPS:13"},{"mindate":"1905-01-01","maxdate":"2018-11-26","name":"Hawaii","datacoverage":1,"id":"FIPS:15"},{"mindate":"1892-06-01","maxdate":"2018-11-26","name":"Idaho","datacoverage":1,"id":"FIPS:16"},{"mindate":"1870-10-15","maxdate":"2018-11-26","name":"Illinois","datacoverage":1,"id":"FIPS:17"},{"mindate":"1886-02-01","maxdate":"2018-11-26","name":"Indiana","datacoverage":1,"id":"FIPS:18"},{"mindate":"1888-06-01","maxdate":"2018-11-26","name":"Iowa","datacoverage":1,"id":"FIPS:19"},{"mindate":"1857-04-01","maxdate":"2018-11-26","name":"Kansas","datacoverage":1,"id":"FIPS:20"},{"mindate":"1872-10-01","maxdate":"2018-11-26","name":"Kentucky","datacoverage":1,"id":"FIPS:21"},{"mindate":"1882-07-01","maxdate":"2018-11-26","name":"Louisiana","datacoverage":1,"id":"FIPS:22"},{"mindate":"1885-06-01","maxdate":"2018-11-26","name":"Maine","datacoverage":1,"id":"FIPS:23"},{"mindate":"1880-01-01","maxdate":"2018-11-26","name":"Maryland","datacoverage":1,"id":"FIPS:24"},{"mindate":"1831-02-01","maxdate":"2018-11-26","name":"Massachusetts","datacoverage":1,"id":"FIPS:25"},{"mindate":"1887-06-01","maxdate":"2018-11-26","name":"Michigan","datacoverage":1,"id":"FIPS:26"},{"mindate":"1886-01-01","maxdate":"2018-11-26","name":"Minnesota","datacoverage":1,"id":"FIPS:27"},{"mindate":"1891-02-01","maxdate":"2018-11-26","name":"Mississippi","datacoverage":1,"id":"FIPS:28"},{"mindate":"1892-04-01","maxdate":"2018-11-26","name":"Missouri","datacoverage":1,"id":"FIPS:29"},{"mindate":"1891-08-01","maxdate":"2018-11-26","name":"Montana","datacoverage":1,"id":"FIPS:30"},{"mindate":"1878-05-01","maxdate":"2018-11-26","name":"Nebraska","datacoverage":1,"id":"FIPS:31"},{"mindate":"1877-07-01","maxdate":"2018-11-26","name":"Nevada","datacoverage":1,"id":"FIPS:32"},{"mindate":"1868-01-01","maxdate":"2018-11-26","name":"New
+        Hampshire","datacoverage":1,"id":"FIPS:33"},{"mindate":"1865-06-01","maxdate":"2018-11-26","name":"New
+        Jersey","datacoverage":1,"id":"FIPS:34"},{"mindate":"1870-01-01","maxdate":"2018-11-26","name":"New
+        Mexico","datacoverage":1,"id":"FIPS:35"},{"mindate":"1869-01-01","maxdate":"2018-11-26","name":"New
+        York","datacoverage":1,"id":"FIPS:36"},{"mindate":"1869-03-01","maxdate":"2018-11-26","name":"North
+        Carolina","datacoverage":1,"id":"FIPS:37"},{"mindate":"1891-07-01","maxdate":"2018-11-26","name":"North
+        Dakota","datacoverage":1,"id":"FIPS:38"},{"mindate":"1878-02-01","maxdate":"2018-11-26","name":"Ohio","datacoverage":1,"id":"FIPS:39"},{"mindate":"1870-04-01","maxdate":"2018-11-26","name":"Oklahoma","datacoverage":1,"id":"FIPS:40"},{"mindate":"1871-11-01","maxdate":"2018-11-26","name":"Oregon","datacoverage":1,"id":"FIPS:41"},{"mindate":"1849-04-01","maxdate":"2018-11-26","name":"Pennsylvania","datacoverage":1,"id":"FIPS:42"},{"mindate":"1893-01-01","maxdate":"2018-11-26","name":"Rhode
+        Island","datacoverage":1,"id":"FIPS:44"},{"mindate":"1849-05-01","maxdate":"2018-11-26","name":"South
+        Carolina","datacoverage":1,"id":"FIPS:45"},{"mindate":"1893-01-01","maxdate":"2018-11-26","name":"South
+        Dakota","datacoverage":1,"id":"FIPS:46"},{"mindate":"1879-01-01","maxdate":"2018-11-26","name":"Tennessee","datacoverage":1,"id":"FIPS:47"},{"mindate":"1852-04-01","maxdate":"2018-11-26","name":"Texas","datacoverage":1,"id":"FIPS:48"},{"mindate":"1887-12-01","maxdate":"2018-11-26","name":"Utah","datacoverage":1,"id":"FIPS:49"},{"mindate":"1883-12-01","maxdate":"2018-11-26","name":"Vermont","datacoverage":1,"id":"FIPS:50"},{"mindate":"1869-01-01","maxdate":"2018-11-26","name":"Virginia","datacoverage":1,"id":"FIPS:51"},{"mindate":"1856-01-01","maxdate":"2018-11-26","name":"Washington","datacoverage":1,"id":"FIPS:53"},{"mindate":"1854-01-01","maxdate":"2018-11-26","name":"West
+        Virginia","datacoverage":1,"id":"FIPS:54"},{"mindate":"1871-01-01","maxdate":"2018-11-26","name":"Wisconsin","datacoverage":1,"id":"FIPS:55"},{"mindate":"1889-01-01","maxdate":"2018-11-26","name":"Wyoming","datacoverage":1,"id":"FIPS:56"}]}'
+  recorded_at: 2018-12-01 19:58:01 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

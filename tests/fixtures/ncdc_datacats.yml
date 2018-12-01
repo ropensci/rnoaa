@@ -1,0 +1,78 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/datacategories?limit=25
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:55:05 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '415'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":42,"limit":25}},"results":[{"name":"Annual
+        Agricultural","id":"ANNAGR"},{"name":"Annual Degree Days","id":"ANNDD"},{"name":"Annual
+        Precipitation","id":"ANNPRCP"},{"name":"Annual Temperature","id":"ANNTEMP"},{"name":"Autumn
+        Agricultural","id":"AUAGR"},{"name":"Autumn Degree Days","id":"AUDD"},{"name":"Autumn
+        Precipitation","id":"AUPRCP"},{"name":"Autumn Temperature","id":"AUTEMP"},{"name":"Computed","id":"COMP"},{"name":"Computed
+        Agricultural","id":"COMPAGR"},{"name":"Degree Days","id":"DD"},{"name":"Dual-Pol
+        Moments","id":"DUALPOLMOMENT"},{"name":"Echo Tops","id":"ECHOTOP"},{"name":"Evaporation","id":"EVAP"},{"name":"Hydrometeor
+        Type","id":"HYDROMETEOR"},{"name":"Land","id":"LAND"},{"name":"Miscellany","id":"MISC"},{"name":"Other","id":"OTHER"},{"name":"Overlay","id":"OVERLAY"},{"name":"Precipitation","id":"PRCP"},{"name":"Pressure","id":"PRES"},{"name":"Reflectivity","id":"REFLECTIVITY"},{"name":"Sky
+        cover & clouds","id":"SKY"},{"name":"Spring Agricultural","id":"SPAGR"},{"name":"Spring
+        Degree Days","id":"SPDD"}]}'
+  recorded_at: 2018-12-01 19:55:06 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/datacategories/ANNAGR?limit=25
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:55:06 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '62'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"name":"Annual Agricultural","id":"ANNAGR"}'
+  recorded_at: 2018-12-01 19:55:06 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

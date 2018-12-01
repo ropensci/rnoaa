@@ -17,11 +17,11 @@ bsw_cache <- NULL
   z$cache_path_set("noaa_cmorph")
   cmorph_cache <<- z
 
-  z <- hoardr::hoard()
-  z$cache_path_set("noaa_lcd")
-  lcd_cache <<- z
+  w <- hoardr::hoard()
+  w$cache_path_set("noaa_lcd")
+  lcd_cache <<- w
 
-  z <- hoardr::hoard()
-  z$cache_path_set("noaa_bsw")
-  bsw_cache <<- z
+  m <- hoardr::hoard()
+  m$cache_path_set("noaa_bsw")
+  bsw_cache <<- m
 }

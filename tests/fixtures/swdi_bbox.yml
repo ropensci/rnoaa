@@ -1,0 +1,40 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/swdiws/xml/plsr/20060505:20060510/25?bbox=-91%2C30%2C-90%2C31
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 20:03:45 GMT
+      strict-transport-security: max-age=31536000
+      cache-control: private
+      content-type: text/xml;charset=UTF-8
+      access-control-allow-origin: '*'
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '536'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0"?><swdiXmlResponse><!-- column header names[types]:  ZTIME[VARCHAR2] ID[VARCHAR2] EVENT[VARCHAR2] MAGNITUDE[NUMBER] CITY[VARCHAR2] COUNTY[VARCHAR2] STATE[VARCHAR2] SOURCE[VARCHAR2] SHAPE[MDSYS.SDO_GEOMETRY]  -->
+        <result><ztime>2006-05-09T02:20:00Z</ztime><id>427540</id><event>HAIL</event><magnitude>1</magnitude><city>5 E KENTWOOD</city><county>TANGIPAHOA</county><state>LA</state><source>TRAINED SPOTTER</source><shape>POINT (-90.43 30.93)</shape></result>
+        <result><ztime>2006-05-09T02:40:00Z</ztime><id>427536</id><event>HAIL</event><magnitude>1</magnitude><city>MOUNT HERMAN</city><county>WASHINGTON</county><state>LA</state><source>TRAINED SPOTTER</source><shape>POINT (-90.3 30.96)</shape></result>
+        <result><ztime>2006-05-09T02:40:00Z</ztime><id>427537</id><event>TSTM WND DMG</event><magnitude>-9999</magnitude><city>MOUNT HERMAN</city><county>WASHINGTON</county><state>LA</state><source>TRAINED SPOTTER</source><shape>POINT (-90.3 30.96)</shape></result>
+        <result><ztime>2006-05-09T03:00:00Z</ztime><id>427199</id><event>HAIL</event><magnitude>0</magnitude><city>FRANKLINTON</city><county>WASHINGTON</county><state>LA</state><source>AMATEUR RADIO</source><shape>POINT (-90.14 30.85)</shape></result>
+        <result><ztime>2006-05-09T03:17:00Z</ztime><id>427200</id><event>TORNADO</event><magnitude>-9999</magnitude><city>5 S FRANKLINTON</city><county>WASHINGTON</county><state>LA</state><source>LAW ENFORCEMENT</source><shape>POINT (-90.14 30.78)</shape></result>
+        <summary><count>5</count><totalTimeInSeconds>0.0</totalTimeInSeconds></summary>
+        </swdiXmlResponse>
+  recorded_at: 2018-12-01 20:03:46 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

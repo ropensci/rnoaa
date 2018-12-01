@@ -42,7 +42,7 @@ Imports:
     tibble,
     isdparser (>= 0.2.0),
     geonames,
-    hoardr
+    hoardr (>= 0.5.2)
 Suggests:
     roxygen2 (>= 6.1.1),
     testthat,
@@ -55,7 +55,9 @@ Suggests:
     rmarkdown,
     purrr,
     ggmap,
-    ropenaq
+    ropenaq,
+    vcr
+Remotes: ropensci/hoardr
 RoxygenNote: 6.1.1
 X-schema.org-applicationCategory: Climate
 X-schema.org-keywords: earth, science, climate, precipitation, temperature, storm, buoy, NCDC, NOAA, tornadoe, sea ice, ISD

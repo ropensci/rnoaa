@@ -1,0 +1,72 @@
+http_interactions:
+- request:
+    method: get
+    uri: ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-countries.txt
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '226'
+      message: IM Used
+      explanation: RFC 3229
+    headers: []
+    body:
+      encoding: UTF-8
+      string: "AC Antigua and Barbuda \nAE United Arab Emirates \nAF Afghanistan\nAG
+        Algeria \nAJ Azerbaijan \nAL Albania\nAM Armenia \nAO Angola \nAQ American
+        Samoa [United States] \nAR Argentina \nAS Australia \nAU Austria \nAY Antarctica
+        \nBA Bahrain \nBB Barbados \nBC Botswana \nBD Bermuda [United Kingdom] \nBE
+        Belgium \nBF Bahamas, The \nBG Bangladesh\nBH Belize\nBK Bosnia and Herzegovina
+        \nBL Bolivia \nBM Burma\nBN Benin \nBO Belarus \nBP Solomon Islands \nBR Brazil\nBU
+        Bulgaria\nBX Brunei\nBY Burundi\nCA Canada \nCB Cambodia\nCD Chad \nCE Sri
+        Lanka \nCF Congo (Brazzaville) \nCG Congo (Kinshasa)\nCH China  \nCI Chile
+        \nCJ Cayman Islands [United Kingdom] \nCK Cocos (Keeling) Islands [Australia]
+        \nCM Cameroon \nCO Colombia \nCQ Northern Mariana Islands [United States]
+        \nCS Costa Rica \nCT Central African Republic \nCU Cuba \nCV Cape Verde\nCW
+        Cook Islands [New Zealand]\nCY Cyprus \nDA Denmark \nDO Dominica\nDR Dominican
+        Republic \nEC Ecuador \nEG Egypt \nEI Ireland \nEK Equatorial Guinea\nEN Estonia
+        \nER Eritrea \nES El Salvador \nET Ethiopia \nEU Europa Island [France]\nEZ
+        Czech Republic \nFG French Guiana [France] \nFI Finland \nFJ Fiji\nFK Falkland
+        Islands (Islas Malvinas) [United Kingdom] \nFM Federated States of Micronesia
+        \nFP French Polynesia \nFR France \nFS French Southern and Antarctic Lands
+        [France]\nGA Gambia, The \nGB Gabon \nGG Georgia\nGH Ghana\nGI Gibraltar [United
+        Kingdom]\nGL Greenland [Denmark] \nGM Germany \nGP Guadeloupe [France] \nGQ
+        Guam [United States] \nGR Greece \nGT Guatemala \nGV Guinea \nGY Guyana \nHO
+        Honduras \nHR Croatia\nHU Hungary \nIC Iceland \nID Indonesia \nIN India \nIO
+        British Indian Ocean Territory [United Kingdom] \nIR Iran \nIS Israel \nIT
+        Italy \nIV Cote D'Ivoire \nIZ Iraq \nJA Japan \nJM Jamaica \nJN Jan Mayen
+        [Norway] \nJO Jordan\nJQ Johnston Atoll [United States] \nJU Juan De Nova
+        Island [France]\nKE Kenya \nKG Kyrgyzstan \nKN Korea, North \nKR Kiribati
+        \nKS Korea, South \nKT Christmas Island [Australia] \nKU Kuwait \nKZ Kazakhstan
+        \nLA Laos \nLE Lebanon\nLG Latvia \nLH Lithuania\nLI Liberia \nLO Slovakia
+        \nLQ Palmyra Atoll [United States] \nLT Lesotho \nLU Luxembourg \nLY Libya
+        \nMA Madagascar \nMB Martinique [France]\nMC Macau S.A.R\nMD Moldova \nMF
+        Mayotte [France]\nMG Mongolia \nMI Malawi\nMJ Montenegro \nMK Macedonia \nML
+        Mali \nMO Morocco \nMP Mauritius \nMQ Midway Islands [United States} \nMR
+        Mauritania \nMT Malta \nMU Oman \nMV Maldives \nMX Mexico \nMY Malaysia \nMZ
+        Mozambique \nNC New Caledonia [France] \nNE Niue [New Zealand]\nNF Norfolk
+        Island [Australia]\nNG Niger \nNH Vanuatu \nNI Nigeria\nNL Netherlands \nNN
+        Sint Maarten\nNO Norway \nNP Nepal \nNS Suriname\nNU Nicaragua \nNZ New Zealand
+        \nPA Paraguay \nPC Pitcairn Islands [United Kingdom] \nPE Peru \nPK Pakistan
+        \nPL Poland \nPM Panama \nPO Portugal \nPP Papua New Guinea \nPS Palau\nPU
+        Guinea-Bissau\nQA Qatar\nRE Reunion [France]\nRI Serbia\nRM Marshall Islands
+        \nRO Romania \nRP Philippines \nRQ Puerto Rico [United States] \nRS Russia
+        \nRW Rwanda\nSA Saudi Arabia \nSB Saint Pierre and Miquelon [France]\nSE Seychelles
+        \nSF South Africa \nSG Senegal \nSH Saint Helena [United Kingdom] \nSI Slovenia
+        \nSL Sierra Leone \nSN Singapore\nSP Spain \nST Saint Lucia \nSU Sudan \nSV
+        Svalbard [Norway] \nSW Sweden \nSX South Georgia and the South Sandwich Islands
+        [United Kingdom]\nSY Syria \nSZ Switzerland \nTD Trinidad and Tobago \nTE
+        Tromelin Island [France]\nTH Thailand \nTI Tajikistan \nTL Tokelau [New Zealand]
+        \nTN Tonga \nTO Togo \nTS Tunisia \nTU Turkey \nTV Tuvalu \nTX Turkmenistan
+        \nTZ Tanzania \nUC Curacao\nUG Uganda\nUK United Kingdom \nUP Ukraine \nUS
+        United States \nUV Burkina Faso \nUY Uruguay \nUZ Uzbekistan \nVE Venezuela
+        \nVM Vietnam \nVQ Virgin Islands [United States] \nWA Namibia \nWF Wallis
+        and Futuna [France]\nWI Western Sahara \nWQ Wake Island [United States]\nWZ
+        Swaziland \nZA Zambia \nZI Zimbabwe \n"
+  recorded_at: 2018-12-01 19:48:03 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9

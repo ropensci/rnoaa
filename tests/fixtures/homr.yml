@@ -1,0 +1,1002 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/homr/services/station/search?qid=COOP%3A046742&headersOnly=false&definitions=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:49:03 GMT
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET, OPTIONS
+      access-control-max-age: '3600'
+      access-control-allow-headers: x-requested-with
+      content-type: application/json
+      vary: Accept-Encoding
+      content-encoding: gzip
+      connection: close
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: '{"stationCollection":{"stations":[{"ncdcStnId":"20002078","header":{"preferredName":"PASO
+        ROBLES MUNICIPAL AP, CA","latitude_dec":"35.6697","longitude_dec":"-120.6283","precision":"DDddddd","por":{"beginDate":"1949-10-05T00:00:00.000","endDate":"Present"}},"names":[{"name":"PASO
+        ROBLES MUNICIPAL AP","nameType":"COOP"},{"name":"PASO ROBLES MUNICIPAL AP","nameType":"PRINCIPAL"},{"name":"PASO
+        ROBLES MUNICIPAL ARPT","nameType":"PUB"}],"identifiers":[{"idType":"GHCND","id":"USW00093209"},{"idType":"GHCNMLT","id":"USW00093209"},{"idType":"COOP","id":"046742"},{"idType":"WBAN","id":"93209"},{"idType":"FAA","id":"PRB"},{"idType":"ICAO","id":"KPRB"},{"idType":"NWSLI","id":"PRB"},{"idType":"NCDCSTNID","id":"20002078"}],"location":{"ncdcstnId":"20002078","descriptions":[{"description":"PASO
+        ROBLES MUNICIPAL AIRPORT OUTSIDE AND 5 MILES NE OF PO AT PASO ROBLES CA"}],"latitudes":[{"latitude_dec":"35.6697","precision":"DDddddd"}],"longitudes":[{"longitude_dec":"-120.6283","precision":"DDddddd"}],"latLonPairs":[{"latitude_rptd":"35.6697","longitude_rptd":"-120.6283","latitude_dec":"35.6697","longitude_dec":"-120.6283","latitude_dms":"35,40,11,N","longitude_dms":"120,37,42,W","precision":"DDddddd","datum_horiz":"NAD83","source":"ASOS
+        SITE SURVEY"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"810","elevationMeters":"246.9","groundElevDatum":"NAVD88"},{"elevationType":"AIRPORT","elevationFeet":"836","elevationMeters":"254.8"},{"elevationType":"BAROMETRIC","elevationFeet":"806","elevationMeters":"245.7"}],"topography":[{"description":"LEVEL
+        VALLEY LOCATION (S-N)"}],"obstructions":[{"description":"HYGR 090\/04 NO OBSTRUCTIONS"}],"geoInfo":{"ncdcstnId":"20002078","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"CA"}],"counties":[{"county":"SAN
+        LUIS OBISPO"}],"utcOffsets":[{"utcOffset":"-8"}]},"nwsInfo":{"ncdcstnId":"20002078","climateDivisions":[{"stateProvince":"CA","climateDivision":"04","displayName":"CENTRAL
+        COAST DRAINAGE"}],"nwsRegions":[{"nwsRegion":"WESTERN"}],"nwsWfos":[{"nwsWfo":"LOX","displayName":"LOS
+        ANGELES, CA"}]}},"platforms":[{"platform":"COOP"},{"platform":"ASOS"}],"relocations":[{"relocation":"5.1
+        mi NNE","date":"1949-10-05T00:00:00.000"}],"remarks":[{"type":"NWS COOP INGEST","remark":"ASOS
+        COMMISSIONED 01\/18\/2001"},{"type":"NWS COOP INGEST","remark":"THREE YEAR
+        UPDATE."},{"type":"NWS COOP INGEST","remark":"REQUIRED 5 YEAR UPDATE\r\nASOS
+        COMMISSIONED 01\/18\/2001\r\nSERVICE LEVEL \"D\" ASOS MAINTAINED BY LOX NWS
+        ETS"},{"type":"GENERAL","remark":"PHOTOS ADDED FOR ASOS EXPOSURE DOCUMENTATION
+        EFFORT (CIRCA 1999+) WHICH TOOK PHOTOS OF THE AREA SURROUNDING COASTAL AND
+        INLAND ASOS SITES IN AREAS SUBJECT TO HURRICANES. THE PHOTOS HELP DOCUMENT
+        STATION EXPOSURE AND IDENTIFY OBSTACLES THAT COULD REDUCE THE WINDS AT THE
+        SITE."},{"type":"RIVER BASIN (COOP NETWORK)","remark":"SALINAS"}],"updates":[{"effectiveDate":"2017-03-22T00:00:00.000","providedBy":"INGEST","updateSource":"SISv2","version":"8","nativeId":"COOP:04-6742:8","description":"CHANGE","enteredBy":"INGEST","enteredDate":"2017-04-28T01:50:13-04:00"}],"elements":[{"dataProgram":"COOP
+        HPD","element":"PRECIP","frequency":"HOURLY","observationTime":"2400","publishedFlag":"HPD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"AHTB","equipmentMods":"RCRD;HTD","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"PRECIP","frequency":"DAILY","observationTime":"2400","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"AHTB","equipmentMods":"RCRD;HTD","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"TEMP","frequency":"DAILY","observationTime":"2400","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"HYGR","equipmentAzimuth":"090","equipmentDistance":"4","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"WIND","frequency":"HOURLY","observationTime":"UNKN","equipment":{"equipment":"ANEMSONIC"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}}]}]}}'
+  recorded_at: 2018-12-01 19:49:43 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/homr/services/station/search?qid=TRANS%3A&headersOnly=true&definitions=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:49:07 GMT
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET, OPTIONS
+      access-control-max-age: '3600'
+      access-control-allow-headers: x-requested-with
+      content-type: application/json
+      vary: Accept-Encoding
+      content-encoding: gzip
+      connection: close
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: '{"stationCollection":{"stations":[{"ncdcStnId":"30106582","header":{"preferredName":"DOLORES,
+        ","por":{"beginDate":"1991-01-01T00:00:00.000","endDate":"1993-12-31T00:00:00.000"}}},{"ncdcStnId":"30084813","header":{"preferredName":"FALLS
+        CREEK OPEN, OR","latitude_dec":"44.396447","longitude_dec":"-122.377489","precision":"DDMMSSss","por":{"beginDate":"1996-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112672","header":{"preferredName":"HOUSTON
+        INTERNATIONAL, TX","latitude_dec":"30.065","longitude_dec":"-95.566944","precision":"DDMMSS","por":{"beginDate":"2009-04-09T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112663","header":{"preferredName":"COVINGTON,
+        KY","latitude_dec":"38.898056","longitude_dec":"-84.58","precision":"DDMMSS","por":{"beginDate":"2009-04-08T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112673","header":{"preferredName":"INDIANAPOLIS,
+        IN","latitude_dec":"39.636944","longitude_dec":"-86.436111","precision":"DDMMSS","por":{"beginDate":"2009-03-31T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106675","header":{"preferredName":"SEIFU
+        MARU, ","por":{"beginDate":"2000-01-01T00:00:00.000","endDate":"2008-12-31T00:00:00.000"}}},{"ncdcStnId":"20008278","header":{"preferredName":"MADISONVILLE
+        MUNICIPAL AP, KY","latitude_dec":"37.35","longitude_dec":"-87.4","precision":"DDMM","por":{"beginDate":"1972-07-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30083450","header":{"preferredName":"PINE
+        BLUFFS MUNICIPAL AIRPORT, WY","latitude_dec":"41.15247","longitude_dec":"-104.13475","precision":"DDddddd","por":{"beginDate":"1964-12-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20008633","header":{"preferredName":"BOOTHVILLE
+        ASOS, LA","latitude_dec":"29.333","longitude_dec":"-89.4075","precision":"DDMMSS","por":{"beginDate":"1965-02-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30083263","header":{"preferredName":"INNOVATOR
+        OIL PLATFORM, MS","latitude_dec":"28.217","longitude_dec":"-89.617","precision":"DDddd","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30083279","header":{"preferredName":"MUSTANG
+        ISLAND A85A, TX","latitude_dec":"27.733","longitude_dec":"-96.183","precision":"DDddd","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20017215","header":{"preferredName":"FOUNTAIN
+        DALE SITE R HELIPAD, PA","latitude_dec":"39.73333","longitude_dec":"-77.43333","precision":"DDMM","por":{"beginDate":"1960-02-04T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30083499","header":{"preferredName":"ROGER
+        M DREYER MEMORIAL AIRPORT, TX","latitude_dec":"29.5291","longitude_dec":"-97.4643","precision":"DDdddd","por":{"beginDate":"1955-11-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20026603","header":{"preferredName":"HILL
+        EAGLE RANGE, UT","latitude_dec":"41.05","longitude_dec":"-113.06667","precision":"DDMM","por":{"beginDate":"1980-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30083508","header":{"preferredName":"HULETT
+        MUNICIPAL AIRPORT, WY","latitude_dec":"44.66286","longitude_dec":"-104.56783","precision":"DDddddd","por":{"beginDate":"2003-09-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106705","header":{"preferredName":"SKAUBRYN,
+        ","por":{"beginDate":"1991-01-01T00:00:00.000","endDate":"1992-12-31T00:00:00.000"}}},{"ncdcStnId":"30084819","header":{"preferredName":"MIDDLE
+        SANTIAM FOREST, OR","latitude_dec":"44.514444","longitude_dec":"-122.257586","precision":"DDMMSSss","por":{"beginDate":"1999-01-01T00:00:00.000","endDate":"2007-12-31T00:00:00.000"}}},{"ncdcStnId":"30112689","header":{"preferredName":"PHOENIX,
+        AZ","latitude_dec":"33.421111","longitude_dec":"-112.163056","precision":"DDMMSS","por":{"beginDate":"2009-03-12T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30103534","header":{"preferredName":"TULIMANUQ
+        AIRSTRIP, AK","latitude_dec":"70.75","longitude_dec":"-154.25","precision":"DDMM","por":{"beginDate":"2016-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20002487","header":{"preferredName":"SAN
+        FRANCISCO DOWNTOWN, CA","latitude_dec":"37.7705","longitude_dec":"-122.4269","precision":"DDMMSS","por":{"beginDate":"1849-08-14T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084820","header":{"preferredName":"SOAPGRASS
+        FOREST, OR","latitude_dec":"44.348247","longitude_dec":"-122.291783","precision":"DDMMSSss","por":{"beginDate":"1998-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084823","header":{"preferredName":"TOAD
+        CREEK FOREST, OR","latitude_dec":"44.426342","longitude_dec":"-122.032975","precision":"DDMMSSss","por":{"beginDate":"1995-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084825","header":{"preferredName":"TOAD
+        CREEK OPEN, OR","latitude_dec":"44.425942","longitude_dec":"-122.022208","precision":"DDMMSSss","por":{"beginDate":"1997-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084808","header":{"preferredName":"CASCADE
+        HEAD STAND 3 UPPER CANOPY, OR","latitude_dec":"45.045631","longitude_dec":"-123.904022","precision":"DDMMSSss","por":{"beginDate":"2011-01-01T00:00:00.000","endDate":"2013-12-31T00:00:00.000"}}},{"ncdcStnId":"30084817","header":{"preferredName":"MOOSE
+        MOUNTAIN FOREST UPPER CANOPY, OR","latitude_dec":"44.414647","longitude_dec":"-122.394289","precision":"DDMMSSss","por":{"beginDate":"2009-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106687","header":{"preferredName":"VSEVOLOD
+        BERYOZKIN, ","por":{"beginDate":"1977-01-01T00:00:00.000","endDate":"1983-12-31T00:00:00.000"}}},{"ncdcStnId":"30106688","header":{"preferredName":"PASSAT,
+        ","por":{"beginDate":"1974-01-01T00:00:00.000","endDate":"1991-12-31T00:00:00.000"}}},{"ncdcStnId":"20030295","header":{"preferredName":"NUKUORO,
+        FM","latitude_dec":"3.85","longitude_dec":"155.01667","precision":"DDMM","por":{"beginDate":"1985-11-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106714","header":{"preferredName":"ASDE02,
+        ","por":{"beginDate":"2006-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30106715","header":{"preferredName":"ASDE03,
+        ","por":{"beginDate":"2006-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30106698","header":{"preferredName":"ASDK3,
+        ","por":{"beginDate":"2009-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"30106703","header":{"preferredName":"HORNBAY,
+        ","por":{"beginDate":"2000-01-01T00:00:00.000","endDate":"2005-12-31T00:00:00.000"}}},{"ncdcStnId":"30112664","header":{"preferredName":"DALLAS
+        LOVE FIELD, TX","latitude_dec":"32.926111","longitude_dec":"-96.968056","precision":"DDMMSS","por":{"beginDate":"2009-03-11T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112671","header":{"preferredName":"HOUSTON
+        HOBBY, TX","latitude_dec":"29.516111","longitude_dec":"-95.241944","precision":"DDMMSS","por":{"beginDate":"2009-04-11T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30014240","header":{"preferredName":"MORIARTY
+        AP, NM","latitude_dec":"34.98472","longitude_dec":"-106.0","precision":"DDMMSS","por":{"beginDate":"1960-02-04T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30002697","header":{"preferredName":"HEBER
+        CITY MUNICIPAL AP, UT","latitude_dec":"40.48194","longitude_dec":"-111.42889","precision":"DDMMSS","por":{"beginDate":"2005-08-16T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30014239","header":{"preferredName":"EDWARDS
+        AFB NORTH AUXILIARY AIRFIELD, CA","latitude_dec":"34.98833","longitude_dec":"-117.86472","precision":"DDMMSS","por":{"beginDate":"1960-02-04T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30083507","header":{"preferredName":"NEW
+        ORLEANS SUPERDOME HELIPORT, LA","latitude_dec":"29.95268","longitude_dec":"-90.08273","precision":"DDddddd","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30106704","header":{"preferredName":"SKAUGRAN,
+        ","por":{"beginDate":"1992-01-01T00:00:00.000","endDate":"1993-12-31T00:00:00.000"}}},{"ncdcStnId":"30112699","header":{"preferredName":"WASHINGTON
+        NATIONAL, MD","latitude_dec":"38.758889","longitude_dec":"-76.961944","precision":"DDMMSS","por":{"beginDate":"2009-03-25T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112670","header":{"preferredName":"FT
+        LAUDERDALE, FL","latitude_dec":"26.143056","longitude_dec":"-80.343889","precision":"DDMMSS","por":{"beginDate":"2008-11-08T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112685","header":{"preferredName":"ORLANDO
+        INTERNATIONAL, FL","latitude_dec":"28.343889","longitude_dec":"-81.326111","precision":"DDMMSS","por":{"beginDate":"2009-03-31T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106707","header":{"preferredName":"IRENA
+        ARCTICA, ","por":{"beginDate":"2000-01-01T00:00:00.000","endDate":"2007-12-31T00:00:00.000"}}},{"ncdcStnId":"30106710","header":{"preferredName":"DRAGON
+        BAY, ","por":{"beginDate":"1992-01-01T00:00:00.000","endDate":"1993-12-31T00:00:00.000"}}},{"ncdcStnId":"30106682","header":{"preferredName":"PELJASPER,
+        ","por":{"beginDate":"2000-01-01T00:00:00.000","endDate":"2003-12-31T00:00:00.000"}}},{"ncdcStnId":"30106683","header":{"preferredName":"AKADEMIK
+        KURCHATOV, ","por":{"beginDate":"1974-01-01T00:00:00.000","endDate":"1979-12-31T00:00:00.000"}}},{"ncdcStnId":"30084806","header":{"preferredName":"CASCADE
+        HEAD STAND 14 UPPER CANOPY, OR","latitude_dec":"45.041631","longitude_dec":"-123.909522","precision":"DDMMSSss","por":{"beginDate":"2011-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106690","header":{"preferredName":"SKOGAFOSS,
+        ","por":{"beginDate":"2003-01-01T00:00:00.000","endDate":"2007-12-31T00:00:00.000"}}},{"ncdcStnId":"30106693","header":{"preferredName":"SEALAND
+        MOTIVATOR, ","por":{"beginDate":"2004-01-01T00:00:00.000","endDate":"2005-12-31T00:00:00.000"}}},{"ncdcStnId":"30084826","header":{"preferredName":"WESTERN
+        ECOLOGY DIVISION, OR","latitude_dec":"44.565542","longitude_dec":"-123.294308","precision":"DDMMSSss","por":{"beginDate":"1993-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106696","header":{"preferredName":"BRANSFIELD,
+        ","por":{"beginDate":"1986-01-01T00:00:00.000","endDate":"1993-12-31T00:00:00.000"}}},{"ncdcStnId":"30106697","header":{"preferredName":"S.
+        A. AGULHAS, ","por":{"beginDate":"1989-01-01T00:00:00.000","endDate":"2008-12-31T00:00:00.000"}}},{"ncdcStnId":"30106776","header":{"preferredName":"SACRAMENTO-GERRISH,
+        CA","latitude_dec":"38.5817","longitude_dec":"-121.4843","precision":"DDMMSS","por":{"beginDate":"1866-04-01T00:00:00.000","endDate":"1911-09-30T00:00:00.000"}}},{"ncdcStnId":"30106717","header":{"preferredName":"ASDE09,
+        ","por":{"beginDate":"2007-01-01T00:00:00.000","endDate":"2013-12-31T00:00:00.000"}}},{"ncdcStnId":"30106719","header":{"preferredName":"ASDK02,
+        ","por":{"beginDate":"2007-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"30106723","header":{"preferredName":"ASEU02,
+        ","por":{"beginDate":"2007-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30106724","header":{"preferredName":"ASEU03,
+        ","por":{"beginDate":"2007-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30106699","header":{"preferredName":"ASFR1,
+        ","por":{"beginDate":"2007-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"30106702","header":{"preferredName":"ASFR4,
+        ","por":{"beginDate":"2010-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"30106728","header":{"preferredName":"ASGB01,
+        ","por":{"beginDate":"2007-01-01T00:00:00.000","endDate":"2011-12-31T00:00:00.000"}}},{"ncdcStnId":"30084807","header":{"preferredName":"CASCADE
+        HEAD STAND 3, OR","latitude_dec":"45.045631","longitude_dec":"-123.904022","precision":"DDMMSSss","por":{"beginDate":"2000-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084809","header":{"preferredName":"CASCADE
+        HEAD OPEN, OR","latitude_dec":"45.041431","longitude_dec":"-123.911122","precision":"DDMMSSss","por":{"beginDate":"1999-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112674","header":{"preferredName":"KANSAS
+        CITY, MO","latitude_dec":"39.498056","longitude_dec":"-94.741944","precision":"DDMMSS","por":{"beginDate":"2009-03-18T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112658","header":{"preferredName":"CHARLOTTE,
+        NC","latitude_dec":"35.336944","longitude_dec":"-80.885","precision":"DDMMSS","por":{"beginDate":"2009-03-24T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106673","header":{"preferredName":"KOFU
+        MARU, ","por":{"beginDate":"1989-01-01T00:00:00.000","endDate":"2009-12-31T00:00:00.000"}}},{"ncdcStnId":"30002894","header":{"preferredName":"BONIFAY
+        TRI COUNTY AP, FL","latitude_dec":"30.84583","longitude_dec":"-85.60139","precision":"DDMMSS","por":{"beginDate":"1960-02-04T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30083449","header":{"preferredName":"MIDDLEBURY
+        STATE AIRPORT, VT","latitude_dec":"43.98547","longitude_dec":"-73.09547","precision":"DDddddd","por":{"beginDate":"1952-10-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30002687","header":{"preferredName":"BULLSEYE
+        AUXILIARY AIRFIELD USAFA, CO","latitude_dec":"38.76667","longitude_dec":"-104.3","precision":"DDMM","por":{"beginDate":"2006-05-12T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112676","header":{"preferredName":"LOUISVILLE,
+        KY","latitude_dec":"38.046111","longitude_dec":"-85.61","precision":"DDMMSS","por":{"beginDate":"2009-03-23T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112694","header":{"preferredName":"ST
+        LOUIS, MO","latitude_dec":"38.805","longitude_dec":"-90.488889","precision":"DDMMSS","por":{"beginDate":"2009-03-26T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112697","header":{"preferredName":"WASHINGTON
+        DULLES, VA","latitude_dec":"39.083889","longitude_dec":"-77.528889","precision":"DDMMSS","por":{"beginDate":"2009-03-25T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084816","header":{"preferredName":"MOOSE
+        MOUNTAIN FOREST, OR","latitude_dec":"44.414647","longitude_dec":"-122.394289","precision":"DDMMSSss","por":{"beginDate":"1998-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106867","header":{"preferredName":"EGG
+        HARBOR TWP, NJ","latitude_dec":"39.419491","longitude_dec":"-74.537872","precision":"DDMMSSss","por":{"beginDate":"2008-01-29T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20030312","header":{"preferredName":"MAJURO
+        WBAS AIRPORT, MH","latitude_dec":"7.06497","longitude_dec":"171.27203","precision":"DDddddd","por":{"beginDate":"1954-04-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084822","header":{"preferredName":"SOAPGRASS
+        OPEN, OR","latitude_dec":"44.345247","longitude_dec":"-122.293983","precision":"DDMMSSss","por":{"beginDate":"1998-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112693","header":{"preferredName":"SAN
+        JUAN, PR","latitude_dec":"18.473889","longitude_dec":"-66.178889","precision":"DDMMSS","por":{"beginDate":"2009-02-26T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084827","header":{"preferredName":"TINGEY
+        NATIONAL FOREST, OR","latitude_dec":"44.565742","longitude_dec":"-123.293208","precision":"DDMMSSss","por":{"beginDate":"1997-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084812","header":{"preferredName":"FALLS
+        CREEK FOREST UPPER CANOPY, OR","latitude_dec":"44.396147","longitude_dec":"-122.373389","precision":"DDMMSSss","por":{"beginDate":"2009-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084824","header":{"preferredName":"TOAD
+        CREEK FOREST UPPER CANOPY, OR","latitude_dec":"44.426342","longitude_dec":"-122.032975","precision":"DDMMSSss","por":{"beginDate":"2011-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106686","header":{"preferredName":"AKADEMIK
+        KOROLYOV, ","por":{"beginDate":"1974-01-01T00:00:00.000","endDate":"1990-12-31T00:00:00.000"}}},{"ncdcStnId":"30112675","header":{"preferredName":"LAS
+        VEGAS, NV","latitude_dec":"36.143889","longitude_dec":"-115.006944","precision":"DDMMSS","por":{"beginDate":"2009-05-13T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"12000880","header":{"preferredName":"SACRAMENTO,
+        CA","latitude_dec":"38.58333","longitude_dec":"-121.50472","precision":"DDddddd","por":{"beginDate":"1856-01-01T00:00:00.000","endDate":"1892-12-31T00:00:00.000"}}},{"ncdcStnId":"30106713","header":{"preferredName":"ASDE01,
+        ","por":{"beginDate":"2006-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30106720","header":{"preferredName":"ASDK03,
+        ","por":{"beginDate":"2015-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"30106726","header":{"preferredName":"ASEU05,
+        ","por":{"beginDate":"2006-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30112667","header":{"preferredName":"DENVER,
+        CO","latitude_dec":"39.728056","longitude_dec":"-104.526111","precision":"DDMMSS","por":{"beginDate":"2009-03-03T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084810","header":{"preferredName":"CASCADE
+        HEAD STAND 22, OR","latitude_dec":"45.040631","longitude_dec":"-123.912122","precision":"DDMMSSss","por":{"beginDate":"2006-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106579","header":{"preferredName":"METEOR,
+        ","por":{"beginDate":"1979-01-01T00:00:00.000","endDate":"2005-12-31T00:00:00.000"}}},{"ncdcStnId":"30106593","header":{"preferredName":"FORT
+        DESAIX, ","por":{"beginDate":"1987-01-01T00:00:00.000","endDate":"2003-12-31T00:00:00.000"}}},{"ncdcStnId":"30106594","header":{"preferredName":"DOUCE
+        FRANCE, ","por":{"beginDate":"1986-01-01T00:00:00.000","endDate":"2003-12-31T00:00:00.000"}}},{"ncdcStnId":"30106596","header":{"preferredName":"CMA-CGM
+        FORT SAINT PIERRE, ","por":{"beginDate":"2003-01-01T00:00:00.000","endDate":"2006-12-31T00:00:00.000"}}},{"ncdcStnId":"30106676","header":{"preferredName":"MIRAI,
+        ","por":{"beginDate":"2000-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"30072045","header":{"preferredName":"SAINT
+        JOHNSBURY ASOS, VT","latitude_dec":"44.42","longitude_dec":"-72.0194","precision":"DDddddd","por":{"beginDate":"1998-11-15T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20009893","header":{"preferredName":"CLAYTON
+        LAKE RAMOS, ME","latitude_dec":"46.61667","longitude_dec":"-69.53333","precision":"DDMM","por":{"beginDate":"1983-11-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20008657","header":{"preferredName":"LAKE
+        PALOURD BASE HELIPORT, LA","latitude_dec":"29.69306","longitude_dec":"-91.09861","precision":"DDMMSS","por":{"beginDate":"2005-03-22T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30083483","header":{"preferredName":"LOUISIANA
+        REGIONAL AIRPORT, LA","latitude_dec":"30.17272","longitude_dec":"-90.94061","precision":"DDddddd","por":{"beginDate":"1992-05-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20000665","header":{"preferredName":"NEWPORT
+        MUNICIPAL AIRPORT, AR","latitude_dec":"35.63333","longitude_dec":"-91.16667","precision":"DDMM","por":{"beginDate":"1943-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"10500012","header":{"preferredName":"GARRISON,
+        ND","latitude_dec":"47.64583","longitude_dec":"-101.43944","precision":"DDMMSS","por":{"beginDate":"1991-07-16T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112681","header":{"preferredName":"NEW
+        ORLEANS, LA","latitude_dec":"30.021944","longitude_dec":"-90.403056","precision":"DDMMSS","por":{"beginDate":"2009-04-21T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112659","header":{"preferredName":"CHICAGO
+        MIDWAY, IL","latitude_dec":"41.651111","longitude_dec":"-87.713333","precision":"DDMMSS","por":{"beginDate":"2009-04-22T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20004237","header":{"preferredName":"MIAMI
+        BEACH, FL","latitude_dec":"25.8063","longitude_dec":"-80.1334","precision":"DDddddd","por":{"beginDate":"1927-02-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30078409","header":{"preferredName":"KOSRAE
+        AIRPORT AWS CAROLINE IS., FM","latitude_dec":"5.35","longitude_dec":"162.95","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20030313","header":{"preferredName":"AILINGLAPALAP,
+        MH","latitude_dec":"7.26667","longitude_dec":"168.83333","precision":"DDMM","por":{"beginDate":"1968-12-04T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106716","header":{"preferredName":"ASDE04,
+        ","por":{"beginDate":"2006-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30112656","header":{"preferredName":"BOSTON,
+        MA","latitude_dec":"42.158056","longitude_dec":"-70.933056","precision":"DDMMSS","por":{"beginDate":"2009-03-12T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30078819","header":{"preferredName":"ROC
+        FAA REDUNDANT RDA 1, OK","latitude_dec":"35.2383","longitude_dec":"-97.4602","precision":"DDdddd","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30106585","header":{"preferredName":"MERKUR
+        PORTUGAL, ","por":{"beginDate":"1989-01-01T00:00:00.000","endDate":"1993-12-31T00:00:00.000"}}},{"ncdcStnId":"30106591","header":{"preferredName":"FORT
+        ROYAL, ","por":{"beginDate":"1986-01-01T00:00:00.000","endDate":"2002-12-31T00:00:00.000"}}},{"ncdcStnId":"30112662","header":{"preferredName":"COLUMBUS,
+        OH","latitude_dec":"40.006111","longitude_dec":"-82.715","precision":"DDMMSS","por":{"beginDate":"2009-04-08T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106674","header":{"preferredName":"RYOFU
+        MARU, ","por":{"beginDate":"2000-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"20013828","header":{"preferredName":"DARE
+        COUNTY GUNNERY RANGE, NC","latitude_dec":"35.68333","longitude_dec":"-75.9","precision":"DDMM","por":{"beginDate":"1966-05-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30003160","header":{"preferredName":"OAKLAND
+        GARRETT COUNTY AP, MD","latitude_dec":"39.58028","longitude_dec":"-79.33944","precision":"DDMMSS","por":{"beginDate":"1960-02-04T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20012458","header":{"preferredName":"DRUMMOND
+        AVIATION, MT","latitude_dec":"46.6383","longitude_dec":"-113.1761","precision":"DDMMSS","por":{"beginDate":"1963-06-01T00:00:00.000","endDate":"2017-04-20T00:00:00.000"}}},{"ncdcStnId":"30083447","header":{"preferredName":"DE
+        QUINCY INDUSTRIAL AIRPARK, LA","latitude_dec":"30.44105","longitude_dec":"-93.47361","precision":"DDddddd","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30106678","header":{"preferredName":"SEALAND
+        DEVELOPER, ","por":{"beginDate":"2003-01-01T00:00:00.000","endDate":"2004-12-31T00:00:00.000"}}},{"ncdcStnId":"30112660","header":{"preferredName":"CHICAGO
+        OHARE, IL","latitude_dec":"41.796944","longitude_dec":"-87.858056","precision":"DDMMSS","por":{"beginDate":"2009-04-22T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112700","header":{"preferredName":"WEST
+        PALM BEACH, FL","latitude_dec":"26.688056","longitude_dec":"-80.273056","precision":"DDMMSS","por":{"beginDate":"2008-11-20T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112683","header":{"preferredName":"NEWARK,
+        NJ","latitude_dec":"40.593056","longitude_dec":"-74.27","precision":"DDMMSS","por":{"beginDate":"2008-12-08T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106706","header":{"preferredName":"ARINA
+        ARCTICA, ","por":{"beginDate":"2000-01-01T00:00:00.000","endDate":"2003-12-31T00:00:00.000"}}},{"ncdcStnId":"30112690","header":{"preferredName":"PITTSBURGH,
+        PA","latitude_dec":"40.501111","longitude_dec":"-80.486111","precision":"DDMMSS","por":{"beginDate":"2009-03-21T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20030311","header":{"preferredName":"POHNPEI
+        WSO, FM","latitude_dec":"6.9667","longitude_dec":"158.2167","precision":"DDdddd","por":{"beginDate":"1951-07-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20002705","header":{"preferredName":"SACRAMENTO
+        5ESE, CA","latitude_dec":"38.5552","longitude_dec":"-121.4183","precision":"DDMMSS","por":{"beginDate":"1893-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106691","header":{"preferredName":"LAGARFOSS,
+        ","por":{"beginDate":"2001-01-01T00:00:00.000","endDate":"2002-12-31T00:00:00.000"}}},{"ncdcStnId":"30106692","header":{"preferredName":"OOCL
+        CHALLENGE, ","por":{"beginDate":"1988-01-01T00:00:00.000","endDate":"1992-12-31T00:00:00.000"}}},{"ncdcStnId":"30106712","header":{"preferredName":"MISSISSAUGA
+        EXPRESS, ","por":{"beginDate":"2000-01-01T00:00:00.000","endDate":"2005-12-31T00:00:00.000"}}},{"ncdcStnId":"20030327","header":{"preferredName":"WOTJE,
+        MH","latitude_dec":"9.46667","longitude_dec":"170.25","precision":"DDMM","por":{"beginDate":"1968-07-18T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106722","header":{"preferredName":"ASEU01,
+        ","por":{"beginDate":"2006-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30106580","header":{"preferredName":"MEERKATZE,
+        ","por":{"beginDate":"1985-01-01T00:00:00.000","endDate":"1988-12-31T00:00:00.000"}}},{"ncdcStnId":"30106583","header":{"preferredName":"VALDIVIA,
+        ","por":{"beginDate":"1993-01-01T00:00:00.000","endDate":"1993-12-31T00:00:00.000"}}},{"ncdcStnId":"30106584","header":{"preferredName":"SONNE,
+        ","por":{"beginDate":"2009-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"30106590","header":{"preferredName":"VIKTOR
+        BUGAYEV, ","por":{"beginDate":"1974-01-01T00:00:00.000","endDate":"1991-12-31T00:00:00.000"}}},{"ncdcStnId":"30084811","header":{"preferredName":"FALLS
+        CREEK FOREST, OR","latitude_dec":"44.396147","longitude_dec":"-122.373389","precision":"DDMMSSss","por":{"beginDate":"1995-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112665","header":{"preferredName":"DALLAS
+        FT WORTH, TX","latitude_dec":"33.065","longitude_dec":"-96.918056","precision":"DDMMSS","por":{"beginDate":"2009-03-11T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106672","header":{"preferredName":"CHOFU
+        MARU, ","por":{"beginDate":"1988-01-01T00:00:00.000","endDate":"2009-12-31T00:00:00.000"}}},{"ncdcStnId":"30002895","header":{"preferredName":"FLORALA
+        MUNICIPAL AP, AL","latitude_dec":"31.0425","longitude_dec":"-86.31167","precision":"DDMMSS","por":{"beginDate":"1960-02-04T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20006069","header":{"preferredName":"EFFINGHAM
+        COUNTY MEMORIAL AP, IL","latitude_dec":"39.07028","longitude_dec":"-88.53333","precision":"DDMMSS","por":{"beginDate":"1980-12-11T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30073829","header":{"preferredName":"BLUE
+        HILL LCD, MA","latitude_dec":"42.2123","longitude_dec":"-71.1137","precision":"DDddddd","por":{"beginDate":"1950-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20009499","header":{"preferredName":"ANNAPOLIS
+        NAF, MD","latitude_dec":"38.98333","longitude_dec":"-76.46667","precision":"DDMM","por":{"beginDate":"1930-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106680","header":{"preferredName":"POLARFRONT,
+        ","por":{"beginDate":"1990-01-01T00:00:00.000","endDate":"2009-12-31T00:00:00.000"}}},{"ncdcStnId":"30112677","header":{"preferredName":"MIAMI,
+        FL","latitude_dec":"25.758056","longitude_dec":"-80.491111","precision":"DDMMSS","por":{"beginDate":"2008-11-20T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112678","header":{"preferredName":"MILWAUKEE,
+        WI","latitude_dec":"42.818889","longitude_dec":"-88.046111","precision":"DDMMSS","por":{"beginDate":"2009-03-03T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084818","header":{"preferredName":"MOOSE
+        MOUNTAIN OPEN, OR","latitude_dec":"44.411347","longitude_dec":"-122.397789","precision":"DDMMSSss","por":{"beginDate":"1999-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112680","header":{"preferredName":"NASHVILLE,
+        TN","latitude_dec":"35.98","longitude_dec":"-86.661944","precision":"DDMMSS","por":{"beginDate":"2009-04-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112682","header":{"preferredName":"NEW
+        YORK CITY JFK, NY","latitude_dec":"40.588889","longitude_dec":"-73.881111","precision":"DDMMSS","por":{"beginDate":"2009-02-19T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112684","header":{"preferredName":"NORMAN
+        WFO, OK","latitude_dec":"35.276111","longitude_dec":"-97.51","precision":"DDMMSS","por":{"beginDate":"2009-03-09T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112688","header":{"preferredName":"PHILADELPHIA,
+        NJ","latitude_dec":"39.948889","longitude_dec":"-75.068889","precision":"DDMMSS","por":{"beginDate":"2009-03-25T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106689","header":{"preferredName":"UAL
+        TEXAS, ","por":{"beginDate":"1993-01-01T00:00:00.000","endDate":"1993-12-31T00:00:00.000"}}},{"ncdcStnId":"30106694","header":{"preferredName":"GALVESTON
+        BAY, ","por":{"beginDate":"2001-01-01T00:00:00.000","endDate":"2005-12-31T00:00:00.000"}}},{"ncdcStnId":"30106695","header":{"preferredName":"RONALD
+        H. BROWN (AWS), ","por":{"beginDate":"2000-01-01T00:00:00.000","endDate":"2009-12-31T00:00:00.000"}}},{"ncdcStnId":"20030333","header":{"preferredName":"UTIRIK,
+        MH","latitude_dec":"11.23333","longitude_dec":"169.85","precision":"DDMM","por":{"beginDate":"1967-11-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20030303","header":{"preferredName":"JALUIT,
+        MH","latitude_dec":"5.91667","longitude_dec":"169.65","precision":"DDMM","por":{"beginDate":"1965-04-19T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106718","header":{"preferredName":"ASDK01,
+        ","por":{"beginDate":"2007-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"30106725","header":{"preferredName":"ASEU04,
+        ","por":{"beginDate":"2006-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30106586","header":{"preferredName":"MANILA
+        BAY, ","por":{"beginDate":"1990-01-01T00:00:00.000","endDate":"1991-12-31T00:00:00.000"}}},{"ncdcStnId":"30106588","header":{"preferredName":"BRIZ,
+        ","por":{"beginDate":"1973-01-01T00:00:00.000","endDate":"1990-12-31T00:00:00.000"}}},{"ncdcStnId":"30106589","header":{"preferredName":"OKEAN,
+        ","por":{"beginDate":"1973-01-01T00:00:00.000","endDate":"1990-12-31T00:00:00.000"}}},{"ncdcStnId":"30106592","header":{"preferredName":"FORT
+        FLEUR D''EPEE, ","por":{"beginDate":"1986-01-01T00:00:00.000","endDate":"2002-12-31T00:00:00.000"}}},{"ncdcStnId":"30106595","header":{"preferredName":"CMA-CGM
+        FORT SAINT LOUIS (AWS), ","por":{"beginDate":"2003-01-01T00:00:00.000","endDate":"2006-12-31T00:00:00.000"}}},{"ncdcStnId":"30112666","header":{"preferredName":"DAYTON,
+        OH","latitude_dec":"40.021944","longitude_dec":"-84.123056","precision":"DDMMSS","por":{"beginDate":"2009-04-08T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106671","header":{"preferredName":"KEIFU
+        MARU, ","por":{"beginDate":"1973-01-01T00:00:00.000","endDate":"2000-12-31T00:00:00.000"}}},{"ncdcStnId":"30083364","header":{"preferredName":"ST
+        MARYS HOSPITAL, MN","latitude_dec":"44.017","longitude_dec":"-92.483","precision":"DDddd","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30083463","header":{"preferredName":"CULLMAN
+        REGIONAL AIRPORT FOLSOM FIELD, AL","latitude_dec":"34.26869","longitude_dec":"-85.85802","precision":"DDddddd","por":{"beginDate":"1958-12-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30083470","header":{"preferredName":"ATHENS
+        MUNICIPAL AIRPORT, TX","latitude_dec":"32.16384","longitude_dec":"-95.82835","precision":"DDddddd","por":{"beginDate":"1958-02-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30074462","header":{"preferredName":"DEXTER
+        B FLORENCE MEMORIAL FIELD AIRPORT, AR","latitude_dec":"34.09972","longitude_dec":"-93.06583","precision":"DDMMSS","por":{"beginDate":"1960-08-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30083392","header":{"preferredName":"PINEY
+        ISLAND, NC","latitude_dec":"35.02","longitude_dec":"-76.46","precision":"DDddd","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30083114","header":{"preferredName":"MANAS
+        INTERNATIONAL AIRPORT, KYRGYZSTAN","latitude_dec":"43.067","longitude_dec":"74.483","precision":"DDddd","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30015684","header":{"preferredName":"CAMP
+        DAVID, MD","latitude_dec":"39.645","longitude_dec":"-77.468","precision":"DDddd","por":{"beginDate":"1960-02-04T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20024667","header":{"preferredName":"FREDERICKSBURG
+        GILLESPIE COUNTY AIRPORT, TX","latitude_dec":"30.24333","longitude_dec":"-98.90972","precision":"DDMMSS","por":{"beginDate":"1940-05-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30083504","header":{"preferredName":"EAGLE
+        RANGE WSO, UT","latitude_dec":"41.05","longitude_dec":"-113.06","precision":"DDdd","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30106681","header":{"preferredName":"LANCE,
+        ","por":{"beginDate":"2015-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"30112653","header":{"preferredName":"ANDREWS
+        AFB, VA","latitude_dec":"38.695","longitude_dec":"-76.845","precision":"DDMMSS","por":{"beginDate":"2009-03-25T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112657","header":{"preferredName":"BALTIMORE
+        WASHINGTON, MD","latitude_dec":"39.09","longitude_dec":"-76.63","precision":"DDMMSS","por":{"beginDate":"2009-03-25T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112679","header":{"preferredName":"MINNEAPOLIS,
+        MN","latitude_dec":"44.871111","longitude_dec":"-92.933056","precision":"DDMMSS","por":{"beginDate":"2009-03-18T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106866","header":{"preferredName":"CHARLOTTEBURG,
+        NJ","latitude_dec":"41.029856","longitude_dec":"-74.424842","precision":"DDMMSSss","por":{"beginDate":"2005-05-03T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106708","header":{"preferredName":"NAJA
+        ARCTICA, ","por":{"beginDate":"2003-01-01T00:00:00.000","endDate":"2006-12-31T00:00:00.000"}}},{"ncdcStnId":"30106709","header":{"preferredName":"NUKA
+        ARCTICA, ","por":{"beginDate":"2000-01-01T00:00:00.000","endDate":"2005-12-31T00:00:00.000"}}},{"ncdcStnId":"30112695","header":{"preferredName":"TAMPA,
+        FL","latitude_dec":"27.86","longitude_dec":"-82.518056","precision":"DDMMSS","por":{"beginDate":"2009-02-25T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112696","header":{"preferredName":"TULSA,
+        OK","latitude_dec":"36.071111","longitude_dec":"-95.826944","precision":"DDMMSS","por":{"beginDate":"2009-03-04T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106711","header":{"preferredName":"CANMAR
+        AMBASSADOR, ","por":{"beginDate":"1992-01-01T00:00:00.000","endDate":"1992-12-31T00:00:00.000"}}},{"ncdcStnId":"30106777","header":{"preferredName":"CAMP
+        UNION, CA","latitude_dec":"38.53778","longitude_dec":"-121.50389","precision":"DDddddd","por":{"beginDate":"1863-01-01T00:00:00.000","endDate":"1865-08-31T00:00:00.000"}}},{"ncdcStnId":"20018766","header":{"preferredName":"ATLANTIC
+        CITY MARINA, NJ","latitude_dec":"39.37778","longitude_dec":"-74.42361","precision":"DDddddd","por":{"beginDate":"1873-12-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20030461","header":{"preferredName":"LUKUNOCH,
+        FM","latitude_dec":"5.51667","longitude_dec":"153.81667","precision":"DDMM","por":{"beginDate":"1986-08-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106721","header":{"preferredName":"ASES01,
+        ","por":{"beginDate":"2008-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30106727","header":{"preferredName":"ASEU06,
+        ","por":{"beginDate":"2011-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30106700","header":{"preferredName":"ASFR2,
+        ","por":{"beginDate":"2007-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"30106701","header":{"preferredName":"ASFR3,
+        ","por":{"beginDate":"2010-01-01T00:00:00.000","endDate":"2015-12-31T00:00:00.000"}}},{"ncdcStnId":"30084805","header":{"preferredName":"CASCADE
+        HEAD STAND 14, OR","latitude_dec":"45.041631","longitude_dec":"-123.909522","precision":"DDMMSSss","por":{"beginDate":"1999-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20017340","header":{"preferredName":"DOWNTOWN
+        CHARLESTON, SC","latitude_dec":"32.775","longitude_dec":"-79.9239","precision":"DDddddd","por":{"beginDate":"1738-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112661","header":{"preferredName":"CLEVELAND,
+        OH","latitude_dec":"41.29","longitude_dec":"-82.008056","precision":"DDMMSS","por":{"beginDate":"2008-11-20T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106581","header":{"preferredName":"POLARSTERN,
+        ","por":{"beginDate":"1985-01-01T00:00:00.000","endDate":"2014-12-31T00:00:00.000"}}},{"ncdcStnId":"30112668","header":{"preferredName":"DETROIT,
+        MI","latitude_dec":"42.111111","longitude_dec":"-83.515","precision":"DDMMSS","por":{"beginDate":"2008-12-02T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106587","header":{"preferredName":"ESPERANZA
+        DEL MAR, ","por":{"beginDate":"2003-01-01T00:00:00.000","endDate":"2007-12-31T00:00:00.000"}}},{"ncdcStnId":"30112655","header":{"preferredName":"ATLANTA,
+        GA","latitude_dec":"33.646944","longitude_dec":"-84.261944","precision":"DDMMSS","por":{"beginDate":"2009-03-30T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112701","header":{"preferredName":"WICHITA,
+        KS","latitude_dec":"37.506944","longitude_dec":"-97.436944","precision":"DDMMSS","por":{"beginDate":"2009-03-17T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084815","header":{"preferredName":"JUNIPER,
+        OR","latitude_dec":"44.223439","longitude_dec":"-121.399147","precision":"DDMMSSss","por":{"beginDate":"1999-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30002893","header":{"preferredName":"ANDALUSIA
+        OPP AP, AL","latitude_dec":"31.30889","longitude_dec":"-86.39389","precision":"DDMMSS","por":{"beginDate":"1960-02-04T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106677","header":{"preferredName":"ROGER
+        REVELLE (AWS), ","por":{"beginDate":"2011-01-01T00:00:00.000","endDate":"2012-12-31T00:00:00.000"}}},{"ncdcStnId":"30083481","header":{"preferredName":"CLERMONT
+        COUNTY AIRPORT, OH","latitude_dec":"39.07838","longitude_dec":"-84.21022","precision":"DDddddd","por":{"beginDate":"1969-04-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106679","header":{"preferredName":"MANULANI,
+        ","por":{"beginDate":"1985-01-01T00:00:00.000","endDate":"1987-12-31T00:00:00.000"}}},{"ncdcStnId":"30083505","header":{"preferredName":"GRANITE
+        PEAK FILLMORE ARPT, UT","latitude_dec":"38.95813","longitude_dec":"-112.36313","precision":"DDddddd","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30112686","header":{"preferredName":"MEMPHIS,
+        MS","latitude_dec":"34.896111","longitude_dec":"-89.993056","precision":"DDMMSS","por":{"beginDate":"2009-04-08T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30084814","header":{"preferredName":"METOLIUS,
+        OR","latitude_dec":"44.490036","longitude_dec":"-121.632764","precision":"DDMMSSss","por":{"beginDate":"1998-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20018306","header":{"preferredName":"OAK
+        RIDGE ATDD, TN","latitude_dec":"35.998","longitude_dec":"-84.2192","precision":"DDdddd","por":{"beginDate":"1948-12-07T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112691","header":{"preferredName":"RALEIGH,
+        NC","latitude_dec":"36.001944","longitude_dec":"-78.696944","precision":"DDMMSS","por":{"beginDate":"2009-04-14T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30112692","header":{"preferredName":"SALT
+        LAKE CITY, UT","latitude_dec":"40.966944","longitude_dec":"-111.93","precision":"DDMMSS","por":{"beginDate":"2009-01-06T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106684","header":{"preferredName":"AKADEMIK
+        SHULEYKIN, ","por":{"beginDate":"1983-01-01T00:00:00.000","endDate":"1991-12-31T00:00:00.000"}}},{"ncdcStnId":"30084821","header":{"preferredName":"SOAPGRASS
+        FOREST UPPER CANOPY, OR","latitude_dec":"44.348247","longitude_dec":"-122.291783","precision":"DDMMSSss","por":{"beginDate":"2008-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30106685","header":{"preferredName":"VOLGONEFT-131,
+        ","por":{"beginDate":"2008-01-01T00:00:00.000","endDate":"2012-12-31T00:00:00.000"}}}]}}'
+  recorded_at: 2018-12-01 19:49:44 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/homr/services/station/search?qid=%3A046742&headersOnly=false&definitions=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:49:09 GMT
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET, OPTIONS
+      access-control-max-age: '3600'
+      access-control-allow-headers: x-requested-with
+      content-type: application/json
+      vary: Accept-Encoding
+      content-encoding: gzip
+      connection: close
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: '{"stationCollection":{"stations":[{"ncdcStnId":"20002078","header":{"preferredName":"PASO
+        ROBLES MUNICIPAL AP, CA","latitude_dec":"35.6697","longitude_dec":"-120.6283","precision":"DDddddd","por":{"beginDate":"1949-10-05T00:00:00.000","endDate":"Present"}},"names":[{"name":"PASO
+        ROBLES MUNICIPAL AP","nameType":"COOP"},{"name":"PASO ROBLES MUNICIPAL AP","nameType":"PRINCIPAL"},{"name":"PASO
+        ROBLES MUNICIPAL ARPT","nameType":"PUB"}],"identifiers":[{"idType":"GHCND","id":"USW00093209"},{"idType":"GHCNMLT","id":"USW00093209"},{"idType":"COOP","id":"046742"},{"idType":"WBAN","id":"93209"},{"idType":"FAA","id":"PRB"},{"idType":"ICAO","id":"KPRB"},{"idType":"NWSLI","id":"PRB"},{"idType":"NCDCSTNID","id":"20002078"}],"location":{"ncdcstnId":"20002078","descriptions":[{"description":"PASO
+        ROBLES MUNICIPAL AIRPORT OUTSIDE AND 5 MILES NE OF PO AT PASO ROBLES CA"}],"latitudes":[{"latitude_dec":"35.6697","precision":"DDddddd"}],"longitudes":[{"longitude_dec":"-120.6283","precision":"DDddddd"}],"latLonPairs":[{"latitude_rptd":"35.6697","longitude_rptd":"-120.6283","latitude_dec":"35.6697","longitude_dec":"-120.6283","latitude_dms":"35,40,11,N","longitude_dms":"120,37,42,W","precision":"DDddddd","datum_horiz":"NAD83","source":"ASOS
+        SITE SURVEY"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"810","elevationMeters":"246.9","groundElevDatum":"NAVD88"},{"elevationType":"AIRPORT","elevationFeet":"836","elevationMeters":"254.8"},{"elevationType":"BAROMETRIC","elevationFeet":"806","elevationMeters":"245.7"}],"topography":[{"description":"LEVEL
+        VALLEY LOCATION (S-N)"}],"obstructions":[{"description":"HYGR 090\/04 NO OBSTRUCTIONS"}],"geoInfo":{"ncdcstnId":"20002078","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"CA"}],"counties":[{"county":"SAN
+        LUIS OBISPO"}],"utcOffsets":[{"utcOffset":"-8"}]},"nwsInfo":{"ncdcstnId":"20002078","climateDivisions":[{"stateProvince":"CA","climateDivision":"04","displayName":"CENTRAL
+        COAST DRAINAGE"}],"nwsRegions":[{"nwsRegion":"WESTERN"}],"nwsWfos":[{"nwsWfo":"LOX","displayName":"LOS
+        ANGELES, CA"}]}},"platforms":[{"platform":"COOP"},{"platform":"ASOS"}],"relocations":[{"relocation":"5.1
+        mi NNE","date":"1949-10-05T00:00:00.000"}],"remarks":[{"type":"NWS COOP INGEST","remark":"ASOS
+        COMMISSIONED 01\/18\/2001"},{"type":"NWS COOP INGEST","remark":"THREE YEAR
+        UPDATE."},{"type":"NWS COOP INGEST","remark":"REQUIRED 5 YEAR UPDATE\r\nASOS
+        COMMISSIONED 01\/18\/2001\r\nSERVICE LEVEL \"D\" ASOS MAINTAINED BY LOX NWS
+        ETS"},{"type":"GENERAL","remark":"PHOTOS ADDED FOR ASOS EXPOSURE DOCUMENTATION
+        EFFORT (CIRCA 1999+) WHICH TOOK PHOTOS OF THE AREA SURROUNDING COASTAL AND
+        INLAND ASOS SITES IN AREAS SUBJECT TO HURRICANES. THE PHOTOS HELP DOCUMENT
+        STATION EXPOSURE AND IDENTIFY OBSTACLES THAT COULD REDUCE THE WINDS AT THE
+        SITE."},{"type":"RIVER BASIN (COOP NETWORK)","remark":"SALINAS"}],"updates":[{"effectiveDate":"2017-03-22T00:00:00.000","providedBy":"INGEST","updateSource":"SISv2","version":"8","nativeId":"COOP:04-6742:8","description":"CHANGE","enteredBy":"INGEST","enteredDate":"2017-04-28T01:50:13-04:00"}],"elements":[{"dataProgram":"COOP
+        HPD","element":"PRECIP","frequency":"HOURLY","observationTime":"2400","publishedFlag":"HPD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"AHTB","equipmentMods":"RCRD;HTD","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"PRECIP","frequency":"DAILY","observationTime":"2400","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"AHTB","equipmentMods":"RCRD;HTD","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"TEMP","frequency":"DAILY","observationTime":"2400","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"HYGR","equipmentAzimuth":"090","equipmentDistance":"4","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"WIND","frequency":"HOURLY","observationTime":"UNKN","equipment":{"equipment":"ANEMSONIC"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}}]}]}}'
+  recorded_at: 2018-12-01 19:49:44 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/homr/services/station/search?qid=COOP%3A0467&qidMod=starts&headersOnly=false&definitions=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:49:19 GMT
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET, OPTIONS
+      access-control-max-age: '3600'
+      access-control-allow-headers: x-requested-with
+      content-type: application/json
+      vary: Accept-Encoding
+      content-encoding: gzip
+      connection: close
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: '{"stationCollection":{"stations":[{"ncdcStnId":"10100112","header":{"preferredName":"PASADENA,
+        CA","latitude_dec":"34.1483","longitude_dec":"-118.1447","precision":"DDddddd","por":{"beginDate":"1889-11-01T00:00:00.000","endDate":"Present"}},"names":[{"name":"PASADENA","nameType":"COOP"},{"name":"PASADENA","nameType":"PRINCIPAL"}],"identifiers":[{"idType":"GHCND","id":"USC00046719"},{"idType":"GHCNMLT","id":"USC00046719"},{"idType":"COOP","id":"046719"},{"idType":"NWSLI","id":"PSAC1"},{"idType":"NCDCSTNID","id":"10100112"}],"location":{"ncdcstnId":"10100112","descriptions":[{"description":"GARFIELD
+        AVE AND RAMONA ST WITHIN AND 0.2 MI N OF PO AT PASADENA, CA"}],"latitudes":[{"latitude_dec":"34.1483","precision":"DDddddd"}],"longitudes":[{"longitude_dec":"-118.1447","precision":"DDddddd"}],"latLonPairs":[{"latitude_rptd":"34.1483","longitude_rptd":"-118.1447","latitude_dec":"34.1483","longitude_dec":"-118.1447","latitude_dms":"34,08,54,N","longitude_dms":"118,08,41,W","precision":"DDddddd","datum_horiz":"NAD83","source":"GPS
+        - GARMIN MODEL 50"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"864","elevationMeters":"263.3","groundElevDatum":"NAVD88"}],"topography":[{"description":"URBAN
+        AREA; MOUNTAINS N 5-8 MI."}],"obstructions":[{"type":"BUILDING(S)","azimuth":"300-020","azimuthUnit":"deg","distance":"192-98","distanceUnit":"ft","elevationAngle":"17-20","elevationAngleUnit":"deg","description":"PERMIT
+        BLDG & PARKING"},{"type":"TREE(S)","azimuth":"020-110","azimuthUnit":"deg","distance":"32-50","distanceUnit":"ft","elevationAngle":"41-28","elevationAngleUnit":"deg","description":"TREES
+        (2)"},{"type":"TREE(S)","azimuth":"330-010","azimuthUnit":"deg","distance":"44-30","distanceUnit":"ft","elevationAngle":"61-46","elevationAngleUnit":"deg","description":"TREE"},{"type":"TREE(S)","azimuth":"020","azimuthUnit":"deg","distance":"136","distanceUnit":"ft","elevationAngle":"16","elevationAngleUnit":"deg","description":"TREE
+        BY PERMIT BLDG"},{"type":"TREE(S)","azimuth":"120-210-270","azimuthUnit":"deg","distance":"45-29-51","distanceUnit":"ft","elevationAngle":"39-34-20","elevationAngleUnit":"deg","description":"TREES
+        (5)"}],"geoInfo":{"ncdcstnId":"10100112","countries":[{"country":"UNITED STATES"}],"stateProvinces":[{"stateProvince":"CA"}],"counties":[{"county":"LOS
+        ANGELES"}],"utcOffsets":[{"utcOffset":"-8"}]},"nwsInfo":{"ncdcstnId":"10100112","climateDivisions":[{"stateProvince":"CA","climateDivision":"06","displayName":"SOUTH
+        COAST DRAINAGE"}],"nwsRegions":[{"nwsRegion":"WESTERN"}],"nwsWfos":[{"nwsWfo":"LOX","displayName":"LOS
+        ANGELES, CA"}]}},"platforms":[{"platform":"COOP"},{"platform":"USHCN"}],"relocations":[{"relocation":"5
+        ft WNW","date":"2015-08-06T00:00:00.000"}],"remarks":[{"type":"NWS COOP INGEST","remark":"ENTER
+        REPLACEMENT NIMBUS SERIAL NUMBER.  UPDATE EXPOSURES, REMOVED BUSHES SINCE
+        LESS THAN 10 DEGREES AND CORRECT FOR TRUE NORTH. UPDATE FOCAL POINT TELEPHONE
+        NUMBER."},{"type":"NWS COOP INGEST","remark":"ADDING ADDITIONAL CONTACT INFORMATION."},{"type":"NWS
+        COOP INGEST","remark":"REPLACED FAULTY BEEHIVE AND ADDING NEW SERIAL NUMBER."},{"type":"NWS
+        COOP INGEST","remark":"UPGRADE TO MMTS. RELOCATED TEMP SENSOR 12 FEET FROM
+        PREVIOUS LOCATION AND CHANGE OF OBSERVATION TIME TO 0800. MOVED SRG 5 FEET
+        FOR BETTER EXPOSURE AT 300 DEGREES FROM OLD LOCATION (LAT\/LON READINGS REMAIN
+        THE SAME ROUNDED USING NEW GARMIN 50) AND UPDATED EXPOSURES. HEDGE NO LONGER
+        AN ISSUE IF KEPT TRIMMED.  DELETE ALL EQUIPMENT EXCEPT SRG AND NIMBUS. UPDATE
+        FOCAL POINTS AND FOCAL POINT INFORMATION."},{"type":"NWS COOP INGEST","remark":"UPDATED
+        FOR PAPERLESS WXCODER. UPDATED OBSERVER DATA."},{"type":"NWS COOP INGEST","remark":"UPDATED
+        GPS SOURCE\/EXPOSURES... AUTOMATED WEATHER STATION CO-LOCATED WITHIN FENCED
+        AREA\r\n"},{"type":"NWS COOP INGEST","remark":"UPDATED EXPOSURES...\r\n"},{"type":"NWS
+        COOP INGEST","remark":"AUTO EQUIP. IS BEING USED... BACK TO RED. #11 9\/24\/2004;
+        AUTO EQUIP IS NE (050) & 7'' ON 7'' TOWER FROM SRG.  DIRECTIONS TO GET KEY...
+        FROM GARFIELD AND RAMONA PROCEED 2 BLOCKS WEST AND 2.5 BLOCKS SOUTH.  WATER
+        DEPT IS ON 2ND FLOOR.  SEE WES KUHLINS FOR THE KEY.\r\n"},{"type":"NWS COOP
+        INGEST","remark":"UPDATED EXPOSURES & ADDED AUTO EQUIP. TO OTHER; AUTO EQUIP
+        IS NE (050) & 7'' ON 7'' TOWER FROM SRG.  NOTE... ADDITIONAL OBSTRUCTION IS
+        TREE 340\/48\/46.  KEY TO THE SITE IS AT THE NEW ADDRESS: FROM GARFIELD AND
+        RAMONA PROCEED 2 BLOCKS WEST AND 2.5 BLOCKS SOUTH.  WATER DEPT IS ON 2ND FLOOR.  SEE
+        MR. SAE DUK KIM FOR THE KEY.\r\n***ON HOLD TO UPDATE AUTO EQUIP***"},{"type":"RIVER
+        BASIN (COOP NETWORK)","remark":"LOS ANGELES"},{"type":"GENERAL","remark":"GROUND
+        EXPOSURE ON LAWN AT OPPOSITE CORNER OF STREET INTERSECTION."},{"type":"HC
+        CODE FROM S2K","remark":"HCN HAS # 046719."}],"updates":[{"effectiveDate":"2017-12-14T00:00:00.000","providedBy":"INGEST","updateSource":"SISv2","version":"18","nativeId":"COOP:04-6719:18","description":"CHANGE","enteredBy":"INGEST","enteredDate":"2018-02-21T01:55:18-05:00"}],"elements":[{"dataProgram":"COOP
+        SOD","element":"PRECIP","frequency":"DAILY","observationTime":"0800","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"SRG-COP","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-12-14T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"TEMP","frequency":"DAILY","observationTime":"0800","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"NIMBUS","equipmentAzimuth":"050","equipmentDistance":"7","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-12-14T00:00:00.000","endDate":"Present"}}]},{"ncdcStnId":"10100113","header":{"preferredName":"PASO
+        ROBLES, CA","latitude_dec":"35.6277","longitude_dec":"-120.6855","precision":"DDddddd","por":{"beginDate":"1886-11-01T00:00:00.000","endDate":"Present"}},"names":[{"name":"PASO
+        ROBLES","nameType":"COOP"},{"name":"PASO ROBLES","nameType":"PRINCIPAL"}],"identifiers":[{"idType":"GHCND","id":"USC00046730"},{"idType":"GHCNMLT","id":"USC00046730"},{"idType":"COOP","id":"046730"},{"idType":"NWSLI","id":"PRBC1"},{"idType":"NCDCSTNID","id":"10100113"}],"location":{"ncdcstnId":"10100113","descriptions":[{"description":"13TH
+        AND PASO ROBLES ST WITHIN AND 0.4 MI ENE OF PO AT PASO ROBLES CA"}],"latitudes":[{"latitude_dec":"35.6277","precision":"DDddddd"}],"longitudes":[{"longitude_dec":"-120.6855","precision":"DDddddd"}],"latLonPairs":[{"latitude_rptd":"35.6277","longitude_rptd":"-120.6855","latitude_dec":"35.6277","longitude_dec":"-120.6855","latitude_dms":"35,37,40,N","longitude_dms":"120,41,08,W","precision":"DDddddd","datum_horiz":"NAD83","source":"GPS
+        - MAP 60CSx"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"730","elevationMeters":"222.5","groundElevDatum":"NAVD88"},{"elevationType":"ZERODATUM","elevationFeet":"100","elevationMeters":"30.5"}],"topography":[{"description":"STATION
+        ON CONCRETE PAD IN BUSINESS DISTRICT A FEW FEET OFF BUSY STREETS. CYCLONE
+        FENCE SEPARATES LAWN FROM STREETS. FLAT."}],"obstructions":[{"type":"BUILDING(S)","azimuth":"190-260-300","azimuthUnit":"deg","distance":"164-151-164","distanceUnit":"ft","elevationAngle":"4-6-3","elevationAngleUnit":"deg","description":"ACROSS
+        STREET"},{"type":"BUILDING(S)","azimuth":"100-190","azimuthUnit":"deg","distance":"117-29","distanceUnit":"ft","elevationAngle":"7-9","elevationAngleUnit":"deg","description":"OFFICE"},{"type":"BUILDING(S)","azimuth":"040-080","azimuthUnit":"deg","distance":"60-55","distanceUnit":"ft","elevationAngle":"12-5","elevationAngleUnit":"deg","description":"BUILDINGS"},{"type":"POLE(S)","azimuth":"280-000-040","azimuthUnit":"deg","distance":"7-14-40","distanceUnit":"ft","elevationAngle":"0-1-2","elevationAngleUnit":"deg","description":"FENCE"},{"type":"POLE(S)","azimuth":"280","azimuthUnit":"deg","distance":"6","distanceUnit":"ft","elevationAngle":"12","elevationAngleUnit":"deg","description":"FLOOD
+        CONTROL GAUGE"},{"type":"POLE(S)","azimuth":"200-280","azimuthUnit":"deg","distance":"33-7","distanceUnit":"ft","elevationAngle":"1-1","elevationAngleUnit":"deg","description":"FENCE"},{"type":"TREE(S)","azimuth":"330","azimuthUnit":"deg","distance":"17","distanceUnit":"ft","elevationAngle":"23","elevationAngleUnit":"deg","description":"SMALL
+        TREE"},{"type":"TREE(S)","azimuth":"080-100","azimuthUnit":"deg","distance":"149-152","distanceUnit":"ft","elevationAngle":"12-9","elevationAngleUnit":"deg","description":"TREE"},{"type":"TREE(S)","azimuth":"020-090","azimuthUnit":"deg","distance":"29-35","distanceUnit":"ft","elevationAngle":"60-55","elevationAngleUnit":"deg","description":"BIG
+        TREE"},{"type":"TREE(S)","azimuth":"020-040","azimuthUnit":"deg","distance":"15-19","distanceUnit":"ft","elevationAngle":"15-10","elevationAngleUnit":"deg","description":"TREES"},{"type":"TREE(S)","azimuth":"190-200","azimuthUnit":"deg","distance":"67-38","distanceUnit":"ft","elevationAngle":"13-11","elevationAngleUnit":"deg","description":"STREET
+        TREES"}],"geoInfo":{"ncdcstnId":"10100113","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"CA"}],"counties":[{"county":"SAN
+        LUIS OBISPO"}],"utcOffsets":[{"utcOffset":"-8"}]},"nwsInfo":{"ncdcstnId":"10100113","climateDivisions":[{"stateProvince":"CA","climateDivision":"04","displayName":"CENTRAL
+        COAST DRAINAGE"}],"nwsRegions":[{"nwsRegion":"WESTERN"}],"nwsWfos":[{"nwsWfo":"LOX","displayName":"LOS
+        ANGELES, CA"}]}},"platforms":[{"platform":"COOP"},{"platform":"USHCN"}],"relocations":[{"relocation":"20
+        ft W","date":"1992-08-10T00:00:00.000"}],"remarks":[{"type":"NWS COOP INGEST","remark":"UPDATE
+        EXPOSURES. CORRECT INSTITUTION NAME."},{"type":"NWS COOP INGEST","remark":"UPDATE
+        FOR SIS. ADDED OBSERVER SERVICE DATE. REMOVED RIVER STAGE ELEMENT AND ASSOCIATED
+        EQUIPMENT, INCLUDING RADIO TRANSMITTER; MADE HPD DATA DISTRIBUTE INSTEAD OF
+        ARCHIVE ONLY; DELETED B-91 REPORTING METHOD; ADDED HCN STATUS."},{"type":"NWS
+        COOP INGEST","remark":"UPDATED SLOPE AND OFFSET DUE TO INSTALLATION OF NEW
+        DATA LOGGER. ADDED CELL # AND EMAIL OF OBSERVER. \r\nCADWR\/USGS HAVE CO-LOCATED
+        RVR GAGE STN. DATA USED BY CNRFC IN FCSTG FOR SALINAS RVR. \r\n"},{"type":"NWS
+        COOP INGEST","remark":"UPDATED EXPOSURES AND FOCAL POINT. CADWR\/USGS HAVE
+        CO-LOCATED RVR GAGE STN. DATA USED BY CNRFC IN FCSTG FOR SALINAS RVR. \r\n"},{"type":"NWS
+        COOP INGEST","remark":"UPDATED EQUIPMENT. UNDER OBSERVED ELEMENT HOURLY PRECIPITATION,
+        CHANGED F&P TO FPR-D. IN REPORTING LINE, CHANGED B18 TO ADP AND DATA INGEST
+        VIA TO MEMORY CARD. CADWR\/USGS HAVE CO-LOCATED RVR GAGE STN. DATA USED BY
+        CNRFC IN FCSTG FOR SALINAS RVR. \r\n"},{"type":"NWS COOP INGEST","remark":"UPDATED
+        EXPOSURES\/ELE\/GPS SOURCE\/OBSERVER DATA\/WXCODER 3\r\nCADWR\/USGS HAVE CO-LOCATED
+        RVR GAGE STN. DATA USED BY CNRFC IN FCSTG FOR SALINAS RVR. \r\n"},{"type":"NWS
+        COOP INGEST","remark":"UPDATE REPORTING METHOD...WXCODER.  CADWR\/USGS HAVE
+        CO-LOCATED RVR GAGE STN. DATA USED BY CNRFC IN FCSTG FOR SALINAS RVR. FACILITY
+        CLOSES & GATES LOCK AT 1530; CAN LOCK GATE ON WAY OUT IF NECESSARY. "},{"type":"RIVER
+        BASIN (COOP NETWORK)","remark":"SALINAS"},{"type":"HC CODE FROM S2K","remark":"HCN
+        HAS # 046730."},{"type":"HC CODE FROM S2K","remark":"CPM SAYS FOR AN INDEFINITE
+        TIME BEFORE 7\/94 OBSERVER WAS TAKING TEMPS AT 0700 BUT WAS PUTTING THE HI
+        TEMP ON THE PREVIOUS CALENDAR DAY ON THE FORM. (LOW TEMP AND AT-OBS TEMP ON
+        CORRECTE DAY.)"},{"type":"DP CODE FROM S2K","remark":"HCN HAS # 046730."},{"type":"DP
+        CODE FROM S2K","remark":"CPM SAYS FOR AN INDEFINITE TIME BEFORE 7\/94 OBSERVER
+        WAS TAKING TEMPS AT 0700 BUT WAS PUTTING THE HI TEMP ON THE PREVIOUS CALENDAR
+        DAY ON THE FORM. (LOW TEMP AND AT-OBS TEMP ON CORRECTE DAY.)"}],"updates":[{"effectiveDate":"2017-10-26T00:00:00.000","providedBy":"INGEST","updateSource":"SISv2","version":"21","nativeId":"COOP:04-6730:21","description":"CHANGE","enteredBy":"INGEST","enteredDate":"2017-12-08T01:55:09-05:00"}],"elements":[{"dataProgram":"COOP
+        HPD","element":"PRECIP","frequency":"HOURLY","observationTime":"2400","publishedFlag":"HPD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"FPR-D","equipmentMods":"RCRD","equipmentAzimuth":"300","equipmentDistance":"4","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-10-26T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"PRECIP","frequency":"DAILY","observationTime":"0700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"SRG-STN","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-10-26T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"TEMP","frequency":"DAILY","observationTime":"0700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"NIMBUS","equipmentAzimuth":"080","equipmentDistance":"48","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-10-26T00:00:00.000","endDate":"Present"}}]},{"ncdcStnId":"20002078","header":{"preferredName":"PASO
+        ROBLES MUNICIPAL AP, CA","latitude_dec":"35.6697","longitude_dec":"-120.6283","precision":"DDddddd","por":{"beginDate":"1949-10-05T00:00:00.000","endDate":"Present"}},"names":[{"name":"PASO
+        ROBLES MUNICIPAL AP","nameType":"COOP"},{"name":"PASO ROBLES MUNICIPAL AP","nameType":"PRINCIPAL"},{"name":"PASO
+        ROBLES MUNICIPAL ARPT","nameType":"PUB"}],"identifiers":[{"idType":"GHCND","id":"USW00093209"},{"idType":"GHCNMLT","id":"USW00093209"},{"idType":"COOP","id":"046742"},{"idType":"WBAN","id":"93209"},{"idType":"FAA","id":"PRB"},{"idType":"ICAO","id":"KPRB"},{"idType":"NWSLI","id":"PRB"},{"idType":"NCDCSTNID","id":"20002078"}],"location":{"ncdcstnId":"20002078","descriptions":[{"description":"PASO
+        ROBLES MUNICIPAL AIRPORT OUTSIDE AND 5 MILES NE OF PO AT PASO ROBLES CA"}],"latitudes":[{"latitude_dec":"35.6697","precision":"DDddddd"}],"longitudes":[{"longitude_dec":"-120.6283","precision":"DDddddd"}],"latLonPairs":[{"latitude_rptd":"35.6697","longitude_rptd":"-120.6283","latitude_dec":"35.6697","longitude_dec":"-120.6283","latitude_dms":"35,40,11,N","longitude_dms":"120,37,42,W","precision":"DDddddd","datum_horiz":"NAD83","source":"ASOS
+        SITE SURVEY"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"810","elevationMeters":"246.9","groundElevDatum":"NAVD88"},{"elevationType":"AIRPORT","elevationFeet":"836","elevationMeters":"254.8"},{"elevationType":"BAROMETRIC","elevationFeet":"806","elevationMeters":"245.7"}],"topography":[{"description":"LEVEL
+        VALLEY LOCATION (S-N)"}],"obstructions":[{"description":"HYGR 090\/04 NO OBSTRUCTIONS"}],"geoInfo":{"ncdcstnId":"20002078","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"CA"}],"counties":[{"county":"SAN
+        LUIS OBISPO"}],"utcOffsets":[{"utcOffset":"-8"}]},"nwsInfo":{"ncdcstnId":"20002078","climateDivisions":[{"stateProvince":"CA","climateDivision":"04","displayName":"CENTRAL
+        COAST DRAINAGE"}],"nwsRegions":[{"nwsRegion":"WESTERN"}],"nwsWfos":[{"nwsWfo":"LOX","displayName":"LOS
+        ANGELES, CA"}]}},"platforms":[{"platform":"COOP"},{"platform":"ASOS"}],"relocations":[{"relocation":"5.1
+        mi NNE","date":"1949-10-05T00:00:00.000"}],"remarks":[{"type":"NWS COOP INGEST","remark":"ASOS
+        COMMISSIONED 01\/18\/2001"},{"type":"NWS COOP INGEST","remark":"THREE YEAR
+        UPDATE."},{"type":"NWS COOP INGEST","remark":"REQUIRED 5 YEAR UPDATE\r\nASOS
+        COMMISSIONED 01\/18\/2001\r\nSERVICE LEVEL \"D\" ASOS MAINTAINED BY LOX NWS
+        ETS"},{"type":"GENERAL","remark":"PHOTOS ADDED FOR ASOS EXPOSURE DOCUMENTATION
+        EFFORT (CIRCA 1999+) WHICH TOOK PHOTOS OF THE AREA SURROUNDING COASTAL AND
+        INLAND ASOS SITES IN AREAS SUBJECT TO HURRICANES. THE PHOTOS HELP DOCUMENT
+        STATION EXPOSURE AND IDENTIFY OBSTACLES THAT COULD REDUCE THE WINDS AT THE
+        SITE."},{"type":"RIVER BASIN (COOP NETWORK)","remark":"SALINAS"}],"updates":[{"effectiveDate":"2017-03-22T00:00:00.000","providedBy":"INGEST","updateSource":"SISv2","version":"8","nativeId":"COOP:04-6742:8","description":"CHANGE","enteredBy":"INGEST","enteredDate":"2017-04-28T01:50:13-04:00"}],"elements":[{"dataProgram":"COOP
+        HPD","element":"PRECIP","frequency":"HOURLY","observationTime":"2400","publishedFlag":"HPD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"AHTB","equipmentMods":"RCRD;HTD","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"PRECIP","frequency":"DAILY","observationTime":"2400","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"AHTB","equipmentMods":"RCRD;HTD","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"TEMP","frequency":"DAILY","observationTime":"2400","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"HYGR","equipmentAzimuth":"090","equipmentDistance":"4","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"WIND","frequency":"HOURLY","observationTime":"UNKN","equipment":{"equipment":"ANEMSONIC"},"date":{"beginDate":"2017-03-22T00:00:00.000","endDate":"Present"}}]},{"ncdcStnId":"20002467","header":{"preferredName":"PENON
+        BLANCO, CA","latitude_dec":"37.73333","longitude_dec":"-120.26667","precision":"DDMM","por":{"beginDate":"1953-05-01T00:00:00.000","endDate":"Present"}},"names":[{"name":"PENON
+        BLANCO","nameType":"COOP"},{"name":"PENON BLANCO","nameType":"PRINCIPAL"}],"identifiers":[{"idType":"COOP","id":"046795"},{"idType":"NCDCSTNID","id":"20002467"}],"location":{"ncdcstnId":"20002467","latitudes":[{"latitude_dec":"37.73333","precision":"DDMM"}],"longitudes":[{"longitude_dec":"-120.26667","precision":"DDMM"}],"latLonPairs":[{"latitude_rptd":"37,44,,N","longitude_rptd":"120,16,,W","latitude_dec":"37.73333","longitude_dec":"-120.26667","latitude_dms":"37,44,00,N","longitude_dms":"120,16,00,W","precision":"DDMM"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"2802","elevationMeters":"854"}],"geoInfo":{"ncdcstnId":"20002467","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"CA"}],"counties":[{"county":"MARIPOSA"}],"utcOffsets":[{"utcOffset":"-8"}]},"nwsInfo":{"ncdcstnId":"20002467"}},"platforms":[{"platform":"COOP"}],"updates":[{"effectiveDate":"2005-08-18T00:00:00.000","providedBy":"NCDC\/MSLAGLE","updateSource":"AD
+        HOC","version":"NONE","description":"HISTORICAL CORRECTIONS TO COUNTY","enteredBy":"MSLAGLE","enteredDate":"2005-08-18T00:00:00-04:00"}]},{"ncdcStnId":"20002989","header":{"preferredName":"PASKENTA
+        RANGER STATION, CA","latitude_dec":"39.8875","longitude_dec":"-122.5538","precision":"DDddddd","por":{"beginDate":"1935-01-01T00:00:00.000","endDate":"Present"}},"names":[{"name":"PASKENTA
+        RANGER STATION","nameType":"COOP"},{"name":"PASKENTA RANGER STATION","nameType":"PRINCIPAL"}],"identifiers":[{"idType":"GHCND","id":"USC00046726"},{"idType":"COOP","id":"046726"},{"idType":"NWSLI","id":"PKRC1"},{"idType":"NCDCSTNID","id":"20002989"}],"location":{"ncdcstnId":"20002989","descriptions":[{"description":"PASKENTA
+        R S WITHIN AND 0.2 MI E OF PO AT PASKENTA, CA"}],"latitudes":[{"latitude_dec":"39.8875","precision":"DDddddd"}],"longitudes":[{"longitude_dec":"-122.5538","precision":"DDddddd"}],"latLonPairs":[{"latitude_rptd":"39.8875","longitude_rptd":"-122.5538","latitude_dec":"39.8875","longitude_dec":"-122.5538","latitude_dms":"39,53,15,N","longitude_dms":"122,33,14,W","precision":"DDddddd","datum_horiz":"NAD83","source":"GPS
+        - LOWRANCE GLOBAL MAP 100"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"755","elevationMeters":"230.1","groundElevDatum":"NAGVD29"}],"topography":[{"description":"GRASS
+        AND LOW BRUSH COVERED ROLLING HILLS; MOUNTAINS DISTANT W"}],"obstructions":[{"type":"BUILDING(S)","azimuth":"140-180","azimuthUnit":"deg","distance":"95-95","distanceUnit":"ft","elevationAngle":"5-5","elevationAngleUnit":"deg","description":"GARAGE"},{"type":"BUILDING(S)","azimuth":"320-350","azimuthUnit":"deg","distance":"84-84","distanceUnit":"ft","elevationAngle":"14-14","elevationAngleUnit":"deg","description":"HOUSE"},{"type":"TREE(S)","azimuth":"320","azimuthUnit":"deg","distance":"130","distanceUnit":"ft","elevationAngle":"25","elevationAngleUnit":"deg","description":"TREE"},{"type":"TREE(S)","azimuth":"190","azimuthUnit":"deg","distance":"50","distanceUnit":"ft","elevationAngle":"40","elevationAngleUnit":"deg","description":"TREE"},{"type":"TREE(S)","azimuth":"240","azimuthUnit":"deg","distance":"65","distanceUnit":"ft","elevationAngle":"30","elevationAngleUnit":"deg","description":"TREE"}],"geoInfo":{"ncdcstnId":"20002989","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"CA"}],"counties":[{"county":"TEHAMA"}],"utcOffsets":[{"utcOffset":"-8"}]},"nwsInfo":{"ncdcstnId":"20002989","climateDivisions":[{"stateProvince":"CA","climateDivision":"02","displayName":"SACRAMENTO
+        DRAINAGE"}],"nwsRegions":[{"nwsRegion":"WESTERN"}],"nwsWfos":[{"nwsWfo":"STO","displayName":"SACRAMENTO,
+        CA"}]}},"platforms":[{"platform":"COOP"}],"relocations":[{"relocation":"1
+        mi W","date":"2002-09-17T00:00:00.000"}],"remarks":[{"type":"NWS COOP INGEST","remark":"ROTATING
+        FIRE STATION EMPLOYEES. THIS SITE IS UNMANNED FROM DECEMBER 1 TO APRIL 30TH."},{"type":"NWS
+        COOP INGEST","remark":"THREE YEAR REVIEW, UPDATE EXPOSURE, AND ADD PERMANENT
+        REMARKS."},{"type":"NWS COOP INGEST","remark":"UPDATE EQUIPMENT: CHANGED F&P
+        TO FPR-E."},{"type":"NWS COOP INGEST","remark":"MINOR UPDATE TO DRIVING DIRECTIONS"},{"type":"RIVER
+        BASIN (COOP NETWORK)","remark":"SACRAMENTO"}],"updates":[{"effectiveDate":"2017-11-22T00:00:00.000","providedBy":"INGEST","updateSource":"SISv2","version":"17","nativeId":"COOP:04-6726:17","description":"CHANGE","enteredBy":"INGEST","enteredDate":"2017-12-13T01:55:11-05:00"}],"elements":[{"dataProgram":"COOP
+        HPD","element":"PRECIP","frequency":"HOURLY","observationTime":"2400","publishedFlag":"HPD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"FPR-E","equipmentMods":"RCRD","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2012-03-20T00:00:00.000","endDate":"Present"}}]},{"ncdcStnId":"20003275","header":{"preferredName":"PEARBLOSSOM,
+        CA","latitude_dec":"34.5025","longitude_dec":"-117.8969","precision":"DDddddd","por":{"beginDate":"1985-04-13T00:00:00.000","endDate":"Present"}},"names":[{"name":"PEARBLOSSOM","nameType":"COOP"},{"name":"PEARBLOSSOM","nameType":"PRINCIPAL"}],"identifiers":[{"idType":"GHCND","id":"USC00046773"},{"idType":"GHCNMLT","id":"USC00046773"},{"idType":"COOP","id":"046773"},{"idType":"NWSLI","id":"PARC1"},{"idType":"NCDCSTNID","id":"20003275"}],"location":{"ncdcstnId":"20003275","descriptions":[{"description":"33957
+        LONGVIEW RD OUTSIDE AND 1.0 MILES E OF PO AT PEARBLOSSOM CA"}],"latitudes":[{"latitude_dec":"34.5025","precision":"DDddddd"}],"longitudes":[{"longitude_dec":"-117.8969","precision":"DDddddd"}],"latLonPairs":[{"latitude_rptd":"34.5025","longitude_rptd":"-117.8969","latitude_dec":"34.5025","longitude_dec":"-117.8969","latitude_dms":"34,30,09,N","longitude_dms":"117,53,49,W","precision":"DDddddd","datum_horiz":"NAD83","source":"GARMIN
+        DAKOTA 10"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"3101","elevationMeters":"945.2","groundElevDatum":"NAVD88"}],"topography":[{"description":"HIGH
+        DESERT VALLEY, MOUNTAINS SE-SW"}],"obstructions":[{"type":"BUILDING(S)","azimuth":"102-172","azimuthUnit":"deg","distance":"60-15","distanceUnit":"ft","elevationAngle":"23-22","elevationAngleUnit":"deg","description":"FIRE
+        STATION"},{"type":"POLE(S)","azimuth":"332","azimuthUnit":"deg","distance":"14","distanceUnit":"ft","elevationAngle":"58","elevationAngleUnit":"deg","description":"LIGHT
+        POLE"},{"type":"TREE(S)","azimuth":"292-352","azimuthUnit":"deg","distance":"176-139","distanceUnit":"ft","elevationAngle":"9-6","elevationAngleUnit":"deg","description":"TREES
+        ACROSS ROAD"},{"type":"TREE(S)","azimuth":"222-282","azimuthUnit":"deg","distance":"99-67","distanceUnit":"ft","elevationAngle":"13-23","elevationAngleUnit":"deg","description":"TREES"},{"type":"TREE(S)","azimuth":"042-102","azimuthUnit":"deg","distance":"46-37","distanceUnit":"ft","elevationAngle":"41-27","elevationAngleUnit":"deg","description":"TREES
+        LEFT OF BLDG"},{"type":"TREE(S)","azimuth":"172-212","azimuthUnit":"deg","distance":"34-24","distanceUnit":"ft","elevationAngle":"38-32","elevationAngleUnit":"deg","description":"TREES
+        RIGHT OF BLDG"}],"geoInfo":{"ncdcstnId":"20003275","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"CA"}],"counties":[{"county":"LOS
+        ANGELES"}],"utcOffsets":[{"utcOffset":"-8"}]},"nwsInfo":{"ncdcstnId":"20003275","climateDivisions":[{"stateProvince":"CA","climateDivision":"07","displayName":"SOUTHEAST
+        DESERT BASINS"}],"nwsRegions":[{"nwsRegion":"WESTERN"}],"nwsWfos":[{"nwsWfo":"LOX","displayName":"LOS
+        ANGELES, CA"}]}},"platforms":[{"platform":"COOP"}],"remarks":[{"type":"NWS
+        COOP INGEST","remark":"UPDATE CONTACT INFORMATION. UPDATE EXPOSURES AND ADJUST
+        12 DEGREES FOR TRUE NORTH.  REMOVED SHED AS BEHIND TREES NOW."},{"type":"NWS
+        COOP INGEST","remark":"UPDATE CONTACT EMAIL ADDRESSES."},{"type":"NWS COOP
+        INGEST","remark":"UPDATE EXPOSURES. UPDATE OBSERVER SERVICE DATE, UPDATE FOR
+        SIS."},{"type":"NWS COOP INGEST","remark":"ADD NIMBUS SERIAL NUMBER AND BACKUP
+        CONTACT INFO."},{"type":"NWS COOP INGEST","remark":"UPDATED EXPOSURES, LONGITUDE,
+        ELEVATION AND LAT\/LON SOURCE. NO EQUIPMENT MOVE"},{"type":"NWS COOP INGEST","remark":"UPDATED
+        FOR PAPERLESS WXCODER. UPDATED OBSERVER DATA."},{"type":"NWS COOP INGEST","remark":"UPDATED
+        LON\/GPS SOURCE\/EXPOSURES"},{"type":"NWS COOP INGEST","remark":"UPDATED TO
+        ADD NIMBUS."},{"type":"RIVER BASIN (COOP NETWORK)","remark":"DESERT"}],"updates":[{"effectiveDate":"2018-06-21T00:00:00.000","providedBy":"INGEST","updateSource":"SISv2","version":"14","nativeId":"COOP:04-6773:14","description":"CHANGE","enteredBy":"INGEST","enteredDate":"2018-07-10T01:55:11-04:00"}],"elements":[{"dataProgram":"COOP
+        SOD","element":"PRECIP","frequency":"DAILY","observationTime":"1700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"SRG-STN","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2018-06-21T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"TEMP","frequency":"DAILY","observationTime":"1700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"NIMBUS","equipmentAzimuth":"090","equipmentDistance":"17","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2018-06-21T00:00:00.000","endDate":"Present"}}]}]}}'
+  recorded_at: 2018-12-01 19:49:44 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/homr/services/station/search?state=DE&headersOnly=true&definitions=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:49:26 GMT
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET, OPTIONS
+      access-control-max-age: '3600'
+      access-control-allow-headers: x-requested-with
+      content-type: application/json
+      vary: Accept-Encoding
+      content-encoding: gzip
+      connection: close
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: '{"stationCollection":{"stations":[{"ncdcStnId":"30094670","header":{"preferredName":"HARRINGTON
+        3.3 SSW, DE","latitude_dec":"38.8821","longitude_dec":"-75.6052","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"10100166","header":{"preferredName":"WILMINGTON
+        PORTER RES, DE","latitude_dec":"39.7739","longitude_dec":"-75.5414","precision":"DDddddd","por":{"beginDate":"1912-07-12T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30001464","header":{"preferredName":"BEAR
+        2 SW, DE","latitude_dec":"39.5917","longitude_dec":"-75.7325","precision":"DDMMSS","por":{"beginDate":"2003-02-01T00:00:00.000","endDate":"2013-04-02T00:00:00.000"}}},{"ncdcStnId":"30101363","header":{"preferredName":"LEWES
+        1.5 SSW, DE","latitude_dec":"38.7588","longitude_dec":"-75.1579","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004172","header":{"preferredName":"ADAMSVILLE,
+        DE","latitude_dec":"38.81667","longitude_dec":"-75.7","precision":"DDMM","por":{"beginDate":"1967-09-01T00:00:00.000","endDate":"1969-12-31T00:00:00.000"}}},{"ncdcStnId":"20004165","header":{"preferredName":"BRIDGEVILLE
+        STATE POLICE, DE","latitude_dec":"38.77444","longitude_dec":"-75.6075","precision":"DDMMSS","por":{"beginDate":"1975-08-01T00:00:00.000","endDate":"2003-09-01T00:00:00.000"}}},{"ncdcStnId":"30107886","header":{"preferredName":"WILMINGTON
+        5.6 N, DE","latitude_dec":"39.8167","longitude_dec":"-75.5183","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30106954","header":{"preferredName":"MILFORD
+        1.3 WSW, DE","latitude_dec":"38.9053","longitude_dec":"-75.4544","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30084537","header":{"preferredName":"DOVER
+        5.1 WSW, DE","latitude_dec":"39.1297","longitude_dec":"-75.6125","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30077988","header":{"preferredName":"SELBYVILLE
+        7.1 E, DE","latitude_dec":"38.4612","longitude_dec":"-75.0893","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30094830","header":{"preferredName":"MILFORD
+        2.6 SE, DE","latitude_dec":"38.8929","longitude_dec":"-75.3924","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30107891","header":{"preferredName":"MIDDLETOWN
+        4.1 NNW, DE","latitude_dec":"39.5045","longitude_dec":"-75.7495","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30063570","header":{"preferredName":"WILMINGTON
+        5.0 N, DE","latitude_dec":"39.8161","longitude_dec":"-75.5354","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004153","header":{"preferredName":"DELAWARE
+        LIGHTSHIP, DE","latitude_dec":"38.45","longitude_dec":"-74.58333","precision":"DDMM","por":{"beginDate":"1961-01-01T00:00:00.000","endDate":"1970-12-31T00:00:00.000"}}},{"ncdcStnId":"20004169","header":{"preferredName":"DELAWARE
+        BREAKWATER, DE","latitude_dec":"38.8","longitude_dec":"-75.1","precision":"DDMM","por":{"beginDate":"1898-01-01T00:00:00.000","endDate":"1942-06-30T00:00:00.000"}}},{"ncdcStnId":"30057217","header":{"preferredName":"MIDDLETOWN
+        3.0 NNE, DE","latitude_dec":"39.4908","longitude_dec":"-75.6928","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004160","header":{"preferredName":"INDIAN
+        RIVER INLET LBS, DE","latitude_dec":"38.61667","longitude_dec":"-75.06667","precision":"DDMM","por":{"beginDate":"1955-09-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30017384","header":{"preferredName":"FELTON
+        3.6 NE, DE","latitude_dec":"39.0326","longitude_dec":"-75.5169","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30108282","header":{"preferredName":"ELLENDALE
+        3.4 ENE, DE","latitude_dec":"38.8317","longitude_dec":"-75.369","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30111793","header":{"preferredName":"LAUREL
+        3.5 NNE, DE","latitude_dec":"38.605","longitude_dec":"-75.5601","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30020917","header":{"preferredName":"GEORGETOWN
+        5.8 W, DE","latitude_dec":"38.6972","longitude_dec":"-75.4931","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"10100162","header":{"preferredName":"DOVER,
+        DE","latitude_dec":"39.1467","longitude_dec":"-75.5055","precision":"DDddddd","por":{"beginDate":"1870-07-01T00:00:00.000","endDate":"2018-05-31T00:00:00.000"}}},{"ncdcStnId":"20004182","header":{"preferredName":"BLACKBIRD
+        1 SW, DE","latitude_dec":"39.35","longitude_dec":"-75.66667","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004184","header":{"preferredName":"ODESSA,
+        DE","latitude_dec":"39.46667","longitude_dec":"-75.61667","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004185","header":{"preferredName":"MIDDLETOWN
+        2 W, DE","latitude_dec":"39.46667","longitude_dec":"-75.76667","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30108839","header":{"preferredName":"WILMINGTON
+        5.5 N, DE","latitude_dec":"39.8147","longitude_dec":"-75.5313","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30090231","header":{"preferredName":"MILTON
+        1SE, DE","latitude_dec":"38.7624","longitude_dec":"-75.2911","precision":"DDMMSS","por":{"beginDate":"2014-08-08T00:00:00.000","endDate":"2015-04-06T00:00:00.000"}}},{"ncdcStnId":"20004171","header":{"preferredName":"MILTON
+        3 NW, DE","latitude_dec":"38.81667","longitude_dec":"-75.35","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30021998","header":{"preferredName":"DELMAR
+        4.3 E, DE","latitude_dec":"38.4691","longitude_dec":"-75.4923","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30108338","header":{"preferredName":"MILLSBORO
+        6.2 NNE, DE","latitude_dec":"38.6614","longitude_dec":"-75.2297","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30077857","header":{"preferredName":"SEAFORD
+        0.7 SW, DE","latitude_dec":"38.642","longitude_dec":"-75.627","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30107692","header":{"preferredName":"WILMINGTON
+        4.5 N, DE","latitude_dec":"39.8001","longitude_dec":"-75.5276","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30094683","header":{"preferredName":"MILFORD
+        1.5 W, DE","latitude_dec":"38.911","longitude_dec":"-75.4605","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30111663","header":{"preferredName":"DELMAR
+        0.1 WSW, DE","latitude_dec":"38.4581","longitude_dec":"-75.5724","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004166","header":{"preferredName":"DELAWARE
+        BREAKWATER, DE","latitude_dec":"38.78333","longitude_dec":"-75.11667","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"1969-09-30T00:00:00.000"}}},{"ncdcStnId":"30094582","header":{"preferredName":"NEWARK
+        2.5 S, DE","latitude_dec":"39.6408","longitude_dec":"-75.7628","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30077923","header":{"preferredName":"NEWARK
+        4.7 S, DE","latitude_dec":"39.609","longitude_dec":"-75.7591","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30022674","header":{"preferredName":"NEWARK
+        5.3 N, DE","latitude_dec":"39.7537","longitude_dec":"-75.7519","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30107435","header":{"preferredName":"MAGNOLIA
+        2.9 WNW, DE","latitude_dec":"39.0784","longitude_dec":"-75.5292","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30001561","header":{"preferredName":"SMYRNA
+        1 W, DE","latitude_dec":"39.29472","longitude_dec":"-75.61944","precision":"DDMMSS","por":{"beginDate":"2003-12-10T00:00:00.000","endDate":"2006-01-01T00:00:00.000"}}},{"ncdcStnId":"20004163","header":{"preferredName":"GEORGETOWN-DELAWARE
+        COASTAL AIRPORT, DE","latitude_dec":"38.68974","longitude_dec":"-75.36253","precision":"DDddddd","por":{"beginDate":"1944-02-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"10100163","header":{"preferredName":"MILFORD
+        2 SE, DE","latitude_dec":"38.8983","longitude_dec":"-75.425","precision":"DDMMSS","por":{"beginDate":"1857-12-01T00:00:00.000","endDate":"2004-06-25T00:00:00.000"}}},{"ncdcStnId":"30064900","header":{"preferredName":"GLASGOW
+        1.6 SE, DE","latitude_dec":"39.592","longitude_dec":"-75.732","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30110071","header":{"preferredName":"WILMINGTON
+        3.8 N, DE","latitude_dec":"39.7904","longitude_dec":"-75.5411","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"10013243","header":{"preferredName":"NEW
+        CASTLE AAB, DE","latitude_dec":"39.68333","longitude_dec":"-75.58333","precision":"DDMM","por":{"beginDate":"1942-08-01T00:00:00.000","endDate":"1957-07-31T00:00:00.000"}}},{"ncdcStnId":"30069663","header":{"preferredName":"MIDDLETOWN
+        6.1 N, DE","latitude_dec":"39.5388","longitude_dec":"-75.7302","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004175","header":{"preferredName":"DOVER,
+        DE","latitude_dec":"39.08333","longitude_dec":"-75.5","precision":"DDMM","por":{"beginDate":"1949-04-01T00:00:00.000","endDate":"1951-01-31T00:00:00.000"}}},{"ncdcStnId":"30079088","header":{"preferredName":"NEWARK
+        1.5 NE, DE","latitude_dec":"39.6939","longitude_dec":"-75.7395","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004190","header":{"preferredName":"HICKMAN,
+        DE","latitude_dec":"38.83333","longitude_dec":"-75.71667","precision":"DDMM","por":{"beginDate":"1986-05-01T00:00:00.000","endDate":"1997-02-01T00:00:00.000"}}},{"ncdcStnId":"30107641","header":{"preferredName":"WOODSIDE
+        1.1 E, DE","latitude_dec":"39.0725","longitude_dec":"-75.5478","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30108008","header":{"preferredName":"SMYRNA
+        0.8 NW, DE","latitude_dec":"39.3036","longitude_dec":"-75.6177","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30094931","header":{"preferredName":"MILTON
+        3.1 NE, DE","latitude_dec":"38.808","longitude_dec":"-75.2704","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30107251","header":{"preferredName":"CLAYTON
+        1.5 SW, DE","latitude_dec":"39.2803","longitude_dec":"-75.6559","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30051475","header":{"preferredName":"CLAYTON
+        6.6 W, DE","latitude_dec":"39.301","longitude_dec":"-75.7568","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30102005","header":{"preferredName":"DOVER
+        1.1 NNE, DE","latitude_dec":"39.1746","longitude_dec":"-75.5132","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30108935","header":{"preferredName":"WYOMING
+        3.2 SSW, DE","latitude_dec":"39.0722","longitude_dec":"-75.576","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30108887","header":{"preferredName":"DOVER
+        6.0 WNW, DE","latitude_dec":"39.1949","longitude_dec":"-75.6198","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30001437","header":{"preferredName":"HARRINGTON
+        4 NE, DE","latitude_dec":"38.94472","longitude_dec":"-75.5125","precision":"DDMMSS","por":{"beginDate":"2003-01-01T00:00:00.000","endDate":"2003-11-30T00:00:00.000"}}},{"ncdcStnId":"30094664","header":{"preferredName":"MILLSBORO
+        1.3 W, DE","latitude_dec":"38.5819","longitude_dec":"-75.3159","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"10100165","header":{"preferredName":"WILMINGTON
+        CITY HALL, DE","latitude_dec":"39.75","longitude_dec":"-75.55","precision":"DDMM","por":{"beginDate":"1894-04-01T00:00:00.000","endDate":"1958-10-31T00:00:00.000"}}},{"ncdcStnId":"20004186","header":{"preferredName":"DELAWARE
+        CITY REEDY POINT, DE","latitude_dec":"39.56667","longitude_dec":"-75.58333","precision":"DDMM","por":{"beginDate":"1825-01-01T00:00:00.000","endDate":"1954-05-31T00:00:00.000"}}},{"ncdcStnId":"30084216","header":{"preferredName":"NEWARK
+        1.9 NW, DE","latitude_dec":"39.7012","longitude_dec":"-75.7778","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30113052","header":{"preferredName":"MILFORD
+        1.4 NNW, DE","latitude_dec":"38.9334","longitude_dec":"-75.4409","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004191","header":{"preferredName":"MIDDLETOWN
+        3 E, DE","latitude_dec":"39.45","longitude_dec":"-75.66667","precision":"DDMM","por":{"beginDate":"1986-06-01T00:00:00.000","endDate":"1988-09-01T00:00:00.000"}}},{"ncdcStnId":"20004183","header":{"preferredName":"MIDDLETOWN
+        1 WSW, DE","latitude_dec":"39.43333","longitude_dec":"-75.75","precision":"DDMM","por":{"beginDate":"1952-08-01T00:00:00.000","endDate":"1985-08-01T00:00:00.000"}}},{"ncdcStnId":"30094806","header":{"preferredName":"LEWES
+        1.7 SSW, DE","latitude_dec":"38.7571","longitude_dec":"-75.1591","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30101370","header":{"preferredName":"DEWEY
+        BEACH 0.2 S, DE","latitude_dec":"38.692","longitude_dec":"-75.0766","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30079240","header":{"preferredName":"FENWICK
+        ISLAND 1.8 WNW, DE","latitude_dec":"38.4666","longitude_dec":"-75.0871","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004167","header":{"preferredName":"LEWES,
+        DE","latitude_dec":"38.7755","longitude_dec":"-75.1388","precision":"DDMMSS","por":{"beginDate":"1945-02-01T00:00:00.000","endDate":"2013-04-02T00:00:00.000"}}},{"ncdcStnId":"30001831","header":{"preferredName":"DOVER
+        AFB, DE","latitude_dec":"38.82556","longitude_dec":"-75.44","precision":"DDMMSS","por":{"beginDate":"1993-02-08T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30108929","header":{"preferredName":"TOWNSEND
+        5.0 SSW, DE","latitude_dec":"39.3277","longitude_dec":"-75.7277","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30043742","header":{"preferredName":"SMYRNA
+        2.7 SSE, DE","latitude_dec":"39.2583","longitude_dec":"-75.5897","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004180","header":{"preferredName":"CLAYTON,
+        DE","latitude_dec":"39.3","longitude_dec":"-75.63333","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004157","header":{"preferredName":"MILLSBORO,
+        DE","latitude_dec":"38.58333","longitude_dec":"-75.31667","precision":"DDMM","por":{"beginDate":"1893-01-01T00:00:00.000","endDate":"1954-02-28T00:00:00.000"}}},{"ncdcStnId":"30108119","header":{"preferredName":"NEWARK
+        1.4 SW, DE","latitude_dec":"39.6626","longitude_dec":"-75.7756","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004177","header":{"preferredName":"MIAH
+        MAULL SHOALS LIGHT STN, DE","latitude_dec":"39.13333","longitude_dec":"-75.21667","precision":"DDMM","por":{"beginDate":"1966-04-01T00:00:00.000","endDate":"1973-06-30T00:00:00.000"}}},{"ncdcStnId":"20004155","header":{"preferredName":"CAMP
+        BARNES 1 SE, DE","latitude_dec":"38.5","longitude_dec":"-75.08333","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004154","header":{"preferredName":"SELBYVILLE,
+        DE","latitude_dec":"38.46667","longitude_dec":"-75.21667","precision":"DDMM","por":{"beginDate":"1954-02-01T00:00:00.000","endDate":"1970-08-01T00:00:00.000"}}},{"ncdcStnId":"30107718","header":{"preferredName":"WILMINGTON
+        3.6 N, DE","latitude_dec":"39.7879","longitude_dec":"-75.5393","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30108946","header":{"preferredName":"WILMINGTON
+        3.5 W, DE","latitude_dec":"39.7452","longitude_dec":"-75.5942","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"10100164","header":{"preferredName":"NEWARK
+        UNIV FARM, DE","latitude_dec":"39.6694","longitude_dec":"-75.7514","precision":"DDddddd","por":{"beginDate":"1894-04-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"12001292","header":{"preferredName":"WYOMING,
+        DE","latitude_dec":"39.116667","longitude_dec":"-75.55","precision":"DDMM","por":{"beginDate":"1899-01-01T00:00:00.000","endDate":"1901-08-31T00:00:00.000"}}},{"ncdcStnId":"30112507","header":{"preferredName":"FELTON
+        2.4 NE, DE","latitude_dec":"39.0305","longitude_dec":"-75.5439","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30065901","header":{"preferredName":"MIDDLETOWN
+        0.9 SSE, DE","latitude_dec":"39.4393","longitude_dec":"-75.7071","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30039554","header":{"preferredName":"GREENWOOD
+        2.9 SE, DE","latitude_dec":"38.7731","longitude_dec":"-75.5616","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30101294","header":{"preferredName":"HARRINGTON
+        2.1 ENE, DE","latitude_dec":"38.9301","longitude_dec":"-75.5343","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30101341","header":{"preferredName":"LEWES
+        3.9 SW, DE","latitude_dec":"38.7445","longitude_dec":"-75.2048","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30107175","header":{"preferredName":"NEWARK
+        1.4 W, DE","latitude_dec":"39.679","longitude_dec":"-75.784","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30112571","header":{"preferredName":"HOCKESSIN
+        2.7 ESE, DE","latitude_dec":"39.7689","longitude_dec":"-75.6531","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004170","header":{"preferredName":"DELAWARE
+        BREAKWATER, DE","latitude_dec":"38.8","longitude_dec":"-75.1","precision":"DDMM","por":{"beginDate":"1936-11-01T00:00:00.000","endDate":"1942-06-30T00:00:00.000"}}},{"ncdcStnId":"20004179","header":{"preferredName":"DOVER,
+        DE","latitude_dec":"39.21667","longitude_dec":"-75.6","precision":"DDMM","por":{"beginDate":"1975-03-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20004174","header":{"preferredName":"BRANDYWINE
+        SHOALS LIGHT STN, DE","latitude_dec":"38.98333","longitude_dec":"-75.1","precision":"DDMM","por":{"beginDate":"1972-10-01T00:00:00.000","endDate":"1973-04-30T00:00:00.000"}}},{"ncdcStnId":"30107345","header":{"preferredName":"NEWARK
+        4.0 E, DE","latitude_dec":"39.6744","longitude_dec":"-75.6825","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30077378","header":{"preferredName":"NEWARK
+        1.5 S, DE","latitude_dec":"39.6552","longitude_dec":"-75.7619","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004164","header":{"preferredName":"REHOBOTH,
+        DE","latitude_dec":"38.71667","longitude_dec":"-75.13333","precision":"DDMM","por":{"beginDate":"1942-10-01T00:00:00.000","endDate":"1951-09-30T00:00:00.000"}}},{"ncdcStnId":"20004188","header":{"preferredName":"WILMINGTON
+        H CLAY BRIDGE, DE","latitude_dec":"39.76667","longitude_dec":"-75.58333","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"1975-10-01T00:00:00.000"}}},{"ncdcStnId":"30107377","header":{"preferredName":"NEWARK
+        2.3 NNW, DE","latitude_dec":"39.7066","longitude_dec":"-75.7761","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30108333","header":{"preferredName":"MIDDLETOWN
+        5.2 ENE, DE","latitude_dec":"39.4892","longitude_dec":"-75.63","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"10001871","header":{"preferredName":"WILMINGTON
+        NEW CASTLE CO AP, DE","latitude_dec":"39.6744","longitude_dec":"-75.60567","precision":"DDddddd","por":{"beginDate":"1929-06-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30067636","header":{"preferredName":"LEWES
+        0.8 SE, DE","latitude_dec":"38.7731","longitude_dec":"-75.1385","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004176","header":{"preferredName":"DOVER
+        AFB, DE","latitude_dec":"39.13333","longitude_dec":"-75.46667","precision":"DDMM","por":{"beginDate":"1942-12-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30107701","header":{"preferredName":"FELTON
+        0.4 E, DE","latitude_dec":"39.0098","longitude_dec":"-75.5712","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30106320","header":{"preferredName":"DOVER
+        (AAF), DE","latitude_dec":"39.1333","longitude_dec":"-75.4667","por":{"beginDate":"1943-01-01T00:00:00.000","endDate":"1945-12-31T00:00:00.000"}}},{"ncdcStnId":"20004158","header":{"preferredName":"REHOBOTH
+        BEACH LBS, DE","latitude_dec":"38.61667","longitude_dec":"-75.06667","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30084262","header":{"preferredName":"MILLVILLE
+        0.5 NE, DE","latitude_dec":"38.5492","longitude_dec":"-75.1056","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30094917","header":{"preferredName":"SEAFORD
+        0.6 S, DE","latitude_dec":"38.6408","longitude_dec":"-75.6168","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004181","header":{"preferredName":"SMYRNA
+        3 NNW, DE","latitude_dec":"39.35","longitude_dec":"-75.63333","precision":"DDMM","por":{"beginDate":"1948-06-01T00:00:00.000","endDate":"1952-08-31T00:00:00.000"}}},{"ncdcStnId":"30032423","header":{"preferredName":"NEWPORT
+        2.4 WNW, DE","latitude_dec":"39.7256","longitude_dec":"-75.6488","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30032685","header":{"preferredName":"SEAFORD
+        2.3 SSE, DE","latitude_dec":"38.6189","longitude_dec":"-75.5985","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30094936","header":{"preferredName":"CAMDEN
+        3.7 ESE, DE","latitude_dec":"39.0841","longitude_dec":"-75.4922","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30046662","header":{"preferredName":"MAGNOLIA
+        2.4 NW, DE","latitude_dec":"39.0907","longitude_dec":"-75.5123","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30107384","header":{"preferredName":"WILMINGTON
+        5.1 NNW, DE","latitude_dec":"39.8048","longitude_dec":"-75.565","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30108394","header":{"preferredName":"SEAFORD
+        0.6 WSW, DE","latitude_dec":"38.645","longitude_dec":"-75.6261","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30085114","header":{"preferredName":"MILTON,
+        DE","latitude_dec":"38.8204","longitude_dec":"-75.203","precision":"DDMMSS","por":{"beginDate":"2014-05-06T00:00:00.000","endDate":"2015-03-10T00:00:00.000"}}},{"ncdcStnId":"30112317","header":{"preferredName":"NEWARK
+        2.7 SSW, DE","latitude_dec":"39.6437","longitude_dec":"-75.7834","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30027455","header":{"preferredName":"DELMAR
+        2.8 NE, DE","latitude_dec":"38.4863","longitude_dec":"-75.5332","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004162","header":{"preferredName":"GEORGETOWN
+        2 S, DE","latitude_dec":"38.65","longitude_dec":"-75.38333","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"10100161","header":{"preferredName":"GREENWOOD
+        2NE, DE","latitude_dec":"38.8161","longitude_dec":"-75.5761","precision":"DDMMSS","por":{"beginDate":"1986-01-01T00:00:00.000","endDate":"2010-08-04T00:00:00.000"}}},{"ncdcStnId":"20004173","header":{"preferredName":"HARBOR
+        OF REFUGE LIGHT STN, DE","latitude_dec":"38.81667","longitude_dec":"-75.1","precision":"DDMM","por":{"beginDate":"1966-04-01T00:00:00.000","endDate":"1972-12-31T00:00:00.000"}}},{"ncdcStnId":"30034222","header":{"preferredName":"NEWARK
+        3.9 SSW, DE","latitude_dec":"39.6249","longitude_dec":"-75.7861","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004178","header":{"preferredName":"KENTON,
+        DE","latitude_dec":"39.21667","longitude_dec":"-75.66667","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30021161","header":{"preferredName":"MARYDEL
+        2.4 SE, DE","latitude_dec":"39.0976","longitude_dec":"-75.7065","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004168","header":{"preferredName":"OVERFALLS
+        LIGHT VESSEL, DE","latitude_dec":"38.8","longitude_dec":"-75.01667","precision":"DDMM","por":{"beginDate":"1958-06-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20004189","header":{"preferredName":"NEWARK
+        PUMPING STN, DE","latitude_dec":"39.66667","longitude_dec":"-75.75","precision":"DDMM","por":{"beginDate":"1932-01-01T00:00:00.000","endDate":"1949-03-31T00:00:00.000"}}},{"ncdcStnId":"30082430","header":{"preferredName":"LONG
+        NECK 1.5 WNW, DE","latitude_dec":"38.6254","longitude_dec":"-75.1777","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30026770","header":{"preferredName":"DOVER
+        6.4 WNW, DE","latitude_dec":"39.1758","longitude_dec":"-75.6325","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30094991","header":{"preferredName":"FRANKFORD,
+        DE","latitude_dec":"38.5312","longitude_dec":"-75.235","precision":"DDdddd","por":{"beginDate":"2015-04-15T00:00:00.000","endDate":"2016-04-25T00:00:00.000"}}},{"ncdcStnId":"30107899","header":{"preferredName":"LEWES
+        2.4 SSE, DE","latitude_dec":"38.7516","longitude_dec":"-75.1263","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30094639","header":{"preferredName":"ELLENDALE
+        1.4 NNW, DE","latitude_dec":"38.8274","longitude_dec":"-75.4303","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30101186","header":{"preferredName":"OCEAN
+        VIEW 0.7 NW, DE","latitude_dec":"38.5529","longitude_dec":"-75.1006","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004187","header":{"preferredName":"COOCHS
+        BRIDGE, DE","latitude_dec":"39.63333","longitude_dec":"-75.71667","precision":"DDMM","por":{"beginDate":"1979-11-17T00:00:00.000","endDate":"2004-05-15T00:00:00.000"}}},{"ncdcStnId":"20004159","header":{"preferredName":"GEORGETOWN
+        5 SW, DE","latitude_dec":"38.63333","longitude_dec":"-75.45","precision":"DDMM","por":{"beginDate":"1946-09-14T00:00:00.000","endDate":"1997-06-01T00:00:00.000"}}},{"ncdcStnId":"30094730","header":{"preferredName":"DAGSBORO
+        7.1 ENE, DE","latitude_dec":"38.5768","longitude_dec":"-75.1219","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30046814","header":{"preferredName":"MIDDLETOWN
+        6.2 NNE, DE","latitude_dec":"39.5315","longitude_dec":"-75.6639","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20004156","header":{"preferredName":"LAUREL
+        2 SW, DE","latitude_dec":"38.53333","longitude_dec":"-75.56667","precision":"DDMM","por":{"beginDate":"1953-01-01T00:00:00.000","endDate":"1956-01-31T00:00:00.000"}}},{"ncdcStnId":"30084796","header":{"preferredName":"MILTON
+        3.8 SSE, DE","latitude_dec":"38.7271","longitude_dec":"-75.287","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30107936","header":{"preferredName":"LEWES
+        0.6 SE, DE","latitude_dec":"38.7745","longitude_dec":"-75.1411","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"10100160","header":{"preferredName":"BRIDGEVILLE
+        1 NW, DE","latitude_dec":"38.75","longitude_dec":"-75.61667","precision":"DDMM","por":{"beginDate":"1890-01-01T00:00:00.000","endDate":"1985-12-31T00:00:00.000"}}},{"ncdcStnId":"30075067","header":{"preferredName":"PRIME
+        HOOK DELAWARE, DE","latitude_dec":"38.8333","longitude_dec":"-75.3333","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30109183","header":{"preferredName":"WILMINGTON
+        2.0 NW, DE","latitude_dec":"39.7526","longitude_dec":"-75.56","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30101120","header":{"preferredName":"MILFORD
+        2.6 S, DE","latitude_dec":"38.8776","longitude_dec":"-75.4399","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30106321","header":{"preferredName":"WILMINGTON
+        (NEW CASTLE AAB), DE","latitude_dec":"39.6833","longitude_dec":"-75.6","por":{"beginDate":"1943-01-01T00:00:00.000","endDate":"1945-12-31T00:00:00.000"}}}]}}'
+  recorded_at: 2018-12-01 19:49:44 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/homr/services/station/search?state=NC&county=BUNCOMBE&headersOnly=true&definitions=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:49:29 GMT
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET, OPTIONS
+      access-control-max-age: '3600'
+      access-control-allow-headers: x-requested-with
+      content-type: application/json
+      vary: Accept-Encoding
+      content-encoding: gzip
+      connection: close
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: '{"stationCollection":{"stations":[{"ncdcStnId":"30063513","header":{"preferredName":"ASHEVILLE
+        5.6 NNW, NC","latitude_dec":"35.6534","longitude_dec":"-82.5709","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30014782","header":{"preferredName":"WEAVERVILLE
+        5E, NC","latitude_dec":"35.71028","longitude_dec":"-82.50389","precision":"DDMMSS","por":{"beginDate":"1965-12-01T00:00:00.000","endDate":"1976-01-31T00:00:00.000"}}},{"ncdcStnId":"20013851","header":{"preferredName":"WEAVERVILLE,
+        NC","latitude_dec":"35.7","longitude_dec":"-82.56667","precision":"DDMM","por":{"beginDate":"1946-03-30T00:00:00.000","endDate":"1992-10-01T00:00:00.000"}}},{"ncdcStnId":"20013789","header":{"preferredName":"GARREN
+        CREEK, NC","latitude_dec":"35.51667","longitude_dec":"-82.33333","precision":"DDMM","por":{"beginDate":"1936-09-25T00:00:00.000","endDate":"1962-03-31T00:00:00.000"}}},{"ncdcStnId":"20013801","header":{"preferredName":"BILTMORE
+        2 SE, NC","latitude_dec":"35.56833","longitude_dec":"-82.545","precision":"DDMMSS","por":{"beginDate":"1963-10-01T00:00:00.000","endDate":"2007-11-14T00:00:00.000"}}},{"ncdcStnId":"30031683","header":{"preferredName":"ASHEVILLE
+        4.0 NNE, NC","latitude_dec":"35.6224","longitude_dec":"-82.5096","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30084608","header":{"preferredName":"BLACK
+        MOUNTAIN 2.4 SE, NC","latitude_dec":"35.5857","longitude_dec":"-82.3056","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013763","header":{"preferredName":"ASHEVILLE
+        HENDERSONVILLE AP, NC","latitude_dec":"35.43333","longitude_dec":"-82.48333","precision":"DDMM","por":{"beginDate":"1940-11-01T00:00:00.000","endDate":"1960-12-31T00:00:00.000"}}},{"ncdcStnId":"30061196","header":{"preferredName":"CANDLER
+        2.7 ENE, NC","latitude_dec":"35.5395","longitude_dec":"-82.6444","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30102223","header":{"preferredName":"BLACK
+        MOUNTAIN 2.0 SSE, NC","latitude_dec":"35.5896","longitude_dec":"-82.3108","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30014700","header":{"preferredName":"ASHEVILLE
+        8 SSW, NC","latitude_dec":"35.4945","longitude_dec":"-82.6142","precision":"DDdddd","por":{"beginDate":"2000-11-14T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30015477","header":{"preferredName":"ASHEVILLE
+        HARDY, NC","latitude_dec":"35.59389","longitude_dec":"-82.55139","precision":"DDMMSS","por":{"beginDate":"1868-07-01T00:00:00.000","endDate":"1876-12-31T00:00:00.000"}}},{"ncdcStnId":"30072517","header":{"preferredName":"ASHEVILLE
+        5.4 N, NC","latitude_dec":"35.6509","longitude_dec":"-82.5638","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30092592","header":{"preferredName":"ENKA
+        0.8 ENE, NC","latitude_dec":"35.5518","longitude_dec":"-82.6361","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30066685","header":{"preferredName":"ASHEVILLE
+        3.1 NNW, NC","latitude_dec":"35.6147","longitude_dec":"-82.5632","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30077058","header":{"preferredName":"ASHEVILLE
+        3.8 E, NC","latitude_dec":"35.5793","longitude_dec":"-82.4808","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30015896","header":{"preferredName":"BLACK
+        MOUNTAIN 0.1 WSW, NC","latitude_dec":"35.614","longitude_dec":"-82.332","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013835","header":{"preferredName":"MONTREAT,
+        NC","latitude_dec":"35.65","longitude_dec":"-82.31667","precision":"DDMM","por":{"beginDate":"1917-01-01T00:00:00.000","endDate":"1949-09-30T00:00:00.000"}}},{"ncdcStnId":"30019279","header":{"preferredName":"FAIRVIEW
+        1.9 ENE, NC","latitude_dec":"35.5318","longitude_dec":"-82.3721","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30026101","header":{"preferredName":"ARDEN
+        1.6 ENE, NC","latitude_dec":"35.4791","longitude_dec":"-82.4924","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013839","header":{"preferredName":"LEICESTER,
+        NC","latitude_dec":"35.65","longitude_dec":"-82.7","precision":"DDMM","por":{"beginDate":"1934-11-05T00:00:00.000","endDate":"1962-03-31T00:00:00.000"}}},{"ncdcStnId":"30048589","header":{"preferredName":"SKYLAND
+        1.0 W, NC","latitude_dec":"35.4862","longitude_dec":"-82.5353","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30072004","header":{"preferredName":"ASHEVILLE
+        1.2 NNW, NC","latitude_dec":"35.5909","longitude_dec":"-82.5549","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30101460","header":{"preferredName":"BLACK
+        MOUNTAIN 1.0 ESE, NC","latitude_dec":"35.61","longitude_dec":"-82.3125","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30015476","header":{"preferredName":"ASHEVILLE
+        ASTON, NC","latitude_dec":"35.595","longitude_dec":"-82.55167","precision":"DDMMSS","por":{"beginDate":"1867-05-01T00:00:00.000","endDate":"1878-04-30T00:00:00.000"}}},{"ncdcStnId":"20013791","header":{"preferredName":"CANDLER
+        1 W, NC","latitude_dec":"35.5453","longitude_dec":"-82.6987","precision":"DDddddd","por":{"beginDate":"1972-05-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20013823","header":{"preferredName":"ASHEVILLE
+        NCDC TRAINING, NC","latitude_dec":"35.6","longitude_dec":"-82.53333","precision":"DDMM","por":{"beginDate":"1964-10-01T00:00:00.000","endDate":"1970-12-31T00:00:00.000"}}},{"ncdcStnId":"30061838","header":{"preferredName":"ASHEVILLE
+        4.2 ESE, NC","latitude_dec":"35.55","longitude_dec":"-82.48","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30028906","header":{"preferredName":"WEAVERVILLE
+        4.3 N, NC","latitude_dec":"35.7598","longitude_dec":"-82.5548","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013821","header":{"preferredName":"ASHEVILLE,
+        NC","latitude_dec":"35.5954","longitude_dec":"-82.5568","precision":"DDddddd","por":{"beginDate":"1857-08-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30035438","header":{"preferredName":"ASHEVILLE
+        2.9 N, NC","latitude_dec":"35.6162","longitude_dec":"-82.5505","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30040186","header":{"preferredName":"ASHEVILLE
+        5.1 ENE, NC","latitude_dec":"35.5984","longitude_dec":"-82.4638","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30111736","header":{"preferredName":"SWANNANOA
+        0.4 NNE, NC","latitude_dec":"35.607","longitude_dec":"-82.3908","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30065319","header":{"preferredName":"BENT
+        CREEK 0.3 E, NC","latitude_dec":"35.5112","longitude_dec":"-82.6083","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30101910","header":{"preferredName":"CANDLER
+        1.3 N, NC","latitude_dec":"35.5546","longitude_dec":"-82.693","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30043743","header":{"preferredName":"ASHEVILLE
+        4.3 NNW, NC","latitude_dec":"35.6338","longitude_dec":"-82.5714","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30068324","header":{"preferredName":"LEICESTER
+        6.3 NW, NC","latitude_dec":"35.6781","longitude_dec":"-82.8014","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30039578","header":{"preferredName":"ASHEVILLE
+        2.1 NNW, NC","latitude_dec":"35.6025","longitude_dec":"-82.5602","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30093502","header":{"preferredName":"ARDEN
+        2.8 WSW, NC","latitude_dec":"35.4589","longitude_dec":"-82.5652","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013819","header":{"preferredName":"BEETREE
+        DAM, NC","latitude_dec":"35.63333","longitude_dec":"-82.4","precision":"DDMM","por":{"beginDate":"1934-12-31T00:00:00.000","endDate":"1972-06-30T00:00:00.000"}}},{"ncdcStnId":"20013826","header":{"preferredName":"RIDGECREST,
+        NC","latitude_dec":"35.61667","longitude_dec":"-82.26667","precision":"DDMM","por":{"beginDate":"1941-04-01T00:00:00.000","endDate":"1942-05-31T00:00:00.000"}}},{"ncdcStnId":"30020905","header":{"preferredName":"WEAVERVILLE
+        4.7 NNW, NC","latitude_dec":"35.7619","longitude_dec":"-82.5835","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30109408","header":{"preferredName":"WEAVERVILLE
+        0.5 SW, NC","latitude_dec":"35.6923","longitude_dec":"-82.565","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013770","header":{"preferredName":"FLETCHER
+        2 NE, NC","latitude_dec":"35.45","longitude_dec":"-82.48333","precision":"DDMM","por":{"beginDate":"1934-10-19T00:00:00.000","endDate":"1987-04-26T00:00:00.000"}}},{"ncdcStnId":"30103148","header":{"preferredName":"FAIRVIEW
+        0.3 NNW, NC","latitude_dec":"35.5272","longitude_dec":"-82.4066","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30077883","header":{"preferredName":"WEAVERVILLE
+        4.2 N, NC","latitude_dec":"35.7579","longitude_dec":"-82.5618","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30112111","header":{"preferredName":"ASHEVILLE
+        4.9 E, NC","latitude_dec":"35.5794","longitude_dec":"-82.4621","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30037451","header":{"preferredName":"FAIRVIEW
+        3.8 ENE, NC","latitude_dec":"35.546","longitude_dec":"-82.343","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013872","header":{"preferredName":"BARNARDSVILLE
+        2 SE, NC","latitude_dec":"35.76","longitude_dec":"-82.4325","precision":"DDddddd","por":{"beginDate":"1934-10-22T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20014052","header":{"preferredName":"FLETCHER
+        2 NE, NC","latitude_dec":"35.45","longitude_dec":"-82.48333","precision":"DDMM","por":{"beginDate":"1987-04-26T00:00:00.000","endDate":"1998-07-30T00:00:00.000"}}},{"ncdcStnId":"30072393","header":{"preferredName":"WEAVERVILLE
+        1.4 SE, NC","latitude_dec":"35.6841","longitude_dec":"-82.5398","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30101793","header":{"preferredName":"ASHEVILLE
+        3.0 E, NC","latitude_dec":"35.5761","longitude_dec":"-82.4963","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30102822","header":{"preferredName":"SWANNANOA
+        3.0 W, NC","latitude_dec":"35.6031","longitude_dec":"-82.4457","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30028295","header":{"preferredName":"ARDEN
+        3.3 WNW, NC","latitude_dec":"35.4745","longitude_dec":"-82.5737","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30083632","header":{"preferredName":"CANDLER
+        1.8 NNE, NC","latitude_dec":"35.5603","longitude_dec":"-82.6796","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013849","header":{"preferredName":"NORTH
+        FORK, NC","latitude_dec":"35.7","longitude_dec":"-82.33333","precision":"DDMM","por":{"beginDate":"1927-01-01T00:00:00.000","endDate":"1981-04-30T00:00:00.000"}}},{"ncdcStnId":"30017337","header":{"preferredName":"ASHEVILLE
+        7.3 SSW, NC","latitude_dec":"35.5037","longitude_dec":"-82.6059","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013818","header":{"preferredName":"BEETREE
+        DAM 2, NC","latitude_dec":"35.63333","longitude_dec":"-82.4","precision":"DDMM","por":{"beginDate":"1948-03-01T00:00:00.000","endDate":"1962-03-31T00:00:00.000"}}},{"ncdcStnId":"30077445","header":{"preferredName":"MONTREAT
+        0.6 NE, NC","latitude_dec":"35.6525","longitude_dec":"-82.294","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30078342","header":{"preferredName":"WEAVERVILLE
+        5.6 E, NC","latitude_dec":"35.7077","longitude_dec":"-82.4592","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30084181","header":{"preferredName":"BLACK
+        MOUNTAIN 2.8 N, NC","latitude_dec":"35.654","longitude_dec":"-82.338","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30091440","header":{"preferredName":"ARDEN
+        2.4 WNW, NC","latitude_dec":"35.4743","longitude_dec":"-82.5583","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30057626","header":{"preferredName":"ASHEVILLE
+        5.7 NNW, NC","latitude_dec":"35.6536","longitude_dec":"-82.5728","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30092335","header":{"preferredName":"WEAVERVILLE
+        2.4 ESE, NC","latitude_dec":"35.6856","longitude_dec":"-82.5173","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30107726","header":{"preferredName":"BLACK
+        MOUNTAIN 5.5 SE, NC","latitude_dec":"35.5473","longitude_dec":"-82.2571","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30023671","header":{"preferredName":"SWANNANOA
+        2.7 NNW, NC","latitude_dec":"35.6365","longitude_dec":"-82.4141","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013837","header":{"preferredName":"CRAGGY
+        KNOB, NC","latitude_dec":"35.68333","longitude_dec":"-82.38333","precision":"DDMM","por":{"beginDate":"1934-12-22T00:00:00.000","endDate":"1962-03-31T00:00:00.000"}}},{"ncdcStnId":"30055279","header":{"preferredName":"ASHEVILLE
+        4.8 N, NC","latitude_dec":"35.6435","longitude_dec":"-82.5418","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30112715","header":{"preferredName":"ASHEVILLE
+        2.4 N, NC","latitude_dec":"35.6082","longitude_dec":"-82.5471","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30069325","header":{"preferredName":"ASHEVILLE
+        8.1 NNW, NC","latitude_dec":"35.6846","longitude_dec":"-82.5953","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30016576","header":{"preferredName":"CANDLER
+        5.0 SW, NC","latitude_dec":"35.4876","longitude_dec":"-82.7581","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30094127","header":{"preferredName":"ASHEVILLE
+        6.3 NW, NC","latitude_dec":"35.6362","longitude_dec":"-82.6302","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30101119","header":{"preferredName":"ASHEVILLE
+        4.1 ESE, NC","latitude_dec":"35.5566","longitude_dec":"-82.4793","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013838","header":{"preferredName":"BEETREE
+        GAP, NC","latitude_dec":"35.7","longitude_dec":"-82.4","precision":"DDMM","por":{"beginDate":"1934-12-22T00:00:00.000","endDate":"1950-12-31T00:00:00.000"}}},{"ncdcStnId":"20013790","header":{"preferredName":"BENT
+        CREEK, NC","latitude_dec":"35.5044","longitude_dec":"-82.5966","precision":"DDddddd","por":{"beginDate":"1933-01-07T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"20013758","header":{"preferredName":"MOUNT
+        PISGAH, NC","latitude_dec":"35.43333","longitude_dec":"-82.75","precision":"DDMM","por":{"beginDate":"1934-12-11T00:00:00.000","endDate":"1962-03-31T00:00:00.000"}}},{"ncdcStnId":"30014783","header":{"preferredName":"ASHEVILLE
+        PATTON MTN, NC","latitude_dec":"35.625","longitude_dec":"-82.54194","precision":"DDMMSS","por":{"beginDate":"1977-01-01T00:00:00.000","endDate":"1984-07-31T00:00:00.000"}}},{"ncdcStnId":"30101132","header":{"preferredName":"WEAVERVILLE
+        0.6 W, NC","latitude_dec":"35.6979","longitude_dec":"-82.5689","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013817","header":{"preferredName":"SWANNANOA
+        2 E, NC","latitude_dec":"35.6","longitude_dec":"-82.36667","precision":"DDMM","por":{"beginDate":"1931-03-01T00:00:00.000","endDate":"1987-08-26T00:00:00.000"}}},{"ncdcStnId":"20013852","header":{"preferredName":"CANTO,
+        NC","latitude_dec":"35.7044","longitude_dec":"-82.7697","precision":"DDMMSS","por":{"beginDate":"1971-07-01T00:00:00.000","endDate":"2017-01-01T00:00:00.000"}}},{"ncdcStnId":"30090272","header":{"preferredName":"ASHEVILLE
+        2.5 WNW, NC","latitude_dec":"35.5812","longitude_dec":"-82.5924","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30029796","header":{"preferredName":"FAIRVIEW
+        1.2 S, NC","latitude_dec":"35.5058","longitude_dec":"-82.4051","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013756","header":{"preferredName":"ASHEVILLE
+        AIRPORT, NC","latitude_dec":"35.4319","longitude_dec":"-82.5375","precision":"DDdddd","por":{"beginDate":"1961-01-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30072380","header":{"preferredName":"ASHEVILLE
+        5.3 NNE, NC","latitude_dec":"35.6483","longitude_dec":"-82.5216","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30054743","header":{"preferredName":"ASHEVILLE
+        3.3 SE, NC","latitude_dec":"35.5362","longitude_dec":"-82.5135","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013820","header":{"preferredName":"ASHEVILLE
+        SMITH STREET BRIDGE, NC","latitude_dec":"35.6","longitude_dec":"-82.48333","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"1958-11-30T00:00:00.000"}}},{"ncdcStnId":"20013850","header":{"preferredName":"BEECH,
+        NC","latitude_dec":"35.7","longitude_dec":"-82.43333","precision":"DDMM","por":{"beginDate":"1947-10-12T00:00:00.000","endDate":"1952-12-31T00:00:00.000"}}},{"ncdcStnId":"30082861","header":{"preferredName":"FAIRVIEW
+        2.3 NW, NC","latitude_dec":"35.5452","longitude_dec":"-82.4346","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013836","header":{"preferredName":"NORTH
+        FORK 2, NC","latitude_dec":"35.66308","longitude_dec":"-82.34446","precision":"DDddddd","por":{"beginDate":"1942-08-07T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30051122","header":{"preferredName":"ARDEN
+        2.9 WNW, NC","latitude_dec":"35.4755","longitude_dec":"-82.5672","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013802","header":{"preferredName":"ENKA,
+        NC","latitude_dec":"35.5409","longitude_dec":"-82.6535","precision":"DDddddd","por":{"beginDate":"1948-08-01T00:00:00.000","endDate":"Present"}}},{"ncdcStnId":"30108979","header":{"preferredName":"WEAVERVILLE
+        4.5 ESE, NC","latitude_dec":"35.6701","longitude_dec":"-82.4858","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013884","header":{"preferredName":"COXCOMBE
+        MOUNTAIN, NC","latitude_dec":"35.81667","longitude_dec":"-82.35","precision":"DDMM","por":{"beginDate":"1934-12-17T00:00:00.000","endDate":"1962-03-31T00:00:00.000"}}},{"ncdcStnId":"30101129","header":{"preferredName":"BLACK
+        MOUNTAIN 1.3 NNE, NC","latitude_dec":"35.6319","longitude_dec":"-82.3221","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30103664","header":{"preferredName":"ASHEVILLE
+        2.1 SSE, NC","latitude_dec":"35.5471","longitude_dec":"-82.5309","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30113056","header":{"preferredName":"ASHEVILLE
+        1.7 NNW, NC","latitude_dec":"35.5954","longitude_dec":"-82.565","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30102972","header":{"preferredName":"CANDLER
+        1.5 SW, NC","latitude_dec":"35.5238","longitude_dec":"-82.7142","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30102978","header":{"preferredName":"ARDEN
+        1.6 E, NC","latitude_dec":"35.4655","longitude_dec":"-82.4876","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30112716","header":{"preferredName":"ASHEVILLE
+        4.8 SSE, NC","latitude_dec":"35.5087","longitude_dec":"-82.5198","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30106884","header":{"preferredName":"ASHEVILLE
+        2.4 NNW, NC","latitude_dec":"35.6065","longitude_dec":"-82.5644","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30041783","header":{"preferredName":"LEICESTER
+        2 SE, NC","latitude_dec":"35.6263","longitude_dec":"-82.6763","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30113872","header":{"preferredName":"MARS
+        HILL 2.6 SE, NC","latitude_dec":"35.8025","longitude_dec":"-82.5155","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30083542","header":{"preferredName":"BLACK
+        MOUNTAIN 0.8 N, NC","latitude_dec":"35.6263","longitude_dec":"-82.3297","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30024628","header":{"preferredName":"ASHEVILLE
+        2.0 N, NC","latitude_dec":"35.6021","longitude_dec":"-82.5434","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30094965","header":{"preferredName":"BAT
+        CAVE 1.9 N, NC","latitude_dec":"35.4797","longitude_dec":"-82.2848","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30071779","header":{"preferredName":"ASHEVILLE
+        7.8 NNW, NC","latitude_dec":"35.6778","longitude_dec":"-82.6028","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013816","header":{"preferredName":"BLACK
+        MOUNTAIN 2 W, NC","latitude_dec":"35.60722","longitude_dec":"-82.35944","precision":"DDMMSS","por":{"beginDate":"1949-10-01T00:00:00.000","endDate":"2010-05-01T00:00:00.000"}}},{"ncdcStnId":"30103070","header":{"preferredName":"ASHEVILLE
+        1.1 NNE, NC","latitude_dec":"35.589","longitude_dec":"-82.5428","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30084716","header":{"preferredName":"LEICESTER
+        0.9 SE, NC","latitude_dec":"35.6474","longitude_dec":"-82.6831","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20013822","header":{"preferredName":"ASHEVILLE
+        PEARSON STREET, NC","latitude_dec":"35.60917","longitude_dec":"-82.61194","precision":"DDMMSS","por":{"beginDate":"1969-03-01T00:00:00.000","endDate":"2007-11-14T00:00:00.000"}}},{"ncdcStnId":"12003918","header":{"preferredName":"RIDGECREST,
+        NC","latitude_dec":"35.616667","longitude_dec":"-82.266667","precision":"DDMM","por":{"beginDate":"1941-04-03T00:00:00.000","endDate":"1942-04-30T00:00:00.000"}}},{"ncdcStnId":"30022813","header":{"preferredName":"CANDLER
+        1.9 NE, NC","latitude_dec":"35.5586","longitude_dec":"-82.6722","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"30035578","header":{"preferredName":"SWANNANOA
+        2.6 WNW, NC","latitude_dec":"35.6152","longitude_dec":"-82.4348","por":{"beginDate":"Unknown","endDate":"Present"}}},{"ncdcStnId":"20014046","header":{"preferredName":"SWANNANOA
+        2 SSE, NC","latitude_dec":"35.57333","longitude_dec":"-82.385","precision":"DDMMSS","por":{"beginDate":"1984-01-01T00:00:00.000","endDate":"2008-03-31T00:00:00.000"}}},{"ncdcStnId":"30109976","header":{"preferredName":"WOODFIN
+        3.7 NW, NC","latitude_dec":"35.6776","longitude_dec":"-82.6263","por":{"beginDate":"Unknown","endDate":"Present"}}}]}}'
+  recorded_at: 2018-12-01 19:49:44 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/homr/services/station/search?name=CLAYTON&headersOnly=false&definitions=false
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 01 Dec 2018 19:49:45 GMT
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET, OPTIONS
+      access-control-max-age: '3600'
+      access-control-allow-headers: x-requested-with
+      content-type: application/json
+      vary: Accept-Encoding
+      content-encoding: gzip
+      connection: close
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: '{"stationCollection":{"stations":[{"ncdcStnId":"20000092","header":{"preferredName":"CLAYTON,
+        AL","latitude_dec":"31.8709","longitude_dec":"-85.4501","precision":"DDddddd","por":{"beginDate":"1929-01-01T00:00:00.000","endDate":"Present"}},"names":[{"name":"CLAYTON","nameType":"COOP"},{"name":"CLAYTON","nameType":"PRINCIPAL"}],"identifiers":[{"idType":"GHCND","id":"USC00011725"},{"idType":"GHCNMLT","id":"USC00011725"},{"idType":"COOP","id":"011725"},{"idType":"NWSLI","id":"CLYA1"},{"idType":"NCDCSTNID","id":"20000092"}],"location":{"ncdcstnId":"20000092","descriptions":[{"description":"OBSERVERS
+        RESIDENCE WITHIN AND 2.2 MILES WNW OF PO AT CLAYTON AL"}],"latitudes":[{"latitude_dec":"31.8709","precision":"DDddddd"}],"longitudes":[{"longitude_dec":"-85.4501","precision":"DDddddd"}],"latLonPairs":[{"latitude_rptd":"31.8709","longitude_rptd":"-85.4501","latitude_dec":"31.8709","longitude_dec":"-85.4501","latitude_dms":"31,52,15,N","longitude_dms":"085,27,00,W","precision":"DDddddd","datum_horiz":"NAD83","source":"GPS
+        - MAGELLAN EXPLORIST 600"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"569","elevationMeters":"173.4","groundElevDatum":"NAVD88"}],"topography":[{"description":"SUBDIVISION
+        ON EDGE OF TOWN WITH ROLLING HILLS, SLIGHTLY WOODED"}],"obstructions":[{"type":"BUILDING(S)","azimuth":"115-145","azimuthUnit":"deg","distance":"40-57","distanceUnit":"ft","elevationAngle":"8-6","elevationAngleUnit":"deg","description":"HOUSE"},{"type":"BUILDING(S)","azimuth":"010-035","azimuthUnit":"deg","distance":"54-90","distanceUnit":"ft","elevationAngle":"11-13","elevationAngleUnit":"deg","description":"HOUSE"},{"type":"TREE(S)","azimuth":"235","azimuthUnit":"deg","distance":"92","distanceUnit":"ft","elevationAngle":"68","elevationAngleUnit":"deg"},{"type":"TREE(S)","azimuth":"280-295","azimuthUnit":"deg","distance":"84-63","distanceUnit":"ft","elevationAngle":"44-23","elevationAngleUnit":"deg"},{"type":"TREE(S)","azimuth":"155","azimuthUnit":"deg","distance":"66","distanceUnit":"ft","elevationAngle":"50","elevationAngleUnit":"deg"}],"geoInfo":{"ncdcstnId":"20000092","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"AL"}],"counties":[{"county":"BARBOUR"}],"utcOffsets":[{"utcOffset":"-6"}]},"nwsInfo":{"ncdcstnId":"20000092","climateDivisions":[{"stateProvince":"AL","climateDivision":"07","displayName":"COASTAL
+        PLAIN"}],"nwsRegions":[{"nwsRegion":"SOUTHERN"}],"nwsWfos":[{"nwsWfo":"BMX","displayName":"BIRMINGHAM,
+        AL"}]}},"platforms":[{"platform":"COOP"}],"relocations":[{"relocation":"1.8
+        mi SE","date":"2009-12-17T00:00:00.000"}],"remarks":[{"type":"NWS COOP INGEST","remark":"CHANGED
+        FOR NEW OBSERVER AND NEW OBS TIME. \r\nMETADATA CONVERSIONS."},{"type":"NWS
+        COOP INGEST","remark":"METADATA CONVERSION CORRECTIONS\r\nREMOVED PERMANENT
+        REMARKS"},{"type":"NWS COOP INGEST","remark":"OBSERVED ELEMENT TEMPERATURE:
+        CHANGE EQUIPMENT SERIAL NUMBER; DELETE OFFICE PHONE AND ADD ALTERNATE PHONE,
+        CHANGE EMAIL ADDRESS.  NO OTHER CHANGES. "},{"type":"NWS COOP INGEST","remark":"RESUBMIT
+        REJECTED FORM AFTER MAKING CORRECTIONS; CHANGE\/CORRECT OBSERVED ELEMENT TEMPERATURE
+        EQUIPMENT DESCRIPTION FROM LC1 TO LP1.  "},{"type":"NWS COOP INGEST","remark":"REACTIVATE
+        STATION AND RELOCATE 1.8 MILES SE. COMPATIBLE. PAPERLESS DATA COLLECTION SYSTEM."},{"type":"NWS
+        COOP INGEST","remark":"CHANGE OBSERVED ELEMENT TEMPERATURE EQUIPMENT CODE
+        FROM MMTS-1 TO NIMBUS, UPDATE DATA FROM INITIAL DATABASE LOAD, CORRECT DRIVING
+        DIRECTIONS."},{"type":"RIVER BASIN (COOP NETWORK)","remark":"CHOCTAWHATCHEE"}],"updates":[{"effectiveDate":"2017-10-13T00:00:00.000","providedBy":"INGEST","updateSource":"SISv2","version":"24","nativeId":"COOP:01-1725:24","description":"CHANGE","enteredBy":"INGEST","enteredDate":"2017-11-06T01:55:15-05:00"}],"elements":[{"dataProgram":"COOP
+        SOD","element":"PRECIP","frequency":"DAILY","observationTime":"0800","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"SRG-STN","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-10-13T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"TEMP","frequency":"DAILY","observationTime":"0800","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"NIMBUS","equipmentAzimuth":"310","equipmentDistance":"100","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-10-13T00:00:00.000","endDate":"Present"}}]},{"ncdcStnId":"20004180","header":{"preferredName":"CLAYTON,
+        DE","latitude_dec":"39.3","longitude_dec":"-75.63333","precision":"DDMM","por":{"beginDate":"Unknown","endDate":"Present"}},"names":[{"name":"CLAYTON","nameType":"COOP"},{"name":"CLAYTON","nameType":"PRINCIPAL"}],"identifiers":[{"idType":"GHCND","id":"USC00071483"},{"idType":"COOP","id":"071483"},{"idType":"NCDCSTNID","id":"20004180"}],"location":{"ncdcstnId":"20004180","latitudes":[{"latitude_dec":"39.3","precision":"DDMM"}],"longitudes":[{"longitude_dec":"-75.63333","precision":"DDMM"}],"latLonPairs":[{"latitude_rptd":"39,18,,N","longitude_rptd":"075,38,,W","latitude_dec":"39.3","longitude_dec":"-75.63333","latitude_dms":"39,18,00,N","longitude_dms":"075,38,00,W","precision":"DDMM"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"39","elevationMeters":"11.9"}],"geoInfo":{"ncdcstnId":"20004180","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"DE"}],"counties":[{"county":"KENT"}],"utcOffsets":[{"utcOffset":"-5"}]},"nwsInfo":{"ncdcstnId":"20004180","climateDivisions":[{"stateProvince":"DE","climateDivision":"01","displayName":"NORTHERN"}]}},"platforms":[{"platform":"COOP"}],"updates":[{"effectiveDate":"2005-08-26T00:00:00.000","providedBy":"NCDC\/MSLAGLE","updateSource":"AD
+        HOC","version":"NONE","description":"HISTORICAL CORRECTIONS TO COUNTY","enteredBy":"MSLAGLE","enteredDate":"2005-08-26T00:00:00-04:00"}]},{"ncdcStnId":"20005036","header":{"preferredName":"CLAYTON
+        1 SSW, GA","latitude_dec":"34.8879","longitude_dec":"-83.3966","precision":"DDddddd","por":{"beginDate":"1892-05-01T00:00:00.000","endDate":"Present"}},"names":[{"name":"CLAYTON
+        1 SSW","nameType":"COOP"},{"name":"CLAYTON 1 SSW","nameType":"PRINCIPAL"}],"identifiers":[{"idType":"GHCND","id":"USC00091982"},{"idType":"GHCNMLT","id":"USC00091982"},{"idType":"COOP","id":"091982"},{"idType":"NWSLI","id":"CLNG1"},{"idType":"NCDCSTNID","id":"20005036"}],"location":{"ncdcstnId":"20005036","descriptions":[{"description":"RADIO
+        STATION WGHC OUTSIDE 1.3 MI SSW OF PO CLAYTON, GA"}],"latitudes":[{"latitude_dec":"34.8879","precision":"DDddddd"}],"longitudes":[{"longitude_dec":"-83.3966","precision":"DDddddd"}],"latLonPairs":[{"latitude_rptd":"34.8879","longitude_rptd":"-83.3966","latitude_dec":"34.8879","longitude_dec":"-83.3966","latitude_dms":"34,53,16,N","longitude_dms":"083,23,48,W","precision":"DDddddd","datum_horiz":"NAD83","source":"GPS
+        - GARMIN BRAND, MODEL NOT GIVEN"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"1965","elevationMeters":"598.9","groundElevDatum":"NAVD88"}],"topography":[{"description":"VALLEY
+        LOCATION WITHIN THE LIMITS OF SMALL CITY IN THE FAR NORTHEAST GEORGIA MOUNTAINS."}],"obstructions":[{"type":"BUILDING(S)","azimuth":"230-290","azimuthUnit":"deg","distance":"50-40","distanceUnit":"ft","elevationAngle":"10-10","elevationAngleUnit":"deg"},{"type":"TREE(S)","azimuth":"180","azimuthUnit":"deg","distance":"10","distanceUnit":"ft","elevationAngle":"20","elevationAngleUnit":"deg"},{"type":"TREE(S)","azimuth":"050","azimuthUnit":"deg","distance":"10","distanceUnit":"ft","elevationAngle":"22","elevationAngleUnit":"deg"},{"type":"TREE(S)","azimuth":"085","azimuthUnit":"deg","distance":"50","distanceUnit":"ft","elevationAngle":"15","elevationAngleUnit":"deg"}],"geoInfo":{"ncdcstnId":"20005036","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"GA"}],"counties":[{"county":"RABUN"}],"utcOffsets":[{"utcOffset":"-5"}]},"nwsInfo":{"ncdcstnId":"20005036","climateDivisions":[{"stateProvince":"GA","climateDivision":"03","displayName":"NORTHEAST"}],"nwsRegions":[{"nwsRegion":"EASTERN"}],"nwsWfos":[{"nwsWfo":"GSP","displayName":"GREENVILLE\/SPARTANBURG,
+        SC"}]}},"platforms":[{"platform":"COOP"}],"relocations":[{"relocation":"1.9
+        mi NNE","date":"2014-04-24T00:00:00.000"}],"remarks":[{"type":"NWS COOP INGEST","remark":"DELETED
+        PERMANENT REMARKS SINCE THEY REFER ONLY TO A PREVIOUS RENDITION, UPDATED OBSERVER
+        INFORMATION, CHANGED REPORT RECIPIENT FROM NCDC TO NCEI, AND OBSERVATION TIME
+        FROM 0730 TO 0700. ADDED SNOW REPORTING AND UPDATED OBSTRUCTIONS."},{"type":"NWS
+        COOP INGEST","remark":"AFTER A TEN MONTH HIATUS...OBSERVING SITE RETURNED
+        TO RADIO STATION WGHC AT NEW STATION LOCATION 1.9 MILES NNE OF FORMER SITE."},{"type":"NWS
+        COOP INGEST","remark":"COMPATIBLE STATION MOVE 1.4 MILES SW."},{"type":"NWS
+        COOP INGEST","remark":"UPDATED CODING OPTIONS FOR WXCODER ELECTONIC REPORTING.
+        MAKE REPORT TOTALLY PAPERLESS."},{"type":"NWS COOP INGEST","remark":"UPDATED
+        LAT\/LON, LON DIFFERENCE BY 10 SECONDS.  CHANGED OBSERVER, UPDATED MAILING
+        ADDRESS, PHONE, EMAIL, AND REPORTING METHOD (SAME LOCATION)."},{"type":"NWS
+        COOP INGEST","remark":"UPDATED LAT\/LON AND ELEVATION, CORRECTED A FEW OTHER
+        ENTRIES."},{"type":"RIVER BASIN (COOP NETWORK)","remark":"SAVANNAH"}],"updates":[{"effectiveDate":"2018-01-01T00:00:00.000","providedBy":"INGEST","updateSource":"SISv2","version":"20","nativeId":"COOP:09-1982:20","description":"CHANGE","enteredBy":"INGEST","enteredDate":"2018-01-17T01:55:08-05:00","modifiedBy":"KTHOMAS","modifiedDate":"2018-01-17T12:32:49-05:00"}],"elements":[{"dataProgram":"COOP
+        SOD","element":"PRECIP","frequency":"DAILY","observationTime":"0700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"PLASTIC","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2018-01-01T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"SNOWDPTH","frequency":"DAILY","observationTime":"0700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"SNOWBOARD","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2018-01-01T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"SNOWFALL","frequency":"DAILY","observationTime":"0700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"SNOWBOARD","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2018-01-01T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"SNOWFALLEQ","frequency":"DAILY","observationTime":"0700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"PLASTIC","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2018-01-01T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"TEMP","frequency":"DAILY","observationTime":"0700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-WXCDR3","equipment":{"equipment":"NIMBUS","equipmentAzimuth":"270","equipmentDistance":"200","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2018-01-01T00:00:00.000","endDate":"Present"}}]},{"ncdcStnId":"20013829","header":{"preferredName":"CLAYTON
+        WTP, NC","latitude_dec":"35.6408","longitude_dec":"-78.4633","precision":"DDddddd","por":{"beginDate":"1955-11-01T00:00:00.000","endDate":"Present"}},"names":[{"name":"CLAYTON
+        WTP","nameType":"COOP"},{"name":"CLAYTON WTP","nameType":"PRINCIPAL"}],"identifiers":[{"idType":"GHCND","id":"USC00311820"},{"idType":"GHCNMLT","id":"USC00311820"},{"idType":"COOP","id":"311820"},{"idType":"NWSLI","id":"CYNN7"},{"idType":"NCDCSTNID","id":"20013829"}],"location":{"ncdcstnId":"20013829","descriptions":[{"description":"LITTLE
+        CREEK WATER RECLAMATION FACILITY WITHIN AND 0.5 MI SW OF PO AT CLAYTON NC"}],"latitudes":[{"latitude_dec":"35.6408","precision":"DDddddd"}],"longitudes":[{"longitude_dec":"-78.4633","precision":"DDddddd"}],"latLonPairs":[{"latitude_rptd":"35.6408","longitude_rptd":"-78.4633","latitude_dec":"35.6408","longitude_dec":"-78.4633","latitude_dms":"35,38,27,N","longitude_dms":"078,27,48,W","precision":"DDddddd","datum_horiz":"NAD83","source":"GPS
+        - GARMIN MODEL III PLUS"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"300","elevationMeters":"91.4","groundElevDatum":"NAGVD29"}],"topography":[{"description":"SLIGHTLY
+        ROLLING, SANDY LOAM, AGRICULTURAL, SUBURBAN"}],"obstructions":[{"type":"BUILDING(S)","azimuth":"185-220","azimuthUnit":"deg","distance":"047-052","distanceUnit":"ft","elevationAngle":"08-08","elevationAngleUnit":"deg","description":"BLDG"},{"type":"TREE(S)","azimuth":"260-320","azimuthUnit":"deg","distance":"225-112","distanceUnit":"ft","elevationAngle":"13-18","elevationAngleUnit":"deg","description":"TREES"},{"type":"TREE(S)","azimuth":"100-135","azimuthUnit":"deg","distance":"125-189","distanceUnit":"ft","elevationAngle":"15-20","elevationAngleUnit":"deg","description":"TREES"}],"geoInfo":{"ncdcstnId":"20013829","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"NC"}],"counties":[{"county":"JOHNSTON"}],"utcOffsets":[{"utcOffset":"-5"}]},"nwsInfo":{"ncdcstnId":"20013829","climateDivisions":[{"stateProvince":"NC","climateDivision":"07","displayName":"CENTRAL
+        COASTAL PLAIN"}],"nwsRegions":[{"nwsRegion":"EASTERN"}],"nwsWfos":[{"nwsWfo":"RAH","displayName":"RALEIGH\/DURHAM,
+        NC"}]}},"platforms":[{"platform":"COOP"}],"relocations":[{"relocation":"3
+        mi ESE","date":"1997-08-01T00:00:00.000"}],"remarks":[{"type":"NWS COOP INGEST","remark":"ADDED
+        AWARD RECIPIENT INFO. ADDED STAND TO SRG UNDER PRECIPITATION. ADDED SNOW ELEMENT.
+        ADDED DISPLAY UNIT TO TEMPERATURE AND CHANGED TYPE TO NIMBUS. CHANGED REPORT
+        RECIPIENT TO NCEI FROM NCDC."},{"type":"NWS COOP INGEST","remark":"CHANGED
+        FROM PAID TO NON-PAID OBSERVER."},{"type":"NWS COOP INGEST","remark":"UPDATED
+        OB INFO TO DELETE B-91 DATA AND CHANGED STATION TO PAPERLESS."},{"type":"NWS
+        COOP INGEST","remark":"CHANGE OBSERVERS NAME."},{"type":"NWS COOP INGEST","remark":"5
+        YEAR UPDATE"},{"type":"RIVER BASIN (COOP NETWORK)","remark":"PEE DEE"}],"updates":[{"effectiveDate":"2017-01-30T00:00:00.000","providedBy":"INGEST","updateSource":"SISv2","version":"16","nativeId":"COOP:31-1820:16","description":"CHANGE","enteredBy":"INGEST","enteredDate":"2017-02-15T01:50:49-05:00"}],"elements":[{"dataProgram":"COOP
+        SOD","element":"PRECIP","frequency":"DAILY","observationTime":"0700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-IVROCS","equipment":{"equipment":"SRG-STN","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-01-30T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"SNOWDPTH","frequency":"DAILY","observationTime":"0700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-IVROCS","equipment":{"equipment":"SNOWBOARD","equipmentAzimuth":"010","equipmentDistance":"10","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-01-30T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"SNOWFALL","frequency":"DAILY","observationTime":"0700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-IVROCS","equipment":{"equipment":"SNOWBOARD","equipmentAzimuth":"010","equipmentDistance":"10","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-01-30T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"TEMP","frequency":"DAILY","observationTime":"0700","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"RDP-IVROCS","equipment":{"equipment":"NIMBUS","equipmentAzimuth":"000","equipmentDistance":"10","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2017-01-30T00:00:00.000","endDate":"Present"}}]},{"ncdcStnId":"20020805","header":{"preferredName":"CLAYTON
+        MUNI ARPK AP, NM","latitude_dec":"36.4486","longitude_dec":"-103.1539","precision":"DDMMSS","por":{"beginDate":"1896-02-01T00:00:00.000","endDate":"Present"}},"names":[{"name":"CLAYTON
+        MUNI ARPK AP","nameType":"COOP"},{"name":"CLAYTON MUNICIPAL AIR PARK","nameType":"PRINCIPAL"},{"name":"CLAYTON  MUNICIPAL
+        AIRPARK AIRPORT","nameType":"PUB"}],"identifiers":[{"idType":"GHCND","id":"USW00023051"},{"idType":"GHCNMLT","id":"USW00023051"},{"idType":"COOP","id":"291887"},{"idType":"WBAN","id":"23051"},{"idType":"FAA","id":"CAO"},{"idType":"ICAO","id":"KCAO"},{"idType":"NWSLI","id":"CAO"},{"idType":"WMO","id":"72360"},{"idType":"NCDCSTNID","id":"20020805"}],"location":{"ncdcstnId":"20020805","descriptions":[{"description":"ASOS
+        SENSOR ARRAY WITHIN AND 2 MI E OF PO AT CLAYTON NM"}],"latitudes":[{"latitude_dec":"36.4486","precision":"DDMMSS"}],"longitudes":[{"longitude_dec":"-103.1539","precision":"DDMMSS"}],"latLonPairs":[{"latitude_rptd":"36,26,55,N","longitude_rptd":"103,09,14,W","latitude_dec":"36.4486","longitude_dec":"-103.1539","latitude_dms":"36,26,55,N","longitude_dms":"103,09,14,W","precision":"DDMMSS","datum_horiz":"NAD83","source":"ASOS
+        SITE SURVEY"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"4960","elevationMeters":"1511.8"},{"elevationType":"AIRPORT","elevationFeet":"4968","elevationMeters":"1514.2"},{"elevationType":"BAROMETRIC","elevationFeet":"4970","elevationMeters":"1514.9"}],"topography":[{"description":"GENTLY
+        ROLLING HILLS-GRAZING LAND"}],"obstructions":[{"type":"NO OBSTRUCTIONS","description":"NO
+        OBSTRUCTIONS"}],"geoInfo":{"ncdcstnId":"20020805","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"NM"}],"counties":[{"county":"UNION"}],"utcOffsets":[{"utcOffset":"-7"}]},"nwsInfo":{"ncdcstnId":"20020805","climateDivisions":[{"stateProvince":"NM","climateDivision":"03","displayName":"NORTHEASTERN
+        PLAINS"}],"nwsRegions":[{"nwsRegion":"SOUTHERN"}],"nwsWfos":[{"nwsWfo":"ABQ","displayName":"ALBUQUERQUE,
+        NM"}]}},"platforms":[{"platform":"COOP"},{"platform":"ASOS"},{"platform":"USHCN"},{"platform":"PLCD"}],"relocations":[{"relocation":".7
+        mi ESE","date":"1949-11-07T00:00:00.000"}],"remarks":[{"type":"NWS COOP INGEST","remark":"UPDATED
+        FOR LCD BACKUP-LCD FOR SNOWFALL\/SNOW DEPTH, RAIN IS STATION 29-1883-03 WHICH
+        IS 2.4 MILES NW. SNOWBOARD\/SNOWSTICK AND SRG USED FOR BACKUP EQUIPMENT, CHANGED
+        STATION TYPE TO ASOS\/LCD, BACKUP STATION IS 4960 FEET AND LAT\/LON IS 36
+        27 34 N 103 11 59 W WILL CHANGE LAT\/LON FOR ASOS WHEN AVAILABLE.\r\n\r\nCORRECT
+        PRECIPITATION AND TEMP SPECIAL NETWORK TO HCN IN OB INFO."},{"type":"NWS COOP
+        INGEST","remark":"CORRECT PRECIPITATION AND TEMP SPECIAL NETWORK TO HCN IN
+        OB INFO."},{"type":"NWS COOP INGEST","remark":"CHANGE HOURLY PRECIP EQUIPMENT
+        CODE AND EQUIPMENT DESCRIPTION FOR PRECIP IN OB INFO FOR AWPAG. DELETE HCPCN
+        IN OTHER EQUIPMENT AS THERE IS NO WSO ANYMORE."},{"type":"GENERAL","remark":"PHOTOS
+        ADDED FOR ASOS EXPOSURE DOCUMENTATION EFFORT (CIRCA 1999+) WHICH TOOK PHOTOS
+        OF THE AREA SURROUNDING COASTAL AND INLAND ASOS SITES IN AREAS SUBJECT TO
+        HURRICANES. THE PHOTOS HELP DOCUMENT STATION EXPOSURE AND IDENTIFY OBSTACLES
+        THAT COULD REDUCE THE WINDS AT THE SITE."},{"type":"RIVER BASIN (COOP NETWORK)","remark":"CANADIAN"},{"type":"GENERAL","remark":"WB
+        530 STATES THAT ORIGINAL RECORDS ARE ALSO LOCATED AT NWRC, ASHEVILLE, NC."},{"type":"HC
+        CODE FROM S2K","remark":"UNIV. STATION TAKES CD PRCP WITH RRNG, CHECK FOR
+        DUPLICATE STN_EQUIP"},{"type":"HC CODE FROM S2K","remark":"HCN HAS # 291887."}],"updates":[{"effectiveDate":"2016-03-03T00:00:00.000","providedBy":"NCEI","updateSource":"PRE48
+        SOURCE","description":"METADATA LOADED IS BEST ATTEMPT TO DIGITIZE HISTORICAL,
+        SOMETIMES INCOMPLETE OR HANDWRITTEN, PAPER RECORDS","enteredBy":"PRE48-CDMP","enteredDate":"2016-03-03T12:23:49-05:00"}],"elements":[{"dataProgram":"COOP
+        HPD","element":"PRECIP","frequency":"HOURLY","observationTime":"2400","publishedFlag":"HPD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"AWPAG","equipmentMods":"RCRD;HTD","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2007-05-03T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"PRECIP","frequency":"DAILY","observationTime":"2400","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"PCPNX","equipmentAzimuth":"000","equipmentDistance":"0","equipmentDistanceUnits":"ft"},"date":{"beginDate":"2007-05-03T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"TEMP","frequency":"DAILY","observationTime":"2400","publishedFlag":"CD","receiver":"NCEI","reportingMethod":"ADP","equipment":{"equipment":"ATEMP"},"date":{"beginDate":"2007-05-03T00:00:00.000","endDate":"Present"}},{"dataProgram":"COOP
+        SOD","element":"WIND","frequency":"HOURLY","observationTime":"UNKN","equipment":{"equipment":"ANEMSONIC"},"date":{"beginDate":"2007-05-03T00:00:00.000","endDate":"Present"}}]},{"ncdcStnId":"30001912","header":{"preferredName":"RALEIGH
+        DURHAM, NC","latitude_dec":"35.66528","longitude_dec":"-78.49","precision":"DDMMSS","por":{"beginDate":"1995-07-06T00:00:00.000","endDate":"Present"}},"names":[{"name":"RALEIGH
+        DURHAM","nameType":"PRINCIPAL"},{"name":"CLAYTON","nameType":"ALIAS"}],"identifiers":[{"idType":"WBAN","id":"93772"},{"idType":"ICAO","id":"KRAX"},{"idType":"NCDCSTNID","id":"30001912"},{"idType":"NEXRAD","id":"KRAX"}],"location":{"ncdcstnId":"30001912","latitudes":[{"latitude_dec":"35.66528","precision":"DDMMSS"}],"longitudes":[{"longitude_dec":"-78.49","precision":"DDMMSS"}],"latLonPairs":[{"latitude_rptd":"35,39,55,N","longitude_rptd":"078,29,24,W","latitude_dec":"35.66528","longitude_dec":"-78.49","latitude_dms":"35,39,55,N","longitude_dms":"078,29,24,W","precision":"DDMMSS"}],"elevations":[{"elevationType":"GROUND","elevationFeet":"348","elevationMeters":"106.1"}],"geoInfo":{"ncdcstnId":"30001912","countries":[{"country":"UNITED
+        STATES"}],"stateProvinces":[{"stateProvince":"NC"}],"counties":[{"county":"WAKE"}],"utcOffsets":[{"utcOffset":"-5"}]},"nwsInfo":{"ncdcstnId":"30001912","nwsRegions":[{"nwsRegion":"EASTERN"}],"nwsWfos":[{"nwsWfo":"RAH","displayName":"RALEIGH\/DURHAM,
+        NC"}]}},"platforms":[{"platform":"NEXRAD"}],"updates":[{"effectiveDate":"2010-01-06T00:00:00.000","providedBy":"NCDC\/SMCNEILL","updateSource":"AD
+        HOC","description":"STATION DATA PRODUCT UPDATES TO NEXRAD STATIONS TO MATCH
+        ACTUAL INVENTORY DATES","enteredBy":"SMCNEILL","enteredDate":"2010-01-06T00:00:00-05:00"}]}]}}'
+  recorded_at: 2018-12-01 19:49:44 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
