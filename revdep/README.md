@@ -1,29 +1,29 @@
-# Setup
+# Platform
 
-## Platform
-
-|setting  |value                                       |
+|field    |value                                       |
 |:--------|:-------------------------------------------|
-|version  |R version 3.4.0 Patched (2017-04-24 r72617) |
+|version  |R version 3.5.1 Patched (2018-11-18 r75627) |
+|os       |macOS Mojave 10.14.1                        |
 |system   |x86_64, darwin15.6.0                        |
-|ui       |RStudio (1.1.204)                           |
+|ui       |X11                                         |
 |language |(EN)                                        |
 |collate  |en_US.UTF-8                                 |
-|tz       |America/Vancouver                           |
-|date     |2017-05-05                                  |
+|ctype    |en_US.UTF-8                                 |
+|tz       |US/Pacific                                  |
+|date     |2018-11-30                                  |
 
-## Packages
+# Dependencies
 
-|package |*  |version    |date       |source                          |
-|:-------|:--|:----------|:----------|:-------------------------------|
-|rnoaa   |   |0.6.9.9110 |2017-05-05 |local (ropensci/rnoaa@NA)       |
-|taxize  |   |0.8.5.9114 |2017-05-05 |local (ropensci/taxize@0c92393) |
+|package |old   |new |Δ  |
+|:-------|:-----|:---|:--|
+|rnoaa   |0.7.0 |NA  |*  |
 
-# Check results
-1 packages
+# Revdeps
 
-## countyweather (0.1.0)
-Maintainer: Rachel Severson <rachel.severson@colostate.edu>
+## All (2)
 
-0 errors | 0 warnings | 0 notes
+|package                                    |version |error |warning |note |
+|:------------------------------------------|:-------|:-----|:-------|:----|
+|[countyweather](problems.md#countyweather) |0.1.0   |      |        |1    |
+|Z10                                        |0.1.0   |      |        |     |
 

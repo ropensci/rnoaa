@@ -23,5 +23,4 @@ user_test_cases/
 ^issue_template\.md$
 ^revdep$
 .github
-
 ^codemeta\.json$
