@@ -1,3 +1,47 @@
+rnoaa 0.8.0
+===========
+
+### NEW FEATURES
+
+* gains function `bsw()` for Blended Sea Winds data (#246)
+* gains function `ghcnd_read()` - to read .dly files directly, e.g., files already downloaded (#223) thanks @shabbychef for the feature request
+* gains function `lcd()` for Local Climatological Data (#212)
+* gains functions `se_data()` and `se_files()` (#xxx)
+* `ghcnd()` and `ghcnd_search()` gain a `refresh` parameter to refresh data for the query even if it's already cached locally. in addition, these functions now print messages to tell the user what file path the data is locally cached in, and the min and max dates when using `ghcnd_search()` (#269) thanks @kgmccann
+* `ncdc()` gains `add_units` parameter (boolean) to toggle adding units to the output data.frame. default is `add_units=FALSE`. if `add_units=TRUE` we match dataset id and data type id and return units if we have them. do be in touch if you see a problem with these units! `ncdc()` now returns tibbles in the `data` slot (#233) (#266) (#289) (#287)
+
+### MINOR IMPROVEMENTS
+
+* spelling fixes to `coops` docs (#228) thanks @jsta
+* fix in `ghcnd_search()` to arrange data by day instead of by month (#247) thanks @asrivas3 for reporting
+* move `swdi()` to use `xml2` and `crul` packages instead of `XML` and `httr` (#275)
+* added `swdi()` tests (#239) thanks @kevin-ht-ho
+* `isd_stations_search()` no longer renames lat and lon column names (#238) thanks @kevin-ht-ho
+* add codemeta keywords to description (#287)
+* fix links in Code of Conduct
+
+### BUG FIXES
+
+* fixes to `gefs()`. was incorrectly repeating time values within ensembles when it should have repeated time values across ensembles so that each ensemble has a time value for each time period (#230) (#231) thanks for report from @lcsma and fix by @potterzot
+* fix bug in `ncdc()` - fix to internal function `parse_ncdc()`, which was failing on `strsplit()` call if attributes was `NULL` (#232) thanks for reporting @andypicke
+* fix to `cpc_prcp()`: URLs were changed at some point, fixes for this (#242) 
+* fix to `cpc_prcp()`: to read `.gz` files correctly with gzfile instead of file (#248)
+* fix in `homr()` - NOAA server gives back a 200 OK response even if that's not the case - but we can check content type to see if there was likely an error (#250)
+* fix to `autoplot.meteo_coverage` (#258)
+* fix to `buoy_stations()`: was getting the wrong station ids - fixed; and use async HTTP requests to get data faster (#261) thanks @johnharley for the bug report
+* fix to `ghcnd_stations()`: was returning an extra empty row  (#267) thanks @joeroe for the bug report
+* related to (#267), `ghcnd()` was giving a trailing row of NA's - fixed (#270)
+* `swdi()`: `radius` parameter doesn't work, update docs to tell users not to use it (#243)
+* `ncdc()` fix: fix to internal function `parse_ncdc()`, errored when more than 1 flag returned (#279) thanks @ghaines3 for the bug report
+* buoy fixes (#251)
+* `storm_shp()` fix: update to use new URL patterns (#263)
+* make `swdi()` fail better (#274) thanks @OrionDarley
+* fix `meteo_nearby_stations()` to coerce character to numeric lat and lon values (#257) thanks @mondorescue for the bug report
+* fix to `meteo_nearby_stations()` - internally ignored the user supplied column names for lat and lon (#286) thanks @ghaines3 for the bug report
+* fixed `tornadoes()` for Windows OS's: `utils::untar()` was failing on windows, changed to using `utils::unzip()` (#203)
+* fixed `argo_buoy_files()`: use `fill=TRUE` in the `read.table` call - was erroring on some Windows OS's (#235) thanks @jonmcalder for reporting
+
+
 rnoaa 0.7.0
 ===========
 
