@@ -9,7 +9,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -17,7 +17,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:57:18 GMT
+      date: Sun, 02 Dec 2018 05:21:46 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -56,5 +56,5 @@ http_interactions:
         minimum soil temperature for the month(cover: grass","datacoverage":1,"id":"HN1191"},{"mindate":"1984-01-01","maxdate":"2010-12-01","name":"Highest
         minimum soil temperature for the month(cover: grass","datacoverage":1,"id":"HN1290"},{"mindate":"1984-01-01","maxdate":"1989-07-01","name":"Highest
         minimum soil temperature for the month(cover: grass","datacoverage":0.8807,"id":"HN1291"}]}'
-  recorded_at: 2018-12-01 19:57:17 GMT
+  recorded_at: 2018-12-02 05:21:46 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9

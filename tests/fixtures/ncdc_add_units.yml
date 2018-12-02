@@ -9,7 +9,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -17,7 +17,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:54:11 GMT
+      date: Sun, 02 Dec 2018 05:20:54 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -31,7 +31,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"metadata":{"resultset":{"offset":1,"count":75010,"limit":25}},"results":[{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:AQW00061705","attributes":"C","value":869},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CAW00064757","attributes":"Q","value":607},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914080","attributes":"R","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914801","attributes":"R","value":858},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914395","attributes":"P","value":876},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914419","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914446","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914482","attributes":"R","value":868},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914720","attributes":"R","value":899},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914761","attributes":"P","value":897},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914831","attributes":"P","value":870},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914892","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914898","attributes":"P","value":875},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914911","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040308","attributes":"S","value":888},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040504","attributes":"C","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040505","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQC00914025","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQW00041415","attributes":"C","value":877},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:JQW00021603","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914519","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914712","attributes":"P","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSW00040309","attributes":"S","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040604","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040710","attributes":"C","value":863}]}'
-  recorded_at: 2018-12-01 19:54:22 GMT
+  recorded_at: 2018-12-02 05:21:05 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
@@ -43,7 +43,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -51,7 +51,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:54:13 GMT
+      date: Sun, 02 Dec 2018 05:20:55 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -65,7 +65,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"metadata":{"resultset":{"offset":1,"count":75010,"limit":25}},"results":[{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:AQW00061705","attributes":"C","value":869},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CAW00064757","attributes":"Q","value":607},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914080","attributes":"R","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914801","attributes":"R","value":858},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914395","attributes":"P","value":876},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914419","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914446","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914482","attributes":"R","value":868},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914720","attributes":"R","value":899},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914761","attributes":"P","value":897},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914831","attributes":"P","value":870},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914892","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914898","attributes":"P","value":875},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914911","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040308","attributes":"S","value":888},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040504","attributes":"C","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040505","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQC00914025","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQW00041415","attributes":"C","value":877},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:JQW00021603","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914519","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914712","attributes":"P","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSW00040309","attributes":"S","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040604","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040710","attributes":"C","value":863}]}'
-  recorded_at: 2018-12-01 19:54:22 GMT
+  recorded_at: 2018-12-02 05:21:05 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
@@ -77,7 +77,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -85,7 +85,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:54:14 GMT
+      date: Sun, 02 Dec 2018 05:20:55 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -99,7 +99,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"metadata":{"resultset":{"offset":1,"count":75010,"limit":25}},"results":[{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:AQW00061705","attributes":"C","value":869},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CAW00064757","attributes":"Q","value":607},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914080","attributes":"R","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914801","attributes":"R","value":858},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914395","attributes":"P","value":876},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914419","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914446","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914482","attributes":"R","value":868},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914720","attributes":"R","value":899},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914761","attributes":"P","value":897},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914831","attributes":"P","value":870},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914892","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914898","attributes":"P","value":875},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914911","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040308","attributes":"S","value":888},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040504","attributes":"C","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040505","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQC00914025","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQW00041415","attributes":"C","value":877},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:JQW00021603","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914519","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914712","attributes":"P","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSW00040309","attributes":"S","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040604","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040710","attributes":"C","value":863}]}'
-  recorded_at: 2018-12-01 19:54:22 GMT
+  recorded_at: 2018-12-02 05:21:05 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
@@ -111,7 +111,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -119,41 +119,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:54:21 GMT
-      server: Apache-Coyote/1.1
-      strict-transport-security: max-age=31536000
-      access-control-allow-origin: '*'
-      access-control-allow-methods: GET
-      access-control-allow-headers: token
-      content-type: application/json;charset=UTF-8
-      vary: Accept-Encoding
-      content-encoding: gzip
-      connection: close
-      transfer-encoding: chunked
-    body:
-      encoding: UTF-8
-      string: '{"metadata":{"resultset":{"offset":1,"count":5,"limit":25}},"results":[{"date":"2013-12-01T00:00:00","datatype":"DX32","station":"GHCND:AE000041196","attributes":"4,S","value":0},{"date":"2013-12-01T00:00:00","datatype":"DX70","station":"GHCND:AE000041196","attributes":"4,S","value":26},{"date":"2013-12-01T00:00:00","datatype":"DX90","station":"GHCND:AE000041196","attributes":"4,S","value":0},{"date":"2013-12-01T00:00:00","datatype":"EMXT","station":"GHCND:AE000041196","attributes":"4,S,13,","value":31.8},{"date":"2013-12-01T00:00:00","datatype":"TMAX","station":"GHCND:AE000041196","attributes":"4,,,S","value":26.53}]}'
-  recorded_at: 2018-12-01 19:54:22 GMT
-  recorded_with: vcr/0.2.0, webmockr/0.2.9
-- request:
-    method: get
-    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOM&startdate=2013-10-01&enddate=2013-12-01&limit=25&includemetadata=TRUE&stationid=GHCND%3AAE000041196
-    body:
-      encoding: ''
-      string: ''
-    headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
-      Accept-Encoding: gzip, deflate
-      Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
-  response:
-    status:
-      status_code: '200'
-      message: OK
-      explanation: Request fulfilled, document follows
-    headers:
-      status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:54:22 GMT
+      date: Sun, 02 Dec 2018 05:21:03 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -167,7 +133,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"metadata":{"resultset":{"offset":1,"count":5,"limit":25}},"results":[{"date":"2013-12-01T00:00:00","datatype":"DX32","station":"GHCND:AE000041196","attributes":"4,S","value":0},{"date":"2013-12-01T00:00:00","datatype":"DX70","station":"GHCND:AE000041196","attributes":"4,S","value":26},{"date":"2013-12-01T00:00:00","datatype":"DX90","station":"GHCND:AE000041196","attributes":"4,S","value":0},{"date":"2013-12-01T00:00:00","datatype":"EMXT","station":"GHCND:AE000041196","attributes":"4,S,13,","value":31.8},{"date":"2013-12-01T00:00:00","datatype":"TMAX","station":"GHCND:AE000041196","attributes":"4,,,S","value":26.53}]}'
-  recorded_at: 2018-12-01 19:54:22 GMT
+  recorded_at: 2018-12-02 05:21:05 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
@@ -179,7 +145,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -187,7 +153,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:54:22 GMT
+      date: Sun, 02 Dec 2018 05:21:03 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -201,5 +167,39 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"metadata":{"resultset":{"offset":1,"count":5,"limit":25}},"results":[{"date":"2013-12-01T00:00:00","datatype":"DX32","station":"GHCND:AE000041196","attributes":"4,S","value":0},{"date":"2013-12-01T00:00:00","datatype":"DX70","station":"GHCND:AE000041196","attributes":"4,S","value":26},{"date":"2013-12-01T00:00:00","datatype":"DX90","station":"GHCND:AE000041196","attributes":"4,S","value":0},{"date":"2013-12-01T00:00:00","datatype":"EMXT","station":"GHCND:AE000041196","attributes":"4,S,13,","value":31.8},{"date":"2013-12-01T00:00:00","datatype":"TMAX","station":"GHCND:AE000041196","attributes":"4,,,S","value":26.53}]}'
-  recorded_at: 2018-12-01 19:54:22 GMT
+  recorded_at: 2018-12-02 05:21:05 GMT
+  recorded_with: vcr/0.2.0, webmockr/0.2.9
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOM&startdate=2013-10-01&enddate=2013-12-01&limit=25&includemetadata=TRUE&stationid=GHCND%3AAE000041196
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: <<ncdc_token>>
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sun, 02 Dec 2018 05:21:05 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-length: '210'
+      connection: close
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":5,"limit":25}},"results":[{"date":"2013-12-01T00:00:00","datatype":"DX32","station":"GHCND:AE000041196","attributes":"4,S","value":0},{"date":"2013-12-01T00:00:00","datatype":"DX70","station":"GHCND:AE000041196","attributes":"4,S","value":26},{"date":"2013-12-01T00:00:00","datatype":"DX90","station":"GHCND:AE000041196","attributes":"4,S","value":0},{"date":"2013-12-01T00:00:00","datatype":"EMXT","station":"GHCND:AE000041196","attributes":"4,S,13,","value":31.8},{"date":"2013-12-01T00:00:00","datatype":"TMAX","station":"GHCND:AE000041196","attributes":"4,,,S","value":26.53}]}'
+  recorded_at: 2018-12-02 05:21:05 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9

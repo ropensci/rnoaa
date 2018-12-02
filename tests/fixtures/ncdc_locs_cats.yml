@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories?token=hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ&limit=25
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories?token=<<ncdc_token>>&limit=25
     body:
       encoding: ''
       string: ''
@@ -9,7 +9,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -17,7 +17,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:58:33 GMT
+      date: Sun, 02 Dec 2018 05:21:59 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -35,11 +35,11 @@ http_interactions:
         Accounting Unit","id":"HYD_ACC"},{"name":"Hydrologic Cataloging Unit","id":"HYD_CAT"},{"name":"Hydrologic
         Region","id":"HYD_REG"},{"name":"Hydrologic Subregion","id":"HYD_SUB"},{"name":"State","id":"ST"},{"name":"US
         Territory","id":"US_TERR"},{"name":"Zip Code","id":"ZIP"}]}'
-  recorded_at: 2018-12-01 19:58:36 GMT
+  recorded_at: 2018-12-02 05:22:03 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
-    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories/CLIM_REG?locationcategoryid=CLIM_REG&token=hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ&limit=25
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories/CLIM_REG?locationcategoryid=CLIM_REG&token=<<ncdc_token>>&limit=25
     body:
       encoding: ''
       string: ''
@@ -47,7 +47,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -55,7 +55,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:58:35 GMT
+      date: Sun, 02 Dec 2018 05:22:00 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -64,16 +64,16 @@ http_interactions:
       content-type: application/json;charset=UTF-8
       vary: Accept-Encoding
       content-encoding: gzip
+      content-length: '59'
       connection: close
-      transfer-encoding: chunked
     body:
       encoding: UTF-8
       string: '{"name":"Climate Region","id":"CLIM_REG"}'
-  recorded_at: 2018-12-01 19:58:36 GMT
+  recorded_at: 2018-12-02 05:22:03 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
-    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories?startdate=1970-01-01&token=hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ&limit=25
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories?startdate=1970-01-01&token=<<ncdc_token>>&limit=25
     body:
       encoding: ''
       string: ''
@@ -81,7 +81,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -89,7 +89,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:58:37 GMT
+      date: Sun, 02 Dec 2018 05:22:02 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -107,5 +107,5 @@ http_interactions:
         Accounting Unit","id":"HYD_ACC"},{"name":"Hydrologic Cataloging Unit","id":"HYD_CAT"},{"name":"Hydrologic
         Region","id":"HYD_REG"},{"name":"Hydrologic Subregion","id":"HYD_SUB"},{"name":"State","id":"ST"},{"name":"US
         Territory","id":"US_TERR"},{"name":"Zip Code","id":"ZIP"}]}'
-  recorded_at: 2018-12-01 19:58:36 GMT
+  recorded_at: 2018-12-02 05:22:03 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9

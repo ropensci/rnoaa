@@ -9,7 +9,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -17,7 +17,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:53:10 GMT
+      date: Sun, 02 Dec 2018 05:20:39 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -31,7 +31,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"metadata":{"resultset":{"offset":1,"count":75010,"limit":25}},"results":[{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:AQW00061705","attributes":"C","value":869},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CAW00064757","attributes":"Q","value":607},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914080","attributes":"R","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914801","attributes":"R","value":858},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914395","attributes":"P","value":876},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914419","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914446","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914482","attributes":"R","value":868},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914720","attributes":"R","value":899},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914761","attributes":"P","value":897},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914831","attributes":"P","value":870},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914892","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914898","attributes":"P","value":875},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914911","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040308","attributes":"S","value":888},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040504","attributes":"C","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040505","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQC00914025","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQW00041415","attributes":"C","value":877},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:JQW00021603","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914519","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914712","attributes":"P","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSW00040309","attributes":"S","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040604","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040710","attributes":"C","value":863}]}'
-  recorded_at: 2018-12-01 19:53:31 GMT
+  recorded_at: 2018-12-02 05:20:52 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
@@ -43,7 +43,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -51,7 +51,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:53:31 GMT
+      date: Sun, 02 Dec 2018 05:20:51 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -65,5 +65,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"metadata":{"resultset":{"offset":1,"count":28,"limit":30}},"results":[{"date":"2013-09-03T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-04T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-05T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-06T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-07T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":8},{"date":"2013-09-08T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-09T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":74},{"date":"2013-09-10T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-11T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-12T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":36},{"date":"2013-09-13T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":"T,,7,1800","value":0},{"date":"2013-09-14T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-15T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":8},{"date":"2013-09-16T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":13},{"date":"2013-09-17T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-18T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-19T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-20T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":48},{"date":"2013-09-21T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":99},{"date":"2013-09-22T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-23T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-24T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-25T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-26T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-27T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-28T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":0},{"date":"2013-09-29T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":41},{"date":"2013-09-30T00:00:00","datatype":"PRCP","station":"GHCND:USC00200230","attributes":",,7,1800","value":5}]}'
-  recorded_at: 2018-12-01 19:53:31 GMT
+  recorded_at: 2018-12-02 05:20:52 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9

@@ -9,7 +9,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -17,7 +17,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:55:37 GMT
+      date: Sun, 02 Dec 2018 05:21:38 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -42,7 +42,7 @@ http_interactions:
         Monthly","datacoverage":1,"id":"NORMAL_MLY"},{"uid":"gov.noaa.ncdc:C00505","mindate":"1970-05-12","maxdate":"2014-01-01","name":"Precipitation
         15 Minute","datacoverage":0.25,"id":"PRECIP_15"},{"uid":"gov.noaa.ncdc:C00313","mindate":"1900-01-01","maxdate":"2014-01-01","name":"Precipitation
         Hourly","datacoverage":1,"id":"PRECIP_HLY"}]}'
-  recorded_at: 2018-12-01 19:55:39 GMT
+  recorded_at: 2018-12-02 05:21:40 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
@@ -54,7 +54,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -62,7 +62,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:55:38 GMT
+      date: Sun, 02 Dec 2018 05:21:39 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -87,7 +87,7 @@ http_interactions:
         Monthly","datacoverage":1,"id":"NORMAL_MLY"},{"uid":"gov.noaa.ncdc:C00505","mindate":"1970-05-12","maxdate":"2014-01-01","name":"Precipitation
         15 Minute","datacoverage":0.25,"id":"PRECIP_15"},{"uid":"gov.noaa.ncdc:C00313","mindate":"1900-01-01","maxdate":"2014-01-01","name":"Precipitation
         Hourly","datacoverage":1,"id":"PRECIP_HLY"}]}'
-  recorded_at: 2018-12-01 19:55:39 GMT
+  recorded_at: 2018-12-02 05:21:40 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
@@ -99,7 +99,7 @@ http_interactions:
       User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      token: hzGfPCLWFGWdVSkjVIljzQVfkHvlNmeQ
+      token: <<ncdc_token>>
   response:
     status:
       status_code: '200'
@@ -107,7 +107,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Sat, 01 Dec 2018 19:55:40 GMT
+      date: Sun, 02 Dec 2018 05:21:39 GMT
       server: Apache-Coyote/1.1
       strict-transport-security: max-age=31536000
       access-control-allow-origin: '*'
@@ -132,5 +132,5 @@ http_interactions:
         Monthly","datacoverage":1,"id":"NORMAL_MLY"},{"uid":"gov.noaa.ncdc:C00505","mindate":"1970-05-12","maxdate":"2014-01-01","name":"Precipitation
         15 Minute","datacoverage":0.25,"id":"PRECIP_15"},{"uid":"gov.noaa.ncdc:C00313","mindate":"1900-01-01","maxdate":"2014-01-01","name":"Precipitation
         Hourly","datacoverage":1,"id":"PRECIP_HLY"}]}'
-  recorded_at: 2018-12-01 19:55:39 GMT
+  recorded_at: 2018-12-02 05:21:40 GMT
   recorded_with: vcr/0.2.0, webmockr/0.2.9
