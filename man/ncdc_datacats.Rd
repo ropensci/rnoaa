@@ -94,8 +94,7 @@ ncdc_datacats(stationid='COOP:310090')
 ncdc_datacats(stationid=c('COOP:310090','COOP:310184','COOP:310212'))
 
 ## Curl debugging
-ncdc_datacats(limit=10, config=verbose())
-out <- ncdc_datacats(limit=10, config=progress())
+ncdc_datacats(limit=10, verbose = TRUE)
 }
 }
 \references{
