@@ -1,6 +1,8 @@
 context("ncdc_datasets")
 
 test_that("ncdc_datasets returns the correct class", {
+  skip_on_cran()
+  
   vcr::use_cassette("ncdc_datasets", {
     tt <- ncdc_datasets()
     uu <- ncdc_datasets(datasetid='ANNUAL')

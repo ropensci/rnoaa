@@ -1,6 +1,8 @@
 context("ncdc_locs_cats")
 
 test_that("ncdc_locs_cats returns the correct ...", {
+  skip_on_cran()    
+
   vcr::use_cassette("ncdc_locs_cats", {
     tt <- ncdc_locs_cats()
     uu <- ncdc_locs_cats(locationcategoryid='CLIM_REG')

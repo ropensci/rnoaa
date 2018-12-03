@@ -1,6 +1,8 @@
 context("ncdc")
 
 test_that("ncdc returns the correct ...", {
+  skip_on_cran()
+
   vcr::use_cassette("ncdc", {
     # Normals Daily GHCND:USW00014895 dly-tmax-normal data
     aa <- ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-10')
@@ -41,6 +43,8 @@ test_that("ncdc returns the correct ...", {
 
 context("ncdc: add units")
 test_that("ncdc add units works", {
+  skip_on_cran()
+  
   vcr::use_cassette("ncdc_add_units", {
     # not add units
     aa <- ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', 

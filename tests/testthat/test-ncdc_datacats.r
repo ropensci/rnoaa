@@ -1,6 +1,8 @@
 context("ncdc_datacats")
 
 test_that("ncdc_datacats returns the correct ...", {
+  skip_on_cran()
+  
   vcr::use_cassette("ncdc_datacats", {
     tt <- ncdc_datacats()
     uu <- ncdc_datacats(datacategoryid="ANNAGR")

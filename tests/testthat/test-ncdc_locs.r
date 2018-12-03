@@ -1,6 +1,8 @@
 context("ncdc_locs")
 
 test_that("ncdc_locs returns the correct class", {
+  skip_on_cran()
+
   vcr::use_cassette("ncdc_locs", {
     tt <- ncdc_locs(datasetid='NORMAL_DLY', startdate='20100101')
     uu <- ncdc_locs(locationcategoryid='ST', limit=52)

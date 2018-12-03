@@ -1,6 +1,8 @@
 context("ncdc_stations")
 
 test_that("ncdc_stations returns the correct...", {
+  skip_on_cran()
+
   vcr::use_cassette("ncdc_stations", {
     bb <- ncdc_stations(stationid='COOP:010008')
     cc <- ncdc_stations(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895')
