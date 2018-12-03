@@ -4,6 +4,8 @@
 %\VignetteEncoding{UTF-8}
 -->
 
+
+
 # Complementing air quality data with weather data using rnoaa
 
 __Author__ Maëlle Salmon
@@ -149,6 +151,33 @@ all_monitors_clean <- meteo_pull_monitors(monitors,
                                      date_max = as.character(Sys.Date())) %>%
   rename(day = date,
          location = id)
+```
+
+```
+#> file path:          /Users/sckott/Library/Caches/rnoaa/ghcnd/US1INMR0134.dly
+```
+
+```
+#> file last updated:  2018-12-03 11:12:04
+```
+
+```
+#> file min/max dates: 2015-05-01 / 2018-11-30
+```
+
+```
+#> file path:          /Users/sckott/Library/Caches/rnoaa/ghcnd/US1INMR0122.dly
+```
+
+```
+#> file last updated:  2018-12-03 11:12:06
+```
+
+```
+#> file min/max dates: 2012-11-01 / 2018-11-30
+```
+
+```r
 all_monitors_clean %>% head() %>% knitr::kable()
 ```
 
@@ -156,12 +185,12 @@ all_monitors_clean %>% head() %>% knitr::kable()
 
 |location    |day        | prcp| snow|
 |:-----------|:----------|----:|----:|
-|US1INMR0134 |2017-10-21 |   NA|   NA|
-|US1INMR0134 |2017-10-22 |   NA|   NA|
-|US1INMR0134 |2017-10-23 |   NA|   NA|
-|US1INMR0134 |2017-10-24 |   NA|   NA|
-|US1INMR0134 |2017-10-25 |   NA|   NA|
-|US1INMR0134 |2017-10-26 |   NA|   NA|
+|US1INMR0134 |2018-11-03 |   NA|   NA|
+|US1INMR0134 |2018-11-04 |   NA|   NA|
+|US1INMR0134 |2018-11-05 |   NA|   NA|
+|US1INMR0134 |2018-11-06 |   76|   NA|
+|US1INMR0134 |2018-11-07 |   NA|   NA|
+|US1INMR0134 |2018-11-08 |   NA|   NA|
 
 Here we notice some values are not available. Therefore, we might need to go back to weather stations searching with, for instance, a larger radius. In this case let's say we're ok with the result of the search.
 
@@ -205,4 +234,4 @@ ggplot(data_plot) +
   facet_grid(parameter ~ ., scales = "free_y")
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)

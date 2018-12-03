@@ -40,13 +40,13 @@ head(res)
 #> 4 41006
 #> 5 41008
 #> 6 41009
-#>                                                                       url
-#> 1 http://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41001/catalog.html
-#> 2 http://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41002/catalog.html
-#> 3 http://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41004/catalog.html
-#> 4 http://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41006/catalog.html
-#> 5 http://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41008/catalog.html
-#> 6 http://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41009/catalog.html
+#>                                                                        url
+#> 1 https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41001/catalog.html
+#> 2 https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41002/catalog.html
+#> 3 https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41004/catalog.html
+#> 4 https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41006/catalog.html
+#> 5 https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41008/catalog.html
+#> 6 https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41009/catalog.html
 ```
 
 Or browse them on the web
@@ -116,24 +116,24 @@ Including year and datatype
 
 
 ```r
-buoy(dataset = 'cwind', buoyid = 41001, year = 2008, datatype = "cc")
+buoy(dataset = 'cwind', buoyid = 45005, year = 2008, datatype = "c")
 ```
 
 ```
-#> Dimensions (rows/cols): [1585 X 5] 
+#> Dimensions (rows/cols): [29688 X 5] 
 #> 2 variables: [wind_dir, wind_spd] 
 #> 
 #>                    time    lat     lon wind_dir wind_spd
-#> 1  2008-05-28T16:00:00Z 34.704 -72.734      230      8.6
-#> 2  2008-05-28T16:10:00Z 34.704 -72.734      230      8.7
-#> 3  2008-05-28T16:20:00Z 34.704 -72.734      229      8.5
-#> 4  2008-05-28T16:30:00Z 34.704 -72.734      231      8.8
-#> 5  2008-05-28T16:40:00Z 34.704 -72.734      236      8.5
-#> 6  2008-05-28T16:50:00Z 34.704 -72.734      235      8.9
-#> 7  2008-05-28T17:00:00Z 34.704 -72.734      233      8.2
-#> 8  2008-05-28T17:10:00Z 34.704 -72.734      233      8.2
-#> 9  2008-05-28T17:20:00Z 34.704 -72.734      231      8.3
-#> 10 2008-05-28T17:30:00Z 34.704 -72.734      232      7.8
+#> 1  2008-04-29T09:00:00Z 41.677 -82.398       10      9.0
+#> 2  2008-04-29T09:10:00Z 41.677 -82.398        8      9.0
+#> 3  2008-04-29T09:20:00Z 41.677 -82.398        5      9.3
+#> 4  2008-04-29T09:30:00Z 41.677 -82.398       13      9.5
+#> 5  2008-04-29T09:40:00Z 41.677 -82.398       14      9.4
+#> 6  2008-04-29T09:50:00Z 41.677 -82.398       12      9.4
+#> 7  2008-04-29T14:00:00Z 41.677 -82.398      341      6.5
+#> 8  2008-04-29T14:10:00Z 41.677 -82.398      332      6.8
+#> 9  2008-04-29T14:20:00Z 41.677 -82.398      335      6.4
+#> 10 2008-04-29T14:30:00Z 41.677 -82.398      332      6.5
 #> ..                  ...    ...     ...      ...      ...
 ```
 
@@ -141,23 +141,23 @@ Including just datatype
 
 
 ```r
-buoy(dataset = 'cwind', buoyid = 41001, datatype = "cc")
+buoy(dataset = 'cwind', buoyid = 45005, datatype = "c")
 ```
 
 ```
-#> Dimensions (rows/cols): [1585 X 5] 
+#> Dimensions (rows/cols): [26784 X 5] 
 #> 2 variables: [wind_dir, wind_spd] 
 #> 
-#>                    time    lat     lon wind_dir wind_spd
-#> 1  2008-05-28T16:00:00Z 34.704 -72.734      230      8.6
-#> 2  2008-05-28T16:10:00Z 34.704 -72.734      230      8.7
-#> 3  2008-05-28T16:20:00Z 34.704 -72.734      229      8.5
-#> 4  2008-05-28T16:30:00Z 34.704 -72.734      231      8.8
-#> 5  2008-05-28T16:40:00Z 34.704 -72.734      236      8.5
-#> 6  2008-05-28T16:50:00Z 34.704 -72.734      235      8.9
-#> 7  2008-05-28T17:00:00Z 34.704 -72.734      233      8.2
-#> 8  2008-05-28T17:10:00Z 34.704 -72.734      233      8.2
-#> 9  2008-05-28T17:20:00Z 34.704 -72.734      231      8.3
-#> 10 2008-05-28T17:30:00Z 34.704 -72.734      232      7.8
-#> ..                  ...    ...     ...      ...      ...
+#>                    time   lat   lon wind_dir wind_spd
+#> 1  1996-05-15T23:00:00Z 41.68 -82.4      337      2.2
+#> 2  1996-05-15T23:10:00Z 41.68 -82.4      282      1.0
+#> 3  1996-05-15T23:20:00Z 41.68 -82.4      282      2.2
+#> 4  1996-05-15T23:30:00Z 41.68 -82.4      258      2.6
+#> 5  1996-05-15T23:40:00Z 41.68 -82.4      254      3.0
+#> 6  1996-05-15T23:50:00Z 41.68 -82.4      252      2.7
+#> 7  1996-05-16T00:00:00Z 41.68 -82.4      240      2.1
+#> 8  1996-05-16T00:10:00Z 41.68 -82.4      246      2.4
+#> 9  1996-05-16T00:20:00Z 41.68 -82.4      251      2.7
+#> 10 1996-05-16T00:30:00Z 41.68 -82.4      253      2.9
+#> ..                  ...   ...   ...      ...      ...
 ```

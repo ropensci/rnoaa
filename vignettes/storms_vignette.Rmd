@@ -85,53 +85,53 @@ storm_data(basin='WP')
 ```
 
 ```
-#> # A tibble: 39,584 × 195
-#>       serial_num season   num basin sub_basin      name
-#>            <chr>  <int> <int> <chr>     <chr>     <chr>
-#> 1  1884177N17124   1884     1    WP        MM NOT NAMED
-#> 2  1884177N17124   1884     1    WP        MM NOT NAMED
-#> 3  1884177N17124   1884     1    WP        MM NOT NAMED
-#> 4  1884177N17124   1884     1    WP        MM NOT NAMED
-#> 5  1884177N17124   1884     1    WP        MM NOT NAMED
-#> 6  1884177N17124   1884     1    WP        MM NOT NAMED
-#> 7  1884177N17124   1884     1    WP        MM NOT NAMED
-#> 8  1884177N17124   1884     1    WP        MM NOT NAMED
-#> 9  1884177N17124   1884     1    WP        MM NOT NAMED
-#> 10 1884177N17124   1884     1    WP        MM NOT NAMED
-#> # ... with 39,574 more rows, and 189 more variables: iso_time <chr>,
-#> #   nature <chr>, latitude <dbl>, longitude <dbl>, wind.wmo. <dbl>,
-#> #   pres.wmo. <dbl>, center <chr>, wind.wmo..percentile <dbl>,
-#> #   pres.wmo..percentile <dbl>, track_type <chr>,
-#> #   latitude_for_mapping <dbl>, longitude_for_mapping <dbl>,
-#> #   current.basin <chr>, hurdat_atl_lat <dbl>, hurdat_atl_lon <dbl>,
-#> #   hurdat_atl_grade <dbl>, hurdat_atl_wind <dbl>, hurdat_atl_pres <dbl>,
-#> #   td9636_lat <dbl>, td9636_lon <dbl>, td9636_grade <dbl>,
-#> #   td9636_wind <dbl>, td9636_pres <dbl>, reunion_lat <dbl>,
-#> #   reunion_lon <dbl>, reunion_grade <dbl>, reunion_wind <dbl>,
-#> #   reunion_pres <dbl>, atcf_lat <dbl>, atcf_lon <dbl>, atcf_grade <dbl>,
-#> #   atcf_wind <dbl>, atcf_pres <dbl>, ds824_sh_lat <dbl>,
-#> #   ds824_sh_lon <dbl>, ds824_sh_grade <dbl>, ds824_sh_wind <dbl>,
-#> #   ds824_sh_pres <dbl>, ds824_ni_lat <dbl>, ds824_ni_lon <dbl>,
-#> #   ds824_ni_grade <dbl>, ds824_ni_wind <dbl>, ds824_ni_pres <dbl>,
-#> #   bom_lat <dbl>, bom_lon <dbl>, bom_grade <dbl>, bom_wind <dbl>,
-#> #   bom_pres <dbl>, ds824_au_lat <dbl>, ds824_au_lon <dbl>,
-#> #   ds824_au_grade <dbl>, ds824_au_wind <dbl>, ds824_au_pres <dbl>,
-#> #   jtwc_sh_lat <dbl>, jtwc_sh_lon <dbl>, jtwc_sh_grade <dbl>,
-#> #   jtwc_sh_wind <dbl>, jtwc_sh_pres <dbl>, jtwc_wp_lat <dbl>,
-#> #   jtwc_wp_lon <dbl>, jtwc_wp_grade <dbl>, jtwc_wp_wind <dbl>,
-#> #   jtwc_wp_pres <dbl>, td9635_lat <dbl>, td9635_lon <dbl>,
-#> #   td9635_grade <dbl>, td9635_wind <dbl>, td9635_pres <dbl>,
-#> #   ds824_wp_lat <dbl>, ds824_wp_lon <dbl>, ds824_wp_grade <dbl>,
-#> #   ds824_wp_wind <dbl>, ds824_wp_pres <dbl>, jtwc_io_lat <dbl>,
-#> #   jtwc_io_lon <dbl>, jtwc_io_grade <dbl>, jtwc_io_wind <dbl>,
-#> #   jtwc_io_pres <dbl>, cma_lat <dbl>, cma_lon <dbl>, cma_grade <dbl>,
-#> #   cma_wind <dbl>, cma_pres <dbl>, hurdat_epa_lat <dbl>,
+#> # A tibble: 99,028 x 200
+#>    serial_num season   num basin sub_basin name  iso_time nature latitude
+#>    <chr>       <int> <int> <chr> <chr>     <chr> <chr>    <chr>     <dbl>
+#>  1 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
+#>  2 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
+#>  3 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
+#>  4 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
+#>  5 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
+#>  6 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
+#>  7 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
+#>  8 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
+#>  9 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
+#> 10 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
+#> # … with 99,018 more rows, and 191 more variables: longitude <dbl>,
+#> #   wind.wmo. <dbl>, pres.wmo. <dbl>, center <chr>,
+#> #   wind.wmo..percentile <dbl>, pres.wmo..percentile <dbl>,
+#> #   track_type <chr>, latitude_for_mapping <dbl>,
+#> #   longitude_for_mapping <dbl>, current.basin <chr>,
+#> #   hurdat_atl_lat <dbl>, hurdat_atl_lon <dbl>, hurdat_atl_grade <dbl>,
+#> #   hurdat_atl_wind <dbl>, hurdat_atl_pres <dbl>, td9636_lat <dbl>,
+#> #   td9636_lon <dbl>, td9636_grade <dbl>, td9636_wind <dbl>,
+#> #   td9636_pres <dbl>, reunion_lat <dbl>, reunion_lon <dbl>,
+#> #   reunion_grade <dbl>, reunion_wind <dbl>, reunion_pres <dbl>,
+#> #   atcf_lat <dbl>, atcf_lon <dbl>, atcf_grade <dbl>, atcf_wind <dbl>,
+#> #   atcf_pres <dbl>, mlc_natl_lat <dbl>, mlc_natl_lon <dbl>,
+#> #   mlc_natl_grade <dbl>, mlc_natl_wind <dbl>, mlc_natl_pres <dbl>,
+#> #   ds824_sh_lat <dbl>, ds824_sh_lon <dbl>, ds824_sh_grade <dbl>,
+#> #   ds824_sh_wind <dbl>, ds824_sh_pres <dbl>, ds824_ni_lat <dbl>,
+#> #   ds824_ni_lon <dbl>, ds824_ni_grade <dbl>, ds824_ni_wind <dbl>,
+#> #   ds824_ni_pres <dbl>, bom_lat <dbl>, bom_lon <dbl>, bom_grade <dbl>,
+#> #   bom_wind <dbl>, bom_pres <dbl>, ds824_au_lat <dbl>,
+#> #   ds824_au_lon <dbl>, ds824_au_grade <dbl>, ds824_au_wind <dbl>,
+#> #   ds824_au_pres <dbl>, jtwc_sh_lat <dbl>, jtwc_sh_lon <dbl>,
+#> #   jtwc_sh_grade <dbl>, jtwc_sh_wind <dbl>, jtwc_sh_pres <dbl>,
+#> #   jtwc_wp_lat <dbl>, jtwc_wp_lon <dbl>, jtwc_wp_grade <dbl>,
+#> #   jtwc_wp_wind <dbl>, jtwc_wp_pres <dbl>, td9635_lat <dbl>,
+#> #   td9635_lon <dbl>, td9635_grade <dbl>, td9635_wind <dbl>,
+#> #   td9635_pres <dbl>, ds824_wp_lat <dbl>, ds824_wp_lon <dbl>,
+#> #   ds824_wp_grade <dbl>, ds824_wp_wind <dbl>, ds824_wp_pres <dbl>,
+#> #   jtwc_io_lat <dbl>, jtwc_io_lon <dbl>, jtwc_io_grade <dbl>,
+#> #   jtwc_io_wind <dbl>, jtwc_io_pres <dbl>, cma_lat <dbl>, cma_lon <dbl>,
+#> #   cma_grade <dbl>, cma_wind <dbl>, cma_pres <dbl>, hurdat_epa_lat <dbl>,
 #> #   hurdat_epa_lon <dbl>, hurdat_epa_grade <dbl>, hurdat_epa_wind <dbl>,
 #> #   hurdat_epa_pres <dbl>, jtwc_ep_lat <dbl>, jtwc_ep_lon <dbl>,
 #> #   jtwc_ep_grade <dbl>, jtwc_ep_wind <dbl>, jtwc_ep_pres <dbl>,
 #> #   ds824_ep_lat <dbl>, ds824_ep_lon <dbl>, ds824_ep_grade <dbl>,
-#> #   ds824_ep_wind <dbl>, ds824_ep_pres <dbl>, jtwc_cp_lat <dbl>,
-#> #   jtwc_cp_lon <dbl>, ...
+#> #   ds824_ep_wind <dbl>, ds824_ep_pres <dbl>, …
 ```
 
 Or by storm id, see `storm_meta('storm_names')` for storm ids and their names.
@@ -142,26 +142,27 @@ storm_data(storm='1970143N19091')
 ```
 
 ```
-#> # A tibble: 5 × 195
-#>      serial_num season   num basin sub_basin  name            iso_time
-#>           <chr>  <int> <int> <chr>     <chr> <chr>               <chr>
-#> 1 1970143N19091   1970     2    NI        BB   02B 1970-05-22 18:00:00
-#> 2 1970143N19091   1970     2    NI        BB   02B 1970-05-23 00:00:00
-#> 3 1970143N19091   1970     2    NI        BB   02B 1970-05-23 06:00:00
-#> 4 1970143N19091   1970     2    NI        BB   02B 1970-05-23 12:00:00
-#> 5 1970143N19091   1970     2    NI        BB   02B 1970-05-23 18:00:00
-#> # ... with 188 more variables: nature <chr>, latitude <dbl>,
-#> #   longitude <dbl>, wind.wmo. <dbl>, pres.wmo. <dbl>, center <chr>,
-#> #   wind.wmo..percentile <dbl>, pres.wmo..percentile <dbl>,
-#> #   track_type <chr>, latitude_for_mapping <dbl>,
-#> #   longitude_for_mapping <dbl>, current.basin <chr>,
-#> #   hurdat_atl_lat <dbl>, hurdat_atl_lon <dbl>, hurdat_atl_grade <dbl>,
-#> #   hurdat_atl_wind <dbl>, hurdat_atl_pres <dbl>, td9636_lat <dbl>,
-#> #   td9636_lon <dbl>, td9636_grade <dbl>, td9636_wind <dbl>,
-#> #   td9636_pres <dbl>, reunion_lat <dbl>, reunion_lon <dbl>,
-#> #   reunion_grade <dbl>, reunion_wind <dbl>, reunion_pres <dbl>,
-#> #   atcf_lat <dbl>, atcf_lon <dbl>, atcf_grade <dbl>, atcf_wind <dbl>,
-#> #   atcf_pres <dbl>, ds824_sh_lat <dbl>, ds824_sh_lon <dbl>,
+#> # A tibble: 5 x 200
+#>   serial_num season   num basin sub_basin name  iso_time nature latitude
+#>   <chr>       <int> <int> <chr> <chr>     <chr> <chr>    <chr>     <dbl>
+#> 1 1970143N1…   1970     2 " NI" " BB"     02B   1970-05… " TS"      -999
+#> 2 1970143N1…   1970     2 " NI" " BB"     02B   1970-05… " TS"      -999
+#> 3 1970143N1…   1970     2 " NI" " BB"     02B   1970-05… " TS"      -999
+#> 4 1970143N1…   1970     2 " NI" " BB"     02B   1970-05… " TS"      -999
+#> 5 1970143N1…   1970     2 " NI" " BB"     02B   1970-05… " NR"      -999
+#> # … with 191 more variables: longitude <dbl>, wind.wmo. <dbl>,
+#> #   pres.wmo. <dbl>, center <chr>, wind.wmo..percentile <dbl>,
+#> #   pres.wmo..percentile <dbl>, track_type <chr>,
+#> #   latitude_for_mapping <dbl>, longitude_for_mapping <dbl>,
+#> #   current.basin <chr>, hurdat_atl_lat <dbl>, hurdat_atl_lon <dbl>,
+#> #   hurdat_atl_grade <dbl>, hurdat_atl_wind <dbl>, hurdat_atl_pres <dbl>,
+#> #   td9636_lat <dbl>, td9636_lon <dbl>, td9636_grade <dbl>,
+#> #   td9636_wind <dbl>, td9636_pres <dbl>, reunion_lat <dbl>,
+#> #   reunion_lon <dbl>, reunion_grade <dbl>, reunion_wind <dbl>,
+#> #   reunion_pres <dbl>, atcf_lat <dbl>, atcf_lon <dbl>, atcf_grade <dbl>,
+#> #   atcf_wind <dbl>, atcf_pres <dbl>, mlc_natl_lat <dbl>,
+#> #   mlc_natl_lon <dbl>, mlc_natl_grade <dbl>, mlc_natl_wind <dbl>,
+#> #   mlc_natl_pres <dbl>, ds824_sh_lat <dbl>, ds824_sh_lon <dbl>,
 #> #   ds824_sh_grade <dbl>, ds824_sh_wind <dbl>, ds824_sh_pres <dbl>,
 #> #   ds824_ni_lat <dbl>, ds824_ni_lon <dbl>, ds824_ni_grade <dbl>,
 #> #   ds824_ni_wind <dbl>, ds824_ni_pres <dbl>, bom_lat <dbl>,
@@ -182,8 +183,7 @@ storm_data(storm='1970143N19091')
 #> #   jtwc_ep_lat <dbl>, jtwc_ep_lon <dbl>, jtwc_ep_grade <dbl>,
 #> #   jtwc_ep_wind <dbl>, jtwc_ep_pres <dbl>, ds824_ep_lat <dbl>,
 #> #   ds824_ep_lon <dbl>, ds824_ep_grade <dbl>, ds824_ep_wind <dbl>,
-#> #   ds824_ep_pres <dbl>, jtwc_cp_lat <dbl>, jtwc_cp_lon <dbl>,
-#> #   jtwc_cp_grade <dbl>, ...
+#> #   ds824_ep_pres <dbl>, …
 ```
 
 Or by year, from 1842 to 2014.
@@ -194,53 +194,53 @@ storm_data(year=1941)
 ```
 
 ```
-#> # A tibble: 1,766 × 195
-#>       serial_num season   num basin sub_basin      name
-#>            <chr>  <int> <int> <chr>     <chr>     <chr>
-#> 1  1940215S18149   1941     1    SP        EA NOT NAMED
-#> 2  1940215S18149   1941     1    SP        EA NOT NAMED
-#> 3  1940215S18149   1941     1    SP        EA NOT NAMED
-#> 4  1940215S18149   1941     1    SP        EA NOT NAMED
-#> 5  1940215S18149   1941     1    SP        EA NOT NAMED
-#> 6  1940215S18149   1941     1    SP        EA NOT NAMED
-#> 7  1940215S18149   1941     1    SP        EA NOT NAMED
-#> 8  1940215S18149   1941     1    SP        EA NOT NAMED
-#> 9  1940215S18149   1941     1    SP        EA NOT NAMED
-#> 10 1940215S18149   1941     1    SP        EA NOT NAMED
-#> # ... with 1,756 more rows, and 189 more variables: iso_time <chr>,
-#> #   nature <chr>, latitude <dbl>, longitude <dbl>, wind.wmo. <dbl>,
-#> #   pres.wmo. <dbl>, center <chr>, wind.wmo..percentile <dbl>,
-#> #   pres.wmo..percentile <dbl>, track_type <chr>,
-#> #   latitude_for_mapping <dbl>, longitude_for_mapping <dbl>,
-#> #   current.basin <chr>, hurdat_atl_lat <dbl>, hurdat_atl_lon <dbl>,
-#> #   hurdat_atl_grade <dbl>, hurdat_atl_wind <dbl>, hurdat_atl_pres <dbl>,
-#> #   td9636_lat <dbl>, td9636_lon <dbl>, td9636_grade <dbl>,
-#> #   td9636_wind <dbl>, td9636_pres <dbl>, reunion_lat <dbl>,
-#> #   reunion_lon <dbl>, reunion_grade <dbl>, reunion_wind <dbl>,
-#> #   reunion_pres <dbl>, atcf_lat <dbl>, atcf_lon <dbl>, atcf_grade <dbl>,
-#> #   atcf_wind <dbl>, atcf_pres <dbl>, ds824_sh_lat <dbl>,
-#> #   ds824_sh_lon <dbl>, ds824_sh_grade <dbl>, ds824_sh_wind <dbl>,
-#> #   ds824_sh_pres <dbl>, ds824_ni_lat <dbl>, ds824_ni_lon <dbl>,
-#> #   ds824_ni_grade <dbl>, ds824_ni_wind <dbl>, ds824_ni_pres <dbl>,
-#> #   bom_lat <dbl>, bom_lon <dbl>, bom_grade <dbl>, bom_wind <dbl>,
-#> #   bom_pres <dbl>, ds824_au_lat <dbl>, ds824_au_lon <dbl>,
-#> #   ds824_au_grade <dbl>, ds824_au_wind <dbl>, ds824_au_pres <dbl>,
-#> #   jtwc_sh_lat <dbl>, jtwc_sh_lon <dbl>, jtwc_sh_grade <dbl>,
-#> #   jtwc_sh_wind <dbl>, jtwc_sh_pres <dbl>, jtwc_wp_lat <dbl>,
-#> #   jtwc_wp_lon <dbl>, jtwc_wp_grade <dbl>, jtwc_wp_wind <dbl>,
-#> #   jtwc_wp_pres <dbl>, td9635_lat <dbl>, td9635_lon <dbl>,
-#> #   td9635_grade <dbl>, td9635_wind <dbl>, td9635_pres <dbl>,
-#> #   ds824_wp_lat <dbl>, ds824_wp_lon <dbl>, ds824_wp_grade <dbl>,
-#> #   ds824_wp_wind <dbl>, ds824_wp_pres <dbl>, jtwc_io_lat <dbl>,
-#> #   jtwc_io_lon <dbl>, jtwc_io_grade <dbl>, jtwc_io_wind <dbl>,
-#> #   jtwc_io_pres <dbl>, cma_lat <dbl>, cma_lon <dbl>, cma_grade <dbl>,
-#> #   cma_wind <dbl>, cma_pres <dbl>, hurdat_epa_lat <dbl>,
+#> # A tibble: 1,766 x 200
+#>    serial_num season   num basin sub_basin name  iso_time nature latitude
+#>    <chr>       <int> <int> <chr> <chr>     <chr> <chr>    <chr>     <dbl>
+#>  1 1940215S1…   1941     1 " SP" " EA"     NOT … 1940-08… " NR"      -999
+#>  2 1940215S1…   1941     1 " SP" " EA"     NOT … 1940-08… " NR"      -999
+#>  3 1940215S1…   1941     1 " SP" " EA"     NOT … 1940-08… " NR"      -999
+#>  4 1940215S1…   1941     1 " SP" " EA"     NOT … 1940-08… " NR"      -999
+#>  5 1940215S1…   1941     1 " SP" " EA"     NOT … 1940-08… " NR"      -999
+#>  6 1940215S1…   1941     1 " SP" " EA"     NOT … 1940-08… " NR"      -999
+#>  7 1940215S1…   1941     1 " SP" " EA"     NOT … 1940-08… " NR"      -999
+#>  8 1940215S1…   1941     1 " SP" " EA"     NOT … 1940-08… " NR"      -999
+#>  9 1940215S1…   1941     1 " SP" " EA"     NOT … 1940-08… " NR"      -999
+#> 10 1940215S1…   1941     1 " SP" " EA"     NOT … 1940-08… " NR"      -999
+#> # … with 1,756 more rows, and 191 more variables: longitude <dbl>,
+#> #   wind.wmo. <dbl>, pres.wmo. <dbl>, center <chr>,
+#> #   wind.wmo..percentile <dbl>, pres.wmo..percentile <dbl>,
+#> #   track_type <chr>, latitude_for_mapping <dbl>,
+#> #   longitude_for_mapping <dbl>, current.basin <chr>,
+#> #   hurdat_atl_lat <dbl>, hurdat_atl_lon <dbl>, hurdat_atl_grade <dbl>,
+#> #   hurdat_atl_wind <dbl>, hurdat_atl_pres <dbl>, td9636_lat <dbl>,
+#> #   td9636_lon <dbl>, td9636_grade <dbl>, td9636_wind <dbl>,
+#> #   td9636_pres <dbl>, reunion_lat <dbl>, reunion_lon <dbl>,
+#> #   reunion_grade <dbl>, reunion_wind <dbl>, reunion_pres <dbl>,
+#> #   atcf_lat <dbl>, atcf_lon <dbl>, atcf_grade <dbl>, atcf_wind <dbl>,
+#> #   atcf_pres <dbl>, mlc_natl_lat <dbl>, mlc_natl_lon <dbl>,
+#> #   mlc_natl_grade <dbl>, mlc_natl_wind <dbl>, mlc_natl_pres <dbl>,
+#> #   ds824_sh_lat <dbl>, ds824_sh_lon <dbl>, ds824_sh_grade <dbl>,
+#> #   ds824_sh_wind <dbl>, ds824_sh_pres <dbl>, ds824_ni_lat <dbl>,
+#> #   ds824_ni_lon <dbl>, ds824_ni_grade <dbl>, ds824_ni_wind <dbl>,
+#> #   ds824_ni_pres <dbl>, bom_lat <dbl>, bom_lon <dbl>, bom_grade <dbl>,
+#> #   bom_wind <dbl>, bom_pres <dbl>, ds824_au_lat <dbl>,
+#> #   ds824_au_lon <dbl>, ds824_au_grade <dbl>, ds824_au_wind <dbl>,
+#> #   ds824_au_pres <dbl>, jtwc_sh_lat <dbl>, jtwc_sh_lon <dbl>,
+#> #   jtwc_sh_grade <dbl>, jtwc_sh_wind <dbl>, jtwc_sh_pres <dbl>,
+#> #   jtwc_wp_lat <dbl>, jtwc_wp_lon <dbl>, jtwc_wp_grade <dbl>,
+#> #   jtwc_wp_wind <dbl>, jtwc_wp_pres <dbl>, td9635_lat <dbl>,
+#> #   td9635_lon <dbl>, td9635_grade <dbl>, td9635_wind <dbl>,
+#> #   td9635_pres <dbl>, ds824_wp_lat <dbl>, ds824_wp_lon <dbl>,
+#> #   ds824_wp_grade <dbl>, ds824_wp_wind <dbl>, ds824_wp_pres <dbl>,
+#> #   jtwc_io_lat <dbl>, jtwc_io_lon <dbl>, jtwc_io_grade <dbl>,
+#> #   jtwc_io_wind <dbl>, jtwc_io_pres <dbl>, cma_lat <dbl>, cma_lon <dbl>,
+#> #   cma_grade <dbl>, cma_wind <dbl>, cma_pres <dbl>, hurdat_epa_lat <dbl>,
 #> #   hurdat_epa_lon <dbl>, hurdat_epa_grade <dbl>, hurdat_epa_wind <dbl>,
 #> #   hurdat_epa_pres <dbl>, jtwc_ep_lat <dbl>, jtwc_ep_lon <dbl>,
 #> #   jtwc_ep_grade <dbl>, jtwc_ep_wind <dbl>, jtwc_ep_pres <dbl>,
 #> #   ds824_ep_lat <dbl>, ds824_ep_lon <dbl>, ds824_ep_grade <dbl>,
-#> #   ds824_ep_wind <dbl>, ds824_ep_pres <dbl>, jtwc_cp_lat <dbl>,
-#> #   jtwc_cp_lon <dbl>, ...
+#> #   ds824_ep_wind <dbl>, ds824_ep_pres <dbl>, …
 ```
 
 ## shp files
@@ -254,7 +254,7 @@ The result from `storm_shp()` is the path, and some metadata, for the shp files 
 
 ```
 #> <NOAA Storm Shp Files>
-#> Path: /Users/sacmac/Library/Caches/rnoaa/storms/year/Year.2013.ibtracs_all_points.v03r06.shp
+#> Path: /Users/sckott/Library/Caches/rnoaa/storms/year/Year.2013.ibtracs_all_points.v03r10.shp
 #> Basin: <NA>
 #> Storm: <NA>
 #> Year: 2013

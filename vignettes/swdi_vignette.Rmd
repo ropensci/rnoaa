@@ -41,10 +41,10 @@ library('plyr')
 swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> $meta
 #> $meta$totalCount
-#> numeric(0)
+#> [1] 25
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.105
+#> [1] 0.01
 #> 
 #> 
 #> $data
@@ -141,10 +141,10 @@ out <- swdi(dataset='warn', startdate='20060506', enddate='20060507', id=533623)
 list(out$meta, head(out$data), head(out$shape))
 #> [[1]]
 #> [[1]]$totalCount
-#> numeric(0)
+#> [1] 25
 #> 
 #> [[1]]$totalTimeInSeconds
-#> [1] 3.465
+#> [1] 0.014
 #> 
 #> 
 #> [[2]]
@@ -180,7 +180,7 @@ list(out$meta, head(out$data), head(out$shape))
 swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90,31))
 #> $meta
 #> $meta$totalCount
-#> numeric(0)
+#> [1] 5
 #> 
 #> $meta$totalTimeInSeconds
 #> [1] 0
@@ -219,10 +219,10 @@ swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90
 swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,32.62))
 #> $meta
 #> $meta$totalCount
-#> numeric(0)
+#> [1] 5
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.001
+#> [1] 0
 #> 
 #> 
 #> $data
@@ -266,7 +266,7 @@ Get daily count nx3tvs features on .1 degree grid centered at `latitude = 32.7` 
 swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-102.0,32.7')
 #> $meta
 #> $meta$totalCount
-#> numeric(0)
+#> [1] 5
 #> 
 #> $meta$totalTimeInSeconds
 #> [1] 0.001
@@ -274,11 +274,11 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-
 #> 
 #> $data
 #>          day centerlat centerlon fcount
-#> 1 2007-09-07      32.7      -102      1
-#> 2 2008-05-27      32.7      -102      4
-#> 3 2009-04-11      32.7      -102      1
-#> 4 2007-03-29      32.7      -102      2
-#> 5 2008-06-20      32.7      -102      2
+#> 1 2007-03-29      32.7      -102      2
+#> 2 2008-06-20      32.7      -102      2
+#> 3 2007-09-07      32.7      -102      1
+#> 4 2008-05-27      32.7      -102      4
+#> 5 2009-04-11      32.7      -102      1
 #> 
 #> $shape
 #>                                                                                   shape
