@@ -4,6 +4,13 @@
 %\VignetteEncoding{UTF-8}
 -->
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>", 
+  cache = TRUE
+)
+```
+
 # Complementing air quality data with weather data using rnoaa
 
 __Author__ Maëlle Salmon

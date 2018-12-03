@@ -63,11 +63,11 @@ buoy(dataset = 'cwind', buoyid = 41001, year = 1999)
 Including year and datatype
 
 ```{r cache=TRUE}
-buoy(dataset = 'cwind', buoyid = 41001, year = 2008, datatype = "cc")
+buoy(dataset = 'cwind', buoyid = 45005, year = 2008, datatype = "c")
 ```
 
 Including just datatype
 
 ```{r cache=TRUE}
-buoy(dataset = 'cwind', buoyid = 41001, datatype = "cc")
+buoy(dataset = 'cwind', buoyid = 45005, datatype = "c")
 ```
