@@ -1,8 +1,6 @@
 context("homr")
 
 test_that("homr works", {
-  skip_on_cran()
-
   vcr::use_cassette("homr", {
     # qid
     a <- homr(qid = 'COOP:046742')

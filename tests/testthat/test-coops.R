@@ -1,10 +1,6 @@
 context("coops")
 
 test_that("coops works", {
-  skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
-
   vcr::use_cassette("coops_search", {
     aa <- coops_search(station_name = 8723970, begin_date = 20140927, 
       end_date = 20140928, product = "water_temperature")
@@ -27,10 +23,6 @@ test_that("coops fails well", {
 })
 
 test_that("coops fails well", {
-  skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
-
   vcr::use_cassette("coops_search_fail_no_data", {  
     expect_error(
       coops_search(station_name = 8775244, begin_date = 20140927, 
@@ -41,10 +33,6 @@ test_that("coops fails well", {
 })
 
 test_that("coops fails well", {
-  skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
-
   vcr::use_cassette("coops_search_fail_no_datum", {  
     expect_error(
       coops_search(station_name = 8775244, begin_date = 20140927, 
@@ -55,10 +43,6 @@ test_that("coops fails well", {
 })
 
 test_that("coops fails well", {
-  skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
-
   expect_error(
     coops_search(station_name = 8724580, begin_date = 20040927,
                  end_date = 20140928, product = "high_low", datum = "stnd"),
@@ -67,10 +51,6 @@ test_that("coops fails well", {
 })
 
 test_that("coops fails well", {
-  skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
-
   expect_error(
     coops_search(station_name = "ps0401", begin_date = 20151121,
                  end_date = 20151231, product = "currents"),
