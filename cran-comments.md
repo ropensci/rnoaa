@@ -21,7 +21,7 @@ Checked on the 2 reverse dependencies - no problems were found
 
 -----
 
-This version xxx
+This version includes a large number of bug fixes, and a few new functions.
 
 Thanks!
 Scott Chamberlain

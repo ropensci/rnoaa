@@ -18,6 +18,8 @@ rnoaa 0.8.0
 * added `swdi()` tests (#239) thanks @kevin-ht-ho
 * `isd_stations_search()` no longer renames lat and lon column names (#238) thanks @kevin-ht-ho
 * add codemeta keywords to description (#287)
+* replace `httr` with `crul` throughout package (#186)
+* many tests use `vcr` now for caching, more to do waiting on `vcr` being able to handle direct to disk use cases and binary files like pdfs (#284)
 * fix links in Code of Conduct
 
 ### BUG FIXES
