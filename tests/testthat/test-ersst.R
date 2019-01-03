@@ -2,6 +2,7 @@ context("ersst")
 
 test_that("errst works with valid character and numeric input", {
   skip_on_cran()
+  skip_if_government_down()
 
   expect_is(ersst(year = 2016, month = 06), "ncdf4")
   expect_is(ersst(year = 2016, month = 6), "ncdf4")

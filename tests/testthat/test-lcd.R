@@ -2,6 +2,7 @@ context("lcd")
 
 test_that("lcd works", {
   skip_on_cran()
+  skip_if_government_down()
 
   # clean up first
   lcd_cache$delete_all()
@@ -21,6 +22,7 @@ test_that("lcd works", {
 
 test_that("lcd fails well", {
   skip_on_cran()
+  skip_if_government_down()
 
   # a station/year combination that doesn't exist
   expect_error(lcd(station = "02413099999", year = "1945"),

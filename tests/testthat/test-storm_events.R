@@ -15,6 +15,7 @@ test_that("se_files works", {
 context("storm_events: se_data")
 test_that("se_data works", {
   skip_on_cran()
+  skip_if_government_down()
 
   aa <- se_data(year = 2013, type = "details")
 
@@ -24,6 +25,7 @@ test_that("se_data works", {
 
 test_that("se_data fails well", {
   skip_on_cran()
+  skip_if_government_down()
 
   expect_error(se_data(), "'year' missing")
   expect_error(se_data(5), "'type' missing")
