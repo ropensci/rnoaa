@@ -1,3 +1,12 @@
+rnoaa 0.8.2
+===========
+
+### BUG FIXES
+
+* improvements in failing well when there's a US government shutdown for many functions that work with web REST APIs (#293) (#295)
+* fix to `arc2` tests to not be sensitive to the real year that the test is run in, reported in CRAN checks and via email (#294)
+
+
 rnoaa 0.8.0
 ===========
 

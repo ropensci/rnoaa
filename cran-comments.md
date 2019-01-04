@@ -1,6 +1,6 @@
 ## Test environments
 
-* local OS X install, R 3.5.1 Patched
+* local OS X install, R 3.5.2 Patched
 * ubuntu 14.04 (on travis-ci), R 3.5.1
 * win-builder (release, devel)
 
@@ -11,7 +11,7 @@
    License components with restrictions and base license permitting such:
      MIT + file LICENSE
    File 'LICENSE':
-     YEAR: 2018
+     YEAR: 2019
      COPYRIGHT HOLDER: Scott Chamberlain
 
 ## Reverse dependencies
@@ -21,7 +21,7 @@ Checked on the 2 reverse dependencies - no problems were found
 
 -----
 
-This version includes a large number of bug fixes, and a few new functions.
+This version includes bug fixes for 1) date sensitive tests and 2) failing well during a US government shutdown.
 
 Thanks!
 Scott Chamberlain
