@@ -152,14 +152,16 @@ swdi <- function(dataset=NULL, format='xml', startdate=NULL, enddate=NULL,
       crul::url_build(base, tmp$path, tmp$parameter)
     }
     url <- make_key(url, args)
+    cli <- crul::HttpClient$new(url = url, opts = list(...))
+    temp <- cli$get(disk = filepath)
     if (format == 'shp') {
       filepath <- paste0(filepath, ".zip")
-      download.file(url, destfile = filepath)
-      message(sprintf("Zip file downloaded to %s", filepath))
-    } else if (format == 'kmz') {
-      download.file(url, destfile = filepath)
-      message(sprintf("kmz file downloaded to %s", filepath))
     }
+    if (any(grepl("shutdown", unlist(temp$response_headers_all)))) {
+      on.exit(unlink(filepath), add = TRUE)
+      stop("there's a government shutdown; check back later")
+    }
+    message(sprintf("%s file downloaded to %s", format, filepath))
   } else {
     if (length(args) == 0) args <- NULL
     cli <- crul::HttpClient$new(url = url, opts = list(...))

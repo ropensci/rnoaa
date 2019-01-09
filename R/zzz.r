@@ -129,6 +129,13 @@ check_response_swdi <- function(x, format){
       warning(x$status_http()$message)
     }
   } else {
+    # government shutdown check
+    if (
+      grepl("html", x$response_headers$`content-type`) &&
+      grepl("shutdown", x$parse("UTF-8"))
+    ) {
+      stop("there's a government shutdown; check back later")
+    }
     if (format == 'csv') {
       stopifnot(grepl('text/plain', x$response_headers$`content-type`))
       read.delim(text = x$parse("UTF-8"), sep = ",")
