@@ -75,14 +75,12 @@ lcd_GET_write <- function(url, path, overwrite = TRUE, ...) {
   }
   res <- tryCatch(cli$get(disk = path), error = function(e) e)
   if (!res$success()) {
-    unlink(path)
+    on.exit(unlink(path), add = TRUE)
     res$raise_for_status()
   }
   # government shutdown check
-  if (
-    grepl("html", res$response_headers$`content-type`) &&
-    any(grepl("shutdown", readLines(res$content)))
-  ) {
+  if (any(grepl("shutdown", unlist(res$response_headers_all)))) {
+    on.exit(unlink(path), add = TRUE)
     stop("there's a government shutdown; check back later")
   }
   return(res)

@@ -81,6 +81,11 @@ se_get <- function(x, disk = NULL, ...) {
   cli <- crul::HttpClient$new(url = x, opts = list(...))
   res <- cli$get(disk = disk)
   res$raise_for_status()
+  # government shutdown check
+  if (any(grepl("shutdown", unlist(res$response_headers_all)))) {
+    if (!is.null(disk)) on.exit(unlink(disk), add = TRUE)
+    stop("there's a government shutdown; check back later")
+  }
   res
 }
 

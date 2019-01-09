@@ -30,7 +30,7 @@ tornadoes <- function(overwrite = TRUE, ...) {
   check4pkg('rgdal')
   path <- file.path(rnoaa_cache_dir(), "tornadoes")
   if (!is_tornadoes(path)) {
-    url <- 'http://www.spc.noaa.gov/gis/svrgis/zipped/tornado.zip'
+    url <- 'https://www.spc.noaa.gov/gis/svrgis/zipped/tornado.zip'
     tornadoes_GET(path, url, overwrite, ...)
   }
   readshp(file.path(path, "torn"))
