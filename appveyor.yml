@@ -1,7 +1,3 @@
-environment:
-  R_CHECK_ARGS: --no-build-vignettes --no-manual
-  _R_CHECK_FORCE_SUGGESTS_: FALSE
-
 init:
   ps: |
         $ErrorActionPreference = "Stop"
@@ -20,6 +16,19 @@ test_script:
 
 on_failure:
   - travis-tool.sh dump_logs
+
+environment:
+  global:
+    R_CHECK_ARGS: "--no-build-vignettes --no-manual --as-cran"
+    _R_CHECK_FORCE_SUGGESTS_: FALSE
+  matrix:
+    - R_VERSION: release
+      R_ARCH: x64
+      USE_RTOOLS: true
+    - R_VERSION: devel
+      R_ARCH: x64
+      _R_CHECK_LENGTH_1_LOGIC2_: TRUE
+      USE_RTOOLS: true
 
 notifications:
   - provider: Slack
