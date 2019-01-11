@@ -17,6 +17,14 @@ r_packages:
   - ggmap
   - ropenaq
 
+matrix:
+  include:
+    - os: linux
+      r: release
+    - os: linux
+      r: devel
+      env: _R_CHECK_LENGTH_1_LOGIC2_=FALSE
+
 notifications:
   email:
     on_success: never

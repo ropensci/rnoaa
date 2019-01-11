@@ -2,6 +2,7 @@ context("cpc_prcp")
 
 test_that("cpc_prcp works", {
   skip_on_cran()
+  skip_on_travis()
 
   # 2017, us = FALSE
   aa <- cpc_prcp(date = "2017-01-15", us = FALSE)
