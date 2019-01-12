@@ -7,7 +7,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 0.8.2.9321
+Version: 0.8.2.9421
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US
@@ -56,8 +56,9 @@ Suggests:
     purrr,
     ggmap,
     ropenaq,
-    vcr
+    vcr (>= 0.2.0.9114)
 RoxygenNote: 6.1.1
+Remotes: ropensci/vcr
 X-schema.org-applicationCategory: Climate
 X-schema.org-keywords: earth, science, climate, precipitation, temperature, storm, buoy, NCDC, NOAA, tornadoe, sea ice, ISD
 X-schema.org-isPartOf: https://ropensci.org
