@@ -2,6 +2,8 @@ context("meteo")
 
 test_that("search for multi-monitor data", {
   skip_on_cran()
+  skip_on_travis()
+  skip_if_government_down()
 
   monitors <- c("ASN00003003", "ASM00094299")
   search_a <- meteo_pull_monitors(monitors)
@@ -13,6 +15,9 @@ test_that("search for multi-monitor data", {
 
 test_that("determine monitors' data coverage", {
   skip_on_cran()
+  skip_on_travis()
+  skip_if_government_down()
+
   monitors <- c("ASN00003003", "ASM00094299")
   search_a <- meteo_pull_monitors(monitors)
   obs_covr <- meteo_coverage(search_a)

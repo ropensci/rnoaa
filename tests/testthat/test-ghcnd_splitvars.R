@@ -2,6 +2,7 @@ context("ghcnd_splitvars")
 
 test_that("ghcnd_splitvars for data", {
   skip_on_cran()
+  skip_if_government_down()
 
   dat <- ghcnd(stationid = "AGE00147704")
   aa <- ghcnd_splitvars(dat)

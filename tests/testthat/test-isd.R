@@ -2,6 +2,7 @@ context("isd")
 
 test_that("isd gets data", {
   skip_on_cran()
+  skip_if_government_down()
 
   data_a <- suppressMessages(isd(usaf = "011490", wban = "99999", year = 1986))
   data_b <- suppressMessages(isd(usaf = "011490", wban = "99999", year = 1985))
