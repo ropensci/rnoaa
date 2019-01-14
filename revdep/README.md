@@ -9,8 +9,8 @@
 |language |(EN)                                        |
 |collate  |en_US.UTF-8                                 |
 |ctype    |en_US.UTF-8                                 |
-|tz       |US/Pacific                                  |
-|date     |2019-01-03                                  |
+|tz       |America/Los_Angeles                         |
+|date     |2019-01-14                                  |
 
 # Dependencies
 
