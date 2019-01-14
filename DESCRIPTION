@@ -28,7 +28,7 @@ LazyData: true
 VignetteBuilder: knitr
 Imports:
     utils,
-    crul (>= 0.6.0),
+    crul (>= 0.7.0),
     lubridate,
     dplyr,
     tidyr,
@@ -56,9 +56,8 @@ Suggests:
     purrr,
     ggmap,
     ropenaq,
-    vcr (>= 0.2.0.9114)
+    vcr (>= 0.2.2)
 RoxygenNote: 6.1.1
-Remotes: ropensci/vcr
 X-schema.org-applicationCategory: Climate
 X-schema.org-keywords: earth, science, climate, precipitation, temperature, storm, buoy, NCDC, NOAA, tornadoe, sea ice, ISD
 X-schema.org-isPartOf: https://ropensci.org
