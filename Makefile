@@ -1,3 +1,5 @@
+RSCRIPT = Rscript --no-init-file
+
 all: move rmd2md
 
 move:
@@ -23,3 +25,6 @@ rmd2md:
 		mv storms_vignette.md storms_vignette.Rmd;\
 		mv buoy_vignette.md buoy_vignette.Rmd;\
 		mv rnoaa_ropenaq.md rnoaa_ropenaq.Rmd
+
+revdep:
+	${RSCRIPT} -e "revdepcheck::revdep_reset(); revdepcheck::revdep_check()"
