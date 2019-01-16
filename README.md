@@ -83,7 +83,7 @@ or [on CRAN](https://cran.r-project.org/package=rnoaa). The tutorials:
 
 Some functions use netcdf files, including:
 
-  -  `gefs`
+  - `gefs`
   - `ersst`
   - `buoy`
   - `bsw`
