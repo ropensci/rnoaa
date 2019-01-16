@@ -81,13 +81,21 @@ or [on CRAN](https://cran.r-project.org/package=rnoaa). The tutorials:
 
 ## netcdf data
 
-Functions to work with buoy data use netcdf files. You’ll need the
-`ncdf4` package for those functions, and those only. `ncdf4` is in
-Suggests in this package, meaning you only need `ncdf4` if you are using
-the buoy functions. You’ll get an informative error telling you to
-install `ncdf4` if you don’t have it and you try to use the buoy
-functions. Installation of `ncdf4` should be straightforward.
-See https://cran.r-project.org/package=ncdf4
+Some functions use netcdf files, including:
+
+  -  `gefs`
+  - `ersst`
+  - `buoy`
+  - `bsw`
+  - `argo`
+ 
+You'll need the `ncdf4` package for those functions, and those only.
+`ncdf4` is in Suggests in this package, meaning you only need `ncdf4`
+if you are using any of the functions listed above. You'll get an 
+informative error telling you to install `ncdf4` if you don't have it
+and you try to use the those functions. Installation of `ncdf4` should
+be straightforward on any system. See 
+https://cran.r-project.org/package=ncdf4.
 
 ## NOAA NCDC Datasets
 
