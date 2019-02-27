@@ -52,8 +52,13 @@
 cpc_prcp <- function(date, us = FALSE, drop_undefined = FALSE, ...) {
   assert(date, c("character", "Date"))
   assert(us, 'logical')
+  stopifnot(length(us) == 1)
   dates <- str_extract_all_(date, "[0-9]+")[[1]]
-  assert_range(dates[1], 1979:format(Sys.Date(), "%Y"))
+  if (us) {
+    assert_range(dates[1], 1948:format(Sys.Date(), "%Y"))
+  } else {
+    assert_range(dates[1], 1979:format(Sys.Date(), "%Y"))
+  }
   assert_range(as.numeric(dates[2]), 1:12)
   assert_range(as.numeric(dates[3]), 1:31)
 
