@@ -12,7 +12,7 @@ isd_read(path, additional = TRUE, parallel = FALSE,
 
 \item{additional}{(logical) include additional and remarks data sections
 in output. Default: \code{TRUE}. Passed on to
-\code{\link[isdparser]{isd_parse}}}
+\code{\link[isdparser:isd_parse]{isdparser::isd_parse()}}}
 
 \item{parallel}{(logical) do processing in parallel. Default: \code{FALSE}}
 
@@ -44,8 +44,7 @@ isd_read(file, additional = FALSE)
 ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 }
 \seealso{
-\code{\link{isd}}, \code{\link{isd_stations}},
-\code{\link{isd_stations_search}}
+\code{\link[=isd]{isd()}}, \code{\link[=isd_stations]{isd_stations()}}, \code{\link[=isd_stations_search]{isd_stations_search()}}
 
 Other isd: \code{\link{isd_stations_search}},
   \code{\link{isd_stations}}, \code{\link{isd}}

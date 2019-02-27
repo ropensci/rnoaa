@@ -10,8 +10,7 @@ tornadoes(overwrite = TRUE, ...)
 \item{overwrite}{(logical) To overwrite the path to store files in or not,
 Default: \code{TRUE}}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}
-(optional)}
+\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET} (optional)}
 }
 \value{
 A Spatial object is returned of class SpatialLinesDataFrame.
@@ -22,7 +21,7 @@ Get NOAA tornado data.
 \section{File storage}{
 
 We use \pkg{rappdirs} to store files, see
-\code{\link[rappdirs]{user_cache_dir}} for how
+\code{\link[rappdirs:user_cache_dir]{rappdirs::user_cache_dir()}} for how
 we determine the directory on your machine to save files to, and run
 \code{rappdirs::user_cache_dir("rnoaa/tornadoes")} to get that directory.
 }

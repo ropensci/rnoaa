@@ -7,26 +7,26 @@
 bsw(date = NULL, uv_stress = "uv", resolution = "6hrly", ...)
 }
 \arguments{
-\item{date}{(date/character) date, in the form YYYY-MM-DD if resolution 
-is 6hrly or daily, or in the form YYYY-MM if resolution is monthly. 
-For resolution=clm can be left NULL. If given, must be in the 
+\item{date}{(date/character) date, in the form YYYY-MM-DD if resolution
+is 6hrly or daily, or in the form YYYY-MM if resolution is monthly.
+For resolution=clm can be left NULL. If given, must be in the
 range 1987-07-09 to today-1 (yesterday)}
 
 \item{uv_stress}{(character) one of uv or stresss, not sure what these
 mean exactly yet. Default: uv}
 
-\item{resolution}{(character) temporal resolution. one of 6hrly, 
+\item{resolution}{(character) temporal resolution. one of 6hrly,
 clm, daily, or monthly. See Details.}
 
-\item{...}{curl options passed on to \code{\link[crul]{HttpClient}}}
+\item{...}{curl options passed on to \link[crul:verb-GET]{crul::verb-GET}}
 }
 \value{
 an object of class \code{ncdf4}
 }
 \description{
-The Blended Sea Winds dataset contains globally gridded, high-resolution 
-ocean surface vector winds and wind stresses on a global 0.25° grid, and 
-multiple time resolutions of six-hourly, daily, monthly, and 11-year 
+The Blended Sea Winds dataset contains globally gridded, high-resolution
+ocean surface vector winds and wind stresses on a global 0.25° grid, and
+multiple time resolutions of six-hourly, daily, monthly, and 11-year
 (1995–2005) climatological monthlies.
 }
 \details{
@@ -37,29 +37,29 @@ Uses \code{ncdf4} under the hood to read NetCDF files
 Use \code{bsw_cache} object to manage cached files.
 }
 \note{
-We only handle the netcdf files for now, we're avoiding the ieee 
+We only handle the netcdf files for now, we're avoiding the ieee
 files, see http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
 }
 \section{Citing NOAA and BSW data}{
 
-Message from NOAA: "We also ask you to acknowledge us in your use of the 
-data to help us justify continued service. This may be done by  including 
-text such as: The wind data are acquired from NOAA's National Climatic 
-Data Center, via their website 
-http://www.ncdc.noaa.gov/oa/rsad/blendedseawinds.html. We would also 
+Message from NOAA: "We also ask you to acknowledge us in your use of the
+data to help us justify continued service. This may be done by  including
+text such as: The wind data are acquired from NOAA's National Climatic
+Data Center, via their website
+http://www.ncdc.noaa.gov/oa/rsad/blendedseawinds.html. We would also
 appreciate receiving a copy of the relevant publication."
 }
 
 \section{Temporal resolution}{
 
 \itemize{
- \item 6hrly: 6-hourly, 4 global snapshots (u,v) at UTC 00, 06, 12 and 18Z
- \item clm: climatological monthlies; also provided is the scalar 
-  mean (u,v,w)
- \item daily: averages of the 6hrly time points, thus with a center time 
-  09Z; also provided is the scalar mean, (u,v,w)
- \item monthly: averages of daily data; also provided is the scalar 
-  mean (u,v,w)
+\item 6hrly: 6-hourly, 4 global snapshots (u,v) at UTC 00, 06, 12 and 18Z
+\item clm: climatological monthlies; also provided is the scalar
+mean (u,v,w)
+\item daily: averages of the 6hrly time points, thus with a center time
+09Z; also provided is the scalar mean, (u,v,w)
+\item monthly: averages of daily data; also provided is the scalar
+mean (u,v,w)
 }
 }
 

@@ -16,69 +16,67 @@
 #' of the station with its lat/lon values, and assign that time zone.
 #' @param application (character) If called within an external package, set
 #' to the name of your organization. Optional
-#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}. 
+#' @param ... Curl options passed on to [crul::verb-GET]
 #' Optional
 #'
 #' @details
 #' Options for the product paramter. One of:
-#' \itemize{
-#'  \item water_level - Preliminary or verified water levels, depending on
+#' 
+#' - water_level - Preliminary or verified water levels, depending on
 #'  availability
-#'  \item air_temperature - Air temperature as measured at the station
-#'  \item water_temperature - Water temperature as measured at the station
-#'  \item wind - Wind speed, direction, and gusts as measured at the station
-#'  \item air_pressure - Barometric pressure as measured at the station
-#'  \item air_gap - Air Gap (distance between a bridge and the water's surface)
+#' - air_temperature - Air temperature as measured at the station
+#' - water_temperature - Water temperature as measured at the station
+#' - wind - Wind speed, direction, and gusts as measured at the station
+#' - air_pressure - Barometric pressure as measured at the station
+#' - air_gap - Air Gap (distance between a bridge and the water's surface)
 #'  at the station
-#'  \item conductivity - The water's conductivity as measured at the station
-#'  \item visibility - Visibility from the station's visibility sensor. A
+#' - conductivity - The water's conductivity as measured at the station
+#' - visibility - Visibility from the station's visibility sensor. A
 #'  measure of atmospheric clarity
-#'  \item humidity - Relative humidity as measured at the station
-#'  \item salinity - Salinity and specific gravity data for the station
-#'  \item one_minute_water_level - One minute water level data for the station
-#'  \item predictions - 6 minute predictions water level data for the station
-#'  \item hourly_height - Verified hourly height water level data for
+#' - humidity - Relative humidity as measured at the station
+#' - salinity - Salinity and specific gravity data for the station
+#' - one_minute_water_level - One minute water level data for the station
+#' - predictions - 6 minute predictions water level data for the station
+#' - hourly_height - Verified hourly height water level data for
 #'  the station
-#'  \item high_low - Verified high/low water level data for the station
-#'  \item daily_mean - Verified daily mean water level data for the station
-#'  \item monthly_mean - Verified monthly mean water level data for the station
-#'  \item datums - datums data for the stations
-#'  \item currents - Currents data for currents stations
-#' }
+#' - high_low - Verified high/low water level data for the station
+#' - daily_mean - Verified daily mean water level data for the station
+#' - monthly_mean - Verified monthly mean water level data for the station
+#' - datums - datums data for the stations
+#' - currents - Currents data for currents stations
 #'
 #' Maximum Durations in a Single Call:
-#' \itemize{
-#' \item Products water_level through predictions allow requests for up to
+#'
+#' - Products water_level through predictions allow requests for up to
 #` 31 days of data.
-#' \item Products hourly_height and high_low allow requests for up to
+#' - Products hourly_height and high_low allow requests for up to
 #` 1 year (366 days) of data.
-#' \item Products daily_mean and monthly_mean allow requests for up to
+#' - Products daily_mean and monthly_mean allow requests for up to
 #` 10 years of data.
-#' }#'
+#' 
 #' Options for the datum parameter. One of:
-#' \itemize{
-#'  \item MHHW - Mean higher high water
-#'  \item MHW - Mean high water
-#'  \item MTL - Mean tide level
-#'  \item MSL - Mean sea level
-#'  \item MLW - Mean low water
-#'  \item MLLW - Mean lower low water
-#'  \item NAVD - North American Vertical Datum
-#'  \item STND - Station datum
-#' }
+#' 
+#' - MHHW - Mean higher high water
+#' - MHW - Mean high water
+#' - MTL - Mean tide level
+#' - MSL - Mean sea level
+#' - MLW - Mean low water
+#' - MLLW - Mean lower low water
+#' - NAVD - North American Vertical Datum
+#' - STND - Station datum
 #'
 #' @references
-#' \url{https://tidesandcurrents.noaa.gov/api/}
+#' <https://tidesandcurrents.noaa.gov/api/>
 #'
-#' \url{https://tidesandcurrents.noaa.gov/map/}
+#' <https://tidesandcurrents.noaa.gov/map/>
 #'
 #' @author Scott Chamberlain, Joseph Stachelek, Tom Philippi
 #'
 #' @return List, of length one or two.
-#' \itemize{
-#'  \item metadata A list of metadata with slots id, name, lat, lon
-#'  \item data A data.frame with data
-#' }
+#' 
+#' - metadata A list of metadata with slots id, name, lat, lon
+#' - data A data.frame with data
+#' 
 #' @examples \dontrun{
 #' # Get monthly mean sea level data at Vaca Key (8723970)
 #' coops_search(station_name = 8723970, begin_date = 20120301,

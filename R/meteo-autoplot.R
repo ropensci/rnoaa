@@ -4,7 +4,7 @@
 #' @method autoplot meteo_coverage
 #' @param object (data.frame) a data.frame
 #' @return A ggplot2 plot
-#' @details see \code{\link{meteo_coverage}} for examples
+#' @details see [meteo_coverage()] for examples
 autoplot.meteo_coverage <- function(object) {
   # ungroup
   object <- dplyr::ungroup(object)

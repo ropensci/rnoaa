@@ -1,4 +1,5 @@
-#' Get possible data categories for a particular datasetid, locationid, stationid, etc.
+#' Get possible data categories for a particular datasetid, locationid,
+#' stationid, etc.
 #'
 #' Data Categories represent groupings of data types.
 #'
@@ -6,12 +7,12 @@
 #' @template datacats
 #' @template token
 #' @template all
-#' @return A \code{data.frame} for all datasets, or a list of length two, each
-#'    with a data.frame.
-#' @details Note that calls with both startdate and enddate don't seem to work, though specifying
-#'    one or the other mostly works.
+#' @return A `data.frame` for all datasets, or a list of length two,
+#' each with a data.frame.
+#' @details Note that calls with both startdate and enddate don't seem to
+#' work, though specifying one or the other mostly works.
 #' @family ncdc
-#' @references \url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
+#' @references <https://www.ncdc.noaa.gov/cdo-web/webservices/v2>
 #' @examples \dontrun{
 #' ## Limit to 10 results
 #' ncdc_datacats(limit=10)
@@ -45,9 +46,10 @@ ncdc_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
 {
   token <- check_key(token)
   path <- "datacategories"
-  if (!is.null(datacategoryid)) path <- paste(path, "/", datacategoryid, sep = "")
-  args <- noaa_compact(list(startdate=startdate, enddate=enddate, sortfield=sortfield,
-            sortorder=sortorder, limit=limit, offset=offset))
+  if (!is.null(datacategoryid)) path <- paste(path, "/", datacategoryid,
+    sep = "")
+  args <- noaa_compact(list(startdate=startdate, enddate=enddate,
+    sortfield=sortfield, sortorder=sortorder, limit=limit, offset=offset))
   if (!is.null(datasetid)) {
     datasetid <- lapply(datasetid, function(x) list(datasetid = x))
   }
@@ -59,7 +61,8 @@ ncdc_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
   }
   args <- c(args, datasetid, stationid, locationid)
   args <- as.list(unlist(args))
-  names(args) <- sapply(names(args), function(y) gsub("[0-9+]", "", y), USE.NAMES = FALSE)
+  names(args) <- sapply(names(args), function(y) gsub("[0-9+]", "", y),
+    USE.NAMES = FALSE)
   if (length(args) == 0) args <- NULL
   tt <- check_response(ncdc_GET(path, args, token, ...))
   if (inherits(tt, "character")) {
@@ -73,9 +76,11 @@ ncdc_datacats <- function(datasetid=NULL, datacategoryid=NULL, stationid=NULL,
         all <- list(meta = NULL, data = NULL)
         warning("Sorry, no data found")
       } else {
-        dat <- dplyr::bind_rows(lapply(tt$results, function(x) data.frame(x, stringsAsFactors = FALSE)))
+        dat <- dplyr::bind_rows(lapply(tt$results, function(x)
+          data.frame(x, stringsAsFactors = FALSE)))
         meta <- tt$metadata$resultset
-        atts <- list(totalCount = meta$count, pageCount = meta$limit, offset = meta$offset)
+        atts <- list(totalCount = meta$count, pageCount = meta$limit,
+          offset = meta$offset)
         all <- list(meta = atts, data = dat)
       }
     }

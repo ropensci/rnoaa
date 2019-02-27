@@ -7,33 +7,33 @@
 ghcnd_stations(...)
 }
 \arguments{
-\item{...}{In the case of \code{ghcnd} additional curl options to pass 
-through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read} 
+\item{...}{In the case of \code{ghcnd} additional curl options to pass
+through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read}
 further options passed on to \code{read.csv}}
 }
 \value{
 This function returns a tibble (dataframe) with a weather
 station on each row with the following columns:
 \itemize{
-   \item \code{id}: The weather station's ID number. The first two letters
-   denote the country (using FIPS country codes).
-   \item \code{latitude}: The station's latitude, in decimal degrees.
-   Southern latitudes will be negative.
-   \item \code{longitude}: The station's longitude, in decimal degrees.
-   Western longitudes will be negative.
-   \item \code{elevation}: The station's elevation, in meters.
-   \item \code{name}: The station's name.
-   \item \code{gsn_flag}: "GSN" if the monitor belongs to the GCOS Surface
-   Network (GSN). Otherwise either blank or missing.
-   \item \code{wmo_id}: If the station has a WMO number, this column gives
-   that number. Otherwise either blank or missing.
-   \item \code{element}: A weather variable recorded at some point during
-   that station's history. See the link below in "References" for definitions
-   of the abbreviations used for this variable.
-   \item \code{first_year}: The first year of data available at that station
-   for that weather element.
-   \item \code{last_year}: The last year of data available at that station
-   for that weather element.
+\item \code{id}: The weather station's ID number. The first two letters
+denote the country (using FIPS country codes).
+\item \code{latitude}: The station's latitude, in decimal degrees.
+Southern latitudes will be negative.
+\item \code{longitude}: The station's longitude, in decimal degrees.
+Western longitudes will be negative.
+\item \code{elevation}: The station's elevation, in meters.
+\item \code{name}: The station's name.
+\item \code{gsn_flag}: "GSN" if the monitor belongs to the GCOS Surface
+Network (GSN). Otherwise either blank or missing.
+\item \code{wmo_id}: If the station has a WMO number, this column gives
+that number. Otherwise either blank or missing.
+\item \code{element}: A weather variable recorded at some point during
+that station's history. See the link below in "References" for definitions
+of the abbreviations used for this variable.
+\item \code{first_year}: The first year of data available at that station
+for that weather element.
+\item \code{last_year}: The last year of data available at that station
+for that weather element.
 }
 
 If a weather station has data on more than one weather variable, it will

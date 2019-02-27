@@ -22,9 +22,9 @@ Required}
 
 \item{datatype}{(character) Data type, one of 'c', 'cc', 'p', 'o'. Optional}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}. 
-Optional. A number of different HTTP requests are made internally, but 
-we only pass this on to the request to get the netcdf file in the internal 
+\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET}
+Optional. A number of different HTTP requests are made internally, but
+we only pass this on to the request to get the netcdf file in the internal
 function \code{get_ncdf_file()}}
 
 \item{refresh}{(logical) Whether to use cached data (\code{FALSE}) or get
@@ -36,26 +36,26 @@ Get NOAA buoy data from the National Buoy Data Center
 \details{
 Functions:
 \itemize{
- \item buoy_stations - Get buoy stations. A cached version of the dataset
- is available in the package. Beware, takes a long time to run if you
- do \code{refresh = TRUE}
- \item buoys - Get available buoys given a dataset name
- \item buoy - Get data given some combination of dataset name, buoy ID,
- year, and datatype
+\item buoy_stations - Get buoy stations. A cached version of the dataset
+is available in the package. Beware, takes a long time to run if you
+do \code{refresh = TRUE}
+\item buoys - Get available buoys given a dataset name
+\item buoy - Get data given some combination of dataset name, buoy ID,
+year, and datatype
 }
 
 Options for the dataset parameter. One of:
 \itemize{
- \item adcp - Acoustic Doppler Current Profiler data
- \item adcp2 - MMS Acoustic Doppler Current Profiler data
- \item cwind - Continuous Winds data
- \item dart - Deep-ocean Assessment and Reporting of Tsunamis data
- \item mmbcur - Marsh-McBirney Current Measurements data
- \item ocean - Oceanographic data
- \item pwind - Peak Winds data
- \item stdmet - Standard Meteorological data
- \item swden - Spectral Wave Density data with Spectral Wave Direction data
- \item wlevel - Water Level data
+\item adcp - Acoustic Doppler Current Profiler data
+\item adcp2 - MMS Acoustic Doppler Current Profiler data
+\item cwind - Continuous Winds data
+\item dart - Deep-ocean Assessment and Reporting of Tsunamis data
+\item mmbcur - Marsh-McBirney Current Measurements data
+\item ocean - Oceanographic data
+\item pwind - Peak Winds data
+\item stdmet - Standard Meteorological data
+\item swden - Spectral Wave Density data with Spectral Wave Direction data
+\item wlevel - Water Level data
 }
 }
 \examples{

@@ -19,30 +19,29 @@ not us. Go to the link given above to get an API key.
 
 More NOAA data sources are being added through time. Data sources and their
 function prefixes are:
-
 \itemize{
- \item \code{buoy_*} - NOAA Buoy data from the National Buoy Data Center
- \item \code{gefs_*} - GEFS forecast ensemble data
- \item \code{ghcnd_*}/\code{meteo_*} - GHCND daily data from NOAA
- \item \code{isd_*} - ISD/ISH data from NOAA
- \item \code{homr_*} - Historical Observing Metadata Repository (HOMR)
- vignette
- \item \code{ncdc_*} - NOAA National Climatic Data Center (NCDC) vignette
- (examples)
- \item \code{seaice} - Sea ice vignette
- \item \code{storm_} - Storms (IBTrACS) vignette
- \item \code{swdi} - Severe Weather Data Inventory (SWDI) vignette
- \item \code{tornadoes} - From the NOAA Storm Prediction Center
- \item \code{argo_*} - Argo buoys
- \item \code{coops_search} - NOAA CO-OPS - tides and currents data
- \item \code{cpc_prcp} - rainfall data from the NOAA Climate
- Prediction Center (CPC)
- \item \code{arc2} - rainfall data from Africa Rainfall Climatology
- version 2
- \item \code{bsw} - Blended sea winds (BSW)
- \item \code{ersst} - NOAA Extended Reconstructed Sea Surface 
-  Temperature (ERSST) data
- \item \code{lcd} - Local Climitalogical Data from NOAA
+\item \code{buoy_*} - NOAA Buoy data from the National Buoy Data Center
+\item \code{gefs_*} - GEFS forecast ensemble data
+\item \code{ghcnd_*}/\code{meteo_*} - GHCND daily data from NOAA
+\item \code{isd_*} - ISD/ISH data from NOAA
+\item \code{homr_*} - Historical Observing Metadata Repository (HOMR)
+vignette
+\item \code{ncdc_*} - NOAA National Climatic Data Center (NCDC) vignette
+(examples)
+\item \code{seaice} - Sea ice vignette
+\item \code{storm_} - Storms (IBTrACS) vignette
+\item \code{swdi} - Severe Weather Data Inventory (SWDI) vignette
+\item \code{tornadoes} - From the NOAA Storm Prediction Center
+\item \code{argo_*} - Argo buoys
+\item \code{coops_search} - NOAA CO-OPS - tides and currents data
+\item \code{cpc_prcp} - rainfall data from the NOAA Climate
+Prediction Center (CPC)
+\item \code{arc2} - rainfall data from Africa Rainfall Climatology
+version 2
+\item \code{bsw} - Blended sea winds (BSW)
+\item \code{ersst} - NOAA Extended Reconstructed Sea Surface
+Temperature (ERSST) data
+\item \code{lcd} - Local Climitalogical Data from NOAA
 }
 }
 
@@ -50,48 +49,44 @@ function prefixes are:
 
 
 Government shutdowns can greatly affect data sources in this package.
-The following is a breakdown of the functions that fetch data by 
+The following is a breakdown of the functions that fetch data by
 HTTP vs. FTP - done this way as we've noticed that during the ealry 2019
 border wall shutdown most FTP services were up, while those that were down
 were HTTP; though not all HTTP services were down.
-
 \itemize{
- \item HTTP info: https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol
- \item FTP info: https://en.wikipedia.org/wiki/File_Transfer_Protocol
+\item HTTP info: https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol
+\item FTP info: https://en.wikipedia.org/wiki/File_Transfer_Protocol
 }
 
 HTTP services (whether service is/was up or down during early 2019 shutdown)
-
 \itemize{
- \item \code{buoy_*} - Up
- \item \code{gefs_*} - Up
- \item \code{homr_*} - Up
- \item \code{ncdc_*} - Down
- \item \code{swdi} - Down
- \item \code{tornadoes} - Down
- \item \code{argo_*} - Up (all HTTP except two fxns, see also FTP below)
- \item \code{coops_search} - Up
- \item \code{ersst} - Down
- \item \code{lcd} - Down
- \item \code{se_*} - Down
+\item \code{buoy_*} - Up
+\item \code{gefs_*} - Up
+\item \code{homr_*} - Up
+\item \code{ncdc_*} - Down
+\item \code{swdi} - Down
+\item \code{tornadoes} - Down
+\item \code{argo_*} - Up (all HTTP except two fxns, see also FTP below)
+\item \code{coops_search} - Up
+\item \code{ersst} - Down
+\item \code{lcd} - Down
+\item \code{se_*} - Down
 }
 
 FTP services (whether service is/was up or down during early 2019 shutdown)
-
 \itemize{
- \item \code{ghcnd_*} - Up
- \item \code{isd_*} - Up
- \item \code{seaice} - Up
- \item \code{storm_} - Up
- \item \code{argo_*} - Up (only two fxns: \code{argo()} and 
-  \code{argo_buoy_files()})
- \item \code{cpc_prcp} - Up
- \item \code{arc2} - Up
- \item \code{bsw} - Up
+\item \code{ghcnd_*} - Up
+\item \code{isd_*} - Up
+\item \code{seaice} - Up
+\item \code{storm_} - Up
+\item \code{argo_*} - Up (only two fxns: \code{\link[=argo]{argo()}}, \code{\link[=argo_buoy_files]{argo_buoy_files()}})
+\item \code{cpc_prcp} - Up
+\item \code{arc2} - Up
+\item \code{bsw} - Up
 }
 
-We've tried to whenever possible detect whether a service is error 
-due to a government shutdown and give a message saying so. If you know 
+We've tried to whenever possible detect whether a service is error
+due to a government shutdown and give a message saying so. If you know
 a service is down that rnoaa interacts with but we don't fail well
 during a shutdown let us know.
 }
@@ -100,20 +95,19 @@ during a shutdown let us know.
 
 
 Some functions use netcdf files, including:
-
 \itemize{
- \item \code{gefs}
- \item \code{ersst}
- \item \code{buoy}
- \item \code{bsw}
- \item \code{argo}
+\item \code{gefs}
+\item \code{ersst}
+\item \code{buoy}
+\item \code{bsw}
+\item \code{argo}
 }
- 
+
 You'll need the \code{ncdf4} package for those functions, and those only.
-\code{ncdf4} is in Suggests in this package, meaning you only need 
-\code{ncdf4} if you are using any of the functions listed above. You'll get 
-an informative error telling you to install \code{ncdf4} if you don't have 
-it and you try to use the those functions. Installation of \code{ncdf4} 
+\code{ncdf4} is in Suggests in this package, meaning you only need
+\code{ncdf4} if you are using any of the functions listed above. You'll get
+an informative error telling you to install \code{ncdf4} if you don't have
+it and you try to use the those functions. Installation of \code{ncdf4}
 should be straightforward on any system.
 }
 
@@ -122,11 +116,9 @@ should be straightforward on any system.
 
 The \code{meteo} family of functions are prefixed with \code{meteo_} and
 provide a set of helper functions to:
-
 \itemize{
-  \item Identify candidate stations from a latitude/longitude pair
-  \item Retrieve complete data for one or more stations
-  (\code{meteo_coverage()})
+\item Identify candidate stations from a latitude/longitude pair
+\item Retrieve complete data for one or more stations (\code{meteo_coverage()})
 }
 }
 

@@ -2,20 +2,20 @@
 #'
 #' @export
 #' @param ... Input noaa object or objects.
-#' @param breaks Regularly spaced date breaks for x-axis. See examples for usage.
-#' See \code{\link{date_breaks}}. Default: \code{NULL} (uses ggplot2 default break
+#' @param breaks Regularly spaced date breaks for x-axis. See examples for
+#' usage. See [date_breaks]. Default: `NULL` (uses ggplot2 default break
 #' sformatting)
-#' @param dateformat Date format using standard POSIX specification for labels on
-#' x-axis. See \code{\link{date_format}}
+#' @param dateformat Date format using standard POSIX specification for labels
+#' on x-axis. See [date_format()]
 #' @return ggplot2 plot
 #' @family ncdc
 #' @details
-#' This function accepts directly output from the \code{\link[rnoaa]{ncdc}} function,
+#' This function accepts directly output from the [rnoaa::ncdc()] function,
 #' not other functions.
 #'
-#' This is a simple wrapper function around some ggplot2 code. There is indeed a lot you
-#' can modify in your plots, so this function just does some basic stuff. Look at the internals
-#' for what the function does.
+#' This is a simple wrapper function around some ggplot2 code. There is indeed
+#' a lot you can modify in your plots, so this function just does some basic
+#' stuff. Look at the internals for what the function does.
 #'
 #' @examples \dontrun{
 #' # Search for data first, then plot
@@ -56,7 +56,8 @@ ncdc_plot.ncdc_data <- function(..., breaks = NULL, dateformat='%d/%m/%y') {
       ncdc_theme()
   } else {
     df <- dplyr::bind_rows(lapply(input, function(x) x$data))
-    df$facet <- rep(paste("input", 1:length(input)), times = sapply(input, function(x) nrow(x$data)))
+    df$facet <- rep(paste("input", 1:length(input)),
+      times = sapply(input, function(x) nrow(x$data)))
     df$date <- ymd(sub("T00:00:00\\.000|T00:00:00", '', as.character(df$date)))
     ggplot(df, aes(date, value)) +
       plot_template(df, breaks, dateformat) +

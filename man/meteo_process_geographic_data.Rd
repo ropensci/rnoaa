@@ -7,15 +7,15 @@
 meteo_process_geographic_data(station_data, lat, long, units = "deg")
 }
 \arguments{
-\item{station_data}{The output of \code{ghcnd_stations()}, which is
+\item{station_data}{The output of \code{\link[=ghcnd_stations]{ghcnd_stations()}}, which is
 a current list of weather stations available through NOAA for the GHCND
 dataset. The format of this is a dataframe
 with one row per weather station. Latitude and longitude for the station
 locations should be in columns with the names "latitude" and "longitude",
-consistent with the output from \code{ghcnd_stations()}. To save time,
+consistent with the output from \code{\link[=ghcnd_stations]{ghcnd_stations()}}. To save time,
 run the \code{ghcnd_stations} call and save the output to an object,
 rather than rerunning the default every time (see the examples in
-\code{\link{meteo_nearby_stations}}).}
+\code{\link[=meteo_nearby_stations]{meteo_nearby_stations()}}).}
 
 \item{lat}{Latitude of the location. Southern latitudes should be given
 as negative values.}
@@ -32,9 +32,9 @@ are:
 }
 \value{
 The \code{station_data} dataframe that is input, but with a
-   \code{distance} column added that gives the distance to the location
-   (in kilometers), and re-ordered by distance between each station and
-   the location (closest weather stations first).
+\code{distance} column added that gives the distance to the location
+(in kilometers), and re-ordered by distance between each station and
+the location (closest weather stations first).
 }
 \description{
 This function takes a single location and a dataset of available weather stations
@@ -52,5 +52,5 @@ meteo_process_geographic_data(station_data, -33, 151)
 }
 \author{
 Alex Simmons \email{a2.simmons@qut.edu.au},
-   Brooke Anderson \email{brooke.anderson@colostate.edu}
+Brooke Anderson \email{brooke.anderson@colostate.edu}
 }

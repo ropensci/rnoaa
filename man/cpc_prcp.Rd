@@ -11,18 +11,18 @@ cpc_prcp(date, us = FALSE, drop_undefined = FALSE, ...)
 
 \item{us}{(logical) US data only? default: \code{FALSE}}
 
-\item{drop_undefined}{(logical) drop undefined precipitation 
-values (values in the \code{precip} column in the output data.frame). 
+\item{drop_undefined}{(logical) drop undefined precipitation
+values (values in the \code{precip} column in the output data.frame).
 default: \code{FALSE}}
 
-\item{...}{curl options passed on to \code{\link[crul]{HttpClient}}}
+\item{...}{curl options passed on to \link[crul:verb-GET]{crul::verb-GET}}
 }
 \value{
 a data.frame, with columns:
 \itemize{
- \item lon - longitude (0 to 360)
- \item lat - latitude (-90 to 90)
- \item precip - precipitation (in mm) (see Details for more information)
+\item lon - longitude (0 to 360)
+\item lat - latitude (-90 to 90)
+\item precip - precipitation (in mm) (see Details for more information)
 }
 }
 \description{
@@ -34,12 +34,12 @@ the US (1948-present, resolution 25 km).
 }
 \section{Data processing in this function}{
 
-Internally we multiply all precipitation measurements by 0.1 as 
-per the CPC documentation. 
+Internally we multiply all precipitation measurements by 0.1 as
+per the CPC documentation.
 
 Values of -99.0 are classified as "undefined". These values can be
-removed by setting \code{drop_undefined = TRUE} in the \code{cpc_prcp} 
-function call. These undefined values are not dropped by default - 
+removed by setting \code{drop_undefined = TRUE} in the \code{cpc_prcp}
+function call. These undefined values are not dropped by default -
 so do remember to set \code{drop_undefined = TRUE} to drop them; or
 you can easily do it yourself by e.g., \code{subset(x, precip >= 0)}
 }

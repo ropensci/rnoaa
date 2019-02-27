@@ -9,14 +9,14 @@ arc2(date, ...)
 \arguments{
 \item{date}{a date of form YYYY-MM-DD}
 
-\item{...}{curl options passed on to \code{\link[crul]{HttpClient}}}
+\item{...}{curl options passed on to \link[crul:verb-GET]{crul::verb-GET}}
 }
 \value{
 a tibble/data.frame with columns:
 \itemize{
- \item lon - longitude
- \item lat - latitude
- \item precip - precipitation
+\item lon - longitude
+\item lat - latitude
+\item precip - precipitation
 }
 }
 \description{

@@ -46,9 +46,9 @@ Maximum is 1000 (optional)}
 \item{datacategoryid}{(character, optional) Accepts a valid data category id or a
 vector or list of data category ids.}
 
-\item{extent}{(numeric, optional) The geographical extent for which you want to 
-search. Give four values that defines a bounding box, lat and long for the 
-southwest corner, then lat and long for the northeast corner. For example: 
+\item{extent}{(numeric, optional) The geographical extent for which you want to
+search. Give four values that defines a bounding box, lat and long for the
+southwest corner, then lat and long for the northeast corner. For example:
 \code{c(minlat, minlong, maxlat, maxlong)}.}
 
 \item{token}{This must be a valid token token supplied to you by NCDC's
@@ -61,13 +61,13 @@ Climate Data Online access token generator. (required) See
 
 \item{location}{THIS IS A DEPRECATED ARGUMENT. See locationid.}
 
-\item{locationtype}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2 
+\item{locationtype}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
 of the NOAA API.}
 
-\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2 
+\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
 of the NOAA API.}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} 
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}
 (optional)}
 }
 \value{
@@ -85,10 +85,10 @@ Get an API key (aka, token) at \url{http://www.ncdc.noaa.gov/cdo-web/token}.
 You can pass your token in as an argument or store it one of two places:
 
 \itemize{
-  \item your .Rprofile file with an entry like
-  \code{options(noaakey = "your-noaa-token")}
-  \item your .Renviron file with an entry like
-  \code{NOAA_KEY=your-noaa-token}
+\item your .Rprofile file with an entry like
+\code{options(noaakey = "your-noaa-token")}
+\item your .Renviron file with an entry like
+\code{NOAA_KEY=your-noaa-token}
 }
 
 See \code{\link{Startup}} for information on how to create/find your

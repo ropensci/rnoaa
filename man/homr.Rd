@@ -11,8 +11,7 @@ homr(qid = NULL, qidMod = NULL, station = NULL, state = NULL,
 }
 \arguments{
 \item{qid}{One of COOP, FAA, GHCND, ICAO, NCDCSTNID, NWSLI, TRANS, WBAN, or
-WMO, or any
-of those plus \code{[a-z0-9]}, or just \code{[a-z0-9]}. (qid = qualified ID)}
+WMO, or any of those plus \code{a-z0-9}, or just \code{a-z0-9}. (qid = qualified ID)}
 
 \item{qidMod}{(character) One of: is, starts, ends, contains. Specifies
 how the ID portion of the qid parameter should be applied within the search.
@@ -30,23 +29,22 @@ used with a state identifier.}
 \item{country}{(character) A two letter country code. See here for a list
 of valid country names.}
 
-\item{name}{(character) One of name=[0-9A-Z]+. Searches on any type of
+\item{name}{(character) One of \code{0-9A-Z+}. Searches on any type of
 name we have for the station.}
 
-\item{nameMod}{(character) [is|starts|ends|contains]. Specifies how the
+\item{nameMod}{(character) \code{is|starts|ends|contains}. Specifies how the
 name parameter should be applied within the search. If a name is passed but
 the nameMod parameter is not used, nameMod is assumed to be IS.}
 
-\item{platform}{(character) (aka network) [ASOS|USCRN|USHCN|NEXRAD|AL
-USRCRN|USRCRN|COOP]. Limit the search to stations of a certain
+\item{platform}{(character) (aka network) \code{ASOS|USCRN|USHCN|NEXRAD|AL USRCRN|USRCRN|COOP}. Limit the search to stations of a certain
 platform/network type.}
 
-\item{date}{(character) [YYYY-MM-DD|all] Limits values to only those that
+\item{date}{(character) \code{YYYY-MM-DD|all} Limits values to only those that
 occurred on a specific date. Alternatively, date=all will return all values
 for matched stations. If this field is omitted, the search will return only
 the most recent values for each field.}
 
-\item{begindate, enddate}{[YYYY-MM-DD]. Limits values to only those that
+\item{begindate, enddate}{\code{YYYY-MM-DD}. Limits values to only those that
 occurred within a date range.}
 
 \item{headersOnly}{(logical) Returns only minimal information for each
@@ -66,7 +64,7 @@ to phrData=true.}
 
 \item{combine}{(logical) Combine station metadata or not.}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} (optional)}
+\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET} (optional)}
 }
 \value{
 A list, with elements named by the station ids.
@@ -77,7 +75,7 @@ Historical Observing Metadata Repository (HOMR) station metadata
 \details{
 Since the definitions for variables are always the same, we don't
 include the ability to get description data in this function. Use
-\code{link[rnoaa]{homr_descriptions}} to get descriptions information.
+\code{\link[=homr_definitions]{homr_definitions()}} to get descriptions information.
 }
 \examples{
 \dontrun{

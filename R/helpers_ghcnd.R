@@ -8,29 +8,29 @@
 #' giving the station ID.
 #'
 #' @param monitors A character vector listing the station IDs for all
-#'    weather stations the user would like to pull. To get a full and
-#'    current list of stations, the user can use the \code{\link{ghcnd_stations}}
-#'    function. To identify stations within a certain radius of a location, the
-#'    user can use the \code{\link{meteo_nearby_stations}} function.
+#' weather stations the user would like to pull. To get a full and
+#' current list of stations, the user can use the [ghcnd_stations()]
+#' function. To identify stations within a certain radius of a location, the
+#' user can use the [meteo_nearby_stations()] function.
 #' @inheritParams meteo_tidy_ghcnd
 #' @inheritParams ghcnd_search
 #'
 #' @return A data frame of daily weather data for multiple weather monitors,
 #'    converted to a tidy format. All weather variables may not exist for all
 #'    weather stations. Examples of variables returned are:
-#'    \itemize{
-#'    \item \code{id}: Character string with the weather station site id
-#'    \item \code{date}: Date of the observation
-#'    \item \code{prcp}: Precipitation, in tenths of mm
-#'    \item \code{tavg}: Average temperature, in tenths of degrees Celsius
-#'    \item \code{tmax}: Maximum temperature, in tenths of degrees Celsius
-#'    \item \code{tmin}: Minimum temperature, in tenths of degrees Celsius
-#'    \item \code{awnd}: Average daily wind speed, in meters / second
-#'    \item \code{wsfg}: Peak gust wind speed, in meters / second
-#'    }
+#'
+#'    - `id`: Character string with the weather station site id
+#'    - `date`: Date of the observation
+#'    - `prcp`: Precipitation, in tenths of mm
+#'    - `tavg`: Average temperature, in tenths of degrees Celsius
+#'    - `tmax`: Maximum temperature, in tenths of degrees Celsius
+#'    - `tmin`: Minimum temperature, in tenths of degrees Celsius
+#'    - `awnd`: Average daily wind speed, in meters / second
+#'    - `wsfg`: Peak gust wind speed, in meters / second
+#'
 #'    There are other possible weather variables in the Global Historical
 #'    Climatology Network; see
-#'    \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt} for a full
+#'    <http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt> for a full
 #'    list. If the \code{var} argument is something other than "all", then
 #'    only variables included in that argument will be included in the output
 #'    data frame. All variables are in the units specified in the linked file
@@ -40,19 +40,19 @@
 #'    letters changed to lowercase.
 #'
 #' @note The weather flags, which are kept by specifying
-#' \code{keep_flags = TRUE} are:
-#' \itemize{
-#' \item \code{*_mflag}: Measurement flag, which gives some information on how
+#' `keep_flags = TRUE` are:
+#'
+#' - `*_mflag`: Measurement flag, which gives some information on how
 #'    the observation was measured.
-#' \item \code{*_qflag}: Quality flag, which gives quality information on the
+#' - `*_qflag`: Quality flag, which gives quality information on the
 #'    measurement, like if it failed to pass certain quality checks.
-#' \item \code{*_sflag}: Source flag. This gives some information on the
+#' - `*_sflag`: Source flag. This gives some information on the
 #'    weather collection system (e.g., U.S. Cooperative Summary of the Day,
 #'    Australian Bureau of Meteorology) the weather observation comes from.
-#' }
+#'
 #' More information on the interpretation of these flags can be found in the
 #' README file for the NCDC's Daily Global Historical Climatology Network's
-#' data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
+#' data at <http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt>
 #'
 #' @note This function converts any value of -9999 to a missing value for the
 #'    variables "prcp", "tmax", "tmin", "tavg", "snow", and "snwd". However,
@@ -118,42 +118,42 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
 #' @return A data frame of daily weather data for a single weather monitor,
 #'    converted to a tidy format. All weather variables may not exist for all
 #'    weather stations. Examples of variables returned are:
-#'    \itemize{
-#'    \item \code{id}: Character string with the weather station site id
-#'    \item \code{date}: Date of the observation
-#'    \item \code{prcp}: Precipitation, in tenths of mm
-#'    \item \code{tavg}: Average temperature, in degrees Celsius
-#'    \item \code{tmax}: Maximum temperature, in degrees Celsius
-#'    \item \code{tmin}: Minimum temperature, in degrees Celsius
-#'    \item \code{awnd}: Average daily wind speed, in meters / second
-#'    \item \code{wsfg}: Peak gust wind speed, in meters / second
-#'    }
+#'
+#'    - `id`: Character string with the weather station site id
+#'    - `date`: Date of the observation
+#'    - `prcp`: Precipitation, in tenths of mm
+#'    - `tavg`: Average temperature, in degrees Celsius
+#'    - `tmax`: Maximum temperature, in degrees Celsius
+#'    - `tmin`: Minimum temperature, in degrees Celsius
+#'    - `awnd`: Average daily wind speed, in meters / second
+#'    - `wsfg`: Peak gust wind speed, in meters / second
+#'
 #'    There are other possible weather variables in the Global Historical
 #'    Climatology Network; see
-#'    \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt} for a full
-#'    list. The variables \code{prcp}, \code{tmax}, \code{tmin}, and \code{tavg}
+#'    <http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt> for a full
+#'    list. The variables `prcp`, `tmax`, `tmin`, and `tavg`
 #'    have all been converted from tenths of their metric to the metric (e.g.,
 #'    from tenths of degrees Celsius to degrees Celsius). All other variables
 #'    are in the units specified in the linked file.
 #'
 #' @note The weather flags, which are kept by specifying
-#' \code{keep_flags = TRUE} are:
-#' \itemize{
-#' \item \code{*_mflag}: Measurement flag, which gives some information on how
+#' `keep_flags = TRUE` are:
+#' 
+#' - `*_mflag`: Measurement flag, which gives some information on how
 #'    the observation was measured.
-#' \item \code{*_qflag}: Quality flag, which gives quality information on the
+#' - `*_qflag`: Quality flag, which gives quality information on the
 #'    measurement, like if it failed to pass certain quality checks.
-#' \item \code{*_sflag}: Source flag. This gives some information on the
+#' - `*_sflag`: Source flag. This gives some information on the
 #'    weather collection system (e.g., U.S. Cooperative Summary of the Day,
 #'    Australian Bureau of Meteorology) the weather observation comes from.
-#' }
+#' 
 #' More information on the interpretation of these flags can be found in the
 #' README file for the NCDC's Daily Global Historical Climatology Network's
-#' data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
+#' data at <http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt>
 #'
 #' @author Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
-#' @seealso \code{\link{meteo_pull_monitors}}
+#' @seealso [meteo_pull_monitors()]
 #'
 #' @examples
 #' \dontrun{
@@ -190,15 +190,15 @@ meteo_tidy_ghcnd <- function(stationid, keep_flags = FALSE, var = "all",
 
 #' Restructure element of ghcnd_search list
 #'
-#' This function restructures the output of \code{\link{ghcnd_search}}
-#' to add a column giving the variable name (\code{key}) and change the
-#' name of the variable column to \code{value}. These changes facilitate
-#' combining all elements from the list created by \code{\link{ghcnd_search}},
+#' This function restructures the output of [ghcnd_search()]
+#' to add a column giving the variable name (`key`) and change the
+#' name of the variable column to `value`. These changes facilitate
+#' combining all elements from the list created by [ghcnd_search()],
 #' to create a tidy dataframe of the weather observations from the station.
 #'
 #' @param x A dataframe with daily observations for a single monitor for a
 #'    single weather variable. This dataframe is one of the elements returned
-#'    by \code{\link{ghcnd_search}}.
+#'    by [ghcnd_search()]
 #' @inheritParams meteo_tidy_ghcnd
 #'
 #' @return A dataframe reformatted to allow easy aggregation of all weather

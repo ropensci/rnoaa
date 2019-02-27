@@ -16,5 +16,5 @@ A ggplot2 plot
 autoplot method for meteo_coverage objects
 }
 \details{
-see \code{\link{meteo_coverage}} for examples
+see \code{\link[=meteo_coverage]{meteo_coverage()}} for examples
 }

@@ -9,12 +9,12 @@ ncdc_plot(..., breaks = NULL, dateformat = "\%d/\%m/\%y")
 \arguments{
 \item{...}{Input noaa object or objects.}
 
-\item{breaks}{Regularly spaced date breaks for x-axis. See examples for usage.
-See \code{\link{date_breaks}}. Default: \code{NULL} (uses ggplot2 default break
+\item{breaks}{Regularly spaced date breaks for x-axis. See examples for
+usage. See \link{date_breaks}. Default: \code{NULL} (uses ggplot2 default break
 sformatting)}
 
-\item{dateformat}{Date format using standard POSIX specification for labels on
-x-axis. See \code{\link{date_format}}}
+\item{dateformat}{Date format using standard POSIX specification for labels
+on x-axis. See \code{\link[=date_format]{date_format()}}}
 }
 \value{
 ggplot2 plot
@@ -23,12 +23,12 @@ ggplot2 plot
 Plot NOAA climate data.
 }
 \details{
-This function accepts directly output from the \code{\link[rnoaa]{ncdc}} function,
+This function accepts directly output from the \code{\link[rnoaa:ncdc]{rnoaa::ncdc()}} function,
 not other functions.
 
-This is a simple wrapper function around some ggplot2 code. There is indeed a lot you
-can modify in your plots, so this function just does some basic stuff. Look at the internals
-for what the function does.
+This is a simple wrapper function around some ggplot2 code. There is indeed
+a lot you can modify in your plots, so this function just does some basic
+stuff. Look at the internals for what the function does.
 }
 \examples{
 \dontrun{

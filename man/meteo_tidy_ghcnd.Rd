@@ -8,8 +8,8 @@ meteo_tidy_ghcnd(stationid, keep_flags = FALSE, var = "all",
   date_min = NULL, date_max = NULL)
 }
 \arguments{
-\item{stationid}{(character) A character string giving the identification of 
-the weather station for which the user would like to pull data. To get a full 
+\item{stationid}{(character) A character string giving the identification of
+the weather station for which the user would like to pull data. To get a full
 and current list of stations, the user can use the \code{\link{ghcnd_stations}}
 function. To identify stations within a certain radius of a location, the
 user can use the \code{\link{meteo_nearby_stations}} function.}
@@ -29,6 +29,7 @@ include:
 \item \code{TMAX}: Maximum temperature, in tenths of degrees Celsius
 \item \code{TMIN}: Minimum temperature, in tenths of degrees Celsius
 }
+
 A full list of possible weather variables is available in NOAA's README
 file for the GHCND data
 (\url{https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}).
@@ -50,25 +51,26 @@ the queried weather site through the most current available date.}
 }
 \value{
 A data frame of daily weather data for a single weather monitor,
-   converted to a tidy format. All weather variables may not exist for all
-   weather stations. Examples of variables returned are:
-   \itemize{
-   \item \code{id}: Character string with the weather station site id
-   \item \code{date}: Date of the observation
-   \item \code{prcp}: Precipitation, in tenths of mm
-   \item \code{tavg}: Average temperature, in degrees Celsius
-   \item \code{tmax}: Maximum temperature, in degrees Celsius
-   \item \code{tmin}: Minimum temperature, in degrees Celsius
-   \item \code{awnd}: Average daily wind speed, in meters / second
-   \item \code{wsfg}: Peak gust wind speed, in meters / second
-   }
-   There are other possible weather variables in the Global Historical
-   Climatology Network; see
-   \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt} for a full
-   list. The variables \code{prcp}, \code{tmax}, \code{tmin}, and \code{tavg}
-   have all been converted from tenths of their metric to the metric (e.g.,
-   from tenths of degrees Celsius to degrees Celsius). All other variables
-   are in the units specified in the linked file.
+converted to a tidy format. All weather variables may not exist for all
+weather stations. Examples of variables returned are:
+\itemize{
+\item \code{id}: Character string with the weather station site id
+\item \code{date}: Date of the observation
+\item \code{prcp}: Precipitation, in tenths of mm
+\item \code{tavg}: Average temperature, in degrees Celsius
+\item \code{tmax}: Maximum temperature, in degrees Celsius
+\item \code{tmin}: Minimum temperature, in degrees Celsius
+\item \code{awnd}: Average daily wind speed, in meters / second
+\item \code{wsfg}: Peak gust wind speed, in meters / second
+}
+
+There are other possible weather variables in the Global Historical
+Climatology Network; see
+\url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt} for a full
+list. The variables \code{prcp}, \code{tmax}, \code{tmin}, and \code{tavg}
+have all been converted from tenths of their metric to the metric (e.g.,
+from tenths of degrees Celsius to degrees Celsius). All other variables
+are in the units specified in the linked file.
 }
 \description{
 This function inputs an object created by \code{\link{ghcnd}} and cleans up
@@ -79,16 +81,17 @@ The weather flags, which are kept by specifying
 \code{keep_flags = TRUE} are:
 \itemize{
 \item \code{*_mflag}: Measurement flag, which gives some information on how
-   the observation was measured.
+the observation was measured.
 \item \code{*_qflag}: Quality flag, which gives quality information on the
-   measurement, like if it failed to pass certain quality checks.
+measurement, like if it failed to pass certain quality checks.
 \item \code{*_sflag}: Source flag. This gives some information on the
-   weather collection system (e.g., U.S. Cooperative Summary of the Day,
-   Australian Bureau of Meteorology) the weather observation comes from.
+weather collection system (e.g., U.S. Cooperative Summary of the Day,
+Australian Bureau of Meteorology) the weather observation comes from.
 }
+
 More information on the interpretation of these flags can be found in the
 README file for the NCDC's Daily Global Historical Climatology Network's
-data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
+data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}
 }
 \examples{
 \dontrun{
@@ -100,7 +103,7 @@ meteo_tidy_ghcnd(stationid = "ASN00003003", date_min = "1950-01-01")
 
 }
 \seealso{
-\code{\link{meteo_pull_monitors}}
+\code{\link[=meteo_pull_monitors]{meteo_pull_monitors()}}
 }
 \author{
 Brooke Anderson \email{brooke.anderson@colostate.edu}

@@ -2,11 +2,11 @@
 #'
 #' This function inputs a dataframe with latitudes and longitudes of locations
 #' and creates a dataframe with monitors within a certain radius of those
-#' locations. The function can also be used, with the \code{limit} argument, to
+#' locations. The function can also be used, with the `limit` argument, to
 #' pull a certain number of the closest weather monitors to each location.
 #' The weather monitor IDs in the output dataframe can be used with other
-#' \code{rnoaa} functions to pull data from all available weather stations near
-#' a location (e.g., \code{\link{meteo_pull_monitors}}).
+#' \pkg{rnoaa} functions to pull data from all available weather stations near
+#' a location (e.g., [meteo_pull_monitors()]).
 #'
 #' Great circle distance is used to determine whether a weather monitor is
 #' within the required radius.
@@ -14,23 +14,23 @@
 #' @export
 #'
 #' @param lat_lon_df A dataframe that contains the latitude, longitude, and
-#'    a unique identifier for each location (\code{id}). For an example of the
+#'    a unique identifier for each location (`id`). For an example of the
 #'    proper format for this dataframe, see the examples below. Latitude and
 #'    longitude must both be in units of decimal degrees. Southern latitudes
 #'    and Western longitudes should be given as negative values.
 #' @param lat_colname A character string giving the name of the latitude column
-#'    in the \code{lat_lon_df} dataframe.
+#'    in the `lat_lon_df` dataframe.
 #' @param lon_colname A character string giving the name of the longitude column
-#'    in the \code{lat_lon_df} dataframe.
-#' @param station_data The output of \code{ghcnd_stations()}, which is
+#'    in the `lat_lon_df` dataframe.
+#' @param station_data The output of [ghcnd_stations()], which is
 #'    a current list of weather stations available through NOAA for the GHCND
 #'    dataset. The format of this is a dataframe
 #'    with one row per weather station. Latitude and longitude for the station
 #'    locations should be in columns with the names "latitude" and "longitude",
-#'    consistent with the output from \code{ghcnd_stations()}. To save time,
-#'    run the \code{ghcnd_stations} call and save the output to an object,
+#'    consistent with the output from [ghcnd_stations()]. To save time,
+#'    run the `ghcnd_stations` call and save the output to an object,
 #'    rather than rerunning the default every time (see the examples in
-#'    \code{\link{meteo_nearby_stations}}).
+#'    [meteo_nearby_stations()]).
 #' @param year_min A numeric value giving the earliest year from which you
 #'    ultimately want weather data (e.g., 2013, if you only are interested in
 #'    data from 2013 and later).
@@ -39,38 +39,37 @@
 #' @param radius A numeric vector giving the radius (in kilometers) within which
 #'    to search for monitors near a location.
 #' @param limit An integer giving the maximum number of monitors to include for
-#'    each location. The [x] closest monitors will be kept. Default is NULL
+#'    each location. The `x` closest monitors will be kept. Default is NULL
 #'    (pull everything available, within the radius if the radius is specified).
 #' @inheritParams ghcnd_search
 #'
 #' @return A list containing dataframes with the sets of unique weather stations
 #'    within the search radius for each location. Site IDs for the weather
 #'    stations given in this dataframe can be used in conjunction with other
-#'    functions in the \code{rnoaa} package to pull weather data for the
+#'    functions in the \pkg{rnoaa} package to pull weather data for the
 #'    station. The dataframe for each location includes:
-#'    \itemize{
-#'    \item \code{id}: The weather station ID, which can be used in other
+#'    
+#'    - `id`: The weather station ID, which can be used in other
 #'    functions to pull weather data from the station;
-#'    \item \code{name}: The weather station name;
-#'    \item \code{latitude}: The station's latitude, in decimal degrees.
+#'    - `name`: The weather station name;
+#'    - `latitude`: The station's latitude, in decimal degrees.
 #'    Southern latitudes will be negative;
-#'    \item \code{longitude}: The station's longitude, in decimal degrees.
+#'    - `longitude`: The station's longitude, in decimal degrees.
 #'    Western longitudes will be negative;
-#'    \item \code{distance}: The station's distance, in kilometers, from the
+#'    - `distance`: The station's distance, in kilometers, from the
 #'    location.
-#'    }
 #'
 #' @note By default, this function will pull the full station list from NOAA
 #'    to use to identify nearby locations. If you will be creating lists of
 #'    monitors nearby several stations, you can save some time by using the
-#'    \code{\link{ghcnd_stations}} function separately to create an object
-#'    with all stations and then use the argument \code{station_data} in
+#'    [ghcnd_stations()] function separately to create an object
+#'    with all stations and then use the argument `station_data` in
 #'    this function to reference that object, rather than using this function's
 #'    defaults (see examples).
 #'
 #' @seealso The weather monitor IDs generated by this function can be used in
-#'    other functions in the \code{rnoaa} package, like
-#'    \code{\link{meteo_pull_monitors}} and \code{\link{meteo_tidy_ghcnd}}, to
+#'    other functions in the \pkg{rnoaa} package, like
+#'    [meteo_pull_monitors()] and [meteo_tidy_ghcnd()], to
 #'    pull weather data from weather monitors near a location.
 #'
 #' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
@@ -142,7 +141,7 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
 #' This function will identify all weather stations with a specified radius of
 #' a location. If no radius is given, the function will return a dataframe
 #' of all available monitors, sorted by distance to the location. The
-#' \code{limit} argument can be used to limit the output dataframe to the [x]
+#' `limit` argument can be used to limit the output dataframe to the `x`
 #' closest monitors to the location.
 #'
 #' @export
@@ -152,15 +151,15 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
 #'    negative values.
 #' @param units Units of the latitude and longitude values. Possible values
 #'    are:
-#'    \itemize{
-#'    \item \code{deg}: Degrees (default);
-#'    \item \code{rad}: Radians.
-#'    }
+#'
+#'    - `deg`: Degrees (default);
+#'    - `rad`: Radians.
+#'
 #' @inheritParams meteo_nearby_stations
 #'
 #' @return A dataframe of weather stations near the location. This is the
 #'    single-location version of the return value for
-#'    \code{\link{meteo_nearby_stations}}.
+#'    [meteo_nearby_stations()]
 #'
 #' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
 #'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
@@ -204,8 +203,8 @@ meteo_distance <- function(station_data, lat, long,
 #' @export
 #' @inheritParams meteo_distance
 #'
-#' @return The \code{station_data} dataframe that is input, but with a
-#'    \code{distance} column added that gives the distance to the location
+#' @return The `station_data` dataframe that is input, but with a
+#'    `distance` column added that gives the distance to the location
 #'    (in kilometers), and re-ordered by distance between each station and
 #'    the location (closest weather stations first).
 #'

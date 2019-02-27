@@ -2,15 +2,15 @@
 #'
 #' @name caching
 #' @param force (logical) Should we force removal of files if permissions
-#' say otherwise?. Default: \code{FALSE}
+#' say otherwise?. Default: `FALSE`
 #'
 #' @details BEWARE: this will clear all cached files.
 #'
 #' @section File storage:
 #' We use \pkg{rappdirs} to store files, see
-#' \code{\link[rappdirs]{user_cache_dir}} for how
+#' [rappdirs::user_cache_dir()] for how
 #' we determine the directory on your machine to save files to, and run
-#' \code{user_cache_dir("rnoaa")} to get that directory.
+#' `user_cache_dir("rnoaa")` to get that directory.
 
 #' @export
 #' @rdname caching

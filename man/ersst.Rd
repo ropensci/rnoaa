@@ -16,7 +16,7 @@ add a zero in front (e.g., 08). Required}
 \item{overwrite}{(logical) To overwrite the path to store files in or not,
 Default: \code{TRUE}}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}. 
+\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET}
 Optional}
 }
 \value{
@@ -29,7 +29,7 @@ NOAA Extended Reconstructed Sea Surface Temperature (ERSST) data
 \section{File storage}{
 
 We use \pkg{rappdirs} to store files, see
-\code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
+\code{\link[rappdirs:user_cache_dir]{rappdirs::user_cache_dir()}} for how we determine the directory on
 your machine to save files to, and run
 \code{rappdirs::user_cache_dir("rnoaa/ersst")}
 to get that directory.

@@ -3,10 +3,10 @@
 #' @export
 #' @param url A url for a NOAA sea ice ftp file
 #' @param ... Further arguments passed on to readshpfile function, see
-#'    \code{readshpfile}
+#' `readshpfile`
 #' @return A data.frame
 #' @details If you want to reproject the shape files, use
-#' \code{\link{readshpfile}} to read in shape file, then reproject, and so on.
+#' [readshpfile()] to read in shape file, then reproject, and so on.
 #' @examples \dontrun{
 #' # Look at data.frame's for a series of years for Feb, South pole
 #' urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x,

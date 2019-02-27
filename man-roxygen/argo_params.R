@@ -90,7 +90,7 @@
 #' n of profile levels with good data. It can take one of the following values:
 #' \itemize{
 #'  \item A or F: All (n=100%) or none (n=0%) of the profile levels contain good data,
-#'  \item B,C,D,E: n is in one of the intermediate range: [75-100],[50-75],[25-50] or [0-25]
+#'  \item B,C,D,E: n is in one of the intermediate range: 75-100, 50-75, 25-50 or 0-25
 #'  \item empty: No QC was performed.
 #' }
 #'

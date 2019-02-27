@@ -2,8 +2,8 @@
 #'
 #' Location categories are groupings of similar locations.
 #'
-#' Locations can be a specific latitude/longitude point such as a station, or a
-#' label representing a bounding area such as a city.
+#' Locations can be a specific latitude/longitude point such as a station,
+#' or a label representing a bounding area such as a city.
 #'
 #' @export
 #'
@@ -11,7 +11,7 @@
 #' @template token
 #' @return A list containing metadata and the data, or a single data.frame.
 #' @family ncdc
-#' @references \url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
+#' @references <https://www.ncdc.noaa.gov/cdo-web/webservices/v2>
 #' @examples \dontrun{
 #' # All location categories, first 25 results
 #' ncdc_locs_cats()
@@ -56,9 +56,11 @@ ncdc_locs_cats <- function(datasetid=NULL, locationcategoryid=NULL,
       dat <- data.frame(tt, stringsAsFactors = FALSE)
       all <- list(meta = NULL, data = dat)
     } else {
-      dat <- dplyr::bind_rows(lapply(tt$results, function(x) data.frame(x,stringsAsFactors = FALSE)))
+      dat <- dplyr::bind_rows(lapply(tt$results, function(x)
+        data.frame(x,stringsAsFactors = FALSE)))
       meta <- tt$metadata$resultset
-      atts <- list(totalCount = meta$count, pageCount = meta$limit, offset = meta$offset)
+      atts <- list(totalCount = meta$count, pageCount = meta$limit,
+        offset = meta$offset)
       all <- list(meta = atts, data = dat)
     }
   }

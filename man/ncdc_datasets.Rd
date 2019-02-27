@@ -57,7 +57,7 @@ arguments.}
 \item{month}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
 arguments.}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} 
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}
 (optional)}
 }
 \value{
@@ -65,8 +65,8 @@ A data.frame for all datasets, or a list of length two, each with
 a data.frame.
 }
 \description{
-From the NOAA API docs: All of our data are in datasets. To retrieve any data
-from us, you must know what dataset it is in.
+From the NOAA API docs: All of our data are in datasets. To retrieve
+any data from us, you must know what dataset it is in.
 }
 \section{Authentication}{
 
@@ -74,10 +74,10 @@ Get an API key (aka, token) at \url{http://www.ncdc.noaa.gov/cdo-web/token}.
 You can pass your token in as an argument or store it one of two places:
 
 \itemize{
-  \item your .Rprofile file with an entry like
-  \code{options(noaakey = "your-noaa-token")}
-  \item your .Renviron file with an entry like
-  \code{NOAA_KEY=your-noaa-token}
+\item your .Rprofile file with an entry like
+\code{options(noaakey = "your-noaa-token")}
+\item your .Renviron file with an entry like
+\code{NOAA_KEY=your-noaa-token}
 }
 
 See \code{\link{Startup}} for information on how to create/find your

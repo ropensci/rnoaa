@@ -22,15 +22,15 @@ in the \code{lat_lon_df} dataframe.}
 \item{lon_colname}{A character string giving the name of the longitude column
 in the \code{lat_lon_df} dataframe.}
 
-\item{station_data}{The output of \code{ghcnd_stations()}, which is
+\item{station_data}{The output of \code{\link[=ghcnd_stations]{ghcnd_stations()}}, which is
 a current list of weather stations available through NOAA for the GHCND
 dataset. The format of this is a dataframe
 with one row per weather station. Latitude and longitude for the station
 locations should be in columns with the names "latitude" and "longitude",
-consistent with the output from \code{ghcnd_stations()}. To save time,
+consistent with the output from \code{\link[=ghcnd_stations]{ghcnd_stations()}}. To save time,
 run the \code{ghcnd_stations} call and save the output to an object,
 rather than rerunning the default every time (see the examples in
-\code{\link{meteo_nearby_stations}}).}
+\code{\link[=meteo_nearby_stations]{meteo_nearby_stations()}}).}
 
 \item{var}{A character vector specifying either \code{"all"} (pull all
 available weather parameters for the site) or the weather parameters to
@@ -43,6 +43,7 @@ include:
 \item \code{TMAX}: Maximum temperature, in tenths of degrees Celsius
 \item \code{TMIN}: Minimum temperature, in tenths of degrees Celsius
 }
+
 A full list of possible weather variables is available in NOAA's README
 file for the GHCND data
 (\url{https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}).
@@ -61,26 +62,26 @@ ultimately want weather data.}
 to search for monitors near a location.}
 
 \item{limit}{An integer giving the maximum number of monitors to include for
-each location. The [x] closest monitors will be kept. Default is NULL
+each location. The \code{x} closest monitors will be kept. Default is NULL
 (pull everything available, within the radius if the radius is specified).}
 }
 \value{
 A list containing dataframes with the sets of unique weather stations
-   within the search radius for each location. Site IDs for the weather
-   stations given in this dataframe can be used in conjunction with other
-   functions in the \code{rnoaa} package to pull weather data for the
-   station. The dataframe for each location includes:
-   \itemize{
-   \item \code{id}: The weather station ID, which can be used in other
-   functions to pull weather data from the station;
-   \item \code{name}: The weather station name;
-   \item \code{latitude}: The station's latitude, in decimal degrees.
-   Southern latitudes will be negative;
-   \item \code{longitude}: The station's longitude, in decimal degrees.
-   Western longitudes will be negative;
-   \item \code{distance}: The station's distance, in kilometers, from the
-   location.
-   }
+within the search radius for each location. Site IDs for the weather
+stations given in this dataframe can be used in conjunction with other
+functions in the \pkg{rnoaa} package to pull weather data for the
+station. The dataframe for each location includes:
+\itemize{
+\item \code{id}: The weather station ID, which can be used in other
+functions to pull weather data from the station;
+\item \code{name}: The weather station name;
+\item \code{latitude}: The station's latitude, in decimal degrees.
+Southern latitudes will be negative;
+\item \code{longitude}: The station's longitude, in decimal degrees.
+Western longitudes will be negative;
+\item \code{distance}: The station's distance, in kilometers, from the
+location.
+}
 }
 \description{
 This function inputs a dataframe with latitudes and longitudes of locations
@@ -88,8 +89,8 @@ and creates a dataframe with monitors within a certain radius of those
 locations. The function can also be used, with the \code{limit} argument, to
 pull a certain number of the closest weather monitors to each location.
 The weather monitor IDs in the output dataframe can be used with other
-\code{rnoaa} functions to pull data from all available weather stations near
-a location (e.g., \code{\link{meteo_pull_monitors}}).
+\pkg{rnoaa} functions to pull data from all available weather stations near
+a location (e.g., \code{\link[=meteo_pull_monitors]{meteo_pull_monitors()}}).
 }
 \details{
 Great circle distance is used to determine whether a weather monitor is
@@ -97,12 +98,12 @@ within the required radius.
 }
 \note{
 By default, this function will pull the full station list from NOAA
-   to use to identify nearby locations. If you will be creating lists of
-   monitors nearby several stations, you can save some time by using the
-   \code{\link{ghcnd_stations}} function separately to create an object
-   with all stations and then use the argument \code{station_data} in
-   this function to reference that object, rather than using this function's
-   defaults (see examples).
+to use to identify nearby locations. If you will be creating lists of
+monitors nearby several stations, you can save some time by using the
+\code{\link[=ghcnd_stations]{ghcnd_stations()}} function separately to create an object
+with all stations and then use the argument \code{station_data} in
+this function to reference that object, rather than using this function's
+defaults (see examples).
 }
 \examples{
 \dontrun{
@@ -129,11 +130,11 @@ meteo_nearby_stations(lat_lon_df = miami, station_data = station_data,
 }
 \seealso{
 The weather monitor IDs generated by this function can be used in
-   other functions in the \code{rnoaa} package, like
-   \code{\link{meteo_pull_monitors}} and \code{\link{meteo_tidy_ghcnd}}, to
-   pull weather data from weather monitors near a location.
+other functions in the \pkg{rnoaa} package, like
+\code{\link[=meteo_pull_monitors]{meteo_pull_monitors()}} and \code{\link[=meteo_tidy_ghcnd]{meteo_tidy_ghcnd()}}, to
+pull weather data from weather monitors near a location.
 }
 \author{
 Alex Simmons \email{a2.simmons@qut.edu.au},
-   Brooke Anderson \email{brooke.anderson@colostate.edu}
+Brooke Anderson \email{brooke.anderson@colostate.edu}
 }

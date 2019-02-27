@@ -2,7 +2,7 @@
 #' definitions
 #'
 #' @export
-#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}.
+#' @param ... Curl options passed on to [crul::verb-GET]
 #' optional
 #' @examples \dontrun{
 #' head( homr_definitions() )

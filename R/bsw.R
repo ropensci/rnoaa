@@ -14,15 +14,15 @@
 #' mean exactly yet. Default: uv
 #' @param resolution (character) temporal resolution. one of 6hrly, 
 #' clm, daily, or monthly. See Details.
-#' @param ... curl options passed on to \code{\link[crul]{HttpClient}}
-#' @return an object of class \code{ncdf4}
+#' @param ... curl options passed on to [crul::verb-GET]
+#' @return an object of class `ncdf4`
 #' 
 #' @details 
 #' Products are available from July 9th, 1987 - present.
 #' 
-#' Uses \code{ncdf4} under the hood to read NetCDF files
+#' Uses `ncdf4` under the hood to read NetCDF files
 #' 
-#' Use \code{bsw_cache} object to manage cached files.
+#' Use `bsw_cache` object to manage cached files.
 #' 
 #' @section Citing NOAA and BSW data:
 #' Message from NOAA: "We also ask you to acknowledge us in your use of the 
@@ -33,21 +33,20 @@
 #' appreciate receiving a copy of the relevant publication."
 #' 
 #' @section Temporal resolution:
-#' \itemize{
-#'  \item 6hrly: 6-hourly, 4 global snapshots (u,v) at UTC 00, 06, 12 and 18Z
-#'  \item clm: climatological monthlies; also provided is the scalar 
+#'
+#' - 6hrly: 6-hourly, 4 global snapshots (u,v) at UTC 00, 06, 12 and 18Z
+#' - clm: climatological monthlies; also provided is the scalar 
 #'   mean (u,v,w)
-#'  \item daily: averages of the 6hrly time points, thus with a center time 
+#' - daily: averages of the 6hrly time points, thus with a center time 
 #'   09Z; also provided is the scalar mean, (u,v,w)
-#'  \item monthly: averages of daily data; also provided is the scalar 
+#' - monthly: averages of daily data; also provided is the scalar 
 #'   mean (u,v,w)
-#' }
 #' 
 #' @note We only handle the netcdf files for now, we're avoiding the ieee 
 #' files, see http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
 #' 
 #' @references 
-#' \url{https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds}
+#' <https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds>
 #' ftp://eclipse.ncdc.noaa.gov/pub/seawinds/
 #' ieee files: http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
 #'
@@ -126,13 +125,6 @@ bsw_get <- function(year, month, day, uv_stress, resolution,
     key <- bsw_key(year, month, day, uv_stress, resolution)  
   }
   
-  # file <- file.path(
-  #   bsw_cache$cache_path_get(), 
-  #   paste0(
-  #     switch(resolution, '6hrly' = "6hrly_", daily = "daily_", ""), 
-  #     basename(key)
-  #   )
-  # )
   file <- file.path(
     bsw_cache$cache_path_get(), 
     uv_stress,

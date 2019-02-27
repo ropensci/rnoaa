@@ -32,14 +32,14 @@ of the station with its lat/lon values, and assign that time zone.}
 \item{application}{(character) If called within an external package, set
 to the name of your organization. Optional}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}. 
+\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET}
 Optional}
 }
 \value{
 List, of length one or two.
 \itemize{
- \item metadata A list of metadata with slots id, name, lat, lon
- \item data A data.frame with data
+\item metadata A list of metadata with slots id, name, lat, lon
+\item data A data.frame with data
 }
 }
 \description{
@@ -48,28 +48,28 @@ Get NOAA co-ops data
 \details{
 Options for the product paramter. One of:
 \itemize{
- \item water_level - Preliminary or verified water levels, depending on
- availability
- \item air_temperature - Air temperature as measured at the station
- \item water_temperature - Water temperature as measured at the station
- \item wind - Wind speed, direction, and gusts as measured at the station
- \item air_pressure - Barometric pressure as measured at the station
- \item air_gap - Air Gap (distance between a bridge and the water's surface)
- at the station
- \item conductivity - The water's conductivity as measured at the station
- \item visibility - Visibility from the station's visibility sensor. A
- measure of atmospheric clarity
- \item humidity - Relative humidity as measured at the station
- \item salinity - Salinity and specific gravity data for the station
- \item one_minute_water_level - One minute water level data for the station
- \item predictions - 6 minute predictions water level data for the station
- \item hourly_height - Verified hourly height water level data for
- the station
- \item high_low - Verified high/low water level data for the station
- \item daily_mean - Verified daily mean water level data for the station
- \item monthly_mean - Verified monthly mean water level data for the station
- \item datums - datums data for the stations
- \item currents - Currents data for currents stations
+\item water_level - Preliminary or verified water levels, depending on
+availability
+\item air_temperature - Air temperature as measured at the station
+\item water_temperature - Water temperature as measured at the station
+\item wind - Wind speed, direction, and gusts as measured at the station
+\item air_pressure - Barometric pressure as measured at the station
+\item air_gap - Air Gap (distance between a bridge and the water's surface)
+at the station
+\item conductivity - The water's conductivity as measured at the station
+\item visibility - Visibility from the station's visibility sensor. A
+measure of atmospheric clarity
+\item humidity - Relative humidity as measured at the station
+\item salinity - Salinity and specific gravity data for the station
+\item one_minute_water_level - One minute water level data for the station
+\item predictions - 6 minute predictions water level data for the station
+\item hourly_height - Verified hourly height water level data for
+the station
+\item high_low - Verified high/low water level data for the station
+\item daily_mean - Verified daily mean water level data for the station
+\item monthly_mean - Verified monthly mean water level data for the station
+\item datums - datums data for the stations
+\item currents - Currents data for currents stations
 }
 
 Maximum Durations in a Single Call:
@@ -77,17 +77,18 @@ Maximum Durations in a Single Call:
 \item Products water_level through predictions allow requests for up to
 \item Products hourly_height and high_low allow requests for up to
 \item Products daily_mean and monthly_mean allow requests for up to
-}#'
+}
+
 Options for the datum parameter. One of:
 \itemize{
- \item MHHW - Mean higher high water
- \item MHW - Mean high water
- \item MTL - Mean tide level
- \item MSL - Mean sea level
- \item MLW - Mean low water
- \item MLLW - Mean lower low water
- \item NAVD - North American Vertical Datum
- \item STND - Station datum
+\item MHHW - Mean higher high water
+\item MHW - Mean high water
+\item MTL - Mean tide level
+\item MSL - Mean sea level
+\item MLW - Mean low water
+\item MLLW - Mean lower low water
+\item NAVD - North American Vertical Datum
+\item STND - Station datum
 }
 }
 \examples{

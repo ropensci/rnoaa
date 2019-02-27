@@ -24,7 +24,7 @@ space. Default: \code{TRUE}}
 
 \item{additional}{(logical) include additional and remarks data sections
 in output. Default: \code{TRUE}. Passed on to
-\code{\link[isdparser]{isd_parse}}}
+\code{\link[isdparser:isd_parse]{isdparser::isd_parse()}}}
 
 \item{parallel}{(logical) do processing in parallel. Default: \code{FALSE}}
 
@@ -39,7 +39,7 @@ time, so if processing time is important, then keep as \code{FALSE}}
 We use a cached version (an .rds compressed file) if it exists, but
 this will override that behavior.}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}}
+\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET}}
 }
 \value{
 A tibble (data.frame).
@@ -73,14 +73,13 @@ this process up in the future. See examples below for different behavior.
 There are now no transformations (scaling, class changes, etc.)
 done on the output data. This may change in the future with parameters
 to toggle transformations, but none are done for now. See
-\code{\link[isdparser]{isd_transform}} for transformation help.
+\code{\link[isdparser:isd_transform]{isdparser::isd_transform()}} for transformation help.
 Comprehensive transformations for all variables are not yet available
 but should be available in the next version of this package.
 }
 \section{Errors}{
 
-Note that when you get an error similar to \code{Error: download failed for
-ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz}, the
+Note that when you get an error similar to \code{Error: download failed for ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz}, the
 file does not exist on NOAA's ftp servers. If your internet is down,
 you'll get a different error.
 }
@@ -88,7 +87,7 @@ you'll get a different error.
 \section{File storage}{
 
 We use \pkg{rappdirs} to store files, see
-\code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
+\code{\link[rappdirs:user_cache_dir]{rappdirs::user_cache_dir()}} for how we determine the directory on
 your machine to save files to, and run
 \code{rappdirs::user_cache_dir("rnoaa/isd")} to get that directory.
 }

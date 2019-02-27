@@ -2,28 +2,24 @@
 #'
 #' Gives you an at-a-glance ggplot of the missingness inside a dataframe,
 #' colouring cells according to missingness, where black indicates a present
-#' cell and grey indicates a missing cell. As it returns a \code{ggplot} object,
+#' cell and grey indicates a missing cell. As it returns a `ggplot` object,
 #' it is very easy to customize and change labels, and so on.
 #'
-#' @details \code{vis_miss} visualises a data.frame to display missingness. This is
-#' taken from the visdat package, currently only available on github:
-#' \url{https://github.com/tierneyn/visdat}
-#'
+#' @export
 #' @param x a data.frame
-#'
-#' @param cluster logical TRUE/FALSE. TRUE specifies that you want to use
-#'    hierarchical clustering (mcquitty method) to arrange rows according to
-#'    missingness. FALSE specifies that you want to leave it as is.
-#' @param sort_miss logical TRUE/FALSE. TRUE arranges the columns in order of
-#'    missingness.
-#'
+#' @param cluster logical `TRUE`/`FALSE`. `TRUE` specifies that you want to use
+#' hierarchical clustering (mcquitty method) to arrange rows according to
+#' missingness. `FALSE` specifies that you want to leave it as is.
+#' @param sort_miss logical `TRUE`/`FALSE`. `TRUE` arranges the columns in
+#' order of missingness.
+#' @details `vis_miss` visualises a data.frame to display missingness. This is
+#' taken from the visdat package, currently only available on github:
+#' <https://github.com/tierneyn/visdat>
 #' @examples \dontrun{
 #'   monitors <- c("ASN00003003", "ASM00094299")
 #'   weather_df <- meteo_pull_monitors(monitors)
 #'   vis_miss(weather_df)
 #' }
-#'
-#' @export
 vis_miss <- function(x,
                      cluster = FALSE,
                      sort_miss = FALSE){
@@ -102,5 +98,4 @@ vis_miss <- function(x,
     ggplot2::scale_x_discrete(limits = col_order_index)
   # Thanks to http://www.markhneedham.com/blog/2015/02/27/rggplot-controlling-x-axis-order/
   # For the tip on using scale_x_discrete
-
 }

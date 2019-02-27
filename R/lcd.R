@@ -5,12 +5,12 @@
 #' allow integer/numeric passed here, but station ids can have leading
 #' zeros, so it's a good idea to keep stations as character class
 #' @param year (integer) year, e.g., 2017
-#' @param ... curl options passed on to \code{\link[crul]{HttpClient}}
+#' @param ... curl options passed on to [crul::verb-GET]
 #' @return a data.frame, with many columns, and variable rows
 #' depending on how frequently data was collected in the given year
 #'
-#' @references \url{https://www.ncdc.noaa.gov/cdo-web/datatools/lcd}
-#' \url{https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/LCD_documentation.pdf}
+#' @references <https://www.ncdc.noaa.gov/cdo-web/datatools/lcd>
+#' <https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/LCD_documentation.pdf>
 #' 
 #' @note Beware that there are multiple columns with comma-delimited data 
 #' joined together. In the next version of this package we'll try to have the
@@ -18,18 +18,16 @@
 #' 
 #' @return a data.frame with many columns. the first 10 are metadata:
 #' 
-#' \itemize{
-#'  \item station
-#'  \item date
-#'  \item source
-#'  \item latitude
-#'  \item longitude
-#'  \item elevation
-#'  \item name
-#'  \item report_type
-#'  \item call_sign
-#'  \item quality_control
-#' }
+#' - station
+#' - date
+#' - source
+#' - latitude
+#' - longitude
+#' - elevation
+#' - name
+#' - report_type
+#' - call_sign
+#' - quality_control
 #' 
 #' And the rest should be all data columns. See Note about data joined
 #' together.

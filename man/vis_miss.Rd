@@ -9,12 +9,12 @@ vis_miss(x, cluster = FALSE, sort_miss = FALSE)
 \arguments{
 \item{x}{a data.frame}
 
-\item{cluster}{logical TRUE/FALSE. TRUE specifies that you want to use
+\item{cluster}{logical \code{TRUE}/\code{FALSE}. \code{TRUE} specifies that you want to use
 hierarchical clustering (mcquitty method) to arrange rows according to
-missingness. FALSE specifies that you want to leave it as is.}
+missingness. \code{FALSE} specifies that you want to leave it as is.}
 
-\item{sort_miss}{logical TRUE/FALSE. TRUE arranges the columns in order of
-missingness.}
+\item{sort_miss}{logical \code{TRUE}/\code{FALSE}. \code{TRUE} arranges the columns in
+order of missingness.}
 }
 \description{
 Gives you an at-a-glance ggplot of the missingness inside a dataframe,
@@ -33,5 +33,4 @@ taken from the visdat package, currently only available on github:
   weather_df <- meteo_pull_monitors(monitors)
   vis_miss(weather_df)
 }
-
 }

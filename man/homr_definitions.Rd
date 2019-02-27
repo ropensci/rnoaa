@@ -8,7 +8,7 @@ definitions}
 homr_definitions(...)
 }
 \arguments{
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}.
+\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET}
 optional}
 }
 \description{

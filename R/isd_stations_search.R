@@ -11,31 +11,31 @@
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 #'
 #' @return a data.frame with the columns:
-#' \itemize{
-#'  \item usaf - USAF number, character
-#'  \item wban - WBAN number, character
-#'  \item station_name - station name, character
-#'  \item ctry - Country, if given, character
-#'  \item state - State, if given, character
-#'  \item icao - ICAO number, if given, character
-#'  \item lat - Latitude, if given, numeric
-#'  \item lon - Longitude, if given, numeric
-#'  \item elev_m - Elevation, if given, numeric
-#'  \item begin - Begin date of data coverage, of form YYYYMMDD, numeric
-#'  \item end - End date of data coverage, of form YYYYMMDD, numeric
-#'  \item distance - distance (km) (only present if using lat/lon/radius
+#' 
+#' - usaf - USAF number, character
+#' - wban - WBAN number, character
+#' - station_name - station name, character
+#' - ctry - Country, if given, character
+#' - state - State, if given, character
+#' - icao - ICAO number, if given, character
+#' - lat - Latitude, if given, numeric
+#' - lon - Longitude, if given, numeric
+#' - elev_m - Elevation, if given, numeric
+#' - begin - Begin date of data coverage, of form YYYYMMDD, numeric
+#' - end - End date of data coverage, of form YYYYMMDD, numeric
+#' - distance - distance (km) (only present if using lat/lon/radius
 #'  parameter combination)
-#' }
 #'
-#' @details We internally call \code{\link{isd_stations}} to get the data.frame
+#'
+#' @details We internally call [isd_stations()] to get the data.frame
 #' of ISD stations, which is quite fast as long as it's not the first time
 #' called since we cache the table. Before searching, we clean up the
 #' data.frame, removing stations with no lat/long coordinates, those with
 #' impossible lat/long coordinates, and those at 0,0.
 #'
-#' When lat/lon/radius input we use \code{\link{meteo_distance}} to search
+#' When lat/lon/radius input we use [meteo_distance()] to search
 #' for stations, while when bbox is input, we simply use
-#' \code{\link[dplyr]{filter}}
+#' [dplyr::filter()]
 #'
 #' @family isd
 #'

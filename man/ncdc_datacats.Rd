@@ -2,7 +2,8 @@
 % Please edit documentation in R/ncdc_datacats.r
 \name{ncdc_datacats}
 \alias{ncdc_datacats}
-\title{Get possible data categories for a particular datasetid, locationid, stationid, etc.}
+\title{Get possible data categories for a particular datasetid, locationid,
+stationid, etc.}
 \usage{
 ncdc_datacats(datasetid = NULL, datacategoryid = NULL,
   stationid = NULL, locationid = NULL, startdate = NULL,
@@ -43,15 +44,15 @@ Climate Data Online access token generator. (required) See
 \item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}}
 }
 \value{
-A \code{data.frame} for all datasets, or a list of length two, each
-   with a data.frame.
+A \code{data.frame} for all datasets, or a list of length two,
+each with a data.frame.
 }
 \description{
 Data Categories represent groupings of data types.
 }
 \details{
-Note that calls with both startdate and enddate don't seem to work, though specifying
-   one or the other mostly works.
+Note that calls with both startdate and enddate don't seem to
+work, though specifying one or the other mostly works.
 }
 \section{Authentication}{
 
@@ -59,10 +60,10 @@ Get an API key (aka, token) at \url{http://www.ncdc.noaa.gov/cdo-web/token}.
 You can pass your token in as an argument or store it one of two places:
 
 \itemize{
-  \item your .Rprofile file with an entry like
-  \code{options(noaakey = "your-noaa-token")}
-  \item your .Renviron file with an entry like
-  \code{NOAA_KEY=your-noaa-token}
+\item your .Rprofile file with an entry like
+\code{options(noaakey = "your-noaa-token")}
+\item your .Renviron file with an entry like
+\code{NOAA_KEY=your-noaa-token}
 }
 
 See \code{\link{Startup}} for information on how to create/find your

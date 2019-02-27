@@ -79,12 +79,12 @@ time's improve, but perhaps they will for you.}
 
 \item{results}{THIS IS A DEPRECATED ARGUMENT. See limit.}
 
-\item{add_units}{(logical) whether to add units information or not. 
+\item{add_units}{(logical) whether to add units information or not.
 default: \code{FALSE}. If \code{TRUE}, after getting data from NOAA
-we add a new column \code{units}. See "Adding units" in Details 
+we add a new column \code{units}. See "Adding units" in Details
 for more}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} 
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}
 (optional)}
 }
 \value{
@@ -105,8 +105,8 @@ are required.
 
 Note that the default limit (no. records returned) is 25. Look at the
 metadata in \code{$meta} to see how many records were found. If more were
-found than 25, you could set the parameter \code{limit} to
-something higher than 25.
+found than 25, you could set the parameter \code{limit} to something
+higher than 25.
 }
 \section{Authentication}{
 
@@ -114,10 +114,10 @@ Get an API key (aka, token) at \url{http://www.ncdc.noaa.gov/cdo-web/token}.
 You can pass your token in as an argument or store it one of two places:
 
 \itemize{
-  \item your .Rprofile file with an entry like
-  \code{options(noaakey = "your-noaa-token")}
-  \item your .Renviron file with an entry like
-  \code{NOAA_KEY=your-noaa-token}
+\item your .Rprofile file with an entry like
+\code{options(noaakey = "your-noaa-token")}
+\item your .Renviron file with an entry like
+\code{NOAA_KEY=your-noaa-token}
 }
 
 See \code{\link{Startup}} for information on how to create/find your
@@ -132,19 +132,18 @@ following are flag columns, and what they stand for. \code{fl_} is the
 beginning of each flag column name, then one or more characters to describe
 the flag, keeping it short to maintain a compact data frame. Some of
 these fields are the same across datasetids. See the vignette
-\code{vignette("rnoaa_attributes", "rnoaa")} for
-description of possible values for each flag.
-
+\code{vignette("rnoaa_attributes", "rnoaa")} for description of possible
+values for each flag.
 \itemize{
- \item fl_c completeness
- \item fl_d day
- \item fl_m measurement
- \item fl_q quality
- \item fl_s source
- \item fl_t time
- \item fl_cmiss consecutive missing
- \item fl_miss missing
- \item fl_u units
+\item fl_c completeness
+\item fl_d day
+\item fl_m measurement
+\item fl_q quality
+\item fl_s source
+\item fl_t time
+\item fl_cmiss consecutive missing
+\item fl_miss missing
+\item fl_u units
 }
 }
 
@@ -154,8 +153,8 @@ Note that flags are different for GSOM and GSOY datasets. They have their
 own set of flags per data class. See
 \code{system.file("extdata/gsom.json", package = "rnoaa")} for GSOM
 and \code{system.file("extdata/gsom.json", package = "rnoaa")} for GSOY.
-Those are JSON files. The \code{system.file} call gives you then path,
-then read in with \code{jsonlite::fromJSON} which will give a data.frame
+Those are JSON files. The \code{\link[=system.file]{system.file()}} call gives you then path,
+then read in with \code{\link[jsonlite:fromJSON]{jsonlite::fromJSON()}} which will give a data.frame
 of the metadata. For more detailed info but plain text, open
 \code{system.file("extdata/gsom_readme.txt", package = "rnoaa")}
 and \code{system.file("extdata/gsoy_readme.txt", package = "rnoaa")}
@@ -164,16 +163,16 @@ in a text editor.
 
 \section{Adding units}{
 
-The \code{add_units} parameter is experimental - USE WITH CAUTION! 
+The \code{add_units} parameter is experimental - USE WITH CAUTION!
 If \code{add_units=TRUE} we pull data from curated lists of data
 used by matching by datasetid and data type.
 
 We've attempted to gather as much information as possible on the many, many
 data types across the many different NOAA data sets. However, we may have
-got some things wrong, so make sure to double check data you get if you 
+got some things wrong, so make sure to double check data you get if you
 do add units.
 
-Get in touch if you find some units that are wrong or missing, and 
+Get in touch if you find some units that are wrong or missing, and
 if you are able to help correct information.
 }
 

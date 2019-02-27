@@ -34,8 +34,7 @@ Default: \code{TRUE}}
 
 \item{x}{Output from \code{storm_shp}, a path to shp file to read in.}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} 
-(optional)}
+\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET} (optional)}
 
 \item{what}{(character) One of storm_columns or storm_names.}
 }
@@ -50,15 +49,15 @@ International Best Track Archive for Climate Stewardship (IBTrACS)
 
 Details for storm serial numbers:
 \itemize{
- \item YYYY is the corresponding year of the first recorded observation of
- the storm
- \item JJJ is the day of year of the first recorded observation of the storm
- \item H is the hemisphere of the storm: N=Northern, S=Southern
- \item TT is the absolute value of the rounded latitude of the first
- recorded observation of the storm (range 0-90, if basin=SA or SH, then TT
- in reality is negative)
- \item NNN is the rounded longitude of the first recorded observation of
- the storm (range 0-359)
+\item YYYY is the corresponding year of the first recorded observation of
+the storm
+\item JJJ is the day of year of the first recorded observation of the storm
+\item H is the hemisphere of the storm: N=Northern, S=Southern
+\item TT is the absolute value of the rounded latitude of the first
+recorded observation of the storm (range 0-90, if basin=SA or SH, then TT
+in reality is negative)
+\item NNN is the rounded longitude of the first recorded observation of
+the storm (range 0-359)
 }
 
 For example: \code{1970143N19091} is a storm in the North Atlantic which
@@ -66,13 +65,13 @@ started on May 23, 1970 near 19N 91E
 
 See \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering} for more
 
-The datasets included in the package \code{\link{storm_names}}, and
-\code{\link{storm_columns}} may help in using these storm functions.
+The datasets included in the package \code{\link[=storm_names]{storm_names()}}, and
+\code{\link[=storm_columns]{storm_columns()}} may help in using these storm functions.
 }
 \section{File storage}{
 
 We use \pkg{rappdirs} to store files, see
-\code{\link[rappdirs]{user_cache_dir}} for how
+\code{\link[rappdirs:user_cache_dir]{rappdirs::user_cache_dir()}} for how
 we determine the directory on your machine to save files to, and run
 \code{rappdirs::user_cache_dir("rnoaa/storms")} to get that directory.
 }

@@ -2,15 +2,15 @@
 #'
 #' @export
 #' @param date a date of form YYYY-MM-DD
-#' @param ... curl options passed on to \code{\link[crul]{HttpClient}}
+#' @param ... curl options passed on to [crul::verb-GET]
 #' @references docs:
-#' \url{ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt}
+#' <ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt>
 #' @return a tibble/data.frame with columns:
-#' \itemize{
-#'  \item lon - longitude
-#'  \item lat - latitude
-#'  \item precip - precipitation
-#' }
+#'
+#' - lon - longitude
+#' - lat - latitude
+#' - precip - precipitation
+#'
 #' @examples \dontrun{
 #' arc2(date = "1983-01-01")
 #' arc2(date = "2017-02-14")

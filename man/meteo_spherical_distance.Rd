@@ -24,7 +24,7 @@ are:
 }
 \value{
 A numeric value giving the distance (in kilometers) between the
-   pair of locations.
+pair of locations.
 }
 \description{
 This function uses the haversine formula to calculate the great circle
@@ -40,5 +40,5 @@ meteo_spherical_distance(lat1 = -27.4667, long1 = 153.0217,
 }
 \author{
 Alex Simmons \email{a2.simmons@qut.edu.au},
-   Brooke Anderson \email{brooke.anderson@colostate.edu}
+Brooke Anderson \email{brooke.anderson@colostate.edu}
 }

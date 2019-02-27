@@ -1,9 +1,9 @@
-#' Clear \emph{meteo} cached files
+#' Clear *meteo* cached files
 #'
-#' The \emph{meteo} functions use an aplication
+#' The *meteo* functions use an aplication
 #'
-#' @note This function will clear all cached \emph{meteo} files.
-#' @param force (logical) force delete. default: \code{FALSE}
+#' @note This function will clear all cached *meteo* files.
+#' @param force (logical) force delete. default: `FALSE`
 #' @family meteo
 #' @export
 meteo_clear_cache <- function(force = FALSE) {
@@ -11,9 +11,9 @@ meteo_clear_cache <- function(force = FALSE) {
   unlink(files, recursive = TRUE, force = force)
 }
 
-#' Show the \emph{meteo} cache directory
+#' Show the *meteo* cache directory
 #'
-#' Displays the full path to the \code{meteo} cache directory
+#' Displays the full path to the `meteo` cache directory
 #'
 #' @family meteo
 #' @export

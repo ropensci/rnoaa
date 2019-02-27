@@ -6,20 +6,20 @@
 #' @param month A month, character or numeric. If single digit (e.g. 8), we
 #' add a zero in front (e.g., 08). Required
 #' @param overwrite (logical) To overwrite the path to store files in or not,
-#' Default: \code{TRUE}
-#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}. 
+#' Default: `TRUE`
+#' @param ... Curl options passed on to [crul::verb-GET]
 #' Optional
 #'
-#' @return An \code{ncdf4} object for now, may change output later to
+#' @return An `ncdf4` object for now, may change output later to
 #' perhaps a data.frame. See \pkg{ncdf4} for parsing the output.
 #' @references
-#' \url{https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4}
+#' <https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4>
 #'
 #' @section File storage:
 #' We use \pkg{rappdirs} to store files, see
-#' \code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
+#' [rappdirs::user_cache_dir()] for how we determine the directory on
 #' your machine to save files to, and run
-#' \code{rappdirs::user_cache_dir("rnoaa/ersst")}
+#' `rappdirs::user_cache_dir("rnoaa/ersst")`
 #' to get that directory.
 #'
 #' Files are quite small, so we don't worry about reading in cached data to

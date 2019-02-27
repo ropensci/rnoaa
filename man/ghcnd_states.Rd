@@ -13,8 +13,8 @@ ghcnd_countries(...)
 ghcnd_version(...)
 }
 \arguments{
-\item{...}{In the case of \code{ghcnd} additional curl options to pass 
-through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read} 
+\item{...}{In the case of \code{ghcnd} additional curl options to pass
+through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read}
 further options passed on to \code{read.csv}}
 }
 \description{
@@ -26,9 +26,9 @@ data.
 \details{
 Functions:
 \itemize{
- \item \code{ghcnd_version}: Get current version of GHCND data
- \item \code{ghcnd_states}: Get US/Canada state names and 2-letter codes
- \item \code{ghcnd_countries}: Get country names and 2-letter codes
+\item \code{ghcnd_version}: Get current version of GHCND data
+\item \code{ghcnd_states}: Get US/Canada state names and 2-letter codes
+\item \code{ghcnd_countries}: Get country names and 2-letter codes
 }
 }
 \examples{

@@ -18,49 +18,48 @@ swdi(dataset = NULL, format = "xml", startdate = NULL,
 
 \item{enddate}{End date. See details.}
 
-\item{limit}{Number of results to return. Defaults to 25. Any number 
+\item{limit}{Number of results to return. Defaults to 25. Any number
 from 1 to 10000000. Time out issues likely to occur at higher limits.}
 
-\item{offset}{Any number from 1 to 10000000. Default is NULL, no offset, 
+\item{offset}{Any number from 1 to 10000000. Default is NULL, no offset,
 start from 1.}
 
-\item{radius}{Search radius in miles (current limit is 15 miles). 
-BEWARE: As far as we know, this parameter doesn't do anything, or at 
-least does not in fact limit the search to the given radius. 
+\item{radius}{Search radius in miles (current limit is 15 miles).
+BEWARE: As far as we know, this parameter doesn't do anything, or at
+least does not in fact limit the search to the given radius.
 DO NOT USE.}
 
-\item{center}{Center coordinate in lon,lat decimal degree format, 
+\item{center}{Center coordinate in lon,lat decimal degree format,
 e.g.: c(-95.45,36.88)}
 
-\item{bbox}{Bounding box in format of minLon,minLat,maxLon,maxLat, 
+\item{bbox}{Bounding box in format of minLon,minLat,maxLon,maxLat,
 e.g.: c(-91,30,-90,31)}
 
-\item{tile}{Coordinate in lon,lat decimal degree format, 
-e.g.: c(-95.45,36.88). The lat/lon values are rounded to the nearest tenth 
-of degree. For the above example, the matching tile would contain values 
+\item{tile}{Coordinate in lon,lat decimal degree format,
+e.g.: c(-95.45,36.88). The lat/lon values are rounded to the nearest tenth
+of degree. For the above example, the matching tile would contain values
 from -95.4500 to -95.5499 and 36.8500 to 36.9499}
 
-\item{stat}{One of count or tilesum:$longitude,$latitude. Setting 
-stat='count' returns number of results only (no actual data). 
-stat='tilesum:$longitude,$latitude' returns daily feature counts for 
-a tenth of a degree grid centered at the nearest tenth of a degree to 
+\item{stat}{One of count or tilesum:$longitude,$latitude. Setting
+stat='count' returns number of results only (no actual data).
+stat='tilesum:$longitude,$latitude' returns daily feature counts for
+a tenth of a degree grid centered at the nearest tenth of a degree to
 the supplied values.}
 
 \item{id}{An identifier, e.g., 533623. Not sure how you find these ids?}
 
-\item{filepath}{If kmz or shp chosen the file name and optionally path to 
+\item{filepath}{If kmz or shp chosen the file name and optionally path to
 write to. Ignored format=xml or format=csv (optional)}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} 
-(optional)}
+\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET} (optional)}
 }
 \value{
-If xml or csv chosen, a list of length three, a slot of metadata 
-(meta), a slot for data (data), and a slot for shape file data with a 
-single column 'shape'. The meta slot is a list of metadata elements, and 
+If xml or csv chosen, a list of length three, a slot of metadata
+(meta), a slot for data (data), and a slot for shape file data with a
+single column 'shape'. The meta slot is a list of metadata elements, and
 the data slot is a data.frame, possibly of length zero if no data is found.
 
-If kmz or shp chosen, the file is downloaded to your machine and a message 
+If kmz or shp chosen, the file is downloaded to your machine and a message
 is printed.
 }
 \description{
@@ -69,24 +68,24 @@ Get NOAA data for the severe weather data inventory (swdi).
 \details{
 Options for the dataset parameter. One of (and their data formats):
 \itemize{
- \item nx3tvs NEXRAD Level-3 Tornado Vortex Signatures (point)
- \item nx3meso NEXRAD Level-3 Mesocyclone Signatures (point)
- \item nx3hail NEXRAD Level-3 Hail Signatures (point)
- \item nx3structure NEXRAD Level-3 Storm Cell Structure Information (point)
- \item plsr Preliminary Local Storm Reports (point)
- \item warn Severe Thunderstorm, Tornado, Flash Flood and Special Marine 
-  warnings (polygon)
- \item nldn Lightning strikes from Vaisala. Available to government and
- military users only. If you aren't one of those, you'll get a 400 status
- stop message if you request data from this dataset (point)
+\item nx3tvs NEXRAD Level-3 Tornado Vortex Signatures (point)
+\item nx3meso NEXRAD Level-3 Mesocyclone Signatures (point)
+\item nx3hail NEXRAD Level-3 Hail Signatures (point)
+\item nx3structure NEXRAD Level-3 Storm Cell Structure Information (point)
+\item plsr Preliminary Local Storm Reports (point)
+\item warn Severe Thunderstorm, Tornado, Flash Flood and Special Marine
+warnings (polygon)
+\item nldn Lightning strikes from Vaisala. Available to government and
+military users only. If you aren't one of those, you'll get a 400 status
+stop message if you request data from this dataset (point)
 }
 
-For startdate and enddate, the date range syntax is 'startDate:endDate' or 
-special option of 'periodOfRecord'. Note that startDate is inclusive and 
-endDate is exclusive. All dates and times are in GMT. The current limit of 
+For startdate and enddate, the date range syntax is 'startDate:endDate' or
+special option of 'periodOfRecord'. Note that startDate is inclusive and
+endDate is exclusive. All dates and times are in GMT. The current limit of
 the date range size is one year.
 
-All latitude and longitude values for input parameters and output data are 
+All latitude and longitude values for input parameters and output data are
 in the WGS84 datum.
 }
 \examples{
@@ -142,6 +141,6 @@ class(res$data)
 }
 }
 \references{
-https://www.ncdc.noaa.gov/swdi/#Intro 
+https://www.ncdc.noaa.gov/swdi/#Intro
 https://www.ncdc.noaa.gov/swdiws/
 }

@@ -10,9 +10,9 @@ meteo_pull_monitors(monitors, keep_flags = FALSE, date_min = NULL,
 \arguments{
 \item{monitors}{A character vector listing the station IDs for all
 weather stations the user would like to pull. To get a full and
-current list of stations, the user can use the \code{\link{ghcnd_stations}}
+current list of stations, the user can use the \code{\link[=ghcnd_stations]{ghcnd_stations()}}
 function. To identify stations within a certain radius of a location, the
-user can use the \code{\link{meteo_nearby_stations}} function.}
+user can use the \code{\link[=meteo_nearby_stations]{meteo_nearby_stations()}} function.}
 
 \item{keep_flags}{TRUE / FALSE for whether the user would like to keep all
 the flags for each weather variable. The default is to not keep the
@@ -41,6 +41,7 @@ include:
 \item \code{TMAX}: Maximum temperature, in tenths of degrees Celsius
 \item \code{TMIN}: Minimum temperature, in tenths of degrees Celsius
 }
+
 A full list of possible weather variables is available in NOAA's README
 file for the GHCND data
 (\url{https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}).
@@ -50,28 +51,29 @@ all of the variables the user specifies through this argument.}
 }
 \value{
 A data frame of daily weather data for multiple weather monitors,
-   converted to a tidy format. All weather variables may not exist for all
-   weather stations. Examples of variables returned are:
-   \itemize{
-   \item \code{id}: Character string with the weather station site id
-   \item \code{date}: Date of the observation
-   \item \code{prcp}: Precipitation, in tenths of mm
-   \item \code{tavg}: Average temperature, in tenths of degrees Celsius
-   \item \code{tmax}: Maximum temperature, in tenths of degrees Celsius
-   \item \code{tmin}: Minimum temperature, in tenths of degrees Celsius
-   \item \code{awnd}: Average daily wind speed, in meters / second
-   \item \code{wsfg}: Peak gust wind speed, in meters / second
-   }
-   There are other possible weather variables in the Global Historical
-   Climatology Network; see
-   \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt} for a full
-   list. If the \code{var} argument is something other than "all", then
-   only variables included in that argument will be included in the output
-   data frame. All variables are in the units specified in the linked file
-   (note that, in many cases, measurements are given in tenths of the units
-   more often used, e.g., tenths of degrees for temperature). All column names
-   correspond to variable names in the linked file, but with  all uppercase
-   letters changed to lowercase.
+converted to a tidy format. All weather variables may not exist for all
+weather stations. Examples of variables returned are:
+\itemize{
+\item \code{id}: Character string with the weather station site id
+\item \code{date}: Date of the observation
+\item \code{prcp}: Precipitation, in tenths of mm
+\item \code{tavg}: Average temperature, in tenths of degrees Celsius
+\item \code{tmax}: Maximum temperature, in tenths of degrees Celsius
+\item \code{tmin}: Minimum temperature, in tenths of degrees Celsius
+\item \code{awnd}: Average daily wind speed, in meters / second
+\item \code{wsfg}: Peak gust wind speed, in meters / second
+}
+
+There are other possible weather variables in the Global Historical
+Climatology Network; see
+\url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt} for a full
+list. If the \code{var} argument is something other than "all", then
+only variables included in that argument will be included in the output
+data frame. All variables are in the units specified in the linked file
+(note that, in many cases, measurements are given in tenths of the units
+more often used, e.g., tenths of degrees for temperature). All column names
+correspond to variable names in the linked file, but with  all uppercase
+letters changed to lowercase.
 }
 \description{
 This function takes a vector of one or more weather station IDs. It will pull
@@ -86,22 +88,23 @@ The weather flags, which are kept by specifying
 \code{keep_flags = TRUE} are:
 \itemize{
 \item \code{*_mflag}: Measurement flag, which gives some information on how
-   the observation was measured.
+the observation was measured.
 \item \code{*_qflag}: Quality flag, which gives quality information on the
-   measurement, like if it failed to pass certain quality checks.
+measurement, like if it failed to pass certain quality checks.
 \item \code{*_sflag}: Source flag. This gives some information on the
-   weather collection system (e.g., U.S. Cooperative Summary of the Day,
-   Australian Bureau of Meteorology) the weather observation comes from.
+weather collection system (e.g., U.S. Cooperative Summary of the Day,
+Australian Bureau of Meteorology) the weather observation comes from.
 }
+
 More information on the interpretation of these flags can be found in the
 README file for the NCDC's Daily Global Historical Climatology Network's
-data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}.
+data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}
 
 This function converts any value of -9999 to a missing value for the
-   variables "prcp", "tmax", "tmin", "tavg", "snow", and "snwd". However,
-   for some weather observations, there still may be missing values coded
-   using a series of "9"s of some length. You will want to check your final
-   data to see if there are lurking missing values given with series of "9"s.
+variables "prcp", "tmax", "tmin", "tavg", "snow", and "snwd". However,
+for some weather observations, there still may be missing values coded
+using a series of "9"s of some length. You will want to check your final
+data to see if there are lurking missing values given with series of "9"s.
 
 This function may take a while to run.
 }

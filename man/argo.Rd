@@ -108,33 +108,33 @@ Get Argo buoy data
 \details{
 \code{area} parameter definitions:
 \itemize{
- \item Value 0 selects profiles located in the North-Atlantic ocean north of 20S
- and not in areas 1 and 2.
- \item Value 1 selects profiles located in the Mediterranean Sea.
- \item Value 2 selects profiles located in the Nordic Seas.
+\item Value 0 selects profiles located in the North-Atlantic ocean north of 20S
+and not in areas 1 and 2.
+\item Value 1 selects profiles located in the Mediterranean Sea.
+\item Value 2 selects profiles located in the Nordic Seas.
 }
 
 \code{around} parameter definitions:
 \itemize{
- \item Specification 1: The location is specified with specific geographical
- coordinates in the following format: around=longitude,latitude,distance - The longitude
- must given between -180W and 180E and the distance is in kilometers.
- \item Specification 2: The location is the one of an existing profile in the database.
- It is thus specified with a float WMO and a cycle number: around=wmo,cyc,distance
- This specification can take an optional fourth value specifying the time range in days
- around the specified profile.
+\item Specification 1: The location is specified with specific geographical
+coordinates in the following format: around=longitude,latitude,distance - The longitude
+must given between -180W and 180E and the distance is in kilometers.
+\item Specification 2: The location is the one of an existing profile in the database.
+It is thus specified with a float WMO and a cycle number: around=wmo,cyc,distance
+This specification can take an optional fourth value specifying the time range in days
+around the specified profile.
 }
 
 \code{dmode} parameter definitions:
 \itemize{
- \item Data from Argo floats are transmitted from the float, passed through processing and
- automatic quality control procedures. These profiles have a Data Mode called: real-time data.
- \item The data are also issued to the Principle Investigators who apply other procedures to
- check data quality returned to the global data centre within 6 to 12 months. These profiles
- have a Data Mode called: delayed mode data.
- \item The adjustments applied to delayed-data may also be applied to real-time data, to
- correct sensor drifts for real-time users. These profiles have a Data Mode called: real
- time data with adjusted values.
+\item Data from Argo floats are transmitted from the float, passed through processing and
+automatic quality control procedures. These profiles have a Data Mode called: real-time data.
+\item The data are also issued to the Principle Investigators who apply other procedures to
+check data quality returned to the global data centre within 6 to 12 months. These profiles
+have a Data Mode called: delayed mode data.
+\item The adjustments applied to delayed-data may also be applied to real-time data, to
+correct sensor drifts for real-time users. These profiles have a Data Mode called: real
+time data with adjusted values.
 }
 
 \code{*_qc} parameter definitions:
@@ -143,9 +143,9 @@ quality control procedures have been applied, a synthetic flag is assigned for e
 parameter of each profile under this variable in netcdf files. It indicates the fraction
 n of profile levels with good data. It can take one of the following values:
 \itemize{
- \item A or F: All (n=100%) or none (n=0%) of the profile levels contain good data,
- \item B,C,D,E: n is in one of the intermediate range: [75-100],[50-75],[25-50] or [0-25]
- \item empty: No QC was performed.
+\item A or F: All (n=100%) or none (n=0%) of the profile levels contain good data,
+\item B,C,D,E: n is in one of the intermediate range: 75-100, 50-75, 25-50 or 0-25
+\item empty: No QC was performed.
 }
 }
 \section{File storage}{

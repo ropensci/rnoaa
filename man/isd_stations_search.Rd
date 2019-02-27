@@ -12,43 +12,43 @@ isd_stations_search(lat = NULL, lon = NULL, radius = NULL,
 
 \item{lon}{(numeric) Latitude, in decimal degree}
 
-\item{radius}{(numeric) Radius (in km) to search from the lat,lon 
+\item{radius}{(numeric) Radius (in km) to search from the lat,lon
 coordinates}
 
-\item{bbox}{(numeric) Bounding box, of the form: min-longitude, 
+\item{bbox}{(numeric) Bounding box, of the form: min-longitude,
 min-latitude, max-longitude, max-latitude}
 }
 \value{
 a data.frame with the columns:
 \itemize{
- \item usaf - USAF number, character
- \item wban - WBAN number, character
- \item station_name - station name, character
- \item ctry - Country, if given, character
- \item state - State, if given, character
- \item icao - ICAO number, if given, character
- \item lat - Latitude, if given, numeric
- \item lon - Longitude, if given, numeric
- \item elev_m - Elevation, if given, numeric
- \item begin - Begin date of data coverage, of form YYYYMMDD, numeric
- \item end - End date of data coverage, of form YYYYMMDD, numeric
- \item distance - distance (km) (only present if using lat/lon/radius
- parameter combination)
+\item usaf - USAF number, character
+\item wban - WBAN number, character
+\item station_name - station name, character
+\item ctry - Country, if given, character
+\item state - State, if given, character
+\item icao - ICAO number, if given, character
+\item lat - Latitude, if given, numeric
+\item lon - Longitude, if given, numeric
+\item elev_m - Elevation, if given, numeric
+\item begin - Begin date of data coverage, of form YYYYMMDD, numeric
+\item end - End date of data coverage, of form YYYYMMDD, numeric
+\item distance - distance (km) (only present if using lat/lon/radius
+parameter combination)
 }
 }
 \description{
 Search for NOAA ISD/ISH station data from NOAA FTP server.
 }
 \details{
-We internally call \code{\link{isd_stations}} to get the data.frame
+We internally call \code{\link[=isd_stations]{isd_stations()}} to get the data.frame
 of ISD stations, which is quite fast as long as it's not the first time
 called since we cache the table. Before searching, we clean up the
 data.frame, removing stations with no lat/long coordinates, those with
 impossible lat/long coordinates, and those at 0,0.
 
-When lat/lon/radius input we use \code{\link{meteo_distance}} to search
+When lat/lon/radius input we use \code{\link[=meteo_distance]{meteo_distance()}} to search
 for stations, while when bbox is input, we simply use
-\code{\link[dplyr]{filter}}
+\code{\link[dplyr:filter]{dplyr::filter()}}
 }
 \examples{
 \dontrun{

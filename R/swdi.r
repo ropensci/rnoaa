@@ -30,23 +30,21 @@
 #' @param id An identifier, e.g., 533623. Not sure how you find these ids?
 #' @param filepath If kmz or shp chosen the file name and optionally path to 
 #' write to. Ignored format=xml or format=csv (optional)
-#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}} 
-#' (optional)
+#' @param ... Curl options passed on to [crul::verb-GET] (optional)
 #'
 #' @details
 #' Options for the dataset parameter. One of (and their data formats):
-#' \itemize{
-#'  \item nx3tvs NEXRAD Level-3 Tornado Vortex Signatures (point)
-#'  \item nx3meso NEXRAD Level-3 Mesocyclone Signatures (point)
-#'  \item nx3hail NEXRAD Level-3 Hail Signatures (point)
-#'  \item nx3structure NEXRAD Level-3 Storm Cell Structure Information (point)
-#'  \item plsr Preliminary Local Storm Reports (point)
-#'  \item warn Severe Thunderstorm, Tornado, Flash Flood and Special Marine 
+#'
+#' - nx3tvs NEXRAD Level-3 Tornado Vortex Signatures (point)
+#' - nx3meso NEXRAD Level-3 Mesocyclone Signatures (point)
+#' - nx3hail NEXRAD Level-3 Hail Signatures (point)
+#' - nx3structure NEXRAD Level-3 Storm Cell Structure Information (point)
+#' - plsr Preliminary Local Storm Reports (point)
+#' - warn Severe Thunderstorm, Tornado, Flash Flood and Special Marine 
 #'   warnings (polygon)
-#'  \item nldn Lightning strikes from Vaisala. Available to government and
+#' - nldn Lightning strikes from Vaisala. Available to government and
 #'  military users only. If you aren't one of those, you'll get a 400 status
 #'  stop message if you request data from this dataset (point)
-#' }
 #'
 #' For startdate and enddate, the date range syntax is 'startDate:endDate' or 
 #' special option of 'periodOfRecord'. Note that startDate is inclusive and 

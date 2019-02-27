@@ -43,8 +43,8 @@ A list containing metadata and the data, or a single data.frame.
 Location categories are groupings of similar locations.
 }
 \details{
-Locations can be a specific latitude/longitude point such as a station, or a
-label representing a bounding area such as a city.
+Locations can be a specific latitude/longitude point such as a station,
+or a label representing a bounding area such as a city.
 }
 \section{Authentication}{
 
@@ -52,10 +52,10 @@ Get an API key (aka, token) at \url{http://www.ncdc.noaa.gov/cdo-web/token}.
 You can pass your token in as an argument or store it one of two places:
 
 \itemize{
-  \item your .Rprofile file with an entry like
-  \code{options(noaakey = "your-noaa-token")}
-  \item your .Renviron file with an entry like
-  \code{NOAA_KEY=your-noaa-token}
+\item your .Rprofile file with an entry like
+\code{options(noaakey = "your-noaa-token")}
+\item your .Renviron file with an entry like
+\code{NOAA_KEY=your-noaa-token}
 }
 
 See \code{\link{Startup}} for information on how to create/find your

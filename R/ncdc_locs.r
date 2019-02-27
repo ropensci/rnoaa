@@ -11,7 +11,7 @@
 #' @param locationid A valid location id or a vector or list of location ids.
 #' @return A list containing metadata and the data, or a single data.frame.
 #' @family ncdc
-#' @references \url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
+#' @references <https://www.ncdc.noaa.gov/cdo-web/webservices/v2>
 #' @examples \dontrun{
 #' # All locations, first 25 results
 #' ncdc_locs()

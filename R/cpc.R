@@ -2,19 +2,18 @@
 #'
 #' @export
 #' @param date (date/character) date in YYYY-MM-DD format
-#' @param us (logical) US data only? default: \code{FALSE}
+#' @param us (logical) US data only? default: `FALSE`
 #' @param drop_undefined (logical) drop undefined precipitation 
-#' values (values in the \code{precip} column in the output data.frame). 
-#' default: \code{FALSE}
-#' @param ... curl options passed on to \code{\link[crul]{HttpClient}}
+#' values (values in the `precip` column in the output data.frame). 
+#' default: `FALSE`
+#' @param ... curl options passed on to [crul::verb-GET]
 #' @return a data.frame, with columns:
-#' \itemize{
-#'  \item lon - longitude (0 to 360)
-#'  \item lat - latitude (-90 to 90)
-#'  \item precip - precipitation (in mm) (see Details for more information)
-#' }
 #'
-#' @references \url{http://www.cpc.ncep.noaa.gov/}
+#' - lon - longitude (0 to 360)
+#' - lat - latitude (-90 to 90)
+#' - precip - precipitation (in mm) (see Details for more information)
+#'
+#' @references <http://www.cpc.ncep.noaa.gov/>
 #' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP
 #' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_CONUS/DOCU/PRCP_CU_GAUGE_V1.0CONUS_0.25deg.README
 #' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_GLB/DOCU/PRCP_CU_GAUGE_V1.0GLB_0.50deg_README.txt
@@ -29,10 +28,10 @@
 #' per the CPC documentation. 
 #' 
 #' Values of -99.0 are classified as "undefined". These values can be
-#' removed by setting \code{drop_undefined = TRUE} in the \code{cpc_prcp} 
+#' removed by setting `drop_undefined = TRUE` in the `cpc_prcp`
 #' function call. These undefined values are not dropped by default - 
-#' so do remember to set \code{drop_undefined = TRUE} to drop them; or
-#' you can easily do it yourself by e.g., \code{subset(x, precip >= 0)}
+#' so do remember to set `drop_undefined = TRUE` to drop them; or
+#' you can easily do it yourself by e.g., `subset(x, precip >= 0)`
 #'
 #' @examples \dontrun{
 #' cpc_prcp(date = "2017-01-15")

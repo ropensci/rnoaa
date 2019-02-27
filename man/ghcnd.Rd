@@ -10,17 +10,17 @@ ghcnd(stationid, refresh = FALSE, ...)
 ghcnd_read(path, ...)
 }
 \arguments{
-\item{stationid}{(character) A character string giving the identification of 
-the weather station for which the user would like to pull data. To get a full 
+\item{stationid}{(character) A character string giving the identification of
+the weather station for which the user would like to pull data. To get a full
 and current list of stations, the user can use the \code{\link{ghcnd_stations}}
 function. To identify stations within a certain radius of a location, the
 user can use the \code{\link{meteo_nearby_stations}} function.}
 
-\item{refresh}{(logical) If \code{TRUE} force re-download of data. 
+\item{refresh}{(logical) If \code{TRUE} force re-download of data.
 Default: \code{FALSE}}
 
-\item{...}{In the case of \code{ghcnd} additional curl options to pass 
-through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read} 
+\item{...}{In the case of \code{ghcnd} additional curl options to pass
+through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read}
 further options passed on to \code{read.csv}}
 
 \item{path}{(character) a path to a file with a \code{.dly} extension - already
@@ -49,7 +49,7 @@ site locally in the directory specified by the \code{path} argument.
 
 You can access the path for the cached file via \code{attr(x, "source")}
 
-You can access the last modified time for the cached file via 
+You can access the last modified time for the cached file via
 \code{attr(x, "file_modified")}
 
 Messages are printed to the console about file path and file last modified time

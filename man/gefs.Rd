@@ -32,7 +32,7 @@ gefs_dimension_values(dim, con = NULL, ...)
 }
 \arguments{
 \item{var}{the variable to get. Must be one of the variables listed in
-\code{gefs_variables()}.}
+\code{gefs_variables()}}
 
 \item{lat, lon}{the longitude. Will be converted to the nearest GEFS available
 longitude. If lon is a list of vlaues, it must be a sequential list, and
@@ -40,35 +40,40 @@ data are returned for the number of longitudes in the list starting with
 the maximum value and incrementing through the indexed values for the
 length of the list.}
 
-\item{...}{additional parameters passed to \code{ncvar_get}.}
+\item{...}{additional parameters passed to \code{ncvar_get}}
 
 \item{date}{A date/string formatted as YYYYMMDD.}
 
-\item{forecast_time}{a string indicating which time of day UTC the forecast is from.
-Options are "0000", "0600", "1200", "1800".}
+\item{forecast_time}{a string indicating which time of day UTC the
+forecast is from. Options are "0000", "0600", "1200", "1800".}
 
-\item{ens_idx}{sequential list of ensembles to fetch. Default is all 21. Note that the
-ensembles are labelled 0-20, so ens_idx=1:3 will return ensembles 0, 1, and 2.}
+\item{ens_idx}{sequential list of ensembles to fetch. Default is all 21.
+Note that the ensembles are labelled 0-20, so ens_idx=1:3 will return
+ensembles 0, 1, and 2.}
 
-\item{time_idx}{sequential list of time increments to return. List is the index
-of times, which are in 6 hour increments. (e.g. c(1,2) fetches the 6 and 12 hour forecast.)}
+\item{time_idx}{sequential list of time increments to return. List is the
+index of times, which are in 6 hour increments. (e.g. c(1,2) fetches the
+6 and 12 hour forecast.)}
 
-\item{dims}{(not implemented) indices for additional dimensions to be included between
-lat, lon, ens, and time.}
+\item{dims}{(not implemented) indices for additional dimensions to be
+included between lat, lon, ens, and time.}
 
-\item{raw}{logical to indicate whether to return raw data matrix or reshaped data frame.}
+\item{raw}{logical to indicate whether to return raw data matrix or
+reshaped data frame.}
 
 \item{con}{an ncdf4 connection.}
 
 \item{dim}{(character) the dimension.}
 }
 \value{
-a list containing metadata and accompanying data frame of forecast
-  values. If lat/lon are not specified, the $data is an unprocessed matrix.
+a list containing metadata and accompanying data frame of
+forecast values. If lat/lon are not specified, the $data is an
+unprocessed matrix.
 }
 \description{
-Fetches GEFS forecast data for every 6 hours out to 384 hours past selected date. GEFS
-is an ensemble of 21 models that can be summarized to estimate likelihoods of forecasts.
+Fetches GEFS forecast data for every 6 hours out to 384 hours past
+selected date. GEFS is an ensemble of 21 models that can be
+summarized to estimate likelihoods of forecasts.
 }
 \examples{
 \dontrun{
@@ -115,8 +120,9 @@ gefs(var, lat, lon, date = date, forecast_time = "1800", ens_idx=2:4,
 }
 \references{
 \itemize{
- \item Data description - \url{http://bit.ly/noaagefs}.
- \item Adapted from Python code written by Von P. Walden, Washington State University.
+\item Data description - \url{http://bit.ly/noaagefs}.
+\item Adapted from Python code written by Von P. Walden, Washington State
+University
 }
 }
 \author{

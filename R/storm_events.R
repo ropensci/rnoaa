@@ -8,16 +8,16 @@ storm_events_env <- new.env()
 #' @param type (character) one of details, fatalities, locations, or
 #' legacy. required.
 #' @param overwrite (logical) To overwrite the path to store files in or not,
-#' Default: \code{TRUE}
-#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}} 
+#' Default: `TRUE`
+#' @param ... Curl options passed on to [crul::verb-GET]
 #' (optional)
 #' @return A tibble (data.frame)
 #' @section File storage:
 #' We use \pkg{rappdirs} to store files, see
-#' \code{\link[rappdirs]{user_cache_dir}} for how
+#' [rappdirs::user_cache_dir()] for how
 #' we determine the directory on your machine to save files to, and run
-#' \code{rappdirs::user_cache_dir("rnoaa/stormevents")} to get that directory.
-#' @references \url{https://www.ncdc.noaa.gov/stormevents/}
+#' `rappdirs::user_cache_dir("rnoaa/stormevents")` to get that directory.
+#' @references <https://www.ncdc.noaa.gov/stormevents/>
 #'
 #' @examples \dontrun{
 #' # get list of files and their urls

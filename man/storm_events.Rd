@@ -11,7 +11,7 @@ se_data(year, type, overwrite = TRUE, ...)
 se_files(...)
 }
 \arguments{
-\item{year}{(numeric) a four digit year. see output of `se_files()` 
+\item{year}{(numeric) a four digit year. see output of \code{se_files()}
 for available years. required.}
 
 \item{type}{(character) one of details, fatalities, locations, or
@@ -20,7 +20,7 @@ legacy. required.}
 \item{overwrite}{(logical) To overwrite the path to store files in or not,
 Default: \code{TRUE}}
 
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}} 
+\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET}
 (optional)}
 }
 \value{
@@ -32,7 +32,7 @@ NOAA Storm Events data
 \section{File storage}{
 
 We use \pkg{rappdirs} to store files, see
-\code{\link[rappdirs]{user_cache_dir}} for how
+\code{\link[rappdirs:user_cache_dir]{rappdirs::user_cache_dir()}} for how
 we determine the directory on your machine to save files to, and run
 \code{rappdirs::user_cache_dir("rnoaa/stormevents")} to get that directory.
 }

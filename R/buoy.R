@@ -7,37 +7,36 @@
 #' @param buoyid Buoy ID, can be numeric/integer/character. Required
 #' @param datatype (character) Data type, one of 'c', 'cc', 'p', 'o'. Optional
 #' @param year (integer) Year of data collection. Optional
-#' @param refresh (logical) Whether to use cached data (\code{FALSE}) or get
-#' new data (\code{FALSE}). Default: \code{FALSE}
-#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}. 
+#' @param refresh (logical) Whether to use cached data (`FALSE`) or get
+#' new data (`FALSE`). Default: `FALSE`
+#' @param ... Curl options passed on to [crul::verb-GET]
 #' Optional. A number of different HTTP requests are made internally, but 
 #' we only pass this on to the request to get the netcdf file in the internal 
-#' function \code{get_ncdf_file()}
+#' function `get_ncdf_file()`
 #'
 #' @details Functions:
-#' \itemize{
-#'  \item buoy_stations - Get buoy stations. A cached version of the dataset
+#'
+#' - buoy_stations - Get buoy stations. A cached version of the dataset
 #'  is available in the package. Beware, takes a long time to run if you
-#'  do \code{refresh = TRUE}
-#'  \item buoys - Get available buoys given a dataset name
-#'  \item buoy - Get data given some combination of dataset name, buoy ID,
+#'  do `refresh = TRUE`
+#' - buoys - Get available buoys given a dataset name
+#' - buoy - Get data given some combination of dataset name, buoy ID,
 #'  year, and datatype
-#' }
 #'
 #' Options for the dataset parameter. One of:
-#' \itemize{
-#'  \item adcp - Acoustic Doppler Current Profiler data
-#'  \item adcp2 - MMS Acoustic Doppler Current Profiler data
-#'  \item cwind - Continuous Winds data
-#'  \item dart - Deep-ocean Assessment and Reporting of Tsunamis data
-#'  \item mmbcur - Marsh-McBirney Current Measurements data
-#'  \item ocean - Oceanographic data
-#'  \item pwind - Peak Winds data
-#'  \item stdmet - Standard Meteorological data
-#'  \item swden - Spectral Wave Density data with Spectral Wave Direction data
-#'  \item wlevel - Water Level data
-#' }
-#' @references \url{http://www.ndbc.noaa.gov/}, \url{http://dods.ndbc.noaa.gov/}
+#' 
+#' - adcp - Acoustic Doppler Current Profiler data
+#' - adcp2 - MMS Acoustic Doppler Current Profiler data
+#' - cwind - Continuous Winds data
+#' - dart - Deep-ocean Assessment and Reporting of Tsunamis data
+#' - mmbcur - Marsh-McBirney Current Measurements data
+#' - ocean - Oceanographic data
+#' - pwind - Peak Winds data
+#' - stdmet - Standard Meteorological data
+#' - swden - Spectral Wave Density data with Spectral Wave Direction data
+#' - wlevel - Water Level data
+#' 
+#' @references <http://www.ndbc.noaa.gov/>, <http://dods.ndbc.noaa.gov/>
 #' @examples \dontrun{
 #' # Get buoy station information
 #' x <- buoy_stations()

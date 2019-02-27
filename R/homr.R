@@ -3,8 +3,7 @@
 #' @export
 #'
 #' @param qid One of COOP, FAA, GHCND, ICAO, NCDCSTNID, NWSLI, TRANS, WBAN, or
-#' WMO, or any
-#' of those plus \code{[a-z0-9]}, or just \code{[a-z0-9]}. (qid = qualified ID)
+#' WMO, or any of those plus `a-z0-9`, or just `a-z0-9`. (qid = qualified ID)
 #' @param qidMod  (character) One of: is, starts, ends, contains. Specifies
 #' how the ID portion of the qid parameter should be applied within the search.
 #' If a qid is passed but the qidMod parameter is not used, qidMod is
@@ -16,19 +15,19 @@
 #' used with a state identifier.
 #' @param country  (character) A two letter country code. See here for a list
 #' of valid country names.
-#' @param name  (character) One of name=[0-9A-Z]+. Searches on any type of
+#' @param name  (character) One of `0-9A-Z+`. Searches on any type of
 #' name we have for the station.
-#' @param nameMod  (character) [is|starts|ends|contains]. Specifies how the
+#' @param nameMod  (character) `is|starts|ends|contains`. Specifies how the
 #' name parameter should be applied within the search. If a name is passed but
 #' the nameMod parameter is not used, nameMod is assumed to be IS.
-#' @param platform  (character) (aka network) [ASOS|USCRN|USHCN|NEXRAD|AL
-#' USRCRN|USRCRN|COOP]. Limit the search to stations of a certain
+#' @param platform  (character) (aka network) `ASOS|USCRN|USHCN|NEXRAD|AL
+#' USRCRN|USRCRN|COOP`. Limit the search to stations of a certain
 #' platform/network type.
-#' @param date  (character) [YYYY-MM-DD|all] Limits values to only those that
+#' @param date  (character) `YYYY-MM-DD|all` Limits values to only those that
 #' occurred on a specific date. Alternatively, date=all will return all values
 #' for matched stations. If this field is omitted, the search will return only
 #' the most recent values for each field.
-#' @param begindate,enddate [YYYY-MM-DD]. Limits values to only those that
+#' @param begindate,enddate `YYYY-MM-DD`. Limits values to only those that
 #' occurred within a date range.
 #' @param headersOnly (logical) Returns only minimal information for each
 #' station found (NCDC Station ID, Preferred Name, Station Begin Date, and
@@ -44,15 +43,15 @@
 #' by including phrData=false. If the parameter is not set, it will default
 #' to phrData=true.
 #' @param combine (logical) Combine station metadata or not.
-#' @param ... Curl options passed on to \code{\link[crul]{HttpClient}} (optional)
+#' @param ... Curl options passed on to [crul::verb-GET] (optional)
 #'
 #' @details Since the definitions for variables are always the same, we don't
 #' include the ability to get description data in this function. Use
-#' \code{link[rnoaa]{homr_descriptions}} to get descriptions information.
+#' [homr_definitions()] to get descriptions information.
 #'
 #' @return A list, with elements named by the station ids.
 #'
-#' @references \url{https://www.ncdc.noaa.gov/homr/api}
+#' @references <https://www.ncdc.noaa.gov/homr/api>
 #'
 #' @examples \dontrun{
 #' homr(qid = 'COOP:046742')

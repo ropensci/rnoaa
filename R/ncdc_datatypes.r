@@ -16,10 +16,10 @@
 #' @param datacategoryid Optional. Accepts a valid data category id or a vector
 #' or list of data category ids (although it is rare to have a data type with
 #' more than one data category)
-#' @return A \code{data.frame} for all datasets, or a list of length two,
+#' @return A `data.frame` for all datasets, or a list of length two,
 #' each with a data.frame
 #' @family ncdc
-#' @references \url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
+#' @references <https://www.ncdc.noaa.gov/cdo-web/webservices/v2>
 #' @examples \dontrun{
 #' # Fetch available data types
 #' ncdc_datatypes()

@@ -8,15 +8,15 @@ meteo_distance(station_data, lat, long, units = "deg", radius = NULL,
   limit = NULL)
 }
 \arguments{
-\item{station_data}{The output of \code{ghcnd_stations()}, which is
+\item{station_data}{The output of \code{\link[=ghcnd_stations]{ghcnd_stations()}}, which is
 a current list of weather stations available through NOAA for the GHCND
 dataset. The format of this is a dataframe
 with one row per weather station. Latitude and longitude for the station
 locations should be in columns with the names "latitude" and "longitude",
-consistent with the output from \code{ghcnd_stations()}. To save time,
+consistent with the output from \code{\link[=ghcnd_stations]{ghcnd_stations()}}. To save time,
 run the \code{ghcnd_stations} call and save the output to an object,
 rather than rerunning the default every time (see the examples in
-\code{\link{meteo_nearby_stations}}).}
+\code{\link[=meteo_nearby_stations]{meteo_nearby_stations()}}).}
 
 \item{lat}{Latitude of the location. Southern latitudes should be given
 as negative values.}
@@ -35,19 +35,19 @@ are:
 to search for monitors near a location.}
 
 \item{limit}{An integer giving the maximum number of monitors to include for
-each location. The [x] closest monitors will be kept. Default is NULL
+each location. The \code{x} closest monitors will be kept. Default is NULL
 (pull everything available, within the radius if the radius is specified).}
 }
 \value{
 A dataframe of weather stations near the location. This is the
-   single-location version of the return value for
-   \code{\link{meteo_nearby_stations}}.
+single-location version of the return value for
+\code{\link[=meteo_nearby_stations]{meteo_nearby_stations()}}
 }
 \description{
 This function will identify all weather stations with a specified radius of
 a location. If no radius is given, the function will return a dataframe
 of all available monitors, sorted by distance to the location. The
-\code{limit} argument can be used to limit the output dataframe to the [x]
+\code{limit} argument can be used to limit the output dataframe to the \code{x}
 closest monitors to the location.
 }
 \examples{
@@ -62,5 +62,5 @@ meteo_distance(station_data, -33, 151, radius = 10, limit = 3)
 }
 \author{
 Alex Simmons \email{a2.simmons@qut.edu.au},
-   Brooke Anderson \email{brooke.anderson@colostate.edu}
+Brooke Anderson \email{brooke.anderson@colostate.edu}
 }

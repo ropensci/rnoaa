@@ -20,7 +20,7 @@ Get sea ice data.
 }
 \details{
 If you want to reproject the shape files, use
-\code{\link{readshpfile}} to read in shape file, then reproject, and so on.
+\code{\link[=readshpfile]{readshpfile()}} to read in shape file, then reproject, and so on.
 }
 \examples{
 \dontrun{
