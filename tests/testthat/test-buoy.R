@@ -73,3 +73,17 @@ test_that("buoys fails well", {
   expect_error(buoy(), "argument \"dataset\" is missing")
   expect_error(buoy(dataset = 'ocean', buoyid = 41012), "No data files found")
 })
+
+
+test_that("buoy works as expected with buoy id's without lat/lon data", {
+  skip_on_cran()
+  skip_on_travis()
+  skip_on_appveyor()
+
+  nn <- suppressWarnings(buoy(dataset='adcp2', buoyid=46081))
+
+  expect_is(nn, "buoy")
+  expect_is(nn$data, "data.frame")
+  expect_equal(NROW(nn$data), 0)
+  expect_is(nn$meta, "ncdf4")
+})

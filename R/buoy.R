@@ -13,6 +13,10 @@
 #' Optional. A number of different HTTP requests are made internally, but 
 #' we only pass this on to the request to get the netcdf file in the internal 
 #' function `get_ncdf_file()`
+#' 
+#' @return If netcdf data has lat/lon variables, then we'll parse into a 
+#' tidy data.frame. If not, we'll give back the ncdf4 object for the user
+#' to parse (in which case the data.frame will be empty).
 #'
 #' @details Functions:
 #'
@@ -149,9 +153,20 @@ get_ncdf_file <- function(path, buoyid, file, output, ...){
 # Download a single ncdf file
 buoy_collect_data <- function(path) {
   nc <- ncdf4::nc_open(path)
+  dims <- names(nc$dim)
+
+  # check if likely on a lat/lon grid, or not; if not, throw message
+  if (
+    !any(c('lat', 'latitude') %in% dims) && 
+    !any(c('lon', 'longitude') %in% dims)
+  ) {
+    warning("data not on lat/lon grid - not reading in data; see help")
+    res <- structure(list(meta = nc, data = data.frame(NULL)),
+      class = "buoy")
+    return(res)
+  }
 
   out <- list()
-  dims <- names(nc$dim)
   for (i in seq_along(dims)) {
     out[[dims[i]]] <- ncdf4::ncvar_get(nc, nc$dim[[dims[i]]])
   }
@@ -184,8 +199,14 @@ print.buoy <- function(x, ..., n = 10) {
   vars <- names(x$meta)
   dims <- dim(x$data)
   cat(sprintf('Dimensions (rows/cols): [%s X %s]', dims[1], dims[2]), "\n")
-  cat(sprintf('%s variables: [%s]', length(vars), paste0(vars, collapse = ", ")), "\n\n")
-  trunc_mat_(x$data, n = n)
+  cat(sprintf('%s variables: [%s]', length(vars), paste0(vars, collapse = ", ")),
+    "\n\n")
+  if (NROW(x$data) > 0) {
+    trunc_mat_(x$data, n = n)
+  } else if (inherits(x$meta, "ncdf4")) {
+    cat("Data not on lat/lon grid; see x$meta for ncdf4 object",
+      sep = "\n")
+  }
 }
 
 convert_time <- function(n = NULL, isoTime = NULL) {
