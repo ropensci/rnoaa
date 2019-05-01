@@ -334,8 +334,7 @@ get_stations <- function(...){
   res <- GET_retry(
     "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt",
     ...)
-  df <- read.fwf(
-    textConnection(res$parse("UTF-8")),
+  df <- read.fwf(as_tc_p(res),
     widths = c(11, 9, 11, 7, 2, 31, 5, 10),
     header = FALSE, strip.white = TRUE, comment.char = "",
     stringsAsFactors = FALSE)
@@ -347,8 +346,7 @@ get_stations <- function(...){
 get_inventory <- function(...){
   res <- GET_retry(
     "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt", ...)
-  df <- read.fwf(
-    textConnection(res$parse("UTF-8")),
+  df <- read.fwf(as_tc_p(res),
     widths = c(11, 9, 10, 5, 5, 5),
     header = FALSE, strip.white = TRUE, comment.char = "",
     stringsAsFactors = FALSE)
@@ -465,7 +463,7 @@ ghcnd_splitvars <- function(x){
 ghcnd_states <- function(...){
   res <- GET_retry(
     "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-states.txt", ...)
-  df <- read.fwf(textConnection(res$parse("UTF-8")), widths = c(2, 27),
+  df <- read.fwf(as_tc_p(res), widths = c(2, 27),
                  header = FALSE, strip.white = TRUE, comment.char = "",
                  stringsAsFactors = FALSE, col.names = c("code","name"))
   df[ -NROW(df) ,]
@@ -476,7 +474,7 @@ ghcnd_states <- function(...){
 ghcnd_countries <- function(...){
   res <- GET_retry(
     "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-countries.txt", ...)
-  df <- read.fwf(textConnection(res$parse("UTF-8")), widths = c(2, 47),
+  df <- read.fwf(as_tc_p(res), widths = c(2, 47),
                  header = FALSE, strip.white = TRUE, comment.char = "",
                  stringsAsFactors = FALSE, col.names = c("code","name"))
   df[ -NROW(df) ,]
@@ -487,8 +485,11 @@ ghcnd_countries <- function(...){
 ghcnd_version <- function(...){
   res <- GET_retry(
     "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-version.txt", ...)
-  res$parse("UTF-8")
+  rawToChar(res$content)
 }
+
+as_tc <- function(x) textConnection(enc2utf8(rawToChar(x)))
+as_tc_p <- function(x) textConnection(x$parse("latin1"))
 
 GET_retry <- function(url, ..., times = 3) {
   cliret <- crul::HttpClient$new(url)
