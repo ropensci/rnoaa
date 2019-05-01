@@ -39,3 +39,6 @@ ggplot(out, aes(long, lat, group=group)) +
    theme_ice()
 }
 }
+\seealso{
+\code{\link[=seaice_tabular]{seaice_tabular()}}
+}

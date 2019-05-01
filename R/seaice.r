@@ -7,6 +7,7 @@
 #' @return A data.frame
 #' @details If you want to reproject the shape files, use
 #' [readshpfile()] to read in shape file, then reproject, and so on.
+#' @seealso [seaice_tabular()]
 #' @examples \dontrun{
 #' # Look at data.frame's for a series of years for Feb, South pole
 #' urls <- sapply(seq(1979,1990,1), function(x) seaiceeurls(yr=x,
