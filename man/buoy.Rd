@@ -30,6 +30,11 @@ function \code{get_ncdf_file()}}
 \item{refresh}{(logical) Whether to use cached data (\code{FALSE}) or get
 new data (\code{FALSE}). Default: \code{FALSE}}
 }
+\value{
+If netcdf data has lat/lon variables, then we'll parse into a
+tidy data.frame. If not, we'll give back the ncdf4 object for the user
+to parse (in which case the data.frame will be empty).
+}
 \description{
 Get NOAA buoy data from the National Buoy Data Center
 }
