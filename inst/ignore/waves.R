@@ -1,26 +1,27 @@
 #' Wavewatch data
 #'
 #' @export
-#' @param date (date/character) date in YYYY-MM-DD format
-#' @param us (logical) US data only? default: \code{FALSE}
-#' @param ... curl options passed on to \code{\link[crul]{HttpClient}}
+#' @param date (date/character) date in YYYY-MM format
+#' @param us (logical) US data only? default: `FALSE`
+#' @param ... Curl options passed on to [crul::verb-GET]
 #' @return a data.frame, with columns:
-#' \itemize{
-#'  \item lon - longitude (0 to 360)
-#'  \item lat - latitude (-90 to 90)
-#'  \item precip - precipitation (in mm)
-#' }
+#' 
+#' - lon - longitude (0 to 360)
+#' - lat - latitude (-90 to 90)
+#' - precip - precipitation (in mm)
 #'
 #' @references 
-#' \url{http://polar.ncep.noaa.gov/waves/products.shtml}
 #' hindcast archive: ftp://polar.ncep.noaa.gov/pub/history/waves/nww3
-#' not sure where grib files are in this ftp though ftp://polar.ncep.noaa.gov/pub/waves/
 #'
 #' @details
-#' xxx
+#' The data is split into two groups: 
+#' 
+#' - nww3/ -- Early WW3 version, single grid from Jul 1999 - Nov 2007
+#' with gaps
+#' - multi_1/ -- Multi-grid WW3, from Feb 2005 to present
 #'
 #' @examples \dontrun{
-#' waves()
+#' waves("2019-03")
 #' }
 waves <- function(date, us = FALSE, ...) {
   assert(date, c("character", "Date"))
@@ -34,6 +35,8 @@ waves <- function(date, us = FALSE, ...) {
                   us = us, ...)
   bsw_read(path, us)
 }
+
+# ftp://polar.ncep.noaa.gov/pub/history/waves/multi_1/201903/gribs/multi_1.wc_4m.wind.201903.grb2
 
 bsw_get <- function(year, month, day, us, cache = TRUE, overwrite = FALSE, ...) {
   bsw_cache$mkdir()
@@ -114,7 +117,7 @@ bsw_read <- function(x, us) {
   tmp <- tmp[seq_len(bites/2)] * 0.1
 
   # make data.frame
-  tibble::as_data_frame(
+  tibble::as_tibble(
     stats::setNames(
       cbind(expand.grid(longs, lats), tmp),
       c('lon', 'lat', 'precip')
