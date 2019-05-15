@@ -3,6 +3,7 @@ cmorph_cache <- NULL
 arc2_cache <- NULL
 lcd_cache <- NULL
 bsw_cache <- NULL
+waves_cache <- NULL
 
 .onLoad <- function(libname, pkgname){
   x <- hoardr::hoard()
@@ -24,4 +25,8 @@ bsw_cache <- NULL
   m <- hoardr::hoard()
   m$cache_path_set("noaa_bsw")
   bsw_cache <<- m
+
+  b <- hoardr::hoard()
+  b$cache_path_set("noaa_waves")
+  waves_cache <<- b
 }
