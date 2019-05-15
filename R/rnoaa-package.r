@@ -113,7 +113,7 @@
 #' @importFrom xml2 read_html read_xml xml_find_all xml_attr as_list 
 #' xml_text xml_find_first
 #' @importFrom jsonlite fromJSON
-#' @importFrom tidyr gather
+#' @importFrom tidyr gather separate
 #' @importFrom rappdirs user_cache_dir
 #' @importFrom gridExtra grid.arrange
 #' @importFrom dplyr %>% select mutate rename tbl_df filter bind_rows

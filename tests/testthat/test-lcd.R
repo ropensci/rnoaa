@@ -1,6 +1,4 @@
-context("lcd")
-
-test_that("lcd works", {
+test_that("lcd", {
   skip_on_cran()
   skip_if_government_down()
 
@@ -26,7 +24,7 @@ test_that("lcd fails well", {
 
   # a station/year combination that doesn't exist
   expect_error(lcd(station = "02413099999", year = "1945"),
-               "Not Found")
+               "Not Found", class = "error")
 
   # class
   expect_error(lcd(5),
@@ -38,3 +36,23 @@ test_that("lcd fails well", {
   expect_error(lcd(5, list(1)),
                "year must be of class")
 })
+
+test_that("lcd_cleanup", {
+  skip_on_cran()
+  skip_if_government_down()
+
+  # clean up first
+  lcd_cache$delete_all()
+
+  # get data
+  aa <- lcd(station = "01338099999", year = "2017")
+  expect_is(aa, "tbl_df")
+  bb <- suppressWarnings(lcd_cleanup(aa))
+  expect_gt(NCOL(bb), NCOL(aa))
+})
+
+test_that("lcd_cleanup fails well", {
+  skip_on_cran()
+  expect_error(lcd_cleanup(5), "must be of class lcd", class = "error")
+})
+

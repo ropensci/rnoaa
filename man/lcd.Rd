@@ -2,9 +2,12 @@
 % Please edit documentation in R/lcd.R
 \name{lcd}
 \alias{lcd}
+\alias{lcd_cleanup}
 \title{Local Climitalogical Data from NOAA}
 \usage{
 lcd(station, year, ...)
+
+lcd_cleanup(x)
 }
 \arguments{
 \item{station}{(character) station code, e.g., "02413099999". we will
@@ -14,6 +17,8 @@ zeros, so it's a good idea to keep stations as character class}
 \item{year}{(integer) year, e.g., 2017}
 
 \item{...}{curl options passed on to \link[crul:verb-GET]{crul::verb-GET}}
+
+\item{x}{result of a call to \code{lcd()}}
 }
 \value{
 a data.frame, with many columns, and variable rows
@@ -35,6 +40,26 @@ a data.frame with many columns. the first 10 are metadata:
 
 And the rest should be all data columns. See Note about data joined
 together.
+\itemize{
+\item wnd: wind
+\item tmp: air temperature
+\item aa: LIQUID-PRECIPITATION
+\item aj: snow depth
+\item ay: PAST-WEATHER-OBSERVATION
+\item oc: WIND-GUST-OBSERVATION
+\item dew: dew point
+\item slp: sea level pressure
+\item cig: sky condition
+\item ka: extreme air temperature
+\item ma: atmospheric pressure
+\item md: atmospheric pressure change
+\item ga: SKY-COVER-LAYER
+\item ge: SKY-CONDITION-OBSERVATION
+\item gf: SKY-CONDITION-OBSERVATION
+\item ia: GROUND-SURFACE-OBSERVATION
+\item mw: PRESENT-WEATHER-OBSERVATION
+\item rem: remarks
+}
 }
 \description{
 Local Climitalogical Data from NOAA
@@ -54,6 +79,11 @@ lcd(station = "02413099999", year = "2001")
 
 # pass curl options
 lcd(station = "02413099999", year = "2002", verbose = TRUE)
+
+# clean up columns
+w <- lcd(station = "01338099999", year = "2017")
+w
+lcd_cleanup(w)
 }
 }
 \references{
