@@ -61,7 +61,7 @@
 #'
 #' @seealso [meteo_pull_monitors()], [meteo_tidy_ghcnd()]
 #'
-#' @examples
+#' @examples \dontrun{
 #' # Search based on variable and/or date
 #' ghcnd_search("AGE00147704", var = "PRCP")
 #' ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01")
@@ -73,7 +73,6 @@
 #' ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
 #' ghcnd_search("AGE00147704", var = "adfdf")
 #' 
-#' \dontrun{
 #' # refresh the cached file
 #' ghcnd_search("AGE00147704", var = "PRCP", refresh = TRUE)
 #' }
