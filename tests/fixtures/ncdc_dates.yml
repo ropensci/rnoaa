@@ -1,0 +1,97 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=NORMAL_DLY&startdate=2010-05-01&enddate=2010-05-10&limit=25&includemetadata=TRUE&datatypeid=dly-tmax-normal
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.3 crul/0.7.4
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: <<ncdc_token>>
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Mon, 20 May 2019 17:10:33 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      connection: close
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":75010,"limit":25}},"results":[{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:AQW00061705","attributes":"C","value":869},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CAW00064757","attributes":"Q","value":607},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914080","attributes":"R","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914801","attributes":"R","value":858},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914395","attributes":"P","value":876},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914419","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914446","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914482","attributes":"R","value":868},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914720","attributes":"R","value":899},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914761","attributes":"P","value":897},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914831","attributes":"P","value":870},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914892","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914898","attributes":"P","value":875},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914911","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040308","attributes":"S","value":888},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040504","attributes":"C","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040505","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQC00914025","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQW00041415","attributes":"C","value":877},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:JQW00021603","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914519","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914712","attributes":"P","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSW00040309","attributes":"S","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040604","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040710","attributes":"C","value":863}]}'
+  recorded_at: 2019-05-20 17:10:35 GMT
+  recorded_with: vcr/0.2.6, webmockr/0.3.4.9100
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=NORMAL_DLY&startdate=2010-05-01&enddate=2010-05-10&limit=25&includemetadata=TRUE&datatypeid=dly-tmax-normal
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.3 crul/0.7.4
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: <<ncdc_token>>
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Mon, 20 May 2019 17:10:34 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      connection: close
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":75010,"limit":25}},"results":[{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:AQW00061705","attributes":"C","value":869},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CAW00064757","attributes":"Q","value":607},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914080","attributes":"R","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914801","attributes":"R","value":858},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914395","attributes":"P","value":876},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914419","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914446","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914482","attributes":"R","value":868},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914720","attributes":"R","value":899},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914761","attributes":"P","value":897},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914831","attributes":"P","value":870},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914892","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914898","attributes":"P","value":875},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914911","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040308","attributes":"S","value":888},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040504","attributes":"C","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040505","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQC00914025","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQW00041415","attributes":"C","value":877},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:JQW00021603","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914519","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914712","attributes":"P","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSW00040309","attributes":"S","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040604","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040710","attributes":"C","value":863}]}'
+  recorded_at: 2019-05-20 17:10:35 GMT
+  recorded_with: vcr/0.2.6, webmockr/0.3.4.9100
+- request:
+    method: get
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=NORMAL_DLY&startdate=2010-05-01&enddate=2010-05-10&limit=25&includemetadata=TRUE&datatypeid=dly-tmax-normal
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.3 crul/0.7.4
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      token: <<ncdc_token>>
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Mon, 20 May 2019 17:10:35 GMT
+      server: Apache-Coyote/1.1
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET
+      access-control-allow-headers: token
+      content-type: application/json;charset=UTF-8
+      connection: close
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"resultset":{"offset":1,"count":75010,"limit":25}},"results":[{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:AQW00061705","attributes":"C","value":869},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CAW00064757","attributes":"Q","value":607},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914080","attributes":"R","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:CQC00914801","attributes":"R","value":858},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914395","attributes":"P","value":876},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914419","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914446","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914482","attributes":"R","value":868},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914720","attributes":"R","value":899},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914761","attributes":"P","value":897},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914831","attributes":"P","value":870},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914892","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914898","attributes":"P","value":875},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMC00914911","attributes":"P","value":885},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040308","attributes":"S","value":888},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040504","attributes":"C","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:FMW00040505","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQC00914025","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:GQW00041415","attributes":"C","value":877},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:JQW00021603","attributes":"P","value":852},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914519","attributes":"P","value":883},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSC00914712","attributes":"P","value":840},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:PSW00040309","attributes":"S","value":879},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040604","attributes":"S","value":867},{"date":"2010-05-01T00:00:00","datatype":"DLY-TMAX-NORMAL","station":"GHCND:RMW00040710","attributes":"C","value":863}]}'
+  recorded_at: 2019-05-20 17:10:35 GMT
+  recorded_with: vcr/0.2.6, webmockr/0.3.4.9100

@@ -5,15 +5,19 @@ test_that("ncdc returns the correct ...", {
 
   vcr::use_cassette("ncdc", {
     # Normals Daily GHCND:USW00014895 dly-tmax-normal data
-    aa <- ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-10')
+    aa <- ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal',
+      startdate = '2010-05-01', enddate = '2010-05-10')
     # Datasetid, locationid and datatypeid
     # dd <- ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP')
     # Datasetid, locationid, stationid and datatypeid
-    # ee <- ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301', datatypeid='HPCP')
+    # ee <- ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', stationid='COOP:310301',
+    #   datatypeid='HPCP')
     # Normals Daily GHCND dly-tmax-normal data
-    gg <- ncdc(datasetid='GHCND', datatypeid = 'PRCP', stationid='GHCND:USC00200230', startdate = "2013-09-03", enddate = "2013-09-30", limit=30)
+    gg <- ncdc(datasetid='GHCND', datatypeid = 'PRCP', stationid='GHCND:USC00200230',
+      startdate = "2013-09-03", enddate = "2013-09-30", limit=30)
     # Hourly Precipitation data for ZIP code 28801
-    # ii <- ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP', startdate='2012-03-01', enddate='2013-03-15')
+    # ii <- ncdc(datasetid='PRECIP_HLY', locationid='ZIP:28801', datatypeid='HPCP',
+    # startdate='2012-03-01', enddate='2013-03-15')
     
     # class
     expect_is(aa, "ncdc_data")
@@ -79,4 +83,17 @@ test_that("ncdc add units works", {
     expect_is(dd$data, "tbl_df")
     expect_is(dd$data$units, "character")
   })
+})
+
+test_that("ncdc various dates work", {
+  skip_on_cran()
+
+  vcr::use_cassette("ncdc_dates", {
+    aa <- ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal', 
+      startdate = '2010-05-01', enddate = '2010-05-10')
+    bb <- ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal',
+      startdate = as.Date('2010-05-01'), enddate = as.Date('2010-05-10'))
+  })
+
+  expect_identical(aa, bb)
 })

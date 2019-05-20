@@ -25,13 +25,13 @@ ids}
 \item{locationid}{Accepts a valid location id or a vector or list of
 location ids (optional)}
 
-\item{startdate}{(required) Accepts valid ISO formated date (yyyy-mm-dd)
+\item{startdate}{(character/date) Accepts valid ISO formated date (yyyy-mm-dd)
 or date time (YYYY-MM-DDThh:mm:ss). Data returned will have data after the
-specified date. The date range must be less than 1 year.}
+specified date. The date range must be less than 1 year. required.}
 
-\item{enddate}{(required) Accepts valid ISO formated date (yyyy-mm-dd) or
+\item{enddate}{(character/date) Accepts valid ISO formated date (yyyy-mm-dd) or
 date time (YYYY-MM-DDThh:mm:ss). Data returned will have data before the
-specified date. The date range must be less than 1 year.}
+specified date. The date range must be less than 1 year. required.}
 
 \item{sortfield}{The field to sort results by. Supports id, name, mindate,
 maxdate, and datacoverage fields (optional)}
@@ -181,6 +181,9 @@ if you are able to help correct information.
 # GHCN-Daily (or GHCND) data, for a specific station
 ncdc(datasetid='GHCND', stationid='GHCND:USW00014895',
    startdate = '2013-10-01', enddate = '2013-12-01')
+### also accepts dates as class Date
+ncdc(datasetid='GHCND', stationid='GHCND:USW00014895',
+   startdate = as.Date('2013-10-01'), enddate = as.Date('2013-12-01'))
 
 # GHCND data, for a location by FIPS code
 ncdc(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01',
