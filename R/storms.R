@@ -44,7 +44,9 @@
 #' we determine the directory on your machine to save files to, and run
 #' `rappdirs::user_cache_dir("rnoaa/storms")` to get that directory.
 #'
-#' @references <http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data>
+#' @references 
+#' v4 docs: <https://www.ncdc.noaa.gov/ibtracs/index.php?name=ib-v4-access>
+#' old version (v3): <http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data>
 #'
 #' @examples \dontrun{
 #' # Metadata
@@ -161,3 +163,5 @@ is_storm <- function(x) if (file.exists(x)) TRUE else FALSE
 stormurl <- function(x = "csv") {
   sprintf('ftp://eclipse.ncdc.noaa.gov/pub/ibtracs/v03r10/all/%s', x)
 }
+
+# ftp://eclipse.ncdc.noaa.gov/pub/ibtracs/v04r00/provisional/shapefiles/IBTrACS.ACTIVE.list.v04r00.points.shp
