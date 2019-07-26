@@ -25,3 +25,4 @@ user_test_cases/
 .github
 ^codemeta\.json$
 tests/test-all.R
+tests/files

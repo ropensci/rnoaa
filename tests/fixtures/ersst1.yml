@@ -1,0 +1,34 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www1.ncdc.noaa.gov/pub/data/cmb/ersst/v4/netcdf/ersst.v4.201606.nc
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/4.0 crul/0.8.1.9123
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Fri, 26 Jul 2019 23:00:54 GMT
+      server: Apache
+      strict-transport-security: max-age=31536000
+      last-modified: Wed, 03 Jul 2019 17:44:22 GMT
+      etag: '"1b643d4f-20ee8-58cca69574110"'
+      accept-ranges: bytes
+      content-length: '134888'
+      content-type: application/x-netcdf
+      access-control-allow-origin: '*'
+      connection: close
+    body:
+      encoding: UTF-8
+      file: yes
+      string: /Users/sckott/github/ropensci/rnoaa/tests/files/20166.nc
+  recorded_at: 2019-07-26 23:00:55 GMT
+  recorded_with: vcr/0.2.6.9320, webmockr/0.3.4.9321

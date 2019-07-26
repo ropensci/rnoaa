@@ -2,7 +2,10 @@
 library("vcr")
 invisible(vcr::vcr_configure(
   dir = "../fixtures",
-  filter_sensitive_data = list("<<ncdc_token>>" = Sys.getenv('NOAA_KEY'))
+  # dir = "tests/fixtures",
+  filter_sensitive_data = list("<<ncdc_token>>" = Sys.getenv('NOAA_KEY')),
+  # write_disk_path = "tests/files"
+  write_disk_path = "../files"
 ))
 
 # check if there's a government shutdown
