@@ -22,7 +22,8 @@ Authors@R: c(
     person("Karthik", "Ram", role = "ctb"),
     person("Hart", "Edmund", role = "ctb")
   )
-URL: https://github.com/ropensci/rnoaa
+URL: https://docs.ropensci.org/rnoaa (website),
+    https://github.com/ropensci/rnoaa
 BugReports: https://github.com/ropensci/rnoaa/issues
 LazyData: true
 VignetteBuilder: knitr
