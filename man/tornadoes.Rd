@@ -16,7 +16,8 @@ Default: \code{TRUE}}
 A Spatial object is returned of class SpatialLinesDataFrame.
 }
 \description{
-Get NOAA tornado data.
+This function gets spatial paths of tornadoes from NOAA's National Weather
+Service Storm Prediction Center Severe Weather GIS web page.
 }
 \section{File storage}{
 

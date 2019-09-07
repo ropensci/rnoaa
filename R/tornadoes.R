@@ -1,5 +1,8 @@
 #' Get NOAA tornado data.
 #'
+#' This function gets spatial paths of tornadoes from NOAA's National Weather
+#' Service Storm Prediction Center Severe Weather GIS web page.
+#'
 #' @export
 #' @param overwrite (logical) To overwrite the path to store files in or not,
 #' Default: `TRUE`
