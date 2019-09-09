@@ -54,6 +54,7 @@ Suggests:
     raster,
     leaflet,
     rgdal,
+    sf,
     rmarkdown,
     purrr,
     ggmap,
