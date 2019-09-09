@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/rnoaa",
   "issueTracker": "https://github.com/ropensci/rnoaa/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.8.4",
+  "version": "0.8.5.9424",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.2",
+    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.2 Patched (2018-12-31 r75943)",
+  "runtimePlatform": "R version 3.6.1 Patched (2019-09-05 r77154)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -435,8 +435,11 @@
   "contIntegration": "https://travis-ci.org/ropensci/rnoaa",
   "releaseNotes": "https://github.com/ropensci/rnoaa/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rnoaa/blob/master/README.md",
-  "fileSize": "1836.439KB",
+  "fileSize": "1877.583KB",
   "applicationCategory": "Climate",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["earth", "science", "climate", "precipitation", "temperature", "storm", "buoy", "NCDC", "NOAA", "tornadoe", "seaice", "ISD", "noaa", "rstats", "noaa-data", "r", "r-package"]
+  "keywords": ["earth", "science", "climate", "precipitation", "temperature", "storm", "buoy", "NCDC", "NOAA", "tornadoe", "seaice", "ISD", "noaa", "rstats", "noaa-data", "r", "r-package"],
+  "relatedLink": "https://docs.ropensci.org/rnoaa",
+  "copyrightHolder": {},
+  "funder": {}
 }
