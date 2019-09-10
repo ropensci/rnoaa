@@ -22,7 +22,7 @@ si_tab_pat <- "ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/%s/monthly/data/"
 #' - area (numeric)
 #'
 #' @details a value in any cell of -9999 indicates missing data
-#' @seealso [seaice()]
+#' @seealso [sea_ice()]
 #' @examples \dontrun{
 #' df <- seaice_tabular()
 #' df

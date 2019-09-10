@@ -24,6 +24,11 @@ Make all urls for sea ice data
 # Get all urls
 seaiceeurls()
 
+# for some range of years
+seaiceeurls(yr = 1980:1983)
+seaiceeurls(yr = 1980, mo = c("Jan", "Feb", "Mar"))
+seaiceeurls(yr = 1980:1983, mo = c("Jan", "Apr", "Oct"))
+
 # Get urls for Feb of all years, both S and N poles
 seaiceeurls(mo='Feb')
 

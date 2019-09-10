@@ -16,44 +16,39 @@ knitr::opts_chunk$set(
 Sea ice vignette
 ======
 
-Get sea ice data at [ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles).
+Get sea ice data at <ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles>
 
 ********************
 
 ```{r}
 library('rnoaa')
-library('plyr')
+library('dplyr')
+library('ggplot2')
 ```
 
-### Look at data.frame's for a series of years for Feb, South pole
+### Look at data for a series of years for Feb, South pole
 
 ```{r}
-urls <- sapply(seq(1979, 1990, 1), function(x) seaiceeurls(yr = x, mo = 'Feb', pole = 'S'))
-out <- lapply(urls, seaice)
-head(out[[1]])
+res <- sapply(seq(1986, 1990, 1), function(x) 
+    sea_ice(x, month = 'Feb', pole = 'S'))
+lapply(res, head)
 ```
 
 ### Map a single year/month/pole combo
 
 ```{r seaice1}
-urls <- seaiceeurls(mo = 'Apr', pole = 'N', yr = 1990)
-out <- seaice(urls)
-library('ggplot2')
-ggplot(out, aes(long, lat, group = group)) +
-   geom_polygon(fill = "steelblue") +
-   theme_ice()
+ggplot(res[[1]], aes(long, lat, group=group)) +
+    geom_polygon(fill="steelblue") +
+    theme_ice()
 ```
 
 ### Map all years for April only for North pole
 
 ```{r seaice2}
-urls <- seaiceeurls(mo = 'Apr', pole = 'N')[1:10]
-out <- lapply(urls, seaice)
-names(out) <- seq(1979, 1988, 1)
-df <- ldply(out)
-library('ggplot2')
+dat <- sea_ice(year = 1985:1990, month = 'Apr', pole = 'N')
+df <- bind_rows(dat, .id = "x")
 ggplot(df, aes(long, lat, group = group)) +
   geom_polygon(fill = "steelblue") +
   theme_ice() +
-  facet_wrap(~.id)
+  facet_wrap(~ x)
 ```

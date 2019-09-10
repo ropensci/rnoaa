@@ -34,7 +34,6 @@ For shp files, if you want to reproject the shape files, use
 \dontrun{
 # the new way
 library(raster)
-library(sf)
 
 ## one file
 sea_ice(year = 1990, month = "Apr", pole = "N")

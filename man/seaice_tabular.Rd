@@ -39,5 +39,5 @@ df
 }
 }
 \seealso{
-\code{\link[=seaice]{seaice()}}
+\code{\link[=sea_ice]{sea_ice()}}
 }

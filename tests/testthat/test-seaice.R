@@ -15,20 +15,17 @@ test_that("sea_ice", {
   out <- sea_ice(year = 1990, month = "Apr", pole = "N")
   expect_is(out, "list")
   expect_equal(length(out), 1)
-  expect_is(out[[1]], "sf")
   expect_is(out[[1]], "data.frame")
-  expect_is(out[[1]]$geometry, "sfc")
+  expect_is(out[[1]]$long, "numeric")
 
   # many
   out <- sea_ice(year = 2010, month = "Jun")
   expect_is(out, "list")
   expect_equal(length(out), 2)
-  expect_is(out[[1]], "sf")
   expect_is(out[[1]], "data.frame")
-  expect_is(out[[1]]$geometry, "sfc")
-  expect_is(out[[2]], "sf")
+  expect_is(out[[1]]$long, "numeric")
   expect_is(out[[2]], "data.frame")
-  expect_is(out[[2]]$geometry, "sfc")
+  expect_is(out[[2]]$long, "numeric")
 
   # single - geotiff - extent
   out <- sea_ice(year = 2001, month = "Mar", pole = "S",

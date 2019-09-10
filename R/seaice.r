@@ -8,31 +8,37 @@
 #' extent data), or geotiff-conc (for geotiff concentration data)
 #' @param ... Further arguments passed on to `rgdal::readshpfile()` if
 #' `format="shp"` or `raster::raster()` if not
-#' @return data.frame if `format="shp"`; `raster::raster()` if not
-#' @details For shp files, if you want to reproject the shape files, use
-#' [readshpfile()] to read in shape file, then reproject, and so on.
+#' @return data.frame if `format="shp"` (a fortified sp object);
+#' `raster::raster()` if not
 #' @seealso [seaice_tabular()]
 #' @references See the "User Guide" pdf at https://nsidc.org/data/g02135
 #' @examples \dontrun{
-#' # the new way
-#' library(raster)
-#' library(sf)
+#' if (requireNamespace("raster")) {
 #'
-#' ## one file
+#' ## one year, one moth, one pole
 #' sea_ice(year = 1990, month = "Apr", pole = "N")
 #' sea_ice(year = 1990, month = "Apr", pole = "N", format = "geotiff-extent")
 #' sea_ice(year = 1990, month = "Apr", pole = "N", format = "geotiff-conc")
-#' ## many files
+#' 
+#' ## one year, one month, many poles
 #' sea_ice(year = 1990, month = "Apr")
-#' x <- sea_ice(year = 1990, month = "Apr", format = "geotiff-extent")
-#' y <- sea_ice(year = 1990, month = "Apr", format = "geotiff-conc")
-#' plot(x[[1]])
-#' plot(y[[1]])
+#' 
+#' ## one year, many months, many poles
+#' sea_ice(year = 1990, month = c("Apr", "Jun", "Oct"))
+#' 
+#' ## many years, one month, one pole
+#' sea_ice(year = 1990:1992, month = "Sep", pole = "N")
 #'
 #' # Map a single year/month/pole combo
 #' out <- sea_ice(year = 1990, month = 'Apr', pole = 'N')
 #' library('sf')
 #' plot(out[[1]])
+#' 
+#' # get geotiff instead of shp data. 
+#' x <- sea_ice(year = 1990, month = "Apr", format = "geotiff-extent")
+#' y <- sea_ice(year = 1990, month = "Apr", format = "geotiff-conc")
+#' }
+#' 
 #' }
 sea_ice <- function(year = NULL, month = NULL, pole = NULL, format = "shp",
   ...) {
@@ -45,7 +51,7 @@ sea_ice <- function(year = NULL, month = NULL, pole = NULL, format = "shp",
     stop("'format' must be one of: 'shp', 'geotiff-extent', 'geotiff-conc'")
   urls <- seaiceeurls(yr=year, mo=month, pole, format)
   if (format == "shp") {
-    check4pkg("sf")
+    check4pkg("rgdal")
     lapply(urls, readshpfile, ...)
   } else {
     check4pkg("raster")
@@ -64,6 +70,11 @@ sea_ice <- function(year = NULL, month = NULL, pole = NULL, format = "shp",
 #' @examples \dontrun{
 #' # Get all urls
 #' seaiceeurls()
+#' 
+#' # for some range of years
+#' seaiceeurls(yr = 1980:1983)
+#' seaiceeurls(yr = 1980, mo = c("Jan", "Feb", "Mar"))
+#' seaiceeurls(yr = 1980:1983, mo = c("Jan", "Apr", "Oct"))
 #'
 #' # Get urls for Feb of all years, both S and N poles
 #' seaiceeurls(mo='Feb')
@@ -87,22 +98,25 @@ seaiceeurls <- function(yr = NULL, mo = NULL, pole = NULL, format = "shp") {
 
   ss <- urls
   if (!is.null(yr) & is.null(mo) & is.null(pole))
-    ss <- grep(yr, urls, value = TRUE)
+    ss <- grep2(yr, urls)
   if (is.null(yr) & !is.null(mo) & is.null(pole))
-    ss <- grep(mo, urls, value = TRUE)
+    ss <- grep2(mo, urls)
   if (is.null(yr) & is.null(mo) & !is.null(pole))
-    ss <- grep(pole, urls, value = TRUE)
+    ss <- grep2(pole, urls)
   if (!is.null(yr) & !is.null(mo) & is.null(pole))
-    ss <- grep(yr, grep(mo, urls, value = TRUE), value = TRUE)
+    ss <- grep2(yr, grep2(mo, urls))
   if (!is.null(yr) & is.null(mo) & !is.null(pole))
-    ss <- grep(yr, grep(pole, urls, value = TRUE), value = TRUE)
+    ss <- grep2(yr, grep2(pole, urls))
   if (is.null(yr) & !is.null(mo) & !is.null(pole))
-    ss <- grep(pole, grep(mo, urls, value = TRUE), value = TRUE)
+    ss <- grep2(pole, grep2(mo, urls))
   if (!is.null(yr) & !is.null(mo) & !is.null(pole))
-    ss <- grep(yr, grep(pole, grep(mo, urls, value = TRUE),
-                        value = TRUE), value = TRUE)
+    ss <- grep2(yr, grep2(pole, grep2(mo, urls)))
 
   return( ss )
+}
+
+grep2 <- function(pattern, x) {
+  grep(paste0(pattern, collapse = "|"), x, value = TRUE)
 }
 
 generate_urls <- function(format, type) {
@@ -200,7 +214,7 @@ readshpfile <- function(x, storepath = NULL) {
   dir.create(path_write, showWarnings = FALSE)
   unzip(path, exdir = path_write)
   my_layer <- rgdal::ogrListLayers(path.expand(path_write))
-  sf::st_as_sf(rgdal::readOGR(path.expand(path_write), layer = my_layer,
+  ggplot2::fortify(rgdal::readOGR(path.expand(path_write), layer = my_layer,
     verbose = FALSE, stringsAsFactors = FALSE))
 }
 

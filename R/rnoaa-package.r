@@ -21,7 +21,7 @@
 #'  vignette
 #' - `ncdc_*` - NOAA National Climatic Data Center (NCDC) vignette
 #'  (examples)
-#' - `seaice` - Sea ice vignette
+#' - `sea_ice` - Sea ice vignette
 #' - `storm_` - Storms (IBTrACS) vignette
 #' - `swdi` - Severe Weather Data Inventory (SWDI) vignette
 #' - `tornadoes` - From the NOAA Storm Prediction Center
@@ -65,7 +65,7 @@
 #' 
 #' - `ghcnd_*` - Up
 #' - `isd_*` - Up
-#' - `seaice` - Up
+#' - `sea_ice` - Up
 #' - `storm_` - Up
 #' - `argo_*` - Up (only two fxns: [argo()], [argo_buoy_files()])
 #' - `cpc_prcp` - Up
