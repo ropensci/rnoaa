@@ -167,6 +167,14 @@ ncdc_leg_data <- function() {
   .Defunct(msg = "This function is defunct, see ncdc_*() functions")
 }
 
+#' This function is defunct.
+#' @export
+#' @rdname seaice-defunct
+#' @keywords internal
+seaice <- function() {
+  .Defunct(msg = "This function is defunct, see sea_ice()")
+}
+
 #' Defunct functions in rnoaa
 #'
 #' \itemize{
@@ -196,6 +204,7 @@ ncdc_leg_data <- function() {
 #'  \item \code{\link{ncdc_leg_sites}}: Removed. See \code{NCDC Legacy} below
 #'  \item \code{\link{ncdc_leg_site_info}}: Removed. See \code{NCDC Legacy} below
 #'  \item \code{\link{ncdc_leg_data}}: Removed. See \code{NCDC Legacy} below
+#'  \item \code{\link{seaice}}: Replaced with \code{\link{sea_ice}}
 #' }
 #' 
 #' @section NCDC Legacy:

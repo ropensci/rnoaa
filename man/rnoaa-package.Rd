@@ -28,7 +28,7 @@ function prefixes are:
 vignette
 \item \code{ncdc_*} - NOAA National Climatic Data Center (NCDC) vignette
 (examples)
-\item \code{seaice} - Sea ice vignette
+\item \code{sea_ice} - Sea ice vignette
 \item \code{storm_} - Storms (IBTrACS) vignette
 \item \code{swdi} - Severe Weather Data Inventory (SWDI) vignette
 \item \code{tornadoes} - From the NOAA Storm Prediction Center
@@ -77,7 +77,7 @@ FTP services (whether service is/was up or down during early 2019 shutdown)
 \itemize{
 \item \code{ghcnd_*} - Up
 \item \code{isd_*} - Up
-\item \code{seaice} - Up
+\item \code{sea_ice} - Up
 \item \code{storm_} - Up
 \item \code{argo_*} - Up (only two fxns: \code{\link[=argo]{argo()}}, \code{\link[=argo_buoy_files]{argo_buoy_files()}})
 \item \code{cpc_prcp} - Up
