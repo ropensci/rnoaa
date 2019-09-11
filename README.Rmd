@@ -269,7 +269,7 @@ plot(shp)
 
 In this example, search for metadata for a single station ID
 
-```{r output.lines=1:20}
+```{r output.lines=1:20, eval=FALSE}
 homr(qid = 'COOP:046742')
 ```
 
@@ -277,7 +277,7 @@ homr(qid = 'COOP:046742')
 
 Get storm data for the year 2010
 
-```{r output.lines=1:20}
+```{r output.lines=1:20, eval=FALSE}
 storm_data(year = 2010)
 ```
 

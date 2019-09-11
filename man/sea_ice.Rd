@@ -21,35 +21,40 @@ extent data), or geotiff-conc (for geotiff concentration data)}
 \code{format="shp"} or \code{raster::raster()} if not}
 }
 \value{
-data.frame if \code{format="shp"}; \code{raster::raster()} if not
+data.frame if \code{format="shp"} (a fortified sp object);
+\code{raster::raster()} if not
 }
 \description{
 Get sea ice data.
 }
-\details{
-For shp files, if you want to reproject the shape files, use
-\code{\link[=readshpfile]{readshpfile()}} to read in shape file, then reproject, and so on.
-}
 \examples{
 \dontrun{
-# the new way
-library(raster)
+if (requireNamespace("raster")) {
 
-## one file
+## one year, one moth, one pole
 sea_ice(year = 1990, month = "Apr", pole = "N")
 sea_ice(year = 1990, month = "Apr", pole = "N", format = "geotiff-extent")
 sea_ice(year = 1990, month = "Apr", pole = "N", format = "geotiff-conc")
-## many files
+
+## one year, one month, many poles
 sea_ice(year = 1990, month = "Apr")
-x <- sea_ice(year = 1990, month = "Apr", format = "geotiff-extent")
-y <- sea_ice(year = 1990, month = "Apr", format = "geotiff-conc")
-plot(x[[1]])
-plot(y[[1]])
+
+## one year, many months, many poles
+sea_ice(year = 1990, month = c("Apr", "Jun", "Oct"))
+
+## many years, one month, one pole
+sea_ice(year = 1990:1992, month = "Sep", pole = "N")
 
 # Map a single year/month/pole combo
 out <- sea_ice(year = 1990, month = 'Apr', pole = 'N')
 library('sf')
 plot(out[[1]])
+
+# get geotiff instead of shp data. 
+x <- sea_ice(year = 1990, month = "Apr", format = "geotiff-extent")
+y <- sea_ice(year = 1990, month = "Apr", format = "geotiff-conc")
+}
+
 }
 }
 \references{
