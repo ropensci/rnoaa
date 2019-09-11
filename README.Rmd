@@ -203,12 +203,19 @@ out <- ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='d
 head( out$data )
 ```
 
+Note that the `value` column has strangely large numbers for temperature measurements.
+By convention, the `rnoaa` package doesn't do any conversion of values from the APIs and some APIs use seemingly odd units.
+In this case, `TMAX` values from `GHCND` are in tenths of degrees Celcius which is a unit you'll see elsewhere when working with NOAA data.
+See [the GHCN-DAILY README](https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) for more information.
+
 ### Plot data, super simple, but it's a start
 
 ```{r}
 out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
+
+Note that `PRCP` values are in units of tenths of a millimeter.
 
 ### More plotting
 

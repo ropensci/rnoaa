@@ -90,7 +90,10 @@ for more}
 \value{
 An S3 list of length two, a slot of metadata (meta), and a slot
 for data (data). The meta slot is a list of metadata elements, and the
-data slot is a data.frame, possibly of length zero if no data is found.
+data slot is a data.frame, possibly of length zero if no data is found. Note
+that values in the data slot don't indicate their units so you will want to
+consult the documentation for each dataset to ensure you're using the right
+units.
 }
 \description{
 Search for and get NOAA NCDC data

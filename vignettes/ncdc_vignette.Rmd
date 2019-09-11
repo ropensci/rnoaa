@@ -61,6 +61,11 @@ out$data
 #> # … with 15 more rows
 ```
 
+Note that the `value` column has strangely large numbers for temperature measurements.
+By convention, the `rnoaa` package doesn't do any conversion of values from the APIs and some APIs use seemingly odd units.
+In this case, `TMAX` values from `GHCND` are in tenths of degrees Celcius which is a unit you'll see elsewhere when working with NOAA data.
+See [the GHCN-DAILY README](https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) for more information.
+
 ## Plot data, super simple, but it's a start
 
 
