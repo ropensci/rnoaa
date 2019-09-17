@@ -15,6 +15,21 @@ test_that("gefs errors", {
   expect_error(gefs(lat=lat, lon=lon), "Need to specify the variable to get. A list of variables is available from gefs_variables().")
 })
 
+test_that("gefs latitude and longitude selection returns correct values", {
+  skip_on_cran()
+  skip_on_travis()
+  skip_on_appveyor()
+
+  a <- gefs("u-component_of_wind_height_above_ground_ens",
+            ens_idx = 1,
+            time_idx = 1,
+            forecast_time = "0000",
+            lon = c(-1:2), lat = c(50:54))
+
+  expect_true(all(unique(a$data$lon) == c(0,1,2,359)))
+  expect_true(all(unique(a$data$lat) == c(54,54,54,54)))
+})
+
 test_that("gefs time and ensemble selection returns correct indices.", {
   skip_on_cran()
   skip_on_travis()
