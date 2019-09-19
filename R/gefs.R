@@ -116,8 +116,18 @@ gefs_GET <- function(var, lat, lon,
                      raw = FALSE,
                      ...) {
 
-  #Sanity Checks
+  ###Sanity Checks
   if (missing(var)) stop("Need to specify the variable to get. A list of variables is available from gefs_variables().")
+
+  # lats and lons must be sequential and within ranges
+  lats <- sort(round(lat, 0))
+  if (!all(lats == seq(lats[1], length.out = length(lats)))) stop("Latitudes must be sequential.")
+  if (any(lats < -90 | lats > 90)) stop("Latitudes must be in c(-90,90).")
+
+  lons <- sort(round(lon, 0))
+  if (!all(lons == seq(lons[1], length.out = length(lons)))) stop("Longitudes must be sequential.")
+  if (any(lons < -180 | lons > 360)) stop("Longitudes must be in c(-180,180) or c(0,360).")
+
 
   #get a connection
   con <- gefs_CONNECT(date, forecast_time)
@@ -170,6 +180,8 @@ gefs_GET <- function(var, lat, lon,
     names(dim_vals) <- names(dim_idxs)
     d = cbind(as.data.frame(as.vector(d_raw)), expand.grid(dim_vals))
     names(d)[[1]] <- var
+  } else {
+    d <- d_raw
   }
 
   fname <- strsplit(con$filename, "_")[[1]]

@@ -1,11 +1,25 @@
 context("gefs")
 
 #set a location
-lat = 46.28125
-lon = -116.2188
+lons <- c(-1.1, 0, 0.8, 2)
+lats <- c(50.1, 51, 51.9, 53, 54)
 
 #variable
-var = "Temperature_height_above_ground_ens"
+temp = "Temperature_height_above_ground_ens"
+
+# Get raw and processed data
+d_raw <- gefs(var = temp,
+              ens_idx = 1:2,
+              time_idx = 1:2,
+              forecast_time = "0000",
+              lon = lons, lat = lats, raw = TRUE)
+
+d <- gefs(var = temp,
+          ens_idx = 1:2,
+          time_idx = 1:2,
+          forecast_time = "0000",
+          lon = lons, lat = lats)
+
 
 test_that("gefs errors", {
   skip_on_cran()
@@ -13,49 +27,54 @@ test_that("gefs errors", {
   skip_on_travis()
 
   expect_error(gefs(lat=lat, lon=lon), "Need to specify the variable to get. A list of variables is available from gefs_variables().")
+  expect_error(gefs(var = temp, lat = c(-43, -41), lon = lons, ens_idx = 1, time_idx = 1), "Latitudes must be sequential.", fixed = TRUE)
+  expect_error(gefs(var = temp, lat = lats, lon = c(213, 211), ens_idx = 1, time_idx = 1), "Longitudes must be sequential.", fixed = TRUE)
+  expect_error(gefs(var = temp, lat = -91, lon = lons, ens_idx = 1, time_idx = 1), "Latitudes must be in c(-90,90).", fixed = TRUE)
+  expect_error(gefs(var = temp, lat = 91, lon = lons, ens_idx = 1, time_idx = 1), "Latitudes must be in c(-90,90).", fixed = TRUE)
+  expect_error(gefs(var = temp, lat = lats, lon = 361, ens_idx = 1, time_idx = 1), "Longitudes must be in c(-180,180) or c(0,360).", fixed = TRUE)
+  expect_error(gefs(var = temp, lat = lats, lon = -181, ens_idx = 1, time_idx = 1), "Longitudes must be in c(-180,180) or c(0,360).", fixed = TRUE)
 })
 
-test_that("gefs latitude and longitude selection returns correct values", {
+test_that("gefs returns a correct object", {
+  expect_type(d, "list")
+  expect_equal(names(d),
+               c("forecast_date", "forecast_time", "dimensions", "data"))
+  expect_equal(d$forecast_date, format(Sys.time(), "%Y%m%d"))
+  expect_equal(d$forecast_time, "0000")
+  expect_s3_class(d$data, "data.frame")
+})
+
+test_that("gefs correctly selects the dimension values", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
 
-  a <- gefs("u-component_of_wind_height_above_ground_ens",
-            ens_idx = 1,
-            time_idx = 1,
-            forecast_time = "0000",
-            lon = c(-1:2), lat = c(50:54))
-
-  expect_true(all(unique(a$data$lon) == c(0,1,2,359)))
-  expect_true(all(unique(a$data$lat) == c(54,54,54,54)))
+  expect_true(all(sort(unique(d$data$lon)) == sort(round(lons %% 360, 0))))
+  expect_true(all(sort(unique(d$data$lat)) == sort(round(lats, 0))))
 })
 
-test_that("gefs time and ensemble selection returns correct indices.", {
+test_that("gefs data arrays are correctly transformed", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
 
-  ens_idx = 2:4
-  time_idx = 5:10
-  d = gefs(var, lat, lon, ens_idx = ens_idx, time_idx = time_idx)
+  grid <- expand.grid(lon = round(lons %% 360, 0), lat = round(lats, 0),
+                      ens  = 1:2, time = 1:2)
 
-  time_var <- names(d$data)[6]
-  expect_equal(dim(d$data), c(length(ens_idx) * length(time_idx), 6))
-  expect_equal(unique(d$data$ens), ens_idx - 1)
-})
+  expect_equal(nrow(d$data), nrow(grid))
 
-test_that("gefs metadata", {
-  skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  # NOTE: Remember that GEFS returns latitude in reverse order, i.e. -90:90
 
-  today = format(as.Date(Sys.time()) - 2, "%Y%m%d")
-  forecast_time = "0600"
-  d = gefs(var, lat, lon, ens=1, date=today, forecast_time=forecast_time)
+  # 2nd lon, all lats, 1st ens, 2nd time
+  expect_true(all(d_raw$data[2,,1,2] == d$data[d$data$lon == lons[[2]] &
+                                               d$data$ens == 0 &
+                                               d$data$time2 == 1,][[temp]]))
 
-  expect_equal(d$forecast_date, today)
-  expect_equal(d$forecast_time, forecast_time)
-  expect_equal(d$dimensions[1:4], c("lon", "lat", "height_above_ground", "ens"))
+  # All lons, last lat, 1st ens, 1st time
+  expect_true(all(d_raw$data[,length(lats),1,2] == d$data[
+    d$data$lat == round(sort(lats, decreasing = TRUE)[[length(lats)]]) &
+    d$data$ens == 0 &
+    d$data$time2 == 1,][[temp]]))
 })
 
 test_that("gefs_variables returns characters.", {
