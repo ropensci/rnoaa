@@ -34,11 +34,11 @@ gefs_dimension_values(dim, con = NULL, ...)
 \item{var}{the variable to get. Must be one of the variables listed in
 \code{gefs_variables()}}
 
-\item{lat}{the latitude. Values must be sequential and are rounded to the nearest GEFS available
-latitude.}
+\item{lat}{the latitude. Values must be sequential and are rounded to the
+nearest GEFS available latitude.}
 
-\item{lon}{the longitude. Values must be sequential and are rounded to the nearest GEFS available
-longitude.}
+\item{lon}{the longitude. Values must be sequential and are rounded to the
+nearest GEFS available longitude.}
 
 \item{...}{additional parameters passed to \code{ncvar_get}}
 
