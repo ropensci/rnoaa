@@ -175,7 +175,7 @@ gefs_GET <- function(var, lat, lon,
 
   #create the data frame
   #For now, if lat/lon are not specified, just return a matrix.
-  if (raw==FALSE) {
+  if (!raw) {
     dim_vals <- lapply(1:length(dim_idxs), function(i) { v$dim[[i]]$vals[dim_idxs[[i]]] })
     names(dim_vals) <- names(dim_idxs)
     d = cbind(as.data.frame(as.vector(d_raw)), expand.grid(dim_vals))
