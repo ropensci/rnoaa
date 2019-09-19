@@ -44,7 +44,7 @@ test_that("gefs returns a correct object", {
   expect_s3_class(d$data, "data.frame")
 })
 
-test_that("gefs correctly selects the dimension values", {
+test_that("gefs time and ensemble selection returns correct indices.", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()

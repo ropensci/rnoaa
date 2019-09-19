@@ -8,10 +8,10 @@
 #'
 #' @param var the variable to get. Must be one of the variables listed in
 #' `gefs_variables()`
-#' @param lat the latitude. Values must be sequential and are rounded to the nearest GEFS available
-#' latitude.
-#' @param lon the longitude. Values must be sequential and are rounded to the nearest GEFS available
-#' longitude.
+#' @param lat the latitude. Values must be sequential and are rounded to the
+#' nearest GEFS available latitude.
+#' @param lon the longitude. Values must be sequential and are rounded to the
+#' nearest GEFS available longitude.
 #' @param date A date/string formatted as YYYYMMDD.
 #' @param forecast_time a string indicating which time of day UTC the
 #' forecast is from. Options are "0000", "0600", "1200", "1800".
