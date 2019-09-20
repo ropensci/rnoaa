@@ -8,11 +8,10 @@
 #'
 #' @param var the variable to get. Must be one of the variables listed in
 #' `gefs_variables()`
-#' @param lat,lon the longitude. Will be converted to the nearest GEFS available
-#'  longitude. If lon is a list of vlaues, it must be a sequential list, and
-#'  data are returned for the number of longitudes in the list starting with
-#'  the maximum value and incrementing through the indexed values for the
-#'  length of the list.
+#' @param lat the latitude. Values must be sequential and are rounded to the
+#' nearest GEFS available latitude.
+#' @param lon the longitude. Values must be sequential and are rounded to the
+#' nearest GEFS available longitude.
 #' @param date A date/string formatted as YYYYMMDD.
 #' @param forecast_time a string indicating which time of day UTC the
 #' forecast is from. Options are "0000", "0600", "1200", "1800".
@@ -32,7 +31,7 @@
 #' unprocessed matrix.
 #'
 #' @references
-#' 
+#'
 #' - Data description - \url{http://bit.ly/noaagefs}.
 #' - Adapted from Python code written by Von P. Walden, Washington State
 #' University
@@ -117,72 +116,72 @@ gefs_GET <- function(var, lat, lon,
                      raw = FALSE,
                      ...) {
 
-  #Sanity Checks
+  ###Sanity Checks
   if (missing(var)) stop("Need to specify the variable to get. A list of variables is available from gefs_variables().")
+
+  # lats and lons must be sequential and within ranges
+  lats <- sort(round(lat, 0))
+  if (!all(lats == seq(lats[1], length.out = length(lats)))) stop("Latitudes must be sequential.")
+  if (any(lats < -90 | lats > 90)) stop("Latitudes must be in c(-90,90).")
+
+  lons <- sort(round(lon, 0))
+  if (!all(lons == seq(lons[1], length.out = length(lons)))) stop("Longitudes must be sequential.")
+  if (any(lons < -180 | lons > 360)) stop("Longitudes must be in c(-180,180) or c(0,360).")
+
 
   #get a connection
   con <- gefs_CONNECT(date, forecast_time)
+
+  # Rename extra dimensions, to be changed later
+  if (!is.null(dims)) { warning("Can't select additional dimensions yet.",
+                                .call = FALSE)
+  } else {
+    additional_dims <- dims
+  }
+
 
   #Get a subset of data to speed up access
   v <- con$var[[var]] # lon, lat, height_above_ground, ens (ensemble), time1
   varsize <- v$varsize
   ndims <- v$ndims
   n_time <- varsize[ndims] #time is always the last dimension
-  dims <- c()
-  for (i in 1:length(v$dim)) { dims[i] <- v$dim[[i]]$name }
 
-  #get lat/lon indices
-  lon_start_idx <- if(!missing(lon)) which(v$dim[[1]]$vals==round(max(lon) %% 360, 0)) else 1
-  lat_start_idx <- if(!missing(lat)) which(v$dim[[2]]$vals==round(max(lat), 0)) else 1
+  # Set the indices for each dimension
+  dim_idxs <- list()
+  for (i in 1:length(v$dim)) {
+    dn <- v$dim[[i]]$name
+    if(dn == "lon") {
+      dim_idxs[[i]] <- if(!missing(lon)) which(v$dim[[i]]$vals %in% (round(lon,0) %% 360)) else 1:v$dim[[i]]$len
+    } else if (dn == "lat") {
+      dim_idxs[[i]] <- if(!missing(lat)) which(v$dim[[2]]$vals %in% round(lat, 0)) else 1:v$dim[[2]]$len
+    } else if (dn == "ens") {
+      dim_idxs[[i]] <- ens_idx
+    } else if (dn %in% c("time1", "time2")) {
+      dim_idxs[[i]] <- time_idx
+    } else if (dn %in% names(additional_dims)) {
+      dim_idxs[[i]] <- which(v$dim[[j]]$vals %in% additional_dims[[dn]])
+    } else {
+      dim_idxs[[i]] <- 1:v$dim[[i]]$len
+    }
+  }
+  names(dim_idxs) <- lapply(1:length(v$dim), function(i) { v$dim[[i]]$name })
 
-  #indices of dimensions to read from data
-  start <- rep(1,ndims) #number of dims
-  start[1] <- lon_start_idx #first is always longitude
-  start[2] <- lat_start_idx #second is always latitude
-  start[ndims - 1] <- ens_idx[1] #first ensemble index
-  start[ndims] <- time_idx[1] #first time index
-
-  count_n <- rep(1,ndims)
-
-  #if not specified, get all locations.
-  count_n[1] <- if(missing(lon)) -1 else length(lon)
-  count_n[2] <- if(missing(lat)) -1 else length(lat)
-
-  #ensemble is always the 2nd to last dimension. Take either the variable
-  #max or the last value indicated by the parameter ens
-  count_n[ndims-1] <- min(varsize[ndims-1], length(ens_idx))
-
-  #time is always the last dimension
-  #take the minimum of the variable max or the value indicated by the parameter time
-  count_n[ndims] <- min(varsize[ndims], length(time_idx))
-
-  # actual data
-  # Do not modify the data, so don't convert (- 273.15) * 1.8 + 32.
-  #d <- ncvar_get(con, v, start = start, count = count_n, ...)
+  #start indices of dimensions to read from data
+  start <- sapply(dim_idxs, function(d) { min(d) })
+  count_n <- sapply(dim_idxs, function(d) { length(d) })
 
   ##ncdf4 version
-  d <- ncdf4::ncvar_get(con, v, start = start, count = count_n, ...)
+  d_raw <- ncdf4::ncvar_get(con, v, start = start, count = count_n, ...)
 
   #create the data frame
   #For now, if lat/lon are not specified, just return a matrix.
-  if (raw==FALSE) {
-    d = as.data.frame(as.vector(d))
-
-    #get the dimension values for all but the time variable
-    for (i in 1:(length(count_n)-1)) {
-      dim_vals <- v$dim[[i]]$vals
-      if(count_n[i]==1) {
-        d[dims[i]] <- dim_vals[start[i]]
-      }
-      else {
-        d[dims[i]] <- dim_vals[0:(count_n[i]-1) + start[i]]
-      }
-    }
-    #get the dimension values for the time variable
-    time_vals <- v$dim[[ndims]]$vals[0:(count_n[ndims] - 1) + start[ndims]]
-    d[dims[ndims]] <- as.vector(sapply(time_vals, function(t) { rep(t, count_n[ndims-1])}))
-
-    names(d) <- c(var, dims)
+  if (!raw) {
+    dim_vals <- lapply(1:length(dim_idxs), function(i) { v$dim[[i]]$vals[dim_idxs[[i]]] })
+    names(dim_vals) <- names(dim_idxs)
+    d = cbind(as.data.frame(as.vector(d_raw)), expand.grid(dim_vals))
+    names(d)[[1]] <- var
+  } else {
+    d <- d_raw
   }
 
   fname <- strsplit(con$filename, "_")[[1]]

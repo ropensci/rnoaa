@@ -41,3 +41,11 @@ doc:
 eg:
 	${RSCRIPT} -e "devtools::run_examples()"
 
+check:
+	${RSCRIPT} -e "devtools::check(document = FALSE, cran = TRUE)"
+
+test:
+	${RSCRIPT} -e "devtools::test()"
+
+pkgdocs:
+	${RSCRIPT} -e "pkgdown::build_site()"

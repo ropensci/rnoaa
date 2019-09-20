@@ -31,9 +31,9 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
-#> 1      12.2 1899-02-01 2018-11-25  28.8029 INVERNESS 3 SE, FL US
+#> 1      17.7 1899-02-01 2019-09-09 28.80286 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
-#> 1            1 GHCND:USC00084289        METERS  -82.3126
+#> 1            1 GHCND:USC00084289        METERS -82.31266
 #> 
 #> attr(,"class")
 #> [1] "ncdc_stations"
@@ -61,6 +61,37 @@ out$data
 #> # … with 15 more rows
 ```
 
+Note that the `value` column has strangely large numbers for temperature measurements.
+By convention, `rnoaa` doesn't do any conversion of values from the APIs and some APIs use seemingly odd units.
+
+You have two options here:
+
+1. Use the `add_units` parameter on `ncdc()` to have `rnoaa` attempt to look up the units. This is a good idea to try first.
+
+2. Consult the documentation for whiechever dataset you're accessing. In this case, `GHCND` has a [README](https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) which indicates `TMAX` is measured in tenths of degrees Celcius.
+
+### See a `data.frame` with units
+
+As mentioned above, you can use the `add_units` parameter with `ncdc()` to ask `rnoaa` to attempt to look up units for whatever data you ask it to return.
+Let's ask `rnoaa` to add units to some precipitation (PRCP) data:
+
+
+```r
+with_units <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500, add_units = TRUE)
+head( with_units$data )
+#> # A tibble: 6 x 9
+#>   date          datatype station      value fl_m  fl_q  fl_so fl_t  units  
+#>   <chr>         <chr>    <chr>        <int> <chr> <chr> <chr> <chr> <chr>  
+#> 1 2010-05-01T0… PRCP     GHCND:USW00…     0 T     ""    0     2400  mm_ten…
+#> 2 2010-05-02T0… PRCP     GHCND:USW00…    30 ""    ""    0     2400  mm_ten…
+#> 3 2010-05-03T0… PRCP     GHCND:USW00…    51 ""    ""    0     2400  mm_ten…
+#> 4 2010-05-04T0… PRCP     GHCND:USW00…     0 T     ""    0     2400  mm_ten…
+#> 5 2010-05-05T0… PRCP     GHCND:USW00…    18 ""    ""    0     2400  mm_ten…
+#> 6 2010-05-06T0… PRCP     GHCND:USW00…    30 ""    ""    0     2400  mm_ten…
+```
+From the above output, we can see that the units for `PRCP` values are "mm_tenths" which means tenths of a millimeter.
+You won't always be so lucky and sometimes you will have to look up the documentation on your own.
+
 ## Plot data, super simple, but it's a start
 
 
@@ -70,6 +101,8 @@ ncdc_plot(out)
 ```
 
 ![plot of chunk six](figure/six-1.png)
+
+Note that `PRCP` values are in units of tenths of a millimeter, as we found out above.
 
 ## More on plotting
 

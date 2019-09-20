@@ -77,7 +77,11 @@
 #'
 #' @return An S3 list of length two, a slot of metadata (meta), and a slot
 #' for data (data). The meta slot is a list of metadata elements, and the
-#' data slot is a data.frame, possibly of length zero if no data is found.
+#' data slot is a data.frame, possibly of length zero if no data is found. Note
+#' that values in the data slot don't indicate their units by default, so you
+#' will want to either use the `add_units` parameter (experimental, see Adding
+#' units) or consult the documentation for each dataset to ensure you're using
+#' the correct units.
 #'
 #' @family ncdc
 #'
