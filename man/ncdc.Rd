@@ -25,13 +25,13 @@ ids}
 \item{locationid}{Accepts a valid location id or a vector or list of
 location ids (optional)}
 
-\item{startdate}{(required) Accepts valid ISO formated date (yyyy-mm-dd)
+\item{startdate}{(character/date) Accepts valid ISO formated date (yyyy-mm-dd)
 or date time (YYYY-MM-DDThh:mm:ss). Data returned will have data after the
-specified date. The date range must be less than 1 year.}
+specified date. The date range must be less than 1 year. required.}
 
-\item{enddate}{(required) Accepts valid ISO formated date (yyyy-mm-dd) or
+\item{enddate}{(character/date) Accepts valid ISO formated date (yyyy-mm-dd) or
 date time (YYYY-MM-DDThh:mm:ss). Data returned will have data before the
-specified date. The date range must be less than 1 year.}
+specified date. The date range must be less than 1 year. required.}
 
 \item{sortfield}{The field to sort results by. Supports id, name, mindate,
 maxdate, and datacoverage fields (optional)}
@@ -90,7 +90,11 @@ for more}
 \value{
 An S3 list of length two, a slot of metadata (meta), and a slot
 for data (data). The meta slot is a list of metadata elements, and the
-data slot is a data.frame, possibly of length zero if no data is found.
+data slot is a data.frame, possibly of length zero if no data is found. Note
+that values in the data slot don't indicate their units by default, so you
+will want to either use the \code{add_units} parameter (experimental, see Adding
+units) or consult the documentation for each dataset to ensure you're using
+the correct units.
 }
 \description{
 Search for and get NOAA NCDC data
@@ -181,6 +185,9 @@ if you are able to help correct information.
 # GHCN-Daily (or GHCND) data, for a specific station
 ncdc(datasetid='GHCND', stationid='GHCND:USW00014895',
    startdate = '2013-10-01', enddate = '2013-12-01')
+### also accepts dates as class Date
+ncdc(datasetid='GHCND', stationid='GHCND:USW00014895',
+   startdate = as.Date('2013-10-01'), enddate = as.Date('2013-12-01'))
 
 # GHCND data, for a location by FIPS code
 ncdc(datasetid='GHCND', locationid = 'FIPS:02', startdate = '2010-05-01',

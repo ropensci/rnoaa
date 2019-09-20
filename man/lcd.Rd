@@ -12,13 +12,13 @@ lcd_cleanup(x)
 \arguments{
 \item{station}{(character) station code, e.g., "02413099999". we will
 allow integer/numeric passed here, but station ids can have leading
-zeros, so it's a good idea to keep stations as character class}
+zeros, so it's a good idea to keep stations as character class. required}
 
-\item{year}{(integer) year, e.g., 2017}
+\item{year}{(integer) year, e.g., 2017. required}
 
 \item{...}{curl options passed on to \link[crul:verb-GET]{crul::verb-GET}}
 
-\item{x}{result of a call to \code{lcd()}}
+\item{x}{result of a call to \code{lcd()}. required}
 }
 \value{
 a data.frame, with many columns, and variable rows
@@ -40,6 +40,8 @@ a data.frame with many columns. the first 10 are metadata:
 
 And the rest should be all data columns. See Note about data joined
 together.
+
+Other groups of fields under the following:
 \itemize{
 \item wnd: wind
 \item tmp: air temperature
@@ -63,6 +65,11 @@ together.
 }
 \description{
 Local Climitalogical Data from NOAA
+}
+\details{
+\code{lcd_cleanup()} takes the output of \code{lcd()} and parses additional
+columns that have comma separated strings into separate columns with
+headings; so \code{lcd_cleanup()} adds many additional columns
 }
 \note{
 Beware that there are multiple columns with comma-delimited data

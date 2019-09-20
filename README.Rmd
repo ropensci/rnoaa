@@ -203,12 +203,35 @@ out <- ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='d
 head( out$data )
 ```
 
+Note that the `value` column has strangely large numbers for temperature measurements.
+By convention, `rnoaa` doesn't do any conversion of values from the APIs and some APIs use seemingly odd units.
+
+You have two options here:
+
+1. Use the `add_units` parameter on `ncdc` to have `rnoaa` attempt to look up the units. This is a good idea to try first.
+
+2. Consult the documentation for whiechever dataset you're accessing. In this case, `GHCND` has a [README](https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) which indicates `TMAX` is measured in tenths of degrees Celcius.
+
+### See a `data.frame` with units
+
+As mentioned above, you can use the `add_units` parameter with `ncdc()` to ask `rnoaa` to attempt to look up units for whatever data you ask it to return.
+Let's ask `rnoaa` to add units to some precipitation (PRCP) data:
+
+```{r}
+with_units <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500, add_units = TRUE)
+head( with_units$data )
+```
+From the above output, we can see that the units for `PRCP` values are "mm_tenths" which means tenths of a millimeter.
+You won't always be so lucky and sometimes you will have to look up the documentation on your own.
+
 ### Plot data, super simple, but it's a start
 
 ```{r}
 out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
+
+Note that `PRCP` values are in units of tenths of a millimeter, as we found out above.
 
 ### More plotting
 
@@ -246,7 +269,7 @@ plot(shp)
 
 In this example, search for metadata for a single station ID
 
-```{r output.lines=1:20}
+```{r output.lines=1:20, eval=FALSE}
 homr(qid = 'COOP:046742')
 ```
 
@@ -254,7 +277,7 @@ homr(qid = 'COOP:046742')
 
 Get storm data for the year 2010
 
-```{r output.lines=1:20}
+```{r output.lines=1:20, eval=FALSE}
 storm_data(year = 2010)
 ```
 

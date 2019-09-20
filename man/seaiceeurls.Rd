@@ -4,7 +4,7 @@
 \alias{seaiceeurls}
 \title{Make all urls for sea ice data}
 \usage{
-seaiceeurls(yr = NULL, mo = NULL, pole = NULL)
+seaiceeurls(yr = NULL, mo = NULL, pole = NULL, format = "shp")
 }
 \arguments{
 \item{yr}{(numeric) a year}
@@ -24,6 +24,11 @@ Make all urls for sea ice data
 # Get all urls
 seaiceeurls()
 
+# for some range of years
+seaiceeurls(yr = 1980:1983)
+seaiceeurls(yr = 1980, mo = c("Jan", "Feb", "Mar"))
+seaiceeurls(yr = 1980:1983, mo = c("Jan", "Apr", "Oct"))
+
 # Get urls for Feb of all years, both S and N poles
 seaiceeurls(mo='Feb')
 
@@ -32,6 +37,9 @@ seaiceeurls(mo='Feb', pole='S')
 
 # Get urls for Feb of 1980, just S pole
 seaiceeurls(yr=1980, mo='Feb', pole='S')
+
+# GeoTIFF
+seaiceeurls(yr=1980, mo='Feb', pole='S', format = "geotiff")
 }
 }
 \keyword{internal}

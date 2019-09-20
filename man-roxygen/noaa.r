@@ -1,11 +1,11 @@
 #' @param datasetid (required) Accepts a single valid dataset id. Data
 #' returned will be from the dataset specified, see \code{\link{ncdc_datasets}}
-#' @param startdate (required) Accepts valid ISO formated date (yyyy-mm-dd)
+#' @param startdate (character/date) Accepts valid ISO formated date (yyyy-mm-dd)
 #' or date time (YYYY-MM-DDThh:mm:ss). Data returned will have data after the
-#' specified date. The date range must be less than 1 year.
-#' @param enddate (required) Accepts valid ISO formated date (yyyy-mm-dd) or
+#' specified date. The date range must be less than 1 year. required.
+#' @param enddate (character/date) Accepts valid ISO formated date (yyyy-mm-dd) or
 #' date time (YYYY-MM-DDThh:mm:ss). Data returned will have data before the
-#' specified date. The date range must be less than 1 year.
+#' specified date. The date range must be less than 1 year. required.
 #' @param dataset THIS IS A DEPRECATED ARGUMENT. See datasetid.
 #' @param datatype THIS IS A DEPRECATED ARGUMENT. See datatypeid.
 #' @param station THIS IS A DEPRECATED ARGUMENT. See stationid.
