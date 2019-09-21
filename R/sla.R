@@ -1,0 +1,187 @@
+# https://coastwatch.noaa.gov/cw/satellite-data-products/sea-surface-height/sea-level-anomaly-and-geostrophic-currents-multi-mission-global-optimal-interpolation-gridded.html
+
+# cite "NOAA CoastWatch/OceanWatch" and 
+# cite "Altimetry data are provided by the NOAA Laboratory for Satellite Altimetry."
+
+# near real-time
+#   ftp://ftpcoastwatch.noaa.gov/pub/socd/lsa/rads/sla/daily/nrt/2017/rads_global_nrt_sla_20170213_20170310_000.nc
+# delayed-time
+# ftp://ftp.star.nesdis.noaa.gov/pub/sod/lsa/rads/sla/daily/dt/2017/rads_global_dt_sla_20170101_001.nc
+
+#' Sea level anomaly (SLA)
+#' 
+#' Sea level Anomaly and Geostrophic Currents, multi-mission, global,
+#' optimal interpolation, gridded
+#'
+#' @export
+#' @param date (date/character) date, in the form YYYY-MM-DD if resolution 
+#' is 6hrly or daily, or in the form YYYY-MM if resolution is monthly. 
+#' For resolution=clm can be left NULL. If given, must be in the 
+#' range 1987-07-09 to today-1 (yesterday)
+#' @param type (character) one of uv or stresss, not sure what these
+#' mean exactly yet. Default: uv
+#' @param resolution (character) temporal resolution. one of 6hrly, 
+#' clm, daily, or monthly. See Details.
+#' @param ... curl options passed on to [crul::verb-GET]
+#' @return an object of class `ncdf4`
+#' 
+#' @details 
+#' Products are available from July 9th, 1987 - present.
+#' 
+#' Uses `ncdf4` under the hood to read NetCDF files
+#' 
+#' Use `sla_cache` object to manage cached files.
+#' 
+#' @section Citing NOAA and BSW data:
+#' Message from NOAA: "We also ask you to acknowledge us in your use of the 
+#' data to help us justify continued service. This may be done by  including 
+#' text such as: The wind data are acquired from NOAA's National Climatic 
+#' Data Center, via their website 
+#' http://www.ncdc.noaa.gov/oa/rsad/blendedseawinds.html. We would also 
+#' appreciate receiving a copy of the relevant publication."
+#' 
+#' @section Types:
+#'
+#' - nrt: near real time
+#' - dt: delayed-time
+#' 
+#' @note We only handle the netcdf files for now, we're avoiding the ieee 
+#' files, see http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
+#' 
+#' @references 
+#' <https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds>
+#' ftp://eclipse.ncdc.noaa.gov/pub/seawinds/
+#' ieee files: http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
+#'
+#' @examples \dontrun{
+#' # near real-time data
+#' x <- sla(date = "2017-10-01")
+#' 
+#' # delayed-time data
+#' x <- sla(date = "2017-10-01")
+#' }
+
+
+# sla <- function(date = NULL, type = "nrt", ...) {
+#   assert(uv_stress, 'character')
+#   assert(resolution, 'character')
+#   if (!is.null(date)) {
+#     if (resolution == "monthly") date <- paste0(date, "-01")
+#     assert(date, c("character", "Date"))
+#     dates <- str_extract_all_(date, "[0-9]+")[[1]]
+#     assert_range(dates[1], 1987:format(Sys.Date(), "%Y"))
+#     assert_range(as.numeric(dates[2]), 1:12)
+#     assert_range(as.numeric(dates[3]), 1:31)
+#     # monthly resolution specific date range check
+#     if (resolution == "monthly") {
+#       assert_range(dates[1], 1987:2011)
+#       if (dates[1] == 1987) assert_range(as.numeric(dates[2]), 7:12)
+#       if (dates[1] == 2011) assert_range(as.numeric(dates[2]), 1:9)
+#     }
+#     # stress specific date range check
+#     if (uv_stress == "stress") {
+#       if (resolution %in% c("6hrly", "daily"))
+#       assert_range(dates[1], 1987:2011)
+#       if (dates[1] == 1987) assert_range(as.numeric(dates[2]), 7:12)
+#       if (dates[1] == 2011) assert_range(as.numeric(dates[2]), 1:9)
+#     }
+#     stopifnot(as.Date(date) < Sys.Date())
+#   } else {
+#     dates <- rep(NA, 3)
+#   }
+
+#   path <- bsw_get(year = dates[1], month = dates[2], day = dates[3],
+#                   uv_stress = uv_stress, resolution = resolution, ...)
+#   bsw_read(path)
+# }
+
+# bsw_get <- function(year, month, day, uv_stress, resolution,
+#   cache = TRUE, overwrite = FALSE, ...) {
+
+#   # create main dir
+#   sla_cache$mkdir()
+#   # create sub dirs
+#   invisible(lapply(c("uv", "stress"), function(z) {
+#     dir.create(file.path(sla_cache$cache_path_get(), z), 
+#       recursive = TRUE, showWarnings = FALSE)
+#   }))
+#   invisible(lapply(c("6hrly", "daily", "monthly", "clm"), function(z) {
+#     dir.create(file.path(sla_cache$cache_path_get(), "uv", z), 
+#       recursive = TRUE, showWarnings = FALSE)
+#   }))
+#   invisible(lapply(c("6hrly", "daily", "monthly", "clm"), function(z) {
+#     dir.create(file.path(sla_cache$cache_path_get(), "stress", z), 
+#       recursive = TRUE, showWarnings = FALSE)
+#   }))
+
+#   # create key (aka: url)
+#   if (resolution == "clm") {
+#     key <- "ftp://eclipse.ncdc.noaa.gov/pub/seawinds/SI/uv/clm/uvclm95to05.nc"
+#   } else {
+#     key <- bsw_key(year, month, day, uv_stress, resolution)  
+#   }
+  
+#   file <- file.path(
+#     sla_cache$cache_path_get(), 
+#     uv_stress,
+#     resolution, 
+#     basename(key)
+#   )
+#   if (!file.exists(file)) {
+#     suppressMessages(bsw_GET_write(key, file, overwrite, ...))
+#   }
+#   return(file)
+# }
+
+# bsw_GET_write <- function(url, path, overwrite = TRUE, ...) {
+#   cli <- crul::HttpClient$new(url = url, opts = list(...))
+#   if (!overwrite) {
+#     if (file.exists(path)) {
+#       stop("file exists and ovewrite != TRUE", call. = FALSE)
+#     }
+#   }
+#   res <- tryCatch(cli$get(disk = path, ...), error = function(e) e)
+#   if (inherits(res, "error")) {
+#     unlink(path)
+#     stop(res$message, call. = FALSE)
+#   }
+#   return(res)
+# }
+
+# bsw_base_ftp <- function(x) {
+#   base <- "ftp://eclipse.ncdc.noaa.gov/pub/seawinds/SI"
+#   if (x == "uv") file.path(base, "uv") else file.path(base, "stress")
+# }
+
+# bsw_key <- function(year, month, day, uv_stress, resolution) {
+#   sprintf("%s/%s/netcdf/%s%s%s%s.nc",
+#     bsw_base_ftp(uv_stress),
+#     resolution,
+#     if (resolution %in% c('6hrly', 'daily')) {
+#       if (1980 < year && year < 1990) {
+#         '1980s/' 
+#       } else if (1990 < year && year < 2000) {
+#         '1990s/' 
+#       } else {
+#         '2000s/'
+#       }
+#     } else {
+#       ""
+#     },
+#     switch(uv_stress, uv = "uv", stress = "tauxy"),
+#     if (resolution == "monthly") paste0(year, month) else paste0(year, month, day),
+#     if (
+#       as.Date(sprintf("%s-%s-%s", year, month, day)) >= as.Date("2011-10-01") &&
+#       resolution %in% c('6hrly', 'daily')
+#     ) {
+#       "rt"
+#     } else {
+#       ""
+#     }
+#   )
+# }
+
+# bsw_read <- function(x) {
+#   check4pkg("ncdf4")
+#   ncdf4::nc_open(x)
+# }
