@@ -1,7 +1,3 @@
----
-output: github_document
----
-
 rnoaa
 =====
 
@@ -74,11 +70,11 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 |Dataset    |Description                 |Start Date |End Date   | Data Coverage|
 |:----------|:---------------------------|:----------|:----------|-------------:|
-|GHCND      |Daily Summaries             |1763-01-01 |2019-09-09 |          1.00|
-|GSOM       |Global Summary of the Month |1763-01-01 |2019-07-01 |          1.00|
+|GHCND      |Daily Summaries             |1763-01-01 |2019-09-18 |          1.00|
+|GSOM       |Global Summary of the Month |1763-01-01 |2019-08-01 |          1.00|
 |GSOY       |Global Summary of the Year  |1763-01-01 |2019-01-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2019-09-09 |          0.95|
-|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2019-09-05 |          0.95|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2019-09-19 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2019-09-18 |          0.95|
 |NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
 |NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
 |NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
@@ -174,30 +170,30 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> $data
 #>       mindate    maxdate                  name datacoverage            id
 #> 1  1892-08-01 2019-07-31            Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2019-09-07            Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2019-09-07         Zonguldak, TU       1.0000 CITY:TU000057
-#> 4  1906-01-01 2019-09-07            Zinder, NG       0.9025 CITY:NG000004
-#> 5  1973-01-01 2019-09-07        Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2019-09-07         Zhytomyra, UP       0.9723 CITY:UP000025
-#> 7  1948-03-01 2019-09-07        Zhezkazgan, KZ       0.9302 CITY:KZ000017
-#> 8  1951-01-01 2019-09-07         Zhengzhou, CH       1.0000 CITY:CH000045
+#> 2  1901-01-01 2019-09-16            Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2019-09-16         Zonguldak, TU       1.0000 CITY:TU000057
+#> 4  1906-01-01 2019-09-16            Zinder, NG       0.9025 CITY:NG000004
+#> 5  1973-01-01 2019-09-16        Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2019-09-16         Zhytomyra, UP       0.9723 CITY:UP000025
+#> 7  1948-03-01 2019-09-16        Zhezkazgan, KZ       0.9302 CITY:KZ000017
+#> 8  1951-01-01 2019-09-16         Zhengzhou, CH       1.0000 CITY:CH000045
 #> 9  1941-01-01 2019-06-30          Zaragoza, SP       1.0000 CITY:SP000021
 #> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       1.0000 CITY:UP000024
-#> 11 1957-01-01 2019-09-07          Zanzibar, TZ       0.8016 CITY:TZ000019
-#> 12 1973-01-01 2019-09-07            Zanjan, IR       0.9105 CITY:IR000020
-#> 13 1893-01-01 2019-09-09     Zanesville, OH US       1.0000 CITY:US390029
-#> 14 1912-01-01 2019-09-07             Zahle, LE       0.9819 CITY:LE000004
-#> 15 1951-01-01 2019-09-07           Zahedan, IR       0.9975 CITY:IR000019
-#> 16 1860-12-01 2019-09-07            Zagreb, HR       1.0000 CITY:HR000002
-#> 17 1929-07-01 2019-09-07         Zacatecas, MX       1.0000 CITY:MX000036
-#> 18 1947-01-01 2019-09-07 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
-#> 19 1893-01-01 2019-09-09           Yuma, AZ US       1.0000 CITY:US040015
-#> 20 1942-02-01 2019-09-09   Yucca Valley, CA US       1.0000 CITY:US060048
-#> 21 1885-01-01 2019-09-09      Yuba City, CA US       1.0000 CITY:US060047
-#> 22 1998-02-01 2019-09-07            Yozgat, TU       0.9993 CITY:TU000056
-#> 23 1893-01-01 2019-09-09     Youngstown, OH US       1.0000 CITY:US390028
-#> 24 1894-01-01 2019-09-09           York, PA US       1.0000 CITY:US420024
-#> 25 1869-01-01 2019-09-09        Yonkers, NY US       1.0000 CITY:US360031
+#> 11 1957-01-01 2019-09-16          Zanzibar, TZ       0.8016 CITY:TZ000019
+#> 12 1973-01-01 2019-09-16            Zanjan, IR       0.9105 CITY:IR000020
+#> 13 1893-01-01 2019-09-19     Zanesville, OH US       1.0000 CITY:US390029
+#> 14 1912-01-01 2019-09-16             Zahle, LE       0.9819 CITY:LE000004
+#> 15 1951-01-01 2019-09-16           Zahedan, IR       0.9975 CITY:IR000019
+#> 16 1860-12-01 2019-09-16            Zagreb, HR       1.0000 CITY:HR000002
+#> 17 1929-07-01 2019-09-15         Zacatecas, MX       1.0000 CITY:MX000036
+#> 18 1947-01-01 2019-09-16 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
+#> 19 1893-01-01 2019-09-19           Yuma, AZ US       1.0000 CITY:US040015
+#> 20 1942-02-01 2019-09-19   Yucca Valley, CA US       1.0000 CITY:US060048
+#> 21 1885-01-01 2019-09-19      Yuba City, CA US       1.0000 CITY:US060047
+#> 22 1998-02-01 2019-09-16            Yozgat, TU       0.9993 CITY:TU000056
+#> 23 1893-01-01 2019-09-19     Youngstown, OH US       1.0000 CITY:US390028
+#> 24 1894-01-01 2019-09-19           York, PA US       1.0000 CITY:US420024
+#> 25 1869-01-01 2019-09-19        Yonkers, NY US       1.0000 CITY:US360031
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -213,7 +209,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
-#> 1      17.7 1899-02-01 2019-09-09 28.80286 INVERNESS 3 SE, FL US
+#> 1      17.7 1899-02-01 2019-09-17 28.80286 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS -82.31266
 #> 
@@ -319,11 +315,11 @@ ncdc_datasets()
 #> 
 #> $data
 #>                     uid    mindate    maxdate                        name
-#> 1  gov.noaa.ncdc:C00861 1763-01-01 2019-09-09             Daily Summaries
-#> 2  gov.noaa.ncdc:C00946 1763-01-01 2019-07-01 Global Summary of the Month
+#> 1  gov.noaa.ncdc:C00861 1763-01-01 2019-09-18             Daily Summaries
+#> 2  gov.noaa.ncdc:C00946 1763-01-01 2019-08-01 Global Summary of the Month
 #> 3  gov.noaa.ncdc:C00947 1763-01-01 2019-01-01  Global Summary of the Year
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2019-09-09    Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2019-09-05   Weather Radar (Level III)
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2019-09-19    Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2019-09-18   Weather Radar (Level III)
 #> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01     Normals Annual/Seasonal
 #> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31               Normals Daily
 #> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31              Normals Hourly
@@ -511,6 +507,8 @@ coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
 * Please [report any issues or bugs](https://github.com/ropensci/rnoaa/issues).
 * License: MIT
 * Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
-* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this project is released with a [Contributor Code of Conduct][coc]. By participating in this project you agree to abide by its terms.
 
 [![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+
+[coc]: https://github.com/ropensci/rnoaa/blob/master/CODE_OF_CONDUCT.md
