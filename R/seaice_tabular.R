@@ -24,10 +24,10 @@ si_tab_pat <- "ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/%s/monthly/data/"
 #' @details a value in any cell of -9999 indicates missing data
 #' @seealso [sea_ice()]
 #' @examples \dontrun{
-#' df <- seaice_tabular()
+#' df <- sea_ice_tabular()
 #' df
 #' }
-seaice_tabular <- function(...) {
+sea_ice_tabular <- function(...) {
   si_tab_n <- sprintf(si_tab_pat, "north")
   si_tab_s <- sprintf(si_tab_pat, "south")
   urls <- c(
