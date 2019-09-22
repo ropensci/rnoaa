@@ -20,16 +20,13 @@
 #'   weather_df <- meteo_pull_monitors(monitors)
 #'   vis_miss(weather_df)
 #' }
-vis_miss <- function(x,
-                     cluster = FALSE,
-                     sort_miss = FALSE){
+vis_miss <- function(x, cluster = FALSE, sort_miss = FALSE) {
   # make a TRUE/FALSE matrix of the data.
   # This tells us whether it is missing (true) or not (false)
   x.na <- is.na(x)
 
   # switch for creating the missing clustering
-  if (cluster == TRUE){
-
+  if (cluster) {
     # this retrieves a row order of the clustered missingness
     row_order_index <-
       stats::dist(x.na*1) %>%
@@ -38,10 +35,9 @@ vis_miss <- function(x,
       stats::order.dendrogram
   } else {
     row_order_index <- 1:nrow(x)
-  } # end else
+  }
 
-  if (sort_miss == TRUE) {
-
+  if (sort_miss) {
     # arrange by the columns with the highest missingness
     # code inspired from https://r-forge.r-project.org/scm/viewvc.php/pkg/R/missing.pattern.plot.R?view=markup&root=mi-dev
     # get the order of columns with highest missingness
@@ -49,26 +45,14 @@ vis_miss <- function(x,
 
     # get the names of those columns
     col_order_index <- names(x)[na_sort]
-
-    # original code was a bit slower:
-    #
-    # col_order_index <-
-    #   x.na %>%
-    #   as.data.frame %>%
-    #   dplyr::summarise_each(funs(mean)) %>%
-    #   names
-
   } else {
-
     col_order_index <- names(x)
-
   }
 
   # Arranged data by dendrogram order index
-
   d <- x.na[row_order_index , ] %>%
     as.data.frame %>%
-    dplyr::mutate_(rows = ~ dplyr::row_number()) %>%
+    dplyr::mutate(rows = dplyr::row_number()) %>%
     # gather the variables together for plotting
     # here we now have a column of the row number (row),
     # then the variable(variables),
@@ -79,8 +63,6 @@ vis_miss <- function(x,
 
   d$value <- suppressWarnings(tidyr::gather_(x, "variables", "value",
                                              names(x))$value)
-
-  # then we plot it
   ggplot(data = d,
          ggplot2::aes_string(x = "variables",
                              y = "rows",
@@ -96,6 +78,4 @@ vis_miss <- function(x,
     ggplot2::labs(x = "Variables in Data",
                   y = "Observations") +
     ggplot2::scale_x_discrete(limits = col_order_index)
-  # Thanks to http://www.markhneedham.com/blog/2015/02/27/rggplot-controlling-x-axis-order/
-  # For the tip on using scale_x_discrete
 }
