@@ -153,7 +153,7 @@ cpc_read <- function(x, us, drop_undefined) {
   tmp <- tmp[seq_len(bites/2)] * 0.1
 
   # make data.frame
-  df <- tibble::as_data_frame(
+  df <- tibble::as_tibble(
     stats::setNames(
       cbind(expand.grid(longs, lats), tmp),
       c('lon', 'lat', 'precip')

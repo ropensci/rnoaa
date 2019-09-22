@@ -224,7 +224,7 @@ ghcnd <- function(stationid, refresh = FALSE, ...) {
   }
   fi <- file.info(csvpath)
   res <- remove_na_row(res) # remove trailing row of NA's
-  res <- tibble::as_data_frame(res)
+  res <- tibble::as_tibble(res)
   attr(res, 'source') <- csvpath
   attr(res, 'file_modified') <- fi[['mtime']]
   message("file path:          ", csvpath)
@@ -246,7 +246,7 @@ ghcnd_read <- function(path, ...) {
   }
   res <- read.csv(path, stringsAsFactors = FALSE,
                   colClasses = ghcnd_col_classes, ...)
-  res <- tibble::as_data_frame(res)
+  res <- tibble::as_tibble(res)
   attr(res, 'source') <- path
   return(res)
 }
@@ -327,7 +327,7 @@ ghcnd_stations <- function(...){
   sta <- get_stations(...)
   inv <- get_inventory(...)
   df <- merge(sta, inv[, -c(2, 3)], by = "id")
-  tibble::as_data_frame(df[stats::complete.cases(df), ])
+  tibble::as_tibble(df[stats::complete.cases(df), ])
 }
 
 get_stations <- function(...){

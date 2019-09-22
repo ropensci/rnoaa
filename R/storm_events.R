@@ -65,7 +65,7 @@ se_data <- function(year, type, overwrite = TRUE, ...) {
   tmp <- read.csv(csvpath, header = TRUE, sep = ",", 
     stringsAsFactors = FALSE)
   names(tmp) <- tolower(names(tmp))
-  tibble::as_data_frame(tmp)
+  tibble::as_tibble(tmp)
 }
 
 #' @export
