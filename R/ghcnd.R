@@ -383,12 +383,12 @@ ghcnd_splitvars <- function(x){
         day = strex(var),
         date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
       dplyr::filter(!is.na(date)) %>%
-      dplyr::select_(
-        quote(-element),
-        quote(-var),
-        quote(-year),
-        quote(-month),
-        quote(-day))
+      dplyr::select(
+        -element,
+        -var,
+        -year,
+        -month,
+        -day)
     dd <- stats::setNames(dd, c("id", tolower(y), "date"))
 
     mflag <- ydat %>%
