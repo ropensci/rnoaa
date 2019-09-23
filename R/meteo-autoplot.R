@@ -27,8 +27,7 @@ autoplot.meteo_coverage <- function(object) {
   gg <- gg + ggplot2::theme(plot.title = ggplot2::element_text(margin = ggplot2::margin(b = 12)))
   ggtime <- gg
 
-  df_reduced <- dplyr::select(object, .dots = c('-start_date', '-end_date',
-                                             '-total_obs'))
+  df_reduced <- dplyr::select(object, -start_date, -end_date, -total_obs)
   df_long <- tidyr::gather_(df_reduced,
                             key_col = "observation", value_col = "value",
                             gather_cols = colnames(df_reduced[-1]))

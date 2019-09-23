@@ -156,7 +156,7 @@ ggplot(res_all, aes(date_time, temperature)) +
 (res <- isd(usaf="011690", wban="99999", year=1993, progress=TRUE))
 
 # parallelize processing
-(res <- isd(usaf="172007", wban="99999", year=2015, parallel=TRUE))
+(res <- isd(usaf="172007", wban="99999", year=2016, parallel=TRUE))
 }
 }
 \references{
