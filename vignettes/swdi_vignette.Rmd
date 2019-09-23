@@ -1,13 +1,13 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{SWDI vignette}
-%\VignetteEncoding{UTF-8}
--->
-
-
-
-SWDI vignette
-======
+---
+title: "SWDI vignette"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{SWDI vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
 `SWDI` is the Severe Weather Data Inventory. SWDI is an (quoting)
 

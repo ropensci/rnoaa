@@ -1,14 +1,13 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{HOMR metadata}
-%\VignetteEncoding{UTF-8}
--->
-
-
-
-
-HOMR metadata
-======
+---
+title: "HOMR metadata"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{HOMR metadata}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
 `HOMR` (Historical Observing Metadata Repository) provides climate station metadata. It's a NOAA service.
 

@@ -1,13 +1,13 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Sea ice vignette}
-%\VignetteEncoding{UTF-8}
--->
-
-
-
-Sea ice vignette
-======
+---
+title: "Sea ice vignette"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Sea ice vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
 Get sea ice data at <ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles>
 

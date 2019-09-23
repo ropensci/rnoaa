@@ -1,15 +1,13 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{ncdc vignette}
-%\VignetteEncoding{UTF-8}
--->
-
-
-
-NCDC vignette
-======
-
-## About the package
+---
+title: "NCDC introduction"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{NCDC introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
 `rnoaa` is an R wrapper for many NOAA data types, including National Climatic Data Center (NCDC).
 

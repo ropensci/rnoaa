@@ -1,14 +1,14 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{air_quality_and_weather_data}
-%\VignetteEncoding{UTF-8}
--->
-
-
-
-# Complementing air quality data with weather data using rnoaa
-
-__Author__ Maëlle Salmon
+---
+title: "ropenaq and rnoaa"
+subtitle: "Complementing air quality data with weather data using rnoaa"
+author: "Maëlle Salmon"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ropenaq and rnoaa}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
 # Introduction: getting air quality data
 
