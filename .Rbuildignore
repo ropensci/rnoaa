@@ -9,14 +9,14 @@ inst/img
 inst/ignore
 inst/user_test_cases
 vignettes/margins.sty
+vignettes/figure
+inst/vign/cache
+inst/cache
 CONTRIBUTING.md
 ^appveyor\.yml$
 cran-comments.md
 .Rhistory
-inst/cache
-inst/vign/cache
 README.Rmd
-vignettes/figure
 ^CODE_OF_CONDUCT\.md$
 user_test_cases/
 ^cran-comments\.md$
@@ -25,3 +25,4 @@ user_test_cases/
 .github
 ^codemeta\.json$
 tests/test-all.R
+vignettes/buoy_vignette_cache/

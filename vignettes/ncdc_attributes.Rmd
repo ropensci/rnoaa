@@ -9,6 +9,16 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+```{r, echo  =  FALSE, warning = FALSE, message = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(
+  collapse  =  TRUE,
+  comment  =  "#>",
+  purl  =  NOT_CRAN,
+  eval  =  NOT_CRAN
+)
+```
+
 The attributes, or "flags", for each row of the output for data may have a flag with it.
 Each `datasetid` has it's own set of flags. The following are flag columns, and what they
 stand are. `fl_` is the beginning of each flag column name, then one or more characters

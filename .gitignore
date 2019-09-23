@@ -12,3 +12,4 @@ inst/ignore/storm_events_Storm-Data-Export-Format.pdf
 revdep/checks.noindex
 revdep/data.sqlite
 revdep/library.noindex
+vignettes/buoy_vignette_cache/
