@@ -31,7 +31,10 @@ we determine the directory on your machine to save files to, and run
 \dontrun{
 shp <- tornadoes()
 library('sp')
-plot(shp) # may take 10 sec or so to render
+if (interactive()) {
+  # may take 10 sec or so to render 
+  plot(shp)
+}
 }
 }
 \references{

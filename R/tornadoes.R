@@ -20,7 +20,10 @@
 #' @examples \dontrun{
 #' shp <- tornadoes()
 #' library('sp')
-#' plot(shp) # may take 10 sec or so to render
+#' if (interactive()) {
+#'   # may take 10 sec or so to render 
+#'   plot(shp)
+#' }
 #' }
 tornadoes <- function(overwrite = TRUE, ...) {
   calls <- names(sapply(match.call(), deparse))[-1]
