@@ -85,7 +85,7 @@ storm_data(basin='WP')
 ```
 
 ```
-#> # A tibble: 99,028 x 200
+#> # A tibble: 112,141 x 200
 #>    serial_num season   num basin sub_basin name  iso_time nature latitude
 #>    <chr>       <int> <int> <chr> <chr>     <chr> <chr>    <chr>     <dbl>
 #>  1 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
@@ -98,7 +98,7 @@ storm_data(basin='WP')
 #>  8 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
 #>  9 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
 #> 10 1884177N1…   1884     1 " WP" " MM"     NOT … 1884-06… " NR"      -999
-#> # … with 99,018 more rows, and 191 more variables: longitude <dbl>,
+#> # … with 112,131 more rows, and 191 more variables: longitude <dbl>,
 #> #   wind.wmo. <dbl>, pres.wmo. <dbl>, center <chr>,
 #> #   wind.wmo..percentile <dbl>, pres.wmo..percentile <dbl>,
 #> #   track_type <chr>, latitude_for_mapping <dbl>,
