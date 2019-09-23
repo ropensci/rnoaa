@@ -51,7 +51,7 @@ meteo_coverage <- function(meteo_df,
     meteo_df <- dplyr::filter_(meteo_df, .dots = dots)
   }
 
-  dplyr::group_by_(meteo_df, ~id) %>%
+  dplyr::group_by(meteo_df, id) %>%
     dplyr::do({
       rng <- range(.$date)
       dat <- data.frame(start_date = rng[1],

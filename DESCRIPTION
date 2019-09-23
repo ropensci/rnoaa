@@ -34,6 +34,7 @@ Imports:
     lubridate,
     dplyr,
     tidyr,
+    tidyselect,
     ggplot2,
     scales,
     XML,

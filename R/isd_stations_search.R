@@ -49,8 +49,8 @@
 #'   library("leaflet")
 #'   leaflet() %>%
 #'     addTiles() %>%
-#'     addCircles(lng = x$longitude,
-#'                lat = x$latitude,
+#'     addCircles(lng = x$lon,
+#'                lat = x$lat,
 #'                popup = x$station_name) %>%
 #'     clearBounds()
 #' }
@@ -62,9 +62,9 @@
 isd_stations_search <- function(lat = NULL, lon = NULL, radius = NULL, 
   bbox = NULL) {
 
-  stations <- dplyr::filter_(
+  stations <- dplyr::filter(
     isd_stations(),
-    "!(is.na(lat) | is.na(lon) | (lat == 0 & lon == 0) | abs(lon) > 180 | abs(lat) > 90)"
+    !(is.na(lat) | is.na(lon) | (lat == 0 & lon == 0) | abs(lon) > 180 | abs(lat) > 90)
   )
 
   if (!is.null(bbox)) {

@@ -98,7 +98,7 @@ data at \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}
 # One station in Australia is ASM00094275
 meteo_tidy_ghcnd(stationid = "ASN00003003")
 meteo_tidy_ghcnd(stationid = "ASN00003003", var = "tavg")
-meteo_tidy_ghcnd(stationid = "ASN00003003", date_min = "1950-01-01")
+meteo_tidy_ghcnd(stationid = "ASN00003003", date_min = "1989-01-01")
 }
 
 }

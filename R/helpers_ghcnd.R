@@ -160,7 +160,7 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
 #' # One station in Australia is ASM00094275
 #' meteo_tidy_ghcnd(stationid = "ASN00003003")
 #' meteo_tidy_ghcnd(stationid = "ASN00003003", var = "tavg")
-#' meteo_tidy_ghcnd(stationid = "ASN00003003", date_min = "1950-01-01")
+#' meteo_tidy_ghcnd(stationid = "ASN00003003", date_min = "1989-01-01")
 #' }
 #'
 #' @export
@@ -172,7 +172,7 @@ meteo_tidy_ghcnd <- function(stationid, keep_flags = FALSE, var = "all",
                                        date_max = date_max)) %>%
     lapply(meteo_tidy_ghcnd_element, keep_flags = keep_flags)
   cleaned_df <- do.call(rbind.data.frame, dat) %>%
-    tidyr::spread_("key", "value")
+    tidyr::spread("key", "value")
 
   which_vars_to_clean <-
     which(colnames(cleaned_df) %in%
@@ -209,13 +209,14 @@ meteo_tidy_ghcnd_element <- function(x, keep_flags = FALSE){
   var_name <- colnames(x)[2]
   if (keep_flags) {
     flag_locs <- grep("flag", colnames(x))
-    colnames(x)[flag_locs] <- paste(colnames(x)[flag_locs], var_name, sep = "_")
-    x <- tidyr::gather_(x, "key", "value",
-                        gather_cols =  dplyr::select_vars(names(x), -id, -date))
+    colnames(x)[flag_locs] <-
+      paste(colnames(x)[flag_locs], var_name, sep = "_")
+    x <- tidyr::gather(x, "key", "value", 
+      tidyselect::vars_select(names(x), -id, -date))
   } else {
-    x <- dplyr::select_(x, "-dplyr::ends_with('flag')")
-    x <- tidyr::gather_(x, "key", "value",
-                        gather_cols =  dplyr::select_vars(names(x), -id, -date))
+    x <- dplyr::select(x, -dplyr::ends_with('flag'))
+    x <- tidyr::gather(x, "key", "value",
+      tidyselect::vars_select(names(x), -id, -date))
   }
   return(x)
 }
