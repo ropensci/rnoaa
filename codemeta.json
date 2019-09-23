@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/rnoaa",
   "issueTracker": "https://github.com/ropensci/rnoaa/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.8.9.9110",
+  "version": "0.9.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -311,6 +311,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "tidyselect",
+      "name": "tidyselect",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tidyselect"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
       "provider": {
@@ -447,7 +459,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/rnoaa",
   "releaseNotes": "https://github.com/ropensci/rnoaa/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rnoaa/blob/master/README.md",
-  "fileSize": "1962.875KB",
+  "fileSize": "1962.768KB",
   "applicationCategory": "Climate",
   "isPartOf": "https://ropensci.org",
   "keywords": ["earth", "science", "climate", "precipitation", "temperature", "storm", "buoy", "NCDC", "NOAA", "tornadoe", "seaice", "ISD", "noaa", "rstats", "noaa-data", "r", "r-package"],
