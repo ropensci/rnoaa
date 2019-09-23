@@ -57,7 +57,7 @@ knitr::opts_chunk$set(
 * Severe weather data docs are at http://www.ncdc.noaa.gov/swdiws/
 * [Sea ice data](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
 * [NOAA buoy data](http://www.ndbc.noaa.gov/)
-* [ERDDAP data](http://upwell.pfeg.noaa.gov/erddap/index.html)
+* [ERDDAP data](https://upwell.pfeg.noaa.gov/erddap/index.html)
   * Now in package [rerddap](https://github.com/ropensci/rerddap)
 * Tornadoes! Data from the [NOAA Storm Prediction Center](http://www.spc.noaa.gov/gis/svrgis/)
 * HOMR - Historical Observing Metadata Repository - from [NOAA NCDC](http://www.ncdc.noaa.gov/homr/api)
@@ -143,7 +143,7 @@ __GDAL__
 You'll need [GDAL](http://www.gdal.org/) installed first. You may want to use GDAL >= `0.9-1` since that version or later can read TopoJSON format files as well, which aren't required here, but may be useful. Install GDAL:
 
 * OSX - From http://www.kyngchaos.com/software/frameworks
-* Linux - run `sudo apt-get install gdal-bin` [reference](https://www.mapbox.com/tilemill/docs/guides/gdal/#linux)
+* Linux - run `sudo apt-get install gdal-bin`
 * Windows - From http://trac.osgeo.org/osgeo4w/
 
 Then when you install the R package `rgdal` (`rgeos` also requires GDAL), you'll most likely need to specify where you're `gdal-config` file is on your machine, as well as a few other things. I have an OSX Mavericks machine, and this works for me (there's no binary for Mavericks, so install the source version):

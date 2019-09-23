@@ -22,7 +22,7 @@ rnoaa
 * Severe weather data docs are at http://www.ncdc.noaa.gov/swdiws/
 * [Sea ice data](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
 * [NOAA buoy data](http://www.ndbc.noaa.gov/)
-* [ERDDAP data](http://upwell.pfeg.noaa.gov/erddap/index.html)
+* [ERDDAP data](https://upwell.pfeg.noaa.gov/erddap/index.html)
   * Now in package [rerddap](https://github.com/ropensci/rerddap)
 * Tornadoes! Data from the [NOAA Storm Prediction Center](http://www.spc.noaa.gov/gis/svrgis/)
 * HOMR - Historical Observing Metadata Repository - from [NOAA NCDC](http://www.ncdc.noaa.gov/homr/api)
@@ -70,11 +70,11 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 |Dataset    |Description                 |Start Date |End Date   | Data Coverage|
 |:----------|:---------------------------|:----------|:----------|-------------:|
-|GHCND      |Daily Summaries             |1763-01-01 |2019-09-18 |          1.00|
+|GHCND      |Daily Summaries             |1763-01-01 |2019-09-20 |          1.00|
 |GSOM       |Global Summary of the Month |1763-01-01 |2019-08-01 |          1.00|
 |GSOY       |Global Summary of the Year  |1763-01-01 |2019-01-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2019-09-19 |          0.95|
-|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2019-09-18 |          0.95|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2019-09-21 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2019-09-20 |          0.95|
 |NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
 |NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
 |NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
@@ -116,7 +116,7 @@ __GDAL__
 You'll need [GDAL](http://www.gdal.org/) installed first. You may want to use GDAL >= `0.9-1` since that version or later can read TopoJSON format files as well, which aren't required here, but may be useful. Install GDAL:
 
 * OSX - From http://www.kyngchaos.com/software/frameworks
-* Linux - run `sudo apt-get install gdal-bin` [reference](https://www.mapbox.com/tilemill/docs/guides/gdal/#linux)
+* Linux - run `sudo apt-get install gdal-bin`
 * Windows - From http://trac.osgeo.org/osgeo4w/
 
 Then when you install the R package `rgdal` (`rgeos` also requires GDAL), you'll most likely need to specify where you're `gdal-config` file is on your machine, as well as a few other things. I have an OSX Mavericks machine, and this works for me (there's no binary for Mavericks, so install the source version):
@@ -170,30 +170,30 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> $data
 #>       mindate    maxdate                  name datacoverage            id
 #> 1  1892-08-01 2019-07-31            Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2019-09-16            Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2019-09-16         Zonguldak, TU       1.0000 CITY:TU000057
-#> 4  1906-01-01 2019-09-16            Zinder, NG       0.9025 CITY:NG000004
-#> 5  1973-01-01 2019-09-16        Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2019-09-16         Zhytomyra, UP       0.9723 CITY:UP000025
-#> 7  1948-03-01 2019-09-16        Zhezkazgan, KZ       0.9302 CITY:KZ000017
-#> 8  1951-01-01 2019-09-16         Zhengzhou, CH       1.0000 CITY:CH000045
+#> 2  1901-01-01 2019-09-18            Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2019-09-18         Zonguldak, TU       1.0000 CITY:TU000057
+#> 4  1906-01-01 2019-09-18            Zinder, NG       0.9025 CITY:NG000004
+#> 5  1973-01-01 2019-09-18        Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2019-09-18         Zhytomyra, UP       0.9723 CITY:UP000025
+#> 7  1948-03-01 2019-09-18        Zhezkazgan, KZ       0.9302 CITY:KZ000017
+#> 8  1951-01-01 2019-09-18         Zhengzhou, CH       1.0000 CITY:CH000045
 #> 9  1941-01-01 2019-06-30          Zaragoza, SP       1.0000 CITY:SP000021
 #> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       1.0000 CITY:UP000024
-#> 11 1957-01-01 2019-09-16          Zanzibar, TZ       0.8016 CITY:TZ000019
-#> 12 1973-01-01 2019-09-16            Zanjan, IR       0.9105 CITY:IR000020
-#> 13 1893-01-01 2019-09-19     Zanesville, OH US       1.0000 CITY:US390029
-#> 14 1912-01-01 2019-09-16             Zahle, LE       0.9819 CITY:LE000004
-#> 15 1951-01-01 2019-09-16           Zahedan, IR       0.9975 CITY:IR000019
-#> 16 1860-12-01 2019-09-16            Zagreb, HR       1.0000 CITY:HR000002
-#> 17 1929-07-01 2019-09-15         Zacatecas, MX       1.0000 CITY:MX000036
-#> 18 1947-01-01 2019-09-16 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
-#> 19 1893-01-01 2019-09-19           Yuma, AZ US       1.0000 CITY:US040015
-#> 20 1942-02-01 2019-09-19   Yucca Valley, CA US       1.0000 CITY:US060048
-#> 21 1885-01-01 2019-09-19      Yuba City, CA US       1.0000 CITY:US060047
-#> 22 1998-02-01 2019-09-16            Yozgat, TU       0.9993 CITY:TU000056
-#> 23 1893-01-01 2019-09-19     Youngstown, OH US       1.0000 CITY:US390028
-#> 24 1894-01-01 2019-09-19           York, PA US       1.0000 CITY:US420024
-#> 25 1869-01-01 2019-09-19        Yonkers, NY US       1.0000 CITY:US360031
+#> 11 1957-01-01 2019-09-18          Zanzibar, TZ       0.8016 CITY:TZ000019
+#> 12 1973-01-01 2019-09-18            Zanjan, IR       0.9105 CITY:IR000020
+#> 13 1893-01-01 2019-09-21     Zanesville, OH US       1.0000 CITY:US390029
+#> 14 1912-01-01 2019-09-18             Zahle, LE       0.9819 CITY:LE000004
+#> 15 1951-01-01 2019-09-18           Zahedan, IR       0.9975 CITY:IR000019
+#> 16 1860-12-01 2019-09-18            Zagreb, HR       1.0000 CITY:HR000002
+#> 17 1929-07-01 2019-09-18         Zacatecas, MX       1.0000 CITY:MX000036
+#> 18 1947-01-01 2019-09-18 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
+#> 19 1893-01-01 2019-09-21           Yuma, AZ US       1.0000 CITY:US040015
+#> 20 1942-02-01 2019-09-21   Yucca Valley, CA US       1.0000 CITY:US060048
+#> 21 1885-01-01 2019-09-21      Yuba City, CA US       1.0000 CITY:US060047
+#> 22 1998-02-01 2019-09-18            Yozgat, TU       0.9993 CITY:TU000056
+#> 23 1893-01-01 2019-09-21     Youngstown, OH US       1.0000 CITY:US390028
+#> 24 1894-01-01 2019-09-21           York, PA US       1.0000 CITY:US420024
+#> 25 1869-01-01 2019-09-21        Yonkers, NY US       1.0000 CITY:US360031
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -315,11 +315,11 @@ ncdc_datasets()
 #> 
 #> $data
 #>                     uid    mindate    maxdate                        name
-#> 1  gov.noaa.ncdc:C00861 1763-01-01 2019-09-18             Daily Summaries
+#> 1  gov.noaa.ncdc:C00861 1763-01-01 2019-09-20             Daily Summaries
 #> 2  gov.noaa.ncdc:C00946 1763-01-01 2019-08-01 Global Summary of the Month
 #> 3  gov.noaa.ncdc:C00947 1763-01-01 2019-01-01  Global Summary of the Year
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2019-09-19    Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2019-09-18   Weather Radar (Level III)
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2019-09-21    Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2019-09-20   Weather Radar (Level III)
 #> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01     Normals Annual/Seasonal
 #> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31               Normals Daily
 #> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31              Normals Hourly
