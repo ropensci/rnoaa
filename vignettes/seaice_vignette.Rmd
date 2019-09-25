@@ -10,13 +10,12 @@ vignette: >
 ---
 
 ```{r, echo  =  FALSE, warning = FALSE, message = FALSE}
-NOT_CRAN_OR_TRAVIS <- identical(tolower(Sys.getenv("NOT_CRAN")), "true") ||
-  identical(tolower(Sys.getenv("TRAVIS")), "true")
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 knitr::opts_chunk$set(
   collapse  =  TRUE,
   comment  =  "#>",
-  purl  =  NOT_CRAN_OR_TRAVIS,
-  eval  =  NOT_CRAN_OR_TRAVIS
+  purl  =  NOT_CRAN,
+  eval  =  NOT_CRAN
 )
 ```
 
@@ -33,7 +32,7 @@ library('ggplot2')
 
 ### Look at data for a series of years for Feb, South pole
 
-```{r}
+```{r eval=FALSE}
 res <- sapply(seq(1986, 1990, 1), function(x)
     sea_ice(x, month = 'Feb', pole = 'S'))
 lapply(res, head)
@@ -41,7 +40,7 @@ lapply(res, head)
 
 ### Map a single year/month/pole combo
 
-```{r seaice1}
+```{r seaice1, eval=FALSE}
 ggplot(res[[1]], aes(long, lat, group=group)) +
     geom_polygon(fill="steelblue") +
     theme_ice()
@@ -49,7 +48,7 @@ ggplot(res[[1]], aes(long, lat, group=group)) +
 
 ### Map all years for April only for North pole
 
-```{r seaice2}
+```{r seaice2, eval=FALSE}
 dat <- sea_ice(year = 1985:1990, month = 'Apr', pole = 'N')
 df <- bind_rows(dat, .id = "x")
 ggplot(df, aes(long, lat, group = group)) +
