@@ -38,7 +38,7 @@ save(measurementsIndianapolis, file = "data/measurementsIndianapolis.RData")
 
 We filter negative values.
 
-```{r, message = FALSE, warning = FALSE, eval = TRUE, echo = TRUE}
+```{r, message = FALSE, warning = FALSE, eval = FALSE, echo = TRUE}
 
 load("data/measurementsIndianapolis.RData")
 library("dplyr")
@@ -48,7 +48,7 @@ measurementsIndianapolis <- filter(measurementsIndianapolis, value > 0)
 
 We now transform these data into daily data.
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, eval = FALSE}
 # only keep stations with geographical information
 measurementsIndianapolis <- filter(measurementsIndianapolis, !is.na(latitude))
 # now transform to daily data
@@ -71,7 +71,7 @@ For finding the right station(s) we shall use the `meteo_nearby_stations` functi
 
 Here we query stations with a less than 15km distance from the air quality stations, with precipitation and temperature data, and with data starting from 2016. Note that the query takes a while.
 
-```{r, eval = FALSE, echo = TRUE}
+```{r, eval = FALSE, echo = TRUE, eval = FALSE}
 library("rnoaa")
 station_data <- ghcnd_stations()
 lat_lon_df <- select(measurementsIndianapolis,
@@ -93,7 +93,7 @@ save(stationsIndianapolis, file = "data/stationsIndianapolis.RData")
 
 ```
 
-```{r}
+```{r eval = FALSE}
 load("data/stationsIndianapolis.RData")
 stationsIndianapolis %>% knitr::kable()
 ```
@@ -112,21 +112,18 @@ ggmap(map) +
              data = measurementsIndianapolis, col = "red", size = 4)
 ```
 
-
 # Query weather data for these stations
 
 For pulling weather data from these weather monitors, we shall use the `meteo_pull_monitors` function.
 
-```{r}
+```{r eval = FALSE}
 library("rnoaa")
 monitors <- stationsIndianapolis$id
 all_monitors_clean <- meteo_pull_monitors(monitors,
-                                      date_min = as.character(Sys.Date() - 30),
-                                     date_max = as.character(Sys.Date())) %>%
-  rename(day = date,
-         location = id)
+    date_min = as.character(Sys.Date() - 30),
+    date_max = as.character(Sys.Date())) %>%
+  dplyr::rename(day = date, location = id)
 all_monitors_clean %>% head() %>% knitr::kable()
-
 ```
 
 Here we notice some values are not available. Therefore, we might need to go back to weather stations searching with, for instance, a larger radius. In this case let's say we're ok with the result of the search.
@@ -135,7 +132,7 @@ Here we notice some values are not available. Therefore, we might need to go bac
 
 Therefore, in this case we will bind the rows of the air quality table with the weather table.
 
-```{r}
+```{r eval = FALSE}
 measurementsIndianapolis <- bind_rows(measurementsIndianapolis, all_monitors_clean)
 measurementsIndianapolis %>% head() %>% knitr::kable()
 ```
@@ -145,16 +142,16 @@ measurementsIndianapolis %>% head() %>% knitr::kable()
 
 We can plot the data we got.
 
-```{r, fig.width = 10, fig.height = 5, warning = FALSE}
+```{r, fig.width = 10, fig.height = 5, warning = FALSE, eval = FALSE}
 data_plot <- measurementsIndianapolis %>%
   rename(pm25 = value) %>%
   select(- longitude, - latitude)
 
-data_plot <- tidyr::gather_(data_plot, "parameter", "value",           names(data_plot)[3:ncol(data_plot)])
+data_plot <- tidyr::gather_(data_plot, "parameter", "value",
+  names(data_plot)[3:ncol(data_plot)])
 
 library("ggplot2")
 ggplot(data_plot) +
   geom_line(aes(x = day, y = value, col = location)) +
   facet_grid(parameter ~ ., scales = "free_y")
-
 ```
