@@ -38,5 +38,5 @@ if (interactive()) {
 }
 }
 \references{
-\url{http://www.spc.noaa.gov/gis/svrgis/}
+https://www.spc.noaa.gov/gis/svrgis/
 }
