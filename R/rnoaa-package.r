@@ -120,6 +120,7 @@
 #' as_tibble contains rowwise do bind_cols ungroup
 #' @importFrom tibble as_tibble data_frame
 #' @importFrom scales comma
+#' @importFrom tidyselect vars_select
 #' @name rnoaa-package
 #' @aliases rnoaa
 #' @docType package
