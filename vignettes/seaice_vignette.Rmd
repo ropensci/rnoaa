@@ -10,12 +10,13 @@ vignette: >
 ---
 
 ```{r, echo  =  FALSE, warning = FALSE, message = FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+NOT_CRAN_OR_TRAVIS <- identical(tolower(Sys.getenv("NOT_CRAN")), "true") ||
+  identical(tolower(Sys.getenv("TRAVIS")), "true")
 knitr::opts_chunk$set(
   collapse  =  TRUE,
   comment  =  "#>",
-  purl  =  NOT_CRAN,
-  eval  =  NOT_CRAN
+  purl  =  NOT_CRAN_OR_TRAVIS,
+  eval  =  NOT_CRAN_OR_TRAVIS
 )
 ```
 
@@ -33,7 +34,7 @@ library('ggplot2')
 ### Look at data for a series of years for Feb, South pole
 
 ```{r}
-res <- sapply(seq(1986, 1990, 1), function(x) 
+res <- sapply(seq(1986, 1990, 1), function(x)
     sea_ice(x, month = 'Feb', pole = 'S'))
 lapply(res, head)
 ```
