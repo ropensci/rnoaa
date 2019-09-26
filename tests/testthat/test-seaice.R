@@ -50,13 +50,13 @@ test_that("sea_ice fails well", {
   expect_error(sea_ice(format = "foo"), "'format' must be one of", class="error")
 })
 
-test_that("seaice_tabular", {
+test_that("sea_ice_tabular", {
   skip_on_cran()
   skip_on_travis()
 
-  out <- seaice_tabular()
+  out <- sea_ice_tabular()
 
-  expect_is(seaice_tabular, "function")
+  expect_is(sea_ice_tabular, "function")
   expect_is(out, "data.frame")
   expect_is(out$year, "integer")
   expect_is(out$mo, "integer")

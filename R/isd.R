@@ -133,7 +133,7 @@
 #' (res <- isd(usaf="011690", wban="99999", year=1993, progress=TRUE))
 #'
 #' # parallelize processing
-#' (res <- isd(usaf="172007", wban="99999", year=2015, parallel=TRUE))
+#' (res <- isd(usaf="172007", wban="99999", year=2016, parallel=TRUE))
 #' }
 isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE,
                 additional = TRUE, parallel = FALSE,

@@ -9,7 +9,7 @@
 #' @param ... Curl options passed on to [crul::verb-GET] (optional)
 #'
 #' @return A Spatial object is returned of class SpatialLinesDataFrame.
-#' @references <http://www.spc.noaa.gov/gis/svrgis/>
+#' @references https://www.spc.noaa.gov/gis/svrgis/
 #'
 #' @section File storage:
 #' We use \pkg{rappdirs} to store files, see
@@ -20,7 +20,10 @@
 #' @examples \dontrun{
 #' shp <- tornadoes()
 #' library('sp')
-#' plot(shp) # may take 10 sec or so to render
+#' if (interactive()) {
+#'   # may take 10 sec or so to render 
+#'   plot(shp)
+#' }
 #' }
 tornadoes <- function(overwrite = TRUE, ...) {
   calls <- names(sapply(match.call(), deparse))[-1]

@@ -98,8 +98,8 @@ ncdc_datasets(stationid = id)
 #> 
 #> $data
 #>                    uid    mindate    maxdate                        name
-#> 1 gov.noaa.ncdc:C00861 1763-01-01 2018-11-25             Daily Summaries
-#> 2 gov.noaa.ncdc:C00946 1763-01-01 2018-10-01 Global Summary of the Month
+#> 1 gov.noaa.ncdc:C00861 1763-01-01 2019-09-20             Daily Summaries
+#> 2 gov.noaa.ncdc:C00946 1763-01-01 2019-08-01 Global Summary of the Month
 #>   datacoverage    id
 #> 1            1 GHCND
 #> 2            1  GSOM
@@ -115,12 +115,24 @@ Yet another way is looking for __data types__:
 ncdc_datatypes(datasetid = "GHCND", stationid = id)
 #> $meta
 #>   offset count limit
-#> 1      1     2    25
+#> 1      1     4    25
 #> 
 #> $data
-#>      mindate    maxdate          name datacoverage   id
-#> 1 1781-01-01 2018-11-25 Precipitation            1 PRCP
-#> 2 1840-05-01 2018-11-25      Snowfall            1 SNOW
+#>      mindate    maxdate
+#> 1 1832-05-11 2019-09-20
+#> 2 1832-05-11 2019-09-20
+#> 3 1781-01-01 2019-09-20
+#> 4 1840-05-01 2019-09-20
+#>                                                                  name
+#> 1  Number of days included in the multiday precipitation total (MDPR)
+#> 2 Multiday precipitation total (use with DAPR and DWPR, if available)
+#> 3                                                       Precipitation
+#> 4                                                            Snowfall
+#>   datacoverage   id
+#> 1            1 DAPR
+#> 2            1 MDPR
+#> 3            1 PRCP
+#> 4            1 SNOW
 #> 
 #> attr(,"class")
 #> [1] "ncdc_datatypes"

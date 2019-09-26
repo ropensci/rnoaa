@@ -213,7 +213,7 @@ meteo_distance <- function(station_data, lat, long,
 #'
 #' @examples \dontrun{
 #' station_data <- ghcnd_stations()
-#' meteo_process_geographic_data(station_data, -33, 151)
+#' meteo_process_geographic_data(station_data, lat=-33, long=151)
 #' }
 meteo_process_geographic_data <- function(station_data,
                                           lat,
@@ -230,10 +230,10 @@ meteo_process_geographic_data <- function(station_data,
                                                    units = "deg")
 
   # Sort data into ascending order by distance column
-  station_data <- dplyr::arrange_(station_data, ~ distance)
+  station_data <- dplyr::arrange(station_data, distance)
 
   return(station_data)
-} # End meteo_process_geographic_data
+}
 
 #' Calculate the distance between two locations
 #'
@@ -289,5 +289,4 @@ meteo_spherical_distance <- function(lat1, long1, lat2, long2, units = 'deg') {
 #' @return The input numeric vector, converted to units of radians.
 deg2rad <- function(deg) {
   return(deg*pi/180)
-} # End deg2rad
-
+}

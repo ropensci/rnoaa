@@ -252,7 +252,7 @@ buoy_stations <- function(refresh = FALSE, ...) {
       dc <- sapply(xml_find_all(html, "//meta[@name]"), function(z) {
         as.list(stats::setNames(xml_attr(z, "content"), xml_attr(z, "name")))
       })
-      as_data_frame(c(
+      as_tibble(c(
         station = sttt,
         lat = {
           val <- str_extract_(dc$DC.description, "[0-9]+\\.[0-9]+[NS]")

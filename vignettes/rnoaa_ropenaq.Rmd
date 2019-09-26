@@ -1,14 +1,24 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{air_quality_and_weather_data}
-%\VignetteEncoding{UTF-8}
--->
+---
+title: "ropenaq and rnoaa"
+subtitle: "Complementing air quality data with weather data using rnoaa"
+author: "Maëlle Salmon"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ropenaq and rnoaa}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
-
-
-# Complementing air quality data with weather data using rnoaa
-
-__Author__ Maëlle Salmon
+```{r, echo  =  FALSE, warning = FALSE, message = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(
+  collapse  =  TRUE,
+  comment  =  "#>",
+  purl  =  NOT_CRAN,
+  eval  =  NOT_CRAN
+)
+```
 
 # Introduction: getting air quality data
 
@@ -16,8 +26,7 @@ This vignette aims at explaining how you can complement a data.frame with weathe
 
 First, we need to know how many measures are available for Indianapolis for March 2016.
 
-
-```r
+```{r, message = FALSE, warning = FALSE, eval = FALSE, echo = TRUE}
 library("ropenaq")
 
 measurementsIndianapolis <- aq_measurements(city = "Indianapolis", parameter = "pm25",
@@ -29,32 +38,17 @@ save(measurementsIndianapolis, file = "data/measurementsIndianapolis.RData")
 
 We filter negative values.
 
+```{r, message = FALSE, warning = FALSE, eval = FALSE, echo = TRUE}
 
-```r
 load("data/measurementsIndianapolis.RData")
 library("dplyr")
 measurementsIndianapolis %>% head() %>% knitr::kable()
-```
-
-
-
-|location        |day        |     value| longitude| latitude|
-|:---------------|:----------|---------:|---------:|--------:|
-|Indpls - I-70 E |2017-10-20 | 18.500000| -86.13088| 39.78793|
-|Indpls - I-70 E |2017-10-21 | 12.414286| -86.13088| 39.78793|
-|Indpls - I-70 E |2017-10-22 |  8.573333| -86.13088| 39.78793|
-|Indpls - I-70 E |2017-10-23 |  7.633333| -86.13088| 39.78793|
-|Indpls - I-70 E |2017-10-24 |  4.528571| -86.13088| 39.78793|
-|Indpls - I-70 E |2017-10-25 |  6.455556| -86.13088| 39.78793|
-
-```r
 measurementsIndianapolis <- filter(measurementsIndianapolis, value > 0)
 ```
 
 We now transform these data into daily data.
 
-
-```r
+```{r, message = FALSE, warning = FALSE, eval = FALSE}
 # only keep stations with geographical information
 measurementsIndianapolis <- filter(measurementsIndianapolis, !is.na(latitude))
 # now transform to daily data
@@ -66,18 +60,8 @@ measurementsIndianapolis <- measurementsIndianapolis %>%
             latitude = latitude[1]) %>%
   ungroup()
 measurementsIndianapolis %>% head() %>% knitr::kable()
+
 ```
-
-
-
-|location        |day        |     value| longitude| latitude|
-|:---------------|:----------|---------:|---------:|--------:|
-|Indpls - I-70 E |2017-10-20 | 18.500000| -86.13088| 39.78793|
-|Indpls - I-70 E |2017-10-21 | 12.414286| -86.13088| 39.78793|
-|Indpls - I-70 E |2017-10-22 |  8.573333| -86.13088| 39.78793|
-|Indpls - I-70 E |2017-10-23 |  7.633333| -86.13088| 39.78793|
-|Indpls - I-70 E |2017-10-24 |  4.528571| -86.13088| 39.78793|
-|Indpls - I-70 E |2017-10-25 |  6.455556| -86.13088| 39.78793|
 
 Air quality and weather are correlated, so one could be interested in getting a time series of say temperature for the same location. The OpenAQ platform itself does not provide weather data but nearly all stations have geographical coordinates. Our goal here will be to use rnoaa to complement this table with precipitation and temperature.
 
@@ -87,8 +71,7 @@ For finding the right station(s) we shall use the `meteo_nearby_stations` functi
 
 Here we query stations with a less than 15km distance from the air quality stations, with precipitation and temperature data, and with data starting from 2016. Note that the query takes a while.
 
-
-```r
+```{r, eval = FALSE, echo = TRUE, eval = FALSE}
 library("rnoaa")
 station_data <- ghcnd_stations()
 lat_lon_df <- select(measurementsIndianapolis,
@@ -107,27 +90,19 @@ stationsIndianapolis <- meteo_nearby_stations(lat_lon_df = as.data.frame(lat_lon
 stationsIndianapolis <- unique(bind_rows(stationsIndianapolis) %>% select(- distance))
 
 save(stationsIndianapolis, file = "data/stationsIndianapolis.RData")
+
 ```
 
-
-```r
+```{r eval = FALSE}
 load("data/stationsIndianapolis.RData")
 stationsIndianapolis %>% knitr::kable()
 ```
-
-
-
-|id          |name                 | latitude| longitude|
-|:-----------|:--------------------|--------:|---------:|
-|US1INMR0134 |INDIANAPOLIS 1.3 SSE |  39.7574|  -86.1404|
-|US1INMR0122 |INDIANAPOLIS 3.4 WSW |  39.7565|  -86.2044|
 
 Now let us plot the AQ and weather stations on a quick and dirty map with no legend, red for AQ stations, blue for weather stations.
 
 > Not shown
 
-
-```r
+```{r, message = FALSE, warning = FALSE, fig.width = 10, fig.height = 10, eval=FALSE}
 library("ggmap")
 map <- get_map(location = "Indianapolis", zoom = 11)
 ggmap(map) +
@@ -137,60 +112,19 @@ ggmap(map) +
              data = measurementsIndianapolis, col = "red", size = 4)
 ```
 
-
 # Query weather data for these stations
 
 For pulling weather data from these weather monitors, we shall use the `meteo_pull_monitors` function.
 
-
-```r
+```{r eval = FALSE}
 library("rnoaa")
 monitors <- stationsIndianapolis$id
 all_monitors_clean <- meteo_pull_monitors(monitors,
-                                      date_min = as.character(Sys.Date() - 30),
-                                     date_max = as.character(Sys.Date())) %>%
-  rename(day = date,
-         location = id)
-```
-
-```
-#> file path:          /Users/sckott/Library/Caches/rnoaa/ghcnd/US1INMR0134.dly
-```
-
-```
-#> file last updated:  2018-12-03 11:12:04
-```
-
-```
-#> file min/max dates: 2015-05-01 / 2018-11-30
-```
-
-```
-#> file path:          /Users/sckott/Library/Caches/rnoaa/ghcnd/US1INMR0122.dly
-```
-
-```
-#> file last updated:  2018-12-03 11:12:06
-```
-
-```
-#> file min/max dates: 2012-11-01 / 2018-11-30
-```
-
-```r
+    date_min = as.character(Sys.Date() - 30),
+    date_max = as.character(Sys.Date())) %>%
+  dplyr::rename(day = date, location = id)
 all_monitors_clean %>% head() %>% knitr::kable()
 ```
-
-
-
-|location    |day        | prcp| snow|
-|:-----------|:----------|----:|----:|
-|US1INMR0134 |2018-11-03 |   NA|   NA|
-|US1INMR0134 |2018-11-04 |   NA|   NA|
-|US1INMR0134 |2018-11-05 |   NA|   NA|
-|US1INMR0134 |2018-11-06 |   76|   NA|
-|US1INMR0134 |2018-11-07 |   NA|   NA|
-|US1INMR0134 |2018-11-08 |   NA|   NA|
 
 Here we notice some values are not available. Therefore, we might need to go back to weather stations searching with, for instance, a larger radius. In this case let's say we're ok with the result of the search.
 
@@ -198,40 +132,26 @@ Here we notice some values are not available. Therefore, we might need to go bac
 
 Therefore, in this case we will bind the rows of the air quality table with the weather table.
 
-
-```r
+```{r eval = FALSE}
 measurementsIndianapolis <- bind_rows(measurementsIndianapolis, all_monitors_clean)
 measurementsIndianapolis %>% head() %>% knitr::kable()
 ```
-
-
-
-|location        |day        |     value| longitude| latitude| prcp| snow|
-|:---------------|:----------|---------:|---------:|--------:|----:|----:|
-|Indpls - I-70 E |2017-10-20 | 18.500000| -86.13088| 39.78793|   NA|   NA|
-|Indpls - I-70 E |2017-10-21 | 12.414286| -86.13088| 39.78793|   NA|   NA|
-|Indpls - I-70 E |2017-10-22 |  8.573333| -86.13088| 39.78793|   NA|   NA|
-|Indpls - I-70 E |2017-10-23 |  7.633333| -86.13088| 39.78793|   NA|   NA|
-|Indpls - I-70 E |2017-10-24 |  4.528571| -86.13088| 39.78793|   NA|   NA|
-|Indpls - I-70 E |2017-10-25 |  6.455556| -86.13088| 39.78793|   NA|   NA|
 
 
  Now some locations are air quality locations and have only missing values in the weather columns, and some locations are weather locations and have only missing values in the air quality columns.
 
 We can plot the data we got.
 
-
-```r
+```{r, fig.width = 10, fig.height = 5, warning = FALSE, eval = FALSE}
 data_plot <- measurementsIndianapolis %>%
   rename(pm25 = value) %>%
   select(- longitude, - latitude)
 
-data_plot <- tidyr::gather_(data_plot, "parameter", "value",           names(data_plot)[3:ncol(data_plot)])
+data_plot <- tidyr::gather_(data_plot, "parameter", "value",
+  names(data_plot)[3:ncol(data_plot)])
 
 library("ggplot2")
 ggplot(data_plot) +
   geom_line(aes(x = day, y = value, col = location)) +
   facet_grid(parameter ~ ., scales = "free_y")
 ```
-
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)

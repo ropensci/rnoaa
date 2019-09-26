@@ -158,11 +158,11 @@ all_monitors_clean <- meteo_pull_monitors(monitors,
 ```
 
 ```
-#> file last updated:  2018-12-03 11:12:04
+#> file last updated:  2019-09-23 14:44:37
 ```
 
 ```
-#> file min/max dates: 2015-05-01 / 2018-11-30
+#> file min/max dates: 2015-05-01 / 2019-09-30
 ```
 
 ```
@@ -170,11 +170,11 @@ all_monitors_clean <- meteo_pull_monitors(monitors,
 ```
 
 ```
-#> file last updated:  2018-12-03 11:12:06
+#> file last updated:  2019-09-23 14:44:38
 ```
 
 ```
-#> file min/max dates: 2012-11-01 / 2018-11-30
+#> file min/max dates: 2012-11-01 / 2019-09-30
 ```
 
 ```r
@@ -183,14 +183,14 @@ all_monitors_clean %>% head() %>% knitr::kable()
 
 
 
-|location    |day        | prcp| snow|
-|:-----------|:----------|----:|----:|
-|US1INMR0134 |2018-11-03 |   NA|   NA|
-|US1INMR0134 |2018-11-04 |   NA|   NA|
-|US1INMR0134 |2018-11-05 |   NA|   NA|
-|US1INMR0134 |2018-11-06 |   76|   NA|
-|US1INMR0134 |2018-11-07 |   NA|   NA|
-|US1INMR0134 |2018-11-08 |   NA|   NA|
+|location    |day        | dapr| mdpr| prcp| snow|
+|:-----------|:----------|----:|----:|----:|----:|
+|US1INMR0134 |2019-08-24 |   NA|   NA|   NA|   NA|
+|US1INMR0134 |2019-08-25 |   NA|   NA|   NA|   NA|
+|US1INMR0134 |2019-08-26 |   NA|   NA|  165|   NA|
+|US1INMR0134 |2019-08-27 |   NA|   NA|  152|   NA|
+|US1INMR0134 |2019-08-28 |   NA|   NA|   18|   NA|
+|US1INMR0134 |2019-08-29 |   NA|   NA|    0|   NA|
 
 Here we notice some values are not available. Therefore, we might need to go back to weather stations searching with, for instance, a larger radius. In this case let's say we're ok with the result of the search.
 
@@ -206,14 +206,14 @@ measurementsIndianapolis %>% head() %>% knitr::kable()
 
 
 
-|location        |day        |     value| longitude| latitude| prcp| snow|
-|:---------------|:----------|---------:|---------:|--------:|----:|----:|
-|Indpls - I-70 E |2017-10-20 | 18.500000| -86.13088| 39.78793|   NA|   NA|
-|Indpls - I-70 E |2017-10-21 | 12.414286| -86.13088| 39.78793|   NA|   NA|
-|Indpls - I-70 E |2017-10-22 |  8.573333| -86.13088| 39.78793|   NA|   NA|
-|Indpls - I-70 E |2017-10-23 |  7.633333| -86.13088| 39.78793|   NA|   NA|
-|Indpls - I-70 E |2017-10-24 |  4.528571| -86.13088| 39.78793|   NA|   NA|
-|Indpls - I-70 E |2017-10-25 |  6.455556| -86.13088| 39.78793|   NA|   NA|
+|location        |day        |     value| longitude| latitude| dapr| mdpr| prcp| snow|
+|:---------------|:----------|---------:|---------:|--------:|----:|----:|----:|----:|
+|Indpls - I-70 E |2017-10-20 | 18.500000| -86.13088| 39.78793|   NA|   NA|   NA|   NA|
+|Indpls - I-70 E |2017-10-21 | 12.414286| -86.13088| 39.78793|   NA|   NA|   NA|   NA|
+|Indpls - I-70 E |2017-10-22 |  8.573333| -86.13088| 39.78793|   NA|   NA|   NA|   NA|
+|Indpls - I-70 E |2017-10-23 |  7.633333| -86.13088| 39.78793|   NA|   NA|   NA|   NA|
+|Indpls - I-70 E |2017-10-24 |  4.528571| -86.13088| 39.78793|   NA|   NA|   NA|   NA|
+|Indpls - I-70 E |2017-10-25 |  6.455556| -86.13088| 39.78793|   NA|   NA|   NA|   NA|
 
 
  Now some locations are air quality locations and have only missing values in the weather columns, and some locations are weather locations and have only missing values in the air quality columns.

@@ -160,7 +160,7 @@ gefs_GET <- function(var, lat = NULL, lon = NULL, ens = NULL, time = NULL,
     } else if (dn %in% c("time", "time1", "time2")) {
       dim_idxs[[i]] <- if(!is.null(ens)) which(v$dim[[i]]$vals %in% time) else 1:v$dim[[i]]$len
     } else if (dn %in% names(additional_dims)) {
-      dim_idxs[[i]] <- which(v$dim[[j]]$vals %in% additional_dims[[dn]])
+      dim_idxs[[i]] <- which(v$dim[[i]]$vals %in% additional_dims[[dn]])
     } else {
       dim_idxs[[i]] <- 1:v$dim[[i]]$len
     }

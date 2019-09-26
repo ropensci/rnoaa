@@ -15,7 +15,11 @@ if (getRversion() >= "2.15.1") {
       'lat_rad',
       'precip',
       'latitude',
-      'longitude'
+      'longitude',
+      'distance',
+      'total_obs',
+      'start_date',
+      'end_date'
     )
   )
 }
