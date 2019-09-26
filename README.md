@@ -40,7 +40,7 @@ rnoaa
 
 ## Help
 
-There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](https://cran.r-project.org/package=rnoaa). The tutorials:
+Documentation is at <https://docs.ropensci.org/rnoaa/>, and there are many vignettes in the package itself, available in your R session, or [on CRAN](https://cran.r-project.org/package=rnoaa). The tutorials:
 
 * NOAA Buoy vignette
 * NOAA National Climatic Data Center (NCDC) vignette (examples)
@@ -50,6 +50,7 @@ There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoa
 * Severe Weather Data Inventory (SWDI) vignette
 * Historical Observing Metadata Repository (HOMR) vignette
 * Storms (IBTrACS) vignette
+* Complementing air quality data ([ropenaq](https://github.com/ropensci/ropenaq)) with weather data using rnoaa
 
 ## netcdf data
 
@@ -61,7 +62,7 @@ Some functions use netcdf files, including:
 * `bsw`
 * `argo`
  
-You'll need the `ncdf4` package for those functions, and those only. `ncdf4` is in Suggests in this package, meaning you only need `ncdf4` if you are using any of the functions listed above. You'll get an informative error telling you to install `ncdf4` if you don't have it and you try to use the those functions. Installation of `ncdf4` should be straightforward on any system. See https://cran.r-project.org/package=ncdf4.
+You'll need the `ncdf4` package for those functions, and those only. `ncdf4` is in Suggests in this package, meaning you only need `ncdf4` if you are using any of the functions listed above. You'll get an informative error telling you to install `ncdf4` if you don't have it and you try to use the those functions. Installation of `ncdf4` should be straightforward on any system. See https://cran.r-project.org/package=ncdf4
 
 ## NOAA NCDC Datasets
 
@@ -70,11 +71,11 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 |Dataset    |Description                 |Start Date |End Date   | Data Coverage|
 |:----------|:---------------------------|:----------|:----------|-------------:|
-|GHCND      |Daily Summaries             |1763-01-01 |2019-09-20 |          1.00|
+|GHCND      |Daily Summaries             |1763-01-01 |2019-09-24 |          1.00|
 |GSOM       |Global Summary of the Month |1763-01-01 |2019-08-01 |          1.00|
 |GSOY       |Global Summary of the Year  |1763-01-01 |2019-01-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2019-09-21 |          0.95|
-|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2019-09-20 |          0.95|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2019-09-24 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2019-09-22 |          0.95|
 |NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
 |NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
 |NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
@@ -84,11 +85,11 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 ## NOAA NCDC Attributes
 
-Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See http://www.ncdc.noaa.gov/cdo-web/datasets for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](inst/vign/rncdc_attributes.md) to find out more
+Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See http://www.ncdc.noaa.gov/cdo-web/datasets for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](https://docs.ropensci.org/rnoaa/articles/ncdc_attributes.html) to find out more
 
 ## NCDC Authentication
 
-You'll need an API key to use the NOAA NCDC functions (those starting with `ncdc*()`) in this package (essentially a password). Go to http://www.ncdc.noaa.gov/cdo-web/token to get one. *You can't use this package without an API key.*
+You'll need an API key to use the NOAA NCDC functions (those starting with `ncdc*()`) in this package (essentially a password). Go to https://www.ncdc.noaa.gov/cdo-web/token to get one. *You can't use this package without an API key.*
 
 Once you obtain a key, there are two ways to use it.
 
@@ -113,17 +114,17 @@ c) You can always store in permamently in your `.Rprofile` file.
 
 __GDAL__
 
-You'll need [GDAL](http://www.gdal.org/) installed first. You may want to use GDAL >= `0.9-1` since that version or later can read TopoJSON format files as well, which aren't required here, but may be useful. Install GDAL:
+You'll need [GDAL](https://gdal.org/) installed first. You may want to use GDAL >= `0.9-1` since that version or later can read TopoJSON format files as well, which aren't required here, but may be useful. Install GDAL:
 
-* OSX - From http://www.kyngchaos.com/software/frameworks
+* OSX - From https://www.kyngchaos.com/software/frameworks/
 * Linux - run `sudo apt-get install gdal-bin`
-* Windows - From http://trac.osgeo.org/osgeo4w/
+* Windows - From https://trac.osgeo.org/osgeo4w/
 
 Then when you install the R package `rgdal` (`rgeos` also requires GDAL), you'll most likely need to specify where you're `gdal-config` file is on your machine, as well as a few other things. I have an OSX Mavericks machine, and this works for me (there's no binary for Mavericks, so install the source version):
 
 
 ```r
-install.packages("http://cran.r-project.org/src/contrib/rgdal_0.9-1.tar.gz", repos = NULL, type="source", configure.args = "--with-gdal-config=/Library/Frameworks/GDAL.framework/Versions/1.10/unix/bin/gdal-config --with-proj-include=/Library/Frameworks/PROJ.framework/unix/include --with-proj-lib=/Library/Frameworks/PROJ.framework/unix/lib")
+install.packages("https://cran.r-project.org/src/contrib/rgdal_0.9-1.tar.gz", repos = NULL, type="source", configure.args = "--with-gdal-config=/Library/Frameworks/GDAL.framework/Versions/1.10/unix/bin/gdal-config --with-proj-include=/Library/Frameworks/PROJ.framework/unix/include --with-proj-lib=/Library/Frameworks/PROJ.framework/unix/lib")
 ```
 
 The rest of the installation should be easy. If not, let us know.
@@ -139,7 +140,7 @@ __or development version from GitHub__
 
 
 ```r
-devtools::install_github("ropensci/rnoaa")
+remotes::install_github("ropensci/rnoaa")
 ```
 
 __Load rnoaa__
@@ -170,30 +171,30 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> $data
 #>       mindate    maxdate                  name datacoverage            id
 #> 1  1892-08-01 2019-07-31            Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2019-09-18            Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2019-09-18         Zonguldak, TU       1.0000 CITY:TU000057
-#> 4  1906-01-01 2019-09-18            Zinder, NG       0.9025 CITY:NG000004
-#> 5  1973-01-01 2019-09-18        Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2019-09-18         Zhytomyra, UP       0.9723 CITY:UP000025
-#> 7  1948-03-01 2019-09-18        Zhezkazgan, KZ       0.9302 CITY:KZ000017
-#> 8  1951-01-01 2019-09-18         Zhengzhou, CH       1.0000 CITY:CH000045
+#> 2  1901-01-01 2019-09-22            Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2019-09-22         Zonguldak, TU       1.0000 CITY:TU000057
+#> 4  1906-01-01 2019-09-22            Zinder, NG       0.9025 CITY:NG000004
+#> 5  1973-01-01 2019-09-22        Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2019-09-22         Zhytomyra, UP       0.9723 CITY:UP000025
+#> 7  1948-03-01 2019-09-22        Zhezkazgan, KZ       0.9302 CITY:KZ000017
+#> 8  1951-01-01 2019-09-22         Zhengzhou, CH       1.0000 CITY:CH000045
 #> 9  1941-01-01 2019-06-30          Zaragoza, SP       1.0000 CITY:SP000021
 #> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       1.0000 CITY:UP000024
-#> 11 1957-01-01 2019-09-18          Zanzibar, TZ       0.8016 CITY:TZ000019
-#> 12 1973-01-01 2019-09-18            Zanjan, IR       0.9105 CITY:IR000020
-#> 13 1893-01-01 2019-09-21     Zanesville, OH US       1.0000 CITY:US390029
-#> 14 1912-01-01 2019-09-18             Zahle, LE       0.9819 CITY:LE000004
-#> 15 1951-01-01 2019-09-18           Zahedan, IR       0.9975 CITY:IR000019
-#> 16 1860-12-01 2019-09-18            Zagreb, HR       1.0000 CITY:HR000002
-#> 17 1929-07-01 2019-09-18         Zacatecas, MX       1.0000 CITY:MX000036
-#> 18 1947-01-01 2019-09-18 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
-#> 19 1893-01-01 2019-09-21           Yuma, AZ US       1.0000 CITY:US040015
-#> 20 1942-02-01 2019-09-21   Yucca Valley, CA US       1.0000 CITY:US060048
-#> 21 1885-01-01 2019-09-21      Yuba City, CA US       1.0000 CITY:US060047
-#> 22 1998-02-01 2019-09-18            Yozgat, TU       0.9993 CITY:TU000056
-#> 23 1893-01-01 2019-09-21     Youngstown, OH US       1.0000 CITY:US390028
-#> 24 1894-01-01 2019-09-21           York, PA US       1.0000 CITY:US420024
-#> 25 1869-01-01 2019-09-21        Yonkers, NY US       1.0000 CITY:US360031
+#> 11 1957-01-01 2019-09-22          Zanzibar, TZ       0.8016 CITY:TZ000019
+#> 12 1973-01-01 2019-09-22            Zanjan, IR       0.9105 CITY:IR000020
+#> 13 1893-01-01 2019-09-24     Zanesville, OH US       1.0000 CITY:US390029
+#> 14 1912-01-01 2019-09-22             Zahle, LE       0.9819 CITY:LE000004
+#> 15 1951-01-01 2019-09-22           Zahedan, IR       0.9975 CITY:IR000019
+#> 16 1860-12-01 2019-09-22            Zagreb, HR       1.0000 CITY:HR000002
+#> 17 1929-07-01 2019-09-22         Zacatecas, MX       1.0000 CITY:MX000036
+#> 18 1947-01-01 2019-09-22 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
+#> 19 1893-01-01 2019-09-24           Yuma, AZ US       1.0000 CITY:US040015
+#> 20 1942-02-01 2019-09-24   Yucca Valley, CA US       1.0000 CITY:US060048
+#> 21 1885-01-01 2019-09-24      Yuba City, CA US       1.0000 CITY:US060047
+#> 22 1998-02-01 2019-09-22            Yozgat, TU       0.9993 CITY:TU000056
+#> 23 1893-01-01 2019-09-24     Youngstown, OH US       1.0000 CITY:US390028
+#> 24 1894-01-01 2019-09-24           York, PA US       1.0000 CITY:US420024
+#> 25 1869-01-01 2019-09-24        Yonkers, NY US       1.0000 CITY:US360031
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -209,7 +210,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name
-#> 1      17.7 1899-02-01 2019-09-17 28.80286 INVERNESS 3 SE, FL US
+#> 1      17.7 1899-02-01 2019-09-23 28.80286 INVERNESS 3 SE, FL US
 #>   datacoverage                id elevationUnit longitude
 #> 1            1 GHCND:USC00084289        METERS -82.31266
 #> 
@@ -315,11 +316,11 @@ ncdc_datasets()
 #> 
 #> $data
 #>                     uid    mindate    maxdate                        name
-#> 1  gov.noaa.ncdc:C00861 1763-01-01 2019-09-20             Daily Summaries
+#> 1  gov.noaa.ncdc:C00861 1763-01-01 2019-09-24             Daily Summaries
 #> 2  gov.noaa.ncdc:C00946 1763-01-01 2019-08-01 Global Summary of the Month
 #> 3  gov.noaa.ncdc:C00947 1763-01-01 2019-01-01  Global Summary of the Year
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2019-09-21    Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2019-09-20   Weather Radar (Level III)
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2019-09-24    Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2019-09-22   Weather Radar (Level III)
 #> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01     Normals Annual/Seasonal
 #> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31               Normals Daily
 #> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31              Normals Hourly

@@ -75,7 +75,7 @@ knitr::opts_chunk$set(
 
 ## Help
 
-There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoaa_tutorial.html), and there are many tutorials in the package itself, available in your R session, or [on CRAN](https://cran.r-project.org/package=rnoaa). The tutorials:
+Documentation is at <https://docs.ropensci.org/rnoaa/>, and there are many vignettes in the package itself, available in your R session, or [on CRAN](https://cran.r-project.org/package=rnoaa). The tutorials:
 
 * NOAA Buoy vignette
 * NOAA National Climatic Data Center (NCDC) vignette (examples)
@@ -85,6 +85,7 @@ There is a tutorial on the [rOpenSci website](http://ropensci.org/tutorials/rnoa
 * Severe Weather Data Inventory (SWDI) vignette
 * Historical Observing Metadata Repository (HOMR) vignette
 * Storms (IBTrACS) vignette
+* Complementing air quality data ([ropenaq](https://github.com/ropensci/ropenaq)) with weather data using rnoaa
 
 ## netcdf data
 
@@ -96,7 +97,7 @@ Some functions use netcdf files, including:
 * `bsw`
 * `argo`
  
-You'll need the `ncdf4` package for those functions, and those only. `ncdf4` is in Suggests in this package, meaning you only need `ncdf4` if you are using any of the functions listed above. You'll get an informative error telling you to install `ncdf4` if you don't have it and you try to use the those functions. Installation of `ncdf4` should be straightforward on any system. See https://cran.r-project.org/package=ncdf4.
+You'll need the `ncdf4` package for those functions, and those only. `ncdf4` is in Suggests in this package, meaning you only need `ncdf4` if you are using any of the functions listed above. You'll get an informative error telling you to install `ncdf4` if you don't have it and you try to use the those functions. Installation of `ncdf4` should be straightforward on any system. See https://cran.r-project.org/package=ncdf4
 
 ## NOAA NCDC Datasets
 
@@ -113,11 +114,11 @@ knitr::kable(dat)
 
 ## NOAA NCDC Attributes
 
-Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See http://www.ncdc.noaa.gov/cdo-web/datasets for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](inst/vign/rncdc_attributes.md) to find out more
+Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See http://www.ncdc.noaa.gov/cdo-web/datasets for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](https://docs.ropensci.org/rnoaa/articles/ncdc_attributes.html) to find out more
 
 ## NCDC Authentication
 
-You'll need an API key to use the NOAA NCDC functions (those starting with `ncdc*()`) in this package (essentially a password). Go to http://www.ncdc.noaa.gov/cdo-web/token to get one. *You can't use this package without an API key.*
+You'll need an API key to use the NOAA NCDC functions (those starting with `ncdc*()`) in this package (essentially a password). Go to https://www.ncdc.noaa.gov/cdo-web/token to get one. *You can't use this package without an API key.*
 
 Once you obtain a key, there are two ways to use it.
 
@@ -140,16 +141,16 @@ c) You can always store in permamently in your `.Rprofile` file.
 
 __GDAL__
 
-You'll need [GDAL](http://www.gdal.org/) installed first. You may want to use GDAL >= `0.9-1` since that version or later can read TopoJSON format files as well, which aren't required here, but may be useful. Install GDAL:
+You'll need [GDAL](https://gdal.org/) installed first. You may want to use GDAL >= `0.9-1` since that version or later can read TopoJSON format files as well, which aren't required here, but may be useful. Install GDAL:
 
-* OSX - From http://www.kyngchaos.com/software/frameworks
+* OSX - From https://www.kyngchaos.com/software/frameworks/
 * Linux - run `sudo apt-get install gdal-bin`
-* Windows - From http://trac.osgeo.org/osgeo4w/
+* Windows - From https://trac.osgeo.org/osgeo4w/
 
 Then when you install the R package `rgdal` (`rgeos` also requires GDAL), you'll most likely need to specify where you're `gdal-config` file is on your machine, as well as a few other things. I have an OSX Mavericks machine, and this works for me (there's no binary for Mavericks, so install the source version):
 
 ```{r eval=FALSE}
-install.packages("http://cran.r-project.org/src/contrib/rgdal_0.9-1.tar.gz", repos = NULL, type="source", configure.args = "--with-gdal-config=/Library/Frameworks/GDAL.framework/Versions/1.10/unix/bin/gdal-config --with-proj-include=/Library/Frameworks/PROJ.framework/unix/include --with-proj-lib=/Library/Frameworks/PROJ.framework/unix/lib")
+install.packages("https://cran.r-project.org/src/contrib/rgdal_0.9-1.tar.gz", repos = NULL, type="source", configure.args = "--with-gdal-config=/Library/Frameworks/GDAL.framework/Versions/1.10/unix/bin/gdal-config --with-proj-include=/Library/Frameworks/PROJ.framework/unix/include --with-proj-lib=/Library/Frameworks/PROJ.framework/unix/lib")
 ```
 
 The rest of the installation should be easy. If not, let us know.
@@ -163,7 +164,7 @@ install.packages("rnoaa")
 __or development version from GitHub__
 
 ```{r eval=FALSE}
-devtools::install_github("ropensci/rnoaa")
+remotes::install_github("ropensci/rnoaa")
 ```
 
 __Load rnoaa__
