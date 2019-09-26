@@ -67,15 +67,15 @@
 #'
 #' #specific ensemble and times, for the 1800 forecast.
 #' # here ensembles 1-3 (ensembles are numbered starting with 0)
-#' # and time for 2 days from today at 1800
+#' # and two time periods: c(1800, 2400)
 #' date <- format(as.Date(Sys.time()) - 1, "%Y%m%d")
 #' var <- "Temperature_height_above_ground_ens"
-#' gefs(var, lat, lon, date = date, forecast_time = "1800", ens_idx=2:4,
-#'   time_idx=1:8)
+#' gefs(var, lat, lon, date = date, forecast_time = "1800", ens=1:3,
+#'   time=6*(3:4))
 #'
 #' #One ensemble, all latitudes and longitudes (this is a big file) for the
 #' # next 3 days.
-#' # gefs(var, ens=1, time=1:12)
+#' # gefs(var, ens=1, time=6*(1:12))
 #' }
 #'
 gefs <- function(var, lat, lon, ...) {
