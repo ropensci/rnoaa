@@ -26,6 +26,7 @@
 #' @param ... Curl options passed on to [crul::verb-GET]
 #'
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
+#' https://www1.ncdc.noaa.gov/pub/data/noaa
 #' @family isd
 #'
 #' @details `isd` saves the full set of weather data for the queried
@@ -130,10 +131,11 @@
 #'   facet_wrap(~usaf_station, scales = "free_x")
 #'
 #' # print progress
+#' ## note: if the file is already on your system, you'll see no progress bar
 #' (res <- isd(usaf="011690", wban="99999", year=1993, progress=TRUE))
 #'
 #' # parallelize processing
-#' (res <- isd(usaf="172007", wban="99999", year=2016, parallel=TRUE))
+#' # (res <- isd(usaf=172007, wban=99999, year=2016, parallel=TRUE))
 #' }
 isd <- function(usaf, wban, year, overwrite = TRUE, cleanup = TRUE,
                 additional = TRUE, parallel = FALSE,
@@ -166,7 +168,7 @@ isd_GET <- function(bp, usaf, wban, year, overwrite, ...) {
     suppressWarnings(cli$get(disk = fp)),
     error = function(e) e
   )
-  if (inherits(tryget, "error")) {
+  if (inherits(tryget, "error") || !tryget$success()) {
     unlink(fp)
     stop("download failed for\n   ", isd_remote(usaf, wban, year),
          call. = FALSE)
@@ -187,7 +189,7 @@ is_isd <- function(x) {
   if (file.exists(x)) TRUE else FALSE
 }
 
-isdbase <- function() 'ftp://ftp.ncdc.noaa.gov/pub/data/noaa'
+isdbase <- function() 'https://www1.ncdc.noaa.gov/pub/data/noaa'
 
 read_isd <- function(x, cleanup, force, additional, parallel, cores, progress) {
   path_rds <- x

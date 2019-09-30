@@ -18,6 +18,6 @@ test_that("isd gets data", {
 test_that("isd fails well", {
   skip_on_cran()
 
-  expect_error(isd(usaf = "702700", wban = "489", year = 2014),
+  expect_error(isd(usaf = "702700", wban = "489", year = 2044),
                "download failed for")
 })

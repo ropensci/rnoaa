@@ -153,14 +153,16 @@ ggplot(res_all, aes(date_time, temperature)) +
   facet_wrap(~usaf_station, scales = "free_x")
 
 # print progress
+## note: if the file is already on your system, you'll see no progress bar
 (res <- isd(usaf="011690", wban="99999", year=1993, progress=TRUE))
 
 # parallelize processing
-(res <- isd(usaf="172007", wban="99999", year=2016, parallel=TRUE))
+# (res <- isd(usaf=172007, wban=99999, year=2016, parallel=TRUE))
 }
 }
 \references{
 ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
+https://www1.ncdc.noaa.gov/pub/data/noaa
 }
 \seealso{
 Other isd: \code{\link{isd_read}},
