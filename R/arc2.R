@@ -75,7 +75,7 @@ arc2_read <- function(x) {
   res <- readBin(conn, numeric(), n = 751*801, size = 4, endian = "big")
 
   # make data.frame
-  tibble::as_data_frame(
+  tibble::as_tibble(
     stats::setNames(
       cbind(expand.grid(longs, lats), res),
       c('lon', 'lat', 'precip')

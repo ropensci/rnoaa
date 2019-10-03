@@ -1,3 +1,31 @@
+rnoaa 0.9.0
+===========
+
+### NEW FEATURES
+
+* gains `sea_ice_tabular()` function for fetching tabular .csv sea ice files instead of using the shp files in `sea_ice()` (#194)
+* `seaice()` fxn name has changed to `sea_ice()` (#313)
+* `sea_ice()` gains option to fetch GeoTIFF format data in addition to shp files (#219) (#313)
+* gains new function `lcd_cleanup()` - takes output of call to `lcd()`, parsing additional columns that contain comma separated strings (#283)
+
+### MINOR IMPROVEMENTS
+
+* update README to link to ncdf4 pkg instead of ncdf pkg, and a note about which functions in rnoaa use ncdf4 (b/c ncdf4 is in Suggests) (#299) thanks @denrou
+* now using markdown docs (#301)
+* update `isd()` docs to highlight that cached files downloaded with the fxn will be used until deleted by the user! See `?isd` docs for details (#205)
+* lat/lon param definition in `gefs` only mentioned longitude, now both vars discussed (#317) (#318)
+* improve docs for `ncdc()` regarding units, and in readme and vignette as well (#265) (#315) from @amoeba
+
+### BUG FIXES
+
+* fix bug in `cpc_prcp()`: should have allowed dates back to 1948, but only allowed back to 1979 (#300)
+* fix to `buoy()` fxn: datasets that did not have lat/lon variables were failing to be parsed by the fxn; now when lat/lon vars missing, we just give. back ncdf4 object for the user to deal with themselves (#303) (#304)
+* fix to `gefs()`: longitude on the (-180, 180) scale worked but not on the (0,360) scale (#316) (#318) (#319)
+* fix to `tornadoes()`: the URL for the data had changed (#311) (#312) thanks @mbjoseph
+* `ncdc()` parameters `startdate`/`enddate` weren't handling dates as input values; now handle date and character inputs  (#307)
+* fixed issue in `ghcnd_stations()`; there was an encoding issue with the data returned from NOAA (#305)
+
+
 rnoaa 0.8.4
 ===========
 

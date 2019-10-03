@@ -61,8 +61,8 @@ if (requireNamespace("leaflet")) {
   library("leaflet")
   leaflet() \%>\%
     addTiles() \%>\%
-    addCircles(lng = x$longitude,
-               lat = x$latitude,
+    addCircles(lng = x$lon,
+               lat = x$lat,
                popup = x$station_name) \%>\%
     clearBounds()
 }

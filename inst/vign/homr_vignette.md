@@ -201,6 +201,7 @@ names(res)
 #>  [91] "30108119" "30108282" "30108333" "30108338" "30108394" "30108839"
 #>  [97] "30108887" "30108929" "30108935" "30108946" "30109183" "30110071"
 #> [103] "30111663" "30111793" "30112317" "30112507" "30112571" "30113052"
+#> [109] "30114064" "30120688" "30120775"
 ```
 
 By country
@@ -302,20 +303,20 @@ head( ldply(res, "[[", "head") )
 ```
 
 ```
-#>        .id         preferredName latitude_dec longitude_dec
-#> 1 30063513 ASHEVILLE 5.6 NNW, NC      35.6534      -82.5709
-#> 2 30014782    WEAVERVILLE 5E, NC     35.71028     -82.50389
-#> 3 20013851       WEAVERVILLE, NC         35.7     -82.56667
-#> 4 20013789      GARREN CREEK, NC     35.51667     -82.33333
-#> 5 20013801     BILTMORE 2 SE, NC     35.56833       -82.545
-#> 6 30031683 ASHEVILLE 4.0 NNE, NC      35.6224      -82.5096
-#>             por.beginDate             por.endDate precision
-#> 1                 Unknown                 Present      <NA>
-#> 2 1965-12-01T00:00:00.000 1976-01-31T00:00:00.000    DDMMSS
-#> 3 1946-03-30T00:00:00.000 1992-10-01T00:00:00.000      DDMM
-#> 4 1936-09-25T00:00:00.000 1962-03-31T00:00:00.000      DDMM
-#> 5 1963-10-01T00:00:00.000 2007-11-14T00:00:00.000    DDMMSS
-#> 6                 Unknown                 Present      <NA>
+#>        .id                   preferredName latitude_dec longitude_dec
+#> 1 20013763 ASHEVILLE HENDERSONVILLE AP, NC     35.43333     -82.48333
+#> 2 20013851                 WEAVERVILLE, NC         35.7     -82.56667
+#> 3 30084608       BLACK MOUNTAIN 2.4 SE, NC      35.5857      -82.3056
+#> 4 30119059           SWANNANOA 4.0 NNW, NC      35.6549      -82.4211
+#> 5 30031683           ASHEVILLE 4.0 NNE, NC      35.6224      -82.5096
+#> 6 30063513           ASHEVILLE 5.6 NNW, NC      35.6534      -82.5709
+#>   precision           por.beginDate             por.endDate
+#> 1      DDMM 1940-11-01T00:00:00.000 1960-12-31T00:00:00.000
+#> 2      DDMM 1946-03-30T00:00:00.000 1992-10-01T00:00:00.000
+#> 3      <NA>                 Unknown                 Present
+#> 4      <NA>                 Unknown                 Present
+#> 5      <NA>                 Unknown                 Present
+#> 6      <NA>                 Unknown                 Present
 ```
 
 ## Get header information only
@@ -328,19 +329,19 @@ head( ldply(res, "[[", "head") )
 
 ```
 #>        .id                preferredName latitude_dec longitude_dec
-#> 1 30094670       HARRINGTON 3.3 SSW, DE      38.8821      -75.6052
-#> 2 10100166    WILMINGTON PORTER RES, DE      39.7739      -75.5414
-#> 3 30001464                BEAR 2 SW, DE      39.5917      -75.7325
-#> 4 30101363            LEWES 1.5 SSW, DE      38.7588      -75.1579
-#> 5 20004172               ADAMSVILLE, DE     38.81667         -75.7
-#> 6 20004165 BRIDGEVILLE STATE POLICE, DE     38.77444      -75.6075
-#>             por.beginDate             por.endDate precision
-#> 1                 Unknown                 Present      <NA>
-#> 2 1912-07-12T00:00:00.000                 Present   DDddddd
-#> 3 2003-02-01T00:00:00.000 2013-04-02T00:00:00.000    DDMMSS
-#> 4                 Unknown                 Present      <NA>
-#> 5 1967-09-01T00:00:00.000 1969-12-31T00:00:00.000      DDMM
-#> 6 1975-08-01T00:00:00.000 2003-09-01T00:00:00.000    DDMMSS
+#> 1 20004165 BRIDGEVILLE STATE POLICE, DE     38.77444      -75.6075
+#> 2 20004172               ADAMSVILLE, DE     38.81667         -75.7
+#> 3 30077988         SELBYVILLE 7.1 E, DE      38.4612      -75.0893
+#> 4 30001464                BEAR 2 SW, DE      39.5917      -75.7325
+#> 5 10100166    WILMINGTON PORTER RES, DE      39.7739      -75.5414
+#> 6 30094670       HARRINGTON 3.3 SSW, DE      38.8821      -75.6052
+#>   precision           por.beginDate             por.endDate
+#> 1    DDMMSS 1975-08-01T00:00:00.000 2003-09-01T00:00:00.000
+#> 2      DDMM 1967-09-01T00:00:00.000 1969-12-31T00:00:00.000
+#> 3      <NA>                 Unknown                 Present
+#> 4    DDMMSS 2003-02-01T00:00:00.000 2013-04-02T00:00:00.000
+#> 5   DDddddd 1912-07-12T00:00:00.000 2019-03-19T00:00:00.000
+#> 6      <NA>                 Unknown                 Present
 ```
 
 ## Data definitions

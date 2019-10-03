@@ -47,7 +47,7 @@ furthest distance to the location and returned as the function output.
 \examples{
 \dontrun{
 station_data <- ghcnd_stations()
-meteo_process_geographic_data(station_data, -33, 151)
+meteo_process_geographic_data(station_data, lat=-33, long=151)
 }
 }
 \author{

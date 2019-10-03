@@ -1,21 +1,30 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{ncdc workflow}
-%\VignetteEncoding{UTF-8}
--->
+---
+title: "NCDC workflow"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{NCDC workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
-
-
-NCDC workflow
-======
+```{r, echo  =  FALSE, warning = FALSE, message = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(
+  collapse  =  TRUE,
+  comment  =  "#>",
+  purl  =  NOT_CRAN,
+  eval  =  NOT_CRAN
+)
+```
 
 This vignette is intended to demonstrate a workflow for using the NOAA NCDC data using the `ncdc*()` functions. It can be confusing to understand how to get at data you want - that's the motivation for this vignette. Other vignettes show more thorough and different examples for specific data sources.
 
 
 ## Load rnoaa
 
-
-```r
+```{r load}
 library('rnoaa')
 ```
 
@@ -28,28 +37,15 @@ library('rnoaa')
 ### Look for weather stations & get station id(s)
 
 
-
-```r
+```{r two, message=FALSE, warning=FALSE, cache=FALSE}
 ids <- ncdc_stations(locationid='FIPS:12017')$data$id[1:13]
 id <- "GHCND:US1FLCT0002"
 ```
 
 Just information for one station
 
-
-```r
+```{r}
 ncdc_stations(stationid = id)
-#> $meta
-#> NULL
-#> 
-#> $data
-#>   elevation    mindate    maxdate latitude                     name
-#> 1      36.9 2007-09-01 2012-10-24  28.8303 INVERNESS 1.6 WSW, FL US
-#>   datacoverage                id elevationUnit longitude
-#> 1       0.9995 GHCND:US1FLCT0002        METERS  -82.3688
-#> 
-#> attr(,"class")
-#> [1] "ncdc_stations"
 ```
 
 
@@ -57,73 +53,20 @@ ncdc_stations(stationid = id)
 
 There are various ways to look for data types available. First, __data categories__:
 
-
-```r
+```{r}
 ncdc_datacats(stationid = id)
-#> $meta
-#> $meta$totalCount
-#> [1] 2
-#> 
-#> $meta$pageCount
-#> [1] 25
-#> 
-#> $meta$offset
-#> [1] 1
-#> 
-#> 
-#> $data
-#>            name   id
-#> 1      Computed COMP
-#> 2 Precipitation PRCP
-#> 
-#> attr(,"class")
-#> [1] "ncdc_datacats"
 ```
 
 Another way is looking for __data sets__:
 
-
-```r
+```{r}
 ncdc_datasets(stationid = id)
-#> $meta
-#> $meta$offset
-#> [1] 1
-#> 
-#> $meta$count
-#> [1] 2
-#> 
-#> $meta$limit
-#> [1] 25
-#> 
-#> 
-#> $data
-#>                    uid    mindate    maxdate                        name
-#> 1 gov.noaa.ncdc:C00861 1763-01-01 2018-11-25             Daily Summaries
-#> 2 gov.noaa.ncdc:C00946 1763-01-01 2018-10-01 Global Summary of the Month
-#>   datacoverage    id
-#> 1            1 GHCND
-#> 2            1  GSOM
-#> 
-#> attr(,"class")
-#> [1] "ncdc_datasets"
 ```
 
 Yet another way is looking for __data types__:
 
-
-```r
+```{r}
 ncdc_datatypes(datasetid = "GHCND", stationid = id)
-#> $meta
-#>   offset count limit
-#> 1      1     2    25
-#> 
-#> $data
-#>      mindate    maxdate          name datacoverage   id
-#> 1 1781-01-01 2018-11-25 Precipitation            1 PRCP
-#> 2 1840-05-01 2018-11-25      Snowfall            1 SNOW
-#> 
-#> attr(,"class")
-#> [1] "ncdc_datatypes"
 ```
 
 ### Search for climate data for stations (optionally specify type of data to get)
@@ -138,36 +81,6 @@ Importantly, note that you have to specify three things in a call to the `ncdc` 
 
 Here, we are specifying the `datasetid`, `stationid`, `datatypeid`, `startdate`, and `enddate`
 
-
-```r
+```{r}
 ncdc(datasetid = "GHCND", stationid = id, datatypeid = "PRCP", startdate = "2012-10-01", enddate = "2013-01-01")
-#> $meta
-#> $meta$totalCount
-#> [1] 22
-#> 
-#> $meta$pageCount
-#> [1] 25
-#> 
-#> $meta$offset
-#> [1] 1
-#> 
-#> 
-#> $data
-#> # A tibble: 22 x 8
-#>    date              datatype station         value fl_m  fl_q  fl_so fl_t 
-#>    <chr>             <chr>    <chr>           <int> <chr> <chr> <chr> <chr>
-#>  1 2012-10-01T00:00… PRCP     GHCND:US1FLCT0…    13 ""    ""    N     ""   
-#>  2 2012-10-02T00:00… PRCP     GHCND:US1FLCT0…     3 ""    ""    N     ""   
-#>  3 2012-10-03T00:00… PRCP     GHCND:US1FLCT0…    15 ""    ""    N     ""   
-#>  4 2012-10-04T00:00… PRCP     GHCND:US1FLCT0…   142 ""    ""    N     ""   
-#>  5 2012-10-05T00:00… PRCP     GHCND:US1FLCT0…   244 ""    ""    N     ""   
-#>  6 2012-10-06T00:00… PRCP     GHCND:US1FLCT0…   655 ""    ""    N     ""   
-#>  7 2012-10-07T00:00… PRCP     GHCND:US1FLCT0…    23 ""    ""    N     ""   
-#>  8 2012-10-08T00:00… PRCP     GHCND:US1FLCT0…     0 ""    ""    N     ""   
-#>  9 2012-10-09T00:00… PRCP     GHCND:US1FLCT0…     3 ""    ""    N     ""   
-#> 10 2012-10-10T00:00… PRCP     GHCND:US1FLCT0…     0 ""    ""    N     ""   
-#> # … with 12 more rows
-#> 
-#> attr(,"class")
-#> [1] "ncdc_data"
 ```

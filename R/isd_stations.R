@@ -58,8 +58,8 @@ isd_stations <- function(refresh = FALSE) {
     dat <- stats::setNames(df, gsub("_$", "", gsub("\\.", "_", tolower(names(df)))))
     if (!file.exists(basedir)) dir.create(basedir, recursive = TRUE)
     saveRDS(dat, file = path)
-    as_data_frame(dat)
+    as_tibble(dat)
   } else {
-    as_data_frame(readRDS(path))
+    as_tibble(readRDS(path))
   }
 }

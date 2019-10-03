@@ -50,6 +50,5 @@ obs_covr <- meteo_coverage(obs)
 
 library("ggplot2")
 autoplot(obs_covr)
-
 }
 }

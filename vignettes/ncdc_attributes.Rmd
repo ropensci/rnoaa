@@ -1,11 +1,23 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{NOAA NCDC dataset attributes}
-%\VignetteEncoding{UTF-8}
--->
+---
+title: "NOAA NCDC dataset attributes"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{NOAA NCDC dataset attributes}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
-NOAA NCDC dataset attributes
-======
+```{r, echo  =  FALSE, warning = FALSE, message = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(
+  collapse  =  TRUE,
+  comment  =  "#>",
+  purl  =  NOT_CRAN,
+  eval  =  NOT_CRAN
+)
+```
 
 The attributes, or "flags", for each row of the output for data may have a flag with it.
 Each `datasetid` has it's own set of flags. The following are flag columns, and what they

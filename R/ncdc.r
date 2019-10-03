@@ -223,7 +223,7 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
     dat <- dplyr::bind_rows(lapply(tt$results, function(x)
       data.frame(x, stringsAsFactors = FALSE)))
     meta <- tt$metadata$resultset
-    dat <- if (add_units) ncdc_add_units(dat, datasetid) else tibble::as_data_frame(dat)
+    dat <- if (add_units) ncdc_add_units(dat, datasetid) else tibble::as_tibble(dat)
     atts <- list(totalCount = meta$count, pageCount = meta$limit,
                  offset = meta$offset)
     all <- list(meta = atts, data = dat)
