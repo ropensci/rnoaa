@@ -32,7 +32,7 @@ we determine the directory on your machine to save files to, and run
 shp <- tornadoes()
 library('sp')
 if (interactive()) {
-  # may take 10 sec or so to render 
+  # may take 10 sec or so to render
   plot(shp)
 }
 }
