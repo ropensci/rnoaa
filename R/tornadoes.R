@@ -21,7 +21,7 @@
 #' shp <- tornadoes()
 #' library('sp')
 #' if (interactive()) {
-#'   # may take 10 sec or so to render 
+#'   # may take 10 sec or so to render
 #'   plot(shp)
 #' }
 #' }
@@ -35,7 +35,7 @@ tornadoes <- function(overwrite = TRUE, ...) {
   check4pkg('rgdal')
   path <- file.path(rnoaa_cache_dir(), "tornadoes")
   if (!is_tornadoes(path)) {
-    url <- 'https://www.spc.noaa.gov/gis/svrgis/zipped/1950-2017-torn-aspath.zip'
+    url <- 'https://www.spc.noaa.gov/gis/svrgis/zipped/1950-2018-torn-aspath.zip'
     tornadoes_GET(path, url, overwrite, ...)
   }
   readshp(file.path(path, tornadoes_basename))
@@ -61,7 +61,7 @@ is_tornadoes <- function(x){
   }
 }
 
-tornadoes_basename <- "1950-2017-torn-aspath"
+tornadoes_basename <- "1950-2018-torn-aspath"
 
 readshp <- function(x) rgdal::readOGR(dsn = path.expand(x),
                                       layer = tornadoes_basename,
