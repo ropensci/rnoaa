@@ -9,16 +9,14 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r, echo  =  FALSE, warning = FALSE, message = FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-NOT_TRAVIS <- identical(Sys.getenv("TRAVIS"), "true")
-NOT_NOT <- NOT_CRAN || NOT_TRAVIS
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(
   collapse  =  TRUE,
   comment  =  "#>",
-  purl  =  NOT_NOT,
-  eval  =  NOT_NOT
+  purl  =  FALSE,
+  eval  =  FALSE
 )
+```
 ```
 
 `SWDI` is the Severe Weather Data Inventory. SWDI is an (quoting)
