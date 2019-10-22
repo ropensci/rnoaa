@@ -9,7 +9,7 @@ install:
 
 build_script:
   - travis-tool.sh install_deps
-  - travis-tool.sh r_binary_install proto rgdal crul lubridate dplyr tidyr tidyselect ggplot2 scales XML xml2 jsonlite rappdirs gridExtra tibble isdparser geonames hoardr roxygen2 testthat knitr taxize ncdf4 raster leaflet rgdal sf rmarkdown purrr ggmap ropenaq vcr
+  - travis-tool.sh r_packages proto rgdal crul lubridate dplyr tidyr tidyselect ggplot2 scales XML xml2 jsonlite rappdirs gridExtra tibble isdparser geonames hoardr roxygen2 testthat knitr taxize ncdf4 raster leaflet rgdal sf rmarkdown purrr ggmap ropenaq vcr
 
 test_script:
   - travis-tool.sh run_tests
