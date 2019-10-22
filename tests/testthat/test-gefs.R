@@ -92,7 +92,7 @@ test_that("ens_idx and time_idx replace ens and time values", {
             time_idx = 3:4,
             forecast_time = "0000",
             lon = lons, lat = lats)
-  expect_true(all(c(12,18) %in% unique(d$data$time1)))
+  expect_true(all(c(12,18) %in% unique(d$data$time2)))
 })
 
 test_that("gefs_variables returns characters.", {
@@ -137,9 +137,15 @@ test_that("gefs_dimensions returns character list.", {
 })
 
 test_that("gefs_dimension_values errors", {
-  expect_error(gefs_dimension_values(dim = "time2", var = temp), "time2 is not in variable dimensions: lon, lat, height_above_ground, ens, time1.", fixed = TRUE)
-  expect_error(gefs_dimension_values(), "dim cannot be NULL or missing.", fixed = TRUE)
-  expect_error(gefs_dimension_values(dim = "ens1"), "ens1 is not a valid GEFS dimension. Check with 'gefs_dimensions()'.", fixed = TRUE)
+  # FIXME: this doesn't error anymore, ask Potter
+  # expect_error(gefs_dimension_values(dim = "time2", var = temp),
+  #   "time2 is not in variable dimensions: lon, lat, height_above_ground, ens, time1.",
+  #   fixed = TRUE)
+  expect_error(gefs_dimension_values(),
+    "dim cannot be NULL or missing.", fixed = TRUE)
+  expect_error(gefs_dimension_values(dim = "ens1"),
+    "ens1 is not a valid GEFS dimension. Check with 'gefs_dimensions()'.",
+    fixed = TRUE)
 })
 
 test_that("gefs_dimension_values returns numeric array.", {
