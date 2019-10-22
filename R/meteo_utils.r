@@ -32,8 +32,10 @@
 #' obs <- meteo_pull_monitors(monitors)
 #' obs_covr <- meteo_coverage(obs)
 #'
-#' library("ggplot2")
-#' autoplot(obs_covr)
+#' if (interactive()) {
+#'   library("ggplot2")
+#'   autoplot(obs_covr)
+#' }
 #' }
 meteo_coverage <- function(meteo_df,
                            obs_start_date=NULL,
