@@ -15,9 +15,7 @@ Checked on the 2 reverse dependencies - no problems were found
 
 -----
 
-This version includes a few new functions, changes some function names, improves documentation and fixes somem bugs.
-
-Also included is a fix for a link in the README, now using a fully specified URL.
+This version fixes some bugs.
 
 Thanks!
 Scott Chamberlain
