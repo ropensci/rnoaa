@@ -1,8 +1,10 @@
 context("vis_miss")
 
 test_that("Valid ggplot object is produced",{
+  skip_on_cran()
+
   monitors <- c("ASN00003003", "ASM00094299")
-  weather_df <- meteo_pull_monitors(monitors)
+  weather_df <- suppressMessages(meteo_pull_monitors(monitors))
   out <- vis_miss(weather_df)
 
   expect_is(out, "ggplot")
