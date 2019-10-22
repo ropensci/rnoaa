@@ -11,6 +11,7 @@ test_that("gefs errors", {
   skip_on_cran()
   skip_on_appveyor()
   skip_on_travis()
+  skip_on_os("windows")
 
   expect_error(gefs(lat=lat, lon=lon), "Need to specify the variable to get. A list of variables is available from gefs_variables().")
   expect_error(gefs(var = temp, lat = c(-43, -41), lon = lons, ens = 1, time = 6), "Latitudes must be sequential.", fixed = TRUE)
@@ -27,6 +28,7 @@ test_that("gefs HTTP requests", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
+  skip_on_os("windows")
 
   ### Get raw and processed data
   d_raw <- gefs(var = temp,
@@ -77,6 +79,7 @@ test_that("ens_idx and time_idx replace ens and time values", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
+  skip_on_os("windows")
 
   d <- gefs(var = temp,
             ens = 0,
@@ -99,6 +102,7 @@ test_that("gefs_variables returns characters.", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
+  skip_on_os("windows")
 
   vars = gefs_variables()
 
@@ -110,6 +114,7 @@ test_that("gefs_latitudes returns numeric.", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
+  skip_on_os("windows")
 
   lats = gefs_latitudes()
   expect_is(lats, "array")
@@ -120,6 +125,7 @@ test_that("gefs_longitudes returns numeric.", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
+  skip_on_os("windows")
 
   lons = gefs_longitudes()
   expect_is(lons, "array")
@@ -130,6 +136,7 @@ test_that("gefs_dimensions returns character list.", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
+  skip_on_os("windows")
 
   dims = gefs_dimensions()
   expect_is(dims, "character")
@@ -137,6 +144,8 @@ test_that("gefs_dimensions returns character list.", {
 })
 
 test_that("gefs_dimension_values errors", {
+  skip_on_os("windows")
+  
   # FIXME: this doesn't error anymore, ask Potter
   # expect_error(gefs_dimension_values(dim = "time2", var = temp),
   #   "time2 is not in variable dimensions: lon, lat, height_above_ground, ens, time1.",
@@ -152,6 +161,7 @@ test_that("gefs_dimension_values returns numeric array.", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
+  skip_on_os("windows")
 
   vals = gefs_dimension_values("lat")
   expect_is(vals, "array")
