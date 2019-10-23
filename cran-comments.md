@@ -15,7 +15,7 @@ Checked on the 2 reverse dependencies - no problems were found
 
 -----
 
-This version fixes some bugs.
+This version fixes some bugs and fixes a failing test on some cran checks.
 
 Thanks!
 Scott Chamberlain
