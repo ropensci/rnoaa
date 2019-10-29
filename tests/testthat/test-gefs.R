@@ -153,7 +153,7 @@ test_that("gefs_dimension_values errors", {
   skip_on_os("windows")
   
   expect_error(gefs_dimension_values(dim = "time1", var = temp),
-    "time1 is not in variable dimensions: lon, lat, height_above_ground, ens, time2.",
+    "time2 is not in variable dimensions: lon, lat, height_above_ground, ens, time1.",
     fixed = TRUE)
   expect_error(gefs_dimension_values(),
     "dim cannot be NULL or missing.", fixed = TRUE)
