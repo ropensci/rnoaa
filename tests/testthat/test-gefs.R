@@ -30,15 +30,19 @@ test_that("gefs HTTP requests", {
   skip_on_appveyor()
   skip_on_os("windows")
 
+  two_days_ago <- format(Sys.Date() - 2, "%Y%m%d")
+
   ### Get raw and processed data
   d_raw <- gefs(var = temp,
                 ens = 1:2,
                 time = c(6,12),
+		date = two_days_ago,
                 forecast_time = "0000",
                 lon = lons, lat = lats, raw = TRUE)
   d <- gefs(var = temp,
             ens = 0:1,
             time = c(6,12),
+	    date = two_days_ago,
             forecast_time = "0000",
             lon = lons, lat = lats)
 
@@ -46,7 +50,7 @@ test_that("gefs HTTP requests", {
   expect_type(d, "list")
   expect_equal(names(d),
                c("forecast_date", "forecast_time", "dimensions", "data"))
-  expect_equal(d$forecast_date, format(Sys.time(), "%Y%m%d"))
+  expect_equal(d$forecast_date, two_days_ago)
   expect_equal(d$forecast_time, "0000")
   expect_s3_class(d$data, "data.frame")
 
@@ -85,6 +89,7 @@ test_that("ens_idx and time_idx replace ens and time values", {
             ens = 0,
             time = 6,
             ens_idx = 1:2,
+    	    date = format(Sys.Date() - 2, "%Y%m%d"),
             forecast_time = "0000",
             lon = lons, lat = lats)
   expect_true(all(0:1 %in% unique(d$data$ens)))
@@ -93,10 +98,10 @@ test_that("ens_idx and time_idx replace ens and time values", {
             ens = 0,
             time = 6,
             time_idx = 3:4,
+   	    date = format(Sys.Date() - 2, "%Y%m%d"),
             forecast_time = "0000",
             lon = lons, lat = lats)
-  #expect_true(all(c(12,18) %in% unique(d$data$time1)))
-  expect_true(all(c(12,18) %in% unique(d$data$time2)))
+  expect_true(all(c(12,18) %in% unique(d$data$time)))
 })
 
 test_that("gefs_variables returns characters.", {
@@ -147,16 +152,14 @@ test_that("gefs_dimensions returns character list.", {
 test_that("gefs_dimension_values errors", {
   skip_on_os("windows")
   
-  # FIXME: this doesn't error anymore, ask Potter
-  # expect_error(gefs_dimension_values(dim = "time2", var = temp),
-  #   "time2 is not in variable dimensions: lon, lat, height_above_ground, ens, time1.",
-  #   fixed = TRUE)
+  expect_error(gefs_dimension_values(dim = "time1", var = temp),
+    "time1 is not in variable dimensions: lon, lat, height_above_ground, ens, time2.",
+    fixed = TRUE)
   expect_error(gefs_dimension_values(),
     "dim cannot be NULL or missing.", fixed = TRUE)
   expect_error(gefs_dimension_values(dim = "ens1"),
     "ens1 is not a valid GEFS dimension. Check with 'gefs_dimensions()'.",
     fixed = TRUE)
->>>>>>> upstream/master
 })
 
 test_that("gefs_dimension_values returns numeric array.", {
