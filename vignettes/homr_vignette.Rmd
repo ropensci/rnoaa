@@ -9,13 +9,12 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r, echo  =  FALSE, warning = FALSE, message = FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(
   collapse  =  TRUE,
   comment  =  "#>",
-  purl  =  NOT_CRAN,
-  eval  =  NOT_CRAN
+  purl  =  FALSE,
+  eval  =  FALSE
 )
 ```
 
@@ -75,22 +74,22 @@ By country
 
 ```{r}
 res <- homr(country='GHANA', begindate='2005-01-01', enddate='2005-02-01')
-library("plyr")
-ldply(res, function(x) x$location$latlon)
+library("dplyr")
+bind_rows(lapply(res, function(x) x$location$latlon))
 ```
 
 By state and county
 
 ```{r}
 res <- homr(state='NC', county='BUNCOMBE', headersOnly = TRUE)
-head( ldply(res, "[[", "head") )
+head(bind_rows(lapply(res, "[[", "head")))
 ```
 
 ## Get header information only
 
 ```{r}
 res <- homr(headersOnly=TRUE, state='DE')
-head( ldply(res, "[[", "head") )
+head(bind_rows(lapply(res, "[[", "head")))
 ```
 
 ## Data definitions

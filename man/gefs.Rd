@@ -48,11 +48,11 @@ nearest GEFS available longitude.}
 \item{forecast_time}{a string indicating which time of day UTC the
 forecast is from. Options are "0000", "0600", "1200", "1800".}
 
-\item{ens_idx}{sequential list of ensembles to fetch. Default is all 21.
+\item{ens, ens_idx}{sequential list of ensembles to fetch. Default is all 21.
 Note that the ensembles are labelled 0-20, so ens_idx=1:3 will return
 ensembles 0, 1, and 2.}
 
-\item{time_idx}{sequential list of time increments to return. List is the
+\item{time, time_idx}{sequential list of time increments to return. List is the
 index of times, which are in 6 hour increments. (e.g. c(1,2) fetches the
 6 and 12 hour forecast.)}
 

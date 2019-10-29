@@ -281,7 +281,7 @@ out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
-![plot of chunk unnamed-chunk-14](tools/unnamed-chunk-14-1.png)
+![plot of chunk unnamed-chunk-14](https://raw.githubusercontent.com/ropensci/rnoaa/master/tools/unnamed-chunk-14-1.png)
 
 Note that `PRCP` values are in units of tenths of a millimeter, as we found out above.
 
@@ -296,7 +296,7 @@ out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP'
 ncdc_plot(out1, out2, breaks="45 days")
 ```
 
-![plot of chunk unnamed-chunk-15](tools/unnamed-chunk-15-1.png)
+![plot of chunk unnamed-chunk-15](https://raw.githubusercontent.com/ropensci/rnoaa/master/tools/unnamed-chunk-15-1.png)
 
 ### Get table of all datasets
 
@@ -407,7 +407,7 @@ library('sp')
 plot(shp)
 ```
 
-![plot of chunk unnamed-chunk-18](tools/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](https://raw.githubusercontent.com/ropensci/rnoaa/master/tools/unnamed-chunk-18-1.png)
 
 ## HOMR metadata
 

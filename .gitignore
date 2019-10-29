@@ -13,3 +13,5 @@ revdep/checks.noindex
 revdep/data.sqlite
 revdep/library.noindex
 vignettes/buoy_vignette_cache/
+vignettes/storms_vignette_cache/
+vignettes/storms_vignette_files/

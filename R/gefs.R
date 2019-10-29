@@ -15,10 +15,10 @@
 #' @param date A date/string formatted as YYYYMMDD.
 #' @param forecast_time a string indicating which time of day UTC the
 #' forecast is from. Options are "0000", "0600", "1200", "1800".
-#' @param ens_idx sequential list of ensembles to fetch. Default is all 21.
+#' @param ens,ens_idx sequential list of ensembles to fetch. Default is all 21.
 #' Note that the ensembles are labelled 0-20, so ens_idx=1:3 will return
 #' ensembles 0, 1, and 2.
-#' @param time_idx sequential list of time increments to return. List is the
+#' @param time,time_idx sequential list of time increments to return. List is the
 #' index of times, which are in 6 hour increments. (e.g. c(1,2) fetches the
 #' 6 and 12 hour forecast.)
 #' @param dims (not implemented) indices for additional dimensions to be
@@ -170,14 +170,14 @@ gefs_GET <- function(var, lat = NULL, lon = NULL, ens = NULL, time = NULL,
   # Assign ens_idx and time_idx if used
   if(!is.null(ens_idx)) {
     d_idx <- which(dim_names == "ens")
-    if(!is.null(ens_idx)) message("'ens_idx' is depreciated and will be removed in future versions, please specify values (not indices) in 'ens' instead.")
+    if(!is.null(ens_idx)) message("'ens_idx' is deprecated and will be removed in future versions, please specify values (not indices) in 'ens' instead.")
     if(!any(ens_idx %in% 1:v$dim[[d_idx]]$len)) stop("'ens_idx' is out of bounds, check the dimension values with 'gefs_dimension_values(dim = 'ens').")
     dim_idxs[['ens']] <- ens_idx
   }
   if(!is.null(time_idx)) {
     time_name <- grep("time", dim_names, value = TRUE)
     d_idx <- which(dim_names %in% time_name)
-    if(!is.null(time_idx)) message("'time_idx' is depreciated and will be removed in future versions, please specify values (not indices) in 'time' instead.")
+    if(!is.null(time_idx)) message("'time_idx' is deprecated and will be removed in future versions, please specify values (not indices) in 'time' instead.")
     if(!any(time_idx %in% 1:v$dim[[d_idx]]$len)) stop("'time_idx' is out of bounds, check the dimension values with 'gefs_dimension_values(dim = 'time').")
     dim_idxs[[time_name]] <- time_idx
   }

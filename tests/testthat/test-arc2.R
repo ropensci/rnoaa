@@ -2,6 +2,8 @@ context("arc2")
 
 test_that("arc2 returns the expected output", {
   skip_on_cran()
+  skip_on_travis()
+  skip_on_appveyor()
   skip_if_government_down()
       
   arc2_result <- arc2(date = "1983-01-01")

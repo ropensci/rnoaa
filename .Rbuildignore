@@ -26,3 +26,5 @@ user_test_cases/
 ^codemeta\.json$
 tests/test-all.R
 vignettes/buoy_vignette_cache/
+vignettes/storms_vignette_cache/
+vignettes/storms_vignette_files/

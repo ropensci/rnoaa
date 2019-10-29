@@ -1,3 +1,17 @@
+rnoaa 0.9.2
+===========
+
+### MINOR IMPROVEMENTS
+
+* gefs gains new parameters `ens` and `time`, that will eventually replace the deprecated parameters `ens_idx` and `time_idx`  (#321) (#324)
+* `isd()` now using fetching data using http instead of ftp
+
+### BUG FIXES
+
+* fix to `tornadoes()`: the URL had changed yet again (#322) (#323) thanks @mbjoseph !
+* fix to gefs, was failing with some examples (#320) (#321)
+
+
 rnoaa 0.9.0
 ===========
 
