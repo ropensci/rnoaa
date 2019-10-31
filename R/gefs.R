@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @param var the variable to get. Must be one of the variables listed in
-#' `gefs_variables()`
+#' `gefs_variables()`.
 #' @param lat the latitude. Values must be sequential and are rounded to the
 #' nearest GEFS available latitude.
 #' @param lon the longitude. Values must be sequential and are rounded to the
@@ -25,7 +25,7 @@
 #' included between lat, lon, ens, and time.
 #' @param raw logical to indicate whether to return raw data matrix or
 #' reshaped data frame.
-#' @param ... additional parameters passed to `ncvar_get`
+#' @param ... additional parameters passed to the connection.
 #' @return a list containing metadata and accompanying data frame of
 #' forecast values. If lat/lon are not specified, the $data is an
 #' unprocessed matrix.
@@ -102,7 +102,6 @@ gefs_CONNECT <- function(date = format(Sys.time(), "%Y%m%d"),
   gefs_url <- paste0(gefs_url_pre, date, "_", forecast_time, gefs_url_suf)
 
   #open the connection
-  #nc_open(gefs_url) #ncdf4 version
   ncdf4::nc_open(gefs_url)
 }
 
@@ -133,7 +132,8 @@ gefs_GET <- function(var, lat = NULL, lon = NULL, ens = NULL, time = NULL,
   con <- gefs_CONNECT(date, forecast_time)
 
   # Rename extra dimensions, to be changed later
-  if (!is.null(dims)) { warning("Can't select additional dimensions yet.",
+  if (!is.null(dims)) {
+    warning("Can't select additional dimensions yet.",
                                 .call = FALSE)
   } else {
     additional_dims <- dims
@@ -171,14 +171,20 @@ gefs_GET <- function(var, lat = NULL, lon = NULL, ens = NULL, time = NULL,
   if(!is.null(ens_idx)) {
     d_idx <- which(dim_names == "ens")
     if(!is.null(ens_idx)) message("'ens_idx' is deprecated and will be removed in future versions, please specify values (not indices) in 'ens' instead.")
-    if(!any(ens_idx %in% 1:v$dim[[d_idx]]$len)) stop("'ens_idx' is out of bounds, check the dimension values with 'gefs_dimension_values(dim = 'ens').")
+    if(!any(ens_idx %in% 1:v$dim[[d_idx]]$len)) {
+      ncdf4::nc_close(con)
+      stop("'ens_idx' is out of bounds, check the dimension values with 'gefs_dimension_values(dim = 'ens').")
+    }
     dim_idxs[['ens']] <- ens_idx
   }
   if(!is.null(time_idx)) {
     time_name <- grep("time", dim_names, value = TRUE)
     d_idx <- which(dim_names %in% time_name)
     if(!is.null(time_idx)) message("'time_idx' is deprecated and will be removed in future versions, please specify values (not indices) in 'time' instead.")
-    if(!any(time_idx %in% 1:v$dim[[d_idx]]$len)) stop("'time_idx' is out of bounds, check the dimension values with 'gefs_dimension_values(dim = 'time').")
+    if(!any(time_idx %in% 1:v$dim[[d_idx]]$len)) {
+      ncdf4::nc_close(con)
+      stop("'time_idx' is out of bounds, check the dimension values with 'gefs_dimension_values(dim = 'time').")
+    }
     dim_idxs[[time_name]] <- time_idx
   }
 
@@ -190,6 +196,7 @@ gefs_GET <- function(var, lat = NULL, lon = NULL, ens = NULL, time = NULL,
 
   ##ncdf4 version
   d_raw <- ncdf4::ncvar_get(con, v, start = start, count = count_n, ...)
+  ncdf4::nc_close(con)
 
   #create the data frame
   #For now, if lat/lon are not specified, just return a matrix.
@@ -216,42 +223,79 @@ gefs_GET <- function(var, lat = NULL, lon = NULL, ens = NULL, time = NULL,
 
 #' @export
 #'
-#' @param con an ncdf4 connection.
+#' @param ... connection parameters passed to \code{gefs_dimension_values()}.
 #' @rdname gefs
-gefs_latitudes <- function(con = NULL, ...) {
-  gefs_dimension_values("lat", con)
+gefs_latitudes <- function(...) {
+  gefs_dimension_values(dim = "lat", ...)  
 }
 
 #' @export
+#' 
+#' @param ... connection parameters passed to \code{gefs_dimension_values()}.
 #' @rdname gefs
-gefs_longitudes <- function(con = NULL, ...) {
-  gefs_dimension_values("lon", con)
-}
-
-#' @export
-#' @rdname gefs
-gefs_variables <- function(con = NULL, ...) {
-  if (is.null(con)) con = gefs_CONNECT(...)
-  names(con$var)
-}
-
-#' @export
-#' @rdname gefs
-gefs_dimensions <- function(con = NULL, ...) {
-  if (is.null(con)) con = gefs_CONNECT(...)
-  names(con$dim)
+gefs_longitudes <- function(...) {
+  gefs_dimension_values(dim = "lon", ...)
 }
 
 #' @export
 #'
-#' @param dim (character) the dimension.
+#' @param ... connection parameters passed to \code{gefs_dimension_values()}.
 #' @rdname gefs
-gefs_dimension_values <- function(dim, var = NULL, con = NULL, ...) {
-  if (missing(dim)) stop("dim cannot be NULL or missing.")
-  if (is.null(con)) con = gefs_CONNECT(...)
+gefs_ensembles <- function(...) {
+  gefs_dimension_values(dim = "ens", ...)  
+}
 
+#' @export
+#'
+#' @param ... connection parameters passed to \code{gefs_dimension_values()}.
+#' @rdname gefs
+gefs_times <- function(...) {
+  gefs_dimension_values(dim = "time", ...)  
+}
+
+#' @export
+#' 
+#' @param ... connection parameters passed to \code{gefs_dimension_values()}.
+#' @rdname gefs
+gefs_variables <- function(...) {
+  con = gefs_CONNECT(...)
+  vars <- names(con$var)
+  ncdf4::nc_close(con)
+  vars
+}
+
+#' @export
+#'
+#' @param var (character) the variable for which to get dimensions.
+#' @rdname gefs
+gefs_dimensions <- function(var = NULL, ...) {
+
+  con = gefs_CONNECT(...)
+  if(is.null(var)) {
+    dims <- names(con$dim)
+  } else {
+    v <- con$var[[var]]
+    dims <- sapply(v$dim, function(d) { d$name })
+  }  
+  ncdf4::nc_close(con)
+  dims
+  
+}
+
+#' @export
+#'
+#' @param dim (character) the dimension to fetch values for.
+#' @param var (character) the variable for which to get dimension values for.
+#' @param ... additional parameters.
+#' @rdname gefs
+gefs_dimension_values <- function(dim, var = NULL, ...) {
+  if (missing(dim)) stop("dim cannot be NULL or missing.")
+
+  con = gefs_CONNECT(...)
+  
   if (!(dim %in% names(con$dim))) {
-    stop(paste0(dim, " is not a valid GEFS dimension. Check with 'gefs_dimensions()'."))
+    ncdf4::nc_close(con)
+    stop(paste0(dim, " is not a valid GEFS dimension. Get valid dimensions with 'gefs_dimensions()'."))
   }
 
   if (!is.null(var)) {
@@ -259,18 +303,21 @@ gefs_dimension_values <- function(dim, var = NULL, con = NULL, ...) {
     dim_names <- sapply(v$dim, function(d) { d$name })
 
     # there are multiple "time" dimensions, so get the one for this variable
-    if(dim == "time") dim <- grep("time", dim_names, value = TRUE)
-
-    if(!(dim %in% dim_names)) stop(paste0(dim,
-                                          " is not in variable dimensions: ",
-                                         paste0(dim_names, collapse = ", "),
-                                         "."))
-
+    if(grepl("time", dim)) dim <- grep("time", dim_names, value = TRUE)
+    if(!(dim %in% dim_names)) {
+      ncdf4::nc_close(con)
+      stop(paste0(dim,
+                  " is not in variable dimensions: ",
+                  paste0(dim_names, collapse = ", "),
+                  "."))
+    }
+    
     dim_idx <- which(dim_names == dim)
     res = con$var[[var]]$dim[[dim_idx]]$vals
   } else {
     res <- con$dim[[dim]]$vals
   }
+  ncdf4::nc_close(con)
   res
 }
 

@@ -1,11 +1,16 @@
 context("gefs")
 
+# Get the temporary directory
+temp_dir <- dirname(tempdir())
+nc_temp_files <- list.files(temp_dir, pattern = "^occookie")
+
+
 #set a location
 lons <- c(-1.1, 0, 0.8, 2)
 lats <- c(50.1, 51, 51.9, 53, 54)
 
 #variable
-temp = "Temperature_height_above_ground_ens"
+temp <- "Temperature_height_above_ground_ens"
 
 test_that("gefs errors", {
   skip_on_cran()
@@ -116,59 +121,86 @@ test_that("gefs_variables returns characters.", {
   expect_is(vars[1], "character")
 })
 
-test_that("gefs_latitudes returns numeric.", {
+test_that("gefs_latitudes, gefs_longitudes, gefs_ensembless, gefs_times", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
   skip_on_os("windows")
 
-  lats = gefs_latitudes()
+  lats <-  gefs_latitudes()
   expect_is(lats, "array")
   expect_is(lats[1], "numeric")
-})
+  expect_equal(lats, array(90:-90))
 
-test_that("gefs_longitudes returns numeric.", {
-  skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
-  skip_on_os("windows")
-
-  lons = gefs_longitudes()
+  #vlats <- gefs_latitudes(var = temp)
+  
+  lons <-  gefs_longitudes()
   expect_is(lons, "array")
   expect_is(lons[1], "numeric")
+  expect_equal(lons, array(0:359))
+
+  #vlons <- gefs_longitudes(var = temp)
+
+  enss <-  gefs_ensembles()
+  expect_is(enss, "array")
+  expect_is(enss[1], "integer")
+  expect_equal(enss, array(0:20))
+
+  #venss <- gefs_ensembles(var = temp)
+
+  times <-  gefs_times()
+  expect_is(times, "array")
+  expect_is(times[1], "numeric")
+  expect_equal(times, array(seq(0,384, by = 6)))
+
+  #vlons <- gefs_times(var = temp)
 })
 
-test_that("gefs_dimensions returns character list.", {
+test_that("gefs_dimensions", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
   skip_on_os("windows")
 
-  dims = gefs_dimensions()
+  dims <- gefs_dimensions()
   expect_is(dims, "character")
   expect_is(dims[1], "character")
+
+  vdims <- gefs_dimensions(var = temp)
+  expect_true(all(vdims %in% c("lon", "lat", "height_above_ground", "ens",
+                               "time", "time1", "time2")))
 })
 
 test_that("gefs_dimension_values errors", {
   skip_on_os("windows")
+
   
-  expect_error(gefs_dimension_values(dim = "time2", var = temp),
-    "time2 is not in variable dimensions: lon, lat, height_above_ground, ens, time1.",
-    fixed = TRUE)
   expect_error(gefs_dimension_values(),
     "dim cannot be NULL or missing.", fixed = TRUE)
   expect_error(gefs_dimension_values(dim = "ens1"),
-    "ens1 is not a valid GEFS dimension. Check with 'gefs_dimensions()'.",
+    "ens1 is not a valid GEFS dimension. Get valid dimensions with 'gefs_dimensions()'.",
     fixed = TRUE)
+
+  tempdims <- gefs_dimensions(var = temp)
+  expect_error(gefs_dimension_values(dim = "isobaric3", var = temp),
+               paste0("isobaric3 is not in variable dimensions: ",
+                      paste0(tempdims, collapse = ", "),
+                      "."),
+               fixed = TRUE)
 })
 
-test_that("gefs_dimension_values returns numeric array.", {
+test_that("gefs_dimension_values", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
   skip_on_os("windows")
 
-  vals = gefs_dimension_values("lat")
+  vals <- gefs_dimension_values("lat")
   expect_is(vals, "array")
   expect_is(vals[1], "numeric")
+})
+
+test_that("no remaining connection temp files exist", {
+  nc_temp_files2 <- list.files(temp_dir, pattern = "^occookie")
+  expect_equal(nc_temp_files, nc_temp_files2)
 })
