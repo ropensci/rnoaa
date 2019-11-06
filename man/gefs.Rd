@@ -6,6 +6,8 @@
 \alias{gefs_GET}
 \alias{gefs_latitudes}
 \alias{gefs_longitudes}
+\alias{gefs_ensembles}
+\alias{gefs_times}
 \alias{gefs_variables}
 \alias{gefs_dimensions}
 \alias{gefs_dimension_values}
@@ -21,19 +23,23 @@ gefs_GET(var, lat = NULL, lon = NULL, ens = NULL, time = NULL,
   "0600", "1200", "1800"), ens_idx = NULL, time_idx = NULL,
   dims = NULL, raw = FALSE, ...)
 
-gefs_latitudes(con = NULL, ...)
+gefs_latitudes(...)
 
-gefs_longitudes(con = NULL, ...)
+gefs_longitudes(...)
 
-gefs_variables(con = NULL, ...)
+gefs_ensembles(...)
 
-gefs_dimensions(con = NULL, ...)
+gefs_times(...)
 
-gefs_dimension_values(dim, var = NULL, con = NULL, ...)
+gefs_variables(...)
+
+gefs_dimensions(var = NULL, ...)
+
+gefs_dimension_values(dim, var = NULL, ...)
 }
 \arguments{
 \item{var}{the variable to get. Must be one of the variables listed in
-\code{gefs_variables()}}
+\code{gefs_variables()}.}
 
 \item{lat}{the latitude. Values must be sequential and are rounded to the
 nearest GEFS available latitude.}
@@ -41,7 +47,7 @@ nearest GEFS available latitude.}
 \item{lon}{the longitude. Values must be sequential and are rounded to the
 nearest GEFS available longitude.}
 
-\item{...}{additional parameters passed to \code{ncvar_get}}
+\item{...}{additional parameters passed to the connection.}
 
 \item{date}{A date/string formatted as YYYYMMDD.}
 
@@ -62,9 +68,23 @@ included between lat, lon, ens, and time.}
 \item{raw}{logical to indicate whether to return raw data matrix or
 reshaped data frame.}
 
-\item{con}{an ncdf4 connection.}
+\item{dim}{(character) the dimension to fetch values for.}
 
-\item{dim}{(character) the dimension.}
+\item{...}{connection parameters passed to \code{gefs_dimension_values()}.}
+
+\item{...}{connection parameters passed to \code{gefs_dimension_values()}.}
+
+\item{...}{connection parameters passed to \code{gefs_dimension_values()}.}
+
+\item{...}{connection parameters passed to \code{gefs_dimension_values()}.}
+
+\item{...}{connection parameters passed to \code{gefs_dimension_values()}.}
+
+\item{var}{(character) the variable for which to get dimensions.}
+
+\item{var}{(character) the variable for which to get dimension values for.}
+
+\item{...}{additional parameters.}
 }
 \value{
 a list containing metadata and accompanying data frame of
