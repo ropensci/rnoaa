@@ -102,4 +102,24 @@
 #'
 #' The \code{path} parameter used to be used to set where files are stored
 #' on your machine.
+#' 
+#' @section API Status:
+#' The API is down as of 2019-11-07, and probably some time before that. The
+#' following functions won't work anymore (future package versions may bring
+#' them back if the API comes back):
+#' 
+#' \itemize{
+#'  \item argo_search
+#'  \item argo_files
+#'  \item argo_qwmo
+#'  \item argo_plan
+#' }
+#' 
+#' The following functions still work as they are based off the FTP server
+#' that still exists:
+#' 
+#' \itemize{
+#'  \item argo_buoy_files
+#'  \item argo
+#' }
 

@@ -9,6 +9,10 @@ rnoaa 0.9.4
 
 * `gefs` function fixes: fixed failing test on CRAN having to do with a date mismatch; `gefs` now cleans up temporary files  (#327) (#328)
 
+### BUG FIXES
+
+* Some argo buoy functions use an API and some use an FTP server. The API is down, and no longer exists. The funitons that use the API (`argo_search`, `argo_files`, `argo_qwmo`, `argo_plan`) no longer work, while the functions that use the FTP server still work (`argo_buoy_files`, `argo`)  (#333)
+
 
 rnoaa 0.9.2
 ===========
