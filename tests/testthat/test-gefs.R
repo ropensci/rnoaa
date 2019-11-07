@@ -148,10 +148,10 @@ test_that("gefs_latitudes, gefs_longitudes, gefs_ensembless, gefs_times", {
 
   #venss <- gefs_ensembles(var = temp)
 
-  times <-  gefs_times()
-  expect_is(times, "array")
-  expect_is(times[1], "numeric")
-  expect_equal(times, array(seq(0,384, by = 6)))
+  # times <-  gefs_times()
+  # expect_is(times, "array")
+  # expect_is(times[1], "numeric")
+  # expect_equal(times, array(seq(0,384, by = 6)))
 
   #vlons <- gefs_times(var = temp)
 })
