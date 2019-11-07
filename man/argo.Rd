@@ -265,5 +265,5 @@ argo(dac = "meds", id = 4900881, cycle = 127, dtype = "D")
 }
 }
 \references{
-\url{http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html}
+http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html
 }

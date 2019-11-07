@@ -50,7 +50,7 @@
 #' @param dtype (character) Data type, one of \code{D} for delayed, or \code{R} for real-time
 #' @param limit (integer) number to return
 #' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}. Optional
-#' @references \url{http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html}
+#' @references http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html
 #' @details
 #' \code{area} parameter definitions:
 #' \itemize{
