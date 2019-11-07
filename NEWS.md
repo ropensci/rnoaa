@@ -1,3 +1,15 @@
+rnoaa 0.9.4
+===========
+
+### NEW FEATURES
+
+* new gefs function helpers `gefs_dimensions` and `gefs_ensembles` (#327) (#328)
+
+### MINOR IMPROVEMENTS
+
+* `gefs` function fixes: fixed failing test on CRAN having to do with a date mismatch; `gefs` now cleans up temporary files  (#327) (#328)
+
+
 rnoaa 0.9.2
 ===========
 

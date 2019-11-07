@@ -15,7 +15,7 @@ Checked on the 2 reverse dependencies - no problems were found
 
 -----
 
-This version fixes some bugs and fixes a failing test on some cran checks.
+This version fixes problems with the gefs functions that arose from CRAN check failures and files left on disk as reported by CRAN maintainers.
 
 Thanks!
 Scott Chamberlain

@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/rnoaa",
   "issueTracker": "https://github.com/ropensci/rnoaa/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.9.2",
+  "version": "0.9.4",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
