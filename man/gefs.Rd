@@ -47,7 +47,9 @@ nearest GEFS available latitude.}
 \item{lon}{the longitude. Values must be sequential and are rounded to the
 nearest GEFS available longitude.}
 
-\item{...}{additional parameters passed to the connection.}
+\item{...}{for \code{gefs()}, additional parameters passed to the
+connection, for other functions, passed on to
+\code{gefs_dimension_values()}}
 
 \item{date}{A date/string formatted as YYYYMMDD.}
 
@@ -69,22 +71,6 @@ included between lat, lon, ens, and time.}
 reshaped data frame.}
 
 \item{dim}{(character) the dimension to fetch values for.}
-
-\item{...}{connection parameters passed to \code{gefs_dimension_values()}.}
-
-\item{...}{connection parameters passed to \code{gefs_dimension_values()}.}
-
-\item{...}{connection parameters passed to \code{gefs_dimension_values()}.}
-
-\item{...}{connection parameters passed to \code{gefs_dimension_values()}.}
-
-\item{...}{connection parameters passed to \code{gefs_dimension_values()}.}
-
-\item{var}{(character) the variable for which to get dimensions.}
-
-\item{var}{(character) the variable for which to get dimension values for.}
-
-\item{...}{additional parameters.}
 }
 \value{
 a list containing metadata and accompanying data frame of

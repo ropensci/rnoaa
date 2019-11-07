@@ -25,7 +25,9 @@
 #' included between lat, lon, ens, and time.
 #' @param raw logical to indicate whether to return raw data matrix or
 #' reshaped data frame.
-#' @param ... additional parameters passed to the connection.
+#' @param ... for \code{gefs()}, additional parameters passed to the
+#' connection, for other functions, passed on to
+#' \code{gefs_dimension_values()}
 #' @return a list containing metadata and accompanying data frame of
 #' forecast values. If lat/lon are not specified, the $data is an
 #' unprocessed matrix.
@@ -223,7 +225,6 @@ gefs_GET <- function(var, lat = NULL, lon = NULL, ens = NULL, time = NULL,
 
 #' @export
 #'
-#' @param ... connection parameters passed to \code{gefs_dimension_values()}.
 #' @rdname gefs
 gefs_latitudes <- function(...) {
   gefs_dimension_values(dim = "lat", ...)  
@@ -231,7 +232,6 @@ gefs_latitudes <- function(...) {
 
 #' @export
 #' 
-#' @param ... connection parameters passed to \code{gefs_dimension_values()}.
 #' @rdname gefs
 gefs_longitudes <- function(...) {
   gefs_dimension_values(dim = "lon", ...)
@@ -239,7 +239,6 @@ gefs_longitudes <- function(...) {
 
 #' @export
 #'
-#' @param ... connection parameters passed to \code{gefs_dimension_values()}.
 #' @rdname gefs
 gefs_ensembles <- function(...) {
   gefs_dimension_values(dim = "ens", ...)  
@@ -247,7 +246,6 @@ gefs_ensembles <- function(...) {
 
 #' @export
 #'
-#' @param ... connection parameters passed to \code{gefs_dimension_values()}.
 #' @rdname gefs
 gefs_times <- function(...) {
   gefs_dimension_values(dim = "time", ...)  
@@ -255,7 +253,6 @@ gefs_times <- function(...) {
 
 #' @export
 #' 
-#' @param ... connection parameters passed to \code{gefs_dimension_values()}.
 #' @rdname gefs
 gefs_variables <- function(...) {
   con = gefs_CONNECT(...)
@@ -266,7 +263,6 @@ gefs_variables <- function(...) {
 
 #' @export
 #'
-#' @param var (character) the variable for which to get dimensions.
 #' @rdname gefs
 gefs_dimensions <- function(var = NULL, ...) {
 
@@ -285,8 +281,6 @@ gefs_dimensions <- function(var = NULL, ...) {
 #' @export
 #'
 #' @param dim (character) the dimension to fetch values for.
-#' @param var (character) the variable for which to get dimension values for.
-#' @param ... additional parameters.
 #' @rdname gefs
 gefs_dimension_values <- function(dim, var = NULL, ...) {
   if (missing(dim)) stop("dim cannot be NULL or missing.")
