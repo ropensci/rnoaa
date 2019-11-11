@@ -183,7 +183,7 @@ lcd_GET_write <- function(url, path, overwrite = TRUE, ...) {
 }
 
 lcd_base <- function() {
-  "https://www.ncei.noaa.gov/data/global-hourly/access"
+  "https://www.ncei.noaa.gov/data/local-climatological-data/access/"
 }
 
 lcd_key <- function(station, year) {
