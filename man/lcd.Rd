@@ -2,12 +2,9 @@
 % Please edit documentation in R/lcd.R
 \name{lcd}
 \alias{lcd}
-\alias{lcd_cleanup}
 \title{Local Climitalogical Data from NOAA}
 \usage{
 lcd(station, year, ...)
-
-lcd_cleanup(x)
 }
 \arguments{
 \item{station}{(character) station code, e.g., "02413099999". we will
@@ -17,8 +14,6 @@ zeros, so it's a good idea to keep stations as character class. required}
 \item{year}{(integer) year, e.g., 2017. required}
 
 \item{...}{curl options passed on to \link[crul:verb-GET]{crul::verb-GET}}
-
-\item{x}{result of a call to \code{lcd()}. required}
 }
 \value{
 a data.frame, with many columns, and variable rows
@@ -28,72 +23,43 @@ a data.frame with many columns. the first 10 are metadata:
 \itemize{
 \item station
 \item date
-\item source
 \item latitude
 \item longitude
 \item elevation
 \item name
 \item report_type
-\item call_sign
-\item quality_control
+\item source
 }
 
-And the rest should be all data columns. See Note about data joined
-together.
-
-Other groups of fields under the following:
+And the rest should be all data columns. The first part of many column
+names is the time period, being one of:
 \itemize{
-\item wnd: wind
-\item tmp: air temperature
-\item aa: LIQUID-PRECIPITATION
-\item aj: snow depth
-\item ay: PAST-WEATHER-OBSERVATION
-\item oc: WIND-GUST-OBSERVATION
-\item dew: dew point
-\item slp: sea level pressure
-\item cig: sky condition
-\item ka: extreme air temperature
-\item ma: atmospheric pressure
-\item md: atmospheric pressure change
-\item ga: SKY-COVER-LAYER
-\item ge: SKY-CONDITION-OBSERVATION
-\item gf: SKY-CONDITION-OBSERVATION
-\item ia: GROUND-SURFACE-OBSERVATION
-\item mw: PRESENT-WEATHER-OBSERVATION
-\item rem: remarks
+\item hourly
+\item daily
+\item monthly
+\item shortduration
 }
+
+So the variable you are looking for may not be the first part of the
+column name
 }
 \description{
 Local Climitalogical Data from NOAA
 }
-\details{
-\code{lcd_cleanup()} takes the output of \code{lcd()} and parses additional
-columns that have comma separated strings into separate columns with
-headings; so \code{lcd_cleanup()} adds many additional columns
-}
-\note{
-Beware that there are multiple columns with comma-delimited data
-joined together. In the next version of this package we'll try to have the
-data cleaning done for you.
-}
 \examples{
 \dontrun{
-lcd(station = "01338099999", year = "2017")
-lcd(station = "01338099999", year = "2015")
-
-lcd(station = "02413099999", year = "2009")
-lcd(station = "02413099999", year = "2001")
+lcd(station = "01338099999", year = 2017, verbose = TRUE)
+lcd(station = "01338099999", year = 2015, verbose = TRUE)
+lcd(station = "02413099999", year = 2009, verbose = TRUE)
+lcd(station = "02413099999", year = 2001, verbose = TRUE)
 
 # pass curl options
-lcd(station = "02413099999", year = "2002", verbose = TRUE)
-
-# clean up columns
-w <- lcd(station = "01338099999", year = "2017")
-w
-lcd_cleanup(w)
+lcd(station = "02413099999", year = 2002, verbose = TRUE)
 }
 }
 \references{
-\url{https://www.ncdc.noaa.gov/cdo-web/datatools/lcd}
-\url{https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/LCD_documentation.pdf}
+Docs:
+\url{https://www.ncei.noaa.gov/data/local-climatological-data/doc/LCD_documentation.pdf}
+Data comes from:
+\url{https://www.ncei.noaa.gov/data/local-climatological-data/access}
 }

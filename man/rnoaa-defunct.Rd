@@ -32,6 +32,8 @@ package rerddap
 \item \code{\link{ncdc_leg_site_info}}: Removed. See \code{NCDC Legacy} below
 \item \code{\link{ncdc_leg_data}}: Removed. See \code{NCDC Legacy} below
 \item \code{\link{seaice}}: Replaced with \code{\link{sea_ice}}
+\item \code{\link{lcd_cleanup}}: No longer available. See \code{\link{lcd}}
+docs
 }
 }
 \section{NCDC Legacy}{
