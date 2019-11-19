@@ -36,6 +36,21 @@ package rerddap
 docs
 }
 }
+\details{
+The functions for working with GEFS ensemble forecast data (prefixed with
+"gefs") are defunct, but may come back to rnoaa later. They are:
+
+\itemize{
+\item \code{\link{gefs}}
+\item \code{\link{gefs_dimension_values}}
+\item \code{\link{gefs_dimensions}}
+\item \code{\link{gefs_ensembles}}
+\item \code{\link{gefs_latitudes}}
+\item \code{\link{gefs_longitudes}}
+\item \code{\link{gefs_times}}
+\item \code{\link{gefs_variables}}
+}
+}
 \section{NCDC Legacy}{
 
 The NCDC legacy API is too unreliable and slow. Use the newer NCDC API via the
