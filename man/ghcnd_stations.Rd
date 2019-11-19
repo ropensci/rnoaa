@@ -54,17 +54,17 @@ a while to run.
 
 library(dplyr)
 # filter by state
-stations \%>\% filter(state == "IL")
-stations \%>\% filter(state == "OR")
+stations %>% filter(state == "IL")
+stations %>% filter(state == "OR")
 # those without state values
-stations \%>\% filter(state == "")
+stations %>% filter(state == "")
 # filter by element
-stations \%>\% filter(element == "PRCP")
+stations %>% filter(element == "PRCP")
 # filter by id prefix
-stations \%>\% filter(grepl("^AF", id))
-stations \%>\% filter(grepl("^AFM", id))
+stations %>% filter(grepl("^AF", id))
+stations %>% filter(grepl("^AFM", id))
 # filter by station long name
-stations \%>\% filter(name == "CALLATHARRA")
+stations %>% filter(name == "CALLATHARRA")
 }
 }
 \references{

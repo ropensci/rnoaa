@@ -4,10 +4,24 @@
 \alias{homr}
 \title{Historical Observing Metadata Repository (HOMR) station metadata}
 \usage{
-homr(qid = NULL, qidMod = NULL, station = NULL, state = NULL,
-  county = NULL, country = NULL, name = NULL, nameMod = NULL,
-  platform = NULL, date = NULL, begindate = NULL, enddate = NULL,
-  headersOnly = FALSE, phrData = NULL, combine = FALSE, ...)
+homr(
+  qid = NULL,
+  qidMod = NULL,
+  station = NULL,
+  state = NULL,
+  county = NULL,
+  country = NULL,
+  name = NULL,
+  nameMod = NULL,
+  platform = NULL,
+  date = NULL,
+  begindate = NULL,
+  enddate = NULL,
+  headersOnly = FALSE,
+  phrData = NULL,
+  combine = FALSE,
+  ...
+)
 }
 \arguments{
 \item{qid}{One of COOP, FAA, GHCND, ICAO, NCDCSTNID, NWSLI, TRANS, WBAN, or
@@ -29,14 +43,14 @@ used with a state identifier.}
 \item{country}{(character) A two letter country code. See here for a list
 of valid country names.}
 
-\item{name}{(character) One of \code{0-9A-Z+}. Searches on any type of
+\item{name}{(character) One of \verb{0-9A-Z+}. Searches on any type of
 name we have for the station.}
 
 \item{nameMod}{(character) \code{is|starts|ends|contains}. Specifies how the
 name parameter should be applied within the search. If a name is passed but
 the nameMod parameter is not used, nameMod is assumed to be IS.}
 
-\item{platform}{(character) (aka network) \code{ASOS|USCRN|USHCN|NEXRAD|AL USRCRN|USRCRN|COOP}. Limit the search to stations of a certain
+\item{platform}{(character) (aka network) \verb{ASOS|USCRN|USHCN|NEXRAD|AL USRCRN|USRCRN|COOP}. Limit the search to stations of a certain
 platform/network type.}
 
 \item{date}{(character) \code{YYYY-MM-DD|all} Limits values to only those that

@@ -16,6 +16,7 @@ The \emph{meteo} functions use an aplication
 This function will clear all cached \emph{meteo} files.
 }
 \seealso{
-Other meteo: \code{\link{meteo_show_cache}}
+Other meteo: 
+\code{\link{meteo_show_cache}()}
 }
 \concept{meteo}

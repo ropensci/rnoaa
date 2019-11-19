@@ -28,7 +28,7 @@ a single data.frame. Data across years, with extent and area of ice.
 }
 \details{
 An example file, for January, North pole:
-\code{ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/data/N_01_extent_v3.0.csv}
+\verb{ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/monthly/data/N_01_extent_v3.0.csv}
 
 a value in any cell of -9999 indicates missing data
 }

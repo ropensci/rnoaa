@@ -4,10 +4,22 @@
 \alias{swdi}
 \title{Get NOAA data for the severe weather data inventory (swdi).}
 \usage{
-swdi(dataset = NULL, format = "xml", startdate = NULL,
-  enddate = NULL, limit = 25, offset = NULL, radius = NULL,
-  center = NULL, bbox = NULL, tile = NULL, stat = NULL,
-  id = NULL, filepath = NULL, ...)
+swdi(
+  dataset = NULL,
+  format = "xml",
+  startdate = NULL,
+  enddate = NULL,
+  limit = 25,
+  offset = NULL,
+  radius = NULL,
+  center = NULL,
+  bbox = NULL,
+  tile = NULL,
+  stat = NULL,
+  id = NULL,
+  filepath = NULL,
+  ...
+)
 }
 \arguments{
 \item{dataset}{Dataset to query. See below for details.}

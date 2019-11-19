@@ -10,6 +10,7 @@ meteo_show_cache()
 Displays the full path to the \code{meteo} cache directory
 }
 \seealso{
-Other meteo: \code{\link{meteo_clear_cache}}
+Other meteo: 
+\code{\link{meteo_clear_cache}()}
 }
 \concept{meteo}

@@ -4,9 +4,19 @@
 \alias{isd}
 \title{Get and parse NOAA ISD/ISH data}
 \usage{
-isd(usaf, wban, year, overwrite = TRUE, cleanup = TRUE,
-  additional = TRUE, parallel = FALSE, cores = getOption("cl.cores",
-  2), progress = FALSE, force = FALSE, ...)
+isd(
+  usaf,
+  wban,
+  year,
+  overwrite = TRUE,
+  cleanup = TRUE,
+  additional = TRUE,
+  parallel = FALSE,
+  cores = getOption("cl.cores", 2),
+  progress = FALSE,
+  force = FALSE,
+  ...
+)
 }
 \arguments{
 \item{usaf, wban}{(character) USAF and WBAN code. Required}
@@ -79,7 +89,7 @@ but should be available in the next version of this package.
 }
 \section{Errors}{
 
-Note that when you get an error similar to \code{Error: download failed for ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz}, the
+Note that when you get an error similar to \verb{Error: download failed for ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz}, the
 file does not exist on NOAA's ftp servers. If your internet is down,
 you'll get a different error.
 }
@@ -111,8 +121,8 @@ df <- stations[complete.cases(stations$lat, stations$lon), ]
 df <- df[df$lat != 0, ]
 ### make plot
 library("leaflet")
-leaflet(data = df) \%>\%
-  addTiles() \%>\%
+leaflet(data = df) %>%
+  addTiles() %>%
   addCircles()
 
 # Get data
@@ -142,10 +152,10 @@ res_all <- bind_rows(res1, res2, res3, res4)
 # add date time
 library("lubridate")
 res_all$date_time <- ymd_hm(
-  sprintf("\%s \%s", as.character(res_all$date), res_all$time)
+  sprintf("%s %s", as.character(res_all$date), res_all$time)
 )
 ## remove 999's
-res_all <- res_all \%>\% filter(temperature < 900)
+res_all <- res_all %>% filter(temperature < 900)
 ## plot
 library("ggplot2")
 ggplot(res_all, aes(date_time, temperature)) +
@@ -165,8 +175,9 @@ ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 https://www1.ncdc.noaa.gov/pub/data/noaa
 }
 \seealso{
-Other isd: \code{\link{isd_read}},
-  \code{\link{isd_stations_search}},
-  \code{\link{isd_stations}}
+Other isd: 
+\code{\link{isd_read}()},
+\code{\link{isd_stations_search}()},
+\code{\link{isd_stations}()}
 }
 \concept{isd}

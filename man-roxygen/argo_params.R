@@ -38,7 +38,7 @@
 #' a coma separated list of characters defining the Data Mode to select. It can be: R for
 #' "Real Time", A for "Real Time with Adjusted value" and D for "Delayed Mode". See Details.
 #' @param pres_qc,temp_qc,psal_qc,doxy_qc Quality control. Imposes a restriction on the profile
-#' data quality flag. For a given variable <PARAM> which can be: pres (pressure),
+#' data quality flag. For a given variable PARAM which can be: pres (pressure),
 #' temp (temperature), psal (salinity) or doxy (oxygen), this restriction selects profiles
 #' having one or a coma separated list of data quality flag. See Details.
 #' @param ticket (numeric) select profiles with or without a ticket filled in the database. A
@@ -84,7 +84,7 @@
 #' }
 #'
 #' \code{*_qc} parameter definitions:
-#' This information was extracted from the netcdf profile variable PROFILE_<PARAM>_QC. Once
+#' This information was extracted from the netcdf profile variable PROFILE_PARAM_QC. Once
 #' quality control procedures have been applied, a synthetic flag is assigned for each
 #' parameter of each profile under this variable in netcdf files. It indicates the fraction
 #' n of profile levels with good data. It can take one of the following values:

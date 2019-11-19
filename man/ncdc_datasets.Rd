@@ -4,11 +4,24 @@
 \alias{ncdc_datasets}
 \title{Search NOAA datasets}
 \usage{
-ncdc_datasets(datasetid = NULL, datatypeid = NULL, stationid = NULL,
-  locationid = NULL, startdate = NULL, enddate = NULL,
-  sortfield = NULL, sortorder = NULL, limit = 25, offset = NULL,
-  token = NULL, dataset = NULL, page = NULL, year = NULL,
-  month = NULL, ...)
+ncdc_datasets(
+  datasetid = NULL,
+  datatypeid = NULL,
+  stationid = NULL,
+  locationid = NULL,
+  startdate = NULL,
+  enddate = NULL,
+  sortfield = NULL,
+  sortorder = NULL,
+  limit = 25,
+  offset = NULL,
+  token = NULL,
+  dataset = NULL,
+  page = NULL,
+  year = NULL,
+  month = NULL,
+  ...
+)
 }
 \arguments{
 \item{datasetid}{(optional) Accepts a single valid dataset id. Data returned
@@ -116,11 +129,14 @@ ncdc_datasets(locationid=c("FIPS:30103", "FIPS:30091"))
 \url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
 }
 \seealso{
-Other ncdc: \code{\link{ncdc_combine}},
-  \code{\link{ncdc_datacats}},
-  \code{\link{ncdc_datatypes}},
-  \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
-  \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}},
-  \code{\link{ncdc}}
+Other ncdc: 
+\code{\link{ncdc_combine}()},
+\code{\link{ncdc_datacats}()},
+\code{\link{ncdc_datatypes}()},
+\code{\link{ncdc_locs_cats}()},
+\code{\link{ncdc_locs}()},
+\code{\link{ncdc_plot}()},
+\code{\link{ncdc_stations}()},
+\code{\link{ncdc}()}
 }
 \concept{ncdc}

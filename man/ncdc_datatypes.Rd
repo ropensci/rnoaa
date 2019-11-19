@@ -4,11 +4,24 @@
 \alias{ncdc_datatypes}
 \title{Get possible data types for a particular dataset}
 \usage{
-ncdc_datatypes(datasetid = NULL, datatypeid = NULL,
-  datacategoryid = NULL, stationid = NULL, locationid = NULL,
-  startdate = NULL, enddate = NULL, sortfield = NULL,
-  sortorder = NULL, limit = 25, offset = NULL, token = NULL,
-  dataset = NULL, page = NULL, filter = NULL, ...)
+ncdc_datatypes(
+  datasetid = NULL,
+  datatypeid = NULL,
+  datacategoryid = NULL,
+  stationid = NULL,
+  locationid = NULL,
+  startdate = NULL,
+  enddate = NULL,
+  sortfield = NULL,
+  sortorder = NULL,
+  limit = 25,
+  offset = NULL,
+  token = NULL,
+  dataset = NULL,
+  page = NULL,
+  filter = NULL,
+  ...
+)
 }
 \arguments{
 \item{datasetid}{(optional) Accepts a valid dataset id or a vector or list
@@ -119,10 +132,14 @@ ncdc_datatypes(locationid=c('CITY:AG000001','CITY:AG000004'))
 \url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
 }
 \seealso{
-Other ncdc: \code{\link{ncdc_combine}},
-  \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},
-  \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
-  \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}},
-  \code{\link{ncdc}}
+Other ncdc: 
+\code{\link{ncdc_combine}()},
+\code{\link{ncdc_datacats}()},
+\code{\link{ncdc_datasets}()},
+\code{\link{ncdc_locs_cats}()},
+\code{\link{ncdc_locs}()},
+\code{\link{ncdc_plot}()},
+\code{\link{ncdc_stations}()},
+\code{\link{ncdc}()}
 }
 \concept{ncdc}

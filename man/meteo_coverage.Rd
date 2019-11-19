@@ -4,8 +4,12 @@
 \alias{meteo_coverage}
 \title{Determine the "coverage" for a station data frame}
 \usage{
-meteo_coverage(meteo_df, obs_start_date = NULL, obs_end_date = NULL,
-  verbose = FALSE)
+meteo_coverage(
+  meteo_df,
+  obs_start_date = NULL,
+  obs_end_date = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{meteo_df}{a \emph{meteo} \code{data.frame}}

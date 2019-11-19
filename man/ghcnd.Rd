@@ -78,7 +78,7 @@ stations <- ghcnd_stations()
 ghcnd(stations$id[40])
 
 library("dplyr")
-ghcnd(stations$id[80300]) \%>\% select(id, element) \%>\% slice(1:3)
+ghcnd(stations$id[80300]) %>% select(id, element) %>% slice(1:3)
 
 # manipulate data
 ## using built in fxns
@@ -88,7 +88,7 @@ dat <- ghcnd(stationid = "AGE00147704")
 ## using dplyr
 library("dplyr")
 dat <- ghcnd(stationid = "AGE00147704")
-dat \%>\%
+dat %>%
  filter(element == "PRCP", year == 1909)
 
 # refresh the cached file

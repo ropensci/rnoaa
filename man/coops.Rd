@@ -5,9 +5,17 @@
 \alias{coops_search}
 \title{Get NOAA co-ops data}
 \usage{
-coops_search(begin_date = NULL, end_date = NULL, station_name = NULL,
-  product, datum = NULL, units = "metric", time_zone = "gmt",
-  application = "rnoaa", ...)
+coops_search(
+  begin_date = NULL,
+  end_date = NULL,
+  station_name = NULL,
+  product,
+  datum = NULL,
+  units = "metric",
+  time_zone = "gmt",
+  application = "rnoaa",
+  ...
+)
 }
 \arguments{
 \item{begin_date}{(numeric) Date in yyyymmdd format. Required}

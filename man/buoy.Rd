@@ -71,8 +71,8 @@ x <- buoy_stations()
 # you shouldn't need to update very often
 # x <- buoy_stations(refresh = TRUE)
 library("leaflet")
-leaflet(data = na.omit(x)) \%>\%
-  leaflet::addTiles() \%>\%
+leaflet(data = na.omit(x)) %>%
+  leaflet::addTiles() %>%
   leaflet::addCircles(~lon, ~lat, opacity = 0.5)
 
 # Get available buoys

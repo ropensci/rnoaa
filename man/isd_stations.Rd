@@ -52,8 +52,8 @@ df <- stations[complete.cases(stations$lat, stations$lon), ]
 df <- df[df$lat != 0, ]
 ### make plot
 library("leaflet")
-leaflet(data = df) \%>\%
-  addTiles() \%>\%
+leaflet(data = df) %>%
+  addTiles() %>%
   addCircles()
 }
 }
@@ -61,7 +61,9 @@ leaflet(data = df) \%>\%
 ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 }
 \seealso{
-Other isd: \code{\link{isd_read}},
-  \code{\link{isd_stations_search}}, \code{\link{isd}}
+Other isd: 
+\code{\link{isd_read}()},
+\code{\link{isd_stations_search}()},
+\code{\link{isd}()}
 }
 \concept{isd}

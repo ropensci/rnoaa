@@ -9,12 +9,32 @@
 \alias{argo_buoy_files}
 \title{Get Argo buoy data}
 \usage{
-argo_search(func = NULL, of = NULL, qwmo = NULL, wmo = NULL,
-  box = NULL, area = NULL, around = NULL, year = NULL,
-  yearmin = NULL, yearmax = NULL, month = NULL, monthmin = NULL,
-  monthmax = NULL, lr = NULL, from = NULL, to = NULL,
-  dmode = NULL, pres_qc = NULL, temp_qc = NULL, psal_qc = NULL,
-  doxy_qc = NULL, ticket = NULL, limit = 10, ...)
+argo_search(
+  func = NULL,
+  of = NULL,
+  qwmo = NULL,
+  wmo = NULL,
+  box = NULL,
+  area = NULL,
+  around = NULL,
+  year = NULL,
+  yearmin = NULL,
+  yearmax = NULL,
+  month = NULL,
+  monthmin = NULL,
+  monthmax = NULL,
+  lr = NULL,
+  from = NULL,
+  to = NULL,
+  dmode = NULL,
+  pres_qc = NULL,
+  temp_qc = NULL,
+  psal_qc = NULL,
+  doxy_qc = NULL,
+  ticket = NULL,
+  limit = 10,
+  ...
+)
 
 argo_files(wmo = NULL, cyc = NULL, ...)
 
@@ -80,7 +100,7 @@ a coma separated list of characters defining the Data Mode to select. It can be:
 "Real Time", A for "Real Time with Adjusted value" and D for "Delayed Mode". See Details.}
 
 \item{pres_qc, temp_qc, psal_qc, doxy_qc}{Quality control. Imposes a restriction on the profile
-data quality flag. For a given variable <PARAM> which can be: pres (pressure),
+data quality flag. For a given variable PARAM which can be: pres (pressure),
 temp (temperature), psal (salinity) or doxy (oxygen), this restriction selects profiles
 having one or a coma separated list of data quality flag. See Details.}
 
@@ -140,12 +160,12 @@ time data with adjusted values.
 }
 
 \code{*_qc} parameter definitions:
-This information was extracted from the netcdf profile variable PROFILE_<PARAM>_QC. Once
+This information was extracted from the netcdf profile variable PROFILE_PARAM_QC. Once
 quality control procedures have been applied, a synthetic flag is assigned for each
 parameter of each profile under this variable in netcdf files. It indicates the fraction
 n of profile levels with good data. It can take one of the following values:
 \itemize{
-\item A or F: All (n=100%) or none (n=0%) of the profile levels contain good data,
+\item A or F: All (n=100\%) or none (n=0\%) of the profile levels contain good data,
 \item B,C,D,E: n is in one of the intermediate range: 75-100, 50-75, 25-50 or 0-25
 \item empty: No QC was performed.
 }
