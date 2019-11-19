@@ -177,7 +177,7 @@ seaice <- function() {
 
 #' This function is defunct.
 #' @export
-#' @rdname lcd-defunct
+#' @rdname lcd_cleanup-defunct
 #' @keywords internal
 lcd_cleanup <- function(...) {
   .Defunct(msg = "`lcd_cleanup` no longer available, see ?lcd")
