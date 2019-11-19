@@ -1,3 +1,12 @@
+rnoaa 0.9.5
+===========
+
+### BUG FIXES
+
+* `lcd()` function was unfortunately pulling data from `https://www.ncei.noaa.gov/data/global-hourly/access` - whereas it should have been pulling data from `https://www.ncei.noaa.gov/data/local-climatological-data/access` - fixed now; additionaly, `lcd_cleanup` is defunct because lcd data coming from the appropriate link has all variable names spelled out and data split up (#334) thanks @sayon000 !
+* all `gefs*` functions are now defunct - they are being taken out for now until fixed - see the issues for the details (#335) (#336)
+
+
 rnoaa 0.9.4
 ===========
 

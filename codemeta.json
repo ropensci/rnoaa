@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/rnoaa",
   "issueTracker": "https://github.com/ropensci/rnoaa/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -87,7 +87,7 @@
       "@type": "SoftwareApplication",
       "identifier": "roxygen2",
       "name": "roxygen2",
-      "version": ">= 6.1.1",
+      "version": ">= 7.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
