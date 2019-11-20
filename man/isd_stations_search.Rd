@@ -4,7 +4,8 @@
 \alias{isd_stations_search}
 \title{Search for NOAA ISD/ISH station data from NOAA FTP server.}
 \usage{
-isd_stations_search(lat = NULL, lon = NULL, radius = NULL, bbox = NULL)
+isd_stations_search(lat = NULL, lon = NULL, radius = NULL,
+  bbox = NULL)
 }
 \arguments{
 \item{lat}{(numeric) Latitude, in decimal degree}
@@ -58,11 +59,11 @@ x <- isd_stations_search(lat = 60, lon = 18, radius = 200)
 
 if (requireNamespace("leaflet")) {
   library("leaflet")
-  leaflet() %>%
-    addTiles() %>%
+  leaflet() \%>\%
+    addTiles() \%>\%
     addCircles(lng = x$lon,
                lat = x$lat,
-               popup = x$station_name) %>%
+               popup = x$station_name) \%>\%
     clearBounds()
 }
 
@@ -75,9 +76,7 @@ isd_stations_search(bbox = bbox)
 ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 }
 \seealso{
-Other isd: 
-\code{\link{isd_read}()},
-\code{\link{isd_stations}()},
-\code{\link{isd}()}
+Other isd: \code{\link{isd_read}},
+  \code{\link{isd_stations}}, \code{\link{isd}}
 }
 \concept{isd}

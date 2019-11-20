@@ -8,17 +8,13 @@
 \alias{storm_meta}
 \title{Get NOAA wind storm tabular data, metadata, or shp files from IBTrACS}
 \usage{
-storm_shp(
-  basin = NULL,
-  storm = NULL,
-  year = NULL,
-  type = "points",
-  overwrite = TRUE
-)
+storm_shp(basin = NULL, storm = NULL, year = NULL, type = "points",
+  overwrite = TRUE)
 
 storm_shp_read(x)
 
-storm_data(basin = NULL, storm = NULL, year = NULL, overwrite = TRUE, ...)
+storm_data(basin = NULL, storm = NULL, year = NULL,
+  overwrite = TRUE, ...)
 
 storm_meta(what = "storm_columns")
 }
@@ -64,7 +60,7 @@ in reality is negative)
 the storm (range 0-359)
 }
 
-For example: \verb{1970143N19091} is a storm in the North Atlantic which
+For example: \code{1970143N19091} is a storm in the North Atlantic which
 started on May 23, 1970 near 19N 91E
 
 See \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering} for more

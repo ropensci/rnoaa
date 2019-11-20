@@ -195,8 +195,7 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' ## using dplyr
 #' library("dplyr")
 #' dat <- ghcnd(stationid = "AGE00147704")
-#' dat %>%
-#'  filter(element == "PRCP", year == 1909)
+#' filter(dat, element == "PRCP", year == 1909)
 #' 
 #' # refresh the cached file
 #' ghcnd(stationid = "AGE00147704", refresh = TRUE)

@@ -47,7 +47,7 @@ Imports:
     geonames,
     hoardr (>= 0.5.2)
 Suggests:
-    roxygen2 (>= 7.0.0),
+    roxygen2 (>= 6.1.1),
     testthat,
     knitr,
     taxize,
@@ -61,7 +61,7 @@ Suggests:
     ggmap,
     ropenaq,
     vcr (>= 0.2.2)
-RoxygenNote: 7.0.0
+RoxygenNote: 6.1.1
 X-schema.org-applicationCategory: Climate
 X-schema.org-keywords: earth, science, climate, precipitation, temperature, storm, buoy, NCDC, NOAA, tornadoe, sea ice, ISD
 X-schema.org-isPartOf: https://ropensci.org

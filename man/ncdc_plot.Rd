@@ -37,8 +37,8 @@ out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
    startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
 ncdc_plot(out)
 ncdc_plot(out, breaks="14 days")
-ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
-ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
+ncdc_plot(out, breaks="1 month", dateformat="\%d/\%m")
+ncdc_plot(out, breaks="1 month", dateformat="\%d/\%m")
 
 # Combine many calls to ncdc function
 out1 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
@@ -52,14 +52,10 @@ ncdc_plot(out1, out2, breaks="45 days")
 }
 }
 \seealso{
-Other ncdc: 
-\code{\link{ncdc_combine}()},
-\code{\link{ncdc_datacats}()},
-\code{\link{ncdc_datasets}()},
-\code{\link{ncdc_datatypes}()},
-\code{\link{ncdc_locs_cats}()},
-\code{\link{ncdc_locs}()},
-\code{\link{ncdc_stations}()},
-\code{\link{ncdc}()}
+Other ncdc: \code{\link{ncdc_combine}},
+  \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},
+  \code{\link{ncdc_datatypes}},
+  \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
+  \code{\link{ncdc_stations}}, \code{\link{ncdc}}
 }
 \concept{ncdc}

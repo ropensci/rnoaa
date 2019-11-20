@@ -4,7 +4,8 @@
 \alias{sea_ice}
 \title{Get sea ice data.}
 \usage{
-sea_ice(year = NULL, month = NULL, pole = NULL, format = "shp", ...)
+sea_ice(year = NULL, month = NULL, pole = NULL, format = "shp",
+  ...)
 }
 \arguments{
 \item{year}{(numeric) a year}
