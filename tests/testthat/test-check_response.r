@@ -5,6 +5,7 @@ test_that("check_response returns an error", {
   skip_on_travis()
   skip_on_appveyor()
   skip_if_government_down()
+  skip_if_noaa_ncdc_down()
 
   # Sys.sleep(time = 0.5)
   expect_warning(ncdc_locs_cats(startdate='2100-01-01'), "no data found")
@@ -26,6 +27,7 @@ test_that("check_response returns the correct error messages", {
   skip_on_travis()
   skip_on_appveyor()
   skip_if_government_down()
+  skip_if_noaa_ncdc_down()
   
   # no data found
   # Sys.sleep(time = 0.5)

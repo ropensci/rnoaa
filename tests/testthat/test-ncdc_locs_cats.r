@@ -28,3 +28,22 @@ test_that("ncdc_locs_cats returns the correct ...", {
     expect_equal(length(vv), 2)
   })
 })
+
+# no internet required
+test_that("ncdc_locs fails well", {
+  skip_on_cran()
+
+  # unload vcr namespace
+  unloadNamespace("vcr")
+
+  webmockr::enable()
+  url <- 'https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories?startdate=1970-01-01&limit=25'
+  ss <- webmockr::stub_request('get', url)
+  webmockr::to_return(ss, body = "<!DOCTYPE HTML PUBLIC><>")
+  expect_error(ncdc_locs_cats(startdate='1970-01-01'), "lexical error")
+  webmockr::disable()
+
+  # re-attach vcr namespace
+  attachNamespace("vcr")
+  vcr_set()
+})

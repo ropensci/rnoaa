@@ -97,3 +97,23 @@ test_that("ncdc various dates work", {
 
   expect_identical(aa, bb)
 })
+
+# no internet required
+test_that("ncdc fails well", {
+  skip_on_cran()
+
+  # unload vcr namespace
+  unloadNamespace("vcr")
+
+  webmockr::enable()
+  url <- 'https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=NORMAL_DLY&startdate=2010-05-01&enddate=2010-05-10&limit=25&includemetadata=TRUE&datatypeid=dly-tmax-normal'
+  ss <- webmockr::stub_request('get', url)
+  webmockr::to_return(ss, body = "<!DOCTYPE HTML PUBLIC><>")
+  expect_error(ncdc(datasetid='NORMAL_DLY', datatypeid='dly-tmax-normal',
+      startdate = '2010-05-01', enddate = '2010-05-10'), "lexical error")
+  webmockr::disable()
+
+  # re-attach vcr namespace
+  attachNamespace("vcr")
+  vcr_set()
+})

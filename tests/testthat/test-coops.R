@@ -4,14 +4,14 @@ test_that("coops works", {
   vcr::use_cassette("coops_search", {
     aa <- coops_search(station_name = 8723970, begin_date = 20140927, 
       end_date = 20140928, product = "water_temperature")
-
-    # class
-    expect_is(aa$data, "data.frame")
-    expect_is(aa$metadata$name, "character")
-
-    # dimensions
-    expect_equal(NCOL(aa$data), 3)
   })
+
+  # class
+  expect_is(aa$data, "data.frame")
+  expect_is(aa$metadata$name, "character")
+
+  # dimensions
+  expect_equal(NCOL(aa$data), 3)
 })
 
 test_that("coops fails well", {

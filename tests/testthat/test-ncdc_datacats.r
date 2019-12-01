@@ -21,3 +21,22 @@ test_that("ncdc_datacats returns the correct ...", {
     expect_equal(dim(uu[[1]]), NULL)
   })
 })
+
+# no internet required
+test_that("ncdc_datacats fails well", {
+  skip_on_cran()
+
+  # unload vcr namespace
+  unloadNamespace("vcr")
+
+  webmockr::enable()
+  url <- 'https://www.ncdc.noaa.gov/cdo-web/api/v2/datacategories/ANNAGR?limit=25'
+  ss <- webmockr::stub_request('get', url)
+  webmockr::to_return(ss, body = "<!DOCTYPE HTML PUBLIC><>")
+  expect_error(ncdc_datacats(datacategoryid="ANNAGR"), "lexical error")
+  webmockr::disable()
+
+  # re-attach vcr namespace
+  attachNamespace("vcr")
+  vcr_set()
+})
