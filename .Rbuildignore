@@ -24,7 +24,6 @@ user_test_cases/
 ^revdep$
 .github
 ^codemeta\.json$
-tests/test-all.R
 vignettes/buoy_vignette_cache/
 vignettes/storms_vignette_cache/
 vignettes/storms_vignette_files/
