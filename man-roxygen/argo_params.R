@@ -38,7 +38,7 @@
 #' a coma separated list of characters defining the Data Mode to select. It can be: R for
 #' "Real Time", A for "Real Time with Adjusted value" and D for "Delayed Mode". See Details.
 #' @param pres_qc,temp_qc,psal_qc,doxy_qc Quality control. Imposes a restriction on the profile
-#' data quality flag. For a given variable <PARAM> which can be: pres (pressure),
+#' data quality flag. For a given variable PARAM which can be: pres (pressure),
 #' temp (temperature), psal (salinity) or doxy (oxygen), this restriction selects profiles
 #' having one or a coma separated list of data quality flag. See Details.
 #' @param ticket (numeric) select profiles with or without a ticket filled in the database. A
@@ -50,7 +50,7 @@
 #' @param dtype (character) Data type, one of \code{D} for delayed, or \code{R} for real-time
 #' @param limit (integer) number to return
 #' @param ... Curl options passed on to \code{\link[crul]{HttpClient}}. Optional
-#' @references \url{http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html}
+#' @references http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html
 #' @details
 #' \code{area} parameter definitions:
 #' \itemize{
@@ -84,7 +84,7 @@
 #' }
 #'
 #' \code{*_qc} parameter definitions:
-#' This information was extracted from the netcdf profile variable PROFILE_<PARAM>_QC. Once
+#' This information was extracted from the netcdf profile variable PROFILE_PARAM_QC. Once
 #' quality control procedures have been applied, a synthetic flag is assigned for each
 #' parameter of each profile under this variable in netcdf files. It indicates the fraction
 #' n of profile levels with good data. It can take one of the following values:
@@ -102,4 +102,24 @@
 #'
 #' The \code{path} parameter used to be used to set where files are stored
 #' on your machine.
+#' 
+#' @section API Status:
+#' The API is down as of 2019-11-07, and probably some time before that. The
+#' following functions won't work anymore (future package versions may bring
+#' them back if the API comes back):
+#' 
+#' \itemize{
+#'  \item argo_search
+#'  \item argo_files
+#'  \item argo_qwmo
+#'  \item argo_plan
+#' }
+#' 
+#' The following functions still work as they are based off the FTP server
+#' that still exists:
+#' 
+#' \itemize{
+#'  \item argo_buoy_files
+#'  \item argo
+#' }
 

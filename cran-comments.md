@@ -15,9 +15,7 @@ Checked on the 2 reverse dependencies - no problems were found
 
 -----
 
-This version includes a few new functions, changes some function names, improves documentation and fixes somem bugs.
-
-Also included is a fix for a link in the README, now using a fully specified URL.
+This version fixes problems with the gefs functions that arose from CRAN check failures: gefs functions have been removed for now while they are overhauled.
 
 Thanks!
 Scott Chamberlain

@@ -9,14 +9,14 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r, echo  =  FALSE, warning = FALSE, message = FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(
   collapse  =  TRUE,
   comment  =  "#>",
-  purl  =  NOT_CRAN,
-  eval  =  NOT_CRAN
+  purl  =  FALSE,
+  eval  =  FALSE
 )
+```
 ```
 
 `SWDI` is the Severe Weather Data Inventory. SWDI is an (quoting)
@@ -40,7 +40,6 @@ Find out more about SWDI at [http://www.ncdc.noaa.gov/swdi/#Intro](http://www.nc
 
 ```{r load, message=FALSE, warning=FALSE}
 library('rnoaa')
-library('plyr')
 ```
 
 ## Search for nx3tvs data from 5 May 2006 to 6 May 2006
@@ -100,4 +99,11 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp', f
 
 ```{r}
 swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz', radius=15, filepath='myfile.kmz')
+```
+
+
+```{r echo=FALSE}
+# cleanup
+unlink("myfile")
+unlink("myfile.kmz")
 ```

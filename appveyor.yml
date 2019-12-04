@@ -25,10 +25,6 @@ environment:
     - R_VERSION: release
       R_ARCH: x64
       USE_RTOOLS: true
-    - R_VERSION: devel
-      R_ARCH: x64
-      _R_CHECK_LENGTH_1_LOGIC2_: TRUE
-      USE_RTOOLS: true
 
 notifications:
   - provider: Slack

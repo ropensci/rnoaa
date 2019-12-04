@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories?token=<<ncdc_token>>&limit=25
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories?limit=25
     body:
       encoding: ''
       string: ''
@@ -39,7 +39,7 @@ http_interactions:
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
-    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories/CLIM_REG?locationcategoryid=CLIM_REG&token=<<ncdc_token>>&limit=25
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories/CLIM_REG?locationcategoryid=CLIM_REG&limit=25
     body:
       encoding: ''
       string: ''
@@ -73,7 +73,7 @@ http_interactions:
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
-    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories?startdate=1970-01-01&token=<<ncdc_token>>&limit=25
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories?startdate=1970-01-01&limit=25
     body:
       encoding: ''
       string: ''

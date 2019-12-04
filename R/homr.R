@@ -55,7 +55,6 @@
 #'
 #' @examples \dontrun{
 #' homr(qid = 'COOP:046742')
-#' homr(headersOnly=TRUE, qid='TRANS:')
 #' homr(qid = ':046742')
 #' homr(qidMod='starts', qid='COOP:0467')
 #' homr(headersOnly=TRUE, state='DE')

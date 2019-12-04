@@ -47,7 +47,7 @@ ncdc_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
     path <- paste(path, "/", locationid, sep = "")
   }
   args <- noaa_compact(list(locationid=locationid, startdate=startdate,
-                       enddate=enddate, token=token, sortfield=sortfield,
+                       enddate=enddate, sortfield=sortfield,
                        sortorder=sortorder, limit=limit, offset=offset))
   if (!is.null(datasetid)) {
     datasetid <- lapply(datasetid, function(x) list(datasetid = x))

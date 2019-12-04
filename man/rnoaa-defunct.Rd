@@ -32,6 +32,23 @@ package rerddap
 \item \code{\link{ncdc_leg_site_info}}: Removed. See \code{NCDC Legacy} below
 \item \code{\link{ncdc_leg_data}}: Removed. See \code{NCDC Legacy} below
 \item \code{\link{seaice}}: Replaced with \code{\link{sea_ice}}
+\item \code{\link{lcd_cleanup}}: No longer available. See \code{\link{lcd}}
+docs
+}
+}
+\details{
+The functions for working with GEFS ensemble forecast data (prefixed with
+"gefs") are defunct, but may come back to rnoaa later. They are:
+
+\itemize{
+\item \code{\link{gefs}}
+\item \code{\link{gefs_dimension_values}}
+\item \code{\link{gefs_dimensions}}
+\item \code{\link{gefs_ensembles}}
+\item \code{\link{gefs_latitudes}}
+\item \code{\link{gefs_longitudes}}
+\item \code{\link{gefs_times}}
+\item \code{\link{gefs_variables}}
 }
 }
 \section{NCDC Legacy}{

@@ -94,45 +94,47 @@
 #'   addCircles()
 #'
 #' # Get data
-#' (res <- isd(usaf="011490", wban="99999", year=1986))
-#' (res <- isd(usaf="011690", wban="99999", year=1993))
-#' (res <- isd(usaf="109711", wban=99999, year=1970))
+#' (res <- isd(usaf='011490', wban='99999', year=1986))
+#' (res <- isd(usaf='011690', wban='99999', year=1993))
+#' (res <- isd(usaf='109711', wban=99999, year=1970))
 #'
 #' # "additional" and "remarks" data sections included by default
 #' # can toggle that parameter to not include those in output, saves time
-#' (res1 <- isd(usaf="011490", wban="99999", year=1986, force = TRUE))
-#' (res2 <- isd(usaf="011490", wban="99999", year=1986, force = TRUE,
+#' (res1 <- isd(usaf='011490', wban='99999', year=1986, force = TRUE))
+#' (res2 <- isd(usaf='011490', wban='99999', year=1986, force = TRUE,
 #'   additional = FALSE))
 #'
 #' # The first time a dataset is requested takes longer
-#' system.time( isd(usaf="782680", wban="99999", year=2011) )
-#' system.time( isd(usaf="782680", wban="99999", year=2011) )
+#' system.time( isd(usaf='782680', wban='99999', year=2011) )
+#' system.time( isd(usaf='782680', wban='99999', year=2011) )
 #'
 #' # Plot data
 #' ## get data for multiple stations
-#' res1 <- isd(usaf="011690", wban="99999", year=1993)
-#' res2 <- isd(usaf="782680", wban="99999", year=2011)
-#' res3 <- isd(usaf="008415", wban="99999", year=2016)
-#' res4 <- isd(usaf="109711", wban=99999, year=1970)
+#' res1 <- isd(usaf='011690', wban='99999', year=1993)
+#' res2 <- isd(usaf='782680', wban='99999', year=2011)
+#' res3 <- isd(usaf='008415', wban='99999', year=2016)
+#' res4 <- isd(usaf='109711', wban=99999, year=1970)
 #' ## combine data
 #' library(dplyr)
 #' res_all <- bind_rows(res1, res2, res3, res4)
 #' # add date time
 #' library("lubridate")
-#' res_all$date_time <- ymd_hm(
-#'   sprintf("%s %s", as.character(res_all$date), res_all$time)
-#' )
+#' dd <- sprintf('%s %s', as.character(res_all$date), res_all$time)
+#' res_all$date_time <- ymd_hm(dd)
 #' ## remove 999's
-#' res_all <- res_all %>% filter(temperature < 900)
+#' res_all <- filter(res_all, temperature < 900)
+#' 
 #' ## plot
-#' library("ggplot2")
-#' ggplot(res_all, aes(date_time, temperature)) +
-#'   geom_line() +
-#'   facet_wrap(~usaf_station, scales = "free_x")
+#' if (interactive()) {
+#'   library(ggplot2)
+#'   ggplot(res_all, aes(date_time, temperature)) +
+#'     geom_line() +
+#'     facet_wrap(~usaf_station, scales = 'free_x')
+#' }
 #'
 #' # print progress
 #' ## note: if the file is already on your system, you'll see no progress bar
-#' (res <- isd(usaf="011690", wban="99999", year=1993, progress=TRUE))
+#' (res <- isd(usaf='011690', wban='99999', year=1993, progress=TRUE))
 #'
 #' # parallelize processing
 #' # (res <- isd(usaf=172007, wban=99999, year=2016, parallel=TRUE))

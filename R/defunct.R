@@ -175,6 +175,71 @@ seaice <- function() {
   .Defunct(msg = "This function is defunct, see sea_ice()")
 }
 
+#' This function is defunct.
+#' @export
+#' @rdname lcd_cleanup-defunct
+#' @keywords internal
+lcd_cleanup <- function(...) {
+  .Defunct(msg = "`lcd_cleanup` no longer available, see ?lcd")
+}
+
+#' This function is defunct.
+#' @export
+#' @rdname gefs-defunct
+#' @keywords internal
+gefs <- function(...) {
+  .Defunct(msg = "`gefs` is defunct; it may return later")
+}
+#' This function is defunct.
+#' @export
+#' @rdname gefs_dimension_values-defunct
+#' @keywords internal
+gefs_dimension_values <- function(...) {
+  .Defunct(msg = "`gefs_dimension_values` is defunct; it may return later")
+}
+#' This function is defunct.
+#' @export
+#' @rdname gefs_dimensions-defunct
+#' @keywords internal
+gefs_dimensions <- function(...) {
+  .Defunct(msg = "`gefs_dimensions` is defunct; it may return later")
+}
+#' This function is defunct.
+#' @export
+#' @rdname gefs_ensembles-defunct
+#' @keywords internal
+gefs_ensembles <- function(...) {
+  .Defunct(msg = "`gefs_ensembles` is defunct; it may return later")
+}
+#' This function is defunct.
+#' @export
+#' @rdname gefs_latitudes-defunct
+#' @keywords internal
+gefs_latitudes <- function(...) {
+  .Defunct(msg = "`gefs_latitudes` is defunct; it may return later")
+}
+#' This function is defunct.
+#' @export
+#' @rdname gefs_longitudes-defunct
+#' @keywords internal
+gefs_longitudes <- function(...) {
+  .Defunct(msg = "`gefs_longitudes` is defunct; it may return later")
+}
+#' This function is defunct.
+#' @export
+#' @rdname gefs_times-defunct
+#' @keywords internal
+gefs_times <- function(...) {
+  .Defunct(msg = "`gefs_times` is defunct; it may return later")
+}
+#' This function is defunct.
+#' @export
+#' @rdname gefs_variables-defunct
+#' @keywords internal
+gefs_variables <- function(...) {
+  .Defunct(msg = "`gefs_variables` is defunct; it may return later")
+}
+
 #' Defunct functions in rnoaa
 #'
 #' \itemize{
@@ -205,7 +270,24 @@ seaice <- function() {
 #'  \item \code{\link{ncdc_leg_site_info}}: Removed. See \code{NCDC Legacy} below
 #'  \item \code{\link{ncdc_leg_data}}: Removed. See \code{NCDC Legacy} below
 #'  \item \code{\link{seaice}}: Replaced with \code{\link{sea_ice}}
+#'  \item \code{\link{lcd_cleanup}}: No longer available. See \code{\link{lcd}}
+#'  docs
 #' }
+#' 
+#' The functions for working with GEFS ensemble forecast data (prefixed with
+#' "gefs") are defunct, but may come back to rnoaa later. They are:
+#' 
+#' \itemize{
+#'  \item \code{\link{gefs}}
+#'  \item \code{\link{gefs_dimension_values}}
+#'  \item \code{\link{gefs_dimensions}}
+#'  \item \code{\link{gefs_ensembles}}
+#'  \item \code{\link{gefs_latitudes}}
+#'  \item \code{\link{gefs_longitudes}}
+#'  \item \code{\link{gefs_times}}
+#'  \item \code{\link{gefs_variables}}
+#' }
+#' 
 #' 
 #' @section NCDC Legacy:
 #' The NCDC legacy API is too unreliable and slow. Use the newer NCDC API via the 

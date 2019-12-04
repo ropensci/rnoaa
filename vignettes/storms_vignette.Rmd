@@ -9,13 +9,12 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r, echo  =  FALSE, warning = FALSE, message = FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(
   collapse  =  TRUE,
   comment  =  "#>",
-  purl  =  NOT_CRAN,
-  eval  =  NOT_CRAN
+  purl  =  FALSE,
+  eval  =  FALSE
 )
 ```
 
@@ -27,66 +26,59 @@ Find out more about NOAA storms data at http://www.ncdc.noaa.gov/ibtracs/index.p
 
 ## Load rnoaa
 
-```{r load, message=FALSE, warning=FALSE}
+```{r load}
 library('rnoaa')
-library('plyr')
 ```
 
-## Search for nx3tvs data from 5 May 2006 to 6 May 2006
+## Metadata
+
+There are two datasets stored in the package. By default `storm_meta()` gives metadata describing columns of the datasets returned.
 
 ```{r}
-swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
+head( storm_meta() )
 ```
 
-## Use an id
+Or you can get back a dataset of storm names, including storm ids and their names.
 
 ```{r}
-out <- swdi(dataset='warn', startdate='20060506', enddate='20060507', id=533623)
-list(out$meta, head(out$data), head(out$shape))
+head( storm_meta("storm_names") )
 ```
 
-## Get all 'plsr' within the bounding box (-91,30,-90,31)
+## Tabular data
 
-```{r}
-swdi(dataset='plsr', startdate='20060505', enddate='20060510', bbox=c(-91,30,-90,31))
+You can get tabular data for basins, storms, or years, (or all data). `storm_data()` and the next function `storm_shp()` figure out what files to get, and gets them from an ftp server, and saves them to your machine. Do let us know if you have any problems with paths on your machine, and we'll fix 'em. The result from `storm_data()` is a `dplyr`-like data.frame with a easy summary that makes large datasets easy to view. 
+
+First, by basin (one of EP, NA, NI, SA, SI, SP, or WP)
+
+```{r cache=TRUE}
+storm_data(basin='WP')
 ```
 
-## Get all 'nx3tvs' within the tile -102.1/32.6 (-102.15,32.55,-102.25,32.65)
+Or by storm id, see `storm_meta('storm_names')` for storm ids and their names.
 
-```{r}
-swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,32.62))
+```{r cache=TRUE}
+storm_data(storm='1970143N19091')
 ```
 
-## Counts
-
-Notes:
-
-* stat='count' will only return metadata, nothing in the data or shape slots
-* stat='tilesum:...' returns counts in the data slot for each date for that tile, and shape data
-* Get number of 'nx3tvs' within 15 miles of latitude = 32.7 and longitude = -102.0
-
-Get daily count nx3tvs features on .1 degree grid centered at `latitude = 32.7` and `longitude = -102.0`
+Or by year, from 1842 to 2014.
 
 ```{r}
-swdi(dataset='nx3tvs', startdate='20060505', enddate='20090516', stat='tilesum:-102.0,32.7')
+storm_data(year=1941)
 ```
 
-## Get data in different formats
+## shp files
 
-### CSV format
+The result from `storm_shp()` is the path, and some metadata, for the shp files downloaded. You can read in the shp files separately with `storm_shp_read()`. 
 
 ```{r}
-head(swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='csv')$data)
+(res <- storm_shp(year=2013))
 ```
 
-### SHP format
+You can easily read in the data (or do it on your own), then do stuff with the data, like make a simple plot. 
 
 ```{r}
-swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp', filepath='myfile')
-```
-
-### KMZ format
-
-```{r}
-swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz', radius=15, filepath='myfile.kmz')
+resshp <- storm_shp_read(res)
+library("maps")
+map()
+points(resshp)
 ```

@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locations?startdate=20100101&token=<<ncdc_token>>&limit=25&datasetid=NORMAL_DLY
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locations?startdate=20100101&limit=25&datasetid=NORMAL_DLY
     body:
       encoding: ''
       string: ''
@@ -60,7 +60,7 @@ http_interactions:
   recorded_with: vcr/0.2.0, webmockr/0.2.9
 - request:
     method: get
-    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locations?token=<<ncdc_token>>&limit=52&locationcategoryid=ST
+    uri: https://www.ncdc.noaa.gov/cdo-web/api/v2/locations?limit=52&locationcategoryid=ST
     body:
       encoding: ''
       string: ''

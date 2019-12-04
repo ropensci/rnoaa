@@ -21,3 +21,22 @@ test_that("ncdc_datasets returns the correct class", {
     expect_equal(length(uu), 2)
   })
 })
+
+# no internet required
+test_that("ncdc_datasets fails well", {
+  skip_on_cran()
+
+  # unload vcr namespace
+  unloadNamespace("vcr")
+
+  webmockr::enable()
+  url <- 'https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets?limit=25'
+  ss <- webmockr::stub_request('get', url)
+  webmockr::to_return(ss, body = "<!DOCTYPE HTML PUBLIC><>")
+  expect_error(ncdc_datasets(datasetid='ANNUAL'), "lexical error")
+  webmockr::disable()
+
+  # re-attach vcr namespace
+  attachNamespace("vcr")
+  vcr_set()
+})

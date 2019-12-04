@@ -6,7 +6,7 @@ test_that("lcd", {
   lcd_cache$delete_all()
 
   # get data
-  aa <- lcd(station = "01338099999", year = "2017")
+  aa <- lcd(station = "01338099999", year = 2017)
 
   expect_is(aa, "tbl_df")
 
@@ -15,7 +15,7 @@ test_that("lcd", {
   expect_type(aa$latitude, 'double')
   expect_type(aa$longitude, 'double')
   expect_type(aa$elevation, 'double')
-  expect_type(aa$wnd, 'character')
+  expect_type(aa$hourlysealevelpressure, 'double')
 })
 
 test_that("lcd fails well", {
@@ -36,23 +36,3 @@ test_that("lcd fails well", {
   expect_error(lcd(5, list(1)),
                "year must be of class")
 })
-
-test_that("lcd_cleanup", {
-  skip_on_cran()
-  skip_if_government_down()
-
-  # clean up first
-  lcd_cache$delete_all()
-
-  # get data
-  aa <- lcd(station = "01338099999", year = "2017")
-  expect_is(aa, "tbl_df")
-  bb <- suppressWarnings(lcd_cleanup(aa))
-  expect_gt(NCOL(bb), NCOL(aa))
-})
-
-test_that("lcd_cleanup fails well", {
-  skip_on_cran()
-  expect_error(lcd_cleanup(5), "must be of class lcd", class = "error")
-})
-

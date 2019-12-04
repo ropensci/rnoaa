@@ -1,4 +1,8 @@
 #' Get Argo buoy data
+#' 
+#' THE ARGO API IS DOWN. WE'VE BEEN UNSUCCESSFUL FIGURING OUT WHERE
+#' THE API MOVED TO OR IF IT STILL EXISTS. SEE "API Status" SECTION
+#' BELOW FOR MORE DETAILS.
 #'
 #' @export
 #' @name argo
@@ -10,6 +14,7 @@ argo_search <- function(func = NULL, of = NULL, qwmo = NULL, wmo = NULL,
   from =NULL, to = NULL, dmode = NULL, pres_qc = NULL, temp_qc = NULL,
   psal_qc = NULL, doxy_qc = NULL, ticket = NULL, limit = 10, ...) {
 
+  stop("the argo API is down", call. = FALSE)
   if (!is.null(box)) box <- paste0(box, collapse = ",")
   args <- noaa_compact(list(get = func, of = of, qwmo = qwmo, wmo = wmo,
       box = box, area = area, around = around, year = year, yearmin = yearmin,
@@ -24,6 +29,7 @@ argo_search <- function(func = NULL, of = NULL, qwmo = NULL, wmo = NULL,
 #' @export
 #' @rdname argo
 argo_files <- function(wmo = NULL, cyc = NULL, ...) {
+  stop("the argo API is down", call. = FALSE)
   args <- noaa_compact(list(wmo = wmo, cyc = cyc, file = ""))
   res <- argo_GET(argo_base, argo_api, args, ...)
   jsonlite::fromJSON(parse_argo(res))
@@ -32,6 +38,7 @@ argo_files <- function(wmo = NULL, cyc = NULL, ...) {
 #' @export
 #' @rdname argo
 argo_qwmo <- function(qwmo, limit = 10, ...) {
+  stop("the argo API is down", call. = FALSE)
   args <- noaa_compact(list(qwmo = qwmo, limit = limit))
   res <- argo_GET(argo_base, argo_api, args, ...)
   jsonlite::fromJSON(parse_argo(res))
@@ -40,6 +47,7 @@ argo_qwmo <- function(qwmo, limit = 10, ...) {
 #' @export
 #' @rdname argo
 argo_plan <- function(...) {
+  stop("the argo API is down", call. = FALSE)
   args <- noaa_compact(list(plan = ""))
   res <- argo_GET(argo_base, argo_api, args, ...)
   jsonlite::fromJSON(parse_argo(res))

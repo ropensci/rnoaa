@@ -65,15 +65,19 @@ Options for the dataset parameter. One of:
 }
 \examples{
 \dontrun{
+if (crul::ok("https://dods.ndbc.noaa.gov/thredds", timeout_ms = 1000)) {
+
 # Get buoy station information
 x <- buoy_stations()
 # refresh stations as needed, takes a while to run
 # you shouldn't need to update very often
 # x <- buoy_stations(refresh = TRUE)
+if (interactive() && requireNamespace("leaflet")){
 library("leaflet")
-leaflet(data = na.omit(x)) \%>\%
-  leaflet::addTiles() \%>\%
-  leaflet::addCircles(~lon, ~lat, opacity = 0.5)
+z <- leaflet(data = na.omit(x))
+z <- leaflet::addTiles(z)
+leaflet::addCircles(z, ~lon, ~lat, opacity = 0.5)
+}
 
 # Get available buoys
 buoys(dataset = 'cwind')
@@ -99,6 +103,8 @@ buoy(dataset = 'cwind', buoyid = 46085, verbose = TRUE)
 buoy(dataset = "stdmet", buoyid = "VCAF1")
 buoy(dataset = "stdmet", buoyid = "wplf1")
 buoy(dataset = "dart", buoyid = "dartu")
+
+}
 }
 }
 \references{

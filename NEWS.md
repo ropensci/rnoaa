@@ -1,3 +1,42 @@
+rnoaa 0.9.5
+===========
+
+### BUG FIXES
+
+* `lcd()` function was unfortunately pulling data from `https://www.ncei.noaa.gov/data/global-hourly/access` - whereas it should have been pulling data from `https://www.ncei.noaa.gov/data/local-climatological-data/access` - fixed now; additionaly, `lcd_cleanup` is defunct because lcd data coming from the appropriate link has all variable names spelled out and data split up (#334) thanks @sayon000 !
+* all `gefs*` functions are now defunct - they are being taken out for now until fixed - see the issues for the details (#335) (#336)
+
+
+rnoaa 0.9.4
+===========
+
+### NEW FEATURES
+
+* new gefs function helpers `gefs_dimensions` and `gefs_ensembles` (#327) (#328)
+
+### MINOR IMPROVEMENTS
+
+* `gefs` function fixes: fixed failing test on CRAN having to do with a date mismatch; `gefs` now cleans up temporary files  (#327) (#328)
+
+### BUG FIXES
+
+* Some argo buoy functions use an API and some use an FTP server. The API is down, and no longer exists. The funitons that use the API (`argo_search`, `argo_files`, `argo_qwmo`, `argo_plan`) no longer work, while the functions that use the FTP server still work (`argo_buoy_files`, `argo`)  (#333)
+
+
+rnoaa 0.9.2
+===========
+
+### MINOR IMPROVEMENTS
+
+* gefs gains new parameters `ens` and `time`, that will eventually replace the deprecated parameters `ens_idx` and `time_idx`  (#321) (#324)
+* `isd()` now using fetching data using http instead of ftp
+
+### BUG FIXES
+
+* fix to `tornadoes()`: the URL had changed yet again (#322) (#323) thanks @mbjoseph !
+* fix to gefs, was failing with some examples (#320) (#321)
+
+
 rnoaa 0.9.0
 ===========
 

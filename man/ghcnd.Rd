@@ -88,8 +88,7 @@ dat <- ghcnd(stationid = "AGE00147704")
 ## using dplyr
 library("dplyr")
 dat <- ghcnd(stationid = "AGE00147704")
-dat \%>\%
- filter(element == "PRCP", year == 1909)
+filter(dat, element == "PRCP", year == 1909)
 
 # refresh the cached file
 ghcnd(stationid = "AGE00147704", refresh = TRUE)

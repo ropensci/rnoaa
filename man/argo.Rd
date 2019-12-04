@@ -80,7 +80,7 @@ a coma separated list of characters defining the Data Mode to select. It can be:
 "Real Time", A for "Real Time with Adjusted value" and D for "Delayed Mode". See Details.}
 
 \item{pres_qc, temp_qc, psal_qc, doxy_qc}{Quality control. Imposes a restriction on the profile
-data quality flag. For a given variable <PARAM> which can be: pres (pressure),
+data quality flag. For a given variable PARAM which can be: pres (pressure),
 temp (temperature), psal (salinity) or doxy (oxygen), this restriction selects profiles
 having one or a coma separated list of data quality flag. See Details.}
 
@@ -103,7 +103,9 @@ http://www.ifremer.fr/lpo/naarc/m/docs/api/database.html for more details.}
 \item{dtype}{(character) Data type, one of \code{D} for delayed, or \code{R} for real-time}
 }
 \description{
-Get Argo buoy data
+THE ARGO API IS DOWN. WE'VE BEEN UNSUCCESSFUL FIGURING OUT WHERE
+THE API MOVED TO OR IF IT STILL EXISTS. SEE "API Status" SECTION
+BELOW FOR MORE DETAILS.
 }
 \details{
 \code{area} parameter definitions:
@@ -138,7 +140,7 @@ time data with adjusted values.
 }
 
 \code{*_qc} parameter definitions:
-This information was extracted from the netcdf profile variable PROFILE_<PARAM>_QC. Once
+This information was extracted from the netcdf profile variable PROFILE_PARAM_QC. Once
 quality control procedures have been applied, a synthetic flag is assigned for each
 parameter of each profile under this variable in netcdf files. It indicates the fraction
 n of profile levels with good data. It can take one of the following values:
@@ -159,77 +161,99 @@ The \code{path} parameter used to be used to set where files are stored
 on your machine.
 }
 
+\section{API Status}{
+
+The API is down as of 2019-11-07, and probably some time before that. The
+following functions won't work anymore (future package versions may bring
+them back if the API comes back):
+
+\itemize{
+\item argo_search
+\item argo_files
+\item argo_qwmo
+\item argo_plan
+}
+
+The following functions still work as they are based off the FTP server
+that still exists:
+
+\itemize{
+\item argo_buoy_files
+\item argo
+}
+}
+
 \examples{
 \dontrun{
 # Search Argo metadata
 ## Number of profiles
-argo_search("np", limit = 3)
+# argo_search("np", limit = 3)
 ## Number of floats
-argo_search("nf", limit = 3)
+# argo_search("nf", limit = 3)
 ## Number of both profiles and floats
-argo_search("n", limit = 3)
+# argo_search("n", limit = 3)
 ## return the coordinates in time and space of profiles
-argo_search("coord", limit = 3)
+# argo_search("coord", limit = 3)
 ## return the coordinates in time and space of profiles, plus other metadata
-argo_search("fullcoord", limit = 3)
+# argo_search("fullcoord", limit = 3)
 
 ## List various things, e.g,...
 ### data assembly centers
-argo_search("list", "dac")
+# argo_search("list", "dac")
 ### data modes
-argo_search("list", "dmode", limit = 5)
+# argo_search("list", "dmode", limit = 5)
 ### World Meteorological Organization unique float ID's
-argo_search("list", "wmo", limit = 5)
+# argo_search("list", "wmo", limit = 5)
 ### Profile years
-argo_search("list", "year", limit = 5)
+# argo_search("list", "year", limit = 5)
 
 ## coord or fullcoord with specific buoy id
-argo_search("coord", wmo = 13857, limit = 3)
-argo_search("fullcoord", wmo = 13857, limit = 3)
+# argo_search("coord", wmo = 13857, limit = 3)
+# argo_search("fullcoord", wmo = 13857, limit = 3)
 
 # Spatial search
 ### search by bounding box (see param def above)
-argo_search("coord", box = c(-40, 35, 3, 2))
+# argo_search("coord", box = c(-40, 35, 3, 2))
 ### search by area
-argo_search("coord", area = 0)
+# argo_search("coord", area = 0)
 ### search by around
-argo_search("coord", around = '-40,35,100')
+# argo_search("coord", around = '-40,35,100')
 
 # Time based search
 ### search by year
-argo_search("coord", year = 2006)
+# argo_search("coord", year = 2006)
 ### search by yearmin and yearmax
-argo_search("coord", yearmin = 2007)
-argo_search("coord", yearmin = 2007, yearmax = 2009)
+# argo_search("coord", yearmin = 2007)
+# argo_search("coord", yearmin = 2007, yearmax = 2009)
 ### search by month
-argo_search("coord", month = '12,1,2')
+# argo_search("coord", month = '12,1,2')
 ### search by from or to
-argo_search("coord", from = 20090212)
-argo_search("coord", to = 20051129)
+# argo_search("coord", from = 20090212)
+# argo_search("coord", to = 20051129)
 
 # Data mode search
-argo_search("coord", dmode = "R")
-argo_search("coord", dmode = "R,A")
+# argo_search("coord", dmode = "R")
+# argo_search("coord", dmode = "R,A")
 
 # Data quality based search
-argo_search("coord", pres_qc = "A,B")
-argo_search("coord", temp_qc = "A")
-argo_search("coord", pres_qc = "A", temp_qc = "A")
+# argo_search("coord", pres_qc = "A,B")
+# argo_search("coord", temp_qc = "A")
+# argo_search("coord", pres_qc = "A", temp_qc = "A")
 
 # Ticket search
-argo_search("coord", ticket = 0)
+# argo_search("coord", ticket = 0)
 
 ## Search on partial float id number
-argo_qwmo(qwmo = 49)
-argo_qwmo(qwmo = 49, limit = 2)
+# argo_qwmo(qwmo = 49)
+# argo_qwmo(qwmo = 49, limit = 2)
 
 ## Get files
-argo_files(wmo = 13857)
-argo_files(wmo = 13857, cyc = 12)
-argo_files(wmo = 13857, cyc = 45)
+# argo_files(wmo = 13857)
+# argo_files(wmo = 13857, cyc = 12)
+# argo_files(wmo = 13857, cyc = 45)
 
 ## Get planned buoys data, accepts no parameters
-argo_plan()
+# argo_plan()
 
 # Get files for a buoy, must specify data assembly center (dac)
 argo_buoy_files(dac = "bodc", id = 1901309)
@@ -241,5 +265,5 @@ argo(dac = "meds", id = 4900881, cycle = 127, dtype = "D")
 }
 }
 \references{
-\url{http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html}
+http://www.ifremer.fr/lpo/naarc/m/docs/api/howto.html
 }
