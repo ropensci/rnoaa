@@ -1,39 +1,6 @@
 http_interactions:
 - request:
     method: get
-    uri: https://www1.ncdc.noaa.gov/pub/data/noaa/1986/011490-99999-1986.gz
-    body:
-      encoding: ''
-      string: ''
-    headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
-      Accept-Encoding: gzip, deflate
-      Accept: application/json, text/xml, application/xml, */*
-  response:
-    status:
-      status_code: '200'
-      message: OK
-      explanation: Request fulfilled, document follows
-    headers:
-      status: HTTP/1.1 200 OK
-      date: Mon, 30 Dec 2019 19:45:35 GMT
-      server: Apache
-      strict-transport-security: max-age=31536000
-      last-modified: Wed, 27 Oct 2004 13:05:49 GMT
-      etag: '"2abc5d3-891e-3e76d7c0fe540"'
-      accept-ranges: bytes
-      content-length: '35102'
-      content-type: application/x-gzip
-      access-control-allow-origin: '*'
-      connection: close
-    body:
-      encoding: UTF-8
-      file: yes
-      string: /Users/sckott/github/ropensci/rnoaa/tests/files/011490-99999-1986.gz
-  recorded_at: 2019-12-30 19:45:43 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
-- request:
-    method: get
     uri: https://www1.ncdc.noaa.gov/pub/data/noaa/1985/011490-99999-1985.gz
     body:
       encoding: ''
@@ -49,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Mon, 30 Dec 2019 19:45:40 GMT
+      date: Mon, 30 Dec 2019 20:28:49 GMT
       server: Apache
       strict-transport-security: max-age=31536000
       last-modified: Mon, 22 Nov 2004 19:35:35 GMT
@@ -63,5 +30,5 @@ http_interactions:
       encoding: UTF-8
       file: yes
       string: /Users/sckott/github/ropensci/rnoaa/tests/files/011490-99999-1985.gz
-  recorded_at: 2019-12-30 19:45:43 GMT
+  recorded_at: 2019-12-30 20:28:53 GMT
   recorded_with: vcr/0.4.0, webmockr/0.5.0

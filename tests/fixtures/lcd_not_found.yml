@@ -16,7 +16,7 @@ http_interactions:
       explanation: Nothing matches the given URI
     headers:
       status: HTTP/1.1 404 Not Found
-      date: Mon, 30 Dec 2019 19:54:26 GMT
+      date: Mon, 30 Dec 2019 20:27:54 GMT
       server: Apache
       strict-transport-security: max-age=31536000
       content-length: '256'
@@ -28,5 +28,5 @@ http_interactions:
       encoding: UTF-8
       file: yes
       string: /Users/sckott/github/ropensci/rnoaa/tests/files/1945_02413099999.csv
-  recorded_at: 2019-12-30 19:54:26 GMT
+  recorded_at: 2019-12-30 20:27:54 GMT
   recorded_with: vcr/0.4.0, webmockr/0.5.0

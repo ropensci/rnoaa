@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Mon, 30 Dec 2019 19:54:03 GMT
+      date: Mon, 30 Dec 2019 20:27:50 GMT
       server: Apache
       strict-transport-security: max-age=31536000
       last-modified: Sat, 15 Dec 2018 17:53:37 GMT
@@ -31,5 +31,5 @@ http_interactions:
       encoding: UTF-8
       file: yes
       string: /Users/sckott/github/ropensci/rnoaa/tests/files/2017_01338099999.csv
-  recorded_at: 2019-12-30 19:54:04 GMT
+  recorded_at: 2019-12-30 20:27:52 GMT
   recorded_with: vcr/0.4.0, webmockr/0.5.0
