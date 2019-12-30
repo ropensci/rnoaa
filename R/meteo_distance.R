@@ -14,66 +14,67 @@
 #' @export
 #'
 #' @param lat_lon_df A dataframe that contains the latitude, longitude, and
-#'    a unique identifier for each location (`id`). For an example of the
-#'    proper format for this dataframe, see the examples below. Latitude and
-#'    longitude must both be in units of decimal degrees. Southern latitudes
-#'    and Western longitudes should be given as negative values.
+#' a unique identifier for each location (`id`). For an example of the
+#' proper format for this dataframe, see the examples below. Latitude and
+#' longitude must both be in units of decimal degrees. Southern latitudes
+#' and Western longitudes should be given as negative values. A tibble 
+#' is accepted, but is coerced to a data.frame internally before any usage.
 #' @param lat_colname A character string giving the name of the latitude column
-#'    in the `lat_lon_df` dataframe.
+#' in the `lat_lon_df` dataframe.
 #' @param lon_colname A character string giving the name of the longitude column
-#'    in the `lat_lon_df` dataframe.
+#' in the `lat_lon_df` dataframe.
 #' @param station_data The output of [ghcnd_stations()], which is
-#'    a current list of weather stations available through NOAA for the GHCND
-#'    dataset. The format of this is a dataframe
-#'    with one row per weather station. Latitude and longitude for the station
-#'    locations should be in columns with the names "latitude" and "longitude",
-#'    consistent with the output from [ghcnd_stations()]. To save time,
-#'    run the `ghcnd_stations` call and save the output to an object,
-#'    rather than rerunning the default every time (see the examples in
-#'    [meteo_nearby_stations()]).
+#' a current list of weather stations available through NOAA for the GHCND
+#' dataset. The format of this is a dataframe
+#' with one row per weather station. Latitude and longitude for the station
+#' locations should be in columns with the names "latitude" and "longitude",
+#' consistent with the output from [ghcnd_stations()]. To save time,
+#' run the `ghcnd_stations` call and save the output to an object,
+#' rather than rerunning the default every time (see the examples in
+#' [meteo_nearby_stations()]).
 #' @param year_min A numeric value giving the earliest year from which you
-#'    ultimately want weather data (e.g., 2013, if you only are interested in
-#'    data from 2013 and later).
+#' ultimately want weather data (e.g., 2013, if you only are interested in
+#' data from 2013 and later).
 #' @param year_max A numeric value giving the latest year from which you
-#'    ultimately want weather data.
+#' ultimately want weather data.
 #' @param radius A numeric vector giving the radius (in kilometers) within which
-#'    to search for monitors near a location.
+#' to search for monitors near a location.
 #' @param limit An integer giving the maximum number of monitors to include for
-#'    each location. The `x` closest monitors will be kept. Default is NULL
-#'    (pull everything available, within the radius if the radius is specified).
+#' each location. The `x` closest monitors will be kept. Default is NULL
+#' (pull everything available, within the radius if the radius is specified).
 #' @inheritParams ghcnd_search
 #'
 #' @return A list containing dataframes with the sets of unique weather stations
-#'    within the search radius for each location. Site IDs for the weather
-#'    stations given in this dataframe can be used in conjunction with other
-#'    functions in the \pkg{rnoaa} package to pull weather data for the
-#'    station. The dataframe for each location includes:
-#'    
-#'    - `id`: The weather station ID, which can be used in other
-#'    functions to pull weather data from the station;
-#'    - `name`: The weather station name;
-#'    - `latitude`: The station's latitude, in decimal degrees.
-#'    Southern latitudes will be negative;
-#'    - `longitude`: The station's longitude, in decimal degrees.
-#'    Western longitudes will be negative;
-#'    - `distance`: The station's distance, in kilometers, from the
-#'    location.
+#' within the search radius for each location. Site IDs for the weather
+#' stations given in this dataframe can be used in conjunction with other
+#' functions in the \pkg{rnoaa} package to pull weather data for the
+#' station. The dataframe for each location includes:
+#' 
+#' - `id`: The weather station ID, which can be used in other
+#' functions to pull weather data from the station;
+#' - `name`: The weather station name;
+#' - `latitude`: The station's latitude, in decimal degrees.
+#' Southern latitudes will be negative;
+#' - `longitude`: The station's longitude, in decimal degrees.
+#' Western longitudes will be negative;
+#' - `distance`: The station's distance, in kilometers, from the
+#' location.
 #'
 #' @note By default, this function will pull the full station list from NOAA
-#'    to use to identify nearby locations. If you will be creating lists of
-#'    monitors nearby several stations, you can save some time by using the
-#'    [ghcnd_stations()] function separately to create an object
-#'    with all stations and then use the argument `station_data` in
-#'    this function to reference that object, rather than using this function's
-#'    defaults (see examples).
+#' to use to identify nearby locations. If you will be creating lists of
+#' monitors nearby several stations, you can save some time by using the
+#' [ghcnd_stations()] function separately to create an object
+#' with all stations and then use the argument `station_data` in
+#' this function to reference that object, rather than using this function's
+#' defaults (see examples).
 #'
 #' @seealso The weather monitor IDs generated by this function can be used in
-#'    other functions in the \pkg{rnoaa} package, like
-#'    [meteo_pull_monitors()] and [meteo_tidy_ghcnd()], to
-#'    pull weather data from weather monitors near a location.
+#' other functions in the \pkg{rnoaa} package, like
+#' [meteo_pull_monitors()] and [meteo_tidy_ghcnd()], to
+#' pull weather data from weather monitors near a location.
 #'
 #' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
-#'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
+#' Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
 #' @examples
 #' \dontrun{
@@ -103,15 +104,14 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
                                   var = "all", year_min = NULL,
                                   year_max = NULL, radius = NULL,
                                   limit = NULL){
-  var <- tolower(var)
 
+  lat_lon_df <- as.data.frame(lat_lon_df)
+  var <- tolower(var)
   # Ensure `id` in `lat_lon_df` is character, not factor
   lat_lon_df$id <- as.character(lat_lon_df$id)
-
   # Ensure lat/long are numeric
   lat_lon_df[, lat_colname] <- as.numeric(as.character(lat_lon_df[, lat_colname]))
   lat_lon_df[, lon_colname] <- as.numeric(as.character(lat_lon_df[, lon_colname]))
-
   # Handle generic values for `var`, `year_min`, and `year_max` arguments
   if (is.null(year_min)) year_min <- min(station_data$first_year, na.rm = TRUE)
   if (is.null(year_max)) year_max <- max(station_data$last_year, na.rm = TRUE)
@@ -146,23 +146,23 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
 #'
 #' @export
 #' @param lat Latitude of the location. Southern latitudes should be given
-#'    as negative values.
+#' as negative values.
 #' @param long Longitude of the location. Western longitudes should be given as
-#'    negative values.
+#' negative values.
 #' @param units Units of the latitude and longitude values. Possible values
-#'    are:
+#' are:
 #'
-#'    - `deg`: Degrees (default);
-#'    - `rad`: Radians.
+#' - `deg`: Degrees (default);
+#' - `rad`: Radians.
 #'
 #' @inheritParams meteo_nearby_stations
 #'
 #' @return A dataframe of weather stations near the location. This is the
-#'    single-location version of the return value for
-#'    [meteo_nearby_stations()]
+#' single-location version of the return value for
+#' [meteo_nearby_stations()]
 #'
 #' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
-#'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
+#' Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
 #' @examples \dontrun{
 #' station_data <- ghcnd_stations()
@@ -204,12 +204,12 @@ meteo_distance <- function(station_data, lat, long,
 #' @inheritParams meteo_distance
 #'
 #' @return The `station_data` dataframe that is input, but with a
-#'    `distance` column added that gives the distance to the location
-#'    (in kilometers), and re-ordered by distance between each station and
-#'    the location (closest weather stations first).
+#' `distance` column added that gives the distance to the location
+#' (in kilometers), and re-ordered by distance between each station and
+#' the location (closest weather stations first).
 #'
 #' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
-#'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
+#' Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
 #' @examples \dontrun{
 #' station_data <- ghcnd_stations()
@@ -248,12 +248,12 @@ meteo_process_geographic_data <- function(station_data,
 #' @inheritParams meteo_distance
 #'
 #' @return A numeric value giving the distance (in kilometers) between the
-#'    pair of locations.
+#' pair of locations.
 #'
 #' @note This function assumes an earth radius of 6,371 km.
 #'
 #' @author Alex Simmons \email{a2.simmons@@qut.edu.au},
-#'    Brooke Anderson \email{brooke.anderson@@colostate.edu}
+#' Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'
 #' @examples
 #'
