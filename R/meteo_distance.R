@@ -17,7 +17,8 @@
 #'    a unique identifier for each location (`id`). For an example of the
 #'    proper format for this dataframe, see the examples below. Latitude and
 #'    longitude must both be in units of decimal degrees. Southern latitudes
-#'    and Western longitudes should be given as negative values.
+#'    and Western longitudes should be given as negative values. A tibble 
+#' is accepted, but is coerced to a data.frame internally before any usage.
 #' @param lat_colname A character string giving the name of the latitude column
 #'    in the `lat_lon_df` dataframe.
 #' @param lon_colname A character string giving the name of the longitude column
@@ -103,15 +104,14 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
                                   var = "all", year_min = NULL,
                                   year_max = NULL, radius = NULL,
                                   limit = NULL){
-  var <- tolower(var)
 
+  lat_lon_df <- as.data.frame(lat_lon_df)
+  var <- tolower(var)
   # Ensure `id` in `lat_lon_df` is character, not factor
   lat_lon_df$id <- as.character(lat_lon_df$id)
-
   # Ensure lat/long are numeric
   lat_lon_df[, lat_colname] <- as.numeric(as.character(lat_lon_df[, lat_colname]))
   lat_lon_df[, lon_colname] <- as.numeric(as.character(lat_lon_df[, lon_colname]))
-
   # Handle generic values for `var`, `year_min`, and `year_max` arguments
   if (is.null(year_min)) year_min <- min(station_data$first_year, na.rm = TRUE)
   if (is.null(year_max)) year_max <- max(station_data$last_year, na.rm = TRUE)
