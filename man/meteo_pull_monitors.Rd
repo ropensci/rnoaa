@@ -4,8 +4,13 @@
 \alias{meteo_pull_monitors}
 \title{Pull GHCND weather data for multiple weather monitors}
 \usage{
-meteo_pull_monitors(monitors, keep_flags = FALSE, date_min = NULL,
-  date_max = NULL, var = "all")
+meteo_pull_monitors(
+  monitors,
+  keep_flags = FALSE,
+  date_min = NULL,
+  date_max = NULL,
+  var = "all"
+)
 }
 \arguments{
 \item{monitors}{A character vector listing the station IDs for all
@@ -87,11 +92,11 @@ giving the station ID.
 The weather flags, which are kept by specifying
 \code{keep_flags = TRUE} are:
 \itemize{
-\item \code{*_mflag}: Measurement flag, which gives some information on how
+\item \verb{*_mflag}: Measurement flag, which gives some information on how
 the observation was measured.
-\item \code{*_qflag}: Quality flag, which gives quality information on the
+\item \verb{*_qflag}: Quality flag, which gives quality information on the
 measurement, like if it failed to pass certain quality checks.
-\item \code{*_sflag}: Source flag. This gives some information on the
+\item \verb{*_sflag}: Source flag. This gives some information on the
 weather collection system (e.g., U.S. Cooperative Summary of the Day,
 Australian Bureau of Meteorology) the weather observation comes from.
 }

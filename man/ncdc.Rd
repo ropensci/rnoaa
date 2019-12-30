@@ -4,13 +4,32 @@
 \alias{ncdc}
 \title{Search for and get NOAA NCDC data}
 \usage{
-ncdc(datasetid = NULL, datatypeid = NULL, stationid = NULL,
-  locationid = NULL, startdate = NULL, enddate = NULL,
-  sortfield = NULL, sortorder = NULL, limit = 25, offset = NULL,
-  token = NULL, dataset = NULL, datatype = NULL, station = NULL,
-  location = NULL, locationtype = NULL, page = NULL, year = NULL,
-  month = NULL, day = NULL, includemetadata = TRUE, results = NULL,
-  add_units = FALSE, ...)
+ncdc(
+  datasetid = NULL,
+  datatypeid = NULL,
+  stationid = NULL,
+  locationid = NULL,
+  startdate = NULL,
+  enddate = NULL,
+  sortfield = NULL,
+  sortorder = NULL,
+  limit = 25,
+  offset = NULL,
+  token = NULL,
+  dataset = NULL,
+  datatype = NULL,
+  station = NULL,
+  location = NULL,
+  locationtype = NULL,
+  page = NULL,
+  year = NULL,
+  month = NULL,
+  day = NULL,
+  includemetadata = TRUE,
+  results = NULL,
+  add_units = FALSE,
+  ...
+)
 }
 \arguments{
 \item{datasetid}{(required) Accepts a single valid dataset id. Data
@@ -108,7 +127,7 @@ Keep in mind that three parameters, datasetid, startdate, and enddate
 are required.
 
 Note that the default limit (no. records returned) is 25. Look at the
-metadata in \code{$meta} to see how many records were found. If more were
+metadata in \verb{$meta} to see how many records were found. If more were
 found than 25, you could set the parameter \code{limit} to something
 higher than 25.
 }
@@ -281,10 +300,14 @@ ncdc(datasetid='NEXRAD2', startdate = '2013-10-01', enddate = '2013-12-01')
 }
 }
 \seealso{
-Other ncdc: \code{\link{ncdc_combine}},
-  \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},
-  \code{\link{ncdc_datatypes}},
-  \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
-  \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}}
+Other ncdc: 
+\code{\link{ncdc_combine}()},
+\code{\link{ncdc_datacats}()},
+\code{\link{ncdc_datasets}()},
+\code{\link{ncdc_datatypes}()},
+\code{\link{ncdc_locs_cats}()},
+\code{\link{ncdc_locs}()},
+\code{\link{ncdc_plot}()},
+\code{\link{ncdc_stations}()}
 }
 \concept{ncdc}

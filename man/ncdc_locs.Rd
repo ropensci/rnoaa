@@ -4,10 +4,19 @@
 \alias{ncdc_locs}
 \title{Get metadata about NOAA NCDC locations.}
 \usage{
-ncdc_locs(datasetid = NULL, locationid = NULL,
-  locationcategoryid = NULL, startdate = NULL, enddate = NULL,
-  sortfield = NULL, sortorder = NULL, limit = 25, offset = NULL,
-  token = NULL, ...)
+ncdc_locs(
+  datasetid = NULL,
+  locationid = NULL,
+  locationcategoryid = NULL,
+  startdate = NULL,
+  enddate = NULL,
+  sortfield = NULL,
+  sortorder = NULL,
+  limit = 25,
+  offset = NULL,
+  token = NULL,
+  ...
+)
 }
 \arguments{
 \item{datasetid}{A valid dataset id or a vector or list of dataset id's. Data returned will be from the
@@ -93,10 +102,14 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 \url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
 }
 \seealso{
-Other ncdc: \code{\link{ncdc_combine}},
-  \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},
-  \code{\link{ncdc_datatypes}},
-  \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_plot}},
-  \code{\link{ncdc_stations}}, \code{\link{ncdc}}
+Other ncdc: 
+\code{\link{ncdc_combine}()},
+\code{\link{ncdc_datacats}()},
+\code{\link{ncdc_datasets}()},
+\code{\link{ncdc_datatypes}()},
+\code{\link{ncdc_locs_cats}()},
+\code{\link{ncdc_plot}()},
+\code{\link{ncdc_stations}()},
+\code{\link{ncdc}()}
 }
 \concept{ncdc}

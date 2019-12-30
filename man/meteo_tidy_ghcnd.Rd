@@ -4,8 +4,13 @@
 \alias{meteo_tidy_ghcnd}
 \title{Create a tidy GHCND dataset from a single monitor}
 \usage{
-meteo_tidy_ghcnd(stationid, keep_flags = FALSE, var = "all",
-  date_min = NULL, date_max = NULL)
+meteo_tidy_ghcnd(
+  stationid,
+  keep_flags = FALSE,
+  var = "all",
+  date_min = NULL,
+  date_max = NULL
+)
 }
 \arguments{
 \item{stationid}{(character) A character string giving the identification of
@@ -80,11 +85,11 @@ the data into a tidy form.
 The weather flags, which are kept by specifying
 \code{keep_flags = TRUE} are:
 \itemize{
-\item \code{*_mflag}: Measurement flag, which gives some information on how
+\item \verb{*_mflag}: Measurement flag, which gives some information on how
 the observation was measured.
-\item \code{*_qflag}: Quality flag, which gives quality information on the
+\item \verb{*_qflag}: Quality flag, which gives quality information on the
 measurement, like if it failed to pass certain quality checks.
-\item \code{*_sflag}: Source flag. This gives some information on the
+\item \verb{*_sflag}: Source flag. This gives some information on the
 weather collection system (e.g., U.S. Cooperative Summary of the Day,
 Australian Bureau of Meteorology) the weather observation comes from.
 }
