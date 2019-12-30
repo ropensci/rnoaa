@@ -1,0 +1,32 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncei.noaa.gov/data/local-climatological-data/access/1945/02413099999.csv
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '404'
+      message: Not Found
+      explanation: Nothing matches the given URI
+    headers:
+      status: HTTP/1.1 404 Not Found
+      date: Mon, 30 Dec 2019 19:54:26 GMT
+      server: Apache
+      strict-transport-security: max-age=31536000
+      content-length: '256'
+      content-type: text/html; charset=iso-8859-1
+      access-control-allow-origin: '*'
+      access-control-allow-headers: X-Requested-With, Content-Type
+      connection: close
+    body:
+      encoding: UTF-8
+      file: yes
+      string: /Users/sckott/github/ropensci/rnoaa/tests/files/1945_02413099999.csv
+  recorded_at: 2019-12-30 19:54:26 GMT
+  recorded_with: vcr/0.4.0, webmockr/0.5.0

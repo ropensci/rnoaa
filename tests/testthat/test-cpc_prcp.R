@@ -1,5 +1,8 @@
 context("cpc_prcp")
 
+# delete any cached files
+cpc_cache$delete_all()
+
 test_that("cpc_prcp works", {
   skip_on_cran()
   skip_on_travis()
@@ -61,24 +64,24 @@ test_that("cpc_prcp works", {
   expect_gt(NROW(cc), NROW(cc_us))
 })
 
-# test_that("cpc_prcp fails well", {
-#   skip_on_cran()
+test_that("cpc_prcp fails well", {
+  skip_on_cran()
 
-#   # required param
-#   expect_error(cpc_prcp(),
-#                "argument \"date\" is missing, with no default")
+  # required param
+  expect_error(cpc_prcp(),
+               "argument \"date\" is missing, with no default")
 
-#   # class
-#   expect_error(cpc_prcp(5),
-#                "date must be of class character, Date")
-#   expect_error(cpc_prcp("2017-01-15", us = 5),
-#                "us must be of class logical")
+  # class
+  expect_error(cpc_prcp(5),
+               "date must be of class character, Date")
+  expect_error(cpc_prcp("2017-01-15", us = 5),
+               "us must be of class logical")
 
-#   # acceptable years
-#   ## non us
-#   expect_error(cpc_prcp("1945-01-01"), "must be between")
-#   expect_error(cpc_prcp(Sys.Date() + 365), "must be between")
-#   ## us
-#   expect_error(cpc_prcp("1947-12-31", us = TRUE), "must be between")
-#   expect_error(cpc_prcp(Sys.Date() + 365, us = TRUE), "must be between")
-# })
+  # acceptable years
+  ## non us
+  expect_error(cpc_prcp("1945-01-01"), "must be between")
+  expect_error(cpc_prcp(Sys.Date() + 365), "must be between")
+  ## us
+  expect_error(cpc_prcp("1947-12-31", us = TRUE), "must be between")
+  expect_error(cpc_prcp(Sys.Date() + 365, us = TRUE), "must be between")
+})

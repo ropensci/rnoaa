@@ -1,0 +1,35 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ncei.noaa.gov/data/local-climatological-data/access/2017/01338099999.csv
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Mon, 30 Dec 2019 19:54:03 GMT
+      server: Apache
+      strict-transport-security: max-age=31536000
+      last-modified: Sat, 15 Dec 2018 17:53:37 GMT
+      etag: '"4336cc-57d133a266a40"'
+      accept-ranges: bytes
+      content-length: '4404940'
+      content-type: text/csv
+      access-control-allow-origin: '*'
+      access-control-allow-headers: X-Requested-With, Content-Type
+      connection: close
+    body:
+      encoding: UTF-8
+      file: yes
+      string: /Users/sckott/github/ropensci/rnoaa/tests/files/2017_01338099999.csv
+  recorded_at: 2019-12-30 19:54:04 GMT
+  recorded_with: vcr/0.4.0, webmockr/0.5.0

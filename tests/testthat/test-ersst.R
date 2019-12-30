@@ -1,5 +1,9 @@
 context("ersst")
 
+# delete any cached files
+ersst_dir <- rappdirs::user_cache_dir("rnoaa/ersst")
+unlink(list.files(ersst_dir, full.names = TRUE))
+
 test_that("errst works with valid character and numeric input", {
   skip_on_cran()
   skip_if_government_down()

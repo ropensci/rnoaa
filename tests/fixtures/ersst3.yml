@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.0 crul/0.8.1.9123
+      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -16,13 +16,13 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Fri, 26 Jul 2019 23:00:57 GMT
+      date: Mon, 30 Dec 2019 19:16:18 GMT
       server: Apache
       strict-transport-security: max-age=31536000
-      last-modified: Wed, 03 Jul 2019 17:44:22 GMT
-      etag: '"1b643d4f-20ee8-58cca69574110"'
+      last-modified: Tue, 03 Dec 2019 18:42:45 GMT
+      etag: '"1b643d4f-20f58-598d10fddb5de"'
       accept-ranges: bytes
-      content-length: '134888'
+      content-length: '135000'
       content-type: application/x-netcdf
       access-control-allow-origin: '*'
       connection: close
@@ -30,5 +30,5 @@ http_interactions:
       encoding: UTF-8
       file: yes
       string: /Users/sckott/github/ropensci/rnoaa/tests/files/20166.nc
-  recorded_at: 2019-07-26 23:00:57 GMT
-  recorded_with: vcr/0.2.6.9320, webmockr/0.3.4.9321
+  recorded_at: 2019-12-30 19:16:19 GMT
+  recorded_with: vcr/0.4.0, webmockr/0.5.0

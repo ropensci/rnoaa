@@ -7,6 +7,7 @@ vcr_set <- function() {
     write_disk_path = "../files"
   ))
 }
+vcr_set()
 
 # check if there's a government shutdown
 has_government <- function() {

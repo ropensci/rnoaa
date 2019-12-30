@@ -60,9 +60,9 @@ Suggests:
     purrr,
     ggmap,
     ropenaq,
-    vcr (>= 0.2.2),
+    vcr,
     webmockr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 X-schema.org-applicationCategory: Climate
 X-schema.org-keywords: earth, science, climate, precipitation, temperature, storm, buoy, NCDC, NOAA, tornadoe, sea ice, ISD
 X-schema.org-isPartOf: https://ropensci.org
