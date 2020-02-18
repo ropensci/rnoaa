@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Mon, 30 Dec 2019 19:12:24 GMT
+      date: Sat, 15 Feb 2020 01:25:40 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-type: text/html;charset=UTF-8
@@ -633,8 +633,8 @@ http_interactions:
         Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
         Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
         Documentation</a></h3>\n</body>\r\n</html>\r\n"
-  recorded_at: 2019-12-30 19:14:43 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+  recorded_at: 2020-02-15 01:26:13 GMT
+  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98
 - request:
     method: get
     uri: https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41001/catalog.html
@@ -652,7 +652,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Mon, 30 Dec 2019 19:12:25 GMT
+      date: Sat, 15 Feb 2020 01:25:41 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-type: text/html;charset=UTF-8
@@ -734,8 +734,8 @@ http_interactions:
         Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
         Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
         Documentation</a></h3>\n</body>\r\n</html>\r\n"
-  recorded_at: 2019-12-30 19:14:43 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+  recorded_at: 2020-02-15 01:26:13 GMT
+  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98
 - request:
     method: get
     uri: https://dods.ndbc.noaa.gov/thredds/fileServer/data/cwind/41001/41001c1997.nc
@@ -753,7 +753,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Mon, 30 Dec 2019 19:12:27 GMT
+      date: Sat, 15 Feb 2020 01:25:42 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-disposition: attachment; filename="41001c1997.nc"
@@ -766,5 +766,5 @@ http_interactions:
       encoding: UTF-8
       file: yes
       string: /Users/sckott/github/ropensci/rnoaa/tests/files/41001c1990.nc
-  recorded_at: 2019-12-30 19:14:43 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+  recorded_at: 2020-02-15 01:26:13 GMT
+  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98

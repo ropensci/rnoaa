@@ -20,5 +20,5 @@ http_interactions:
       encoding: UTF-8
       file: yes
       string: /Users/sckott/github/ropensci/rnoaa/tests/files/PRCP_CU_GAUGE_V1.0CONUS_0.25deg.lnx.20060709.gz
-  recorded_at: 2019-12-30 19:17:03 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+  recorded_at: 2020-02-15 03:55:19 GMT
+  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98

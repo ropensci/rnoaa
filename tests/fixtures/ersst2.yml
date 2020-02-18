@@ -16,11 +16,11 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Mon, 30 Dec 2019 19:16:17 GMT
+      date: Sat, 15 Feb 2020 03:59:11 GMT
       server: Apache
       strict-transport-security: max-age=31536000
-      last-modified: Tue, 03 Dec 2019 18:42:45 GMT
-      etag: '"1b643d4f-20f58-598d10fddb5de"'
+      last-modified: Mon, 03 Feb 2020 18:42:21 GMT
+      etag: '"1b643d4f-20f58-59db0489d071d"'
       accept-ranges: bytes
       content-length: '135000'
       content-type: application/x-netcdf
@@ -30,5 +30,5 @@ http_interactions:
       encoding: UTF-8
       file: yes
       string: /Users/sckott/github/ropensci/rnoaa/tests/files/20166.nc
-  recorded_at: 2019-12-30 19:16:17 GMT
-  recorded_with: vcr/0.4.0, webmockr/0.5.0
+  recorded_at: 2020-02-15 03:59:11 GMT
+  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98
