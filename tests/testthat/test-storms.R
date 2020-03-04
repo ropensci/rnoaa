@@ -1,9 +1,6 @@
 context("storms")
 
 test_that("storms meta", {
-  skip_on_cran()
-  skip_on_travis()
-
   meta_1 <- storm_meta()
   meta_2 <- storm_meta("storm_columns")
   meta_3 <- storm_meta("storm_names")
@@ -16,12 +13,24 @@ test_that("storms meta", {
   expect_lt(NCOL(meta_3), NCOL(meta_2))
 })
 
+# delete any cached files
+storms_dir <- rappdirs::user_cache_dir("rnoaa/storms")
+storms_basin <- file.path(storms_dir, "basin")
+storms_storm <- file.path(storms_dir, "storm")
+storms_year <- file.path(storms_dir, "year")
+list.files(storms_storm, full.names = TRUE)
+list.files(storms_year, full.names = TRUE)
+unlink(list.files(storms_storm, full.names = TRUE))
+unlink(list.files(storms_year, full.names = TRUE))
+
 test_that("storms data", {
   skip_on_cran()
   skip_on_travis()
 
-  storm <- suppressMessages(storm_data(storm = '1970143N19091'))
-  yr <- suppressMessages(storm_data(year = 1940))
+  vcr::use_cassette("storm_data", {
+    storm <- suppressMessages(storm_data(storm = '1970143N19091'))
+    yr <- suppressMessages(storm_data(year = 1940))
+  })
 
   expect_is(storm, "tbl_df")
   expect_is(yr, "tbl_df")
