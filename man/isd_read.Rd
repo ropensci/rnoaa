@@ -4,8 +4,13 @@
 \alias{isd_read}
 \title{Read NOAA ISD/ISH local file}
 \usage{
-isd_read(path, additional = TRUE, parallel = FALSE,
-  cores = getOption("cl.cores", 2), progress = FALSE)
+isd_read(
+  path,
+  additional = TRUE,
+  parallel = FALSE,
+  cores = getOption("cl.cores", 2),
+  progress = FALSE
+)
 }
 \arguments{
 \item{path}{(character) path to the file. required.}
@@ -46,7 +51,9 @@ ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 \seealso{
 \code{\link[=isd]{isd()}}, \code{\link[=isd_stations]{isd_stations()}}, \code{\link[=isd_stations_search]{isd_stations_search()}}
 
-Other isd: \code{\link{isd_stations_search}},
-  \code{\link{isd_stations}}, \code{\link{isd}}
+Other isd: 
+\code{\link{isd_stations_search}()},
+\code{\link{isd_stations}()},
+\code{\link{isd}()}
 }
 \concept{isd}

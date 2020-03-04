@@ -66,11 +66,14 @@ ncdc_combine(out1, out2, out3)
 }
 }
 \seealso{
-Other ncdc: \code{\link{ncdc_datacats}},
-  \code{\link{ncdc_datasets}},
-  \code{\link{ncdc_datatypes}},
-  \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
-  \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}},
-  \code{\link{ncdc}}
+Other ncdc: 
+\code{\link{ncdc_datacats}()},
+\code{\link{ncdc_datasets}()},
+\code{\link{ncdc_datatypes}()},
+\code{\link{ncdc_locs_cats}()},
+\code{\link{ncdc_locs}()},
+\code{\link{ncdc_plot}()},
+\code{\link{ncdc_stations}()},
+\code{\link{ncdc}()}
 }
 \concept{ncdc}

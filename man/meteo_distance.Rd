@@ -4,8 +4,14 @@
 \alias{meteo_distance}
 \title{Find all monitors within a radius of a location}
 \usage{
-meteo_distance(station_data, lat, long, units = "deg", radius = NULL,
-  limit = NULL)
+meteo_distance(
+  station_data,
+  lat,
+  long,
+  units = "deg",
+  radius = NULL,
+  limit = NULL
+)
 }
 \arguments{
 \item{station_data}{The output of \code{\link[=ghcnd_stations]{ghcnd_stations()}}, which is

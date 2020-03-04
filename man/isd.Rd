@@ -4,9 +4,19 @@
 \alias{isd}
 \title{Get and parse NOAA ISD/ISH data}
 \usage{
-isd(usaf, wban, year, overwrite = TRUE, cleanup = TRUE,
-  additional = TRUE, parallel = FALSE, cores = getOption("cl.cores",
-  2), progress = FALSE, force = FALSE, ...)
+isd(
+  usaf,
+  wban,
+  year,
+  overwrite = TRUE,
+  cleanup = TRUE,
+  additional = TRUE,
+  parallel = FALSE,
+  cores = getOption("cl.cores", 2),
+  progress = FALSE,
+  force = FALSE,
+  ...
+)
 }
 \arguments{
 \item{usaf, wban}{(character) USAF and WBAN code. Required}
@@ -79,7 +89,7 @@ but should be available in the next version of this package.
 }
 \section{Errors}{
 
-Note that when you get an error similar to \code{Error: download failed for ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz}, the
+Note that when you get an error similar to \verb{Error: download failed for ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz}, the
 file does not exist on NOAA's ftp servers. If your internet is down,
 you'll get a different error.
 }
@@ -167,8 +177,9 @@ ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 https://www1.ncdc.noaa.gov/pub/data/noaa
 }
 \seealso{
-Other isd: \code{\link{isd_read}},
-  \code{\link{isd_stations_search}},
-  \code{\link{isd_stations}}
+Other isd: 
+\code{\link{isd_read}()},
+\code{\link{isd_stations_search}()},
+\code{\link{isd_stations}()}
 }
 \concept{isd}

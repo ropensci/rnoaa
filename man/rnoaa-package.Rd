@@ -20,19 +20,19 @@ not us. Go to the link given above to get an API key.
 More NOAA data sources are being added through time. Data sources and their
 function prefixes are:
 \itemize{
-\item \code{buoy_*} - NOAA Buoy data from the National Buoy Data Center
-\item \code{gefs_*} - GEFS forecast ensemble data
-\item \code{ghcnd_*}/\code{meteo_*} - GHCND daily data from NOAA
-\item \code{isd_*} - ISD/ISH data from NOAA
-\item \code{homr_*} - Historical Observing Metadata Repository (HOMR)
+\item \verb{buoy_*} - NOAA Buoy data from the National Buoy Data Center
+\item \verb{gefs_*} - GEFS forecast ensemble data
+\item \verb{ghcnd_*}/\verb{meteo_*} - GHCND daily data from NOAA
+\item \verb{isd_*} - ISD/ISH data from NOAA
+\item \verb{homr_*} - Historical Observing Metadata Repository (HOMR)
 vignette
-\item \code{ncdc_*} - NOAA National Climatic Data Center (NCDC) vignette
+\item \verb{ncdc_*} - NOAA National Climatic Data Center (NCDC) vignette
 (examples)
 \item \code{sea_ice} - Sea ice vignette
 \item \code{storm_} - Storms (IBTrACS) vignette
 \item \code{swdi} - Severe Weather Data Inventory (SWDI) vignette
 \item \code{tornadoes} - From the NOAA Storm Prediction Center
-\item \code{argo_*} - Argo buoys
+\item \verb{argo_*} - Argo buoys
 \item \code{coops_search} - NOAA CO-OPS - tides and currents data
 \item \code{cpc_prcp} - rainfall data from the NOAA Climate
 Prediction Center (CPC)
@@ -60,26 +60,26 @@ were HTTP; though not all HTTP services were down.
 
 HTTP services (whether service is/was up or down during early 2019 shutdown)
 \itemize{
-\item \code{buoy_*} - Up
-\item \code{gefs_*} - Up
-\item \code{homr_*} - Up
-\item \code{ncdc_*} - Down
+\item \verb{buoy_*} - Up
+\item \verb{gefs_*} - Up
+\item \verb{homr_*} - Up
+\item \verb{ncdc_*} - Down
 \item \code{swdi} - Down
 \item \code{tornadoes} - Down
-\item \code{argo_*} - Up (all HTTP except two fxns, see also FTP below)
+\item \verb{argo_*} - Up (all HTTP except two fxns, see also FTP below)
 \item \code{coops_search} - Up
 \item \code{ersst} - Down
 \item \code{lcd} - Down
-\item \code{se_*} - Down
+\item \verb{se_*} - Down
 }
 
 FTP services (whether service is/was up or down during early 2019 shutdown)
 \itemize{
-\item \code{ghcnd_*} - Up
-\item \code{isd_*} - Up
+\item \verb{ghcnd_*} - Up
+\item \verb{isd_*} - Up
 \item \code{sea_ice} - Up
 \item \code{storm_} - Up
-\item \code{argo_*} - Up (only two fxns: \code{\link[=argo]{argo()}}, \code{\link[=argo_buoy_files]{argo_buoy_files()}})
+\item \verb{argo_*} - Up (only two fxns: \code{\link[=argo]{argo()}}, \code{\link[=argo_buoy_files]{argo_buoy_files()}})
 \item \code{cpc_prcp} - Up
 \item \code{arc2} - Up
 \item \code{bsw} - Up

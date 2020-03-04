@@ -5,10 +5,20 @@
 \title{Get possible data categories for a particular datasetid, locationid,
 stationid, etc.}
 \usage{
-ncdc_datacats(datasetid = NULL, datacategoryid = NULL,
-  stationid = NULL, locationid = NULL, startdate = NULL,
-  enddate = NULL, sortfield = NULL, sortorder = NULL, limit = 25,
-  offset = NULL, token = NULL, ...)
+ncdc_datacats(
+  datasetid = NULL,
+  datacategoryid = NULL,
+  stationid = NULL,
+  locationid = NULL,
+  startdate = NULL,
+  enddate = NULL,
+  sortfield = NULL,
+  sortorder = NULL,
+  limit = 25,
+  offset = NULL,
+  token = NULL,
+  ...
+)
 }
 \arguments{
 \item{datasetid}{Accepts a valid dataset id or a vector or list of dataset id's. Data returned
@@ -104,11 +114,14 @@ Vignette at \url{http://ropensci.org/tutorials/rnoaa_tutorial.html}
 \url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
 }
 \seealso{
-Other ncdc: \code{\link{ncdc_combine}},
-  \code{\link{ncdc_datasets}},
-  \code{\link{ncdc_datatypes}},
-  \code{\link{ncdc_locs_cats}}, \code{\link{ncdc_locs}},
-  \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}},
-  \code{\link{ncdc}}
+Other ncdc: 
+\code{\link{ncdc_combine}()},
+\code{\link{ncdc_datasets}()},
+\code{\link{ncdc_datatypes}()},
+\code{\link{ncdc_locs_cats}()},
+\code{\link{ncdc_locs}()},
+\code{\link{ncdc_plot}()},
+\code{\link{ncdc_stations}()},
+\code{\link{ncdc}()}
 }
 \concept{ncdc}
