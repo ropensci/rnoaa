@@ -14,15 +14,17 @@
 #' to constrain coverate tests. These should be `Date` objects.
 #' @param verbose if `TRUE` will display the coverage summary along
 #' with returning the coverage data.frame
-#' @return a `data.frame` with the coverage for each station, minimally
-#' containing: \preformatted{
+#' @return a `list` containing 2 `data.frame`s named 'summary' and 'detail'.
+#' The 'summary' `data.frame` contains columns: \preformatted{
 #' $ id         (chr)
 #' $ start_date (time)
 #' $ end_date   (time)
 #' $ total_obs  (int)
 #' }
 #' with additional fields (and their coverage percent) depending on which
-#' weather variables were queried and available for the weather station.
+#' weather variables were queried and available for the weather station. The
+#' `data.frame` named 'detail' contains the same columns as the `meteo_df` input
+#' data, but expands the rows to contain `NA`s for days without data.
 #' @export
 #' @examples \dontrun{
 #'
@@ -38,9 +40,9 @@
 #' }
 #' }
 meteo_coverage <- function(meteo_df,
-                           obs_start_date=NULL,
-                           obs_end_date=NULL,
-                           verbose=FALSE) {
+                            obs_start_date=NULL,
+                            obs_end_date=NULL,
+                            verbose=FALSE) {
 
   if (!is.null(obs_start_date)) {
     dots <- list(~as.Date(date) >= obs_start_date)
@@ -54,27 +56,64 @@ meteo_coverage <- function(meteo_df,
 
   dplyr::group_by(meteo_df, id) %>%
     dplyr::do({
+      # calculate the date range for each station id
       rng <- range(.$date)
+      # dataframe with only start & end dates
       dat <- data.frame(start_date = rng[1],
                         end_date = rng[2],
                         total_obs = nrow(.), stringsAsFactors=FALSE)
+
       if (verbose) cat(sprintf("Station Id: %s\n", .$id[1]))
       if (verbose) cat(sprintf("\n  Date range for observations: %s\n\n",
-                  paste0(as.character(rng), sep="", collapse=" to ")))
+                               paste0(as.character(rng), sep="", collapse=" to ")))
       if (verbose) cat(sprintf("  Total number of observations: %s\n\n",
                                scales::comma(nrow(.))))
+      # get the names from meteo_df other than "date" and "id"
       meteo_cols <- dplyr::setdiff(colnames(.), c("id", "date"))
-      col_cov <- lapply(meteo_cols, function(x, n) {
-        if (verbose) cat(sprintf("  Column %s completeness: %5s\n",
-                    formatC(sprintf("'%s'", x), width = (n+2)),
-                    scales::percent(sum(!is.na(.[,x])) / nrow(.))))
-        sum(!is.na(.[,x])) / nrow(.)
-      }, max(vapply(colnames(.), nchar, numeric(1), USE.NAMES=FALSE)))
+
+      col_cov <- lapply(meteo_cols,
+                        function(x, n) {
+                          if (verbose) cat(sprintf("  Column %s completeness: %5s\n",
+                                                   formatC(sprintf("'%s'", x),
+                                                           width = (n+2)),
+                                                   scales::percent(sum(!is.na(.[,x])) / nrow(.))))
+                          sum(!is.na(.[,x])) / nrow(.)
+                        },
+                        n = max(vapply(colnames(.), # maximum width of any column name
+                                       nchar,
+                                       numeric(1),
+                                       USE.NAMES=FALSE)))
+
       if (verbose) cat("\n")
+      # convert list into a data.frame
       col_cov <- stats::setNames(cbind.data.frame(col_cov, stringsAsFactors=FALSE), meteo_cols)
-      dplyr::bind_cols(dat, col_cov)
-    }) -> out
-  class(out) <- c("meteo_coverage", class(out))
+
+      dplyr::bind_cols(dat,
+                       col_cov)
+    }) -> out1
+
+
+  dplyr::group_by(meteo_df, id) %>%
+    dplyr::do({
+      # calculate the date range for each station id
+      rng <- range(.$date)
+
+      # new dataframe has all dates from start to end date
+      dates <- data.frame(date = as.Date(x = seq.Date(from = rng[1],
+                                                        to = rng[2],
+                                                        by = 'day')))
+      # join the original data to all the unique dates
+      dplyr::full_join(x = dates,
+                             y = .,
+                             by='date') %>%
+        dplyr::mutate(id = na.omit(unique(.$id)))
+    }) -> out2
+
+  class(out1) <- c("meteo_coverage", class(out1))
+
+  out <- list( summary = out1,
+               detail = out2)
+
   if (verbose) return(invisible(out))
   out
 }
