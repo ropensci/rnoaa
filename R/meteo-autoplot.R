@@ -84,11 +84,11 @@ autoplot.meteo_coverage <- function(input, old_style = FALSE) {
                     ggplot2::aes(x = id,
                                  y = date,
                                  size = size,
-                                 color = metric))+
+                                 color = metric)) +
       ggplot2::theme_bw()+
-      ggplot2::geom_line(position=ggplot2::position_dodge(width = (3) /(25/(nids+1)))) +
+      ggplot2::geom_line(position = ggplot2::position_dodge(width = 3/(25/(nids+1)))) +
       ggplot2::coord_flip()+
-      ggplot2::scale_size(guide='none',
+      ggplot2::scale_size(guide = 'none',
                           limits = c(0,1),
                           range = c((25-nids)/nmetrics,(25-nids)/nmetrics))
   }
