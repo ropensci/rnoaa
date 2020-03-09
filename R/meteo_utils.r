@@ -63,17 +63,17 @@ meteo_coverage <- function(meteo_df,
                         end_date = rng[2],
                         total_obs = nrow(.), stringsAsFactors=FALSE)
 
-      if (verbose) cat(sprintf("Station Id: %s\n", .$id[1]))
-      if (verbose) cat(sprintf("\n  Date range for observations: %s\n\n",
+      if (verbose) message(sprintf("Station Id: %s\n", .$id[1]))
+      if (verbose) message(sprintf("\n  Date range for observations: %s\n\n",
                                paste0(as.character(rng), sep="", collapse=" to ")))
-      if (verbose) cat(sprintf("  Total number of observations: %s\n\n",
+      if (verbose) message(sprintf("  Total number of observations: %s\n\n",
                                scales::comma(nrow(.))))
       # get the names from meteo_df other than "date" and "id"
       meteo_cols <- dplyr::setdiff(colnames(.), c("id", "date"))
 
       col_cov <- lapply(meteo_cols,
                         function(x, n) {
-                          if (verbose) cat(sprintf("  Column %s completeness: %5s\n",
+                          if (verbose) message(sprintf("  Column %s completeness: %5s\n",
                                                    formatC(sprintf("'%s'", x),
                                                            width = (n+2)),
                                                    scales::percent(sum(!is.na(.[,x])) / nrow(.))))
@@ -84,7 +84,7 @@ meteo_coverage <- function(meteo_df,
                                        numeric(1),
                                        USE.NAMES=FALSE)))
 
-      if (verbose) cat("\n")
+      if (verbose) message("\n")
       # convert list into a data.frame
       col_cov <- stats::setNames(cbind.data.frame(col_cov, stringsAsFactors=FALSE), meteo_cols)
 
@@ -115,6 +115,5 @@ meteo_coverage <- function(meteo_df,
                detail = out2)
 
   class(out) <- c("meteo_coverage", class(out))
-  if (verbose) return(invisible(out))
   out
 }
