@@ -109,11 +109,12 @@ meteo_coverage <- function(meteo_df,
         dplyr::mutate(id = na.omit(unique(.$id)))
     }) -> out2
 
-  class(out1) <- c("meteo_coverage", class(out1))
+  # class(out1) <- c("meteo_coverage", class(out1))
 
   out <- list( summary = out1,
                detail = out2)
 
+  class(out) <- c("meteo_coverage", class(out))
   if (verbose) return(invisible(out))
   out
 }

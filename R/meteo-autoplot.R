@@ -20,7 +20,7 @@ autoplot.meteo_coverage <- function(input, old_style = FALSE) {
                                           y = ~ start_date,
                                           yend = ~ end_date)) +
       ggplot2::scale_x_discrete(expand = c(0, 0.25)) +
-      ggplot2::coord_flip() +
+      ggplot2::coord_flip()
       gg <- gg + ggplot2::labs(x = NULL, y = NULL, title = "Time coverage by station")
       gg <- gg + ggplot2::theme_bw(base_family = "Arial Narrow")
       gg <- gg + ggplot2::theme(panel.grid = ggplot2::element_line(color="#b2b2b2", size=0.1))

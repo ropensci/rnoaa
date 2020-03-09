@@ -22,10 +22,14 @@ test_that("determine monitors' data coverage", {
   search_a <- meteo_pull_monitors(monitors)
   obs_covr <- meteo_coverage(search_a)
 
-  expect_is(obs_covr, "data.frame")
-  expect_is(obs_covr$start_date, "Date")
-  expect_is(obs_covr$total_obs, "integer")
-  expect_is(obs_covr$prcp, "numeric")
-
-  expect_equal(NROW(obs_covr), length(monitors))
+  expect_is(obs_covr, "list")
+  expect_is(obs_covr[[1]]$start_date, "Date")
+  expect_is(obs_covr[[1]]$total_obs, "integer")
+  expect_is(obs_covr[[1]]$prcp, "numeric")
+  
+  expect_equal(NROW(obs_covr[[1]]), length(monitors))
+  
+  expect_is(obs_covr[[2]]$date, "Date")
+  expect_is(obs_covr[[2]]$id, "character")
+  expect_is(obs_covr[[2]]$prcp, "numeric")
 })
