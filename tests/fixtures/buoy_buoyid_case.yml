@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 15 Feb 2020 01:26:39 GMT
+      date: Sat, 14 Mar 2020 15:43:07 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-type: text/html;charset=UTF-8
@@ -3936,8 +3936,8 @@ http_interactions:
         Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
         Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
         Documentation</a></h3>\n</body>\r\n</html>\r\n"
-  recorded_at: 2020-02-15 01:26:51 GMT
-  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98
+  recorded_at: 2020-03-14 15:44:20 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
     method: get
     uri: https://dods.ndbc.noaa.gov/thredds/catalog/data/stdmet/vcaf1/catalog.html
@@ -3945,7 +3945,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -3955,7 +3955,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 15 Feb 2020 01:26:39 GMT
+      date: Sat, 14 Mar 2020 15:43:08 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-type: text/html;charset=UTF-8
@@ -4021,14 +4021,14 @@ http_interactions:
         align='right'><tt>4.872 Mbytes</tt></td>\r\n<td align='right'><tt>2019-12-31T23:54:00Z</tt></td>\r\n</tr>\r\n<tr
         bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
         href='catalog.html?dataset=data/stdmet/vcaf1/vcaf1h9999.nc'><tt>vcaf1h9999.nc</tt></a></td>\r\n<td
-        align='right'><tt>35.42 Mbytes</tt></td>\r\n<td align='right'><tt>2020-02-15T00:48:00Z</tt></td>\r\n</tr>\r\n</table>\r\n<HR
+        align='right'><tt>35.80 Mbytes</tt></td>\r\n<td align='right'><tt>2020-03-14T15:00:00Z</tt></td>\r\n</tr>\r\n</table>\r\n<HR
         size='1' noshade='noshade'><h3><a href='/thredds/catalog.html'>National Data
         Buoy Center THREDDS Server</a> at <a href='http://www.ndbc.noaa.gov/'>National
         Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
         Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
         Documentation</a></h3>\n</body>\r\n</html>\r\n"
-  recorded_at: 2020-02-15 01:26:51 GMT
-  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98
+  recorded_at: 2020-03-14 15:44:20 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
     method: get
     uri: https://dods.ndbc.noaa.gov/thredds/fileServer/data/stdmet/vcaf1/vcaf1h2005.nc
@@ -4036,7 +4036,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -4046,7 +4046,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 15 Feb 2020 01:26:40 GMT
+      date: Sat, 14 Mar 2020 15:43:08 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-disposition: attachment; filename="vcaf1h2005.nc"
@@ -4058,9 +4058,9 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: /Users/sckott/github/ropensci/rnoaa/tests/files/vcaf1h2005.nc
-  recorded_at: 2020-02-15 01:26:51 GMT
-  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98
+      string: ../files/vcaf1h2005.nc
+  recorded_at: 2020-03-14 15:44:20 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
     method: get
     uri: https://dods.ndbc.noaa.gov/thredds/catalog/data/stdmet/catalog.html
@@ -4068,7 +4068,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -4078,7 +4078,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 15 Feb 2020 01:26:46 GMT
+      date: Sat, 14 Mar 2020 15:43:12 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-type: text/html;charset=UTF-8
@@ -7998,8 +7998,8 @@ http_interactions:
         Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
         Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
         Documentation</a></h3>\n</body>\r\n</html>\r\n"
-  recorded_at: 2020-02-15 01:26:51 GMT
-  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98
+  recorded_at: 2020-03-14 15:44:20 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
     method: get
     uri: https://dods.ndbc.noaa.gov/thredds/catalog/data/stdmet/vcaf1/catalog.html
@@ -8007,7 +8007,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -8017,7 +8017,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 15 Feb 2020 01:26:47 GMT
+      date: Sat, 14 Mar 2020 15:43:13 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-type: text/html;charset=UTF-8
@@ -8083,14 +8083,14 @@ http_interactions:
         align='right'><tt>4.872 Mbytes</tt></td>\r\n<td align='right'><tt>2019-12-31T23:54:00Z</tt></td>\r\n</tr>\r\n<tr
         bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
         href='catalog.html?dataset=data/stdmet/vcaf1/vcaf1h9999.nc'><tt>vcaf1h9999.nc</tt></a></td>\r\n<td
-        align='right'><tt>35.42 Mbytes</tt></td>\r\n<td align='right'><tt>2020-02-15T00:48:00Z</tt></td>\r\n</tr>\r\n</table>\r\n<HR
+        align='right'><tt>35.80 Mbytes</tt></td>\r\n<td align='right'><tt>2020-03-14T15:00:00Z</tt></td>\r\n</tr>\r\n</table>\r\n<HR
         size='1' noshade='noshade'><h3><a href='/thredds/catalog.html'>National Data
         Buoy Center THREDDS Server</a> at <a href='http://www.ndbc.noaa.gov/'>National
         Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
         Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
         Documentation</a></h3>\n</body>\r\n</html>\r\n"
-  recorded_at: 2020-02-15 01:26:51 GMT
-  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98
+  recorded_at: 2020-03-14 15:44:20 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
     method: get
     uri: https://dods.ndbc.noaa.gov/thredds/fileServer/data/stdmet/vcaf1/vcaf1h2005.nc
@@ -8098,7 +8098,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -8108,7 +8108,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 15 Feb 2020 01:26:47 GMT
+      date: Sat, 14 Mar 2020 15:43:13 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-disposition: attachment; filename="vcaf1h2005.nc"
@@ -8120,6 +8120,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: /Users/sckott/github/ropensci/rnoaa/tests/files/vcaf1h2005.nc
-  recorded_at: 2020-02-15 01:26:51 GMT
-  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98
+      string: ../files/vcaf1h2005.nc
+  recorded_at: 2020-03-14 15:44:20 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

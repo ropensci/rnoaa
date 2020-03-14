@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -16,7 +16,7 @@ http_interactions:
       explanation: Nothing matches the given URI
     headers:
       status: HTTP/1.1 404 Not Found
-      date: Sat, 15 Feb 2020 03:59:49 GMT
+      date: Sat, 14 Mar 2020 15:25:46 GMT
       server: Apache
       strict-transport-security: max-age=31536000
       content-length: '256'
@@ -27,6 +27,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: /Users/sckott/github/ropensci/rnoaa/tests/files/1945_02413099999.csv
-  recorded_at: 2020-02-15 03:59:49 GMT
-  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98
+      string: ../files/1945_02413099999.csv
+  recorded_at: 2020-03-14 15:25:45 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

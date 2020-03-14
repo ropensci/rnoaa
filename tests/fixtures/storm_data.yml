@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -18,9 +18,9 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: /Users/sckott/github/ropensci/rnoaa/tests/files/Storm.1970143N19091.ibtracs_all.v03r10.csv
-  recorded_at: 2020-03-04 18:35:17 GMT
-  recorded_with: vcr/0.5.0, webmockr/0.6.0
+      string: ../files/Storm.1970143N19091.ibtracs_all.v03r10.csv
+  recorded_at: 2020-03-14 15:26:58 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
     method: get
     uri: ftp://eclipse.ncdc.noaa.gov/pub/ibtracs/v03r10/all/csv/year/Year.1940.ibtracs_all.v03r10.csv
@@ -28,7 +28,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -40,6 +40,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: /Users/sckott/github/ropensci/rnoaa/tests/files/Year.1940.ibtracs_all.v03r10.csv
-  recorded_at: 2020-03-04 18:35:17 GMT
-  recorded_with: vcr/0.5.0, webmockr/0.6.0
+      string: ../files/Year.1940.ibtracs_all.v03r10.csv
+  recorded_at: 2020-03-14 15:26:58 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

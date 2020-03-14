@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
       Authorization: Basic anonymous:myrmecocystus@gmail.com
@@ -19,6 +19,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: /Users/sckott/github/ropensci/rnoaa/tests/files/daily_clim.bin.19830101.gz
-  recorded_at: 2020-02-15 01:23:59 GMT
-  recorded_with: vcr/0.4.1.97, webmockr/0.5.1.98
+      string: ../files/daily_clim.bin.19830101.gz
+  recorded_at: 2020-03-14 15:28:34 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
