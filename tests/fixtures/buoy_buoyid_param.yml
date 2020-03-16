@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 14 Mar 2020 15:35:28 GMT
+      date: Mon, 16 Mar 2020 22:31:28 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-type: text/html;charset=UTF-8
@@ -3936,7 +3936,7 @@ http_interactions:
         Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
         Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
         Documentation</a></h3>\n</body>\r\n</html>\r\n"
-  recorded_at: 2020-03-14 15:36:49 GMT
+  recorded_at: 2020-03-16 22:32:52 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
     method: get
@@ -3955,7 +3955,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 14 Mar 2020 15:35:28 GMT
+      date: Mon, 16 Mar 2020 22:31:29 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-type: text/html;charset=UTF-8
@@ -4011,13 +4011,13 @@ http_interactions:
         align='right'><tt>4.049 Mbytes</tt></td>\r\n<td align='right'><tt>2019-12-31T23:54:00Z</tt></td>\r\n</tr>\r\n<tr
         bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
         href='catalog.html?dataset=data/stdmet/wplf1/wplf1h9999.nc'><tt>wplf1h9999.nc</tt></a></td>\r\n<td
-        align='right'><tt>928.9 Kbytes</tt></td>\r\n<td align='right'><tt>2020-03-14T14:00:00Z</tt></td>\r\n</tr>\r\n</table>\r\n<HR
+        align='right'><tt>932.0 Kbytes</tt></td>\r\n<td align='right'><tt>2020-03-16T21:00:00Z</tt></td>\r\n</tr>\r\n</table>\r\n<HR
         size='1' noshade='noshade'><h3><a href='/thredds/catalog.html'>National Data
         Buoy Center THREDDS Server</a> at <a href='http://www.ndbc.noaa.gov/'>National
         Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
         Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
         Documentation</a></h3>\n</body>\r\n</html>\r\n"
-  recorded_at: 2020-03-14 15:36:49 GMT
+  recorded_at: 2020-03-16 22:32:52 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
     method: get
@@ -4036,7 +4036,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 14 Mar 2020 15:35:29 GMT
+      date: Mon, 16 Mar 2020 22:31:29 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-disposition: attachment; filename="wplf1h2009.nc"
@@ -4048,6 +4048,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../files/wplf1h2009.nc
-  recorded_at: 2020-03-14 15:36:49 GMT
+      string: ../../inst/test_files/wplf1h2009.nc
+  recorded_at: 2020-03-16 22:32:52 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

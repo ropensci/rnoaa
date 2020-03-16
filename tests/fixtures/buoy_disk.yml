@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 14 Mar 2020 15:42:27 GMT
+      date: Mon, 16 Mar 2020 22:31:04 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-type: text/html;charset=UTF-8
@@ -633,7 +633,7 @@ http_interactions:
         Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
         Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
         Documentation</a></h3>\n</body>\r\n</html>\r\n"
-  recorded_at: 2020-03-14 15:43:54 GMT
+  recorded_at: 2020-03-16 22:32:31 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
     method: get
@@ -652,7 +652,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 14 Mar 2020 15:42:27 GMT
+      date: Mon, 16 Mar 2020 22:31:04 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-type: text/html;charset=UTF-8
@@ -734,7 +734,7 @@ http_interactions:
         Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
         Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
         Documentation</a></h3>\n</body>\r\n</html>\r\n"
-  recorded_at: 2020-03-14 15:43:54 GMT
+  recorded_at: 2020-03-16 22:32:31 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
     method: get
@@ -753,7 +753,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 200
-      date: Sat, 14 Mar 2020 15:42:27 GMT
+      date: Mon, 16 Mar 2020 22:31:04 GMT
       server: Apache
       strict-transport-security: max-age=31536000;
       content-disposition: attachment; filename="41001c1997.nc"
@@ -765,6 +765,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../files/41001c1990.nc
-  recorded_at: 2020-03-14 15:43:54 GMT
+      string: ../../inst/test_files/41001c1990.nc
+  recorded_at: 2020-03-16 22:32:31 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

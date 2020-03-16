@@ -16,7 +16,7 @@ http_interactions:
       explanation: Nothing matches the given URI
     headers:
       status: HTTP/1.1 404 Not Found
-      date: Sat, 14 Mar 2020 15:25:46 GMT
+      date: Mon, 16 Mar 2020 22:35:03 GMT
       server: Apache
       strict-transport-security: max-age=31536000
       content-length: '256'
@@ -27,6 +27,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../files/1945_02413099999.csv
-  recorded_at: 2020-03-14 15:25:45 GMT
+      string: ../../inst/test_files/1945_02413099999.csv
+  recorded_at: 2020-03-16 22:35:03 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
