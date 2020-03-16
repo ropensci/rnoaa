@@ -1,16 +1,16 @@
 context("ersst")
 
 # delete any cached files
-# ersst_dir <- rappdirs::user_cache_dir("rnoaa/ersst")
-# unlink(list.files(ersst_dir, full.names = TRUE))
+ersst_dir <- rappdirs::user_cache_dir("rnoaa/ersst")
+unlink(list.files(ersst_dir, full.names = TRUE))
 
 test_that("errst works with valid character and numeric input", {
   skip_on_cran()
   skip_if_government_down()
 
-  vcr::use_cassette("ersst1", {
-    expect_is(ersst(year = 2016, month = 06), "ncdf4")
-  })
+  # vcr::use_cassette("ersst1", {
+  #   expect_is(ersst(year = 2016, month = 06), "ncdf4")
+  # })
 
   vcr::use_cassette("ersst2", {
     expect_is(ersst(year = 2016, month = 6), "ncdf4")
