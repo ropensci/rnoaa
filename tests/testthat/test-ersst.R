@@ -8,20 +8,20 @@ test_that("errst works with valid character and numeric input", {
   skip_on_cran()
   skip_if_government_down()
 
-  # vcr::use_cassette("ersst1", {
-  #   expect_is(ersst(year = 2016, month = 06), "ncdf4")
-  # })
+  vcr::use_cassette("ersst1", {
+    expect_is(ersst(year = 2016, month = 06), "ncdf4")
+  })
 
   vcr::use_cassette("ersst2", {
-    expect_is(ersst(year = 2016, month = 6), "ncdf4")
+    expect_is(ersst(year = 2016, month = 7), "ncdf4")
   })
 
   vcr::use_cassette("ersst3", {
-    expect_is(ersst(year = "2016", month = 6), "ncdf4")
+    expect_is(ersst(year = "2016", month = 8), "ncdf4")
   })
 
   vcr::use_cassette("ersst4", {
-    expect_is(ersst(year = "2016", month = "06"), "ncdf4")
+    expect_is(ersst(year = "2016", month = "09"), "ncdf4")
   })
 })
 

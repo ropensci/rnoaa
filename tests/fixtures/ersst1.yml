@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Mon, 16 Mar 2020 22:34:37 GMT
+      date: Tue, 17 Mar 2020 00:06:47 GMT
       server: Apache
       strict-transport-security: max-age=31536000
       last-modified: Tue, 03 Mar 2020 18:42:18 GMT
@@ -30,5 +30,5 @@ http_interactions:
       encoding: UTF-8
       file: yes
       string: ../../inst/test_files/20166.nc
-  recorded_at: 2020-03-16 22:34:38 GMT
+  recorded_at: 2020-03-17 00:06:48 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
