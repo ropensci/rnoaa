@@ -8,7 +8,7 @@
 #' @param ... curl options passed on to [crul::verb-GET]
 #' @return a data.frame, with many columns, and variable rows
 #' depending on how frequently data was collected in the given year
-#'
+#' @seealso lcd_cache
 #' @references
 #' Docs: 
 #' <https://www.ncei.noaa.gov/data/local-climatological-data/doc/LCD_documentation.pdf>
@@ -52,7 +52,7 @@ lcd <- function(station, year, ...) {
   assert_range(year, 1901:format(Sys.Date(), "%Y"))
 
   path <- lcd_get(station = station, year = year, ...)
-  tmp <- read.csv(path, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+  tmp <- safe_read_csv(path)
   names(tmp) <- tolower(names(tmp))
   df <- tibble::as_tibble(tmp)
   structure(df, class = c(class(df), "lcd"))
@@ -96,3 +96,45 @@ lcd_base <- function() {
 lcd_key <- function(station, year) {
   file.path(lcd_base(), year, paste0(station, ".csv"))
 }
+
+#' @title lcd_cache
+#' @description Manage the `lcd()` cache
+#' @export
+#' @details The cache directory for `lcd()` is
+#' `paste0(rappdirs::user_cache_dir(), "/R/noaa_lcd")`, but you can set
+#' your own path using `cache_path_set()`
+#'
+#' `cache_delete` only accepts 1 file name, while
+#' `cache_delete_all` doesn't accept any names, but deletes all files.
+#' For deleting many specific files, use `cache_delete` in a [lapply()]
+#' type call
+#'
+#' @section Useful user functions:
+#'
+#' - `lcd_cache$cache_path_get()` get cache path
+#' - `lcd_cache$cache_path_set()` set cache path
+#' - `lcd_cache$list()` returns a character vector of full path file names
+#' - `lcd_cache$files()` returns file objects with metadata
+#' - `lcd_cache$details()` returns files with details
+#' - `lcd_cache$delete()` delete specific files
+#' - `lcd_cache$delete_all()` delete all files, returns nothing
+#'
+#' @examples \dontrun{
+#' lcd_cache
+#'
+#' # list files in cache
+#' lcd_cache$list()
+#'
+#' # delete certain database files
+#' # lcd_cache$delete("file path")
+#' # lcd_cache$list()
+#'
+#' # delete all files in cache
+#' # lcd_cache$delete_all()
+#' # lcd_cache$list()
+#'
+#' # set a different cache path from the default
+#' # lcd_cache$cache_path_set(full_path = file.path(tempdir(), "foo_bar"))
+#' # lcd_cache
+#' }
+"lcd_cache"

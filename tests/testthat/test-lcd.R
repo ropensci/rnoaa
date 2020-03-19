@@ -36,3 +36,14 @@ test_that("lcd fails well", {
   expect_error(lcd(5, list(1)),
                "year must be of class")
 })
+
+test_that("lcd fails well when trying to read a bad file", {
+  skip_on_cran()
+
+  lcd_cache$cache_path_set(full_path = file.path(tempdir(), "foo_bar"))
+  lcd_cache$mkdir()
+  path <- file.path(tempdir(), "foo_bar", "2020_72517014737.csv")
+  file.create(path)
+  expect_error(lcd(72517014737, 2020), "malformed", class = "error")
+  unlink(path)
+})

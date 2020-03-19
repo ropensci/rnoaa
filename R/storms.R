@@ -105,7 +105,7 @@ storm_data <- function(basin = NULL, storm = NULL, year = NULL,
     csvpath <- storm_GET(path, basin, storm, year, overwrite, ...)
   }
   message(sprintf("<path>%s", csvpath), "\n")
-  tibble::as_tibble(read_csv(csvpath))
+  tibble::as_tibble(storms_read_csv(csvpath))
 }
 
 storm_GET <- function(bp, basin, storm, year, overwrite, ...){
