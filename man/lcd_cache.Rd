@@ -52,7 +52,8 @@ lcd_cache$list()
 # lcd_cache$list()
 
 # set a different cache path from the default
-# lcd_cache$cache_path_set(full_path = "/Foo/Bar")
+# lcd_cache$cache_path_set(full_path = file.path(tempdir(), "foo_bar"))
+# lcd_cache
 }
 }
 \keyword{datasets}
