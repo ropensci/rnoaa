@@ -4048,6 +4048,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../../inst/test_files/wplf1h2009.nc
+      string: ../files/wplf1h2009.nc
   recorded_at: 2020-03-16 22:32:52 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

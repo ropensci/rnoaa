@@ -29,6 +29,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../../inst/test_files/20168.nc
+      string: ../files/20168.nc
   recorded_at: 2020-03-17 00:06:50 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

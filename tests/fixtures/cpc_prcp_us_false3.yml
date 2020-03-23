@@ -19,6 +19,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../../inst/test_files/PRCP_CU_GAUGE_V1.0GLB_0.50deg.lnx.20060709RT.gz
+      string: ../files/PRCP_CU_GAUGE_V1.0GLB_0.50deg.lnx.20060709RT.gz
   recorded_at: 2020-03-16 22:30:45 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

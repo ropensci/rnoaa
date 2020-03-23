@@ -4,7 +4,9 @@
 \name{fipscodes}
 \alias{fipscodes}
 \title{FIPS codes for US states.}
-\format{A data frame with 3142 rows and 5 variables}
+\format{
+A data frame with 3142 rows and 5 variables
+}
 \description{
 A dataset containing the FIPS codes for 51 US states
 and territories. The variables are as follows:

@@ -4058,7 +4058,7 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../../inst/test_files/vcaf1h2005.nc
+      string: ../files/vcaf1h2005.nc
   recorded_at: 2020-03-16 22:33:03 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
@@ -8120,6 +8120,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../../inst/test_files/vcaf1h2005.nc
+      string: ../files/vcaf1h2005.nc
   recorded_at: 2020-03-16 22:33:03 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

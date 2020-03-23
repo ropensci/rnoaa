@@ -18,7 +18,7 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../../inst/test_files/Storm.1970143N19091.ibtracs_all.v03r10.csv
+      string: ../files/Storm.1970143N19091.ibtracs_all.v03r10.csv
   recorded_at: 2020-03-16 22:35:33 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
 - request:
@@ -40,6 +40,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../../inst/test_files/Year.1940.ibtracs_all.v03r10.csv
+      string: ../files/Year.1940.ibtracs_all.v03r10.csv
   recorded_at: 2020-03-16 22:35:33 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

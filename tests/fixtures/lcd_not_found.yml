@@ -27,6 +27,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../../inst/test_files/1945_02413099999.csv
+      string: ../files/1945_02413099999.csv
   recorded_at: 2020-03-16 22:35:03 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
