@@ -3,12 +3,13 @@ rnoaa
 
 
 
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![cran checks](https://cranchecks.info/badges/worst/rnoaa)](https://cranchecks.info/pkgs/rnoaa)
 [![Build Status](https://api.travis-ci.org/ropensci/rnoaa.png)](https://travis-ci.org/ropensci/rnoaa)
 [![Build status](https://ci.appveyor.com/api/projects/status/8daqtllo2sg6me07/branch/master)](https://ci.appveyor.com/project/sckott/rnoaa/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rnoaa/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rnoaa?branch=master)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rnoaa?color=C9A115)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/rnoaa)](https://cran.r-project.org/package=rnoaa)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/rnoaa?color=C9A115)](https://github.com/metacran/cranlogs.app)
+[![cran version](https://www.r-pkg.org/badges/version/rnoaa)](https://cran.r-project.org/package=rnoaa)
 
 
 `rnoaa` is an R interface to many NOAA data sources. We don't cover all of them, but we include many commonly used sources, and add we are always adding new sources. We focus on easy to use interfaces for getting NOAA data, and giving back data in easy to use formats downstream. We currently don't do much in the way of plots or analysis.
@@ -71,11 +72,11 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 |Dataset    |Description                 |Start Date |End Date   | Data Coverage|
 |:----------|:---------------------------|:----------|:----------|-------------:|
-|GHCND      |Daily Summaries             |1763-01-01 |2019-09-24 |          1.00|
-|GSOM       |Global Summary of the Month |1763-01-01 |2019-08-01 |          1.00|
+|GHCND      |Daily Summaries             |1763-01-01 |2020-03-21 |          1.00|
+|GSOM       |Global Summary of the Month |1763-01-01 |2020-02-01 |          1.00|
 |GSOY       |Global Summary of the Year  |1763-01-01 |2019-01-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2019-09-24 |          0.95|
-|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2019-09-22 |          0.95|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2020-03-21 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2020-03-10 |          0.95|
 |NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
 |NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
 |NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
@@ -170,31 +171,31 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 
 #> $data
 #>       mindate    maxdate                  name datacoverage            id
-#> 1  1892-08-01 2019-07-31            Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2019-09-22            Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2019-09-22         Zonguldak, TU       1.0000 CITY:TU000057
-#> 4  1906-01-01 2019-09-22            Zinder, NG       0.9025 CITY:NG000004
-#> 5  1973-01-01 2019-09-22        Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2019-09-22         Zhytomyra, UP       0.9723 CITY:UP000025
-#> 7  1948-03-01 2019-09-22        Zhezkazgan, KZ       0.9302 CITY:KZ000017
-#> 8  1951-01-01 2019-09-22         Zhengzhou, CH       1.0000 CITY:CH000045
-#> 9  1941-01-01 2019-06-30          Zaragoza, SP       1.0000 CITY:SP000021
+#> 1  1892-08-01 2020-01-31            Zwolle, NL       1.0000 CITY:NL000012
+#> 2  1901-01-01 2020-03-20            Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2020-03-20         Zonguldak, TU       1.0000 CITY:TU000057
+#> 4  1906-01-01 2020-03-20            Zinder, NG       0.9025 CITY:NG000004
+#> 5  1973-01-01 2020-03-20        Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2020-03-20         Zhytomyra, UP       0.9723 CITY:UP000025
+#> 7  1948-03-01 2020-03-20        Zhezkazgan, KZ       0.9302 CITY:KZ000017
+#> 8  1951-01-01 2020-03-20         Zhengzhou, CH       1.0000 CITY:CH000045
+#> 9  1941-01-01 2019-12-31          Zaragoza, SP       1.0000 CITY:SP000021
 #> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       1.0000 CITY:UP000024
-#> 11 1957-01-01 2019-09-22          Zanzibar, TZ       0.8016 CITY:TZ000019
-#> 12 1973-01-01 2019-09-22            Zanjan, IR       0.9105 CITY:IR000020
-#> 13 1893-01-01 2019-09-24     Zanesville, OH US       1.0000 CITY:US390029
-#> 14 1912-01-01 2019-09-22             Zahle, LE       0.9819 CITY:LE000004
-#> 15 1951-01-01 2019-09-22           Zahedan, IR       0.9975 CITY:IR000019
-#> 16 1860-12-01 2019-09-22            Zagreb, HR       1.0000 CITY:HR000002
-#> 17 1929-07-01 2019-09-22         Zacatecas, MX       1.0000 CITY:MX000036
-#> 18 1947-01-01 2019-09-22 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
-#> 19 1893-01-01 2019-09-24           Yuma, AZ US       1.0000 CITY:US040015
-#> 20 1942-02-01 2019-09-24   Yucca Valley, CA US       1.0000 CITY:US060048
-#> 21 1885-01-01 2019-09-24      Yuba City, CA US       1.0000 CITY:US060047
-#> 22 1998-02-01 2019-09-22            Yozgat, TU       0.9993 CITY:TU000056
-#> 23 1893-01-01 2019-09-24     Youngstown, OH US       1.0000 CITY:US390028
-#> 24 1894-01-01 2019-09-24           York, PA US       1.0000 CITY:US420024
-#> 25 1869-01-01 2019-09-24        Yonkers, NY US       1.0000 CITY:US360031
+#> 11 1957-01-01 2020-03-20          Zanzibar, TZ       0.8016 CITY:TZ000019
+#> 12 1973-01-01 2020-03-20            Zanjan, IR       0.9105 CITY:IR000020
+#> 13 1893-01-01 2020-03-22     Zanesville, OH US       1.0000 CITY:US390029
+#> 14 1912-01-01 2020-03-20             Zahle, LE       0.9819 CITY:LE000004
+#> 15 1951-01-01 2020-03-20           Zahedan, IR       0.9975 CITY:IR000019
+#> 16 1860-12-01 2020-03-20            Zagreb, HR       1.0000 CITY:HR000002
+#> 17 1929-07-01 2020-03-20         Zacatecas, MX       1.0000 CITY:MX000036
+#> 18 1947-01-01 2020-03-20 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
+#> 19 1893-01-01 2020-03-22           Yuma, AZ US       1.0000 CITY:US040015
+#> 20 1942-02-01 2020-03-21   Yucca Valley, CA US       1.0000 CITY:US060048
+#> 21 1885-01-01 2020-03-22      Yuba City, CA US       1.0000 CITY:US060047
+#> 22 1998-02-01 2020-03-20            Yozgat, TU       0.9993 CITY:TU000056
+#> 23 1893-01-01 2020-03-22     Youngstown, OH US       1.0000 CITY:US390028
+#> 24 1894-01-01 2020-03-22           York, PA US       1.0000 CITY:US420024
+#> 25 1869-01-01 2020-03-22        Yonkers, NY US       1.0000 CITY:US360031
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -209,10 +210,10 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> NULL
 #> 
 #> $data
-#>   elevation    mindate    maxdate latitude                  name
-#> 1      17.7 1899-02-01 2019-09-23 28.80286 INVERNESS 3 SE, FL US
-#>   datacoverage                id elevationUnit longitude
-#> 1            1 GHCND:USC00084289        METERS -82.31266
+#>   elevation    mindate    maxdate latitude                  name datacoverage
+#> 1      17.7 1899-02-01 2020-03-20 28.80286 INVERNESS 3 SE, FL US            1
+#>                  id elevationUnit longitude
+#> 1 GHCND:USC00084289        METERS -82.31266
 #> 
 #> attr(,"class")
 #> [1] "ncdc_stations"
@@ -261,14 +262,14 @@ Let's ask `rnoaa` to add units to some precipitation (PRCP) data:
 with_units <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500, add_units = TRUE)
 head( with_units$data )
 #> # A tibble: 6 x 9
-#>   date          datatype station      value fl_m  fl_q  fl_so fl_t  units  
-#>   <chr>         <chr>    <chr>        <int> <chr> <chr> <chr> <chr> <chr>  
-#> 1 2010-05-01T0… PRCP     GHCND:USW00…     0 T     ""    0     2400  mm_ten…
-#> 2 2010-05-02T0… PRCP     GHCND:USW00…    30 ""    ""    0     2400  mm_ten…
-#> 3 2010-05-03T0… PRCP     GHCND:USW00…    51 ""    ""    0     2400  mm_ten…
-#> 4 2010-05-04T0… PRCP     GHCND:USW00…     0 T     ""    0     2400  mm_ten…
-#> 5 2010-05-05T0… PRCP     GHCND:USW00…    18 ""    ""    0     2400  mm_ten…
-#> 6 2010-05-06T0… PRCP     GHCND:USW00…    30 ""    ""    0     2400  mm_ten…
+#>   date            datatype station         value fl_m  fl_q  fl_so fl_t  units  
+#>   <chr>           <chr>    <chr>           <int> <chr> <chr> <chr> <chr> <chr>  
+#> 1 2010-05-01T00:… PRCP     GHCND:USW00014…     0 "T"   ""    0     2400  mm_ten…
+#> 2 2010-05-02T00:… PRCP     GHCND:USW00014…    30 ""    ""    0     2400  mm_ten…
+#> 3 2010-05-03T00:… PRCP     GHCND:USW00014…    51 ""    ""    0     2400  mm_ten…
+#> 4 2010-05-04T00:… PRCP     GHCND:USW00014…     0 "T"   ""    0     2400  mm_ten…
+#> 5 2010-05-05T00:… PRCP     GHCND:USW00014…    18 ""    ""    0     2400  mm_ten…
+#> 6 2010-05-06T00:… PRCP     GHCND:USW00014…    30 ""    ""    0     2400  mm_ten…
 ```
 From the above output, we can see that the units for `PRCP` values are "mm_tenths" which means tenths of a millimeter.
 You won't always be so lucky and sometimes you will have to look up the documentation on your own.
@@ -281,7 +282,7 @@ out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
-![plot of chunk unnamed-chunk-14](https://raw.githubusercontent.com/ropensci/rnoaa/master/tools/unnamed-chunk-14-1.png)
+![plot of chunk unnamed-chunk-14](tools/unnamed-chunk-14-1.png)
 
 Note that `PRCP` values are in units of tenths of a millimeter, as we found out above.
 
@@ -296,7 +297,7 @@ out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP'
 ncdc_plot(out1, out2, breaks="45 days")
 ```
 
-![plot of chunk unnamed-chunk-15](https://raw.githubusercontent.com/ropensci/rnoaa/master/tools/unnamed-chunk-15-1.png)
+![plot of chunk unnamed-chunk-15](tools/unnamed-chunk-15-1.png)
 
 ### Get table of all datasets
 
@@ -316,11 +317,11 @@ ncdc_datasets()
 #> 
 #> $data
 #>                     uid    mindate    maxdate                        name
-#> 1  gov.noaa.ncdc:C00861 1763-01-01 2019-09-24             Daily Summaries
-#> 2  gov.noaa.ncdc:C00946 1763-01-01 2019-08-01 Global Summary of the Month
+#> 1  gov.noaa.ncdc:C00861 1763-01-01 2020-03-21             Daily Summaries
+#> 2  gov.noaa.ncdc:C00946 1763-01-01 2020-02-01 Global Summary of the Month
 #> 3  gov.noaa.ncdc:C00947 1763-01-01 2019-01-01  Global Summary of the Year
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2019-09-24    Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2019-09-22   Weather Radar (Level III)
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2020-03-21    Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2020-03-10   Weather Radar (Level III)
 #> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01     Normals Annual/Seasonal
 #> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31               Normals Daily
 #> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31              Normals Hourly
@@ -407,7 +408,7 @@ library('sp')
 plot(shp)
 ```
 
-![plot of chunk unnamed-chunk-18](https://raw.githubusercontent.com/ropensci/rnoaa/master/tools/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](tools/unnamed-chunk-18-1.png)
 
 ## HOMR metadata
 
