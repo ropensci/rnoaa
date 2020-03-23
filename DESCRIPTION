@@ -63,7 +63,8 @@ Suggests:
     purrr,
     ggmap,
     ropenaq,
-    vcr (>= 0.5.0.92)
+    vcr (>= 0.5.0.92),
+    webmockr
 Remotes: ropensci/vcr
 RoxygenNote: 7.1.0
 X-schema.org-applicationCategory: Climate
