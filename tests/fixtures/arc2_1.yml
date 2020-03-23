@@ -19,6 +19,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../../inst/test_files/daily_clim.bin.19830101.gz
+      string: ../files/daily_clim.bin.19830101.gz
   recorded_at: 2020-03-23 17:33:25 GMT
   recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
