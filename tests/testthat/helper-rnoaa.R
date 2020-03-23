@@ -4,7 +4,7 @@ vcr_set <- function() {
   invisible(vcr::vcr_configure(
     dir = "../fixtures",
     filter_sensitive_data = list("<<ncdc_token>>" = Sys.getenv('NOAA_KEY')),
-    write_disk_path = "../../inst/test_files"
+    write_disk_path = "../files"
   ))
 }
 vcr_set()
