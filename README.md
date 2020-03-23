@@ -282,7 +282,7 @@ out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
-![plot of chunk unnamed-chunk-14](tools/unnamed-chunk-14-1.png)
+![plot of chunk unnamed-chunk-14](man/figures/unnamed-chunk-14-1.png)
 
 Note that `PRCP` values are in units of tenths of a millimeter, as we found out above.
 
@@ -297,7 +297,7 @@ out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP'
 ncdc_plot(out1, out2, breaks="45 days")
 ```
 
-![plot of chunk unnamed-chunk-15](tools/unnamed-chunk-15-1.png)
+![plot of chunk unnamed-chunk-15](man/figures/unnamed-chunk-15-1.png)
 
 ### Get table of all datasets
 
@@ -401,14 +401,15 @@ The function `tornadoes()` simply gets __all the data__. So the call takes a whi
 ```r
 shp <- tornadoes()
 #> OGR data source with driver: ESRI Shapefile 
-#> Source: "/Users/sckott/Library/Caches/rnoaa/tornadoes/1950-2017-torn-aspath", layer: "1950-2017-torn-aspath"
-#> with 62519 features
+#> Source: "/Users/sckott/Library/Caches/rnoaa/tornadoes/1950-2018-torn-aspath", layer: "1950-2018-torn-aspath"
+#> with 63645 features
 #> It has 22 fields
+#> Integer64 fields read as strings:  om yr mo dy tz stf stn mag inj fat wid fc
 library('sp')
 plot(shp)
 ```
 
-![plot of chunk unnamed-chunk-18](tools/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](man/figures/unnamed-chunk-18-1.png)
 
 ## HOMR metadata
 
@@ -435,14 +436,9 @@ Get forecast for a certain variable.
 
 ```r
 res <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat = 46.28125, lon = -116.2188)
+#> Error: `gefs` is defunct; it may return later
 head(res$data)
-#>   Total_precipitation_surface_6_Hour_Accumulation_ens lon lat ens time1
-#> 1                                                   0 244  46   0     6
-#> 2                                                   0 244  46   1     6
-#> 3                                                   0 244  46   2     6
-#> 4                                                   0 244  46   3     6
-#> 5                                                   0 244  46   4     6
-#> 6                                                   0 244  46   5     6
+#> Error in head(res$data): object 'res' not found
 ```
 
 ## Argo buoys data
