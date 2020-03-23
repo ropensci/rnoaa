@@ -1,0 +1,34 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www1.ncdc.noaa.gov/pub/data/cmb/ersst/v4/netcdf/ersst.v4.201609.nc
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Tue, 17 Mar 2020 00:06:50 GMT
+      server: Apache
+      strict-transport-security: max-age=31536000
+      last-modified: Tue, 03 Mar 2020 18:42:18 GMT
+      etag: '"1b643d54-20f58-59ff7a9cd91b8"'
+      accept-ranges: bytes
+      content-length: '135000'
+      content-type: application/x-netcdf
+      access-control-allow-origin: '*'
+      connection: close
+    body:
+      encoding: UTF-8
+      file: yes
+      string: ../files/201609.nc
+  recorded_at: 2020-03-17 00:06:51 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

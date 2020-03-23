@@ -1,12 +1,18 @@
 context("arc2")
 
+# delete any cached files
+arc2_cache$delete_all()
+
 test_that("arc2 returns the expected output", {
   skip_on_cran()
   skip_on_travis()
   skip_on_appveyor()
   skip_if_government_down()
-      
-  arc2_result <- arc2(date = "1983-01-01")
+  
+  vcr::use_cassette("arc2_1", {    
+    arc2_result <- arc2(date = "1983-01-01")
+  })
+
   expect_is(arc2_result, "tbl_df")
   expect_equal(names(arc2_result), c("lon", "lat", "precip"))
 })

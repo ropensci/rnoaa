@@ -1,11 +1,20 @@
 context("isd")
 
+# delete any cached files
+# isd_dir <- rappdirs::user_cache_dir("rnoaa/isd")
+# list.files(isd_dir, full.names = TRUE)
+# unlink(list.files(isd_dir, full.names = TRUE))
+
 test_that("isd gets data", {
   skip_on_cran()
   skip_if_government_down()
 
+  # FIXME: getting a "file not found" error when running this with vcr
+  # probably something about internals, checking for cached files and such 
+  # vcr::use_cassette("isd_query", {
   data_a <- suppressMessages(isd(usaf = "011490", wban = "99999", year = 1986))
   data_b <- suppressMessages(isd(usaf = "011490", wban = "99999", year = 1985))
+  # })
 
   expect_is(data_a, "tbl_df")
   # no longer a df in a list

@@ -71,7 +71,8 @@ cpc_get <- function(year, month, day, us, cache = TRUE, overwrite = FALSE, ...) 
   key <- cpc_key(year, month, day, us)
   file <- file.path(cpc_cache$cache_path_get(), basename(key))
   if (!file.exists(file)) {
-    suppressMessages(cpc_GET_write(sub("/$", "", key), file, overwrite, ...))
+    res <- suppressMessages(cpc_GET_write(sub("/$", "", key), file, overwrite, ...))
+    file <- res$content
   }
   return(file)
 }

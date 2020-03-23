@@ -1,12 +1,15 @@
+context("lcd")
+
+# clean up first
+# lcd_cache$delete_all()
+
 test_that("lcd", {
   skip_on_cran()
   skip_if_government_down()
 
-  # clean up first
-  lcd_cache$delete_all()
-
-  # get data
-  aa <- lcd(station = "01338099999", year = 2017)
+  vcr::use_cassette("lcd_1", {
+    aa <- lcd(station = "01338099999", year = 2017)
+  })
 
   expect_is(aa, "tbl_df")
 
@@ -23,8 +26,10 @@ test_that("lcd fails well", {
   skip_if_government_down()
 
   # a station/year combination that doesn't exist
-  expect_error(lcd(station = "02413099999", year = "1945"),
-               "Not Found", class = "error")
+  vcr::use_cassette("lcd_not_found", {
+    expect_error(lcd(station = "02413099999", year = "1945"),
+                 "Not Found", class = "error")
+  })
 
   # class
   expect_error(lcd(5),

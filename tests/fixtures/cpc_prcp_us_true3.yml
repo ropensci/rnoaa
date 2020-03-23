@@ -1,0 +1,24 @@
+http_interactions:
+- request:
+    method: get
+    uri: ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_CONUS/V1.0/2006/PRCP_CU_GAUGE_V1.0CONUS_0.25deg.lnx.20060709.gz
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Basic anonymous:myrmecocystus@gmail.com
+  response:
+    status:
+      status_code: '226'
+      message: IM Used
+      explanation: RFC 3229
+    headers: []
+    body:
+      encoding: UTF-8
+      file: yes
+      string: ../files/PRCP_CU_GAUGE_V1.0CONUS_0.25deg.lnx.20060709.gz
+  recorded_at: 2020-03-16 22:30:47 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

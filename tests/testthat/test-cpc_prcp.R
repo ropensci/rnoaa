@@ -1,23 +1,38 @@
 context("cpc_prcp")
 
+# delete any cached files
+cpc_cache$delete_all()
+
 test_that("cpc_prcp works", {
   skip_on_cran()
   skip_on_travis()
 
   # 2017, us = FALSE
-  aa <- cpc_prcp(date = "2017-01-15", us = FALSE)
+  vcr::use_cassette("cpc_prcp_us_false1", {
+    aa <- cpc_prcp(date = "2017-01-15", us = FALSE)
+  })
   # 2017, us = TRUE
-  aa_us <- cpc_prcp(date = "2017-01-15", us = TRUE)
+  vcr::use_cassette("cpc_prcp_us_true1", {
+    aa_us <- cpc_prcp(date = "2017-01-15", us = TRUE)
+  })
 
   # 1998, us = FALSE
-  bb <- cpc_prcp(date = "1998-07-09", us = FALSE)
+  vcr::use_cassette("cpc_prcp_us_false2", {
+    bb <- cpc_prcp(date = "1998-07-09", us = FALSE)
+  })
   # 1998, us = TRUE
-  bb_us <- cpc_prcp(date = "1998-07-09", us = TRUE)
+  vcr::use_cassette("cpc_prcp_us_true2", {
+    bb_us <- cpc_prcp(date = "1998-07-09", us = TRUE)
+  })
 
   # 2006, us = FALSE
-  cc <- cpc_prcp(date = "2006-07-09", us = FALSE)
+  vcr::use_cassette("cpc_prcp_us_false3", {
+    cc <- cpc_prcp(date = "2006-07-09", us = FALSE)
+  })
   # 2006, us = TRUE
-  cc_us <- cpc_prcp(date = "2006-07-09", us = TRUE)
+  vcr::use_cassette("cpc_prcp_us_true3", {
+    cc_us <- cpc_prcp(date = "2006-07-09", us = TRUE)
+  })
 
   expect_is(aa, "tbl_df")
   expect_is(aa_us, "tbl_df")

@@ -1,3 +1,5 @@
+the_env <- new.env()
+
 #' Get NOAA buoy data from the National Buoy Data Center
 #'
 #' @export
@@ -153,7 +155,8 @@ buoy_single_file_url <- function(dataset, buoyid, file){
 get_ncdf_file <- function(path, buoyid, file, output, ...){
   outpath <- sprintf("%s/%s%s", output, buoyid, file)
   res <- crul::HttpClient$new(path, opts = list(...))$get(disk = outpath)
-  return(outpath)
+  the_env$res <- res
+  return(res$content)
 }
 
 # Download a single ncdf file

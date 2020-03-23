@@ -1,0 +1,770 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/catalog.html
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 200
+      date: Mon, 16 Mar 2020 22:31:04 GMT
+      server: Apache
+      strict-transport-security: max-age=31536000;
+      content-type: text/html;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-security-policy: frame-ancestors 'none'
+      x-frame-options: deny
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      file: no
+      string: "<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'\n        'http://www.w3.org/TR/html4/loose.dtd'>\n<html>\n<head>\r\n<meta
+        http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Catalog
+        https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/catalog.html</title>\r\n<link
+        rel='stylesheet' href='/thredds/tdsCat.css' type='text/css' >\n</head>\r\n<body><h1><img
+        src='/thredds/threddsIcon.gif' alt='NDBC THREDDS Server' align='left' valign='top'>\nCatalog
+        https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/catalog.html</h1><HR
+        size='1' noshade='noshade'><table width='100%' cellspacing='0' cellpadding='5'
+        align='center'>\r\n<tr>\r\n<th align='left'><font size='+1'>Dataset</font></th>\r\n<th
+        align='center'><font size='+1'>Size</font></th>\r\n<th align='right'><font
+        size='+1'>Last Modified</font></th>\r\n</tr><tr>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='catalog.html?dataset=data/cwind'><tt>cwind</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41001/catalog.html'><tt>41001/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='41002/catalog.html'><tt>41002/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41004/catalog.html'><tt>41004/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='41006/catalog.html'><tt>41006/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41008/catalog.html'><tt>41008/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='41009/catalog.html'><tt>41009/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41010/catalog.html'><tt>41010/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='41012/catalog.html'><tt>41012/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41013/catalog.html'><tt>41013/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='41021/catalog.html'><tt>41021/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41022/catalog.html'><tt>41022/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='41023/catalog.html'><tt>41023/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41025/catalog.html'><tt>41025/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='41035/catalog.html'><tt>41035/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41036/catalog.html'><tt>41036/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='41040/catalog.html'><tt>41040/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41041/catalog.html'><tt>41041/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='41043/catalog.html'><tt>41043/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41044/catalog.html'><tt>41044/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='41046/catalog.html'><tt>41046/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41047/catalog.html'><tt>41047/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='41048/catalog.html'><tt>41048/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='41049/catalog.html'><tt>41049/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='42001/catalog.html'><tt>42001/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='42002/catalog.html'><tt>42002/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='42003/catalog.html'><tt>42003/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='42007/catalog.html'><tt>42007/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='42012/catalog.html'><tt>42012/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='42019/catalog.html'><tt>42019/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='42020/catalog.html'><tt>42020/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='42035/catalog.html'><tt>42035/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='42036/catalog.html'><tt>42036/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='42038/catalog.html'><tt>42038/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='42039/catalog.html'><tt>42039/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='42040/catalog.html'><tt>42040/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='42041/catalog.html'><tt>42041/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='42054/catalog.html'><tt>42054/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='42055/catalog.html'><tt>42055/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='42056/catalog.html'><tt>42056/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='42057/catalog.html'><tt>42057/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='42058/catalog.html'><tt>42058/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='42059/catalog.html'><tt>42059/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='42060/catalog.html'><tt>42060/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='42065/catalog.html'><tt>42065/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='44004/catalog.html'><tt>44004/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='44005/catalog.html'><tt>44005/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='44007/catalog.html'><tt>44007/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='44008/catalog.html'><tt>44008/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='44009/catalog.html'><tt>44009/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='44011/catalog.html'><tt>44011/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='44013/catalog.html'><tt>44013/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='44014/catalog.html'><tt>44014/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='44017/catalog.html'><tt>44017/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='44018/catalog.html'><tt>44018/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='44020/catalog.html'><tt>44020/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='44025/catalog.html'><tt>44025/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='44027/catalog.html'><tt>44027/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='44028/catalog.html'><tt>44028/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='44065/catalog.html'><tt>44065/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='44066/catalog.html'><tt>44066/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='45001/catalog.html'><tt>45001/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='45002/catalog.html'><tt>45002/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='45003/catalog.html'><tt>45003/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='45004/catalog.html'><tt>45004/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='45005/catalog.html'><tt>45005/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='45006/catalog.html'><tt>45006/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='45007/catalog.html'><tt>45007/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='45008/catalog.html'><tt>45008/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='45011/catalog.html'><tt>45011/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='45012/catalog.html'><tt>45012/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46001/catalog.html'><tt>46001/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46002/catalog.html'><tt>46002/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46003/catalog.html'><tt>46003/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46005/catalog.html'><tt>46005/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46006/catalog.html'><tt>46006/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46011/catalog.html'><tt>46011/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46012/catalog.html'><tt>46012/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46013/catalog.html'><tt>46013/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46014/catalog.html'><tt>46014/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46015/catalog.html'><tt>46015/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46022/catalog.html'><tt>46022/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46023/catalog.html'><tt>46023/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46025/catalog.html'><tt>46025/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46026/catalog.html'><tt>46026/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46027/catalog.html'><tt>46027/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46028/catalog.html'><tt>46028/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46029/catalog.html'><tt>46029/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46030/catalog.html'><tt>46030/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46035/catalog.html'><tt>46035/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46041/catalog.html'><tt>46041/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46042/catalog.html'><tt>46042/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46045/catalog.html'><tt>46045/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46047/catalog.html'><tt>46047/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46050/catalog.html'><tt>46050/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46051/catalog.html'><tt>46051/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46053/catalog.html'><tt>46053/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46054/catalog.html'><tt>46054/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46059/catalog.html'><tt>46059/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46060/catalog.html'><tt>46060/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46061/catalog.html'><tt>46061/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46062/catalog.html'><tt>46062/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46063/catalog.html'><tt>46063/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46066/catalog.html'><tt>46066/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46069/catalog.html'><tt>46069/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46070/catalog.html'><tt>46070/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46071/catalog.html'><tt>46071/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46072/catalog.html'><tt>46072/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46073/catalog.html'><tt>46073/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46075/catalog.html'><tt>46075/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46076/catalog.html'><tt>46076/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46077/catalog.html'><tt>46077/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46078/catalog.html'><tt>46078/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46079/catalog.html'><tt>46079/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46080/catalog.html'><tt>46080/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46081/catalog.html'><tt>46081/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46082/catalog.html'><tt>46082/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46083/catalog.html'><tt>46083/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46084/catalog.html'><tt>46084/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46085/catalog.html'><tt>46085/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46086/catalog.html'><tt>46086/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46087/catalog.html'><tt>46087/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='46088/catalog.html'><tt>46088/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='46089/catalog.html'><tt>46089/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='51000/catalog.html'><tt>51000/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='51001/catalog.html'><tt>51001/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='51002/catalog.html'><tt>51002/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='51003/catalog.html'><tt>51003/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='51004/catalog.html'><tt>51004/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='51028/catalog.html'><tt>51028/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='51100/catalog.html'><tt>51100/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='51101/catalog.html'><tt>51101/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='alsn6/catalog.html'><tt>alsn6/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='amaa2/catalog.html'><tt>amaa2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='auga2/catalog.html'><tt>auga2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='blia2/catalog.html'><tt>blia2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='burl1/catalog.html'><tt>burl1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='buzm3/catalog.html'><tt>buzm3/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='caro3/catalog.html'><tt>caro3/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='cdrf1/catalog.html'><tt>cdrf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='chlv2/catalog.html'><tt>chlv2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='clkn7/catalog.html'><tt>clkn7/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='csbf1/catalog.html'><tt>csbf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='dbln6/catalog.html'><tt>dbln6/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='desw1/catalog.html'><tt>desw1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='disw3/catalog.html'><tt>disw3/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='dpia1/catalog.html'><tt>dpia1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='drfa2/catalog.html'><tt>drfa2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='dryf1/catalog.html'><tt>dryf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='dsln7/catalog.html'><tt>dsln7/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='ducn7/catalog.html'><tt>ducn7/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='fbis1/catalog.html'><tt>fbis1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='ffia2/catalog.html'><tt>ffia2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='fila2/catalog.html'><tt>fila2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='fpsn7/catalog.html'><tt>fpsn7/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='fwyf1/catalog.html'><tt>fwyf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='gbcl1/catalog.html'><tt>gbcl1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='gdil1/catalog.html'><tt>gdil1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='glln6/catalog.html'><tt>glln6/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='iosn3/catalog.html'><tt>iosn3/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='ktnf1/catalog.html'><tt>ktnf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='lkwf1/catalog.html'><tt>lkwf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='lmbv4/catalog.html'><tt>lmbv4/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='lonf1/catalog.html'><tt>lonf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='lscm4/catalog.html'><tt>lscm4/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='mdrm1/catalog.html'><tt>mdrm1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='mism1/catalog.html'><tt>mism1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='mlrf1/catalog.html'><tt>mlrf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='mpcl1/catalog.html'><tt>mpcl1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='mrka2/catalog.html'><tt>mrka2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='nwpo3/catalog.html'><tt>nwpo3/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='ostf1/catalog.html'><tt>ostf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='pila2/catalog.html'><tt>pila2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='pilm4/catalog.html'><tt>pilm4/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='plsf1/catalog.html'><tt>plsf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='pota2/catalog.html'><tt>pota2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='ptac1/catalog.html'><tt>ptac1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='ptat2/catalog.html'><tt>ptat2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='ptgc1/catalog.html'><tt>ptgc1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='roam4/catalog.html'><tt>roam4/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='sacv4/catalog.html'><tt>sacv4/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='sanf1/catalog.html'><tt>sanf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='sauf1/catalog.html'><tt>sauf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='sbio1/catalog.html'><tt>sbio1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='sgnw3/catalog.html'><tt>sgnw3/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='sgof1/catalog.html'><tt>sgof1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='sisw1/catalog.html'><tt>sisw1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='smkf1/catalog.html'><tt>smkf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='spgf1/catalog.html'><tt>spgf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='srst2/catalog.html'><tt>srst2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='stdm4/catalog.html'><tt>stdm4/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='svls1/catalog.html'><tt>svls1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='tplm2/catalog.html'><tt>tplm2/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='ttiw1/catalog.html'><tt>ttiw1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='venf1/catalog.html'><tt>venf1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='verv4/catalog.html'><tt>verv4/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img src='/thredds/folder.gif'
+        alt='Folder'> &nbsp;<a href='wpow1/catalog.html'><tt>wpow1/</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n</table>\r\n<HR
+        size='1' noshade='noshade'><h3><a href='/thredds/catalog.html'>National Data
+        Buoy Center THREDDS Server</a> at <a href='http://www.ndbc.noaa.gov/'>National
+        Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
+        Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
+        Documentation</a></h3>\n</body>\r\n</html>\r\n"
+  recorded_at: 2020-03-16 22:32:31 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
+- request:
+    method: get
+    uri: https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41001/catalog.html
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 200
+      date: Mon, 16 Mar 2020 22:31:04 GMT
+      server: Apache
+      strict-transport-security: max-age=31536000;
+      content-type: text/html;charset=UTF-8
+      vary: Accept-Encoding
+      content-encoding: gzip
+      content-security-policy: frame-ancestors 'none'
+      x-frame-options: deny
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      file: no
+      string: "<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'\n        'http://www.w3.org/TR/html4/loose.dtd'>\n<html>\n<head>\r\n<meta
+        http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Catalog
+        https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41001/catalog.html</title>\r\n<link
+        rel='stylesheet' href='/thredds/tdsCat.css' type='text/css' >\n</head>\r\n<body><h1><img
+        src='/thredds/threddsIcon.gif' alt='NDBC THREDDS Server' align='left' valign='top'>\nCatalog
+        https://dods.ndbc.noaa.gov/thredds/catalog/data/cwind/41001/catalog.html</h1><HR
+        size='1' noshade='noshade'><table width='100%' cellspacing='0' cellpadding='5'
+        align='center'>\r\n<tr>\r\n<th align='left'><font size='+1'>Dataset</font></th>\r\n<th
+        align='center'><font size='+1'>Size</font></th>\r\n<th align='right'><font
+        size='+1'>Last Modified</font></th>\r\n</tr><tr>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;\r\n<img
+        src='/thredds/folder.gif' alt='Folder'> &nbsp;<a href='catalog.html?dataset=data/cwind/41001'><tt>41001</tt></a></td>\r\n<td
+        align='right'><tt>&nbsp;</tt></td>\r\n<td align='right'><tt>--</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
+        href='catalog.html?dataset=data/cwind/41001/41001.ncml'><tt>41001.ncml</tt></a></td>\r\n<td
+        align='right'><tt>301.0 bytes</tt></td>\r\n<td align='right'><tt>2017-11-15T16:15:18Z</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a href='catalog.html?dataset=data/cwind/41001/41001c1990.nc'><tt>41001c1990.nc</tt></a></td>\r\n<td
+        align='right'><tt>585.8 Kbytes</tt></td>\r\n<td align='right'><tt>1990-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
+        href='catalog.html?dataset=data/cwind/41001/41001c1991.nc'><tt>41001c1991.nc</tt></a></td>\r\n<td
+        align='right'><tt>437.9 Kbytes</tt></td>\r\n<td align='right'><tt>1991-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a href='catalog.html?dataset=data/cwind/41001/41001c1992.nc'><tt>41001c1992.nc</tt></a></td>\r\n<td
+        align='right'><tt>453.4 Kbytes</tt></td>\r\n<td align='right'><tt>1992-11-26T16:50:00Z</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
+        href='catalog.html?dataset=data/cwind/41001/41001c1993.nc'><tt>41001c1993.nc</tt></a></td>\r\n<td
+        align='right'><tt>483.4 Kbytes</tt></td>\r\n<td align='right'><tt>1993-12-31T23:50:00Z</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a href='catalog.html?dataset=data/cwind/41001/41001c1996.nc'><tt>41001c1996.nc</tt></a></td>\r\n<td
+        align='right'><tt>599.1 Kbytes</tt></td>\r\n<td align='right'><tt>1996-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
+        href='catalog.html?dataset=data/cwind/41001/41001c1997.nc'><tt>41001c1997.nc</tt></a></td>\r\n<td
+        align='right'><tt>630.4 Kbytes</tt></td>\r\n<td align='right'><tt>1997-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a href='catalog.html?dataset=data/cwind/41001/41001c1998.nc'><tt>41001c1998.nc</tt></a></td>\r\n<td
+        align='right'><tt>288.3 Kbytes</tt></td>\r\n<td align='right'><tt>1998-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
+        href='catalog.html?dataset=data/cwind/41001/41001c1999.nc'><tt>41001c1999.nc</tt></a></td>\r\n<td
+        align='right'><tt>632.1 Kbytes</tt></td>\r\n<td align='right'><tt>1999-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a href='catalog.html?dataset=data/cwind/41001/41001c2000.nc'><tt>41001c2000.nc</tt></a></td>\r\n<td
+        align='right'><tt>355.4 Kbytes</tt></td>\r\n<td align='right'><tt>2000-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
+        href='catalog.html?dataset=data/cwind/41001/41001c2001.nc'><tt>41001c2001.nc</tt></a></td>\r\n<td
+        align='right'><tt>632.1 Kbytes</tt></td>\r\n<td align='right'><tt>2001-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a href='catalog.html?dataset=data/cwind/41001/41001c2002.nc'><tt>41001c2002.nc</tt></a></td>\r\n<td
+        align='right'><tt>607.6 Kbytes</tt></td>\r\n<td align='right'><tt>2002-12-17T21:50:00Z</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
+        href='catalog.html?dataset=data/cwind/41001/41001c2003.nc'><tt>41001c2003.nc</tt></a></td>\r\n<td
+        align='right'><tt>546.2 Kbytes</tt></td>\r\n<td align='right'><tt>2003-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a href='catalog.html?dataset=data/cwind/41001/41001c2004.nc'><tt>41001c2004.nc</tt></a></td>\r\n<td
+        align='right'><tt>628.5 Kbytes</tt></td>\r\n<td align='right'><tt>2004-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
+        href='catalog.html?dataset=data/cwind/41001/41001c2005.nc'><tt>41001c2005.nc</tt></a></td>\r\n<td
+        align='right'><tt>360.2 Kbytes</tt></td>\r\n<td align='right'><tt>2005-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a href='catalog.html?dataset=data/cwind/41001/41001c2006.nc'><tt>41001c2006.nc</tt></a></td>\r\n<td
+        align='right'><tt>509.7 Kbytes</tt></td>\r\n<td align='right'><tt>2006-11-23T10:50:00Z</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
+        href='catalog.html?dataset=data/cwind/41001/41001c2007.nc'><tt>41001c2007.nc</tt></a></td>\r\n<td
+        align='right'><tt>359.5 Kbytes</tt></td>\r\n<td align='right'><tt>2007-09-01T12:50:00Z</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a href='catalog.html?dataset=data/cwind/41001/41001c2008.nc'><tt>41001c2008.nc</tt></a></td>\r\n<td
+        align='right'><tt>20.48 Kbytes</tt></td>\r\n<td align='right'><tt>2008-06-08T16:00:00Z</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
+        href='catalog.html?dataset=data/cwind/41001/41001c2010.nc'><tt>41001c2010.nc</tt></a></td>\r\n<td
+        align='right'><tt>441.9 Kbytes</tt></td>\r\n<td align='right'><tt>2010-12-31T22:50:00Z</tt></td>\r\n</tr>\r\n<tr>\r\n<td
+        align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a href='catalog.html?dataset=data/cwind/41001/41001c2011.nc'><tt>41001c2011.nc</tt></a></td>\r\n<td
+        align='right'><tt>533.8 Kbytes</tt></td>\r\n<td align='right'><tt>2011-11-30T06:50:00Z</tt></td>\r\n</tr>\r\n<tr
+        bgcolor='#eeeeee'>\r\n<td align='left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n<a
+        href='catalog.html?dataset=data/cwind/41001/41001c2012.nc'><tt>41001c2012.nc</tt></a></td>\r\n<td
+        align='right'><tt>208.8 Kbytes</tt></td>\r\n<td align='right'><tt>2012-10-29T07:50:00Z</tt></td>\r\n</tr>\r\n</table>\r\n<HR
+        size='1' noshade='noshade'><h3><a href='/thredds/catalog.html'>National Data
+        Buoy Center THREDDS Server</a> at <a href='http://www.ndbc.noaa.gov/'>National
+        Data Buoy Center</a> see <a href='/thredds/serverInfo.html'> Info </a><br>\nTHREDDS
+        Data Server [Version 4.6.10 - 2017-04-19T16:32:55-0600] <a href='http://www.unidata.ucar.edu/software/thredds/current/tds/reference/index.html'>
+        Documentation</a></h3>\n</body>\r\n</html>\r\n"
+  recorded_at: 2020-03-16 22:32:31 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
+- request:
+    method: get
+    uri: https://dods.ndbc.noaa.gov/thredds/fileServer/data/cwind/41001/41001c1997.nc
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 200
+      date: Mon, 16 Mar 2020 22:31:04 GMT
+      server: Apache
+      strict-transport-security: max-age=31536000;
+      content-disposition: attachment; filename="41001c1997.nc"
+      accept-ranges: bytes
+      content-type: application/x-netcdf
+      content-length: '630448'
+      content-security-policy: frame-ancestors 'none'
+      x-frame-options: deny
+    body:
+      encoding: UTF-8
+      file: yes
+      string: ../files/41001c1990.nc
+  recorded_at: 2020-03-16 22:32:31 GMT
+  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92

@@ -33,7 +33,9 @@ arc2_get <- function(year, month, day, cache = TRUE, overwrite = FALSE, ...) {
   key <- file.path(arc2_base_ftp(arc2_base(), date))
   file <- file.path(arc2_cache$cache_path_get(), basename(key))
   if (!file.exists(file)) {
-    suppressMessages(arc2_GET_write(sub("/$", "", key), file, overwrite, ...))
+    res <- suppressMessages(
+      arc2_GET_write(sub("/$", "", key), file, overwrite, ...))
+    file <- res$content
   }
   return(file)
 }
