@@ -123,3 +123,8 @@ cpc_read <- function(x, us) {
     )
   )
 }
+
+# cmorph_cache <- NULL
+# z <- hoardr::hoard()
+# z$cache_path_set("noaa_cmorph")
+# cmorph_cache <<- z
