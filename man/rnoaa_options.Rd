@@ -22,3 +22,6 @@ package environment \code{roenv}
 rnoaa_options(cache_messages = FALSE)
 }
 }
+\seealso{
+\link{rnoaa_caching} for managing cached files
+}

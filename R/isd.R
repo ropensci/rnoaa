@@ -65,20 +65,7 @@
 #' file does not exist on NOAA's ftp servers. If your internet is down,
 #' you'll get a different error.
 #'
-#' @section File storage:
-#' We use \pkg{rappdirs} to store files, see
-#' [rappdirs::user_cache_dir()] for how we determine the directory on
-#' your machine to save files to, and run
-#' `rappdirs::user_cache_dir("rnoaa/isd")` to get that directory.
-#' 
-#' Note that cached files will continue to be used until they are deleted.
-#' It's possible to run into problems when changes happen in your R 
-#' setup. For example, at least one user reported changing versions
-#' of this package and running into problems because a cached data
-#' file from a previous version of rnoaa did not work with the newer
-#' version of rnoaa. You may want to occassionally delete all cached
-#' files.
-#'
+#' @note See [isd_cache] for managing cached files
 #' @examples \dontrun{
 #' # Get station table
 #' (stations <- isd_stations())

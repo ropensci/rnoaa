@@ -46,6 +46,9 @@ column name
 \description{
 Local Climitalogical Data from NOAA
 }
+\note{
+See \link{lcd_cache} for managing cached files
+}
 \examples{
 \dontrun{
 x = lcd(station = "01338099999", year = 2017)
@@ -62,7 +65,4 @@ Docs:
 \url{https://www.ncei.noaa.gov/data/local-climatological-data/doc/LCD_documentation.pdf}
 Data comes from:
 \url{https://www.ncei.noaa.gov/data/local-climatological-data/access}
-}
-\seealso{
-lcd_cache
 }

@@ -22,7 +22,7 @@
 #' 
 #' Uses `ncdf4` under the hood to read NetCDF files
 #' 
-#' Use `bsw_cache` object to manage cached files.
+#' @note See [bsw_cache] for managing cached files
 #' 
 #' @section Citing NOAA and BSW data:
 #' Message from NOAA: "We also ask you to acknowledge us in your use of the 

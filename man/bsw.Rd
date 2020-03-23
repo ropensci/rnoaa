@@ -33,10 +33,10 @@ multiple time resolutions of six-hourly, daily, monthly, and 11-year
 Products are available from July 9th, 1987 - present.
 
 Uses \code{ncdf4} under the hood to read NetCDF files
-
-Use \code{bsw_cache} object to manage cached files.
 }
 \note{
+See \link{bsw_cache} for managing cached files
+
 We only handle the netcdf files for now, we're avoiding the ieee
 files, see http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
 }

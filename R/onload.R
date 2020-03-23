@@ -2,6 +2,7 @@ cpc_cache <- NULL
 arc2_cache <- NULL
 lcd_cache <- NULL
 bsw_cache <- NULL
+isd_cache <- NULL
 
 .onLoad <- function(libname, pkgname){
   x <- hoardr::hoard()
@@ -19,4 +20,8 @@ bsw_cache <- NULL
   m <- hoardr::hoard()
   m$cache_path_set("noaa_bsw")
   bsw_cache <<- m
+
+  g <- hoardr::hoard()
+  g$cache_path_set("noaa_isd")
+  isd_cache <<- g
 }

@@ -7,6 +7,7 @@
 #' values (values in the `precip` column in the output data.frame). 
 #' default: `FALSE`
 #' @param ... curl options passed on to [crul::verb-GET]
+#' @note See [cpc_cache] for managing cached files
 #' @return a data.frame, with columns:
 #'
 #' - lon - longitude (0 to 360)

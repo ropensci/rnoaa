@@ -5,6 +5,7 @@
 #' @param ... curl options passed on to [crul::verb-GET]
 #' @references docs:
 #' <ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt>
+#' @note See [arc2_cache] for managing cached files
 #' @return a tibble/data.frame with columns:
 #'
 #' - lon - longitude

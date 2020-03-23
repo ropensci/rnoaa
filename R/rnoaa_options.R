@@ -7,6 +7,7 @@ roenv$cache_messages <- TRUE
 #' on caching status for function calls that can cache data. default: `TRUE`
 #' @details rnoaa package level options; stored in an internal
 #' package environment `roenv`
+#' @seealso [rnoaa_caching] for managing cached files
 #' @examples \dontrun{
 #' rnoaa_options(cache_messages = FALSE)
 #' }

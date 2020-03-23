@@ -32,6 +32,9 @@ Precipitation data from NOAA Climate Prediction Center (CPC)
 Rainfall data for the world (1979-present, resolution 50 km), and
 the US (1948-present, resolution 25 km).
 }
+\note{
+See \link{cpc_cache} for managing cached files
+}
 \section{Data processing in this function}{
 
 Internally we multiply all precipitation measurements by 0.1 as
