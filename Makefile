@@ -50,5 +50,5 @@ check: build
 test:
 	${RSCRIPT} -e "devtools::test()"
 
-pkgdocs:
-	${RSCRIPT} -e "pkgdown::build_site()"
+readme:
+	${RSCRIPT} -e "knitr::knit('README.Rmd')"
