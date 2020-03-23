@@ -13,7 +13,8 @@
 #' one of 'metric', 'english'.
 #' @param time_zone (character) Time zone, one of 'gmt', 'lst', 'lst_ldt'.
 #' For GMT, we convert time stamps to GMT. For LST, we look up the time zone
-#' of the station with its lat/lon values, and assign that time zone.
+#' of the station with its lat/lon values, and assign that time zone. When
+#' `product="predictions"` we don't adjust times at all.
 #' @param application (character) If called within an external package, set
 #' to the name of your organization. Optional
 #' @param ... Curl options passed on to [crul::verb-GET]
@@ -189,7 +190,7 @@ coops_search <- function(begin_date = NULL, end_date = NULL,
     stop("No data was found", call. = FALSE)
   }
 
-  if (!(product %in% c("monthly_mean", "datums"))) {
+  if (!(product %in% c("monthly_mean", "datums", "predictions"))) {
     tz <- if (tolower(time_zone) == "gmt") "GMT" else time_zone(res$metadata)
     res[[length(res)]]$t <- as.POSIXct(res[[length(res)]]$t, tz = tz)
   }

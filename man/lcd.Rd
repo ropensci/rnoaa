@@ -63,3 +63,6 @@ Docs:
 Data comes from:
 \url{https://www.ncei.noaa.gov/data/local-climatological-data/access}
 }
+\seealso{
+lcd_cache
+}

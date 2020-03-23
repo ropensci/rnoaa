@@ -35,7 +35,8 @@ one of 'metric', 'english'.}
 
 \item{time_zone}{(character) Time zone, one of 'gmt', 'lst', 'lst_ldt'.
 For GMT, we convert time stamps to GMT. For LST, we look up the time zone
-of the station with its lat/lon values, and assign that time zone.}
+of the station with its lat/lon values, and assign that time zone. When
+\code{product="predictions"} we don't adjust times at all.}
 
 \item{application}{(character) If called within an external package, set
 to the name of your organization. Optional}
