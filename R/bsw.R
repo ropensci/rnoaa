@@ -133,6 +133,8 @@ bsw_get <- function(year, month, day, uv_stress, resolution,
   )
   if (!file.exists(file)) {
     suppressMessages(bsw_GET_write(key, file, overwrite, ...))
+  } else {
+    cache_mssg(file)
   }
   return(file)
 }

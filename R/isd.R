@@ -196,7 +196,7 @@ isdbase <- function() 'https://www1.ncdc.noaa.gov/pub/data/noaa'
 read_isd <- function(x, cleanup, force, additional, parallel, cores, progress) {
   path_rds <- x
   if (file.exists(path_rds) && !force) {
-    message("found in cache")
+    cache_mssg(path_rds)
     df <- readRDS(path_rds)
   } else {
     df <- isdparser::isd_parse(

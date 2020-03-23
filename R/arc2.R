@@ -12,7 +12,7 @@
 #' - precip - precipitation
 #'
 #' @examples \dontrun{
-#' arc2(date = "1983-01-01")
+#' x = arc2(date = "1983-01-01")
 #' arc2(date = "2017-02-14")
 #' }
 arc2 <- function(date, ...) {
@@ -36,6 +36,8 @@ arc2_get <- function(year, month, day, cache = TRUE, overwrite = FALSE, ...) {
     res <- suppressMessages(
       arc2_GET_write(sub("/$", "", key), file, overwrite, ...))
     file <- res$content
+  } else {
+    cache_mssg(file)
   }
   return(file)
 }

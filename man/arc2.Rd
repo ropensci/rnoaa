@@ -24,7 +24,7 @@ Arc2 - Africa Rainfall Climatology version 2
 }
 \examples{
 \dontrun{
-arc2(date = "1983-01-01")
+x = arc2(date = "1983-01-01")
 arc2(date = "2017-02-14")
 }
 }

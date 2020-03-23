@@ -46,7 +46,7 @@ you can easily do it yourself by e.g., \code{subset(x, precip >= 0)}
 
 \examples{
 \dontrun{
-cpc_prcp(date = "2017-01-15")
+x = cpc_prcp(date = "2017-01-15")
 cpc_prcp(date = "2015-06-05")
 cpc_prcp(date = "2017-01-15")
 cpc_prcp(date = "2005-07-09")
