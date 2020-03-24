@@ -55,20 +55,9 @@ You can access the last modified time for the cached file via
 Messages are printed to the console about file path and file last modified time
 which you can suppress with \code{suppressMessages()}
 }
-\section{File storage}{
-
-We use \pkg{rappdirs} to store files, see
-\code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
-your machine to save files to, and run
-\code{rappdirs::user_cache_dir("rnoaa/ghcnd")} to get that directory.
-
-Note that between versions of \pkg{rnoaa} you may want to clear your
-cache of ghcnd files IF there are changes in ghcnd functions. See
-\code{\link{ghcnd_clear_cache}} or you can do so manually.
-
-Using \code{refresh = TRUE} you can force a re-download of the data file.
+\note{
+See \link{ghcnd_cache} for managing cached files
 }
-
 \examples{
 \dontrun{
 # Get data

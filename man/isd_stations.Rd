@@ -30,17 +30,12 @@ a tibble (data.frame) with the columns:
 Get NOAA ISD/ISH station data from NOAA FTP server.
 }
 \details{
-The data table is cached, but you can force download of data from NOAA
-by setting \code{refresh=TRUE}
+The data table is cached, but you can force download of data from
+NOAA by setting \code{refresh=TRUE}
 }
-\section{File storage}{
-
-We use \pkg{rappdirs} to store files, see
-\code{\link[rappdirs:user_cache_dir]{rappdirs::user_cache_dir()}} for how we determine the directory on
-your machine to save files to, and run
-\code{rappdirs::user_cache_dir("rnoaa")} to get that directory.
+\note{
+See \link{isd_cache} for managing cached files
 }
-
 \examples{
 \dontrun{
 # Get station table

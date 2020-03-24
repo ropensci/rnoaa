@@ -14,16 +14,7 @@
 #' perhaps a data.frame. See \pkg{ncdf4} for parsing the output.
 #' @references
 #' <https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4>
-#'
-#' @section File storage:
-#' We use \pkg{rappdirs} to store files, see
-#' [rappdirs::user_cache_dir()] for how we determine the directory on
-#' your machine to save files to, and run
-#' `rappdirs::user_cache_dir("rnoaa/ersst")`
-#' to get that directory.
-#'
-#' Files are quite small, so we don't worry about reading in cached data to
-#' save time, as we do in some of the other functions in this package.
+#' @note See [ersst_cache] for managing cached files
 #' @examples \dontrun{
 #' # October, 2015
 #' ersst(year = 2015, month = 10)
@@ -44,15 +35,8 @@
 #' ncdf4::ncvar_get(res, "ssta")
 #' }
 ersst <- function(year, month, overwrite = TRUE, ...) {
-  calls <- names(sapply(match.call(), deparse))[-1]
-  calls_vec <- "path" %in% calls
-  if (any(calls_vec)) {
-    stop("The parameter path has been removed, see docs for ?ersst",
-         call. = FALSE)
-  }
   check4pkg("ncdf4")
-  path <- file.path(rnoaa_cache_dir(), "ersst")
-  ff <- ersst_local(path, year, month)
+  ff <- ersst_local(year, month)
   dpath <- ersst_GET(make_ersst(year, month), path = ff, overwrite, ...)
   ncdf4::nc_open(dpath)
 }
@@ -82,13 +66,18 @@ check_month <- function(x) {
 }
 
 ersst_GET <- function(dat, path, overwrite, ...) {
-  dir.create(dirname(path), showWarnings = FALSE, recursive = TRUE)
-  cli <- crul::HttpClient$new(paste0(ersst_base(), dat), opts = list(...))
-  res <- cli$get(disk = path)
-  res$raise_for_status()
-  res$content
+  ersst_cache$mkdir()
+  if (!file.exists(path)) {
+    cli <- crul::HttpClient$new(paste0(ersst_base(), dat), opts = list(...))
+    res <- cli$get(disk = path)
+    res$raise_for_status()
+    res$content
+  } else {
+    cache_mssg(path)
+    return(path)
+  }
 }
 
-ersst_local <- function(path, year, month) {
-  file.path(path, sprintf("%s%s.nc", year, month))
+ersst_local <- function(year, month) {
+  file.path(ersst_cache$cache_path_get(), sprintf("%s%s.nc", year, month))
 }

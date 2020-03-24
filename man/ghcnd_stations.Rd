@@ -4,9 +4,12 @@
 \alias{ghcnd_stations}
 \title{Get information on the GHCND weather stations}
 \usage{
-ghcnd_stations(...)
+ghcnd_stations(refresh = FALSE, ...)
 }
 \arguments{
+\item{refresh}{(logical) If \code{TRUE} force re-download of data.
+Default: \code{FALSE}}
+
 \item{...}{In the case of \code{ghcnd} additional curl options to pass
 through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read}
 further options passed on to \code{read.csv}}

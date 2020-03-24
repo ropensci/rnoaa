@@ -34,6 +34,8 @@ package rerddap
 \item \code{\link{seaice}}: Replaced with \code{\link{sea_ice}}
 \item \code{\link{lcd_cleanup}}: No longer available. See \code{\link{lcd}}
 docs
+\item \code{\link{ghcnd_clear_cache}}: No longer available.
+See \code{\link{rnoaa_caching}}
 }
 }
 \details{

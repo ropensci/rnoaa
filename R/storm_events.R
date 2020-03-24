@@ -12,11 +12,7 @@ storm_events_env <- new.env()
 #' @param ... Curl options passed on to [crul::verb-GET]
 #' (optional)
 #' @return A tibble (data.frame)
-#' @section File storage:
-#' We use \pkg{rappdirs} to store files, see
-#' [rappdirs::user_cache_dir()] for how
-#' we determine the directory on your machine to save files to, and run
-#' `rappdirs::user_cache_dir("rnoaa/stormevents")` to get that directory.
+#' @note See [storms_cache] for managing cached files
 #' @references <https://www.ncdc.noaa.gov/stormevents/>
 #'
 #' @examples \dontrun{
@@ -52,7 +48,7 @@ se_data <- function(year, type, overwrite = TRUE, ...) {
   if (is.null(storm_events_env$files)) {
     storm_events_env$files <- se_files()
   }
-  path <- file.path(rnoaa_cache_dir(), "stormevents")
+  path <- stormevents_cache$cache_path_get()
   assert_range(year, unique(sort(storm_events_env$files$year)))
   if (!type %in% c("details", "fatalities", "locations", "legacy")) {
     stop("'type' must be one of: details, fatalities, locations, legacy")
@@ -60,8 +56,9 @@ se_data <- function(year, type, overwrite = TRUE, ...) {
   csvpath <- se_csv_local(year, type, path)
   if (!is_se(x = csvpath)) {
     csvpath <- se_GET(path, year, type, overwrite, ...)
+  } else {
+    cache_mssg(csvpath)
   }
-  message(sprintf("<path>%s", csvpath), "\n")
   tmp <- read.csv(csvpath, header = TRUE, sep = ",", 
     stringsAsFactors = FALSE)
   names(tmp) <- tolower(names(tmp))
@@ -117,7 +114,7 @@ se_legacy_dir <- function(...) {
 }
 
 se_GET <- function(bp, year, type, overwrite, ...){
-  dir.create(bp, showWarnings = FALSE, recursive = TRUE)
+  stormevents_cache$mkdir()
   fp <- se_csv_local(year, type, bp)
   if (!overwrite) {
     if (file.exists(fp)) {

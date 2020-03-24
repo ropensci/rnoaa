@@ -33,11 +33,15 @@
 #' 
 #' @section Caching objects for each data source:
 #'
-#' - `isd()`: `isd_cache`
+#' - `isd()`/`isd_stations()`: `isd_cache`
 #' - `cpc_prcp()`: `cpc_cache`
 #' - `arc2()`: `arc2_cache`
 #' - `lcd()`: `lcd_cache`
 #' - `bsw()`: `bsw_cache`
+#' - `storm_data()`: `storms_cache`
+#' - `ersst()`: `ersst_cache`
+#' - `tornadoes()`: `torn_cache`
+#' - `ghcnd()`/`ghcnd_search()`: `ghcnd_cache`
 #' 
 NULL
 
@@ -70,3 +74,27 @@ NULL
 #' @usage NULL
 #' @export
 "bsw_cache"
+
+#' @rdname rnoaa_caching
+#' @format NULL
+#' @usage NULL
+#' @export
+"storms_cache"
+
+#' @rdname rnoaa_caching
+#' @format NULL
+#' @usage NULL
+#' @export
+"ersst_cache"
+
+#' @rdname rnoaa_caching
+#' @format NULL
+#' @usage NULL
+#' @export
+"torn_cache"
+
+#' @rdname rnoaa_caching
+#' @format NULL
+#' @usage NULL
+#' @export
+"ghcnd_cache"

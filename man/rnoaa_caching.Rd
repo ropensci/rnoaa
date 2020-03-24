@@ -8,6 +8,10 @@
 \alias{arc2_cache}
 \alias{lcd_cache}
 \alias{bsw_cache}
+\alias{storms_cache}
+\alias{ersst_cache}
+\alias{torn_cache}
+\alias{ghcnd_cache}
 \title{rnoaa caching}
 \description{
 Manage data caches
@@ -46,11 +50,15 @@ Assuming x is a \code{HoardClient} class object, e.g., \code{lcd_cache}
 \section{Caching objects for each data source}{
 
 \itemize{
-\item \code{isd()}: \code{isd_cache}
+\item \code{isd()}/\code{isd_stations()}: \code{isd_cache}
 \item \code{cpc_prcp()}: \code{cpc_cache}
 \item \code{arc2()}: \code{arc2_cache}
 \item \code{lcd()}: \code{lcd_cache}
 \item \code{bsw()}: \code{bsw_cache}
+\item \code{storm_data()}: \code{storms_cache}
+\item \code{ersst()}: \code{ersst_cache}
+\item \code{tornadoes()}: \code{torn_cache}
+\item \code{ghcnd()}/\code{ghcnd_search()}: \code{ghcnd_cache}
 }
 }
 

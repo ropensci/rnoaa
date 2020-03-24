@@ -72,14 +72,9 @@ See \url{http://www.ncdc.noaa.gov/ibtracs/index.php?name=numbering} for more
 The datasets included in the package \code{\link[=storm_names]{storm_names()}}, and
 \code{\link[=storm_columns]{storm_columns()}} may help in using these storm functions.
 }
-\section{File storage}{
-
-We use \pkg{rappdirs} to store files, see
-\code{\link[rappdirs:user_cache_dir]{rappdirs::user_cache_dir()}} for how
-we determine the directory on your machine to save files to, and run
-\code{rappdirs::user_cache_dir("rnoaa/storms")} to get that directory.
+\note{
+See \link{storms_cache} for managing cached files
 }
-
 \examples{
 \dontrun{
 # Metadata

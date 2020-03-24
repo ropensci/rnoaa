@@ -37,15 +37,8 @@
 #' The datasets included in the package [storm_names()], and
 #' [storm_columns()] may help in using these storm functions.
 #'
-#'
-#' @section File storage:
-#' We use \pkg{rappdirs} to store files, see
-#' [rappdirs::user_cache_dir()] for how
-#' we determine the directory on your machine to save files to, and run
-#' `rappdirs::user_cache_dir("rnoaa/storms")` to get that directory.
-#'
+#' @note See [storms_cache] for managing cached files
 #' @references <http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data>
-#'
 #' @examples \dontrun{
 #' # Metadata
 #' head( storm_meta() )
@@ -92,29 +85,25 @@
 #' @rdname storms
 storm_data <- function(basin = NULL, storm = NULL, year = NULL,
                        overwrite = TRUE, ...) {
-  calls <- names(sapply(match.call(), deparse))[-1]
-  calls_vec <- "path" %in% calls
-  if (any(calls_vec)) {
-    stop("The parameter path has been removed, see ?storms",
-         call. = FALSE)
-  }
-
-  path <- file.path(rnoaa_cache_dir(), "storms")
-  csvpath <- csv_local(basin, storm, year, path)
-  if (!is_storm(x = csvpath)) {
-    csvpath <- storm_GET(path, basin, storm, year, overwrite, ...)
-  }
-  message(sprintf("<path>%s", csvpath), "\n")
+  csvpath <- storm_GET(basin, storm, year, overwrite, ...)
   tibble::as_tibble(storms_read_csv(csvpath))
 }
 
-storm_GET <- function(bp, basin, storm, year, overwrite, ...){
-  dir.create(local_base(basin, storm, year, bp), showWarnings = FALSE,
-             recursive = TRUE)
-  fp <- csv_local(basin, storm, year, bp)
-  cli <- crul::HttpClient$new(csv_remote(basin, storm, year), opts = list(...))
-  res <- suppressWarnings(cli$get(disk = fp))
-  res$content
+storm_GET <- function(basin, storm, year, overwrite, ...){
+  storms_cache$mkdir()
+  bp <- storms_cache$cache_path_get()
+  csvpath <- csv_local(basin, storm, year, bp)
+  if (!is_storm(x = csvpath)) {
+    dir.create(local_base(basin, storm, year, bp), showWarnings = FALSE,
+               recursive = TRUE)
+    cli <- crul::HttpClient$new(csv_remote(basin, storm, year),
+      opts = list(...))
+    res <- suppressWarnings(cli$get(disk = csvpath))
+    res$content
+  } else {
+    cache_mssg(csvpath)
+    return(csvpath)
+  }
 }
 
 filecheck <- function(basin, storm, year){

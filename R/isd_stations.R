@@ -3,11 +3,10 @@
 #' @export
 #' @param refresh (logical) Download station data from NOAA ftp server again.
 #' Default: `FALSE`
-#'
 #' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' @family isd
-#' @details The data table is cached, but you can force download of data from NOAA
-#' by setting `refresh=TRUE`
+#' @details The data table is cached, but you can force download of data from
+#' NOAA by setting `refresh=TRUE`
 #' @return a tibble (data.frame) with the columns:
 #'
 #' - usaf - USAF number, character
@@ -22,13 +21,7 @@
 #' - begin - Begin date of data coverage, of form YYYYMMDD, numeric
 #' - end - End date of data coverage, of form YYYYMMDD, numeric
 #'
-#'
-#' @section File storage:
-#' We use \pkg{rappdirs} to store files, see
-#' [rappdirs::user_cache_dir()] for how we determine the directory on
-#' your machine to save files to, and run
-#' `rappdirs::user_cache_dir("rnoaa")` to get that directory.
-#'
+#' @note See [isd_cache] for managing cached files
 #' @examples \dontrun{
 #' # Get station table
 #' (stations <- isd_stations())
@@ -44,7 +37,9 @@
 #'   addCircles()
 #' }
 isd_stations <- function(refresh = FALSE) {
-  path <- normalizePath(file.path(rnoaa_cache_dir(), "isd_stations.rds"))
+  isd_cache$mkdir()
+  path <- suppressWarnings(normalizePath(file.path(isd_cache$cache_path_get(),
+    "isd_stations.rds")))
   basedir <- normalizePath(dirname(path), winslash = "/")
   if (refresh || !file.exists(path)) {
     df <- read.csv(paste0(isdbase(), "/isd-history.csv"),
@@ -55,11 +50,13 @@ isd_stations <- function(refresh = FALSE) {
     df$ELEV.M. <- as.numeric(df$ELEV.M.)
     df$BEGIN <- as.numeric(df$BEGIN)
     df$END <- as.numeric(df$END)
-    dat <- stats::setNames(df, gsub("_$", "", gsub("\\.", "_", tolower(names(df)))))
+    dat <- stats::setNames(df,
+      gsub("_$", "", gsub("\\.", "_", tolower(names(df)))))
     if (!file.exists(basedir)) dir.create(basedir, recursive = TRUE)
     saveRDS(dat, file = path)
     as_tibble(dat)
   } else {
+    cache_mssg(path)
     as_tibble(readRDS(path))
   }
 }

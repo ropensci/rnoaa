@@ -7,7 +7,7 @@
 #' @family meteo
 #' @export
 meteo_clear_cache <- function(force = FALSE) {
-  files <- list.files(file.path(rnoaa_cache_dir(), "ghcnd"), full.names = TRUE)
+  files <- list.files(ghcnd_cache$cache_path_get(), full.names = TRUE)
   unlink(files, recursive = TRUE, force = force)
 }
 
@@ -18,5 +18,5 @@ meteo_clear_cache <- function(force = FALSE) {
 #' @family meteo
 #' @export
 meteo_show_cache <- function() {
-  cat(file.path(rnoaa_cache_dir(), "ghcnd"), "\n")
+  cat(ghcnd_cache$cache_path_get(), "\n")
 }

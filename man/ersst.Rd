@@ -26,18 +26,9 @@ perhaps a data.frame. See \pkg{ncdf4} for parsing the output.
 \description{
 NOAA Extended Reconstructed Sea Surface Temperature (ERSST) data
 }
-\section{File storage}{
-
-We use \pkg{rappdirs} to store files, see
-\code{\link[rappdirs:user_cache_dir]{rappdirs::user_cache_dir()}} for how we determine the directory on
-your machine to save files to, and run
-\code{rappdirs::user_cache_dir("rnoaa/ersst")}
-to get that directory.
-
-Files are quite small, so we don't worry about reading in cached data to
-save time, as we do in some of the other functions in this package.
+\note{
+See \link{ersst_cache} for managing cached files
 }
-
 \examples{
 \dontrun{
 # October, 2015

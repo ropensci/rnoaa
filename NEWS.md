@@ -1,3 +1,11 @@
+rnoaa 0.9.6
+===========
+
+### MINOR IMPROVEMENTS
+
+* remove internal code in many exported functions looking for user input `path` parameter and telling them it's no longer used; been defunct for quite a while
+
+
 rnoaa 0.9.5
 ===========
 

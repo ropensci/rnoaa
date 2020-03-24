@@ -4,12 +4,9 @@
 \alias{tornadoes}
 \title{Get NOAA tornado data.}
 \usage{
-tornadoes(overwrite = TRUE, ...)
+tornadoes(...)
 }
 \arguments{
-\item{overwrite}{(logical) To overwrite the path to store files in or not,
-Default: \code{TRUE}}
-
 \item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET} (optional)}
 }
 \value{
@@ -19,14 +16,9 @@ A Spatial object is returned of class SpatialLinesDataFrame.
 This function gets spatial paths of tornadoes from NOAA's National Weather
 Service Storm Prediction Center Severe Weather GIS web page.
 }
-\section{File storage}{
-
-We use \pkg{rappdirs} to store files, see
-\code{\link[rappdirs:user_cache_dir]{rappdirs::user_cache_dir()}} for how
-we determine the directory on your machine to save files to, and run
-\code{rappdirs::user_cache_dir("rnoaa/tornadoes")} to get that directory.
+\note{
+See \link{torn_cache} for managing cached files
 }
-
 \examples{
 \dontrun{
 shp <- tornadoes()

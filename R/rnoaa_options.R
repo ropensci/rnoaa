@@ -21,11 +21,29 @@ stract <- function(str, pattern) regmatches(str, regexpr(pattern, str))
 cache_mssg <- function(file) {
   if (roenv$cache_messages) {
     fi <- file.info(file)
-    size <- round(fi$size/1000000, 3)
-    chaftdec <- nchar(stract(as.character(size), '^[0-9]+'))
-    if (chaftdec > 1) size <- round(size, 1)
-    message("using cached file: ", file)
-    message(
-      sprintf("date created/size(mb): %s / %s", fi$ctime, size))
+    if (NROW(fi) > 1) {
+      message("in directory: ", dirname(file[1]))
+      to_get <- min(c(3, length(file)))
+      ss <- file[seq_len(to_get)]
+      ss_str <- paste0(basename(ss), collapse = ", ")
+      if (to_get < length(file)) ss_str <- paste0(ss_str, " ...")
+      message("using cached files (first 3): ", ss_str)
+      message(
+        sprintf("[%s] date created: %s",
+          basename(row.names(fi)[1]), fi[1,"ctime"]))
+    } else {
+      if (!fi$isdir) {
+        size <- round(fi$size/1000000, 3)
+        chaftdec <- nchar(stract(as.character(size), '^[0-9]+'))
+        if (chaftdec > 1) size <- round(size, 1)
+        message("using cached file: ", file)
+        message(
+          sprintf("date created (size, mb): %s (%s)", fi$ctime, size))
+      } else {
+        message("using cached directory: ", file)
+        message(
+          sprintf("date created: %s", fi$ctime))
+      }
+    }
   }
 }

@@ -239,6 +239,14 @@ gefs_times <- function(...) {
 gefs_variables <- function(...) {
   .Defunct(msg = "`gefs_variables` is defunct; it may return later")
 }
+#' This function is defunct.
+#' @export
+#' @rdname ghcnd_clear_cache-defunct
+#' @keywords internal
+ghcnd_clear_cache <- function(...) {
+  .Defunct(msg = "`ghcnd_clear_cache` is defunct; see ?rnoaa_caching")
+}
+
 
 #' Defunct functions in rnoaa
 #'
@@ -272,6 +280,8 @@ gefs_variables <- function(...) {
 #'  \item \code{\link{seaice}}: Replaced with \code{\link{sea_ice}}
 #'  \item \code{\link{lcd_cleanup}}: No longer available. See \code{\link{lcd}}
 #'  docs
+#'  \item \code{\link{ghcnd_clear_cache}}: No longer available.
+#'  See \code{\link{rnoaa_caching}}
 #' }
 #' 
 #' The functions for working with GEFS ensemble forecast data (prefixed with

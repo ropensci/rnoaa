@@ -2,17 +2,12 @@
 #' @rdname storms
 storm_shp <- function(basin=NULL, storm=NULL, year=NULL, type="points",
                       overwrite = TRUE) {
-  calls <- names(sapply(match.call(), deparse))[-1]
-  calls_vec <- "path" %in% calls
-  if (any(calls_vec)) {
-    stop("The parameter path has been removed, see ?storms",
-         call. = FALSE)
-  }
-
-  path <- file.path(rnoaa_cache_dir(), "storms")
+  path <- storms_cache$cache_path_get()
   shppath <- shp_local(basin, storm, year, path, type)
   if (!is_shpstorm(x = shppath)) {
     shppath <- shpstorm_GET(path, basin, storm, year, type, overwrite)
+  } else {
+    cache_mssg(shppath)
   }
   structure(list(path = spth(shppath)), class = "storm_shp",
             basin = basin, storm = storm, year = year, type = type)
@@ -44,6 +39,7 @@ print.storm_shp <- function(x, ...) {
 }
 
 shpstorm_GET <- function(bp, basin, storm, year, type, overwrite) {
+  storms_cache$mkdir()
   dir.create(local_base(basin, storm, year, bp), showWarnings = FALSE,
              recursive = TRUE)
   fp <- shp_local(basin, storm, year, bp, type)
