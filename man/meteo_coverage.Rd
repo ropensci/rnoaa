@@ -24,15 +24,17 @@ to constrain coverate tests. These should be \code{Date} objects.}
 with returning the coverage data.frame}
 }
 \value{
-a \code{data.frame} with the coverage for each station, minimally
-containing: \preformatted{
+a \code{list} containing 2 \code{data.frame}s named 'summary' and 'detail'.
+The 'summary' \code{data.frame} contains columns: \preformatted{
 $ id         (chr)
 $ start_date (time)
 $ end_date   (time)
 $ total_obs  (int)
 }
 with additional fields (and their coverage percent) depending on which
-weather variables were queried and available for the weather station.
+weather variables were queried and available for the weather station. The
+\code{data.frame} named 'detail' contains the same columns as the \code{meteo_df} input
+data, but expands the rows to contain \code{NA}s for days without data.
 }
 \description{
 Call this function after pulling down observations for a set of stations

@@ -4,10 +4,13 @@
 \alias{autoplot.meteo_coverage}
 \title{autoplot method for meteo_coverage objects}
 \usage{
-\method{autoplot}{meteo_coverage}(object)
+\method{autoplot}{meteo_coverage}(mateo_coverage, old_style = FALSE)
 }
 \arguments{
-\item{object}{(data.frame) a data.frame}
+\item{mateo_coverage}{the object returned from \code{\link[=meteo_coverage]{meteo_coverage()}}}
+
+\item{old_style}{(logical) create the old style of plots, which is faster, but
+does not plot gaps to indicate missing data}
 }
 \value{
 A ggplot2 plot
