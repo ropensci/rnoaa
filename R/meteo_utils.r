@@ -106,7 +106,7 @@ meteo_coverage <- function(meteo_df,
       dplyr::full_join(x = dates,
                              y = .,
                              by='date') %>%
-        dplyr::mutate(id = na.omit(unique(.$id)))
+        dplyr::mutate(id = stats::na.omit(unique(.$id)))
     }) -> out2
 
   # class(out1) <- c("meteo_coverage", class(out1))
