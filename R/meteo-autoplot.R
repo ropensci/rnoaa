@@ -1,7 +1,7 @@
 #' autoplot method for meteo_coverage objects
 #'
 #' @export
-#' @method autoplot a meteo_coverage
+#' @method autoplot meteo_coverage
 #' @param mateo_coverage the object returned from [meteo_coverage()]
 #' @param old_style (logical) create the old style of plots, which is faster, but 
 #' does not plot gaps to indicate missing data
@@ -63,6 +63,9 @@ autoplot.meteo_coverage <- function(mateo_coverage, old_style = FALSE) {
       gridExtra::grid.arrange(ggtime, gg, ncol=1, heights=c(0.4, 0.6))
   } else {
 
+    # this is just a work-around to prevent R CMD check from giving a NOTE about undefined global variables
+    metric <- size <- NULL
+    
     df <- dplyr::ungroup(mateo_coverage[['detail']])
     metrics <- df %>%
       dplyr::select(-date, -id, -grep(pattern = 'flag', x = names(df))) %>%
