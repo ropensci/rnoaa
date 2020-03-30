@@ -1,17 +1,17 @@
 #' autoplot method for meteo_coverage objects
 #'
 #' @export
-#' @method autoplot meteo_coverage
-#' @param object (data.frame) a data.frame
-#' @param old_style (logical) create the old style of plots, which do not
-#' plot gaps to indicate missing data
+#' @method autoplot a meteo_coverage
+#' @param mateo_coverage the object returned from [meteo_coverage()]
+#' @param old_style (logical) create the old style of plots, which is faster, but 
+#' does not plot gaps to indicate missing data
 #' @return A ggplot2 plot
 #' @details see [meteo_coverage()] for examples
-autoplot.meteo_coverage <- function(input, old_style = FALSE) {
+autoplot.meteo_coverage <- function(mateo_coverage, old_style = FALSE) {
 
   if(old_style){
     # ungroup
-    object <- dplyr::ungroup(input[['summary']])
+    object <- dplyr::ungroup(mateo_coverage[['summary']])
 
     gg <- ggplot2::ggplot(object) +
       ggplot2::geom_segment(data = object,
@@ -63,7 +63,7 @@ autoplot.meteo_coverage <- function(input, old_style = FALSE) {
       gridExtra::grid.arrange(ggtime, gg, ncol=1, heights=c(0.4, 0.6))
   } else {
 
-    df <- dplyr::ungroup(input[['detail']])
+    df <- dplyr::ungroup(mateo_coverage[['detail']])
     metrics <- df %>%
       dplyr::select(-date, -id, -grep(pattern = 'flag', x = names(df))) %>%
       names(.)
@@ -71,7 +71,7 @@ autoplot.meteo_coverage <- function(input, old_style = FALSE) {
 
     df_long <- df %>%
       tidyr::pivot_longer(data = .,
-                          cols = all_of(metrics),
+                          cols = tidyselect::all_of(metrics),
                           names_to = 'metric',
                           values_to = 'value') %>%
       dplyr::mutate(size = dplyr::if_else(is.na(value),
