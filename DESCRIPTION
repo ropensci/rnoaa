@@ -7,7 +7,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 0.9.5.98
+Version: 0.9.5.99
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US
@@ -50,7 +50,7 @@ Imports:
     geonames,
     hoardr (>= 0.5.2)
 Suggests:
-    roxygen2 (>= 7.0.2),
+    roxygen2 (>= 7.1.0),
     testthat,
     knitr,
     taxize,
@@ -63,7 +63,7 @@ Suggests:
     purrr,
     ggmap,
     ropenaq,
-    vcr (>= 0.5.0.92),
+    vcr (>= 0.5.4),
     webmockr
 Remotes: ropensci/vcr
 RoxygenNote: 7.1.0

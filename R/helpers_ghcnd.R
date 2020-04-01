@@ -165,26 +165,20 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
 #'
 #' @export
 meteo_tidy_ghcnd <- function(stationid, keep_flags = FALSE, var = "all",
-                        date_min = NULL, date_max = NULL){
+  date_min = NULL, date_max = NULL) {
 
-  dat <- suppressWarnings(ghcnd_search(stationid = stationid, var = var,
-                                       date_min = date_min,
-                                       date_max = date_max)) %>%
-    lapply(meteo_tidy_ghcnd_element, keep_flags = keep_flags)
+  dat <- suppressWarnings(
+    ghcnd_search(stationid = stationid, var = var, date_min = date_min,
+      date_max = date_max))
+  dat <- lapply(dat, meteo_tidy_ghcnd_element, keep_flags = keep_flags)
   cleaned_df <- do.call(rbind.data.frame, dat) %>%
     tidyr::spread("key", "value")
-
-  which_vars_to_clean <-
-    which(colnames(cleaned_df) %in%
-            c("prcp", "tmax", "tmin", "tavg", "snow", "snwd"))
-  cleaned_df <- dplyr::tbl_df(cleaned_df)
-  cleaned_df[, which_vars_to_clean] <-
-    vapply(cleaned_df[ , which_vars_to_clean],
-           FUN.VALUE = numeric(nrow(cleaned_df)),
-           FUN = function(x){
-             x <- ifelse(x == -9999, NA, x)
-             x <- as.numeric(x)
-           })
+  to_clean <- c("prcp", "tmax", "tmin", "tavg", "snow", "snwd")
+  for (i in seq_along(to_clean)) {
+    if (to_clean[i] %in% names(cleaned_df)) {
+      cleaned_df[[to_clean[i]]][cleaned_df[[to_clean[i]]] == -9999] <- NA_real_
+    }
+  }
   return(cleaned_df)
 }
 
