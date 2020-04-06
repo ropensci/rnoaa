@@ -1,9 +1,26 @@
 rnoaa 0.9.6
 ===========
 
+### NEW FEATURES
+
+* new function `rnoaa_options()` to toggle package level options; only option for now is `cache_messages`, a boolean to toggle whether the user gets messages about cached files or not. along with this change, messages about cached files and file sizes and locations are now consistently used across all functions that cache files on disk  (#331)
+* new manual file `?rnoaa_caching` - with information on how to access and manage cached files for each of the rnoaa functions that caches files on disk (#346)
+* `isd()` moved to using `hoardr` caching - see `?isd_cache` for details (#347)
+
 ### MINOR IMPROVEMENTS
 
 * remove internal code in many exported functions looking for user input `path` parameter and telling them it's no longer used; been defunct for quite a while
+* now able to cache http requests for tests that write to disk (#290) (#345)
+* `ghcnd_stations()` now caching data - first time requests should now take just over 1 minute, with subsequent requests (assuming cached data isn't deleted) taking ~ 3 seconds  (#164)
+* `autoplot` method `meteo_coverage()` fix to visually display gaps in data (#314) (#333) thanks @philipshirk
+
+### BUG FIXES
+
+* fix for ncdc functions to fail better - NOAA was returning HTML on request failures instead of JSON - catch that better and give proper http status code response (#338)
+* `meteo_nearby_stations()` fix: coerce input data.frame to the function to a data.frame before remainder of steps - in case user inputs a tibble (#340)
+* `coops_search()` fix: when `product=predictions`, we get no metadata back - so just dont adjust times  (#342)
+* `lcd()` changes: gains `lcd_cache` for managing cached files; use a new internal function for safely reading each csv file, with more informative error messages;  (#344)
+* `meteo_pull_monitors()` fix: changed internals of `meteo_tidy_ghcnd()` to set -9999 values to NA slightly differently to avoi failing (#348)
 
 
 rnoaa 0.9.5

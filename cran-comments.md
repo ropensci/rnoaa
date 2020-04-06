@@ -1,7 +1,7 @@
 ## Test environments
 
-* local OS X install, R 3.6.1 Patched
-* ubuntu 14.04 (on travis-ci), R 3.6.1
+* local OS X install, R 3.6.3 Patched
+* ubuntu 16.04 (on travis-ci), R 3.6.3
 * win-builder (release, devel)
 
 ## R CMD check results
@@ -15,7 +15,7 @@ Checked on the 2 reverse dependencies - no problems were found
 
 -----
 
-This version fixes problems with the gefs functions that arose from CRAN check failures: gefs functions have been removed for now while they are overhauled.
+This version fixes a number of bugs and improves file caching.
 
 Thanks!
 Scott Chamberlain
