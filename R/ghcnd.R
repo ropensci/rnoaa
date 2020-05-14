@@ -311,6 +311,7 @@ get_stations <- function(refresh = FALSE, ...) {
   } else {
     if (file.exists(ff)) unlink(ff)
     if (file.exists(ffrds)) unlink(ffrds)
+    ghcnd_cache$mkdir()
     res <- GET_retry(
       "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt",
       disk = ff, ...)
