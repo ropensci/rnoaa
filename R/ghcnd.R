@@ -337,6 +337,7 @@ get_inventory <- function(refresh = FALSE, ...) {
   } else {
     if (file.exists(gg)) unlink(gg)
     if (file.exists(ggrds)) unlink(ggrds)
+    ghcnd_cache$mkdir()
     res <- GET_retry(
       "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt",
       disk = gg, ...)
