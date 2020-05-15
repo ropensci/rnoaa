@@ -507,10 +507,6 @@ GET_retry <- function(url, ..., times = 3) {
   return(res)
 }
 
-ghcnd_zip <- function(x){
-  "adf"
-}
-
 ghcnd_GET <- function(stationid, ...){
   ghcnd_cache$mkdir()
   fp <- ghcnd_local(stationid)
