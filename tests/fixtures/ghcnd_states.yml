@@ -1,22 +1,25 @@
 http_interactions:
 - request:
     method: get
-    uri: ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-states.txt
+    uri: ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily//ghcnd-states.txt
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.6.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
     status:
       status_code: '226'
       message: IM Used
-      explanation: RFC 3229
+      explanation: The server has fulfilled a GET request for the resource, and the
+        response is a representation of the result of one or more instance-manipulations
+        applied to the current instance (RFC 3229)
     headers: []
     body:
       encoding: UTF-8
+      file: no
       string: "AB ALBERTA\nAK ALASKA\nAL ALABAMA                                        \nAR
         ARKANSAS\nAS AMERICAN SAMOA\nAZ ARIZONA\nBC BRITISH COLUMBIA\nCA CALIFORNIA\nCO
         COLORADO\nCT CONNECTICUT\nDC DISTRICT OF COLUMBIA\nDE DELAWARE\nFL FLORIDA\nFM
@@ -32,5 +35,5 @@ http_interactions:
         SASKATCHEWAN\nTN TENNESSEE\nTX TEXAS\nUM U.S. MINOR OUTLYING ISLANDS\nUT UTAH\nVA
         VIRGINIA\nVI VIRGIN ISLANDS\nVT VERMONT\nWA WASHINGTON\nWI WISCONSIN\nWV WEST
         VIRGINIA\nWY WYOMING\nYT YUKON TERRITORY\n"
-  recorded_at: 2018-12-01 19:48:01 GMT
-  recorded_with: vcr/0.2.0, webmockr/0.2.9
+  recorded_at: 2020-05-15 05:02:27 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
