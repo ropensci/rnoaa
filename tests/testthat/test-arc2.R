@@ -13,8 +13,27 @@ test_that("arc2 returns the expected output", {
     arc2_result <- arc2(date = "1983-01-01")
   })
 
-  expect_is(arc2_result, "tbl_df")
-  expect_equal(names(arc2_result), c("lon", "lat", "precip"))
+  expect_is(arc2_result, "list")
+  expect_is(arc2_result[[1]], "tbl_df")
+  expect_equal(names(arc2_result[[1]]), c("date", "lon", "lat", "precip"))
+})
+
+test_that("arc2 - many dates works", {
+  skip_on_cran()
+  skip_on_travis()
+  skip_on_appveyor()
+  skip_if_government_down()
+  
+  vcr::use_cassette("arc2_many_dates", {    
+    bb <- arc2(date = c("1983-01-01", "1990-02-05"))
+  })
+
+  expect_is(bb, "list")
+  expect_equal(length(bb), 2)
+  expect_is(bb[[1]], "tbl_df")
+  expect_is(bb[[2]], "tbl_df")
+  expect_equal(names(bb[[1]]), c("date", "lon", "lat", "precip"))
+  expect_equal(names(bb[[2]]), c("date", "lon", "lat", "precip"))
 })
 
 test_that("arc2 fails with appropriate error messages", {

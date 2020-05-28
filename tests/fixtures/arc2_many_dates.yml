@@ -1,0 +1,51 @@
+http_interactions:
+- request:
+    method: get
+    uri: ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/bin/daily_clim.bin.19830101.gz
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Basic anonymous:myrmecocystus@gmail.com
+  response:
+    status:
+      status_code: '226'
+      message: IM Used
+      explanation: The server has fulfilled a GET request for the resource, and the
+        response is a representation of the result of one or more instance-manipulations
+        applied to the current instance (RFC 3229)
+    headers: []
+    body:
+      encoding: UTF-8
+      file: yes
+      string: ../files/daily_clim.bin.19830101.gz
+  recorded_at: 2020-05-28 15:45:03 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
+- request:
+    method: get
+    uri: ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/bin/daily_clim.bin.19900205.gz
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: Basic anonymous:myrmecocystus@gmail.com
+  response:
+    status:
+      status_code: '226'
+      message: IM Used
+      explanation: The server has fulfilled a GET request for the resource, and the
+        response is a representation of the result of one or more instance-manipulations
+        applied to the current instance (RFC 3229)
+    headers: []
+    body:
+      encoding: UTF-8
+      file: yes
+      string: ../files/daily_clim.bin.19900205.gz
+  recorded_at: 2020-05-28 15:45:03 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
