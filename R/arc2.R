@@ -2,11 +2,21 @@
 #'
 #' @export
 #' @param date (character/date) one or more dates of the form YYYY-MM-DD
+#' @param box (numeric) vector of length 4, of the form
+#' `xmin, ymin, xmax, ymax`. optional. If not given, no spatial filtering
+#' is done. If given, we use `sf::st_crop()` on a combined set of all dates,
+#' then split the output into tibbles by date
 #' @param ... curl options passed on to [crul::verb-GET]
 #' @references docs:
 #' <ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt>
 #' @note See [arc2_cache] for managing cached files
-#' @return a tibble/data.frame with columns:
+#' @section box parameter:
+#' The `box` parameter filters the arc2 data to a bounding box you supply.
+#' The function that does the cropping to the bounding box is `sf::st_crop`.
+#' You can do any filtering you want on your own if you do not supply
+#' `box` and then use whatever tools you want to filter the data by 
+#' lat/lon, date, precip values.
+#' @return a list of tibbles with columns:
 #'
 #' - date: date (YYYY-MM-DD)
 #' - lon: longitude
@@ -23,15 +33,42 @@
 #' ## combine outputs 
 #' x <- arc2(seq(as.Date("2019-05-20"), as.Date("2019-05-25"), "days"))
 #' dplyr::bind_rows(x)
+#' 
+#' # bounding box filter
+#' box <- c(xmin = 9, ymin = 4, xmax = 10, ymax = 5)
+#' arc2(date = "2017-02-14", box = box)
+#' arc2(date = c("2019-05-27", "2019-05-28"), box = box)
+#' arc2(seq(as.Date("2019-05-20"), as.Date("2019-05-25"), "days"), box = box)
 #' }
-arc2 <- function(date, ...) {
+arc2 <- function(date, box = NULL, ...) {
   assert(date, c("character", "Date"))
   dates <- str_extract_all_(date, "[0-9]+")
   invisible(lapply(dates, arc2_lint_date))
-  lapply(dates, function(w) {
+  res <- lapply(dates, function(w) {
     path <- arc2_get(year = w[1], month = w[2], day = w[3], ...)
     arc2_read(path, w)
   })
+  if (is.null(box)) {
+    res <- stats::setNames(res, vapply(dates, asdate, ""))
+    return(res)
+  }
+  check4pkg("sf")
+  assert(box, "numeric")
+  tmpdf <- dplyr::bind_rows(res)
+  filter_split(tmpdf, box)
+}
+
+filter_split <- function(x, box) {
+  z <- sf::st_as_sf(x, coords = c("lon", "lat"), crs = 4326)
+  cropped <- sf::st_crop(z, box)
+  cd <- data.frame(sf::st_coordinates(cropped))
+  df <- tibble::tibble(
+    date = cropped$date, 
+    lon = cd$X, 
+    lat = cd$Y,
+    precip = cropped$precip
+  )
+  split(df, df$date)
 }
 
 arc2_lint_date <- function(x) {
@@ -41,6 +78,7 @@ arc2_lint_date <- function(x) {
 }
 
 todate <- function(year, month, day) paste(year, month, day, sep = "-")
+asdate <- function(z) todate(z[1], z[2], z[3])
 
 arc2_get <- function(year, month, day, cache = TRUE, overwrite = FALSE, ...) {
   arc2_cache$mkdir()

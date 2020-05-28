@@ -4,15 +4,20 @@
 \alias{arc2}
 \title{Arc2 - Africa Rainfall Climatology version 2}
 \usage{
-arc2(date, ...)
+arc2(date, box = NULL, ...)
 }
 \arguments{
 \item{date}{(character/date) one or more dates of the form YYYY-MM-DD}
 
+\item{box}{(numeric) vector of length 4, of the form
+\verb{xmin, ymin, xmax, ymax}. optional. If not given, no spatial filtering
+is done. If given, we use \code{sf::st_crop()} on a combined set of all dates,
+then split the output into tibbles by date}
+
 \item{...}{curl options passed on to \link[crul:verb-GET]{crul::verb-GET}}
 }
 \value{
-a tibble/data.frame with columns:
+a list of tibbles with columns:
 \itemize{
 \item date: date (YYYY-MM-DD)
 \item lon: longitude
@@ -26,6 +31,15 @@ Arc2 - Africa Rainfall Climatology version 2
 \note{
 See \link{arc2_cache} for managing cached files
 }
+\section{box parameter}{
+
+The \code{box} parameter filters the arc2 data to a bounding box you supply.
+The function that does the cropping to the bounding box is \code{sf::st_crop}.
+You can do any filtering you want on your own if you do not supply
+\code{box} and then use whatever tools you want to filter the data by
+lat/lon, date, precip values.
+}
+
 \examples{
 \dontrun{
 x = arc2(date = "1983-01-01")
@@ -37,6 +51,12 @@ arc2(seq(as.Date("2019-04-21"), by = "day", length.out = 5))
 ## combine outputs 
 x <- arc2(seq(as.Date("2019-05-20"), as.Date("2019-05-25"), "days"))
 dplyr::bind_rows(x)
+
+# bounding box filter
+box <- c(xmin = 9, ymin = 4, xmax = 10, ymax = 5)
+arc2(date = "2017-02-14", box = box)
+arc2(date = c("2019-05-27", "2019-05-28"), box = box)
+arc2(seq(as.Date("2019-05-20"), as.Date("2019-05-25"), "days"), box = box)
 }
 }
 \references{
