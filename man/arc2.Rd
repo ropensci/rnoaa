@@ -11,7 +11,7 @@ arc2(date, box = NULL, ...)
 
 \item{box}{(numeric) vector of length 4, of the form
 \verb{xmin, ymin, xmax, ymax}. optional. If not given, no spatial filtering
-is done. If given, we use \code{sf::st_crop()} on a combined set of all dates,
+is done. If given, we use \code{dplyr::filter()} on a combined set of all dates,
 then split the output into tibbles by date}
 
 \item{...}{curl options passed on to \link[crul:verb-GET]{crul::verb-GET}}
@@ -34,7 +34,7 @@ See \link{arc2_cache} for managing cached files
 \section{box parameter}{
 
 The \code{box} parameter filters the arc2 data to a bounding box you supply.
-The function that does the cropping to the bounding box is \code{sf::st_crop}.
+The function that does the cropping to the bounding box is \code{dplyr::filter}.
 You can do any filtering you want on your own if you do not supply
 \code{box} and then use whatever tools you want to filter the data by
 lat/lon, date, precip values.

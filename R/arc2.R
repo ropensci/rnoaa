@@ -4,7 +4,7 @@
 #' @param date (character/date) one or more dates of the form YYYY-MM-DD
 #' @param box (numeric) vector of length 4, of the form
 #' `xmin, ymin, xmax, ymax`. optional. If not given, no spatial filtering
-#' is done. If given, we use `sf::st_crop()` on a combined set of all dates,
+#' is done. If given, we use `dplyr::filter()` on a combined set of all dates,
 #' then split the output into tibbles by date
 #' @param ... curl options passed on to [crul::verb-GET]
 #' @references docs:
@@ -12,7 +12,7 @@
 #' @note See [arc2_cache] for managing cached files
 #' @section box parameter:
 #' The `box` parameter filters the arc2 data to a bounding box you supply.
-#' The function that does the cropping to the bounding box is `sf::st_crop`.
+#' The function that does the cropping to the bounding box is `dplyr::filter`.
 #' You can do any filtering you want on your own if you do not supply
 #' `box` and then use whatever tools you want to filter the data by 
 #' lat/lon, date, precip values.
@@ -52,22 +52,13 @@ arc2 <- function(date, box = NULL, ...) {
     res <- stats::setNames(res, vapply(dates, asdate, ""))
     return(res)
   }
-  check4pkg("sf")
   assert(box, "numeric")
   tmpdf <- dplyr::bind_rows(res)
   filter_split(tmpdf, box)
 }
 
 filter_split <- function(x, box) {
-  z <- sf::st_as_sf(x, coords = c("lon", "lat"), crs = 4326)
-  cropped <- sf::st_crop(z, box)
-  cd <- data.frame(sf::st_coordinates(cropped))
-  df <- tibble::tibble(
-    date = cropped$date, 
-    lon = cd$X, 
-    lat = cd$Y,
-    precip = cropped$precip
-  )
+  df <- dplyr::filter(x, dplyr::between(lon, 9, 10), dplyr::between(lat, 4, 5))
   split(df, df$date)
 }
 
