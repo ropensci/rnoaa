@@ -84,7 +84,7 @@ ghcnd <- function(stationid, refresh = FALSE, ...) {
   } else {
     cache_mssg(csvpath)
     res <- read.csv(csvpath, stringsAsFactors = FALSE,
-      colClasses = ghcnd_col_classes)
+                    colClasses = ghcnd_col_classes)
   }
   fi <- file.info(csvpath)
   res <- remove_na_row(res) # remove trailing row of NA's
@@ -142,7 +142,7 @@ ghcnd_splitvars <- function(x){
     dplyr::select(y, -element)
   })
   
-  return(out)
+  return(out[tolower(unique(x$element))])
 }
 
 
@@ -167,7 +167,7 @@ ghcnd_splitvars2 <- function(x){
         -month,
         -day)
     dd <- stats::setNames(dd, c("id", tolower(y), "date"))
-
+    
     mflag <- ydat %>%
       dplyr::select(-dplyr::contains("VALUE"), -dplyr::contains("QFLAG"),
                     -dplyr::contains("SFLAG")) %>%
@@ -178,7 +178,7 @@ ghcnd_splitvars2 <- function(x){
       dplyr::filter(!is.na(date)) %>%
       dplyr::select(value) %>%
       dplyr::rename(mflag = value)
-
+    
     qflag <- ydat %>%
       dplyr::select(-dplyr::contains("VALUE"), -dplyr::contains("MFLAG"),
                     -dplyr::contains("SFLAG")) %>%
@@ -189,7 +189,7 @@ ghcnd_splitvars2 <- function(x){
       dplyr::filter(!is.na(date)) %>%
       dplyr::select(value) %>%
       dplyr::rename(qflag = value)
-
+    
     sflag <- ydat %>%
       dplyr::select(-dplyr::contains("VALUE"), -dplyr::contains("QFLAG"),
                     -dplyr::contains("MFLAG")) %>%
@@ -200,11 +200,12 @@ ghcnd_splitvars2 <- function(x){
       dplyr::filter(!is.na(date)) %>%
       dplyr::select(value) %>%
       dplyr::rename(sflag = value)
-
+    
     dplyr::tbl_df(cbind(dd, mflag, qflag, sflag))
   })
   stats::setNames(out, tolower(unique(x$element)))
 }
+
 
 ## helpers -------
 ghcnd_col_classes <- c(
@@ -246,7 +247,7 @@ ghcnd_GET <- function(stationid, ...){
   tt <- res$parse("UTF-8")
   vars <- c("id","year","month","element",
             do.call("c",
-      lapply(1:31, function(x) paste0(c("VALUE","MFLAG","QFLAG","SFLAG"), x))))
+                    lapply(1:31, function(x) paste0(c("VALUE","MFLAG","QFLAG","SFLAG"), x))))
   df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)),
                  na.strings = "-9999")
   df[] <- Map(function(a, b) {
@@ -274,3 +275,5 @@ str_extract_ <- function(string, pattern) {
 str_extract_all_ <- function(string, pattern) {
   regmatches(string, gregexpr(pattern, string))
 }
+
+.datatable.aware = TRUE
