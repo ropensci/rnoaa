@@ -48,7 +48,8 @@ Imports:
     tibble,
     isdparser (>= 0.2.0),
     geonames,
-    hoardr (>= 0.5.2)
+    hoardr (>= 0.5.2),
+    data.table
 Suggests:
     roxygen2 (>= 7.1.0),
     testthat,

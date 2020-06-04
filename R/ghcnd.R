@@ -122,9 +122,37 @@ ghcnd_splitvars <- function(x){
   if (!inherits(x, "data.frame")) stop("input must be a data.frame", call. = FALSE)
   if (!"id" %in% names(x)) stop("input not of correct format", call. = FALSE)
   x <- x[!is.na(x$id), ]
+  
+  out <- data.table::melt(data.table::as.data.table(x), id.vars = c("id", "year", "month", "element"),
+                          variable.name = "day",
+                          measure.vars = patterns(value = "VALUE",
+                                                  mflag = "MFLAG",
+                                                  qflag = "QFLAG",
+                                                  sflag = "SFLAG")) %>% 
+    dplyr::as_tibble() %>% 
+    dplyr::mutate(date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d"))  %>% 
+    dplyr::filter(!is.na(date)) %>% 
+    dplyr::select(-day, -month, -year) %>% 
+    dplyr::mutate(element = tolower(element)) %>% 
+    dplyr::select(id, value, date, mflag, qflag, sflag, element)
+  
+  out <- split(out, out$element, drop = TRUE)
+  out <- lapply(out, function(y) {
+    colnames(y)[colnames(y) == "value"] <- unique(y$element)
+    dplyr::select(y, -element)
+  })
+  
+  return(out)
+}
+
+
+ghcnd_splitvars2 <- function(x){
+  if (!inherits(x, "data.frame")) stop("input must be a data.frame", call. = FALSE)
+  if (!"id" %in% names(x)) stop("input not of correct format", call. = FALSE)
+  x <- x[!is.na(x$id), ]
   out <- lapply(as.character(unique(x$element)), function(y){
     ydat <- x[ x$element == y, ]
-
+    
     dd <- ydat %>%
       dplyr::select(-dplyr::contains("FLAG")) %>%
       tidyr::gather(var, value, -id, -year, -month, -element) %>%
