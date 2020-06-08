@@ -150,67 +150,6 @@ ghcnd_splitvars <- function(x){
 }
 
 
-ghcnd_splitvars2 <- function(x){
-  if (!inherits(x, "data.frame")) stop("input must be a data.frame", call. = FALSE)
-  if (!"id" %in% names(x)) stop("input not of correct format", call. = FALSE)
-  x <- x[!is.na(x$id), ]
-  out <- lapply(as.character(unique(x$element)), function(y){
-    ydat <- x[ x$element == y, ]
-    
-    dd <- ydat %>%
-      dplyr::select(-dplyr::contains("FLAG")) %>%
-      tidyr::gather(var, value, -id, -year, -month, -element) %>%
-      dplyr::mutate(
-        day = strex(var),
-        date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
-      dplyr::filter(!is.na(date)) %>%
-      dplyr::select(
-        -element,
-        -var,
-        -year,
-        -month,
-        -day)
-    dd <- stats::setNames(dd, c("id", tolower(y), "date"))
-    
-    mflag <- ydat %>%
-      dplyr::select(-dplyr::contains("VALUE"), -dplyr::contains("QFLAG"),
-                    -dplyr::contains("SFLAG")) %>%
-      tidyr::gather(var, value, -id, -year, -month, -element) %>%
-      dplyr::mutate(
-        day = strex(var),
-        date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
-      dplyr::filter(!is.na(date)) %>%
-      dplyr::select(value) %>%
-      dplyr::rename(mflag = value)
-    
-    qflag <- ydat %>%
-      dplyr::select(-dplyr::contains("VALUE"), -dplyr::contains("MFLAG"),
-                    -dplyr::contains("SFLAG")) %>%
-      tidyr::gather(var, value, -id, -year, -month, -element) %>%
-      dplyr::mutate(
-        day = strex(var),
-        date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
-      dplyr::filter(!is.na(date)) %>%
-      dplyr::select(value) %>%
-      dplyr::rename(qflag = value)
-    
-    sflag <- ydat %>%
-      dplyr::select(-dplyr::contains("VALUE"), -dplyr::contains("QFLAG"),
-                    -dplyr::contains("MFLAG")) %>%
-      tidyr::gather(var, value, -id, -year, -month, -element) %>%
-      dplyr::mutate(
-        day = strex(var),
-        date = as.Date(sprintf("%s-%s-%s", year, month, day), "%Y-%m-%d")) %>%
-      dplyr::filter(!is.na(date)) %>%
-      dplyr::select(value) %>%
-      dplyr::rename(sflag = value)
-
-    tibble::as_tibble(cbind(dd, mflag, qflag, sflag))
-  })
-  stats::setNames(out, tolower(unique(x$element)))
-}
-
-
 ## helpers -------
 ghcnd_col_classes <- c(
   "character", "integer", "integer", "character",
