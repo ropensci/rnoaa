@@ -116,7 +116,7 @@
 #' @importFrom tidyr gather separate
 #' @importFrom rappdirs user_cache_dir
 #' @importFrom gridExtra grid.arrange
-#' @importFrom dplyr %>% select mutate rename tbl_df filter bind_rows
+#' @importFrom dplyr %>% select mutate rename filter bind_rows
 #' as_tibble contains rowwise do bind_cols ungroup
 #' @importFrom tibble as_tibble data_frame
 #' @importFrom scales comma
