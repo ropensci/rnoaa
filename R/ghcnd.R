@@ -173,7 +173,7 @@ ghcnd_splitvars <- function(x){
       dplyr::select(value) %>%
       dplyr::rename(sflag = value)
 
-    dplyr::tbl_df(cbind(dd, mflag, qflag, sflag))
+    tibble::as_tibble(cbind(dd, mflag, qflag, sflag))
   })
   stats::setNames(out, tolower(unique(x$element)))
 }
