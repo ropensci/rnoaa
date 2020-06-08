@@ -122,6 +122,10 @@ ghcnd_splitvars <- function(x){
   if (!inherits(x, "data.frame")) stop("input must be a data.frame", call. = FALSE)
   if (!"id" %in% names(x)) stop("input not of correct format", call. = FALSE)
   x <- x[!is.na(x$id), ]
+  patterns <- NULL
+  mflag <- NULL
+  qflag <- NULL
+  sflag <- NULL
   
   out <- data.table::melt(data.table::as.data.table(x), id.vars = c("id", "year", "month", "element"),
                           variable.name = "day",
