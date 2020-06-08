@@ -219,3 +219,20 @@ assert <- function(x, y) {
     }
   }
 }
+
+GET_retry <- function(url, ..., times = 3) {
+  cliret <- crul::HttpClient$new(url)
+  res <- suppressWarnings(cliret$get(...))
+  if (res$status_code > 226) {
+    message("Request failed - Retrying")
+    stat <- 500
+    i <- 0
+    while (stat > 226 && i <= times) {
+      i <- i + 1
+      res <- suppressWarnings(cliret$get(...))
+      stat <- res$status_code
+    }
+    if (res$status_code > 226) stop("Request failed, try again", call. = FALSE)
+  }
+  return(res)
+}

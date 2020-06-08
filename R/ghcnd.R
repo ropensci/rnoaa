@@ -193,23 +193,6 @@ strex <- function(x) str_extract_(x, "[0-9]+")
 as_tc <- function(x) textConnection(enc2utf8(rawToChar(x)))
 as_tc_p <- function(x) textConnection(x$parse("latin1"))
 
-GET_retry <- function(url, ..., times = 3) {
-  cliret <- crul::HttpClient$new(url)
-  res <- suppressWarnings(cliret$get(...))
-  if (res$status_code > 226) {
-    message("Request failed - Retrying")
-    stat <- 500
-    i <- 0
-    while (stat > 226 && i <= times) {
-      i <- i + 1
-      res <- suppressWarnings(cliret$get(...))
-      stat <- res$status_code
-    }
-    if (res$status_code > 226) stop("Request failed, try again", call. = FALSE)
-  }
-  return(res)
-}
-
 ghcnd_GET <- function(stationid, ...){
   ghcnd_cache$mkdir()
   fp <- ghcnd_local(stationid)
