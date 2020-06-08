@@ -89,3 +89,12 @@ test_that("get data", {
   expect_lt(NROW(aa), NROW(bb))
   expect_lt(NROW(cc), NROW(bb))
 })
+
+test_that("alternative base urls", {
+  expect_equal(Sys.getenv("RNOAA_GHCND_BASE_URL"), "")
+
+  Sys.setenv(RNOAA_GHCND_BASE_URL = "https://google.com")
+  expect_error(ghcnd("ASN00008179"), "must be in set")
+
+  Sys.unsetenv("RNOAA_GHCND_BASE_URL")
+})

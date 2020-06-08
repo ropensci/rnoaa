@@ -58,6 +58,22 @@ which you can suppress with \code{suppressMessages()}
 \note{
 See \link{ghcnd_cache} for managing cached files
 }
+\section{Base URL}{
+
+The base url for data requests can be changed. The allowed urls are:
+https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all (default),
+ftp://ftp.ncei.noaa.gov/pub/data/ghcn/daily/all,
+ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all
+
+You can set the base url using the \code{RNOAA_GHCND_BASE_URL} environment
+variable; see example below.
+
+The reason for this is that sometimes one base url source is temporarily
+down, but another base url may work. It doesn't make sense to allow
+an arbitrary base URL; open an issue if there is another valid
+base URL for GHNCD data that we should add to the allowed set of base urls.
+}
+
 \examples{
 \dontrun{
 # Get data
@@ -85,6 +101,14 @@ ghcnd(stationid = "AGE00147704", refresh = TRUE)
 # Read in a .dly file you've already downloaded
 path <- system.file("examples/AGE00147704.dly", package = "rnoaa")
 ghcnd_read(path)
+
+# change the base url for data requests
+Sys.setenv(RNOAA_GHCND_BASE_URL =
+  "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all")
+ghcnd(stations$id[45], verbose = TRUE)
+## must be in the allowed set of urls
+# Sys.setenv(RNOAA_GHCND_BASE_URL = "https://google.com")
+# ghcnd(stations$id[58], verbose = TRUE)
 }
 }
 \seealso{

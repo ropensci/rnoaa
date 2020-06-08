@@ -28,6 +28,20 @@
 #' one year. In addition to measurements, columns are included for certain
 #' flags, which add information on observation sources and quality and are
 #' further explained in NOAA's README file for the data.
+#' 
+#' @section Base URL:
+#' The base url for data requests can be changed. The allowed urls are:
+#' https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all (default),
+#' ftp://ftp.ncei.noaa.gov/pub/data/ghcn/daily/all,
+#' ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all
+#' 
+#' You can set the base url using the `RNOAA_GHCND_BASE_URL` environment
+#' variable; see example below.
+#' 
+#' The reason for this is that sometimes one base url source is temporarily
+#' down, but another base url may work. It doesn't make sense to allow 
+#' an arbitrary base URL; open an issue if there is another valid 
+#' base URL for GHNCD data that we should add to the allowed set of base urls.
 #'
 #' @details  This function saves the full set of weather data for the queried
 #' site locally in the directory specified by the \code{path} argument.
@@ -76,6 +90,14 @@
 #' # Read in a .dly file you've already downloaded
 #' path <- system.file("examples/AGE00147704.dly", package = "rnoaa")
 #' ghcnd_read(path)
+#' 
+#' # change the base url for data requests
+#' Sys.setenv(RNOAA_GHCND_BASE_URL =
+#'   "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all")
+#' ghcnd(stations$id[45], verbose = TRUE)
+#' ## must be in the allowed set of urls
+#' # Sys.setenv(RNOAA_GHCND_BASE_URL = "https://google.com")
+#' # ghcnd(stations$id[58], verbose = TRUE)
 #' }
 ghcnd <- function(stationid, refresh = FALSE, ...) {
   csvpath <- ghcnd_local(stationid)
@@ -215,7 +237,22 @@ ghcnd_GET <- function(stationid, ...){
   return(dat)
 }
 
-ghcndbase <- function() "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all"
+ghcnd_allowed_urls <- c(
+  "https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all",
+  "ftp://ftp.ncei.noaa.gov/pub/data/ghcn/daily/all",
+  "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all"
+)
+ghcndbase <- function() {
+  x <- Sys.getenv("RNOAA_GHCND_BASE_URL", "")
+  if (identical(x, "")) {
+    x <- "https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all"
+  }
+  if (!x %in% ghcnd_allowed_urls) {
+    stop("the RNOAA_GHCND_BASE_URL environment variable must be in set:\n",
+      paste0(ghcnd_allowed_urls, collapse = "  \n"))
+  }
+  return(x)
+}
 ghcnd_remote <- function(stationid) {
   file.path(ghcndbase(), paste0(stationid, ".dly"))
 }
