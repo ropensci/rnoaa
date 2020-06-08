@@ -116,6 +116,7 @@ ghcnd <- function(stationid, refresh = FALSE, ...) {
   return(res)
 }
 
+
 #' @export
 #' @rdname ghcnd
 ghcnd_read <- function(path, ...) {
