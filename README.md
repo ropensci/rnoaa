@@ -12,7 +12,7 @@ rnoaa
 [![cran version](https://www.r-pkg.org/badges/version/rnoaa)](https://cran.r-project.org/package=rnoaa)
 
 
-`rnoaa` is an R interface to many NOAA data sources. We don't cover all of them, but we include many commonly used sources, and add we are always adding new sources. We focus on easy to use interfaces for getting NOAA data, and giving back data in easy to use formats downstream. We currently don't do much in the way of plots or analysis.
+`rnoaa` is an R interface to many NOAA data sources. We don't cover all of them, but we include many commonly used sources, and add we are always adding new sources. We focus on easy to use interfaces for getting NOAA data, and giving back data in easy to use formats downstream. We currently don't do much in the way of plots or analysis. To get started see: https://docs.ropensci.org/rnoaa/articles/rnoaa.html
 
 ## Data sources in rnoaa
 
@@ -39,10 +39,11 @@ rnoaa
 * [Local Climatological Data](https://www.ncdc.noaa.gov/cdo-web/datatools/lcd)
 * [Storm Events Database](https://www.ncdc.noaa.gov/stormevents/)
 
-## Help
+## Help/Getting Started
 
 Documentation is at <https://docs.ropensci.org/rnoaa/>, and there are many vignettes in the package itself, available in your R session, or [on CRAN](https://cran.r-project.org/package=rnoaa). The tutorials:
 
+* **Getting started - start here**
 * NOAA Buoy vignette
 * NOAA National Climatic Data Center (NCDC) vignette (examples)
 * NOAA NCDC attributes vignette
