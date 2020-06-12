@@ -1,0 +1,84 @@
+reference:
+  - title: "rnoaa"
+    desc: >
+      High level overview of package
+    contents:
+      - rnoaa
+      - rnoaa-defunct
+      - rnoaa_options
+      - rnoaa_caching
+  - title: "datasets"
+    desc: >
+      rnoaa datasets
+    contents:
+      - fipscodes
+      - storm_columns
+      - storm_names
+  - title: "Africa Rainfall Climatology"
+    contents:
+      - arc2
+  - title: "Argo buoy data"
+    contents:
+      - starts_with("argo")
+  - title: "Blended sea winds"
+    contents:
+      - bsw
+  - title: "National Buoy Data Center"
+    contents:
+      - starts_with("buoy")
+  - title: "CO-OPS (Tides and Currents)"
+    contents:
+      - coops_search
+  - title: "Climate Prediction Center"
+    contents:
+      - cpc_prcp
+  - title: "Extended Reconstructed Sea Surface Temperature"
+    contents:
+      - ersst
+  - title: "Global Historical Climatology Network Daily"
+    contents:
+      - ghcnd
+      - ghcnd_clear_cache
+      - ghcnd_countries
+      - ghcnd_read
+      - ghcnd_search
+      - ghcnd_splitvars
+      - ghcnd_states
+      - ghcnd_stations
+      - ghcnd_version
+      - starts_with("meteo_")
+      - vis_miss
+      - autoplot.meteo_coverage
+  - title: "Historical Observing Metadata Repository"
+    contents:
+      - starts_with("homr")
+  - title: "Integrated Surface Data"
+    contents:
+      - isd
+      - isd_read
+      - starts_with("isd_stations")
+  - title: "Local Climitalogical Data"
+    contents:
+      - lcd
+  - title: "National Climatic Data Center"
+    contents:
+      - starts_with("ncdc")
+  - title: "Sea Ice"
+    contents:
+      - starts_with("sea_ice")
+      - theme_ice
+  - title: "IBTrACS Storm Data"
+    contents:
+      - storm_data
+      - storm_meta
+      - storm_shp
+      - storm_shp_read
+  - title: "Storm Events"
+    contents:
+      - starts_with("se_")
+  - title: "Severe Weather Data Inventor"
+    contents:
+      - swdi
+  - title: "Tornadoes"
+    contents:
+      - tornadoes
