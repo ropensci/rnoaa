@@ -1,4 +1,4 @@
-#' Get NOAA data for the severe weather data inventory (swdi).
+#' Get NOAA data for the Severe Weather Data Inventory (SWDI)
 #'
 #' @export
 #'
@@ -62,7 +62,7 @@
 #' If kmz or shp chosen, the file is downloaded to your machine and a message 
 #' is printed.
 #'
-#' @references https://www.ncdc.noaa.gov/swdi/#Intro 
+#' @references https://www.ncdc.noaa.gov/ncdcs-severe-weather-data-inventory
 #' https://www.ncdc.noaa.gov/swdiws/
 #'
 #' @examples \dontrun{

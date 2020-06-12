@@ -2,7 +2,7 @@
 % Please edit documentation in R/swdi.r
 \name{swdi}
 \alias{swdi}
-\title{Get NOAA data for the severe weather data inventory (swdi).}
+\title{Get NOAA data for the Severe Weather Data Inventory (SWDI)}
 \usage{
 swdi(
   dataset = NULL,
@@ -75,7 +75,7 @@ If kmz or shp chosen, the file is downloaded to your machine and a message
 is printed.
 }
 \description{
-Get NOAA data for the severe weather data inventory (swdi).
+Get NOAA data for the Severe Weather Data Inventory (SWDI)
 }
 \details{
 Options for the dataset parameter. One of (and their data formats):
@@ -153,6 +153,6 @@ class(res$data)
 }
 }
 \references{
-https://www.ncdc.noaa.gov/swdi/#Intro
+https://www.ncdc.noaa.gov/ncdcs-severe-weather-data-inventory
 https://www.ncdc.noaa.gov/swdiws/
 }
