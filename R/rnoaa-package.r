@@ -144,7 +144,7 @@ NULL
 #' NOAA storm column descriptions for data from IBTrACS
 #'
 #' This dataset includes description of the columns of each dataset acquired
-#' using [rnoaa::storm_data()]
+#' using `storm_data()`
 #'
 #' @docType data
 #' @keywords datasets
@@ -156,7 +156,7 @@ NULL
 #'
 #' This dataset includes a crosswalk from storm serial numbers to their names.
 #' Storm serial numbers are used to search for storms in the
-#' [rnoaa::storm_data()] function.
+#' `storm_data()` function
 #'
 #' @docType data
 #' @keywords datasets
