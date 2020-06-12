@@ -1,0 +1,220 @@
+---
+title: "rnoaa introduction"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{rnoaa introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  collapse  =  TRUE,
+  comment  =  "#>",
+  purl  =  FALSE,
+  eval  =  FALSE
+)
+```
+
+
+## Installation
+
+__GDAL__
+
+You'll need [GDAL](https://gdal.org/) installed first. You may want to use GDAL >= `0.9-1` since that version or later can read TopoJSON format files as well, which aren't required here, but may be useful. Install GDAL:
+
+* OSX - From https://www.kyngchaos.com/software/frameworks/
+* Linux - run `sudo apt-get install gdal-bin`
+* Windows - From https://trac.osgeo.org/osgeo4w/
+
+Then when you install the R package `rgdal` (`rgeos` also requires GDAL), you'll most likely need to specify where you're `gdal-config` file is on your machine, as well as a few other things. I have an OSX Mavericks machine, and this works for me (there's no binary for Mavericks, so install the source version):
+
+```{r eval=FALSE}
+install.packages("https://cran.r-project.org/src/contrib/rgdal_0.9-1.tar.gz", repos = NULL, type="source", configure.args = "--with-gdal-config=/Library/Frameworks/GDAL.framework/Versions/1.10/unix/bin/gdal-config --with-proj-include=/Library/Frameworks/PROJ.framework/unix/include --with-proj-lib=/Library/Frameworks/PROJ.framework/unix/lib")
+```
+
+The rest of the installation should be easy. If not, let us know.
+
+__Stable version from CRAN__
+
+```{r eval=FALSE}
+install.packages("rnoaa")
+```
+
+__or development version from GitHub__
+
+```{r eval=FALSE}
+remotes::install_github("ropensci/rnoaa")
+```
+
+__Load rnoaa__
+
+```{r}
+library('rnoaa')
+```
+
+## NCDC v2 API data
+
+**NCDC Authentication**
+
+You'll need an API key to use the NOAA NCDC functions (those starting with `ncdc*()`) in this package (essentially a password). Go to https://www.ncdc.noaa.gov/cdo-web/token to get one. *You can't use this package without an API key.*
+
+Once you obtain a key, there are two ways to use it.
+
+a) Pass it inline with each function call (somewhat cumbersome)
+
+```{r eval=FALSE}
+ncdc(datasetid = 'PRECIP_HLY', locationid = 'ZIP:28801', datatypeid = 'HPCP', limit = 5, token =  "YOUR_TOKEN")
+```
+
+b) Alternatively, you might find it easier to set this as an option, either by adding this line to the top of a script or somewhere in your `.rprofile`
+
+```{r eval=FALSE}
+options(noaakey = "KEY_EMAILED_TO_YOU")
+```
+
+c) You can always store in permamently in your `.Rprofile` file.
+
+###  Fetch list of city locations in descending order
+
+```{r}
+ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
+```
+
+### Get info on a station by specifying a dataset, locationtype, location, and station
+
+```{r}
+ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
+```
+
+
+### Search for data
+
+```{r}
+out <- ncdc(datasetid='NORMAL_DLY', stationid='GHCND:USW00014895', datatypeid='dly-tmax-normal', startdate = '2010-05-01', enddate = '2010-05-10')
+```
+
+### See a data.frame
+
+```{r}
+head( out$data )
+```
+
+Note that the `value` column has strangely large numbers for temperature measurements.
+By convention, `rnoaa` doesn't do any conversion of values from the APIs and some APIs use seemingly odd units.
+
+You have two options here:
+
+1. Use the `add_units` parameter on `ncdc` to have `rnoaa` attempt to look up the units. This is a good idea to try first.
+
+2. Consult the documentation for whiechever dataset you're accessing. In this case, `GHCND` has a [README](https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) which indicates `TMAX` is measured in tenths of degrees Celcius.
+
+### See a `data.frame` with units
+
+As mentioned above, you can use the `add_units` parameter with `ncdc()` to ask `rnoaa` to attempt to look up units for whatever data you ask it to return.
+Let's ask `rnoaa` to add units to some precipitation (PRCP) data:
+
+```{r}
+with_units <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500, add_units = TRUE)
+head( with_units$data )
+```
+From the above output, we can see that the units for `PRCP` values are "mm_tenths" which means tenths of a millimeter.
+You won't always be so lucky and sometimes you will have to look up the documentation on your own.
+
+### Plot data, super simple, but it's a start
+
+```{r}
+out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
+ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
+```
+
+Note that `PRCP` values are in units of tenths of a millimeter, as we found out above.
+
+### More plotting
+
+You can pass many outputs from calls to the `noaa` function in to the `ncdc_plot` function.
+
+```{r}
+out1 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-03-01', enddate = '2010-05-31', limit=500)
+out2 <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP', startdate = '2010-09-01', enddate = '2010-10-31', limit=500)
+ncdc_plot(out1, out2, breaks="45 days")
+```
+
+### Get table of all datasets
+
+```{r}
+ncdc_datasets()
+```
+
+### Get data category data and metadata
+
+```{r}
+ncdc_datacats(locationid = 'CITY:US390029')
+```
+
+## Tornado data
+
+The function `tornadoes()` simply gets __all the data__. So the call takes a while, but once done, is fun to play with.
+
+```{r cache=TRUE}
+shp <- tornadoes()
+library('sp')
+plot(shp)
+```
+
+## HOMR metadata
+
+In this example, search for metadata for a single station ID
+
+```{r output.lines=1:20, eval=FALSE}
+homr(qid = 'COOP:046742')
+```
+
+## Storm data
+
+Get storm data for the year 2010
+
+```{r output.lines=1:20, eval=FALSE}
+storm_data(year = 2010)
+```
+
+## GEFS data
+
+Get forecast for a certain variable.
+
+```{r cache = TRUE}
+res <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat = 46.28125, lon = -116.2188)
+head(res$data)
+```
+
+## Argo buoys data
+
+There are a suite of functions for Argo data, a few egs:
+
+```{r eval=FALSE}
+# Spatial search - by bounding box
+argo_search("coord", box = c(-40, 35, 3, 2))
+
+# Time based search
+argo_search("coord", yearmin = 2007, yearmax = 2009)
+
+# Data quality based search
+argo_search("coord", pres_qc = "A", temp_qc = "A")
+
+# Search on partial float id number
+argo_qwmo(qwmo = 49)
+
+# Get data
+argo(dac = "meds", id = 4900881, cycle = 127, dtype = "D")
+```
+
+## CO-OPS data
+
+Get daily mean water level data at Fairport, OH (9063053)
+
+```{r}
+coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
+             product = "daily_mean", datum = "stnd", time_zone = "lst")
+```
