@@ -10,7 +10,6 @@ install:
 build_script:
   - travis-tool.sh install_deps
   - travis-tool.sh r_binary_install proto rgdal
-  - travis-tool.sh install_github ropensci/webmockr ropensci/vcr
 
 test_script:
   - travis-tool.sh run_tests
