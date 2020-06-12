@@ -1,7 +1,7 @@
 ## Test environments
 
-* local OS X install, R 3.6.3 Patched
-* ubuntu 16.04 (on travis-ci), R 3.6.3
+* local OS X install, R 4.0.1 Patched
+* ubuntu 16.04 (on travis-ci), R 4.0.1
 * win-builder (release, devel)
 
 ## R CMD check results
@@ -15,7 +15,7 @@ Checked on the 2 reverse dependencies - no problems were found
 
 -----
 
-This version fixes a number of bugs and improves file caching.
+This version fixes a bug, improves documentation, and speeds up a function.
 
 Thanks!
 Scott Chamberlain

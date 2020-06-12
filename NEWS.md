@@ -1,3 +1,30 @@
+rnoaa 1.0.0
+===========
+
+### NEW FEATURES
+
+* the `argo` functions that were not working because of a down API are working again, see `?argo` (#358)
+* most of the defunct functions have been removed from the package, but are still referenced in the `?rnoaa-defunct` manual file. `gefs` functions are still in the package as those functions may come back at some point. (#359)
+* two things for `arc2()`: 1) now accepts more than 1 date; 2) gains new parameter `box` to accept a bounding box to spatially filter results (uses `dplyr::filter` on the data.frame of spatial data) (#351)
+
+### Documentation
+
+Regarding the documentation site at https://docs.ropensci.org/rnoaa
+
+* the function reference page https://docs.ropensci.org/rnoaa/reference/index.html has been improved; grouping functions by topic area and data source - for easier browsing (#360)
+* a getting started vignette has been added, see the "Get Started" tab (#357)
+
+### MINOR IMPROVEMENTS
+
+* `ghncd()` (and all functions that build on `ghcnd()`) can now be altered to use a specific base URL for requests. See the "Base URL" section of the `?ghcnd` docs (#353)
+* `ghcnd_splitvars()` speedup, using `data.table` instead of dplyr for manipulation (#352) (#355)
+* use `tibble::as_tibble` throughout package instead of `dplyr::tbl_df` (#354)
+
+### BUG FIXES
+
+* fix for `ghcnd_stations()`: internal method `get_inventory()` was not creating a directory first before trying to download a file into that directory (#349) (#350)
+
+
 rnoaa 0.9.6
 ===========
 
