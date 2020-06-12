@@ -5,59 +5,51 @@
 \title{Defunct functions in rnoaa}
 \description{
 \itemize{
-\item \code{\link{noaa}}: Function name changed, prefixed with ncdc now
-\item \code{\link{noaa_datacats}}: Function name changed, prefixed with ncdc now
-\item \code{\link{noaa_datasets}}: Function name changed, prefixed with ncdc now
-\item \code{\link{noaa_datatypes}}: Function name changed, prefixed with ncdc now
-\item \code{\link{noaa_locs}}: Function name changed, prefixed with ncdc now
-\item \code{\link{noaa_locs_cats}}: Function name changed, prefixed with ncdc now
-\item \code{\link{noaa_stations}}: Function name changed, prefixed with ncdc now
-\item \code{\link{noaa_plot}}: Function name changed, prefixed with ncdc now
-\item \code{\link{noaa_combine}}: Function name changed, prefixed with ncdc now
-\item \code{\link{noaa_seaice}}: Function name changed to seaice
-\item \code{\link{erddap_data}}: See package rerddap
-\item \code{\link{erddap_clear_cache}}: See package rerddap
-\item \code{\link{erddap_datasets}}: Moved to \code{ed_datasets} in
-package rerddap
-\item \code{\link{erddap_grid}}: Moved to \code{griddap} in package
-rerddap
-\item \code{\link{erddap_info}}: Moved to \code{info} in package
-rerddap
-\item \code{\link{erddap_search}}: Moved to \code{ed_search} in
-package rerddap
-\item \code{\link{erddap_table}}: Moved to \code{tabledap} in
-package rerddap
-\item \code{\link{ncdc_leg_variables}}: Removed. See \code{NCDC Legacy} below
-\item \code{\link{ncdc_leg_sites}}: Removed. See \code{NCDC Legacy} below
-\item \code{\link{ncdc_leg_site_info}}: Removed. See \code{NCDC Legacy} below
-\item \code{\link{ncdc_leg_data}}: Removed. See \code{NCDC Legacy} below
-\item \code{\link{seaice}}: Replaced with \code{\link{sea_ice}}
-\item \code{\link{lcd_cleanup}}: No longer available. See \code{\link{lcd}}
-docs
-\item \code{\link{ghcnd_clear_cache}}: No longer available.
-See \code{\link{rnoaa_caching}}
+\item \code{noaa}: Function name changed, prefixed with ncdc now
+\item \code{noaa_datacats}: Function name changed, prefixed with ncdc now
+\item \code{noaa_datasets}: Function name changed, prefixed with ncdc now
+\item \code{noaa_datatypes}: Function name changed, prefixed with ncdc now
+\item \code{noaa_locs}: Function name changed, prefixed with ncdc now
+\item \code{noaa_locs_cats}: Function name changed, prefixed with ncdc now
+\item \code{noaa_stations}: Function name changed, prefixed with ncdc now
+\item \code{noaa_plot}: Function name changed, prefixed with ncdc now
+\item \code{noaa_combine}: Function name changed, prefixed with ncdc now
+\item \code{noaa_seaice}: Function name changed to seaice
+\item \code{erddap_data}: See package rerddap
+\item \code{erddap_clear_cache}: See package rerddap
+\item \code{erddap_datasets}: Moved to package rerddap
+\item \code{erddap_grid}: Moved to package rerddap
+\item \code{erddap_info}: Moved to \code{rerddap::info()}
+\item \code{erddap_search}: Moved to \code{rerddap::ed_search}
+\item \code{erddap_table}: Moved to \code{rerddap::tabledap}
+\item \code{ncdc_leg_variables}: Removed. See \verb{NCDC Legacy} below
+\item \code{ncdc_leg_sites}: Removed. See \verb{NCDC Legacy} below
+\item \code{ncdc_leg_site_info}: Removed. See \verb{NCDC Legacy} below
+\item \code{ncdc_leg_data}: Removed. See \verb{NCDC Legacy} below
+\item \code{seaice}: Replaced with \code{\link[=sea_ice]{sea_ice()}}
+\item \code{lcd_cleanup}: No longer available. See \code{lcd} docs
+\item \code{ghcnd_clear_cache}: No longer available. See \link{rnoaa_caching}
 }
 }
 \details{
 The functions for working with GEFS ensemble forecast data (prefixed with
-"gefs") are defunct, but may come back to rnoaa later. They are:
-
+"gefs") are defunct, but may come back to rnoaa later:
 \itemize{
-\item \code{\link{gefs}}
-\item \code{\link{gefs_dimension_values}}
-\item \code{\link{gefs_dimensions}}
-\item \code{\link{gefs_ensembles}}
-\item \code{\link{gefs_latitudes}}
-\item \code{\link{gefs_longitudes}}
-\item \code{\link{gefs_times}}
-\item \code{\link{gefs_variables}}
+\item \code{\link[=gefs]{gefs()}}
+\item \code{\link[=gefs_dimension_values]{gefs_dimension_values()}}
+\item \code{\link[=gefs_dimensions]{gefs_dimensions()}}
+\item \code{\link[=gefs_ensembles]{gefs_ensembles()}}
+\item \code{\link[=gefs_latitudes]{gefs_latitudes()}}
+\item \code{\link[=gefs_longitudes]{gefs_longitudes()}}
+\item \code{\link[=gefs_times]{gefs_times()}}
+\item \code{\link[=gefs_variables]{gefs_variables()}}
 }
 }
 \section{NCDC Legacy}{
 
-The NCDC legacy API is too unreliable and slow. Use the newer NCDC API via the
-functions \code{\link{ncdc}}, \code{\link{ncdc_datacats}}, \code{\link{ncdc_datasets}},
-\code{\link{ncdc_datatypes}}, \code{\link{ncdc_locs}}, \code{\link{ncdc_locs_cats}},
-\code{\link{ncdc_stations}}, \code{\link{ncdc_plot}}, and \code{\link{ncdc_combine}}
+The NCDC legacy API is too unreliable and slow. Use the newer NCDC API via
+the functions \code{\link[=ncdc]{ncdc()}}, \code{\link[=ncdc_datacats]{ncdc_datacats()}}, \code{\link[=ncdc_datasets]{ncdc_datasets()}},
+\code{\link[=ncdc_datatypes]{ncdc_datatypes()}}, \code{\link[=ncdc_locs]{ncdc_locs()}}, \code{\link[=ncdc_locs_cats]{ncdc_locs_cats()}}, \code{\link[=ncdc_stations]{ncdc_stations()}},
+\code{\link[=ncdc_plot]{ncdc_plot()}}, and \code{\link[=ncdc_combine]{ncdc_combine()}}
 }
 
