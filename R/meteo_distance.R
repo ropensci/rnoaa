@@ -285,7 +285,7 @@ meteo_spherical_distance <- function(lat1, long1, lat2, long2, units = 'deg') {
 #' Convert from degrees to radians
 #'
 #' @param deg A numeric vector in units of degrees.
-#'
+#' @noRd
 #' @return The input numeric vector, converted to units of radians.
 deg2rad <- function(deg) {
   return(deg*pi/180)
