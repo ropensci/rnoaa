@@ -7,17 +7,16 @@
 ghcnd_splitvars(x)
 }
 \arguments{
-\item{x}{An object returned from \code{\link{ghcnd}}.}
+\item{x}{An object returned from \code{\link[=ghcnd]{ghcnd()}}}
 }
 \description{
-This function is a helper function for \code{\link{ghcnd_search}}. It helps
-with cleaning up the data returned from \code{\link{ghcnd}}, to get it in a
+This function is a helper function for \code{\link[=ghcnd_search]{ghcnd_search()}}. It helps
+with cleaning up the data returned from \code{\link[=ghcnd]{ghcnd()}}, to get it in a
 format that is easier to work with.
 }
 \note{
 See \code{\link[=ghcnd]{ghcnd()}} examples
 }
 \author{
-Scott Chamberlain \email{myrmecocystus@gmail.com},
-Adam Erickson \email{adam.erickson@ubc.ca}
+Scott Chamberlain, Adam Erickson, Elio Campitelli
 }

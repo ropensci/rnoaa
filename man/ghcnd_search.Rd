@@ -16,9 +16,9 @@ ghcnd_search(
 \arguments{
 \item{stationid}{(character) A character string giving the identification of
 the weather station for which the user would like to pull data. To get a full
-and current list of stations, the user can use the \code{\link{ghcnd_stations}}
+and current list of stations, the user can use the \code{\link[=ghcnd_stations]{ghcnd_stations()}}
 function. To identify stations within a certain radius of a location, the
-user can use the \code{\link{meteo_nearby_stations}} function.}
+user can use the \code{\link[=meteo_nearby_stations]{meteo_nearby_stations()}} function.}
 
 \item{date_min}{A character string giving the earliest
 date of the daily weather time series that the user would
@@ -54,8 +54,8 @@ all of the variables the user specifies through this argument.}
 \item{refresh}{(logical) If \code{TRUE} force re-download of data.
 Default: \code{FALSE}}
 
-\item{...}{In the case of \code{ghcnd} additional curl options to pass
-through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read}
+\item{...}{In the case of \code{ghcnd()} additional curl options to pass
+through to \link[crul:HttpClient]{crul::HttpClient}. In the case of \code{ghcnd_read}
 further options passed on to \code{read.csv}}
 }
 \value{

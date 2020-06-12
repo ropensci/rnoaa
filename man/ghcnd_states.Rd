@@ -13,8 +13,8 @@ ghcnd_countries(...)
 ghcnd_version(...)
 }
 \arguments{
-\item{...}{In the case of \code{ghcnd} additional curl options to pass
-through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read}
+\item{...}{In the case of \code{ghcnd()} additional curl options to pass
+through to \link[crul:HttpClient]{crul::HttpClient}. In the case of \code{ghcnd_read}
 further options passed on to \code{read.csv}}
 }
 \description{

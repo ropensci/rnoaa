@@ -8,16 +8,16 @@
 #' @export
 #' @param stationid (character) A character string giving the identification of
 #' the weather station for which the user would like to pull data. To get a full
-#' and current list of stations, the user can use the \code{\link{ghcnd_stations}}
+#' and current list of stations, the user can use the [ghcnd_stations()]
 #' function. To identify stations within a certain radius of a location, the
-#' user can use the \code{\link{meteo_nearby_stations}} function.
+#' user can use the [meteo_nearby_stations()] function.
 #' @param path (character) a path to a file with a \code{.dly} extension - already
 #' downloaded on your computer
-#' @param refresh (logical) If \code{TRUE} force re-download of data.
-#' Default: \code{FALSE}
-#' @param ... In the case of \code{ghcnd} additional curl options to pass
-#' through to \code{\link[crul]{HttpClient}}. In the case of \code{ghcnd_read}
-#' further options passed on to \code{read.csv}
+#' @param refresh (logical) If `TRUE` force re-download of data.
+#' Default: `FALSE`
+#' @param ... In the case of `ghcnd()` additional curl options to pass
+#' through to [crul::HttpClient]. In the case of `ghcnd_read`
+#' further options passed on to `read.csv`
 #'
 #' @return A tibble (data.frame) which contains data pulled from NOAA's FTP
 #' server for the queried weather site. A README file with more information
@@ -44,12 +44,12 @@
 #' base URL for GHNCD data that we should add to the allowed set of base urls.
 #'
 #' @details  This function saves the full set of weather data for the queried
-#' site locally in the directory specified by the \code{path} argument.
+#' site locally in the directory specified by the `path` argument.
 #'
-#' You can access the path for the cached file via \code{attr(x, "source")}
+#' You can access the path for the cached file via `attr(x, "source")`
 #'
 #' You can access the last modified time for the cached file via
-#' \code{attr(x, "file_modified")}
+#' `attr(x, "file_modified")`
 #'
 #' Messages are printed to the console about file path and file last modified time
 #' which you can suppress with \code{suppressMessages()}
@@ -59,10 +59,10 @@
 #'
 #' @seealso To generate a weather dataset for a single weather site that has
 #' been cleaned to a tidier weather format, the user should use the
-#' \code{\link{ghcnd_search}} function, which calls \code{\link{ghcnd}} and then
-#' processes the output, or \code{\link{meteo_tidy_ghcnd}}, which wraps the
-#' \code{\link{ghcnd_search}} function to output a tidy dataframe. To pull
-#' GHCND data from multiple monitors, see \code{\link{meteo_pull_monitors}}.
+#' [ghcnd_search()] function, which calls `ghcnd()` and then
+#' processes the output, or [meteo_tidy_ghcnd()], which wraps the
+#' [ghcnd_search()] function to output a tidy dataframe. To pull
+#' GHCND data from multiple monitors, see [meteo_pull_monitors()]
 #' @note See [ghcnd_cache] for managing cached files
 #' @examples \dontrun{
 #' # Get data
@@ -130,14 +130,13 @@ ghcnd_read <- function(path, ...) {
   return(res)
 }
 
-#' Split variables in data returned from \code{ghcnd}
+#' Split variables in data returned from `ghcnd`
 #'
-#' This function is a helper function for \code{\link{ghcnd_search}}. It helps
-#' with cleaning up the data returned from \code{\link{ghcnd}}, to get it in a
+#' This function is a helper function for [ghcnd_search()]. It helps
+#' with cleaning up the data returned from [ghcnd()], to get it in a
 #' format that is easier to work with.
-#' @param x An object returned from \code{\link{ghcnd}}.
-#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com},
-#' Adam Erickson \email{adam.erickson@@ubc.ca}
+#' @param x An object returned from [ghcnd()]
+#' @author Scott Chamberlain, Adam Erickson, Elio Campitelli
 #' @note See [ghcnd()] examples
 #' @export
 ghcnd_splitvars <- function(x){
