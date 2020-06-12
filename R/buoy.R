@@ -200,18 +200,18 @@ buoy_collect_data <- function(path) {
   names(meta) <- vars
 
   on.exit(ncdf4::nc_close(nc))
-  structure(list(meta = meta, data = alldf), class = "buoy")
+  structure(list(meta = meta, data = tibble::as_tibble(alldf)), class = "buoy")
 }
 
 #' @export
-print.buoy <- function(x, ..., n = 10) {
+print.buoy <- function(x, ...) {
   vars <- names(x$meta)
   dims <- dim(x$data)
   cat(sprintf('Dimensions (rows/cols): [%s X %s]', dims[1], dims[2]), "\n")
   cat(sprintf('%s variables: [%s]', length(vars), paste0(vars, collapse = ", ")),
     "\n\n")
   if (NROW(x$data) > 0) {
-    trunc_mat_(x$data, n = n)
+    print(x$data)
   } else if (inherits(x$meta, "ncdf4")) {
     cat("Data not on lat/lon grid; see x$meta for ncdf4 object",
       sep = "\n")
