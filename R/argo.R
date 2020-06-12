@@ -1,8 +1,4 @@
 #' Get Argo buoy data
-#' 
-#' THE ARGO API IS DOWN. WE'VE BEEN UNSUCCESSFUL FIGURING OUT WHERE
-#' THE API MOVED TO OR IF IT STILL EXISTS. SEE "API Status" SECTION
-#' BELOW FOR MORE DETAILS.
 #'
 #' @export
 #' @name argo
@@ -14,7 +10,6 @@ argo_search <- function(func = NULL, of = NULL, qwmo = NULL, wmo = NULL,
   from =NULL, to = NULL, dmode = NULL, pres_qc = NULL, temp_qc = NULL,
   psal_qc = NULL, doxy_qc = NULL, ticket = NULL, limit = 10, ...) {
 
-  stop("the argo API is down", call. = FALSE)
   if (!is.null(box)) box <- paste0(box, collapse = ",")
   args <- noaa_compact(list(get = func, of = of, qwmo = qwmo, wmo = wmo,
       box = box, area = area, around = around, year = year, yearmin = yearmin,
@@ -29,7 +24,6 @@ argo_search <- function(func = NULL, of = NULL, qwmo = NULL, wmo = NULL,
 #' @export
 #' @rdname argo
 argo_files <- function(wmo = NULL, cyc = NULL, ...) {
-  stop("the argo API is down", call. = FALSE)
   args <- noaa_compact(list(wmo = wmo, cyc = cyc, file = ""))
   res <- argo_GET(argo_base, argo_api, args, ...)
   jsonlite::fromJSON(parse_argo(res))
@@ -38,7 +32,6 @@ argo_files <- function(wmo = NULL, cyc = NULL, ...) {
 #' @export
 #' @rdname argo
 argo_qwmo <- function(qwmo, limit = 10, ...) {
-  stop("the argo API is down", call. = FALSE)
   args <- noaa_compact(list(qwmo = qwmo, limit = limit))
   res <- argo_GET(argo_base, argo_api, args, ...)
   jsonlite::fromJSON(parse_argo(res))
@@ -47,7 +40,6 @@ argo_qwmo <- function(qwmo, limit = 10, ...) {
 #' @export
 #' @rdname argo
 argo_plan <- function(...) {
-  stop("the argo API is down", call. = FALSE)
   args <- noaa_compact(list(plan = ""))
   res <- argo_GET(argo_base, argo_api, args, ...)
   jsonlite::fromJSON(parse_argo(res))
@@ -60,7 +52,7 @@ argo_buoy_files <- function(dac, id, ...) {
   url <- paste0(argo_ftp(), sprintf('dac/%s/%s/profiles/', dac, id))
   download.file(url, destfile = tfile, quiet = TRUE)
   res <- readLines(tfile, warn = FALSE)
-  tab <- read.table(text = res, stringsAsFactors = FALSE, 
+  tab <- read.table(text = res, stringsAsFactors = FALSE,
     allowEscapes = TRUE, fill = TRUE)
   tab[, NCOL(tab)]
 }
@@ -82,7 +74,7 @@ argo <- function(dac, id, cycle, dtype, ...) {
     dir.create(path, showWarnings = FALSE, recursive = TRUE)
     url <- a_remote(dac, id, cycle, dtype)
     f <- tryCatch(
-      suppressWarnings(argo_GET_disk(url, apath, ...)), 
+      suppressWarnings(argo_GET_disk(url, apath, ...)),
       error = function(e) e
     )
     if (inherits(f, "error")) {
@@ -109,7 +101,7 @@ argo_GET_disk <- function(url, file, ...) {
 
 parse_argo <- function(x) x$parse("UTF-8")
 
-argo_base <- "http://www.umr-lops.fr"
+argo_base <- "https://www.umr-lops.fr"
 argo_api <- "naarc/api/v1/"
 argo_ftp <- function() "ftp://ftp.ifremer.fr/ifremer/argo/"
 

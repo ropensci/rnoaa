@@ -104,9 +104,8 @@
 #' on your machine.
 #' 
 #' @section API Status:
-#' The API is down as of 2019-11-07, and probably some time before that. The
-#' following functions won't work anymore (future package versions may bring
-#' them back if the API comes back):
+#' The API weas down as of 2019-11-07, and probably some time before that. The
+#' following functions were defunct:
 #' 
 #' \itemize{
 #'  \item argo_search
@@ -115,11 +114,5 @@
 #'  \item argo_plan
 #' }
 #' 
-#' The following functions still work as they are based off the FTP server
-#' that still exists:
-#' 
-#' \itemize{
-#'  \item argo_buoy_files
-#'  \item argo
-#' }
+#' These functions are working again as of 2020-06-12.
 

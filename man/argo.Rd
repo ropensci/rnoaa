@@ -123,9 +123,7 @@ http://www.ifremer.fr/lpo/naarc/m/docs/api/database.html for more details.}
 \item{dtype}{(character) Data type, one of \code{D} for delayed, or \code{R} for real-time}
 }
 \description{
-THE ARGO API IS DOWN. WE'VE BEEN UNSUCCESSFUL FIGURING OUT WHERE
-THE API MOVED TO OR IF IT STILL EXISTS. SEE "API Status" SECTION
-BELOW FOR MORE DETAILS.
+Get Argo buoy data
 }
 \details{
 \code{area} parameter definitions:
@@ -183,9 +181,8 @@ on your machine.
 
 \section{API Status}{
 
-The API is down as of 2019-11-07, and probably some time before that. The
-following functions won't work anymore (future package versions may bring
-them back if the API comes back):
+The API weas down as of 2019-11-07, and probably some time before that. The
+following functions were defunct:
 
 \itemize{
 \item argo_search
@@ -194,86 +191,80 @@ them back if the API comes back):
 \item argo_plan
 }
 
-The following functions still work as they are based off the FTP server
-that still exists:
-
-\itemize{
-\item argo_buoy_files
-\item argo
-}
+These functions are working again as of 2020-06-12.
 }
 
 \examples{
 \dontrun{
 # Search Argo metadata
 ## Number of profiles
-# argo_search("np", limit = 3)
+argo_search("np", limit = 3)
 ## Number of floats
-# argo_search("nf", limit = 3)
+argo_search("nf", limit = 3)
 ## Number of both profiles and floats
-# argo_search("n", limit = 3)
+argo_search("n", limit = 3)
 ## return the coordinates in time and space of profiles
-# argo_search("coord", limit = 3)
+argo_search("coord", limit = 3)
 ## return the coordinates in time and space of profiles, plus other metadata
-# argo_search("fullcoord", limit = 3)
+argo_search("fullcoord", limit = 3)
 
 ## List various things, e.g,...
 ### data assembly centers
-# argo_search("list", "dac")
+argo_search("list", "dac")
 ### data modes
-# argo_search("list", "dmode", limit = 5)
+argo_search("list", "dmode", limit = 5)
 ### World Meteorological Organization unique float ID's
-# argo_search("list", "wmo", limit = 5)
+argo_search("list", "wmo", limit = 5)
 ### Profile years
-# argo_search("list", "year", limit = 5)
+argo_search("list", "year", limit = 5)
 
 ## coord or fullcoord with specific buoy id
-# argo_search("coord", wmo = 13857, limit = 3)
-# argo_search("fullcoord", wmo = 13857, limit = 3)
+argo_search("coord", wmo = 13857, limit = 3)
+argo_search("fullcoord", wmo = 13857, limit = 3)
 
 # Spatial search
 ### search by bounding box (see param def above)
-# argo_search("coord", box = c(-40, 35, 3, 2))
+argo_search("coord", box = c(-40, 35, 3, 2))
 ### search by area
-# argo_search("coord", area = 0)
+argo_search("coord", area = 0)
 ### search by around
-# argo_search("coord", around = '-40,35,100')
+argo_search("coord", around = '-40,35,100')
 
 # Time based search
 ### search by year
-# argo_search("coord", year = 2006)
+argo_search("coord", year = 2006)
 ### search by yearmin and yearmax
-# argo_search("coord", yearmin = 2007)
-# argo_search("coord", yearmin = 2007, yearmax = 2009)
+argo_search("coord", yearmin = 2007)
+argo_search("coord", yearmin = 2007, yearmax = 2009)
 ### search by month
-# argo_search("coord", month = '12,1,2')
+argo_search("coord", month = '12,1,2')
 ### search by from or to
-# argo_search("coord", from = 20090212)
-# argo_search("coord", to = 20051129)
+argo_search("coord", from = 20090212)
+argo_search("coord", to = 20051129)
 
 # Data mode search
-# argo_search("coord", dmode = "R")
-# argo_search("coord", dmode = "R,A")
+argo_search("coord", dmode = "R")
+argo_search("coord", dmode = "R,A")
 
 # Data quality based search
-# argo_search("coord", pres_qc = "A,B")
-# argo_search("coord", temp_qc = "A")
-# argo_search("coord", pres_qc = "A", temp_qc = "A")
+argo_search("coord", pres_qc = "A,B")
+argo_search("coord", temp_qc = "A")
+argo_search("coord", pres_qc = "A", temp_qc = "A")
 
 # Ticket search
-# argo_search("coord", ticket = 0)
+argo_search("coord", ticket = 0)
 
 ## Search on partial float id number
-# argo_qwmo(qwmo = 49)
-# argo_qwmo(qwmo = 49, limit = 2)
+argo_qwmo(qwmo = 49)
+argo_qwmo(qwmo = 49, limit = 2)
 
 ## Get files
-# argo_files(wmo = 13857)
-# argo_files(wmo = 13857, cyc = 12)
-# argo_files(wmo = 13857, cyc = 45)
+argo_files(wmo = 13857)
+argo_files(wmo = 13857, cyc = 12)
+argo_files(wmo = 13857, cyc = 45)
 
 ## Get planned buoys data, accepts no parameters
-# argo_plan()
+argo_plan()
 
 # Get files for a buoy, must specify data assembly center (dac)
 argo_buoy_files(dac = "bodc", id = 1901309)
