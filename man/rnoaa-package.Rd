@@ -21,7 +21,6 @@ More NOAA data sources are being added through time. Data sources and their
 function prefixes are:
 \itemize{
 \item \verb{buoy_*} - NOAA Buoy data from the National Buoy Data Center
-\item \verb{gefs_*} - GEFS forecast ensemble data
 \item \verb{ghcnd_*}/\verb{meteo_*} - GHCND daily data from NOAA
 \item \verb{isd_*} - ISD/ISH data from NOAA
 \item \verb{homr_*} - Historical Observing Metadata Repository (HOMR)
@@ -61,7 +60,6 @@ were HTTP; though not all HTTP services were down.
 HTTP services (whether service is/was up or down during early 2019 shutdown)
 \itemize{
 \item \verb{buoy_*} - Up
-\item \verb{gefs_*} - Up
 \item \verb{homr_*} - Up
 \item \verb{ncdc_*} - Down
 \item \code{swdi} - Down
@@ -96,7 +94,6 @@ during a shutdown let us know.
 
 Some functions use netcdf files, including:
 \itemize{
-\item \code{gefs}
 \item \code{ersst}
 \item \code{buoy}
 \item \code{bsw}

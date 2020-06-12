@@ -14,7 +14,6 @@
 #' function prefixes are:
 #'
 #' - `buoy_*` - NOAA Buoy data from the National Buoy Data Center
-#' - `gefs_*` - GEFS forecast ensemble data
 #' - `ghcnd_*`/`meteo_*` - GHCND daily data from NOAA
 #' - `isd_*` - ISD/ISH data from NOAA
 #' - `homr_*` - Historical Observing Metadata Repository (HOMR)
@@ -50,7 +49,6 @@
 #' HTTP services (whether service is/was up or down during early 2019 shutdown)
 #' 
 #' - `buoy_*` - Up
-#' - `gefs_*` - Up
 #' - `homr_*` - Up
 #' - `ncdc_*` - Down
 #' - `swdi` - Down
@@ -81,7 +79,6 @@
 #'
 #' Some functions use netcdf files, including:
 #' 
-#' - `gefs`
 #' - `ersst`
 #' - `buoy`
 #' - `bsw`
