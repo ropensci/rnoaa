@@ -16,17 +16,7 @@ ncdc(
   limit = 25,
   offset = NULL,
   token = NULL,
-  dataset = NULL,
-  datatype = NULL,
-  station = NULL,
-  location = NULL,
-  locationtype = NULL,
-  page = NULL,
-  year = NULL,
-  month = NULL,
-  day = NULL,
   includemetadata = TRUE,
-  results = NULL,
   add_units = FALSE,
   ...
 )
@@ -67,6 +57,20 @@ Maximum is 1000 (optional)}
 Climate Data Online access token generator. (required) See
 \strong{Authentication} section below for more details.}
 
+\item{includemetadata}{Used to improve response time by preventing the
+calculation of result metadata. Default: TRUE. This does not affect the
+return object, in that the named part of the output list called "meta"
+is still returned, but is NULL. In practice, I haven't seen response
+time's improve, but perhaps they will for you.}
+
+\item{add_units}{(logical) whether to add units information or not.
+default: \code{FALSE}. If \code{TRUE}, after getting data from NOAA
+we add a new column \code{units}. See "Adding units" in Details
+for more}
+
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}
+(optional)}
+
 \item{dataset}{THIS IS A DEPRECATED ARGUMENT. See datasetid.}
 
 \item{datatype}{THIS IS A DEPRECATED ARGUMENT. See datatypeid.}
@@ -90,21 +94,7 @@ and enddate arguments.}
 \item{day}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate
 and enddate arguments.}
 
-\item{includemetadata}{Used to improve response time by preventing the
-calculation of result metadata. Default: TRUE. This does not affect the
-return object, in that the named part of the output list called "meta"
-is still returned, but is NULL. In practice, I haven't seen response
-time's improve, but perhaps they will for you.}
-
 \item{results}{THIS IS A DEPRECATED ARGUMENT. See limit.}
-
-\item{add_units}{(logical) whether to add units information or not.
-default: \code{FALSE}. If \code{TRUE}, after getting data from NOAA
-we add a new column \code{units}. See "Adding units" in Details
-for more}
-
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}
-(optional)}
 }
 \value{
 An S3 list of length two, a slot of metadata (meta), and a slot

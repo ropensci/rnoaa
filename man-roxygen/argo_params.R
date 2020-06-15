@@ -100,9 +100,6 @@
 #' your machine to save files to, and run
 #' \code{rappdirs::user_cache_dir("rnoaa/argo")} to get that directory.
 #'
-#' The \code{path} parameter used to be used to set where files are stored
-#' on your machine.
-#' 
 #' @section API Status:
 #' The API weas down as of 2019-11-07, and probably some time before that. The
 #' following functions were defunct:

@@ -16,10 +16,6 @@ ncdc_datasets(
   limit = 25,
   offset = NULL,
   token = NULL,
-  dataset = NULL,
-  page = NULL,
-  year = NULL,
-  month = NULL,
   ...
 )
 }
@@ -59,6 +55,9 @@ Maximum is 1000 (optional)}
 Climate Data Online access token generator. (required) See
 \strong{Authentication} section below for more details.}
 
+\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}
+(optional)}
+
 \item{dataset}{THIS IS A DEPRECATED ARGUMENT. See datasetid.}
 
 \item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
@@ -69,9 +68,6 @@ arguments.}
 
 \item{month}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
 arguments.}
-
-\item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}
-(optional)}
 }
 \value{
 A data.frame for all datasets, or a list of length two, each with

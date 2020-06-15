@@ -44,22 +44,16 @@
 #' ncdc_datasets(locationid=c("FIPS:30103", "FIPS:30091"))
 #' }
 
-ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL,
-  startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
-  token=NULL, dataset=NULL, page=NULL, year=NULL, month=NULL, ...)
+ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL,
+  locationid=NULL, startdate=NULL, enddate=NULL, sortfield=NULL,
+  sortorder=NULL, limit=25, offset=NULL, token=NULL, ...)
 {
-  calls <- names(sapply(match.call(), deparse))[-1]
-  calls_vec <- c("dataset", "page", "year", "month") %in% calls
-  if (any(calls_vec))
-    stop("The parameters dataset, page, year, and month \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?ncdc_datasets")
-
   token <- check_key(token)
-
   url <- paste0(ncdc_base(), "datasets")
   if (!is.null(datasetid)) url <- paste(url, "/", datasetid, sep = "")
   args <- noaa_compact(list(startdate=startdate,
-                       enddate=enddate, sortfield=sortfield, sortorder=sortorder,
-                       limit=limit, offset=offset))
+    enddate=enddate, sortfield=sortfield, sortorder=sortorder,
+    limit=limit, offset=offset))
   if (!is.null(stationid)) {
     stationid <- lapply(stationid, function(x) list(stationid = x))
   }
@@ -81,7 +75,8 @@ ncdc_datasets <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locat
       dat <- data.frame(tt, stringsAsFactors = FALSE)
       all <- list(meta = NULL, data = dat)
     } else {
-      dat <- dplyr::bind_rows(lapply(tt$results, function(x) data.frame(x, stringsAsFactors = FALSE)))
+      dat <- dplyr::bind_rows(lapply(tt$results, function(x)
+        data.frame(x, stringsAsFactors = FALSE)))
       all <- list(meta = tt$metadata$resultset, data = dat)
     }
   }

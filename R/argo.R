@@ -60,13 +60,6 @@ argo_buoy_files <- function(dac, id, ...) {
 #' @export
 #' @rdname argo
 argo <- function(dac, id, cycle, dtype, ...) {
-  calls <- names(sapply(match.call(), deparse))[-1]
-  calls_vec <- "path" %in% calls
-  if (any(calls_vec)) {
-    stop("The parameter path has been removed, see docs for ?argo",
-         call. = FALSE)
-  }
-
   path <- file.path(rnoaa_cache_dir(), "argo")
   path <- file.path(path, dac)
   apath <- a_local(dac, id, cycle, dtype, path)

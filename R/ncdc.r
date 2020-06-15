@@ -186,16 +186,8 @@
 
 ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL,
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
-  token=NULL, dataset=NULL, datatype=NULL, station=NULL, location=NULL,
-  locationtype=NULL, page=NULL, year=NULL, month=NULL, day=NULL, includemetadata=TRUE,
-  results=NULL, add_units=FALSE, ...)
+  token=NULL, includemetadata=TRUE, add_units=FALSE, ...)
 {
-  calls <- names(sapply(match.call(), deparse))[-1]
-  calls_vec <- c("dataset","datatype","station","location","locationtype","page","year","month","day","results") %in% calls
-  if (any(calls_vec)) {
-    stop("The parameters name, code, modifiedsince, startindex, and maxresults \n  have been removed, and were only relavant in the old NOAA API v1. \n\nPlease see documentation for ?noaa")
-  }
-
   token <- check_key(token)
   args <- noaa_compact(list(datasetid  = datasetid,
     startdate = as.character(startdate), enddate = as.character(enddate),
