@@ -13,6 +13,7 @@ test_that("coops works", {
   # dimensions
   expect_equal(NCOL(aa$data), 3)
 
+  skip_on_cran()
   # works with product="predictions" that used to fail
   z <- coops_search(station_name = 8551762, 
     begin_date = 20200501, end_date = 20200531, 
