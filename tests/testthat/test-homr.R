@@ -1,6 +1,4 @@
-context("homr")
-
-test_that("homr works", {
+test_that("homr", {
   vcr::use_cassette("homr", {
     # qid
     a <- homr(qid = 'COOP:046742')
@@ -16,32 +14,32 @@ test_that("homr works", {
     g <- homr(headersOnly=TRUE, state='NC', county='BUNCOMBE')
     # name
     h <- homr(name='CLAYTON')
-
-    # class
-    expect_is(a, "homr")
-    expect_is(unclass(a), "list")
-    expect_is(a$`20002078`, "list")
-    expect_is(a$`20002078`$head, "data.frame")
-    expect_is(a$`20002078`$platform, "character")
-    expect_equal(a$`20002078`$platform, "COOP")
-
-    expect_is(b, "homr")
-    expect_is(d, "homr")
-    expect_is(e, "homr")
-    expect_is(f, "homr")
-    expect_is(g, "homr")
-    expect_is(h, "homr")
-
-    # dimensions
-    expect_equal(length(a), 1)
-    expect_equal(length(a$`20002078`), 11)
-
-    expect_gt(length(b), 10)
-
-    expect_equal(NROW(d$`20002078`$head), 1)
-
-    expect_gt(length(e), 1)
-
-    expect_match(f$`20004167`$head$preferredName, "DE")
   })
+  
+  # class
+  expect_is(a, "homr")
+  expect_is(unclass(a), "list")
+  expect_is(a$`20002078`, "list")
+  expect_is(a$`20002078`$head, "data.frame")
+  expect_is(a$`20002078`$platform, "character")
+  expect_equal(a$`20002078`$platform, "COOP")
+
+  expect_is(b, "homr")
+  expect_is(d, "homr")
+  expect_is(e, "homr")
+  expect_is(f, "homr")
+  expect_is(g, "homr")
+  expect_is(h, "homr")
+
+  # dimensions
+  expect_equal(length(a), 1)
+  expect_equal(length(a$`20002078`), 11)
+
+  expect_gt(length(b), 10)
+
+  expect_equal(NROW(d$`20002078`$head), 1)
+
+  expect_gt(length(e), 1)
+
+  expect_match(f$`20004167`$head$preferredName, "DE")  
 })
