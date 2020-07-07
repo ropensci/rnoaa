@@ -108,5 +108,5 @@ buoy(dataset = "dart", buoyid = "dartu")
 }
 }
 \references{
-\url{http://www.ndbc.noaa.gov/}, \url{http://dods.ndbc.noaa.gov/}
+http://www.ndbc.noaa.gov/, http://dods.ndbc.noaa.gov/
 }
