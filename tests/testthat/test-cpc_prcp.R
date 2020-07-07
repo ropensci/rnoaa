@@ -5,7 +5,7 @@ cpc_cache$delete_all()
 
 test_that("cpc_prcp works", {
   skip_on_cran()
-  skip_on_travis()
+  skip_on_ci()
 
   # 2017, us = FALSE
   vcr::use_cassette("cpc_prcp_us_false1", {

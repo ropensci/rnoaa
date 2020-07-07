@@ -25,7 +25,7 @@ unlink(list.files(storms_year, full.names = TRUE))
 
 test_that("storms data", {
   skip_on_cran()
-  skip_on_travis()
+  skip_on_ci()
 
   vcr::use_cassette("storm_data", {
     storm <- suppressMessages(storm_data(storm = '1970143N19091'))

@@ -5,8 +5,7 @@ arc2_cache$delete_all()
 
 test_that("arc2 returns the expected output", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
   skip_if_government_down()
 
   vcr::use_cassette("arc2_1", {
@@ -20,8 +19,7 @@ test_that("arc2 returns the expected output", {
 
 test_that("arc2 - many dates works", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
   skip_if_government_down()
 
   vcr::use_cassette("arc2_many_dates", {
@@ -38,8 +36,7 @@ test_that("arc2 - many dates works", {
 
 test_that("arc2 - bounding box works", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
   skip_if_government_down()
   skip_if_not_installed("sf")
 

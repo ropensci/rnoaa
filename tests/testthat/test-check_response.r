@@ -2,8 +2,7 @@ context("check_response")
 
 test_that("check_response returns an error", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
   skip_if_government_down()
   skip_if_noaa_ncdc_down()
 
@@ -24,8 +23,7 @@ test_that("check_response returns an error", {
 
 test_that("check_response returns the correct error messages", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
   skip_if_government_down()
   skip_if_noaa_ncdc_down()
   

@@ -2,7 +2,7 @@ context("meteo")
 
 test_that("search for multi-monitor data", {
   skip_on_cran()
-  skip_on_travis()
+  skip_on_ci()
   skip_if_government_down()
 
   monitors <- c("ASN00003003", "ASM00094299")
@@ -15,7 +15,7 @@ test_that("search for multi-monitor data", {
 
 test_that("determine monitors' data coverage", {
   skip_on_cran()
-  skip_on_travis()
+  skip_on_ci()
   skip_if_government_down()
 
   monitors <- c("ASN00003003", "ASM00094299")

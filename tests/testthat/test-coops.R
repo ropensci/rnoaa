@@ -26,8 +26,7 @@ test_that("coops works", {
 
 test_that("coops fails well", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
 
   expect_error(coops_search(), "argument \"product\" is missing, with no default")
 

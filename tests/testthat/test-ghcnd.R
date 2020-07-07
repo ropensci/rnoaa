@@ -35,8 +35,7 @@ test_that("version metadata", {
 
 test_that("search for data", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
   skip_if_government_down()
 
   search_a <- ghcnd_search("AGE00147704", var = "PRCP")
@@ -60,8 +59,7 @@ test_that("search for data", {
 
 test_that("get data", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
   skip_if_government_down()
 
   aa <- ghcnd(stationid = "AGE00147704")

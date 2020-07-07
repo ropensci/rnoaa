@@ -1,6 +1,6 @@
 test_that("seaiceurls", {
   skip_on_cran()
-  skip_on_travis()
+  skip_on_ci()
 
   url <- seaiceeurls(yr = 1980, mo = 'Feb', pole = 'S')
   expect_is(url, "character")
@@ -9,7 +9,7 @@ test_that("seaiceurls", {
 
 test_that("sea_ice", {
   skip_on_cran()
-  skip_on_travis()
+  skip_on_ci()
 
   # single
   out <- sea_ice(year = 1990, month = "Apr", pole = "N")
@@ -52,7 +52,7 @@ test_that("sea_ice fails well", {
 
 test_that("sea_ice_tabular", {
   skip_on_cran()
-  skip_on_travis()
+  skip_on_ci()
 
   out <- sea_ice_tabular()
 
