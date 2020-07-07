@@ -1,11 +1,13 @@
 context("storm_events: se_files")
 test_that("se_files works", {
+  skip_on_cran()
+  skip_if_government_down()
+
   vcr::use_cassette("se_files", {
     aa <- se_files()
   })
 
   expect_is(aa, "data.frame")
-  expect_is(aa, "tbl_df")
   expect_is(aa$type, "character")
   expect_is(aa$year, "numeric")
   expect_is(aa$created, "numeric")
