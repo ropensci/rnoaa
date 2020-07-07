@@ -20,6 +20,7 @@ jobs:
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       CRAN: ${{ matrix.config.rspm }}
+      NOAA_KEY: ${{secrets.NOAA_KEY}}
 
     steps:
       - uses: actions/checkout@v2
