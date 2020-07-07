@@ -18,25 +18,25 @@ rnoaa
 
 * NOAA NCDC climate data:
     * We are using the NOAA API version 2
-    * Docs for the NCDC API are at http://www.ncdc.noaa.gov/cdo-web/webservices/v2
-    * GHCN Daily data is available at http://www.ncdc.noaa.gov/oa/climate/ghcn-daily/ via FTP and HTTP
-* Severe weather data docs are at http://www.ncdc.noaa.gov/swdiws/
-* [Sea ice data](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
-* [NOAA buoy data](http://www.ndbc.noaa.gov/)
-* [ERDDAP data](https://upwell.pfeg.noaa.gov/erddap/index.html)
-  * Now in package [rerddap](https://github.com/ropensci/rerddap)
-* Tornadoes! Data from the [NOAA Storm Prediction Center](http://www.spc.noaa.gov/gis/svrgis/)
-* HOMR - Historical Observing Metadata Repository - from [NOAA NCDC](http://www.ncdc.noaa.gov/homr/api)
-* Storm data - from the [International Best Track Archive for Climate Stewardship (IBTrACS)](http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data)
-* [GHCND FTP data](ftp://ftp.ncdc.noaa.gov/pub/data/noaa) - NOAA NCDC API has some/all (not sure really) of this data, but FTP allows to get more data more quickly
-* [Extended Reconstructed Sea Surface Temperature (ERSST) data](https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4)
-* [Argo buoys](http://www.argo.ucsd.edu/) - a global array of more than 3,000 free-drifting profiling floats that measures thetemperature and salinity of the upper 2000 m of the ocean
-* [NOAA CO-OPS - tides and currents data](http://tidesandcurrents.noaa.gov/)
-* [NOAA Climate Prediction Center (CPC)](http://www.cpc.ncep.noaa.gov/)
-* [Africa Rainfall Climatology version 2](ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt)
-* [Blended Sea Winds](https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds)
-* [Local Climatological Data](https://www.ncdc.noaa.gov/cdo-web/datatools/lcd)
-* [Storm Events Database](https://www.ncdc.noaa.gov/stormevents/)
+    * Docs for the NCDC API are at https://www.ncdc.noaa.gov/cdo-web/webservices/v2
+    * GHCN Daily data is available at https://www.ncdc.noaa.gov/ghcn-daily-description via FTP and HTTP
+* Severe weather data docs are at https://www.ncdc.noaa.gov/swdiws/
+* Sea ice data (ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
+* NOAA buoy data (https://www.ndbc.noaa.gov/)
+* ERDDAP data (https://upwell.pfeg.noaa.gov/erddap/index.html)
+  * Now in package rerddap (https://github.com/ropensci/rerddap)
+* Tornadoes! Data from the NOAA Storm Prediction Center (https://www.spc.noaa.gov/gis/svrgis/)
+* HOMR - Historical Observing Metadata Repository (http://www.ncdc.noaa.gov/homr/api)
+* Storm data - from the International Best Track Archive for Climate Stewardship (IBTrACS) (http://www.ncdc.noaa.gov/ibtracs/index.php?name=wmo-data)
+* GHCND FTP data (ftp://ftp.ncdc.noaa.gov/pub/data/noaa) - NOAA NCDC API has some/all (not sure really) of this data, but FTP allows to get more data more quickly
+* Extended Reconstructed Sea Surface Temperature (ERSST) data (https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4)
+* Argo buoys (http://www.argo.ucsd.edu/) - a global array of more than 3,000 free-drifting profiling floats that measures thetemperature and salinity of the upper 2000 m of the ocean
+* NOAA CO-OPS - tides and currents data (https://tidesandcurrents.noaa.gov/)
+* NOAA Climate Prediction Center (CPC) (http://www.cpc.ncep.noaa.gov/)
+* Africa Rainfall Climatology version 2 (ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt)
+* Blended Sea Winds (https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds)
+* Local Climatological Data (https://www.ncdc.noaa.gov/cdo-web/datatools/lcd)
+* Storm Events Database (https://www.ncdc.noaa.gov/stormevents/)
 
 ## Help/Getting Started
 
@@ -71,11 +71,11 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 |Dataset    |Description                 |Start Date |End Date   | Data Coverage|
 |:----------|:---------------------------|:----------|:----------|-------------:|
-|GHCND      |Daily Summaries             |1763-01-01 |2020-06-05 |          1.00|
-|GSOM       |Global Summary of the Month |1763-01-01 |2020-05-01 |          1.00|
+|GHCND      |Daily Summaries             |1763-01-01 |2020-07-05 |          1.00|
+|GSOM       |Global Summary of the Month |1763-01-01 |2020-07-01 |          1.00|
 |GSOY       |Global Summary of the Year  |1763-01-01 |2020-01-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2020-06-10 |          0.95|
-|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2020-06-09 |          0.95|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2020-07-05 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2020-07-04 |          0.95|
 |NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
 |NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
 |NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
@@ -85,12 +85,12 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 
 ```
-#> table updated on 2020-06-12
+#> table updated on 2020-07-07
 ```
 
 **NOAA NCDC Attributes**
 
-Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See http://www.ncdc.noaa.gov/cdo-web/datasets for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](https://docs.ropensci.org/rnoaa/articles/ncdc_attributes.html) to find out more
+Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See https://www.ncdc.noaa.gov/cdo-web/datasets for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](https://docs.ropensci.org/rnoaa/articles/ncdc_attributes.html) to find out more
 
 
 ## Contributors
