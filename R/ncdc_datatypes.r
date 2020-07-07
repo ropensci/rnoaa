@@ -7,7 +7,6 @@
 #' @export
 #' @template rnoaa
 #' @template rnoaa2
-#' @template datatypes
 #' @template token
 #' @param datasetid (optional) Accepts a valid dataset id or a vector or list
 #' of them. Data returned will be from the dataset specified.

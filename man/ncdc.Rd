@@ -70,31 +70,6 @@ for more}
 
 \item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}
 (optional)}
-
-\item{dataset}{THIS IS A DEPRECATED ARGUMENT. See datasetid.}
-
-\item{datatype}{THIS IS A DEPRECATED ARGUMENT. See datatypeid.}
-
-\item{station}{THIS IS A DEPRECATED ARGUMENT. See stationid.}
-
-\item{location}{THIS IS A DEPRECATED ARGUMENT. See locationid.}
-
-\item{locationtype}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent
-argument in v2 of the NOAA API.}
-
-\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument
-in v2 of the NOAA API.}
-
-\item{year}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate
-and enddate arguments.}
-
-\item{month}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate
-and enddate arguments.}
-
-\item{day}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate
-and enddate arguments.}
-
-\item{results}{THIS IS A DEPRECATED ARGUMENT. See limit.}
 }
 \value{
 An S3 list of length two, a slot of metadata (meta), and a slot

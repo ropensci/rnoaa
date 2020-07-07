@@ -57,17 +57,6 @@ Climate Data Online access token generator. (required) See
 
 \item{...}{Curl options passed on to \code{\link[crul]{HttpClient}}
 (optional)}
-
-\item{dataset}{THIS IS A DEPRECATED ARGUMENT. See datasetid.}
-
-\item{page}{THIS IS A DEPRECATED ARGUMENT. There is no equivalent argument in v2
-of the NOAA API.}
-
-\item{year}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
-arguments.}
-
-\item{month}{THIS IS A DEPRECATED ARGUMENT. Use combination of startdate and enddate
-arguments.}
 }
 \value{
 A data.frame for all datasets, or a list of length two, each with

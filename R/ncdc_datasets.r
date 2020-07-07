@@ -7,7 +7,6 @@
 #'
 #' @template rnoaa
 #' @template rnoaa2
-#' @template datasets
 #' @template token
 #' @param datasetid (optional) Accepts a single valid dataset id. Data returned
 #' will be from the dataset specified.
