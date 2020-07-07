@@ -38,7 +38,6 @@ reference:
   - title: "Global Historical Climatology Network Daily"
     contents:
       - ghcnd
-      - ghcnd_clear_cache
       - ghcnd_countries
       - ghcnd_read
       - ghcnd_search
