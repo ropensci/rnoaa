@@ -28,3 +28,5 @@ user_test_cases/
 vignettes/buoy_vignette_cache/
 vignettes/storms_vignette_cache/
 vignettes/storms_vignette_files/
+tests/fixtures/homr.yml
+tests/fixtures/buoy_buoyid_case.yml

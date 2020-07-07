@@ -1,4 +1,7 @@
 test_that("homr", {
+  skip_on_cran()
+  skip_on_ci()
+
   vcr::use_cassette("homr", {
     # qid
     a <- homr(qid = 'COOP:046742')
