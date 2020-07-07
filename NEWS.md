@@ -1,3 +1,11 @@
+rnoaa 1.1.0
+===========
+
+### MINOR IMPROVEMENTS
+
+* fix coops test (#364)
+* remove deprecated parameters in argo and ncdc* functions (#361)
+
 rnoaa 1.0.0
 ===========
 

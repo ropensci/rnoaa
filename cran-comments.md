@@ -1,7 +1,7 @@
 ## Test environments
 
-* local OS X install, R 4.0.1 Patched
-* ubuntu 16.04 (on travis-ci), R 4.0.1
+* local OS X install, R 4.0.2
+* ubuntu 16.04 (on travis-ci), R 4.0.2
 * win-builder (release, devel)
 
 ## R CMD check results
@@ -15,7 +15,7 @@ Checked on the 2 reverse dependencies - no problems were found
 
 -----
 
-This version fixes a bug, improves documentation, and speeds up a function.
+This version fixes a broken test and removes deprecated parameters from a set of functions.
 
 Thanks!
 Scott Chamberlain
