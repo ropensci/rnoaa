@@ -2,7 +2,7 @@
 title: "ropenaq and rnoaa"
 subtitle: "Complementing air quality data with weather data using rnoaa"
 author: "Maëlle Salmon"
-date: "`r Sys.Date()`"
+date: "2020-07-27"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ropenaq and rnoaa}
@@ -10,14 +10,7 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
-knitr::opts_chunk$set(
-  collapse  =  TRUE,
-  comment  =  "#>",
-  purl  =  FALSE,
-  eval  =  FALSE
-)
-```
+
 
 # Introduction: getting air quality data
 
@@ -25,7 +18,8 @@ This vignette aims at explaining how you can complement a data.frame with weathe
 
 First, we need to know how many measures are available for Indianapolis for March 2016.
 
-```{r, message = FALSE, warning = FALSE, eval = FALSE, echo = TRUE}
+
+```r
 library("ropenaq")
 
 measurementsIndianapolis <- aq_measurements(city = "Indianapolis", parameter = "pm25",
@@ -37,7 +31,8 @@ save(measurementsIndianapolis, file = "data/measurementsIndianapolis.RData")
 
 We filter negative values.
 
-```{r, message = FALSE, warning = FALSE, eval = FALSE, echo = TRUE}
+
+```r
 
 load("data/measurementsIndianapolis.RData")
 library("dplyr")
@@ -47,7 +42,8 @@ measurementsIndianapolis <- filter(measurementsIndianapolis, value > 0)
 
 We now transform these data into daily data.
 
-```{r, message = FALSE, warning = FALSE, eval = FALSE}
+
+```r
 # only keep stations with geographical information
 measurementsIndianapolis <- filter(measurementsIndianapolis, !is.na(latitude))
 # now transform to daily data
@@ -70,7 +66,8 @@ For finding the right station(s) we shall use the `meteo_nearby_stations` functi
 
 Here we query stations with a less than 15km distance from the air quality stations, with precipitation and temperature data, and with data starting from 2016. Note that the query takes a while.
 
-```{r, eval = FALSE, echo = TRUE, eval = FALSE}
+
+```r
 library("rnoaa")
 station_data <- ghcnd_stations()
 lat_lon_df <- select(measurementsIndianapolis,
@@ -92,7 +89,8 @@ save(stationsIndianapolis, file = "data/stationsIndianapolis.RData")
 
 ```
 
-```{r eval = FALSE}
+
+```r
 load("data/stationsIndianapolis.RData")
 stationsIndianapolis %>% knitr::kable()
 ```
@@ -101,7 +99,8 @@ Now let us plot the AQ and weather stations on a quick and dirty map with no leg
 
 > Not shown
 
-```{r, message = FALSE, warning = FALSE, fig.width = 10, fig.height = 10, eval=FALSE}
+
+```r
 library("ggmap")
 map <- get_map(location = "Indianapolis", zoom = 11)
 ggmap(map) +
@@ -115,7 +114,8 @@ ggmap(map) +
 
 For pulling weather data from these weather monitors, we shall use the `meteo_pull_monitors` function.
 
-```{r eval = FALSE}
+
+```r
 library("rnoaa")
 monitors <- stationsIndianapolis$id
 all_monitors_clean <- meteo_pull_monitors(monitors,
@@ -131,7 +131,8 @@ Here we notice some values are not available. Therefore, we might need to go bac
 
 Therefore, in this case we will bind the rows of the air quality table with the weather table.
 
-```{r eval = FALSE}
+
+```r
 measurementsIndianapolis <- bind_rows(measurementsIndianapolis, all_monitors_clean)
 measurementsIndianapolis %>% head() %>% knitr::kable()
 ```
@@ -141,7 +142,8 @@ measurementsIndianapolis %>% head() %>% knitr::kable()
 
 We can plot the data we got.
 
-```{r, fig.width = 10, fig.height = 5, warning = FALSE, eval = FALSE}
+
+```r
 data_plot <- measurementsIndianapolis %>%
   rename(pm25 = value) %>%
   select(- longitude, - latitude)

@@ -1,23 +1,22 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{ncdc vignette}
-%\VignetteEncoding{UTF-8}
--->
+---
+title: "NCDC introduction"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{NCDC introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
-```{r echo=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(
-  comment = "#>", 
-  collapse = TRUE,
-  warning = FALSE, 
-  message = FALSE,
-  cache = TRUE
+  collapse  =  TRUE,
+  warning = FALSE,
+  comment  =  "#>",
+  fig.path = "../man/figures/"
 )
 ```
-
-NCDC vignette
-======
-
-## About the package
 
 `rnoaa` is an R wrapper for many NOAA data types, including National Climatic Data Center (NCDC).
 
@@ -25,7 +24,6 @@ NCDC vignette
 
 ```{r load}
 library('rnoaa')
-library('plyr')
 ```
 
 ## Get info on a station by specifying a datasetid, locationid, and stationid
@@ -83,19 +81,19 @@ out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 
 Default plot
 
-```{r}
+```{r ncdc-plot-zero}
 ncdc_plot(out)
 ```
 
 Create 14 day breaks
 
-```{r}
+```{r ncdc-plot-0}
 ncdc_plot(out, breaks="14 days")
 ```
 
 One month breaks
 
-```{r}
+```{r ncdc-plot-1}
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
@@ -110,7 +108,7 @@ out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
 
 Make a plot, with 6 hour breaks, and date format with only hour
 
-```{r}
+```{r ncdc-plot-2}
 ncdc_plot(out, breaks = "1 month", dateformat = "%d/%m")
 ```
 
@@ -133,12 +131,12 @@ head(df[[1]]); tail(df[[1]])
 
 Then plot - the default passing in the combined plot plots the data together. In this case it looks kind of weird since a straight line combines two distant dates.
 
-```{r}
+```{r ncdc-plot-line}
 ncdc_plot(df)
 ```
 
 But we can pass in each separately, which uses `facet_wrap` in `ggplot2` to plot each set of data in its own panel.
 
-```{r}
+```{r ncdc-plot-panel}
 ncdc_plot(out1, out2, breaks="45 days")
 ```

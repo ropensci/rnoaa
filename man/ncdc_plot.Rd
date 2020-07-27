@@ -23,7 +23,7 @@ ggplot2 plot
 Plot NOAA climate data.
 }
 \details{
-This function accepts directly output from the \code{\link[rnoaa:ncdc]{rnoaa::ncdc()}} function,
+This function accepts directly output from the \code{\link[=ncdc]{ncdc()}} function,
 not other functions.
 
 This is a simple wrapper function around some ggplot2 code. There is indeed

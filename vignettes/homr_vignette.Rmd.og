@@ -1,21 +1,20 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{HOMR metadata}
-%\VignetteEncoding{UTF-8}
--->
+---
+title: "HOMR metadata"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{HOMR metadata}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
-```{r echo=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(
-  comment = "#>", 
-  warning = FALSE, 
-  message = FALSE,
-  cache = TRUE
+  collapse  =  TRUE,
+  comment  =  "#>"
 )
 ```
-
-
-HOMR metadata
-======
 
 `HOMR` (Historical Observing Metadata Repository) provides climate station metadata. It's a NOAA service.
 
@@ -73,22 +72,22 @@ By country
 
 ```{r}
 res <- homr(country='GHANA', begindate='2005-01-01', enddate='2005-02-01')
-library("plyr")
-ldply(res, function(x) x$location$latlon)
+library("dplyr")
+bind_rows(lapply(res, function(x) x$location$latlon))
 ```
 
 By state and county
 
 ```{r}
 res <- homr(state='NC', county='BUNCOMBE', headersOnly = TRUE)
-head( ldply(res, "[[", "head") )
+head(bind_rows(lapply(res, "[[", "head")))
 ```
 
 ## Get header information only
 
 ```{r}
 res <- homr(headersOnly=TRUE, state='DE')
-head( ldply(res, "[[", "head") )
+head(bind_rows(lapply(res, "[[", "head")))
 ```
 
 ## Data definitions

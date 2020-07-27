@@ -1,7 +1,7 @@
 ---
 title: "NOAA NCDC dataset attributes"
 author: "Scott Chamberlain"
-date: "`r Sys.Date()`"
+date: "2020-07-27"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{NOAA NCDC dataset attributes}
@@ -9,14 +9,7 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
-knitr::opts_chunk$set(
-  collapse  =  TRUE,
-  comment  =  "#>",
-  purl  =  FALSE,
-  eval  =  FALSE
-)
-```
+
 
 The attributes, or "flags", for each row of the output for data may have a flag with it.
 Each `datasetid` has it's own set of flags. The following are flag columns, and what they

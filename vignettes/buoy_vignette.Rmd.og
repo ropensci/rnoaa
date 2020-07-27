@@ -1,24 +1,27 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{buoy vignette}
-%\VignetteEncoding{UTF-8}
--->
+---
+title: "working with buoy data"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{working with buoy data}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
-```{r echo=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(
-  fig.width = 10,
-  comment = "#>", 
-  warning = FALSE, 
+  collapse  =  TRUE,
+  comment  =  "#>",
+  warning = FALSE,
   message = FALSE
 )
 ```
 
-buoy vignette
-======
-
 This vignette covers NOAA buoy data from the National Buoy Data Center. The
 main function to get data is `buoy`, while `buoys` can be used to
 get the buoy IDs and web pages for each buoy.
+
 
 ```{r}
 library('rnoaa')

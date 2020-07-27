@@ -1,24 +1,28 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Sea ice vignette}
-%\VignetteEncoding{UTF-8}
--->
+---
+title: "Sea ice vignette"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Sea ice vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
-```{r echo=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(
-  comment = "#>", 
-  collapse = TRUE,
-  warning = FALSE, 
-  message = FALSE
+  collapse  =  TRUE,
+  comment  =  "#>",
+  warning = FALSE,
+  message = FALSE,
+  fig.path = "../man/figures/"
 )
 ```
-
-Sea ice vignette
-======
 
 Get sea ice data at <ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles>
 
 ********************
+
 
 ```{r}
 library('rnoaa')
@@ -29,7 +33,7 @@ library('ggplot2')
 ### Look at data for a series of years for Feb, South pole
 
 ```{r}
-res <- sapply(seq(1986, 1990, 1), function(x) 
+res <- sapply(seq(1986, 1990, 1), function(x)
     sea_ice(x, month = 'Feb', pole = 'S'))
 lapply(res, head)
 ```

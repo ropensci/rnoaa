@@ -1,31 +1,45 @@
 PACKAGE := $(shell grep '^Package:' DESCRIPTION | sed -E 's/^Package:[[:space:]]+//')
 RSCRIPT = Rscript --no-init-file
 
-all: move rmd2md
+vign_ncdc:
+	cd vignettes;\
+	${RSCRIPT} -e "Sys.setenv(NOT_CRAN='true'); knitr::knit('ncdc_vignette.Rmd.og', output = 'ncdc_vignette.Rmd')";\
+	cd ..
 
-move:
-		cp inst/vign/ncdc_vignette.md vignettes;\
-		cp inst/vign/ncdc_attributes.md vignettes;\
-		cp inst/vign/ncdc_workflow.md vignettes;\
-		cp inst/vign/swdi_vignette.md vignettes;\
-		cp inst/vign/seaice_vignette.md vignettes;\
-		cp inst/vign/homr_vignette.md vignettes;\
-		cp inst/vign/storms_vignette.md vignettes;\
-		cp inst/vign/buoy_vignette.md vignettes;\
-		cp inst/vign/rnoaa_ropenaq.md vignettes;\
-		cp -r inst/vign/figure/* vignettes/figure
+vign_ncdc_attr:
+	cd vignettes;\
+	${RSCRIPT} -e "Sys.setenv(NOT_CRAN='true'); knitr::knit('ncdc_attributes.Rmd.og', output = 'ncdc_attributes.Rmd')";\
+	cd ..
 
-rmd2md:
-		cd vignettes;\
-		mv ncdc_vignette.md ncdc_vignette.Rmd;\
-		mv ncdc_attributes.md ncdc_attributes.Rmd;\
-		mv ncdc_workflow.md ncdc_workflow.Rmd;\
-		mv seaice_vignette.md seaice_vignette.Rmd;\
-		mv swdi_vignette.md swdi_vignette.Rmd;\
-		mv homr_vignette.md homr_vignette.Rmd;\
-		mv storms_vignette.md storms_vignette.Rmd;\
-		mv buoy_vignette.md buoy_vignette.Rmd;\
-		mv rnoaa_ropenaq.md rnoaa_ropenaq.Rmd
+vign_ncdc_workflow:
+	cd vignettes;\
+	${RSCRIPT} -e "Sys.setenv(NOT_CRAN='true'); knitr::knit('ncdc_workflow.Rmd.og', output = 'ncdc_workflow.Rmd')";\
+	cd ..
+
+vign_swdi:
+	cd vignettes;\
+	${RSCRIPT} -e "Sys.setenv(NOT_CRAN='true'); knitr::knit('swdi_vignette.Rmd.og', output = 'swdi_vignette.Rmd')";\
+	cd ..
+
+vign_seaice:
+	cd vignettes;\
+	${RSCRIPT} -e "Sys.setenv(NOT_CRAN='true'); knitr::knit('seaice_vignette.Rmd.og', output = 'seaice_vignette.Rmd')";\
+	cd ..
+
+vign_homr:
+	cd vignettes;\
+	${RSCRIPT} -e "Sys.setenv(NOT_CRAN='true'); knitr::knit('homr_vignette.Rmd.og', output = 'homr_vignette.Rmd')";\
+	cd ..
+
+vign_buoy:
+	cd vignettes;\
+	${RSCRIPT} -e "Sys.setenv(NOT_CRAN='true'); knitr::knit('buoy_vignette.Rmd.og', output = 'buoy_vignette.Rmd')";\
+	cd ..
+
+vign_ropenaq:
+	cd vignettes;\
+	${RSCRIPT} -e "Sys.setenv(NOT_CRAN='true'); knitr::knit('rnoaa_ropenaq.Rmd.og', output = 'rnoaa_ropenaq.Rmd')";\
+	cd ..
 
 revdep:
 	${RSCRIPT} -e "revdepcheck::revdep_reset(); revdepcheck::revdep_check()"
@@ -34,7 +48,7 @@ install: doc build
 	R CMD INSTALL . && rm *.tar.gz
 
 build:
-	R CMD build .
+	R CMD build . --no-build-vignettes
 
 doc:
 	${RSCRIPT} -e "devtools::document()"

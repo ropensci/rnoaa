@@ -1,7 +1,7 @@
 ---
 title: "NCDC workflow"
 author: "Scott Chamberlain"
-date: "`r Sys.Date()`"
+date: "2020-07-27"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{NCDC workflow}
@@ -9,21 +9,15 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
-knitr::opts_chunk$set(
-  collapse  =  TRUE,
-  comment  =  "#>",
-  purl  =  FALSE,
-  eval  =  FALSE
-)
-```
+
 
 This vignette is intended to demonstrate a workflow for using the NOAA NCDC data using the `ncdc*()` functions. It can be confusing to understand how to get at data you want - that's the motivation for this vignette. Other vignettes show more thorough and different examples for specific data sources.
 
 
 ## Load rnoaa
 
-```{r load}
+
+```r
 library('rnoaa')
 ```
 
@@ -36,14 +30,16 @@ library('rnoaa')
 ### Look for weather stations & get station id(s)
 
 
-```{r two, message=FALSE, warning=FALSE, cache=FALSE}
+
+```r
 ids <- ncdc_stations(locationid='FIPS:12017')$data$id[1:13]
 id <- "GHCND:US1FLCT0002"
 ```
 
 Just information for one station
 
-```{r}
+
+```r
 ncdc_stations(stationid = id)
 ```
 
@@ -52,19 +48,22 @@ ncdc_stations(stationid = id)
 
 There are various ways to look for data types available. First, __data categories__:
 
-```{r}
+
+```r
 ncdc_datacats(stationid = id)
 ```
 
 Another way is looking for __data sets__:
 
-```{r}
+
+```r
 ncdc_datasets(stationid = id)
 ```
 
 Yet another way is looking for __data types__:
 
-```{r}
+
+```r
 ncdc_datatypes(datasetid = "GHCND", stationid = id)
 ```
 
@@ -80,6 +79,7 @@ Importantly, note that you have to specify three things in a call to the `ncdc` 
 
 Here, we are specifying the `datasetid`, `stationid`, `datatypeid`, `startdate`, and `enddate`
 
-```{r}
+
+```r
 ncdc(datasetid = "GHCND", stationid = id, datatypeid = "PRCP", startdate = "2012-10-01", enddate = "2013-01-01")
 ```

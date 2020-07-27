@@ -1,21 +1,20 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{SWDI vignette}
-%\VignetteEncoding{UTF-8}
--->
+---
+title: "SWDI vignette"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{SWDI vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
-```{r echo=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  warning = FALSE,
-  message = FALSE,
-  cache = FALSE
+  collapse  =  TRUE,
+  comment  =  "#>"
 )
 ```
-
-SWDI vignette
-======
 
 `SWDI` is the Severe Weather Data Inventory. SWDI is an (quoting)
 
@@ -38,7 +37,6 @@ Find out more about SWDI at [http://www.ncdc.noaa.gov/swdi/#Intro](http://www.nc
 
 ```{r load, message=FALSE, warning=FALSE}
 library('rnoaa')
-library('plyr')
 ```
 
 ## Search for nx3tvs data from 5 May 2006 to 6 May 2006
@@ -98,4 +96,11 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='shp', f
 
 ```{r}
 swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506', format='kmz', radius=15, filepath='myfile.kmz')
+```
+
+
+```{r echo=FALSE}
+# cleanup
+unlink("myfile")
+unlink("myfile.kmz")
 ```
