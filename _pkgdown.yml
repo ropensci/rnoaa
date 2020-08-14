@@ -12,8 +12,6 @@ reference:
       rnoaa datasets
     contents:
       - fipscodes
-      - storm_columns
-      - storm_names
   - title: "Africa Rainfall Climatology"
     contents:
       - arc2
@@ -66,12 +64,6 @@ reference:
     contents:
       - starts_with("sea_ice")
       - theme_ice
-  - title: "IBTrACS Storm Data"
-    contents:
-      - storm_data
-      - storm_meta
-      - storm_shp
-      - storm_shp_read
   - title: "Storm Events"
     contents:
       - starts_with("se_")
