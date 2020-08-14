@@ -1,7 +1,7 @@
 ---
 title: "NCDC introduction"
 author: "Scott Chamberlain"
-date: "2020-07-27"
+date: "2020-08-14"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{NCDC introduction}
@@ -30,7 +30,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name datacoverage
-#> 1      17.7 1899-01-01 2020-07-24 28.80286 INVERNESS 3 SE, FL US            1
+#> 1      17.7 1899-01-01 2020-08-12 28.80286 INVERNESS 3 SE, FL US            1
 #>                  id elevationUnit longitude
 #> 1 GHCND:USC00084289        METERS -82.31266
 #> 
@@ -121,7 +121,7 @@ Default plot
 ncdc_plot(out)
 ```
 
-![plot of chunk unnamed-chunk-3](../man/figures/unnamed-chunk-3-1.png)
+![plot of chunk ncdc-plot-zero](../man/figures/ncdc-plot-zero-1.png)
 
 Create 14 day breaks
 
@@ -130,7 +130,7 @@ Create 14 day breaks
 ncdc_plot(out, breaks="14 days")
 ```
 
-![plot of chunk unnamed-chunk-4](../man/figures/unnamed-chunk-4-1.png)
+![plot of chunk ncdc-plot-0](../man/figures/ncdc-plot-0-1.png)
 
 One month breaks
 
@@ -139,7 +139,7 @@ One month breaks
 ncdc_plot(out, breaks="1 month", dateformat="%d/%m")
 ```
 
-![plot of chunk unnamed-chunk-5](../man/figures/unnamed-chunk-5-1.png)
+![plot of chunk ncdc-plot-1](../man/figures/ncdc-plot-1-1.png)
 
 ### Example 2
 
@@ -149,7 +149,6 @@ Search for data
 ```r
 out <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014895', datatypeid='PRCP',
             startdate = '2010-05-01', enddate = '2010-10-31', limit=500)
-#> Error: Bad Gateway (HTTP 502)
 ```
 
 Make a plot, with 6 hour breaks, and date format with only hour
@@ -159,7 +158,7 @@ Make a plot, with 6 hour breaks, and date format with only hour
 ncdc_plot(out, breaks = "1 month", dateformat = "%d/%m")
 ```
 
-![plot of chunk unnamed-chunk-7](../man/figures/unnamed-chunk-7-1.png)
+![plot of chunk ncdc-plot-2](../man/figures/ncdc-plot-2-1.png)
 
 ## Combine many calls to noaa function
 
@@ -205,7 +204,7 @@ Then plot - the default passing in the combined plot plots the data together. In
 ncdc_plot(df)
 ```
 
-![plot of chunk unnamed-chunk-10](../man/figures/unnamed-chunk-10-1.png)
+![plot of chunk ncdc-plot-line](../man/figures/ncdc-plot-line-1.png)
 
 But we can pass in each separately, which uses `facet_wrap` in `ggplot2` to plot each set of data in its own panel.
 
@@ -214,4 +213,4 @@ But we can pass in each separately, which uses `facet_wrap` in `ggplot2` to plot
 ncdc_plot(out1, out2, breaks="45 days")
 ```
 
-![plot of chunk unnamed-chunk-11](../man/figures/unnamed-chunk-11-1.png)
+![plot of chunk ncdc-plot-panel](../man/figures/ncdc-plot-panel-1.png)

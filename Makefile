@@ -48,7 +48,7 @@ install: doc build
 	R CMD INSTALL . && rm *.tar.gz
 
 build:
-	R CMD build . --no-build-vignettes
+	R CMD build .
 
 doc:
 	${RSCRIPT} -e "devtools::document()"
