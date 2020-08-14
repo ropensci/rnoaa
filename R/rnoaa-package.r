@@ -141,25 +141,3 @@ NULL
 #' @name fipscodes
 NULL
 
-#' NOAA storm column descriptions for data from IBTrACS
-#'
-#' This dataset includes description of the columns of each dataset acquired
-#' using `storm_data()`
-#'
-#' @docType data
-#' @keywords datasets
-#' @format A data frame with 195 rows and 8 variables
-#' @name storm_columns
-NULL
-
-#' NOAA storm names from IBTrACS
-#'
-#' This dataset includes a crosswalk from storm serial numbers to their names.
-#' Storm serial numbers are used to search for storms in the
-#' `storm_data()` function
-#'
-#' @docType data
-#' @keywords datasets
-#' @format A data frame with 12,209 rows and 2 variables
-#' @name storm_names
-NULL
