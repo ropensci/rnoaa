@@ -98,13 +98,13 @@ higher than 25.
 }
 \section{Authentication}{
 
-Get an API key (aka, token) at \url{http://www.ncdc.noaa.gov/cdo-web/token}.
+Get an API key (aka, token) at \url{https://www.ncdc.noaa.gov/cdo-web/token}.
 You can pass your token in as an argument or store it one of two places:
 
 \itemize{
-\item your .Rprofile file with an entry like
+\item your .Rprofile file with the entry
 \code{options(noaakey = "your-noaa-token")}
-\item your .Renviron file with an entry like
+\item your .Renviron file with the entry
 \code{NOAA_KEY=your-noaa-token}
 }
 

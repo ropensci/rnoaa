@@ -7,7 +7,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 1.1.0.93
+Version: 1.1.0.94
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US
@@ -25,7 +25,7 @@ Authors@R: c(
     person("Hart", "Edmund", role = "ctb"),
     person("rOpenSci", role = "fnd", comment = "https://ropensci.org")
   )
-URL: https://docs.ropensci.org/rnoaa (website),
+URL: https://docs.ropensci.org/rnoaa/ (website),
     https://github.com/ropensci/rnoaa (devel)
 BugReports: https://github.com/ropensci/rnoaa/issues
 LazyData: true
