@@ -13,8 +13,9 @@ vignette: >
 knitr::opts_chunk$set(
   collapse  =  TRUE,
   comment  =  "#>",
-  purl  =  FALSE,
-  eval  =  FALSE
+  warning = FALSE,
+  message = FALSE,
+  fig.path = "../man/figures/"
 )
 ```
 
@@ -66,7 +67,7 @@ Once you obtain a key, there are two ways to use it.
 a) Pass it inline with each function call (somewhat cumbersome)
 
 ```{r eval=FALSE}
-ncdc(datasetid = 'PRECIP_HLY', locationid = 'ZIP:28801', datatypeid = 'HPCP', limit = 5, token =  "YOUR_TOKEN")
+ncdc(datasetid = 'PRECIP_HLY', locationid = 'ZIP:28801', datatypeid = 'HPCP', startdate = '2013-10-01', enddate = '2013-12-01', limit = 5, token =  "YOUR_TOKEN")
 ```
 
 b) Alternatively, you might find it easier to set this as an option, either by adding this line to the top of a script or somewhere in your `.rprofile`
@@ -178,15 +179,6 @@ Get storm data for the year 2010
 
 ```{r output.lines=1:20, eval=FALSE}
 storm_data(year = 2010)
-```
-
-## GEFS data
-
-Get forecast for a certain variable.
-
-```{r cache = TRUE}
-res <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat = 46.28125, lon = -116.2188)
-head(res$data)
 ```
 
 ## Argo buoys data

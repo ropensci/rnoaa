@@ -1,6 +1,11 @@
 PACKAGE := $(shell grep '^Package:' DESCRIPTION | sed -E 's/^Package:[[:space:]]+//')
 RSCRIPT = Rscript --no-init-file
 
+vign:
+	cd vignettes;\
+	${RSCRIPT} -e "Sys.setenv(NOT_CRAN='true'); knitr::knit('rnoaa.Rmd.og', output = 'rnoaa.Rmd')";\
+	cd ..
+
 vign_ncdc:
 	cd vignettes;\
 	${RSCRIPT} -e "Sys.setenv(NOT_CRAN='true'); knitr::knit('ncdc_vignette.Rmd.og', output = 'ncdc_vignette.Rmd')";\
