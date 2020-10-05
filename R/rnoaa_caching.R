@@ -38,7 +38,6 @@
 #' - `arc2()`: `arc2_cache`
 #' - `lcd()`: `lcd_cache`
 #' - `bsw()`: `bsw_cache`
-#' - `storm_data()`: `storms_cache`
 #' - `ersst()`: `ersst_cache`
 #' - `tornadoes()`: `torn_cache`
 #' - `ghcnd()`/`ghcnd_search()`: `ghcnd_cache`
@@ -74,12 +73,6 @@ NULL
 #' @usage NULL
 #' @export
 "bsw_cache"
-
-#' @rdname rnoaa_caching
-#' @format NULL
-#' @usage NULL
-#' @export
-"storms_cache"
 
 #' @rdname rnoaa_caching
 #' @format NULL

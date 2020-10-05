@@ -81,6 +81,10 @@ gefs_variables <- function(...) {
 #' - `seaice`: Replaced with [sea_ice()]
 #' - `lcd_cleanup`: No longer available. See `lcd` docs
 #' - `ghcnd_clear_cache`: No longer available. See [rnoaa_caching]
+#' - `storm_shp`: Function defunct.
+#' - `storm_shp_read`: Function defunct.
+#' - `storm_data`: Function defunct.
+#' - `storm_meta`: Function defunct.
 #'
 #' The functions for working with GEFS ensemble forecast data (prefixed with
 #' "gefs") are defunct, but may come back to rnoaa later:

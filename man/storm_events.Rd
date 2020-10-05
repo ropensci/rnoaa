@@ -30,7 +30,7 @@ A tibble (data.frame)
 NOAA Storm Events data
 }
 \note{
-See \link{storms_cache} for managing cached files
+See \link{stormevents_cache} for managing cached files
 }
 \examples{
 \dontrun{

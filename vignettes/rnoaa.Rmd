@@ -343,15 +343,6 @@ In this example, search for metadata for a single station ID
 homr(qid = 'COOP:046742')
 ```
 
-## Storm data
-
-Get storm data for the year 2010
-
-
-```r
-storm_data(year = 2010)
-```
-
 
 ## Argo buoys data
 

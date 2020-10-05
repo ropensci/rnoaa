@@ -12,7 +12,7 @@ storm_events_env <- new.env()
 #' @param ... Curl options passed on to [crul::verb-GET]
 #' (optional)
 #' @return A tibble (data.frame)
-#' @note See [storms_cache] for managing cached files
+#' @note See [stormevents_cache] for managing cached files
 #' @references <https://www.ncdc.noaa.gov/stormevents/>
 #'
 #' @examples \dontrun{

@@ -29,6 +29,10 @@
 \item \code{seaice}: Replaced with \code{\link[=sea_ice]{sea_ice()}}
 \item \code{lcd_cleanup}: No longer available. See \code{lcd} docs
 \item \code{ghcnd_clear_cache}: No longer available. See \link{rnoaa_caching}
+\item \code{storm_shp}: Function defunct.
+\item \code{storm_shp_read}: Function defunct.
+\item \code{storm_data}: Function defunct.
+\item \code{storm_meta}: Function defunct.
 }
 }
 \details{

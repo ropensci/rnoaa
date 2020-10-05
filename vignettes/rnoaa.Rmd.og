@@ -173,14 +173,6 @@ In this example, search for metadata for a single station ID
 homr(qid = 'COOP:046742')
 ```
 
-## Storm data
-
-Get storm data for the year 2010
-
-```{r output.lines=1:20, eval=FALSE}
-storm_data(year = 2010)
-```
-
 ## Argo buoys data
 
 There are a suite of functions for Argo data, a few egs:
