@@ -58,7 +58,7 @@ a city.
 }
 \section{Authentication}{
 
-Get an API key (aka, token) at \url{https://www.ncdc.noaa.gov/cdo-web/token}.
+Get an API key (aka, token) at https://www.ncdc.noaa.gov/cdo-web/token
 You can pass your token in as an argument or store it one of two places:
 
 \itemize{
@@ -99,7 +99,7 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 }
 }
 \references{
-\url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
+https://www.ncdc.noaa.gov/cdo-web/webservices/v2
 }
 \seealso{
 Other ncdc: 

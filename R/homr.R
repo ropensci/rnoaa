@@ -51,7 +51,7 @@
 #'
 #' @return A list, with elements named by the station ids.
 #'
-#' @references <https://www.ncdc.noaa.gov/homr/api>
+#' @references https://www.ncdc.noaa.gov/homr/api
 #'
 #' @examples \dontrun{
 #' homr(qid = 'COOP:046742')

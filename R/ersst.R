@@ -13,7 +13,7 @@
 #' @return An `ncdf4` object for now, may change output later to
 #' perhaps a data.frame. See \pkg{ncdf4} for parsing the output.
 #' @references
-#' <https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4>
+#' https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4
 #' @note See [ersst_cache] for managing cached files
 #' @examples \dontrun{
 #' # October, 2015

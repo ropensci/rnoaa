@@ -117,5 +117,5 @@ homr(headersOnly=TRUE, state='NC', county='BUNCOMBE', verbose = TRUE)
 }
 }
 \references{
-\url{https://www.ncdc.noaa.gov/homr/api}
+https://www.ncdc.noaa.gov/homr/api
 }

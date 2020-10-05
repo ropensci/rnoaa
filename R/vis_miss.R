@@ -14,7 +14,7 @@
 #' order of missingness.
 #' @details `vis_miss` visualises a data.frame to display missingness. This is
 #' taken from the visdat package, currently only available on github:
-#' <https://github.com/tierneyn/visdat>
+#' https://github.com/tierneyn/visdat
 #' @examples \dontrun{
 #'   monitors <- c("ASN00003003", "ASM00094299")
 #'   weather_df <- meteo_pull_monitors(monitors)

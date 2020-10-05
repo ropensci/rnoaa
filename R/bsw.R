@@ -46,7 +46,7 @@
 #' files, see http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
 #' 
 #' @references 
-#' <https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds>
+#' https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds
 #' ftp://eclipse.ncdc.noaa.gov/pub/seawinds/
 #' ieee files: http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
 #'

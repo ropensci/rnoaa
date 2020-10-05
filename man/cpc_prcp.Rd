@@ -65,7 +65,7 @@ cpc_prcp(date = "1998-04-23", drop_undefined = TRUE)
 }
 }
 \references{
-\url{http://www.cpc.ncep.noaa.gov/}
+http://www.cpc.ncep.noaa.gov/
 ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP
 ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_CONUS/DOCU/PRCP_CU_GAUGE_V1.0CONUS_0.25deg.README
 ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_GLB/DOCU/PRCP_CU_GAUGE_V1.0GLB_0.50deg_README.txt

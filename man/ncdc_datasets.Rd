@@ -68,7 +68,7 @@ any data from us, you must know what dataset it is in.
 }
 \section{Authentication}{
 
-Get an API key (aka, token) at \url{https://www.ncdc.noaa.gov/cdo-web/token}.
+Get an API key (aka, token) at https://www.ncdc.noaa.gov/cdo-web/token
 You can pass your token in as an argument or store it one of two places:
 
 \itemize{
@@ -111,7 +111,7 @@ ncdc_datasets(locationid=c("FIPS:30103", "FIPS:30091"))
 }
 }
 \references{
-\url{https://www.ncdc.noaa.gov/cdo-web/webservices/v2}
+https://www.ncdc.noaa.gov/cdo-web/webservices/v2
 }
 \seealso{
 Other ncdc: 

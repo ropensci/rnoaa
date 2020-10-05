@@ -98,7 +98,7 @@ higher than 25.
 }
 \section{Authentication}{
 
-Get an API key (aka, token) at \url{https://www.ncdc.noaa.gov/cdo-web/token}.
+Get an API key (aka, token) at https://www.ncdc.noaa.gov/cdo-web/token
 You can pass your token in as an argument or store it one of two places:
 
 \itemize{

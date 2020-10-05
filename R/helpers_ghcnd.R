@@ -30,7 +30,7 @@
 #'
 #'    There are other possible weather variables in the Global Historical
 #'    Climatology Network; see
-#'    <http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt> for a full
+#'    http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt for a full
 #'    list. If the \code{var} argument is something other than "all", then
 #'    only variables included in that argument will be included in the output
 #'    data frame. All variables are in the units specified in the linked file
@@ -52,7 +52,7 @@
 #'
 #' More information on the interpretation of these flags can be found in the
 #' README file for the NCDC's Daily Global Historical Climatology Network's
-#' data at <http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt>
+#' data at http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt
 #'
 #' @note This function converts any value of -9999 to a missing value for the
 #'    variables "prcp", "tmax", "tmin", "tavg", "snow", and "snwd". However,
@@ -130,7 +130,7 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
 #'
 #'    There are other possible weather variables in the Global Historical
 #'    Climatology Network; see
-#'    <http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt> for a full
+#'    http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt for a full
 #'    list. The variables `prcp`, `tmax`, `tmin`, and `tavg`
 #'    have all been converted from tenths of their metric to the metric (e.g.,
 #'    from tenths of degrees Celsius to degrees Celsius). All other variables
@@ -149,7 +149,7 @@ meteo_pull_monitors <- function(monitors, keep_flags = FALSE, date_min = NULL,
 #' 
 #' More information on the interpretation of these flags can be found in the
 #' README file for the NCDC's Daily Global Historical Climatology Network's
-#' data at <http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt>
+#' data at http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt
 #'
 #' @author Brooke Anderson \email{brooke.anderson@@colostate.edu}
 #'

@@ -51,5 +51,5 @@ ncdf4::ncvar_get(res, "ssta")
 }
 }
 \references{
-\url{https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4}
+https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4
 }

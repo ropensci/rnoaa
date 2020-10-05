@@ -22,7 +22,7 @@
 #' @return A tibble (data.frame) which contains data pulled from NOAA's FTP
 #' server for the queried weather site. A README file with more information
 #' about the format of this file is available from NOAA
-#' (\url{http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt}).
+#' (http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt).
 #' This file is formatted so each line of the file gives the daily weather
 #' observations for a single weather variable for all days of one month of
 #' one year. In addition to measurements, columns are included for certain

@@ -14,7 +14,7 @@
 #' - lat - latitude (-90 to 90)
 #' - precip - precipitation (in mm) (see Details for more information)
 #'
-#' @references <http://www.cpc.ncep.noaa.gov/>
+#' @references http://www.cpc.ncep.noaa.gov/
 #' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP
 #' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_CONUS/DOCU/PRCP_CU_GAUGE_V1.0CONUS_0.25deg.README
 #' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_GLB/DOCU/PRCP_CU_GAUGE_V1.0GLB_0.50deg_README.txt

@@ -13,7 +13,7 @@ storm_events_env <- new.env()
 #' (optional)
 #' @return A tibble (data.frame)
 #' @note See [stormevents_cache] for managing cached files
-#' @references <https://www.ncdc.noaa.gov/stormevents/>
+#' @references https://www.ncdc.noaa.gov/stormevents/
 #'
 #' @examples \dontrun{
 #' # get list of files and their urls

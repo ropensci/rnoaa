@@ -9,9 +9,9 @@
 #' @note See [lcd_cache] for managing cached files
 #' @references
 #' Docs: 
-#' <https://www.ncei.noaa.gov/data/local-climatological-data/doc/LCD_documentation.pdf>
+#' https://www.ncei.noaa.gov/data/local-climatological-data/doc/LCD_documentation.pdf
 #' Data comes from:
-#' <https://www.ncei.noaa.gov/data/local-climatological-data/access>
+#' https://www.ncei.noaa.gov/data/local-climatological-data/access
 #' 
 #' @return a data.frame with many columns. the first 10 are metadata:
 #' 

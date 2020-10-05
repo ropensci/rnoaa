@@ -59,7 +59,7 @@ lcd(station = "02413099999", year = 2002, verbose = TRUE)
 }
 \references{
 Docs:
-\url{https://www.ncei.noaa.gov/data/local-climatological-data/doc/LCD_documentation.pdf}
+https://www.ncei.noaa.gov/data/local-climatological-data/doc/LCD_documentation.pdf
 Data comes from:
-\url{https://www.ncei.noaa.gov/data/local-climatological-data/access}
+https://www.ncei.noaa.gov/data/local-climatological-data/access
 }
