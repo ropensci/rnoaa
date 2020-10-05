@@ -44,11 +44,6 @@ sea_ice(year = 1990, month = c("Apr", "Jun", "Oct"))
 ## many years, one month, one pole
 sea_ice(year = 1990:1992, month = "Sep", pole = "N")
 
-# Map a single year/month/pole combo
-out <- sea_ice(year = 1990, month = 'Apr', pole = 'N')
-library('sf')
-plot(out[[1]])
-
 # get geotiff instead of shp data. 
 x <- sea_ice(year = 1990, month = "Apr", format = "geotiff-extent")
 y <- sea_ice(year = 1990, month = "Apr", format = "geotiff-conc")
