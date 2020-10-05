@@ -18,7 +18,7 @@ rnoaa
 * NOAA NCDC climate data:
     * We are using the NOAA API version 2
     * Docs for the NCDC API are at https://www.ncdc.noaa.gov/cdo-web/webservices/v2
-    * GHCN Daily data is available at https://www.ncdc.noaa.gov/ghcn-daily-description via FTP and HTTP
+    * GHCN Daily data is available at http://www.ncdc.noaa.gov/ghcn-daily-description via FTP and HTTP
 * Severe weather data docs are at https://www.ncdc.noaa.gov/swdiws/
 * Sea ice data (ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles)
 * NOAA buoy data (https://www.ndbc.noaa.gov/)

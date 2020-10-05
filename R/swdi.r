@@ -62,7 +62,7 @@
 #' If kmz or shp chosen, the file is downloaded to your machine and a message 
 #' is printed.
 #'
-#' @references https://www.ncdc.noaa.gov/ncdcs-severe-weather-data-inventory
+#' @references https://www.ncdc.noaa.gov/ncei-severe-weather-data-inventory
 #' https://www.ncdc.noaa.gov/swdiws/
 #'
 #' @examples \dontrun{

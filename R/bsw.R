@@ -28,9 +28,8 @@
 #' Message from NOAA: "We also ask you to acknowledge us in your use of the 
 #' data to help us justify continued service. This may be done by  including 
 #' text such as: The wind data are acquired from NOAA's National Climatic 
-#' Data Center, via their website 
-#' http://www.ncdc.noaa.gov/oa/rsad/blendedseawinds.html. We would also 
-#' appreciate receiving a copy of the relevant publication."
+#' Data Center, via their website We would also  appreciate receiving a 
+#' copy of the relevant publication."
 #' 
 #' @section Temporal resolution:
 #'

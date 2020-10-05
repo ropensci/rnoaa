@@ -424,7 +424,7 @@ rnoaa 0.5.2
 * New data source added: ARGO buoy data. See functions starting with `argo()` (#123)
 for more, see http://www.argo.ucsd.edu/
 * New data source added: CO-OPS tide and current data. See function `coops_search()`
-(#111) for idea from @fmichonneau (#124) for implementing @jsta See http://co-ops.nos.noaa.gov/api/
+(#111) for idea from @fmichonneau (#124) for implementing @jsta 
 also (#126) (#128)
 
 ### MINOR IMPROVEMENTS
