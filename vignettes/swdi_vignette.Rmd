@@ -25,7 +25,7 @@ Data available in SWDI are:
 * Preliminary Local Storm Reports from the NOAA National Weather Service
 * Lightning Strikes from Vaisala NLDN
 
-Find out more about SWDI at [http://www.ncdc.noaa.gov/swdi/#Intro](http://www.ncdc.noaa.gov/swdi/#Intro).
+Find out more about SWDI at http://www.ncdc.noaa.gov/swdi/#Intro
 
 
 ## Load rnoaa

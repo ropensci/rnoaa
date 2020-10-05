@@ -1,7 +1,7 @@
 ---
 title: "rnoaa introduction"
 author: "Scott Chamberlain"
-date: "2020-09-02"
+date: "2020-10-05"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{rnoaa introduction}
@@ -16,7 +16,7 @@ vignette: >
 
 __GDAL__
 
-You'll need [GDAL](https://gdal.org/) installed first. You may want to use GDAL >= `0.9-1` since that version or later can read TopoJSON format files as well, which aren't required here, but may be useful. Install GDAL:
+You'll need GDAL (https://gdal.org/) installed first. You may want to use GDAL >= `0.9-1` since that version or later can read TopoJSON format files as well, which aren't required here, but may be useful. Install GDAL:
 
 * OSX - From https://www.kyngchaos.com/software/frameworks/
 * Linux - run `sudo apt-get install gdal-bin`
@@ -94,31 +94,31 @@ ncdc_locs(locationcategoryid='CITY', sortfield='name', sortorder='desc')
 #> 
 #> $data
 #>       mindate    maxdate                  name datacoverage            id
-#> 1  1892-08-01 2020-06-30            Zwolle, NL       1.0000 CITY:NL000012
-#> 2  1901-01-01 2020-08-29            Zurich, SZ       1.0000 CITY:SZ000007
-#> 3  1957-07-01 2020-08-29         Zonguldak, TU       1.0000 CITY:TU000057
-#> 4  1906-01-01 2020-08-29            Zinder, NG       0.9025 CITY:NG000004
-#> 5  1973-01-01 2020-08-29        Ziguinchor, SG       1.0000 CITY:SG000004
-#> 6  1938-01-01 2020-08-29         Zhytomyra, UP       0.9723 CITY:UP000025
-#> 7  1948-03-01 2020-08-29        Zhezkazgan, KZ       0.9302 CITY:KZ000017
-#> 8  1951-01-01 2020-08-29         Zhengzhou, CH       1.0000 CITY:CH000045
-#> 9  1941-01-01 2020-06-30          Zaragoza, SP       1.0000 CITY:SP000021
+#> 1  1892-08-01 2020-07-31            Zwolle, NL       1.0000 CITY:NL000012
+#> 2  1901-01-01 2020-10-02            Zurich, SZ       1.0000 CITY:SZ000007
+#> 3  1957-07-01 2020-10-02         Zonguldak, TU       1.0000 CITY:TU000057
+#> 4  1906-01-01 2020-10-02            Zinder, NG       0.9025 CITY:NG000004
+#> 5  1973-01-01 2020-10-02        Ziguinchor, SG       1.0000 CITY:SG000004
+#> 6  1938-01-01 2020-10-02         Zhytomyra, UP       0.9723 CITY:UP000025
+#> 7  1948-03-01 2020-10-02        Zhezkazgan, KZ       0.9302 CITY:KZ000017
+#> 8  1951-01-01 2020-10-02         Zhengzhou, CH       1.0000 CITY:CH000045
+#> 9  1941-01-01 2020-07-31          Zaragoza, SP       1.0000 CITY:SP000021
 #> 10 1936-01-01 2009-06-17      Zaporiyhzhya, UP       1.0000 CITY:UP000024
-#> 11 1957-01-01 2020-08-29          Zanzibar, TZ       0.8016 CITY:TZ000019
-#> 12 1973-01-01 2020-08-29            Zanjan, IR       0.9105 CITY:IR000020
-#> 13 1893-01-01 2020-08-31     Zanesville, OH US       1.0000 CITY:US390029
-#> 14 1912-01-01 2020-08-29             Zahle, LE       0.9819 CITY:LE000004
-#> 15 1951-01-01 2020-08-29           Zahedan, IR       0.9975 CITY:IR000019
-#> 16 1860-12-01 2020-08-29            Zagreb, HR       1.0000 CITY:HR000002
-#> 17 1929-07-01 2020-04-01         Zacatecas, MX       1.0000 CITY:MX000036
-#> 18 1947-01-01 2020-08-29 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
-#> 19 1893-01-01 2020-08-31           Yuma, AZ US       1.0000 CITY:US040015
-#> 20 1942-02-01 2020-08-31   Yucca Valley, CA US       1.0000 CITY:US060048
-#> 21 1885-01-01 2020-08-31      Yuba City, CA US       1.0000 CITY:US060047
-#> 22 1998-02-01 2020-08-29            Yozgat, TU       0.9993 CITY:TU000056
-#> 23 1893-01-01 2020-08-31     Youngstown, OH US       1.0000 CITY:US390028
-#> 24 1894-01-01 2020-08-31           York, PA US       1.0000 CITY:US420024
-#> 25 1869-01-01 2020-08-31        Yonkers, NY US       1.0000 CITY:US360031
+#> 11 1957-01-01 2020-10-02          Zanzibar, TZ       0.8016 CITY:TZ000019
+#> 12 1973-01-01 2020-10-02            Zanjan, IR       0.9105 CITY:IR000020
+#> 13 1893-01-01 2020-10-04     Zanesville, OH US       1.0000 CITY:US390029
+#> 14 1912-01-01 2020-10-02             Zahle, LE       0.9819 CITY:LE000004
+#> 15 1951-01-01 2020-10-02           Zahedan, IR       0.9975 CITY:IR000019
+#> 16 1860-12-01 2020-10-02            Zagreb, HR       1.0000 CITY:HR000002
+#> 17 1929-07-01 2020-09-13         Zacatecas, MX       1.0000 CITY:MX000036
+#> 18 1947-01-01 2020-10-02 Yuzhno-Sakhalinsk, RS       1.0000 CITY:RS000081
+#> 19 1893-01-01 2020-10-04           Yuma, AZ US       1.0000 CITY:US040015
+#> 20 1942-02-01 2020-10-03   Yucca Valley, CA US       1.0000 CITY:US060048
+#> 21 1885-01-01 2020-10-04      Yuba City, CA US       1.0000 CITY:US060047
+#> 22 1998-02-01 2020-10-02            Yozgat, TU       0.9993 CITY:TU000056
+#> 23 1893-01-01 2020-10-04     Youngstown, OH US       1.0000 CITY:US390028
+#> 24 1894-01-01 2020-10-04           York, PA US       1.0000 CITY:US420024
+#> 25 1869-01-01 2020-10-04        Yonkers, NY US       1.0000 CITY:US360031
 #> 
 #> attr(,"class")
 #> [1] "ncdc_locs"
@@ -134,7 +134,7 @@ ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00
 #> 
 #> $data
 #>   elevation    mindate    maxdate latitude                  name datacoverage
-#> 1      17.7 1899-01-01 2020-08-31 28.80286 INVERNESS 3 SE, FL US            1
+#> 1      17.7 1899-01-01 2020-10-02 28.80286 INVERNESS 3 SE, FL US            1
 #>                  id elevationUnit longitude
 #> 1 GHCND:USC00084289        METERS -82.31266
 #> 
@@ -173,7 +173,7 @@ You have two options here:
 
 1. Use the `add_units` parameter on `ncdc` to have `rnoaa` attempt to look up the units. This is a good idea to try first.
 
-2. Consult the documentation for whiechever dataset you're accessing. In this case, `GHCND` has a [README](https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) which indicates `TMAX` is measured in tenths of degrees Celcius.
+2. Consult the documentation for whiechever dataset you're accessing. In this case, `GHCND` has a README (https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt) which indicates `TMAX` is measured in tenths of degrees Celcius.
 
 ### See a `data.frame` with units
 
@@ -240,11 +240,11 @@ ncdc_datasets()
 #> 
 #> $data
 #>                     uid    mindate    maxdate                        name
-#> 1  gov.noaa.ncdc:C00861 1763-01-01 2020-08-31             Daily Summaries
-#> 2  gov.noaa.ncdc:C00946 1763-01-01 2020-08-01 Global Summary of the Month
+#> 1  gov.noaa.ncdc:C00861 1763-01-01 2020-10-03             Daily Summaries
+#> 2  gov.noaa.ncdc:C00946 1763-01-01 2020-09-01 Global Summary of the Month
 #> 3  gov.noaa.ncdc:C00947 1763-01-01 2020-01-01  Global Summary of the Year
-#> 4  gov.noaa.ncdc:C00345 1991-06-05 2020-08-30    Weather Radar (Level II)
-#> 5  gov.noaa.ncdc:C00708 1994-05-20 2020-08-30   Weather Radar (Level III)
+#> 4  gov.noaa.ncdc:C00345 1991-06-05 2020-10-02    Weather Radar (Level II)
+#> 5  gov.noaa.ncdc:C00708 1994-05-20 2020-10-03   Weather Radar (Level III)
 #> 6  gov.noaa.ncdc:C00821 2010-01-01 2010-01-01     Normals Annual/Seasonal
 #> 7  gov.noaa.ncdc:C00823 2010-01-01 2010-12-31               Normals Daily
 #> 8  gov.noaa.ncdc:C00824 2010-01-01 2010-12-31              Normals Hourly
@@ -342,7 +342,6 @@ In this example, search for metadata for a single station ID
 ```r
 homr(qid = 'COOP:046742')
 ```
-
 
 ## Argo buoys data
 

@@ -73,7 +73,7 @@ knitr::opts_chunk$set(
 
 ## Help/Getting Started
 
-Documentation is at <https://docs.ropensci.org/rnoaa/>, and there are many vignettes in the package itself, available in your R session, or [on CRAN](https://cran.r-project.org/package=rnoaa). The tutorials:
+Documentation is at https://docs.ropensci.org/rnoaa/, and there are many vignettes in the package itself, available in your R session, or on CRAN (https://cran.r-project.org/package=rnoaa). The tutorials:
 
 * **Getting started - start here**
 * NOAA Buoy vignette
@@ -115,23 +115,23 @@ cat(paste0("table updated on ", Sys.Date()))
 
 **NOAA NCDC Attributes**
 
-Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See https://www.ncdc.noaa.gov/cdo-web/datasets for detailed info on each dataset. We provide some information on the attributes in this package; see the [vignette for attributes](https://docs.ropensci.org/rnoaa/articles/ncdc_attributes.html) to find out more
+Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See https://www.ncdc.noaa.gov/cdo-web/datasets for detailed info on each dataset. We provide some information on the attributes in this package; see the vignette for attributes (https://docs.ropensci.org/rnoaa/articles/ncdc_attributes.html) to find out more
 
 
 ## Contributors
 
-* [Scott Chamberlain](https://github.com/sckott)
-* [Brooke Anderson](https://github.com/geanders)
-* [Maëlle Salmon](https://github.com/maelle)
-* [Adam Erickson](https://github.com/adam-erickson)
-* [Nicholas Potter](https://github.com/potterzot)
-* [Joseph Stachelek](https://github.com/jsta)
+* Scott Chamberlain (https://github.com/sckott)
+* Brooke Anderson (https://github.com/geanders)
+* Maëlle Salmon (https://github.com/maelle)
+* Adam Erickson (https://github.com/adam-erickson)
+* Nicholas Potter (https://github.com/potterzot)
+* Joseph Stachelek (https://github.com/jsta)
 
 ## Meta
 
-* Please [report any issues or bugs](https://github.com/ropensci/rnoaa/issues).
+* Please report any issues or bugs: https://github.com/ropensci/rnoaa/issues
 * License: MIT
 * Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
-* Please note that this package is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
+* Please note that this package is released with a Contributor Code of Conduct (https://ropensci.org/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
 
 [![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

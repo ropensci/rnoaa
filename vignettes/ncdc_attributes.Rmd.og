@@ -120,7 +120,7 @@ local time at the station of record.
 
 ### <a href="#gsom" name="gsom"/>#</a> Dataset: GSOM
 
-__More info:__ <https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/gsom-gsoy.pdf>
+__More info:__ https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/gsom-gsoy.pdf
 
 Observations are synonymous with elements or values, and defined in Table A below. 9999 indicates missing data or data that has not been received.
 
@@ -138,7 +138,7 @@ Defined as the maximum number of consecutive days in the month that an  observat
 
 ### <a href="#gsoy" name="gsoy"/>#</a> Dataset: GSOY
 
-__More info:__ <https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/gsom-gsoy.pdf>
+__More info:__ https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/gsom-gsoy.pdf
 
 #### fl_m (Measurement flag)
 
@@ -195,7 +195,7 @@ in computing the data value.
 
 ### <a href="#normalann" name="normalann"/>#</a> Dataset: NORMAL_ANN
 
-__More info:__ [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_ANN_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_ANN_documentation.pdf)
+__More info:__ https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_ANN_documentation.pdf
 
 #### Description
 The 1981-2010 Normals comprise all climate normals using the thirty year period of temperature,
@@ -237,7 +237,7 @@ probabilities of occurrence. Further, Q flags are not applicable for standard de
 
 ### <a href="#normaldly" name="normaldly"/>#</a> Dataset: NORMAL_DLY
 
-__More info:__ [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_DLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_DLY_documentation.pdf)
+__More info:__ https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_DLY_documentation.pdf
 
 #### Description
 The 1981-2010 Normals comprise all climate normals using the thirty year period of temperature,
@@ -254,7 +254,7 @@ Same as NORMAL_ANN, see the description above at [Completeness flag](#completene
 
 ### <a href="#normalhly" name="normalhly"/>#</a> Dataset: NORMAL_HLY
 
-__More info:__ [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_HLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_HLY_documentation.pdf)
+__More info:__ https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_HLY_documentation.pdf
 
 #### Description
 The 1981-2010 Normals comprise all climate normals using the thirty year period of temperature,
@@ -291,7 +291,7 @@ Same as NORMAL_ANN, see the description above at [Completeness flag](#completene
 
 ### <a href="#normalmly" name="normalmly"/>#</a> Dataset: NORMAL_MLY
 
-__More info:__ [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_MLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_MLY_documentation.pdf)
+__More info:__ https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/NORMAL_MLY_documentation.pdf
 
 #### Description
 
@@ -307,7 +307,7 @@ Same as NORMAL_ANN, see the description above at [Completeness flag](#completene
 
 ### <a href="#preciphly" name="preciphly"/>#</a> Dataset: PRECIP_HLY
 
-__More info:__ [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf)
+__More info:__ https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_HLY_documentation.pdf
 
 #### Description
 
@@ -392,7 +392,7 @@ used since 1996.
 
 ### <a href="#precip15" name="precip15"/>#</a> Dataset: PRECIP_15
 
-__More info:__ [http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_15_documentation.pdf](http://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_15_documentation.pdf)
+__More info:__ https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/PRECIP_15_documentation.pdf
 
 #### Description
 

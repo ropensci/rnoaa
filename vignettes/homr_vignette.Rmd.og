@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 `HOMR` (Historical Observing Metadata Repository) provides climate station metadata. It's a NOAA service.
 
-Find out more about HOMR at [http://www.ncdc.noaa.gov/homr/](http://www.ncdc.noaa.gov/homr/) and the HOMR API at [http://www.ncdc.noaa.gov/homr/api](http://www.ncdc.noaa.gov/homr/api).
+Find out more about HOMR at http://www.ncdc.noaa.gov/homr/ and the HOMR API at http://www.ncdc.noaa.gov/homr/api
 
 ## Load rnoaa
 

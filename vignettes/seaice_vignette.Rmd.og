@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Get sea ice data at <ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles>
+Get sea ice data at ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/shapefiles
 
 ********************
 
