@@ -58,7 +58,8 @@ arc2 <- function(date, box = NULL, ...) {
 }
 
 filter_split <- function(x, box) {
-  df <- dplyr::filter(x, dplyr::between(lon, 9, 10), dplyr::between(lat, 4, 5))
+  df <- dplyr::filter(x, dplyr::between(lon, box[1], box[3]),
+    dplyr::between(lat, box[2], box[4]))
   split(df, df$date)
 }
 

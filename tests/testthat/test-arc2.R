@@ -38,7 +38,6 @@ test_that("arc2 - bounding box works", {
   skip_on_cran()
   skip_on_ci()
   skip_if_government_down()
-  skip_if_not_installed("sf")
 
   vcr::use_cassette("arc2_bounding_box", {
     box <- c(xmin = 9, ymin = 4, xmax = 10, ymax = 5)
