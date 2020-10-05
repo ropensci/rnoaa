@@ -11,6 +11,7 @@
 \alias{ersst_cache}
 \alias{torn_cache}
 \alias{ghcnd_cache}
+\alias{stormevents_cache}
 \title{rnoaa caching}
 \description{
 Manage data caches
@@ -57,6 +58,7 @@ Assuming x is a \code{HoardClient} class object, e.g., \code{lcd_cache}
 \item \code{ersst()}: \code{ersst_cache}
 \item \code{tornadoes()}: \code{torn_cache}
 \item \code{ghcnd()}/\code{ghcnd_search()}: \code{ghcnd_cache}
+\item \code{se_data()}/\code{se_files()}: \code{stormevents_cache}
 }
 }
 

@@ -41,6 +41,7 @@
 #' - `ersst()`: `ersst_cache`
 #' - `tornadoes()`: `torn_cache`
 #' - `ghcnd()`/`ghcnd_search()`: `ghcnd_cache`
+#' - `se_data()`/`se_files()`: `stormevents_cache`
 #' 
 NULL
 
@@ -91,3 +92,9 @@ NULL
 #' @usage NULL
 #' @export
 "ghcnd_cache"
+
+#' @rdname rnoaa_caching
+#' @format NULL
+#' @usage NULL
+#' @export
+"stormevents_cache"
