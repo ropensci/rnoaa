@@ -476,7 +476,10 @@
   "applicationCategory": "Climate",
   "isPartOf": "https://ropensci.org",
   "keywords": ["earth", "science", "climate", "precipitation", "temperature", "storm", "buoy", "NCDC", "NOAA", "tornadoe", "seaice", "ISD", "noaa", "rstats", "noaa-data", "r", "r-package"],
-  "relatedLink": ["https://docs.ropensci.org/rnoaa", "https://docs.ropensci.org/rnoaa/"],
+  "relatedLink": [
+    "https://docs.ropensci.org/rnoaa",
+    "https://docs.ropensci.org/rnoaa/"
+  ],
   "copyrightHolder": {},
   "funder": [
     {
