@@ -15,7 +15,7 @@ Checked on the 2 reverse dependencies - no problems were found
 
 -----
 
-This version fixes a broken test and removes deprecated parameters from a set of functions.
+This version makes four functions defunct and makes some minor improvements.
 
 Thanks!
 Scott Chamberlain

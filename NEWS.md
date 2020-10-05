@@ -1,3 +1,21 @@
+rnoaa 1.2.0
+===========
+
+### DEFUNCT
+
+* The following IBTrACS storm functions are now defunct because they are too cumbersome to maintain: `storm_data()`, `storm_meta()`, `storm_shp()`, and `storm_shp_read()`. associated package datasets `storm_columns` and `storm_names` removed  (#306)
+
+### MINOR IMPROVEMENTS
+
+* vignettes are now all pre-built, and all URLs are now unlinked (#367)
+* `lcd()` returns a tibble now instead of a tibble with S3 class `lcd` attached (#369)
+* created manual file entry for `stormevents_cache`
+* drop `sf` from Suggests, only used in an example
+
+### BUG FIXES
+
+* `arc2()` fix: when using `bbox` parameter, it would not have worked as intended, fixed now (#372)
+
 rnoaa 1.1.0
 ===========
 
