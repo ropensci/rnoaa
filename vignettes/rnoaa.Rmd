@@ -10,7 +10,7 @@ vignette: >
 ---
 
 
-
+For additional vignettes see https://docs.ropensci.org/rnoaa/
 
 ## Installation
 
@@ -392,3 +392,7 @@ coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
 #> 1 2015-09-27 174.430 0,0
 #> 2 2015-09-28 174.422 0,0
 ```
+
+## Additional vignettes
+
+For additional vignettes see https://docs.ropensci.org/rnoaa/
