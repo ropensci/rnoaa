@@ -1,7 +1,7 @@
 ---
 title: "SWDI vignette"
 author: "Scott Chamberlain"
-date: "2020-07-27"
+date: "2020-10-06"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{SWDI vignette}
@@ -25,7 +25,7 @@ Data available in SWDI are:
 * Preliminary Local Storm Reports from the NOAA National Weather Service
 * Lightning Strikes from Vaisala NLDN
 
-Find out more about SWDI at http://www.ncdc.noaa.gov/swdi/#Intro
+Find out more about SWDI at https://www.ncdc.noaa.gov/ncei-severe-weather-data-inventory
 
 
 ## Load rnoaa
@@ -45,7 +45,7 @@ swdi(dataset='nx3tvs', startdate='20060505', enddate='20060506')
 #> [1] 25
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.009
+#> [1] 0.015
 #> 
 #> 
 #> $data
@@ -119,7 +119,7 @@ list(out$meta, head(out$data), head(out$shape))
 #> [1] 25
 #> 
 #> [[1]]$totalTimeInSeconds
-#> [1] 0.01
+#> [1] 0.009
 #> 
 #> 
 #> [[2]]
@@ -197,7 +197,7 @@ swdi(dataset='nx3tvs', startdate='20060506', enddate='20060507', tile=c(-102.12,
 #> [1] 5
 #> 
 #> $meta$totalTimeInSeconds
-#> [1] 0.001
+#> [1] 0
 #> 
 #> 
 #> $data

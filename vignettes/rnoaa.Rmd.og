@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 )
 ```
 
+For additional vignettes see https://docs.ropensci.org/rnoaa/
 
 ## Installation
 
@@ -202,3 +203,7 @@ Get daily mean water level data at Fairport, OH (9063053)
 coops_search(station_name = 9063053, begin_date = 20150927, end_date = 20150928,
              product = "daily_mean", datum = "stnd", time_zone = "lst")
 ```
+
+## Additional vignettes
+
+For additional vignettes see https://docs.ropensci.org/rnoaa/

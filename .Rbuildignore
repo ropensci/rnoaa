@@ -31,3 +31,11 @@ vignettes/storms_vignette_files/
 vignettes/cache/
 tests/fixtures/homr.yml
 tests/fixtures/buoy_buoyid_case.yml
+buoy_vignette.*
+homr_vignette.*
+ncdc_attributes.*
+ncdc_vignette.*
+ncdc_workflow.*
+rnoaa_ropenaq.*
+seaice_vignette.*
+swdi_vignette.*
