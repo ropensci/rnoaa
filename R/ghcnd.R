@@ -100,21 +100,29 @@
 #' # ghcnd(stations$id[58], verbose = TRUE)
 #' }
 ghcnd <- function(stationid, refresh = FALSE, ...) {
-  csvpath <- ghcnd_local(stationid)
-  if (!is_ghcnd(x = csvpath) || refresh) {
-    res <- ghcnd_GET(stationid, ...)
-  } else {
-    cache_mssg(csvpath)
-    res <- read.csv(csvpath, stringsAsFactors = FALSE,
-                    colClasses = ghcnd_col_classes)
-  }
-  fi <- file.info(csvpath)
-  res <- remove_na_row(res) # remove trailing row of NA's
-  res <- tibble::as_tibble(res)
-  attr(res, 'source') <- csvpath
-  attr(res, 'file_modified') <- fi[['mtime']]
-  return(res)
+  out <- lapply(stationid, function(stationid) {
+    csvpath <- ghcnd_local(stationid)
+    if (!is_ghcnd(x = csvpath) || refresh) {
+      res <- ghcnd_GET(stationid, ...)
+    } else {
+      cache_mssg(csvpath)
+      res <- read.csv(csvpath, stringsAsFactors = FALSE,
+                      colClasses = ghcnd_col_classes)
+    }
+    fi <- file.info(csvpath)
+    res <- remove_na_row(res) # remove trailing row of NA's
+    res <- tibble::as_tibble(res)
+    attr(res, 'source') <- csvpath
+    attr(res, 'file_modified') <- fi[['mtime']]
+    return(res)
+  })
+  
+  res <- tibble::as_tibble(data.table::rbindlist(out))
+  attr(res, 'source') <- unlist(lapply(out, function(x) attr(x, "source")))
+  attr(res, 'file_modified') <- unlist(lapply(out, function(x) attr(x, "file_modified")))
+  res
 }
+
 
 #' @export
 #' @rdname ghcnd
