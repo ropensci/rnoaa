@@ -37,12 +37,15 @@ test_that("search for data", {
   skip_on_cran()
   skip_on_ci()
   skip_if_government_down()
-
+  
+  stations <- sort(c("ACW00011604", "ACW00011647", "AE000041196", "AGE00147704"))
+  
   search_a <- ghcnd_search("AGE00147704", var = "PRCP")
   search_b <- ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01")
   search_c <- ghcnd_search("AGE00147704", var = "PRCP", date_min = "1920-01-01", date_max = "1925-01-01")
   search_d <- ghcnd_search("AGE00147704", var = c("PRCP","TMIN"), date_min = "1920-01-01")
-
+  search_vector <- ghcnd_search(stations, var = "PRCP")
+  
   expect_is(search_a, "list")
   expect_is(search_a$prcp, "tbl_df")
   expect_is(search_b$prcp, "data.frame")
@@ -55,7 +58,12 @@ test_that("search for data", {
   expect_named(search_d, c("prcp", "tmin"))
 
   expect_lt(NROW(search_b$prcp), NROW(search_a$prcp))
+  
+  expect_equal(sort(unique(search_vector$prcp$id)), stations)
+  expect_equal(search_a$prcp, search_vector$prcp[search_vector$prcp$id == "AGE00147704", ])
 })
+
+
 
 test_that("get data", {
   skip_on_cran()
@@ -66,6 +74,7 @@ test_that("get data", {
   bb <- ghcnd(stationid = "AGE00135039")
   cc <- ghcnd(stationid = "ASN00008264")
 
+  
   expect_is(aa, "tbl_df")
   expect_is(bb, "tbl_df")
   expect_is(cc, "tbl_df")
@@ -88,6 +97,32 @@ test_that("get data", {
   expect_lt(NROW(cc), NROW(bb))
 })
 
+
+
+test_that("ghnc accepts vector input", {
+  skip_on_cran()
+  skip_on_ci()
+  skip_if_government_down()
+  
+  stations <- c("ACW00011604", "ACW00011647", "AE000041196")
+  data <- ghcnd(stations)
+  
+  expect_is(data, "tbl_df")
+  expect_equal(unique(data$id), stations)
+  
+})
+
+test_that("meteo_tidy_ghcnd accepts vector input", {
+  stations <- c("ACW00011604", "ACW00011647", "AE000041196")
+  data <- meteo_tidy_ghcnd(stations)
+  
+  expect_is(data, "tbl_df")
+  expect_is(data, "data.frame")
+  expect_equal(unique(data$id), stations)
+})
+          
+
+
 test_that("alternative base urls", {
   expect_equal(Sys.getenv("RNOAA_GHCND_BASE_URL"), "")
 
@@ -96,3 +131,6 @@ test_that("alternative base urls", {
 
   Sys.unsetenv("RNOAA_GHCND_BASE_URL")
 })
+
+
+
