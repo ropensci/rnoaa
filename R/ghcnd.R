@@ -100,10 +100,10 @@
 #' # ghcnd(stations$id[58], verbose = TRUE)
 #' }
 ghcnd <- function(stationid, refresh = FALSE, ...) {
-  out <- lapply(stationid, function(stationid) {
-    csvpath <- ghcnd_local(stationid)
+  out <- lapply(stationid, function(this_station) {
+    csvpath <- ghcnd_local(this_station)
     if (!is_ghcnd(x = csvpath) || refresh) {
-      res <- ghcnd_GET(stationid, ...)
+      res <- ghcnd_GET(this_station, ...)
     } else {
       cache_mssg(csvpath)
       res <- read.csv(csvpath, stringsAsFactors = FALSE,
