@@ -2,7 +2,7 @@
 title: "ropenaq and rnoaa"
 subtitle: "Complementing air quality data with weather data using rnoaa"
 author: "Maëlle Salmon"
-date: "2020-07-27"
+date: "2020-10-19"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ropenaq and rnoaa}
@@ -37,6 +37,20 @@ We filter negative values.
 load("data/measurementsIndianapolis.RData")
 library("dplyr")
 measurementsIndianapolis %>% head() %>% knitr::kable()
+```
+
+
+
+|location             |parameter | value|unit  |country |city         | latitude| longitude|date.utc             |cityURL      |locationURL          |dateUTC             |dateLocal  |
+|:--------------------|:---------|-----:|:-----|:-------|:------------|--------:|---------:|:--------------------|:------------|:--------------------|:-------------------|:----------|
+|Indpls-W.18th St     |pm25      |  11.9|µg/m³ |US      |Indianapolis | 39.78890| -86.21470|2020-10-19T00:00:00Z |Indianapolis |Indpls-W.18th+St     |2020-10-19 00:00:00 |2020-10-18 |
+|Indpls-Washington Pa |pm25      |  10.9|µg/m³ |US      |Indianapolis | 39.81080| -86.11470|2020-10-19T00:00:00Z |Indianapolis |Indpls-Washington+Pa |2020-10-19 00:00:00 |2020-10-18 |
+|Indpls - I-70 E      |pm25      |  12.5|µg/m³ |US      |Indianapolis | 39.78793| -86.13088|2020-10-19T00:00:00Z |Indianapolis |Indpls+-+I-70+E      |2020-10-19 00:00:00 |2020-10-18 |
+|Indpls-Washington Pa |pm25      |  11.1|µg/m³ |US      |Indianapolis | 39.81080| -86.11470|2020-10-18T23:00:00Z |Indianapolis |Indpls-Washington+Pa |2020-10-18 23:00:00 |2020-10-18 |
+|Indpls-W.18th St     |pm25      |  13.8|µg/m³ |US      |Indianapolis | 39.78890| -86.21470|2020-10-18T23:00:00Z |Indianapolis |Indpls-W.18th+St     |2020-10-18 23:00:00 |2020-10-18 |
+|Indpls - I-70 E      |pm25      |  12.7|µg/m³ |US      |Indianapolis | 39.78793| -86.13088|2020-10-18T23:00:00Z |Indianapolis |Indpls+-+I-70+E      |2020-10-18 23:00:00 |2020-10-18 |
+
+```r
 measurementsIndianapolis <- filter(measurementsIndianapolis, value > 0)
 ```
 
@@ -54,9 +68,21 @@ measurementsIndianapolis <- measurementsIndianapolis %>%
             longitude = longitude[1],
             latitude = latitude[1]) %>%
   ungroup()
+#> Error: Must group by variables found in `.data`.
+#> * Column `day` is not found.
 measurementsIndianapolis %>% head() %>% knitr::kable()
-
 ```
+
+
+
+|location             |parameter | value|unit  |country |city         | latitude| longitude|date.utc             |cityURL      |locationURL          |dateUTC             |dateLocal  |
+|:--------------------|:---------|-----:|:-----|:-------|:------------|--------:|---------:|:--------------------|:------------|:--------------------|:-------------------|:----------|
+|Indpls-W.18th St     |pm25      |  11.9|µg/m³ |US      |Indianapolis | 39.78890| -86.21470|2020-10-19T00:00:00Z |Indianapolis |Indpls-W.18th+St     |2020-10-19 00:00:00 |2020-10-18 |
+|Indpls-Washington Pa |pm25      |  10.9|µg/m³ |US      |Indianapolis | 39.81080| -86.11470|2020-10-19T00:00:00Z |Indianapolis |Indpls-Washington+Pa |2020-10-19 00:00:00 |2020-10-18 |
+|Indpls - I-70 E      |pm25      |  12.5|µg/m³ |US      |Indianapolis | 39.78793| -86.13088|2020-10-19T00:00:00Z |Indianapolis |Indpls+-+I-70+E      |2020-10-19 00:00:00 |2020-10-18 |
+|Indpls-Washington Pa |pm25      |  11.1|µg/m³ |US      |Indianapolis | 39.81080| -86.11470|2020-10-18T23:00:00Z |Indianapolis |Indpls-Washington+Pa |2020-10-18 23:00:00 |2020-10-18 |
+|Indpls-W.18th St     |pm25      |  13.8|µg/m³ |US      |Indianapolis | 39.78890| -86.21470|2020-10-18T23:00:00Z |Indianapolis |Indpls-W.18th+St     |2020-10-18 23:00:00 |2020-10-18 |
+|Indpls - I-70 E      |pm25      |  12.7|µg/m³ |US      |Indianapolis | 39.78793| -86.13088|2020-10-18T23:00:00Z |Indianapolis |Indpls+-+I-70+E      |2020-10-18 23:00:00 |2020-10-18 |
 
 Air quality and weather are correlated, so one could be interested in getting a time series of say temperature for the same location. The OpenAQ platform itself does not provide weather data but nearly all stations have geographical coordinates. Our goal here will be to use rnoaa to complement this table with precipitation and temperature.
 
@@ -69,6 +95,9 @@ Here we query stations with a less than 15km distance from the air quality stati
 
 ```r
 library("rnoaa")
+#> Registered S3 method overwritten by 'hoardr':
+#>   method           from
+#>   print.cache_info httr
 station_data <- ghcnd_stations()
 lat_lon_df <- select(measurementsIndianapolis,
                      location,
@@ -83,10 +112,23 @@ stationsIndianapolis <- meteo_nearby_stations(lat_lon_df = as.data.frame(lat_lon
                                        radius = 5,
                                        year_min = as.character(format(Sys.Date(), "%Y")),
                                        var = c("TAVG", "PRCP"))
+#> Warning: `filter_()` is deprecated as of dplyr 0.7.0.
+#> Please use `filter()` instead.
+#> See vignette('programming') for more help
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_warnings()` to see where this warning was generated.
+#> Warning: `select_()` is deprecated as of dplyr 0.7.0.
+#> Please use `select()` instead.
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_warnings()` to see where this warning was generated.
+#> Warning: `distinct_()` is deprecated as of dplyr 0.7.0.
+#> Please use `distinct()` instead.
+#> See vignette('programming') for more help
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_warnings()` to see where this warning was generated.
 stationsIndianapolis <- unique(bind_rows(stationsIndianapolis) %>% select(- distance))
 
 save(stationsIndianapolis, file = "data/stationsIndianapolis.RData")
-
 ```
 
 
@@ -95,6 +137,14 @@ load("data/stationsIndianapolis.RData")
 stationsIndianapolis %>% knitr::kable()
 ```
 
+
+
+|id          |name                 | latitude| longitude|
+|:-----------|:--------------------|--------:|---------:|
+|US1INMR0134 |INDIANAPOLIS 1.3 SSE |  39.7574|  -86.1404|
+|US1INMR0122 |INDIANAPOLIS 3.4 WSW |  39.7565|  -86.2044|
+|US1INMR0155 |INDIANAPOLIS 5.1 ENE |  39.8130|  -86.0620|
+
 Now let us plot the AQ and weather stations on a quick and dirty map with no legend, red for AQ stations, blue for weather stations.
 
 > Not shown
@@ -102,12 +152,15 @@ Now let us plot the AQ and weather stations on a quick and dirty map with no leg
 
 ```r
 library("ggmap")
+#> Error in library("ggmap"): there is no package called 'ggmap'
 map <- get_map(location = "Indianapolis", zoom = 11)
+#> Error in get_map(location = "Indianapolis", zoom = 11): impossible de trouver la fonction "get_map"
 ggmap(map) +
   geom_point(aes(x = longitude, y = latitude),
              data = stationsIndianapolis, col = "blue", size = 4)+
   geom_point(aes(x = longitude, y = latitude),
              data = measurementsIndianapolis, col = "red", size = 4)
+#> Error in ggmap(map): impossible de trouver la fonction "ggmap"
 ```
 
 # Query weather data for these stations
@@ -122,8 +175,23 @@ all_monitors_clean <- meteo_pull_monitors(monitors,
     date_min = as.character(Sys.Date() - 30),
     date_max = as.character(Sys.Date())) %>%
   dplyr::rename(day = date, location = id)
+#> using cached file: /home/maelle/.cache/R/noaa_ghcnd/US1INMR0134.dly
+#> date created (size, mb): 2020-10-12 11:35:40 (0.008)
+#> file min/max dates: Inf / -Inf
+#> using cached file: /home/maelle/.cache/R/noaa_ghcnd/US1INMR0122.dly
+#> date created (size, mb): 2020-10-12 11:37:24 (0.008)
+#> file min/max dates: Inf / -Inf
+#> file min/max dates: 2018-07-01 / 2020-04-30
+#> Warning in meteo_pull_monitors(monitors, date_min = as.character(Sys.Date() - : The following stations could not be pulled from the GHCN ftp:
+#>  US1INMR0134, US1INMR0122
+#> Any other monitors were successfully pulled from GHCN.
 all_monitors_clean %>% head() %>% knitr::kable()
 ```
+
+
+
+|location |day |
+|:--------|:---|
 
 Here we notice some values are not available. Therefore, we might need to go back to weather stations searching with, for instance, a larger radius. In this case let's say we're ok with the result of the search.
 
@@ -136,6 +204,17 @@ Therefore, in this case we will bind the rows of the air quality table with the 
 measurementsIndianapolis <- bind_rows(measurementsIndianapolis, all_monitors_clean)
 measurementsIndianapolis %>% head() %>% knitr::kable()
 ```
+
+
+
+|location             |parameter | value|unit  |country |city         | latitude| longitude|date.utc             |cityURL      |locationURL          |dateUTC             |dateLocal  |day |
+|:--------------------|:---------|-----:|:-----|:-------|:------------|--------:|---------:|:--------------------|:------------|:--------------------|:-------------------|:----------|:---|
+|Indpls-W.18th St     |pm25      |  11.9|µg/m³ |US      |Indianapolis | 39.78890| -86.21470|2020-10-19T00:00:00Z |Indianapolis |Indpls-W.18th+St     |2020-10-19 00:00:00 |2020-10-18 |NA  |
+|Indpls-Washington Pa |pm25      |  10.9|µg/m³ |US      |Indianapolis | 39.81080| -86.11470|2020-10-19T00:00:00Z |Indianapolis |Indpls-Washington+Pa |2020-10-19 00:00:00 |2020-10-18 |NA  |
+|Indpls - I-70 E      |pm25      |  12.5|µg/m³ |US      |Indianapolis | 39.78793| -86.13088|2020-10-19T00:00:00Z |Indianapolis |Indpls+-+I-70+E      |2020-10-19 00:00:00 |2020-10-18 |NA  |
+|Indpls-Washington Pa |pm25      |  11.1|µg/m³ |US      |Indianapolis | 39.81080| -86.11470|2020-10-18T23:00:00Z |Indianapolis |Indpls-Washington+Pa |2020-10-18 23:00:00 |2020-10-18 |NA  |
+|Indpls-W.18th St     |pm25      |  13.8|µg/m³ |US      |Indianapolis | 39.78890| -86.21470|2020-10-18T23:00:00Z |Indianapolis |Indpls-W.18th+St     |2020-10-18 23:00:00 |2020-10-18 |NA  |
+|Indpls - I-70 E      |pm25      |  12.7|µg/m³ |US      |Indianapolis | 39.78793| -86.13088|2020-10-18T23:00:00Z |Indianapolis |Indpls+-+I-70+E      |2020-10-18 23:00:00 |2020-10-18 |NA  |
 
 
  Now some locations are air quality locations and have only missing values in the weather columns, and some locations are weather locations and have only missing values in the air quality columns.
@@ -155,4 +234,7 @@ library("ggplot2")
 ggplot(data_plot) +
   geom_line(aes(x = day, y = value, col = location)) +
   facet_grid(parameter ~ ., scales = "free_y")
+#> Error in FUN(X[[i]], ...): objet 'day' introuvable
 ```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
