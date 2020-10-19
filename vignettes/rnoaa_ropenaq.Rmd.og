@@ -103,7 +103,13 @@ Now let us plot the AQ and weather stations on a quick and dirty map with no leg
 
 ```{r, message = FALSE, warning = FALSE, fig.width = 10, fig.height = 10, eval=TRUE}
 library("ggmap")
-map <- get_map(location = "Indianapolis", zoom = 11)
+map <- get_map(location = c(
+    min(stationsIndianapolis$latitude) - 0.01,
+    min(stationsIndianapolis$longitude) - 0.01,
+    max(stationsIndianapolis$latitude) + 0.01,
+    max(stationsIndianapolis$longitude + 0.01)
+    ),
+  source = "stamen")
 ggmap(map) +
   geom_point(aes(x = longitude, y = latitude),
              data = stationsIndianapolis, col = "blue", size = 4)+
