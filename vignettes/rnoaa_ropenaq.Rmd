@@ -95,10 +95,11 @@ Here we query stations with a less than 15km distance from the air quality stati
 
 ```r
 library("rnoaa")
-#> Registered S3 method overwritten by 'hoardr':
-#>   method           from
-#>   print.cache_info httr
 station_data <- ghcnd_stations()
+#> using cached file: /home/maelle/.cache/R/noaa_ghcnd/ghcnd-stations.rds
+#> date created (size, mb): 2020-10-19 06:50:53 (2.084)
+#> using cached file: /home/maelle/.cache/R/noaa_ghcnd/ghcnd-inventory.rds
+#> date created (size, mb): 2020-10-19 06:51:48 (2.572)
 lat_lon_df <- select(measurementsIndianapolis,
                      location,
                      latitude,
@@ -112,20 +113,6 @@ stationsIndianapolis <- meteo_nearby_stations(lat_lon_df = as.data.frame(lat_lon
                                        radius = 5,
                                        year_min = as.character(format(Sys.Date(), "%Y")),
                                        var = c("TAVG", "PRCP"))
-#> Warning: `filter_()` is deprecated as of dplyr 0.7.0.
-#> Please use `filter()` instead.
-#> See vignette('programming') for more help
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_warnings()` to see where this warning was generated.
-#> Warning: `select_()` is deprecated as of dplyr 0.7.0.
-#> Please use `select()` instead.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_warnings()` to see where this warning was generated.
-#> Warning: `distinct_()` is deprecated as of dplyr 0.7.0.
-#> Please use `distinct()` instead.
-#> See vignette('programming') for more help
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_warnings()` to see where this warning was generated.
 stationsIndianapolis <- unique(bind_rows(stationsIndianapolis) %>% select(- distance))
 
 save(stationsIndianapolis, file = "data/stationsIndianapolis.RData")
@@ -152,16 +139,22 @@ Now let us plot the AQ and weather stations on a quick and dirty map with no leg
 
 ```r
 library("ggmap")
-#> Error in library("ggmap"): there is no package called 'ggmap'
-map <- get_map(location = "Indianapolis", zoom = 11)
-#> Error in get_map(location = "Indianapolis", zoom = 11): impossible de trouver la fonction "get_map"
+map <- get_map(location = c(
+    min(stationsIndianapolis$latitude),
+    min(stationsIndianapolis$longitude),
+    max(stationsIndianapolis$latitude),
+    max(stationsIndianapolis$longitude)
+    ),
+  zoom = 11,
+  source = "stamen")
 ggmap(map) +
   geom_point(aes(x = longitude, y = latitude),
              data = stationsIndianapolis, col = "blue", size = 4)+
   geom_point(aes(x = longitude, y = latitude),
              data = measurementsIndianapolis, col = "red", size = 4)
-#> Error in ggmap(map): impossible de trouver la fonction "ggmap"
 ```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
 # Query weather data for these stations
 
@@ -181,9 +174,11 @@ all_monitors_clean <- meteo_pull_monitors(monitors,
 #> using cached file: /home/maelle/.cache/R/noaa_ghcnd/US1INMR0122.dly
 #> date created (size, mb): 2020-10-12 11:37:24 (0.008)
 #> file min/max dates: Inf / -Inf
+#> using cached file: /home/maelle/.cache/R/noaa_ghcnd/US1INMR0155.dly
+#> date created (size, mb): 2020-10-19 06:51:57 (0.055)
 #> file min/max dates: 2018-07-01 / 2020-04-30
 #> Warning in meteo_pull_monitors(monitors, date_min = as.character(Sys.Date() - : The following stations could not be pulled from the GHCN ftp:
-#>  US1INMR0134, US1INMR0122
+#>  US1INMR0134, US1INMR0122 
 #> Any other monitors were successfully pulled from GHCN.
 all_monitors_clean %>% head() %>% knitr::kable()
 ```
