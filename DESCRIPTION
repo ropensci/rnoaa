@@ -61,7 +61,6 @@ Suggests:
     rgdal,
     rmarkdown,
     purrr,
-    ggmap,
     ropenaq,
     vcr (>= 0.5.4),
     webmockr

@@ -62,27 +62,25 @@ We now transform these data into daily data.
 measurementsIndianapolis <- filter(measurementsIndianapolis, !is.na(latitude))
 # now transform to daily data
 measurementsIndianapolis <- measurementsIndianapolis %>%
-  #mutate(day = as.Date(dateLocal)) %>%
+  mutate(day = as.Date(dateLocal)) %>%
   group_by(location, day) %>%
   summarize(value = mean(value),
             longitude = longitude[1],
             latitude = latitude[1]) %>%
   ungroup()
-#> Error: Must group by variables found in `.data`.
-#> * Column `day` is not found.
 measurementsIndianapolis %>% head() %>% knitr::kable()
 ```
 
 
 
-|location             |parameter | value|unit  |country |city         | latitude| longitude|date.utc             |cityURL      |locationURL          |dateUTC             |dateLocal  |
-|:--------------------|:---------|-----:|:-----|:-------|:------------|--------:|---------:|:--------------------|:------------|:--------------------|:-------------------|:----------|
-|Indpls-W.18th St     |pm25      |  11.9|µg/m³ |US      |Indianapolis | 39.78890| -86.21470|2020-10-19T00:00:00Z |Indianapolis |Indpls-W.18th+St     |2020-10-19 00:00:00 |2020-10-18 |
-|Indpls-Washington Pa |pm25      |  10.9|µg/m³ |US      |Indianapolis | 39.81080| -86.11470|2020-10-19T00:00:00Z |Indianapolis |Indpls-Washington+Pa |2020-10-19 00:00:00 |2020-10-18 |
-|Indpls - I-70 E      |pm25      |  12.5|µg/m³ |US      |Indianapolis | 39.78793| -86.13088|2020-10-19T00:00:00Z |Indianapolis |Indpls+-+I-70+E      |2020-10-19 00:00:00 |2020-10-18 |
-|Indpls-Washington Pa |pm25      |  11.1|µg/m³ |US      |Indianapolis | 39.81080| -86.11470|2020-10-18T23:00:00Z |Indianapolis |Indpls-Washington+Pa |2020-10-18 23:00:00 |2020-10-18 |
-|Indpls-W.18th St     |pm25      |  13.8|µg/m³ |US      |Indianapolis | 39.78890| -86.21470|2020-10-18T23:00:00Z |Indianapolis |Indpls-W.18th+St     |2020-10-18 23:00:00 |2020-10-18 |
-|Indpls - I-70 E      |pm25      |  12.7|µg/m³ |US      |Indianapolis | 39.78793| -86.13088|2020-10-18T23:00:00Z |Indianapolis |Indpls+-+I-70+E      |2020-10-18 23:00:00 |2020-10-18 |
+|location        |day        |     value| longitude| latitude|
+|:---------------|:----------|---------:|---------:|--------:|
+|Indpls - I-70 E |2020-09-18 |  6.300000| -86.13088| 39.78793|
+|Indpls - I-70 E |2020-09-19 |  5.190476| -86.13088| 39.78793|
+|Indpls - I-70 E |2020-09-20 |  6.442857| -86.13088| 39.78793|
+|Indpls - I-70 E |2020-09-21 |  5.370000| -86.13088| 39.78793|
+|Indpls - I-70 E |2020-09-22 | 11.658824| -86.13088| 39.78793|
+|Indpls - I-70 E |2020-09-23 | 10.900000| -86.13088| 39.78793|
 
 Air quality and weather are correlated, so one could be interested in getting a time series of say temperature for the same location. The OpenAQ platform itself does not provide weather data but nearly all stations have geographical coordinates. Our goal here will be to use rnoaa to complement this table with precipitation and temperature.
 
@@ -132,30 +130,6 @@ stationsIndianapolis %>% knitr::kable()
 |US1INMR0122 |INDIANAPOLIS 3.4 WSW |  39.7565|  -86.2044|
 |US1INMR0155 |INDIANAPOLIS 5.1 ENE |  39.8130|  -86.0620|
 
-Now let us plot the AQ and weather stations on a quick and dirty map with no legend, red for AQ stations, blue for weather stations.
-
-> Not shown
-
-
-```r
-library("ggmap")
-map <- get_map(location = c(
-    min(stationsIndianapolis$latitude),
-    min(stationsIndianapolis$longitude),
-    max(stationsIndianapolis$latitude),
-    max(stationsIndianapolis$longitude)
-    ),
-  zoom = 11,
-  source = "stamen")
-ggmap(map) +
-  geom_point(aes(x = longitude, y = latitude),
-             data = stationsIndianapolis, col = "blue", size = 4)+
-  geom_point(aes(x = longitude, y = latitude),
-             data = measurementsIndianapolis, col = "red", size = 4)
-```
-
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
-
 # Query weather data for these stations
 
 For pulling weather data from these weather monitors, we shall use the `meteo_pull_monitors` function.
@@ -202,14 +176,14 @@ measurementsIndianapolis %>% head() %>% knitr::kable()
 
 
 
-|location             |parameter | value|unit  |country |city         | latitude| longitude|date.utc             |cityURL      |locationURL          |dateUTC             |dateLocal  |day |
-|:--------------------|:---------|-----:|:-----|:-------|:------------|--------:|---------:|:--------------------|:------------|:--------------------|:-------------------|:----------|:---|
-|Indpls-W.18th St     |pm25      |  11.9|µg/m³ |US      |Indianapolis | 39.78890| -86.21470|2020-10-19T00:00:00Z |Indianapolis |Indpls-W.18th+St     |2020-10-19 00:00:00 |2020-10-18 |NA  |
-|Indpls-Washington Pa |pm25      |  10.9|µg/m³ |US      |Indianapolis | 39.81080| -86.11470|2020-10-19T00:00:00Z |Indianapolis |Indpls-Washington+Pa |2020-10-19 00:00:00 |2020-10-18 |NA  |
-|Indpls - I-70 E      |pm25      |  12.5|µg/m³ |US      |Indianapolis | 39.78793| -86.13088|2020-10-19T00:00:00Z |Indianapolis |Indpls+-+I-70+E      |2020-10-19 00:00:00 |2020-10-18 |NA  |
-|Indpls-Washington Pa |pm25      |  11.1|µg/m³ |US      |Indianapolis | 39.81080| -86.11470|2020-10-18T23:00:00Z |Indianapolis |Indpls-Washington+Pa |2020-10-18 23:00:00 |2020-10-18 |NA  |
-|Indpls-W.18th St     |pm25      |  13.8|µg/m³ |US      |Indianapolis | 39.78890| -86.21470|2020-10-18T23:00:00Z |Indianapolis |Indpls-W.18th+St     |2020-10-18 23:00:00 |2020-10-18 |NA  |
-|Indpls - I-70 E      |pm25      |  12.7|µg/m³ |US      |Indianapolis | 39.78793| -86.13088|2020-10-18T23:00:00Z |Indianapolis |Indpls+-+I-70+E      |2020-10-18 23:00:00 |2020-10-18 |NA  |
+|location        |day        |     value| longitude| latitude|
+|:---------------|:----------|---------:|---------:|--------:|
+|Indpls - I-70 E |2020-09-18 |  6.300000| -86.13088| 39.78793|
+|Indpls - I-70 E |2020-09-19 |  5.190476| -86.13088| 39.78793|
+|Indpls - I-70 E |2020-09-20 |  6.442857| -86.13088| 39.78793|
+|Indpls - I-70 E |2020-09-21 |  5.370000| -86.13088| 39.78793|
+|Indpls - I-70 E |2020-09-22 | 11.658824| -86.13088| 39.78793|
+|Indpls - I-70 E |2020-09-23 | 10.900000| -86.13088| 39.78793|
 
 
  Now some locations are air quality locations and have only missing values in the weather columns, and some locations are weather locations and have only missing values in the air quality columns.
@@ -229,7 +203,6 @@ library("ggplot2")
 ggplot(data_plot) +
   geom_line(aes(x = day, y = value, col = location)) +
   facet_grid(parameter ~ ., scales = "free_y")
-#> Error in FUN(X[[i]], ...): objet 'day' introuvable
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)

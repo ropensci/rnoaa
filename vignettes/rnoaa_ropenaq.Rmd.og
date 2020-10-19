@@ -52,7 +52,7 @@ We now transform these data into daily data.
 measurementsIndianapolis <- filter(measurementsIndianapolis, !is.na(latitude))
 # now transform to daily data
 measurementsIndianapolis <- measurementsIndianapolis %>%
-  #mutate(day = as.Date(dateLocal)) %>%
+  mutate(day = as.Date(dateLocal)) %>%
   group_by(location, day) %>%
   summarize(value = mean(value),
             longitude = longitude[1],
@@ -95,26 +95,6 @@ save(stationsIndianapolis, file = "data/stationsIndianapolis.RData")
 ```{r eval = TRUE}
 load("data/stationsIndianapolis.RData")
 stationsIndianapolis %>% knitr::kable()
-```
-
-Now let us plot the AQ and weather stations on a quick and dirty map with no legend, red for AQ stations, blue for weather stations.
-
-> Not shown
-
-```{r, message = FALSE, warning = FALSE, fig.width = 10, fig.height = 10, eval=TRUE}
-library("ggmap")
-map <- get_map(location = c(
-    min(stationsIndianapolis$latitude) - 0.01,
-    min(stationsIndianapolis$longitude) - 0.01,
-    max(stationsIndianapolis$latitude) + 0.01,
-    max(stationsIndianapolis$longitude + 0.01)
-    ),
-  source = "stamen")
-ggmap(map) +
-  geom_point(aes(x = longitude, y = latitude),
-             data = stationsIndianapolis, col = "blue", size = 4)+
-  geom_point(aes(x = longitude, y = latitude),
-             data = measurementsIndianapolis, col = "red", size = 4)
 ```
 
 # Query weather data for these stations
