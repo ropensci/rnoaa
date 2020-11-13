@@ -6,7 +6,9 @@
 #' Required
 #' @param buoyid Buoy ID, can be numeric/integer/character. Required
 #' @param datatype (character) Data type, one of 'c', 'cc', 'p', 'o'. Optional
-#' @param year (integer) Year of data collection. Optional
+#' @param year (integer) Year of data collection. Optional. Note there is
+#' a special value `9999` that, if found, contains the most up to date
+#' data. 
 #' @param refresh (logical) Whether to use cached data (`FALSE`) or get
 #' new data (`FALSE`). Default: `FALSE`
 #' @param ... Curl options passed on to [crul::verb-GET]
@@ -55,6 +57,9 @@
 #' z <- leaflet::addTiles(z)
 #' leaflet::addCircles(z, ~lon, ~lat, opacity = 0.5)
 #' }
+#' 
+#' # year=9999 to get most current data - not always available
+#' buoy(dataset = "swden", buoyid = 46012, year = 9999)
 #'
 #' # Get available buoys
 #' buoys(dataset = 'cwind')

@@ -18,7 +18,9 @@ Required}
 
 \item{buoyid}{Buoy ID, can be numeric/integer/character. Required}
 
-\item{year}{(integer) Year of data collection. Optional}
+\item{year}{(integer) Year of data collection. Optional. Note there is
+a special value \code{9999} that, if found, contains the most up to date
+data.}
 
 \item{datatype}{(character) Data type, one of 'c', 'cc', 'p', 'o'. Optional}
 
@@ -78,6 +80,9 @@ z <- leaflet(data = na.omit(x))
 z <- leaflet::addTiles(z)
 leaflet::addCircles(z, ~lon, ~lat, opacity = 0.5)
 }
+
+# year=9999 to get most current data - not always available
+buoy(dataset = "swden", buoyid = 46012, year = 9999)
 
 # Get available buoys
 buoys(dataset = 'cwind')
