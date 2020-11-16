@@ -45,13 +45,11 @@ meteo_coverage <- function(meteo_df,
                             verbose=FALSE) {
 
   if (!is.null(obs_start_date)) {
-    dots <- list(~as.Date(date) >= obs_start_date)
-    meteo_df <- dplyr::filter_(meteo_df, .dots = dots)
+    meteo_df <- dplyr::filter(meteo_df, date >= obs_start_date)
   }
 
   if (!is.null(obs_end_date)) {
-    dots <- list(~as.Date(date) <= obs_end_date)
-    meteo_df <- dplyr::filter_(meteo_df, .dots = dots)
+    meteo_df <- dplyr::filter(meteo_df, date <= obs_end_date)
   }
 
   dplyr::group_by(meteo_df, id) %>%

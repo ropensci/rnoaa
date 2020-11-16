@@ -117,11 +117,14 @@ meteo_nearby_stations <- function(lat_lon_df, lat_colname = "latitude",
   if (is.null(year_max)) year_max <- max(station_data$last_year, na.rm = TRUE)
   if (length(var) == 1 && var == "all") var <- unique(station_data$element)
 
-  dots <- list(~last_year >= year_min & first_year <= year_max &
-                 element %in% toupper(var) & !is.na(element))
-  station_data <- dplyr::filter_(station_data, .dots = dots) %>%
-    dplyr::select_(~id, ~name, ~latitude, ~longitude) %>%
-    dplyr::distinct_()
+  station_data <- dplyr::filter(station_data,
+      last_year >= year_min & 
+      first_year <= year_max & 
+      element %in% toupper(var) & 
+      !is.na(element)
+    ) %>%
+    dplyr::select(id, name, latitude, longitude) %>%
+    dplyr::distinct()
 
   location_stations <- as.data.frame(lat_lon_df) %>%
     split(.[, "id"]) %>%
