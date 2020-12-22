@@ -1,12 +1,12 @@
 http_interactions:
 - request:
     method: get
-    uri: https://www1.ncdc.noaa.gov/pub/data/cmb/ersst/v4/netcdf/ersst.v4.201607.nc
+    uri: https://www1.ncdc.noaa.gov/pub/data/cmb/ersst/v5/netcdf/ersst.v5.201607.nc
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.74.0 r-curl/4.3 crul/1.0.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -16,13 +16,13 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Tue, 17 Mar 2020 00:06:48 GMT
+      date: Tue, 22 Dec 2020 17:23:43 GMT
       server: Apache
       strict-transport-security: max-age=31536000
-      last-modified: Tue, 03 Mar 2020 18:42:18 GMT
-      etag: '"1b643d52-20f58-59ff7a9cd1871"'
+      last-modified: Thu, 03 Dec 2020 18:12:16 GMT
+      etag: '"28206-5b5934cc13bac"'
       accept-ranges: bytes
-      content-length: '135000'
+      content-length: '164358'
       content-type: application/x-netcdf
       access-control-allow-origin: '*'
       connection: close
@@ -30,5 +30,5 @@ http_interactions:
       encoding: UTF-8
       file: yes
       string: ../files/20167.nc
-  recorded_at: 2020-03-17 00:06:49 GMT
-  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
+  recorded_at: 2020-12-22 17:23:44 GMT
+  recorded_with: vcr/0.6.0.93, webmockr/0.7.4

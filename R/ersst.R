@@ -7,14 +7,21 @@
 #' add a zero in front (e.g., 08). Required
 #' @param overwrite (logical) To overwrite the path to store files in or not,
 #' Default: `TRUE`
+#' @param version (character) ERSST version. one of "v5" (default) or "v4"
 #' @param ... Curl options passed on to [crul::verb-GET]
-#' Optional
-#'
-#' @return An `ncdf4` object for now, may change output later to
-#' perhaps a data.frame. See \pkg{ncdf4} for parsing the output.
+#' @return An `ncdf4` object. See \pkg{ncdf4} for parsing the output
 #' @references
-#' https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4
-#' @note See [ersst_cache] for managing cached files
+#' https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v5
+#' @details See [ersst_cache] for managing cached files
+#' 
+#' `ersst()` currently defaults to use ERSST v5 - you can set v4 or v5
+#' using the `version` parameter
+#' 
+#' If a request is unsuccesful, the file written to disk is deleted before
+#' the function exits.
+#' 
+#' If you use this data in your research please cite rnoaa
+#' (`citation("rnoaa")`), and cite NOAA ERSST (see citations at link above)
 #' @examples \dontrun{
 #' # October, 2015
 #' ersst(year = 2015, month = 10)
@@ -34,10 +41,12 @@
 #' ## get a variable
 #' ncdf4::ncvar_get(res, "ssta")
 #' }
-ersst <- function(year, month, overwrite = TRUE, ...) {
+ersst <- function(year, month, overwrite = TRUE, version = 'v5', ...) {
   check4pkg("ncdf4")
+  assert(version, "character")
+  stopifnot("version must be one of: v4, v5" = version %in% c("v4", "v5"))
   ff <- ersst_local(year, month)
-  dpath <- ersst_GET(make_ersst(year, month), path = ff, overwrite, ...)
+  dpath <- ersst_GET(make_ersst(year, month), ff, overwrite, version, ...)
   ncdf4::nc_open(dpath)
 }
 
@@ -65,11 +74,13 @@ check_month <- function(x) {
   if (nchar(x) == 1) paste0("0", x) else x
 }
 
-ersst_GET <- function(dat, path, overwrite, ...) {
+ersst_GET <- function(dat, path, overwrite, version, ...) {
   ersst_cache$mkdir()
   if (!file.exists(path)) {
-    cli <- crul::HttpClient$new(paste0(ersst_base(), dat), opts = list(...))
+    cli <- crul::HttpClient$new(paste0(ersst_base(version), dat),
+      opts = list(...))
     res <- cli$get(disk = path)
+    if (!res$success()) on.exit(unlink(path))
     res$raise_for_status()
     res$content
   } else {

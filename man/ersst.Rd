@@ -4,7 +4,7 @@
 \alias{ersst}
 \title{NOAA Extended Reconstructed Sea Surface Temperature (ERSST) data}
 \usage{
-ersst(year, month, overwrite = TRUE, ...)
+ersst(year, month, overwrite = TRUE, version = "v5", ...)
 }
 \arguments{
 \item{year}{(numeric) A year. Must be > 1853. The max value is whatever
@@ -16,18 +16,27 @@ add a zero in front (e.g., 08). Required}
 \item{overwrite}{(logical) To overwrite the path to store files in or not,
 Default: \code{TRUE}}
 
-\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET}
-Optional}
+\item{version}{(character) ERSST version. one of "v5" (default) or "v4"}
+
+\item{...}{Curl options passed on to \link[crul:verb-GET]{crul::verb-GET}}
 }
 \value{
-An \code{ncdf4} object for now, may change output later to
-perhaps a data.frame. See \pkg{ncdf4} for parsing the output.
+An \code{ncdf4} object. See \pkg{ncdf4} for parsing the output
 }
 \description{
 NOAA Extended Reconstructed Sea Surface Temperature (ERSST) data
 }
-\note{
+\details{
 See \link{ersst_cache} for managing cached files
+
+\code{ersst()} currently defaults to use ERSST v5 - you can set v4 or v5
+using the \code{version} parameter
+
+If a request is unsuccesful, the file written to disk is deleted before
+the function exits.
+
+If you use this data in your research please cite rnoaa
+(\code{citation("rnoaa")}), and cite NOAA ERSST (see citations at link above)
 }
 \examples{
 \dontrun{
@@ -51,5 +60,5 @@ ncdf4::ncvar_get(res, "ssta")
 }
 }
 \references{
-https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4
+https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v5
 }
