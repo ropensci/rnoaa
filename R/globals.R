@@ -21,7 +21,10 @@ if (getRversion() >= "2.15.1") {
       'distance',
       'total_obs',
       'start_date',
-      'end_date'
+      'end_date',
+      'last_year',
+      'first_year',
+      'name'
     )
   )
 }
