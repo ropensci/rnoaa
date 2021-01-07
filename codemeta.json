@@ -10,13 +10,13 @@
   "codeRepository": "https://github.com/ropensci/rnoaa",
   "issueTracker": "https://github.com/ropensci/rnoaa/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.2 Patched (2020-09-01 r79114)",
+  "runtimePlatform": "R version 4.0.3 Patched (2020-12-29 r79725)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -472,7 +472,7 @@
   "contIntegration": "https://codecov.io/github/ropensci/rnoaa?branch=master",
   "releaseNotes": "https://github.com/ropensci/rnoaa/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rnoaa/blob/master/README.md",
-  "fileSize": "0KB",
+  "fileSize": "18278.866KB",
   "applicationCategory": "Climate",
   "isPartOf": "https://ropensci.org",
   "keywords": ["earth", "science", "climate", "precipitation", "temperature", "storm", "buoy", "NCDC", "NOAA", "tornadoe", "seaice", "ISD", "noaa", "rstats", "noaa-data", "r", "r-package"],

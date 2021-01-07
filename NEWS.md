@@ -1,3 +1,21 @@
+rnoaa 1.3
+=========
+
+### NEW FEATURES
+
+* `ghcnd()` now accepts more than 1 station identifier (#373) PR from @eliocamp
+* `ersst()`: use new v5 version of their service - see `?ersst` docs for details (#381) thanks @vonStadarhraun for the tip
+
+### MINOR IMPROVEMENTS
+
+* update `buoy()` docs to state that a special value of `9999` passsed to the `year` parameter will give the most up to date data (aka current data) - and an example added using it (#377)
+* update to current dplyr functions from deprecated ones (#375)
+* update description of units TMAX and TMIN for dataset GHCND when using function `ncdc()` with `add_units = TRUE` (#378) (#379) PR from @amcdavid
+
+### BUG FIXES
+
+* changed `ghcnd()` handling of unknown/bad/invalid station identifiers: now returns an empty data.frame and gives back empty strings for the two attributes `source` and `file_modified`  (#374)
+
 rnoaa 1.2.0
 ===========
 
