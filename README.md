@@ -105,5 +105,3 @@ Each NOAA dataset has a different set of attributes that you can potentially get
 * License: MIT
 * Get citation information for `rnoaa` in R doing `citation(package = 'rnoaa')`
 * Please note that this package is released with a Contributor Code of Conduct (https://ropensci.org/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
-
-[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
