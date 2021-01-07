@@ -112,7 +112,7 @@ test_that("bad station ids", {
 })
 
 
-test_that("ghnc accepts vector input", {
+test_that("ghncd accepts vector input", {
   skip_on_cran()
   skip_on_ci()
   skip_if_government_down()
