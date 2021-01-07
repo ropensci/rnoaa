@@ -17,6 +17,7 @@ CONTRIBUTING.md
 cran-comments.md
 .Rhistory
 README.Rmd
+README.md
 ^CODE_OF_CONDUCT\.md$
 user_test_cases/
 ^cran-comments\.md$
@@ -25,17 +26,6 @@ user_test_cases/
 .github
 ^codemeta\.json$
 ^_pkgdown.yml$
-vignettes/buoy_vignette_cache/
-vignettes/storms_vignette_cache/
-vignettes/storms_vignette_files/
-vignettes/cache/
+vignettes/
 tests/fixtures/homr.yml
 tests/fixtures/buoy_buoyid_case.yml
-vignettes/buoy_vignette.*
-vignettes/homr_vignette.*
-vignettes/ncdc_attributes.*
-vignettes/ncdc_vignette.*
-vignettes/ncdc_workflow.*
-vignettes/rnoaa_ropenaq.*
-vignettes/seaice_vignette.*
-vignettes/swdi_vignette.*
