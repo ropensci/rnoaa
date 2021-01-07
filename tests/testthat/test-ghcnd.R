@@ -98,6 +98,19 @@ test_that("get data", {
 })
 
 
+test_that("bad station ids", {
+  skip_on_cran()
+  skip_on_ci()
+  skip_if_government_down()
+
+  aa <- ghcnd(stationid = c("badid", "anotherbadid"))
+
+  expect_is(aa, "tbl_df")
+  expect_equal(NROW(aa), 0)
+  expect_equal(attr(aa, "source"), c("", ""))
+  expect_equal(attr(aa, "file_modified"), c("", ""))
+})
+
 
 test_that("ghnc accepts vector input", {
   skip_on_cran()

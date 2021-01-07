@@ -54,6 +54,10 @@ You can access the last modified time for the cached file via
 
 Messages are printed to the console about file path and file last modified time
 which you can suppress with \code{suppressMessages()}
+
+For those station ids that are not found, we will delete the file locally
+so that a bad station id file is not cached. The returned data for a bad
+station id will be an empty data.frame and the attributes are empty strings.
 }
 \note{
 See \link{ghcnd_cache} for managing cached files

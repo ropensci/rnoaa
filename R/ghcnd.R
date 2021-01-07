@@ -53,6 +53,10 @@
 #'
 #' Messages are printed to the console about file path and file last modified time
 #' which you can suppress with \code{suppressMessages()}
+#' 
+#' For those station ids that are not found, we will delete the file locally
+#' so that a bad station id file is not cached. The returned data for a bad
+#' station id will be an empty data.frame and the attributes are empty strings.
 #'
 #' @author Scott Chamberlain \email{myrmecocystus@@gmail.com},
 #' Adam Erickson \email{adam.erickson@@ubc.ca}
@@ -110,10 +114,11 @@ ghcnd <- function(stationid, refresh = FALSE, ...) {
                       colClasses = ghcnd_col_classes)
     }
     fi <- file.info(csvpath)
-    res <- remove_na_row(res) # remove trailing row of NA's
+    if (!is.na(fi$size)) res <- remove_na_row(res)
     res <- tibble::as_tibble(res)
-    attr(res, 'source') <- csvpath
-    attr(res, 'file_modified') <- fi[['mtime']]
+    attr(res, 'source') <- if (!is.na(fi$size)) csvpath else ""
+    attr(res, 'file_modified') <- 
+      if (!is.na(fi$size)) as.character(fi[['mtime']]) else ""
     return(res)
   })
   
@@ -199,6 +204,7 @@ ghcnd_GET <- function(stationid, ...){
   fp <- ghcnd_local(stationid)
   cli <- crul::HttpClient$new(ghcnd_remote(stationid), opts = list(...))
   res <- suppressWarnings(cli$get())
+  if (!res$success()) return(data.frame())
   tt <- res$parse("UTF-8")
   vars <- c("id","year","month","element",
             do.call("c",
