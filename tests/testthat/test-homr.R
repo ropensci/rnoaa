@@ -6,7 +6,7 @@ test_that("homr", {
     # qid
     a <- homr(qid = 'COOP:046742')
     # headersonly
-    b <- homr(headersOnly=TRUE, qid='TRANS:')
+    # b <- homr(headersOnly=TRUE, qid='TRANS:')
     # qid with preceding colon
     d <- homr(qid = ':046742')
     # qidmod
@@ -27,7 +27,7 @@ test_that("homr", {
   expect_is(a$`20002078`$platform, "character")
   expect_equal(a$`20002078`$platform, "COOP")
 
-  expect_is(b, "homr")
+  # expect_is(b, "homr")
   expect_is(d, "homr")
   expect_is(e, "homr")
   expect_is(f, "homr")
@@ -38,7 +38,7 @@ test_that("homr", {
   expect_equal(length(a), 1)
   expect_equal(length(a$`20002078`), 11)
 
-  expect_gt(length(b), 10)
+  # expect_gt(length(b), 10)
 
   expect_equal(NROW(d$`20002078`$head), 1)
 
