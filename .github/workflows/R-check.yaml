@@ -83,6 +83,11 @@ jobs:
       - name: Check
         run: Rscript -e "rcmdcheck::rcmdcheck(args = c('--as-cran', '${{ matrix.config.args }}'), error_on = 'warning', check_dir = 'check')"
 
+      - name: Show testthat output
+        if: always()
+        run: find check -name 'testthat.Rout*' -exec cat '{}' \; || true
+        shell: bash
+
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@v2
@@ -91,7 +96,7 @@ jobs:
           path: check
 
       - name: Test coverage
-        if: matrix.config.os == 'ubuntu-latest' && matrix.config.r == 'release'
+        if: matrix.config.os == 'ubuntu-16.04' && matrix.config.r == 'release'
         run: |
           Rscript -e 'remotes::install_github("r-lib/covr@gh-actions")'
           Rscript -e 'covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")'
