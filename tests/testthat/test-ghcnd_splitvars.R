@@ -17,6 +17,8 @@ test_that("ghcnd_splitvars for data", {
 })
 
 test_that("ghcnd_splitvars fails well", {
+  skip_on_cran()
+  
   expect_error(ghcnd_splitvars("adfadfs"), "input must be a data.frame")
   expect_error(ghcnd_splitvars(5), "input must be a data.frame")
   expect_error(ghcnd_splitvars(list(4)), "input must be a data.frame")

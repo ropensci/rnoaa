@@ -1,6 +1,7 @@
 context("ghcnd")
 
 test_that("states metadata", {
+  skip_on_cran()
   vcr::use_cassette("ghcnd_states", {  
     states <- ghcnd_states()
 
@@ -13,6 +14,7 @@ test_that("states metadata", {
 })
 
 test_that("countries metadata", {
+  skip_on_cran()
   vcr::use_cassette("ghcnd_countries", {  
     countries <- ghcnd_countries()
 
@@ -25,6 +27,7 @@ test_that("countries metadata", {
 })
 
 test_that("version metadata", {
+  skip_on_cran()
   vcr::use_cassette("ghcnd_version", {  
     ver <- ghcnd_version()
 
@@ -126,6 +129,7 @@ test_that("ghncd accepts vector input", {
 })
 
 test_that("meteo_tidy_ghcnd accepts vector input", {
+  skip_on_cran()
   stations <- c("ACW00011604", "ACW00011647", "AE000041196")
   data <- meteo_tidy_ghcnd(stations)
   
@@ -137,6 +141,7 @@ test_that("meteo_tidy_ghcnd accepts vector input", {
 
 
 test_that("alternative base urls", {
+  skip_on_cran()
   expect_equal(Sys.getenv("RNOAA_GHCND_BASE_URL"), "")
 
   Sys.setenv(RNOAA_GHCND_BASE_URL = "https://google.com")
