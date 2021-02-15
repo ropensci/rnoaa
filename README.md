@@ -48,7 +48,6 @@ Documentation is at https://docs.ropensci.org/rnoaa/, and there are many vignett
 * Sea ice vignette
 * Severe Weather Data Inventory (SWDI) vignette
 * Historical Observing Metadata Repository (HOMR) vignette
-* Complementing air quality data (ropenaq (https://github.com/ropensci/ropenaq)) with weather data using rnoaa
 
 ## netcdf data
 
@@ -68,11 +67,11 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 |Dataset    |Description                 |Start Date |End Date   | Data Coverage|
 |:----------|:---------------------------|:----------|:----------|-------------:|
-|GHCND      |Daily Summaries             |1763-01-01 |2020-10-03 |          1.00|
-|GSOM       |Global Summary of the Month |1763-01-01 |2020-09-01 |          1.00|
-|GSOY       |Global Summary of the Year  |1763-01-01 |2020-01-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2020-10-02 |          0.95|
-|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2020-10-03 |          0.95|
+|GHCND      |Daily Summaries             |1763-01-01 |2021-02-13 |          1.00|
+|GSOM       |Global Summary of the Month |1763-01-01 |2021-02-01 |          1.00|
+|GSOY       |Global Summary of the Year  |1763-01-01 |2021-01-01 |          1.00|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2021-02-12 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2021-02-12 |          0.95|
 |NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
 |NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
 |NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
@@ -82,7 +81,7 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 
 ```
-#> table updated on 2020-10-05
+#> table updated on 2021-02-15
 ```
 
 **NOAA NCDC Attributes**

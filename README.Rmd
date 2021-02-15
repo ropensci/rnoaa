@@ -83,7 +83,6 @@ Documentation is at https://docs.ropensci.org/rnoaa/, and there are many vignett
 * Sea ice vignette
 * Severe Weather Data Inventory (SWDI) vignette
 * Historical Observing Metadata Repository (HOMR) vignette
-* Complementing air quality data (ropenaq (https://github.com/ropensci/ropenaq)) with weather data using rnoaa
 
 ## netcdf data
 

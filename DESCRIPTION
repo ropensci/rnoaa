@@ -62,7 +62,6 @@ Suggests:
     rmarkdown,
     purrr,
     ggmap,
-    ropenaq,
     vcr (>= 0.5.4),
     webmockr
 RoxygenNote: 7.1.1
