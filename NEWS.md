@@ -1,3 +1,11 @@
+rnoaa 1.3.2
+===========
+
+### MINOR IMPROVEMENTS
+
+* remove ropenaq from Suggests as its been archived on CRAN (#385)
+* test fixes (#382)
+
 rnoaa 1.3
 =========
 

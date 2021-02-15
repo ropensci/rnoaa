@@ -10,13 +10,13 @@
   "codeRepository": "https://github.com/ropensci/rnoaa",
   "issueTracker": "https://github.com/ropensci/rnoaa/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 Patched (2020-12-29 r79725)",
+  "runtimePlatform": "R version 4.0.4 RC (2021-02-12 r79998)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -111,18 +111,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "knitr",
-      "name": "knitr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=knitr"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "taxize",
       "name": "taxize",
       "provider": {
@@ -183,18 +171,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "rmarkdown",
-      "name": "rmarkdown",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
       "provider": {
@@ -216,18 +192,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=ggmap"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "ropenaq",
-      "name": "ropenaq",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=ropenaq"
     },
     {
       "@type": "SoftwareApplication",
@@ -472,7 +436,7 @@
   "contIntegration": "https://codecov.io/github/ropensci/rnoaa?branch=master",
   "releaseNotes": "https://github.com/ropensci/rnoaa/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rnoaa/blob/master/README.md",
-  "fileSize": "18278.866KB",
+  "fileSize": "18279.046KB",
   "applicationCategory": "Climate",
   "isPartOf": "https://ropensci.org",
   "keywords": ["earth", "science", "climate", "precipitation", "temperature", "storm", "buoy", "NCDC", "NOAA", "tornadoe", "seaice", "ISD", "noaa", "rstats", "noaa-data", "r", "r-package"],

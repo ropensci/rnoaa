@@ -1,6 +1,6 @@
 ## Test environments
 
-* local OS X install, R 4.0.3
+* local macOS install, R 4.0.3
 * ubuntu 16.04 (on GitHub Actions), R 4.0.3
 * win-builder (release, devel)
 
@@ -15,7 +15,7 @@ Checked on the 2 reverse dependencies - no problems were found
 
 -----
 
-This version makes some minor improvements and fixes a bug.
+This version removes ropenaq from Suggests.
 
 Thanks!
 Scott Chamberlain
