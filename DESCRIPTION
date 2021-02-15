@@ -29,7 +29,6 @@ URL: https://docs.ropensci.org/rnoaa/ (docs),
     https://github.com/ropensci/rnoaa (devel)
 BugReports: https://github.com/ropensci/rnoaa/issues
 LazyData: true
-VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 Imports:
     utils,
@@ -53,13 +52,11 @@ Imports:
 Suggests:
     roxygen2 (>= 7.1.0),
     testthat,
-    knitr,
     taxize,
     ncdf4,
     raster,
     leaflet,
     rgdal,
-    rmarkdown,
     purrr,
     ggmap,
     vcr (>= 0.5.4),
