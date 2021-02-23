@@ -18,7 +18,7 @@
 #' }
 tornadoes <- function(...) {
   check4pkg('rgdal')
-  url <- 'https://www.spc.noaa.gov/gis/svrgis/zipped/1950-2018-torn-aspath.zip'
+  url <- 'https://www.spc.noaa.gov/gis/svrgis/zipped/1950-2019-torn-aspath.zip'
   tornadoes_GET(url, ...)
   readshp(file.path(torn_cache$cache_path_get(), tornadoes_basename))
 }
@@ -45,7 +45,7 @@ is_tornadoes <- function(x){
   }
 }
 
-tornadoes_basename <- "1950-2018-torn-aspath"
+tornadoes_basename <- "1950-2019-torn-aspath"
 
 readshp <- function(x) {
   rgdal::readOGR(dsn = path.expand(x),
