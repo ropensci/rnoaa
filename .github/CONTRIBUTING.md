@@ -14,4 +14,10 @@
 * Push up to your account
 * Submit a pull request to home base at `ropensci/rnoaa`
 
+Note: Continuous integration checks may fail because secret tokens for the NCDC API are not available in PR's. Don't worry about these failures UNLESS they are clearly due to code in your PR.
+
 ### Also, check out our [discussion forum](https://discuss.ropensci.org)
+
+### Email
+
+Do not email. Open an issue.

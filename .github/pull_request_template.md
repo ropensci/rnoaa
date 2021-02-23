@@ -1,4 +1,6 @@
-<!--- Provide a general summary of your changes in the Title above -->
+<!--- Provide a general summary of your changes in the Title above 
+Note: Continuous integration checks may fail because secret tokens for the NCDC API are not available in PR's. Don't worry about these failures UNLESS they are clearly due to code in your PR.
+-->
 
 ## Description
 <!--- Describe your changes in detail -->
