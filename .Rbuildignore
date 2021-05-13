@@ -29,3 +29,4 @@ user_test_cases/
 vignettes/
 tests/fixtures/homr.yml
 tests/fixtures/buoy_buoyid_case.yml
+^LICENSE\.md$
