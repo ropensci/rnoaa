@@ -97,7 +97,8 @@ check_response <- function(x){
     ) {
       stop("there's a government shutdown; check back later")
     }
-    stopifnot(x$response_headers$`content-type` == 'application/json;charset=UTF-8')
+    stopifnot("wrong response type, open an issue" =
+      grepl("application/json", x$response_headers$`content-type`))
     res <- x$parse("UTF-8")
     out <- jsonlite::fromJSON(res, simplifyVector = FALSE)
     if (!'results' %in% names(out)) {
