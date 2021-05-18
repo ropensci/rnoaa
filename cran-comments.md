@@ -1,7 +1,7 @@
 ## Test environments
 
-* local macOS install, R 4.0.3
-* ubuntu 16.04 (on GitHub Actions), R 4.0.3
+* local macOS install, R 4.0.5
+* ubuntu 16.04 (on GitHub Actions), R 4.0.5
 * win-builder (release, devel)
 
 ## R CMD check results
@@ -10,12 +10,12 @@
 
 ## Reverse dependencies
 
-Checked on the 3 reverse dependencies - no problems were found
+Checked on the 1 reverse dependency - no problems were found
 <https://github.com/ropensci/rnoaa/blob/master/revdep/README.md>
 
 -----
 
-This version removes ropenaq from Suggests.
+This version fixes a bug.
 
 Thanks!
 Scott Chamberlain

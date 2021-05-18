@@ -1,3 +1,14 @@
+rnoaa 1.3.4
+===========
+
+### MINOR IMPROVEMENTS
+
+* update URL for tornadoes data to include data from 2019 (#386) thanks @ryanscharf
+
+### BUG FIXES
+
+* fix for all `ncdc*` functions - response header content type changed - we had a check for proper content type - that check is now more general so that any json content type will be okay (#390)
+
 rnoaa 1.3.2
 ===========
 
