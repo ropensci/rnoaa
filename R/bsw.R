@@ -42,12 +42,10 @@
 #'   mean (u,v,w)
 #' 
 #' @note We only handle the netcdf files for now, we're avoiding the ieee 
-#' files, see http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
+#' files, see https://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
 #' 
 #' @references 
 #' https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds
-#' ftp://eclipse.ncdc.noaa.gov/pub/seawinds/
-#' ieee files: http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
 #'
 #' @examples \dontrun{
 #' # 6hrly data
@@ -119,9 +117,9 @@ bsw_get <- function(year, month, day, uv_stress, resolution,
 
   # create key (aka: url)
   if (resolution == "clm") {
-    key <- "ftp://eclipse.ncdc.noaa.gov/pub/seawinds/SI/uv/clm/uvclm95to05.nc"
+    key <- "https://www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access/winds/climatology/uvclm95to05.nc"
   } else {
-    key <- bsw_key(year, month, day, uv_stress, resolution)  
+    key <- bsw_key(year, month, day, uv_stress, resolution)
   }
   
   file <- file.path(
@@ -154,22 +152,16 @@ bsw_GET_write <- function(url, path, overwrite = TRUE, ...) {
 }
 
 bsw_base_ftp <- function(x) {
-  base <- "ftp://eclipse.ncdc.noaa.gov/pub/seawinds/SI"
-  if (x == "uv") file.path(base, "uv") else file.path(base, "stress")
+  base <- "https://www.ncei.noaa.gov/data/blended-global-sea-surface-wind-products/access"
+  if (x == "uv") file.path(base, "winds") else file.path(base, "stress")
 }
 
 bsw_key <- function(year, month, day, uv_stress, resolution) {
-  sprintf("%s/%s/netcdf/%s%s%s%s.nc",
+  sprintf("%s/%s/%s%s%s%s.nc",
     bsw_base_ftp(uv_stress),
-    resolution,
-    if (resolution %in% c('6hrly', 'daily')) {
-      if (1980 < year && year < 1990) {
-        '1980s/' 
-      } else if (1990 < year && year < 2000) {
-        '1990s/' 
-      } else {
-        '2000s/'
-      }
+    if (resolution == "6hrly") "6-hourly" else resolution,
+    if (resolution %in% c('6hrly', 'daily', "monthly")) {
+      paste0(year, "/")
     } else {
       ""
     },

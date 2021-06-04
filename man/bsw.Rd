@@ -38,7 +38,7 @@ Uses \code{ncdf4} under the hood to read NetCDF files
 See \link{bsw_cache} for managing cached files
 
 We only handle the netcdf files for now, we're avoiding the ieee
-files, see http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
+files, see https://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
 }
 \section{Citing NOAA and BSW data}{
 
@@ -82,6 +82,4 @@ w <- bsw(date = "2011-08", resolution = "monthly")
 }
 \references{
 https://www.ncdc.noaa.gov/data-access/marineocean-data/blended-global/blended-sea-winds
-ftp://eclipse.ncdc.noaa.gov/pub/seawinds/
-ieee files: http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/ieee.html
 }
