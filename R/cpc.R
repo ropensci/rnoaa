@@ -14,11 +14,11 @@
 #' - lat - latitude (-90 to 90)
 #' - precip - precipitation (in mm) (see Details for more information)
 #'
-#' @references http://www.cpc.ncep.noaa.gov/
-#' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP
-#' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_CONUS/DOCU/PRCP_CU_GAUGE_V1.0CONUS_0.25deg.README
-#' ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_GLB/DOCU/PRCP_CU_GAUGE_V1.0GLB_0.50deg_README.txt
-#' https://www.esrl.noaa.gov/psd/data/gridded/data.unified.daily.conus.html
+#' @references https://www.cpc.ncep.noaa.gov/
+#' https://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP
+#' https://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_CONUS/DOCU/PRCP_CU_GAUGE_V1.0CONUS_0.25deg.README
+#' https://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_GLB/DOCU/PRCP_CU_GAUGE_V1.0GLB_0.50deg_README.txt
+#' https://psl.noaa.gov/data/gridded/data.unified.daily.conus.html
 #'
 #' @details
 #' Rainfall data for the world (1979-present, resolution 50 km), and
@@ -81,10 +81,7 @@ cpc_get <- function(year, month, day, us, cache = TRUE, overwrite = FALSE, ...) 
 }
 
 cpc_GET_write <- function(url, path, overwrite = TRUE, ...) {
-  cli <- crul::HttpClient$new(
-    url = url,
-    headers = list(Authorization = "Basic anonymous:myrmecocystus@gmail.com")
-  )
+  cli <- crul::HttpClient$new(url = url)
   if (!overwrite) {
     if (file.exists(path)) {
       stop("file exists and ovewrite != TRUE", call. = FALSE)
@@ -99,7 +96,7 @@ cpc_GET_write <- function(url, path, overwrite = TRUE, ...) {
 }
 
 cpc_base_ftp <- function(x) {
-  base <- "ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP"
+  base <- "https://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP"
   if (x) file.path(base, "GAUGE_CONUS") else file.path(base, "GAUGE_GLB")
 }
 

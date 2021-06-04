@@ -8,7 +8,7 @@
 #' then split the output into tibbles by date
 #' @param ... curl options passed on to [crul::verb-GET]
 #' @references docs:
-#' <ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt>
+#' https://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt
 #' @note See [arc2_cache] for managing cached files
 #' @section box parameter:
 #' The `box` parameter filters the arc2 data to a bounding box you supply.
@@ -89,10 +89,7 @@ arc2_get <- function(year, month, day, cache = TRUE, overwrite = FALSE, ...) {
 }
 
 arc2_GET_write <- function(url, path, date, overwrite = TRUE, ...) {
-  cli <- crul::HttpClient$new(
-    url = url,
-    headers = list(Authorization = "Basic anonymous:myrmecocystus@gmail.com")
-  )
+  cli <- crul::HttpClient$new(url = url)
   if (!overwrite) {
     if (file.exists(path)) {
       stop("file exists and ovewrite != TRUE", call. = FALSE)
@@ -107,7 +104,7 @@ arc2_GET_write <- function(url, path, date, overwrite = TRUE, ...) {
 }
 
 arc2_base <- function() {
-  "ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/bin"
+  "https://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/bin"
 }
 
 arc2_base_ftp <- function(x, y) sprintf("%s/daily_clim.bin.%s.gz", x,

@@ -1,24 +1,35 @@
 http_interactions:
 - request:
     method: get
-    uri: ftp://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_GLB/RT/2017/PRCP_CU_GAUGE_V1.0GLB_0.50deg.lnx.20170115.RT
+    uri: https://ftp.cpc.ncep.noaa.gov/precip/CPC_UNI_PRCP/GAUGE_GLB/RT/2017/PRCP_CU_GAUGE_V1.0GLB_0.50deg.lnx.20170115.RT
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.64.1 r-curl/4.3 crul/0.9.0
+      User-Agent: libcurl/7.64.1 r-curl/4.3.1 crul/1.1.0.93
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
-      Authorization: Basic anonymous:myrmecocystus@gmail.com
   response:
     status:
-      status_code: '226'
-      message: IM Used
-      explanation: RFC 3229
-    headers: []
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Fri, 04 Jun 2021 23:31:36 GMT
+      server: Apache
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
+      last-modified: Tue, 17 Jan 2017 21:51:24 GMT
+      etag: '"4eaca84-1fa400-546514d232f00"'
+      accept-ranges: bytes
+      content-length: '2073600'
+      content-type: text/plain; charset=UTF-8
+      strict-transport-security: max-age=31536000; includeSubdomains; preload
     body:
       encoding: UTF-8
       file: yes
       string: ../files/PRCP_CU_GAUGE_V1.0GLB_0.50deg.lnx.20170115.RT
-  recorded_at: 2020-03-16 22:30:38 GMT
-  recorded_with: vcr/0.5.0.92, webmockr/0.6.0.92
+  recorded_at: 2021-06-04 23:31:39 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0

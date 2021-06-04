@@ -25,7 +25,7 @@
 #' this will override that behavior.
 #' @param ... Curl options passed on to [crul::verb-GET]
 #'
-#' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
+#' @references https://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' https://www1.ncdc.noaa.gov/pub/data/noaa
 #' @family isd
 #'
@@ -61,8 +61,8 @@
 #'
 #' @section Errors:
 #' Note that when you get an error similar to `Error: download failed for
-#' ftp://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz`, the
-#' file does not exist on NOAA's ftp servers. If your internet is down,
+#' https://ftp.ncdc.noaa.gov/pub/data/noaa/1955/011490-99999-1955.gz`, the
+#' file does not exist on NOAA's servers. If your internet is down,
 #' you'll get a different error.
 #'
 #' @note See [isd_cache] for managing cached files

@@ -11,7 +11,7 @@
 #' @param progress (logical) print progress - ignored if `parallel=TRUE`.
 #' The default is `FALSE` because printing progress adds a small bit of
 #' time, so if processing time is important, then keep as `FALSE`
-#' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
+#' @references https://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' @seealso [isd()], [isd_stations()], [isd_stations_search()]
 #' @details `isd_read` - read a `.gz` file as downloaded
 #' from NOAA's website

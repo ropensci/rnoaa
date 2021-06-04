@@ -53,7 +53,7 @@ leaflet(data = df) \%>\%
 }
 }
 \references{
-ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
+https://ftp.ncdc.noaa.gov/pub/data/noaa/
 }
 \seealso{
 Other isd: 

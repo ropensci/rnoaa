@@ -8,7 +8,7 @@
 #' @param bbox (numeric) Bounding box, of the form: min-longitude, 
 #' min-latitude, max-longitude, max-latitude
 #'
-#' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
+#' @references https://ftp.ncdc.noaa.gov/pub/data/noaa/
 #'
 #' @return a data.frame with the columns:
 #' 

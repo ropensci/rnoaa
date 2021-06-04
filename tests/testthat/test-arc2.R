@@ -22,9 +22,9 @@ test_that("arc2 - many dates works", {
   skip_on_ci()
   skip_if_government_down()
 
-  vcr::use_cassette("arc2_many_dates", {
-    bb <- arc2(date = c("1983-01-01", "1990-02-05"))
-  })
+  # vcr::use_cassette("arc2_many_dates", {
+  bb <- arc2(date = c("1983-01-01", "1990-02-05"))
+  # })
 
   expect_is(bb, "list")
   expect_equal(length(bb), 2)
@@ -38,6 +38,8 @@ test_that("arc2 - bounding box works", {
   skip_on_cran()
   skip_on_ci()
   skip_if_government_down()
+
+  arc2_cache$delete_all()
 
   vcr::use_cassette("arc2_bounding_box", {
     box <- c(xmin = 9, ymin = 4, xmax = 10, ymax = 5)

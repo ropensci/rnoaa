@@ -3,7 +3,7 @@
 #' @export
 #' @param refresh (logical) Download station data from NOAA ftp server again.
 #' Default: `FALSE`
-#' @references ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
+#' @references https://ftp.ncdc.noaa.gov/pub/data/noaa/
 #' @family isd
 #' @details The data table is cached, but you can force download of data from
 #' NOAA by setting `refresh=TRUE`

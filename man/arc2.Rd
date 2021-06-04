@@ -61,5 +61,5 @@ arc2(seq(as.Date("2019-05-20"), as.Date("2019-05-25"), "days"), box = box)
 }
 \references{
 docs:
-\url{ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt}
+https://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt
 }

@@ -38,13 +38,11 @@ test_that("coops fails well", {
     )
   })
 
-  vcr::use_cassette("coops_search_fail_no_datum", {  
-    expect_error(
-      coops_search(station_name = 8775244, begin_date = 20140927, 
-        end_date = 20140928, product = "monthly_mean"), 
-      "Must specify a datum for water level products"
-    )
-  })
+  expect_error(
+    coops_search(station_name = 8775244, begin_date = 20140927, 
+      end_date = 20140928, product = "monthly_mean"), 
+    "Must specify a datum for water level products"
+  )
 
   expect_error(
     coops_search(station_name = 8724580, begin_date = 20040927,

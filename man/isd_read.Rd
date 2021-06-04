@@ -46,7 +46,7 @@ isd_read(file, additional = FALSE)
 }
 }
 \references{
-ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
+https://ftp.ncdc.noaa.gov/pub/data/noaa/
 }
 \seealso{
 \code{\link[=isd]{isd()}}, \code{\link[=isd_stations]{isd_stations()}}, \code{\link[=isd_stations_search]{isd_stations_search()}}

@@ -22,7 +22,7 @@
 #' @return A tibble (data.frame) which contains data pulled from NOAA's FTP
 #' server for the queried weather site. A README file with more information
 #' about the format of this file is available from NOAA
-#' (http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt).
+#' (https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt).
 #' This file is formatted so each line of the file gives the daily weather
 #' observations for a single weather variable for all days of one month of
 #' one year. In addition to measurements, columns are included for certain
@@ -32,8 +32,7 @@
 #' @section Base URL:
 #' The base url for data requests can be changed. The allowed urls are:
 #' https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all (default),
-#' ftp://ftp.ncei.noaa.gov/pub/data/ghcn/daily/all,
-#' ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all
+#' https://ncei.noaa.gov/pub/data/ghcn/daily/all
 #' 
 #' You can set the base url using the `RNOAA_GHCND_BASE_URL` environment
 #' variable; see example below.
@@ -97,7 +96,7 @@
 #' 
 #' # change the base url for data requests
 #' Sys.setenv(RNOAA_GHCND_BASE_URL =
-#'   "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all")
+#'   "https://ncei.noaa.gov/pub/data/ghcn/daily/all")
 #' ghcnd(stations$id[45], verbose = TRUE)
 #' ## must be in the allowed set of urls
 #' # Sys.setenv(RNOAA_GHCND_BASE_URL = "https://google.com")
@@ -224,13 +223,12 @@ ghcnd_GET <- function(stationid, ...){
 
 ghcnd_allowed_urls <- c(
   "https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all",
-  "ftp://ftp.ncei.noaa.gov/pub/data/ghcn/daily/all",
-  "ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all"
+  "https://ncei.noaa.gov/pub/data/ghcn/daily/all"
 )
 ghcndbase <- function() {
   x <- Sys.getenv("RNOAA_GHCND_BASE_URL", "")
   if (identical(x, "")) {
-    x <- "https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/all"
+    x <- ghcnd_allowed_urls[1]
   }
   if (!x %in% ghcnd_allowed_urls) {
     stop("the RNOAA_GHCND_BASE_URL environment variable must be in set:\n",
