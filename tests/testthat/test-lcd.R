@@ -15,7 +15,7 @@ test_that("lcd", {
   expect_is(aa, "tbl_df")
 
   expect_type(aa$station, 'integer')
-  expect_type(aa$date, 'character')
+  expect_type(aa$date, 'double')
   expect_type(aa$latitude, 'double')
   expect_type(aa$longitude, 'double')
   expect_type(aa$elevation, 'double')
@@ -47,6 +47,6 @@ test_that("lcd fails well when trying to read a bad file", {
   lcd_cache$mkdir()
   path <- file.path(tempdir(), "foo_bar", "2020_72517014737.csv")
   file.create(path)
-  expect_error(lcd(72517014737, 2020), "malformed", class = "error")
+  expect_error(lcd(72517014737, 2020), class = "error")
   unlink(path)
 })

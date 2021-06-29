@@ -169,11 +169,15 @@ storms_read_csv <- function(x){
   tmp
 }
 
+# This function is only used in lcd(), see R/lcd.R
 safe_read_csv <- function(x, header = TRUE, stringsAsFactors = FALSE, sep = ",") {
   assert(x, "character")
+  # here setting the column SOURCE to char b/c it is sometimes read in as integer
+  # or numeric, but should always be character
   tmp <- tryCatch(
-    read.csv(x, header = header, sep = sep,
-      stringsAsFactors = stringsAsFactors),
+    data.table::fread(x, header = header, sep = sep, 
+      stringsAsFactors = stringsAsFactors, data.table = FALSE,
+      colClasses = c(SOURCE="character")),
     error = function(e) e,
     warning = function(w) w
   )
