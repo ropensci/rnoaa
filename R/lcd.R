@@ -1,4 +1,4 @@
-#' Local Climitalogical Data from NOAA
+#' Local Climatological Data from NOAA
 #'
 #' @export
 #' @param station (character) station code, e.g., "02413099999". we will allow
