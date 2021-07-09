@@ -40,6 +40,8 @@ test_that("lcd fails well", {
                "station must be of class")
   expect_error(lcd(5, list(1)),
                "year must be of class")
+  expect_error(lcd(station = "01338099999", year = 2017, col_types = list(1)),
+               "col_types must be of class")
 })
 
 test_that("lcd fails well when trying to read a bad file", {
