@@ -170,14 +170,13 @@ storms_read_csv <- function(x){
 }
 
 # This function is only used in lcd(), see R/lcd.R
-safe_read_csv <- function(x, header = TRUE, stringsAsFactors = FALSE, sep = ",") {
+safe_read_csv <- function(x, header = TRUE, stringsAsFactors = FALSE, sep = ",", col_types) {
   assert(x, "character")
-  # here setting the column SOURCE to char b/c it is sometimes read in as integer
-  # or numeric, but should always be character
+
   tmp <- tryCatch(
     data.table::fread(x, header = header, sep = sep, 
       stringsAsFactors = stringsAsFactors, data.table = FALSE,
-      colClasses = c(SOURCE="character")),
+      colClasses = col_types),
     error = function(e) e,
     warning = function(w) w
   )
@@ -187,6 +186,7 @@ safe_read_csv <- function(x, header = TRUE, stringsAsFactors = FALSE, sep = ",")
     stop("file ", x, " malformed; delete file and try again")
   return(tmp)
 }
+
 
 check_key <- function(x){
   tmp <- if(is.null(x)) Sys.getenv("NOAA_KEY", "") else x
