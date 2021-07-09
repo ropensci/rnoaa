@@ -2,7 +2,7 @@
 % Please edit documentation in R/lcd.R
 \name{lcd}
 \alias{lcd}
-\title{Local Climitalogical Data from NOAA}
+\title{Local Climatological Data from NOAA}
 \usage{
 lcd(station, year, col_types = NULL, ...)
 }
@@ -47,7 +47,7 @@ So the variable you are looking for may not be the first part of the column
 name
 }
 \description{
-Local Climitalogical Data from NOAA
+Local Climatological Data from NOAA
 }
 \note{
 See \link{lcd_cache} for managing cached files
