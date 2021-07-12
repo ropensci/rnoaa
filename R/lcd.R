@@ -55,9 +55,21 @@ lcd <- function(station, year, col_types = NULL, ...) {
 
   path <- lcd_get(station = station, year = year, ...)
   
-  if (is.null(col_types)) {
+  # check that user specified values are proper R classes,
+  # trying to minimize chances this gets run twice,
+  # however users can create the col_type vector without using lcd_columns
+  # and this checks for valid user specified values in that case.
+  if (!is.null(col_types)) {
+    # check that input values are proper R classes
+    column_error <- check_lcd_columns(col_types)
+    if (!is.null(column_error)) {
+      stop(column_error)
+    }
+  } else {
+    # this is already checked
     col_types <- lcd_columns()
   }
+  
   assert(col_types, c("character"))
   tmp <- safe_read_csv(path, col_types = col_types)
   names(tmp) <- tolower(names(tmp))
@@ -377,5 +389,9 @@ lcd_columns <- function(
   # s = suspect value, T = Trace, M = missing, * extreme max or min for month
   # to retain this information, values are kept as character for user to handle
   argg <- unlist(c(as.list(environment())))
+  # check that input values are proper R classes
+  column_error <- check_lcd_columns(argg)
+  if(!is.null(column_error)) stop(column_error)
+  
   return(argg)
 }
