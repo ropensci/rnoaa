@@ -188,18 +188,20 @@ safe_read_csv <- function(x, header = TRUE, stringsAsFactors = FALSE, sep = ",",
 }
 
 # This function is only used by lcd() and lcd_columns(), see R/lcd.R
-# check that user input values are proper R classes
 check_lcd_columns <- function(x) {
-
-  allowable_types <- c("character", "integer", "numeric", "factor", "integer64", "POSIXct")
-  allowed <- x %in% allowable_types
-  if(FALSE %in% allowed) {
-    message <- paste0(names(x[which(!(allowed))]), 
-                " must equal a valid R class ('character', 'integer', 'numeric', 'factor', 'integer64', 'POSIXct')",
-                collapse = "\n")
+  # check that col_types is a named vector
+  if(is.null(names(x))) {
+    message <- "col_types must be a named vector, see lcd_columns() for an example and expected names"
+  } else {
+    # check that user input values are proper R classes
+    allowable_types <- c("character", "integer", "numeric", "factor", "integer64", "POSIXct")
+    allowed <- x %in% allowable_types
+    if(FALSE %in% allowed) {
+      message <- paste0(names(x[which(!(allowed))]), 
+                        " must equal a valid R class ('character', 'integer', 'numeric', 'factor', 'integer64', 'POSIXct')",
+                        collapse = "\n")} else {
+                  message <- NULL }
   }
-  
-  else message <- NULL
   return(message)
   
 }
