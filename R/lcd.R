@@ -244,6 +244,7 @@ lcd_key <- function(station, year) {
 lcd_columns <- function(    
   # Control Data
   STATION="character",
+  DATE="POSIXct",
   LATITUDE="numeric",
   LONGITUDE="numeric",
   ELEVATION="numeric",
