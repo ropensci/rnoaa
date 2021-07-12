@@ -54,7 +54,6 @@ lcd <- function(station, year, col_types = NULL, ...) {
   assert_range(year, 1901:format(Sys.Date(), "%Y"))
 
   path <- lcd_get(station = station, year = year, ...)
-  
   # check that user specified values are proper R classes,
   # trying to minimize chances this gets run twice,
   # however users can create the col_type vector without using lcd_columns
@@ -69,7 +68,7 @@ lcd <- function(station, year, col_types = NULL, ...) {
     # this is already checked
     col_types <- lcd_columns()
   }
-  
+  # check that col_types is character
   assert(col_types, c("character"))
   tmp <- safe_read_csv(path, col_types = col_types)
   names(tmp) <- tolower(names(tmp))
