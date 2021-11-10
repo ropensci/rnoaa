@@ -108,7 +108,7 @@ check_response <- function(x){
     } else {
       if (
         class(try(out$results, silent = TRUE)) == "try-error" ||
-        is.null(try(out$results, silent = TRUE)) 
+        is.null(try(out$results, silent = TRUE))
       ) {
         warning("Sorry, no data found", call. = FALSE)
       }
@@ -174,7 +174,7 @@ safe_read_csv <- function(x, header = TRUE, stringsAsFactors = FALSE, sep = ",",
   assert(x, "character")
 
   tmp <- tryCatch(
-    data.table::fread(x, header = header, sep = sep, 
+    data.table::fread(x, header = header, sep = sep,
       stringsAsFactors = stringsAsFactors, data.table = FALSE,
       colClasses = col_types),
     error = function(e) e,
@@ -197,13 +197,13 @@ check_lcd_columns <- function(x) {
     allowable_types <- c("character", "integer", "numeric", "factor", "integer64", "POSIXct")
     allowed <- x %in% allowable_types
     if(FALSE %in% allowed) {
-      message <- paste0(names(x[which(!(allowed))]), 
+      message <- paste0(names(x[which(!(allowed))]),
                         " must equal a valid R class ('character', 'integer', 'numeric', 'factor', 'integer64', 'POSIXct')",
                         collapse = "\n")} else {
                   message <- NULL }
   }
   return(message)
-  
+
 }
 
 
@@ -226,7 +226,7 @@ is_windows <- function() {
   .Platform$OS.type == "windows"
 }
 
-rnoaa_cache_dir <- function() rappdirs::user_cache_dir("rnoaa")
+rnoaa_cache_dir <- function() tools::R_user_dir("rnoaa", which = "cache")
 
 assert_range <- function(x, y) {
   if (!x %in% y) {

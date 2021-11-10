@@ -6,6 +6,7 @@
 \usage{
 lcd_columns(
   STATION = "character",
+  DATE = "POSIXct",
   LATITUDE = "numeric",
   LONGITUDE = "numeric",
   ELEVATION = "numeric",

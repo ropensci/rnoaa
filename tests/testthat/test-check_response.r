@@ -13,7 +13,7 @@ test_that("check_response works correctly on bad response content-type", {
   expect_error(
     ncdc(datasetid='GHCND', stationid='GHCND:USW00014895',
        startdate = '2013-10-01', enddate = '2013-12-01'),
-    "wrong response type"
+    "wrong response type, open an issue"
   )
   webmockr::disable()
 })

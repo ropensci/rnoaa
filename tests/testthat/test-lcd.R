@@ -14,12 +14,12 @@ test_that("lcd", {
 
   expect_is(aa, "tbl_df")
 
-  expect_type(aa$station, 'integer')
+  expect_type(aa$station, c('character'))
   expect_type(aa$date, 'double')
   expect_type(aa$latitude, 'double')
   expect_type(aa$longitude, 'double')
   expect_type(aa$elevation, 'double')
-  expect_type(aa$hourlysealevelpressure, 'double')
+  expect_type(aa$hourlysealevelpressure, 'character')
 })
 
 test_that("lcd fails well", {
@@ -41,7 +41,7 @@ test_that("lcd fails well", {
   expect_error(lcd(5, list(1)),
                "year must be of class")
   expect_error(lcd(station = "01338099999", year = 2017, col_types = list(1)),
-               "col_types must be of class")
+               "col_types must be a")
 })
 
 test_that("lcd fails well when trying to read a bad file", {

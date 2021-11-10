@@ -30,7 +30,7 @@ It's possible to run into problems when changes happen in your R
 setup. For example, at least one user reported changing versions
 of this package and running into problems because a cached data
 file from a previous version of rnoaa did not work with the newer
-version of rnoaa. You should occassionally delete all cached files.
+version of rnoaa. You should occasionally delete all cached files.
 }
 \section{Useful user functions}{
 

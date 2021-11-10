@@ -12,9 +12,12 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US
 Authors@R: c(
-    person("Scott", "Chamberlain", role = c("aut","cre"),
+    person("Scott", "Chamberlain", role = c("aut"),
         email = "myrmecocystus@gmail.com",
         comment = c(ORCID = "0000-0003-1444-9135")),
+    person("Daniel", "Hocking", role = c("ctb","cre"),
+        email = "djhocking@gmail.com",
+        comment = c(ORCID = "0000-0003-1889-9184")),
     person("Brooke", "Anderson", role = "ctb"),
     person("Maëlle", "Salmon", role = "ctb"),
     person("Adam", "Erickson", role = "ctb"),

@@ -74,7 +74,7 @@ b) Alternatively, you might find it easier to set this as an option, either by a
 options(noaakey = "KEY_EMAILED_TO_YOU")
 ```
 
-c) You can always store in permamently in your `.Rprofile` file.
+c) You can always store in permanently in your `.Rprofile` file.
 
 ###  Fetch list of city locations in descending order
 
