@@ -8,19 +8,19 @@
 #' `cache_delete_all` doesn't accept any names, but deletes all files.
 #' For deleting many specific files, use `cache_delete` in a [lapply()]
 #' type call
-#' 
+#'
 #' Note that cached files will continue to be used until they are deleted.
-#' It's possible to run into problems when changes happen in your R 
+#' It's possible to run into problems when changes happen in your R
 #' setup. For example, at least one user reported changing versions
 #' of this package and running into problems because a cached data
 #' file from a previous version of rnoaa did not work with the newer
-#' version of rnoaa. You should occassionally delete all cached files.
-#' 
+#' version of rnoaa. You should occasionally delete all cached files.
+#'
 #' @seealso [rnoaa_options()] for managing whether you see messages
 #' about cached files when you request data
-#' 
+#'
 #' @section Useful user functions:
-#' 
+#'
 #' Assuming x is a `HoardClient` class object, e.g., `lcd_cache`
 #'
 #' - `x$cache_path_get()` get cache path
@@ -30,7 +30,7 @@
 #' - `x$details()` returns files with details
 #' - `x$delete()` delete specific files
 #' - `x$delete_all()` delete all files, returns nothing
-#' 
+#'
 #' @section Caching objects for each data source:
 #'
 #' - `isd()`/`isd_stations()`: `isd_cache`
@@ -42,7 +42,7 @@
 #' - `tornadoes()`: `torn_cache`
 #' - `ghcnd()`/`ghcnd_search()`: `ghcnd_cache`
 #' - `se_data()`/`se_files()`: `stormevents_cache`
-#' 
+#'
 NULL
 
 #' @rdname rnoaa_caching
