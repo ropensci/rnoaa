@@ -1,3 +1,12 @@
+rnoaa 1.3.6.95
+==============
+
+### BUG FIXES
+
+* changed location of temporary file writing to match requirements of CRAN for Mac OS
+* removed checks on Ubuntu 16.04 because not supported. Replaced with checks on latest Ubuntu version
+
+
 rnoaa 1.3.4
 ===========
 
