@@ -97,9 +97,9 @@ homr <- function(qid=NULL, qidMod=NULL, station=NULL, state=NULL, county=NULL,
   cli <- crul::HttpClient$new(url = url, opts = list(...))
   res <- cli$get(query = args)
   res$raise_for_status()
-  # if (!grepl("json", res$response_headers$`content-type`)) {
-  #   stop("an error occurred - expected JSON content type response")
-  # }
+  if (!grepl("json", res$response_headers$`content-type`)) {
+    stop("an error occurred - expected JSON content type response")
+  }
   out <- res$parse("UTF-8")
   json <- jsonlite::fromJSON(out, FALSE)
   sts <- lapply(json$stationCollection$stations, parse_stations,
@@ -190,4 +190,4 @@ ifn_null <- function(x, y) if (is.null(x)) x else y
 ifn_na <- function(x) if (is.null(x)) NA else x
 na2null <- function(x) if (all(is.na(x))) NULL else x
 
-homr_base <- function() 'https://www.ncdc.noaa.gov/homr/services/station/'
+homr_base <- function() 'https://www.ncei.noaa.gov/access/homr/services/station/'
