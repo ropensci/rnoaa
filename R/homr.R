@@ -97,9 +97,9 @@ homr <- function(qid=NULL, qidMod=NULL, station=NULL, state=NULL, county=NULL,
   cli <- crul::HttpClient$new(url = url, opts = list(...))
   res <- cli$get(query = args)
   res$raise_for_status()
-  if (!grepl("json", res$response_headers$`content-type`)) {
-    stop("an error occurred - expected JSON content type response")
-  }
+  # if (!grepl("json", res$response_headers$`content-type`)) {
+  #   stop("an error occurred - expected JSON content type response")
+  # }
   out <- res$parse("UTF-8")
   json <- jsonlite::fromJSON(out, FALSE)
   sts <- lapply(json$stationCollection$stations, parse_stations,

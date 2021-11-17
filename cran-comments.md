@@ -1,7 +1,8 @@
 ## Test environments
 
-* local macOS install, R 4.0.5
-* ubuntu 16.04 (on GitHub Actions), R 4.0.5
+* ubuntu 20.04 (local install), R 4.1.2
+* macOS-latest (release, on GitHub Actions), R 4.1.5
+* ubuntu-latest (release, on GitHub Actions), R 4.1.2
 * win-builder (release, devel)
 
 ## R CMD check results
@@ -18,4 +19,4 @@ Checked on the 1 reverse dependency - no problems were found
 This version fixes a bug.
 
 Thanks!
-Scott Chamberlain
+Daniel Hocking
