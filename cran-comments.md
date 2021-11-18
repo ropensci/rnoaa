@@ -12,7 +12,7 @@
 
 ## Reverse dependencies
 
-Checked on the 1 reverse dependency - no problems were found
+Checked on the 2 reverse dependencies - no problems were found
 <https://github.com/ropensci/rnoaa/blob/master/revdep/README.md>
 
 -----
