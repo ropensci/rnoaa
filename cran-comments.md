@@ -1,7 +1,8 @@
 ## Test environments
 
 * ubuntu 20.04 (local install), R 4.1.2
-* macOS-latest (release, on GitHub Actions), R 4.1.5
+* macOS-latest (release, on GitHub Actions), R 4.1.2
+* macOS-latest (devel, on GitHub Actions), R-dev
 * ubuntu-latest (release, on GitHub Actions), R 4.1.2
 * win-builder (release, devel)
 
@@ -16,7 +17,7 @@ Checked on the 1 reverse dependency - no problems were found
 
 -----
 
-This version fixes a bug.
+This version updates the writing locations to comply with CRAN policy by switching from using rappdirs::user_cache_dir("rnoaa") to using tools::R_user_dir("rnoaa", which = "cache").
 
 Thanks!
 Daniel Hocking
