@@ -1,4 +1,5 @@
 context("storm_events: se_files")
+
 test_that("se_files works", {
   skip_on_cran()
   skip_if_government_down()
@@ -15,6 +16,7 @@ test_that("se_files works", {
 })
 
 context("storm_events: se_data")
+
 test_that("se_data works", {
   skip_on_cran()
   skip_if_government_down()

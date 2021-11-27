@@ -1,3 +1,13 @@
+rnoaa 1.3.8
+==============
+
+### BUG FIXES
+
+* changed location of temporary cache file writing in the ersst tests to match requirements of CRAN for Mac OS. Missed on v1.3.7 release. 
+* removed rappsdir from Imports now that using tools to create cache directories
+* removed a couple other internal tests from CRAN with skip_on_cran()
+
+
 rnoaa 1.3.7
 ==============
 

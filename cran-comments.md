@@ -10,14 +10,18 @@
 
 0 errors | 0 warnings | 0 notes
 
-## Reverse dependencies
+## revdepcheck results
 
-Checked on the 2 reverse dependencies - no problems were found
-<https://github.com/ropensci/rnoaa/blob/master/revdep/README.md>
+We checked 2 reverse dependencies (0 from CRAN + 2 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
+ * We failed to check 0 packages
 
 -----
 
-This version updates the writing locations to comply with CRAN policy by switching from using rappdirs::user_cache_dir("rnoaa") to using tools::R_user_dir("rnoaa", which = "cache").
+This version updates the writing locations to comply with CRAN policy by switching from using rappdirs::user_cache_dir("rnoaa/ersst") to using tools::R_user_dir("rnoaa/ersst", which = "cache").
+
+The previous release had missed a use of rappdirs::user_cache_dir in the tests.
 
 Thanks!
 Daniel Hocking

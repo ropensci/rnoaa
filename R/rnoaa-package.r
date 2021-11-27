@@ -31,23 +31,23 @@
 #' - `arc2` - rainfall data from Africa Rainfall Climatology
 #'  version 2
 #' - `bsw` - Blended sea winds (BSW)
-#' - `ersst` - NOAA Extended Reconstructed Sea Surface 
+#' - `ersst` - NOAA Extended Reconstructed Sea Surface
 #'   Temperature (ERSST) data
 #' - `lcd` - Local Climitalogical Data from NOAA
-#' 
+#'
 #' @section Where data comes from and government shutdowns:
-#' 
+#'
 #' Government shutdowns can greatly affect data sources in this package.
-#' The following is a breakdown of the functions that fetch data by 
+#' The following is a breakdown of the functions that fetch data by
 #' HTTP vs. FTP - done this way as we've noticed that during the ealry 2019
 #' border wall shutdown most FTP services were up, while those that were down
 #' were HTTP; though not all HTTP services were down.
-#' 
+#'
 #' - HTTP info: https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol
 #' - FTP info: https://en.wikipedia.org/wiki/File_Transfer_Protocol
-#' 
+#'
 #' HTTP services (whether service is/was up or down during early 2019 shutdown)
-#' 
+#'
 #' - `buoy_*` - Up
 #' - `homr_*` - Up
 #' - `ncdc_*` - Down
@@ -58,9 +58,9 @@
 #' - `ersst` - Down
 #' - `lcd` - Down
 #' - `se_*` - Down
-#' 
+#'
 #' FTP services (whether service is/was up or down during early 2019 shutdown)
-#' 
+#'
 #' - `ghcnd_*` - Up
 #' - `isd_*` - Up
 #' - `sea_ice` - Up
@@ -69,26 +69,26 @@
 #' - `cpc_prcp` - Up
 #' - `arc2` - Up
 #' - `bsw` - Up
-#' 
-#' We've tried to whenever possible detect whether a service is error 
-#' due to a government shutdown and give a message saying so. If you know 
+#'
+#' We've tried to whenever possible detect whether a service is error
+#' due to a government shutdown and give a message saying so. If you know
 #' a service is down that rnoaa interacts with but we don't fail well
 #' during a shutdown let us know.
 #'
 #' @section A note about NCDF data:
 #'
 #' Some functions use netcdf files, including:
-#' 
+#'
 #' - `ersst`
 #' - `buoy`
 #' - `bsw`
 #' - `argo`
-#'  
+#'
 #' You'll need the `ncdf4` package for those functions, and those only.
-#' `ncdf4` is in Suggests in this package, meaning you only need 
-#' `ncdf4` if you are using any of the functions listed above. You'll get 
-#' an informative error telling you to install `ncdf4` if you don't have 
-#' it and you try to use the those functions. Installation of `ncdf4` 
+#' `ncdf4` is in Suggests in this package, meaning you only need
+#' `ncdf4` if you are using any of the functions listed above. You'll get
+#' an informative error telling you to install `ncdf4` if you don't have
+#' it and you try to use the those functions. Installation of `ncdf4`
 #' should be straightforward on any system.
 #'
 #' @section The `meteo` family of functions:
@@ -107,11 +107,10 @@
 #' labs guides guide_legend fortify scale_x_date scale_x_datetime element_blank
 #' @importFrom crul HttpClient url_build url_parse
 #' @importFrom XML xpathSApply xpathApply xmlValue xmlParse xmlToList htmlParse
-#' @importFrom xml2 read_html read_xml xml_find_all xml_attr as_list 
+#' @importFrom xml2 read_html read_xml xml_find_all xml_attr as_list
 #' xml_text xml_find_first
 #' @importFrom jsonlite fromJSON
 #' @importFrom tidyr gather separate
-#' @importFrom rappdirs user_cache_dir
 #' @importFrom gridExtra grid.arrange
 #' @importFrom dplyr %>% select mutate rename filter bind_rows
 #' as_tibble contains rowwise do bind_cols ungroup

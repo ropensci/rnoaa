@@ -63,6 +63,8 @@ test_that("arc2 - bounding box works", {
 })
 
 test_that("arc2 fails with appropriate error messages", {
+  skip_on_cran()
+
   expect_error(arc2(date = 19830101), "must be of class character, Date")
   expect_error(arc2(date = "1978-01-01"),
     paste0("must be between 1979 and ", format(Sys.Date(), "%Y")))

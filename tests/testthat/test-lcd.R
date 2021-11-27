@@ -6,6 +6,7 @@ skip_on_cran()
 lcd_cache$delete_all()
 
 test_that("lcd", {
+  skip_on_cran()
   skip_if_government_down()
 
   # vcr::use_cassette("lcd_1", {
@@ -23,6 +24,7 @@ test_that("lcd", {
 })
 
 test_that("lcd fails well", {
+  skip_on_cran()
   skip_if_government_down()
 
   # a station/year combination that doesn't exist
@@ -45,6 +47,8 @@ test_that("lcd fails well", {
 })
 
 test_that("lcd fails well when trying to read a bad file", {
+  skip_on_cran()
+
   lcd_cache$cache_path_set(full_path = file.path(tempdir(), "foo_bar"))
   lcd_cache$mkdir()
   path <- file.path(tempdir(), "foo_bar", "2020_72517014737.csv")

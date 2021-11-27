@@ -1,29 +1,29 @@
 # Platform
 
-|field    |value                                                   |
-|:--------|:-------------------------------------------------------|
-|version  |R version 4.1.2 (2021-11-01)                            |
-|os       |Ubuntu 20.04.3 LTS                                      |
-|system   |x86_64, linux-gnu                                       |
-|ui       |RStudio                                                 |
-|language |(EN)                                                    |
-|collate  |en_US.UTF-8                                             |
-|ctype    |en_US.UTF-8                                             |
-|tz       |America/New_York                                        |
-|date     |2021-11-17                                              |
-|rstudio  |2021.09.1+372 Ghost Orchid (desktop)                    |
-|pandoc   |2.14.0.3 @ /usr/lib/rstudio/bin/pandoc/ (via rmarkdown) |
+|field    |value                                |
+|:--------|:------------------------------------|
+|version  |R version 4.1.2 (2021-11-01)         |
+|os       |Ubuntu 20.04.3 LTS                   |
+|system   |x86_64, linux-gnu                    |
+|ui       |RStudio                              |
+|language |(EN)                                 |
+|collate  |en_US.UTF-8                          |
+|ctype    |en_US.UTF-8                          |
+|tz       |America/New_York                     |
+|date     |2021-11-27                           |
+|rstudio  |2021.09.1+372 Ghost Orchid (desktop) |
+|pandoc   |2.5 @ /usr/bin/pandoc                |
 
 # Dependencies
 
 |package      |old      |new      |Δ  |
 |:------------|:--------|:--------|:--|
-|rnoaa        |1.3.4    |1.3.6.95 |*  |
+|rnoaa        |1.3.7    |1.3.8    |*  |
 |cli          |3.1.0    |3.1.0    |   |
 |colorspace   |2.0-2    |2.0-2    |   |
 |cpp11        |0.4.1    |0.4.1    |   |
 |crayon       |1.4.2    |1.4.2    |   |
-|crul         |1.1.0    |1.1.0    |   |
+|crul         |1.2.0    |1.2.0    |   |
 |curl         |4.3.2    |4.3.2    |   |
 |data.table   |1.14.2   |1.14.2   |   |
 |digest       |0.6.28   |0.6.28   |   |
