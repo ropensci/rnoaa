@@ -67,11 +67,11 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 |Dataset    |Description                 |Start Date |End Date   | Data Coverage|
 |:----------|:---------------------------|:----------|:----------|-------------:|
-|GHCND      |Daily Summaries             |1763-01-01 |2021-11-25 |          1.00|
+|GHCND      |Daily Summaries             |1763-01-01 |2021-11-26 |          1.00|
 |GSOM       |Global Summary of the Month |1763-01-01 |2021-11-01 |          1.00|
 |GSOY       |Global Summary of the Year  |1763-01-01 |2021-01-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2021-11-25 |          0.95|
-|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2021-11-24 |          0.95|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2021-11-27 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2021-11-26 |          0.95|
 |NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
 |NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
 |NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
@@ -81,7 +81,7 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 
 ```
-#> table updated on 2021-11-27
+#> table updated on 2021-11-29
 ```
 
 **NOAA NCDC Attributes**
