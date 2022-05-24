@@ -85,3 +85,8 @@ test_that("cpc_prcp fails well", {
   expect_error(cpc_prcp("1947-12-31", us = TRUE), "must be between")
   expect_error(cpc_prcp(Sys.Date() + 365, us = TRUE), "must be between")
 })
+
+# delete any cached files
+cpc_cache$delete_all()
+cpc_dir <- cpc_cache$cache_path_get()
+unlink(list.files(cpc_dir, full.names = TRUE))

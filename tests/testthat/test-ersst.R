@@ -1,7 +1,8 @@
 context("ersst")
 
 # delete any cached files
-ersst_dir <- rappdirs::user_cache_dir("rnoaa/ersst")
+ersst_cache$delete_all()
+ersst_dir <- ersst_cache$cache_path_get()
 unlink(list.files(ersst_dir, full.names = TRUE))
 
 test_that("errst works with valid character and numeric input", {
@@ -34,3 +35,8 @@ test_that("errst fails well", {
   expect_error(ersst(year = 2015, month = 13),
                "month must be a number between 1 and 12")
 })
+
+# delete any cached files
+ersst_cache$delete_all()
+ersst_dir <- ersst_cache$cache_path_get()
+unlink(list.files(ersst_dir, full.names = TRUE))
