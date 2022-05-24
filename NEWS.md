@@ -1,3 +1,12 @@
+rnoaa 1.3.7
+==============
+
+### BUG FIXES
+
+* changed default location of cache file writing from hoardr to match requirements of CRAN for Mac OS
+* added cache cleanup in tests
+* updated homr API base url to https://www.ncei.noaa.gov/access/homr/services/station/
+
 rnoaa 1.3.6.95
 ==============
 

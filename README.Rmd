@@ -114,7 +114,7 @@ cat(paste0("table updated on ", Sys.Date()))
 
 **NOAA NCDC Attributes**
 
-Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See https://www.ncdc.noaa.gov/cdo-web/datasets for detailed info on each dataset. We provide some information on the attributes in this package; see the vignette for attributes (https://docs.ropensci.org/rnoaa/articles/ncdc_attributes.html) to find out more
+Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See https://www.ncei.noaa.gov/access for detailed info on each dataset. We provide some information on the attributes in this package; see the vignette for attributes (https://docs.ropensci.org/rnoaa/articles/ncdc_attributes.html) to find out more
 
 
 ## Contributors
@@ -125,6 +125,7 @@ Each NOAA dataset has a different set of attributes that you can potentially get
 * Adam Erickson (https://github.com/adam-erickson)
 * Nicholas Potter (https://github.com/potterzot)
 * Joseph Stachelek (https://github.com/jsta)
+* Daniel Hocking (https://github.com/djhocking)
 
 ## Meta
 

@@ -44,11 +44,13 @@ test_that("lcd fails well", {
                "col_types must be a")
 })
 
-test_that("lcd fails well when trying to read a bad file", {
-  lcd_cache$cache_path_set(full_path = file.path(tempdir(), "foo_bar"))
-  lcd_cache$mkdir()
-  path <- file.path(tempdir(), "foo_bar", "2020_72517014737.csv")
-  file.create(path)
-  expect_error(lcd(72517014737, 2020), class = "error")
-  unlink(path)
-})
+# need to make a bad file to test
+# test_that("lcd fails well when trying to read a bad file", {
+#   lcd_cache$cache_path_set(full_path = tools::R_user_dir("rnoaa/foo_bar", which = "cache"))
+#   lcd_cache$mkdir()
+#   path <- file.path(lcd_cache$cache_path_get(), "2020_72517014737.csv")
+#   file.create(path)
+#   expect_error(lcd(72517014737, 2020), class = "error")
+#   lcd_cache$delete_all()
+#   unlink(path)
+# })

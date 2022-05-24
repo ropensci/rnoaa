@@ -65,28 +65,22 @@ You'll need the `ncdf4` package for those functions, and those only. `ncdf4` is 
 There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unknown reason. This relates to `ncdc_*()` functions only.
 
 
-|Dataset    |Description                 |Start Date |End Date   | Data Coverage|
-|:----------|:---------------------------|:----------|:----------|-------------:|
-|GHCND      |Daily Summaries             |1763-01-01 |2021-05-11 |          1.00|
-|GSOM       |Global Summary of the Month |1763-01-01 |2021-04-01 |          1.00|
-|GSOY       |Global Summary of the Year  |1763-01-01 |2021-01-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2021-05-10 |          0.95|
-|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2021-05-11 |          0.95|
-|NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
-|NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
-|NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
-|NORMAL_MLY |Normals Monthly             |2010-01-01 |2010-12-01 |          1.00|
-|PRECIP_15  |Precipitation 15 Minute     |1970-05-12 |2014-01-01 |          0.25|
-|PRECIP_HLY |Precipitation Hourly        |1900-01-01 |2014-01-01 |          1.00|
+```
+#> Error: Bad Gateway (HTTP 502)
+#> Error in eval(expr, envir, enclos): object 'dat' not found
+#> Error in eval(expr, envir, enclos): object 'dat' not found
+#> Error in names(dat) <- c("Dataset", "Description", "Start Date", "End Date", : object 'dat' not found
+#> Error in knitr::kable(dat): object 'dat' not found
+```
 
 
 ```
-#> table updated on 2021-05-13
+#> table updated on 2022-05-24
 ```
 
 **NOAA NCDC Attributes**
 
-Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See https://www.ncdc.noaa.gov/cdo-web/datasets for detailed info on each dataset. We provide some information on the attributes in this package; see the vignette for attributes (https://docs.ropensci.org/rnoaa/articles/ncdc_attributes.html) to find out more
+Each NOAA dataset has a different set of attributes that you can potentially get back in your search. See https://www.ncei.noaa.gov/access for detailed info on each dataset. We provide some information on the attributes in this package; see the vignette for attributes (https://docs.ropensci.org/rnoaa/articles/ncdc_attributes.html) to find out more
 
 
 ## Contributors
@@ -97,6 +91,7 @@ Each NOAA dataset has a different set of attributes that you can potentially get
 * Adam Erickson (https://github.com/adam-erickson)
 * Nicholas Potter (https://github.com/potterzot)
 * Joseph Stachelek (https://github.com/jsta)
+* Daniel Hocking (https://github.com/djhocking)
 
 ## Meta
 

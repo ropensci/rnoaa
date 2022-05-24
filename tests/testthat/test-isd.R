@@ -1,16 +1,17 @@
 context("isd")
 
 # delete any cached files
-# isd_dir <- rappdirs::user_cache_dir("rnoaa/isd")
+isd_cache$delete_all()
+isd_dir <- isd_cache$cache_path_get()
 # list.files(isd_dir, full.names = TRUE)
-# unlink(list.files(isd_dir, full.names = TRUE))
+unlink(list.files(isd_dir, full.names = TRUE))
 
 test_that("isd gets data", {
   skip_on_cran()
   skip_if_government_down()
 
   # FIXME: getting a "file not found" error when running this with vcr
-  # probably something about internals, checking for cached files and such 
+  # probably something about internals, checking for cached files and such
   # vcr::use_cassette("isd_query", {
   data_a <- suppressMessages(isd(usaf = "011490", wban = "99999", year = 1986))
   data_b <- suppressMessages(isd(usaf = "011490", wban = "99999", year = 1985))
@@ -30,3 +31,9 @@ test_that("isd fails well", {
   expect_error(isd(usaf = "702700", wban = "489", year = 2044),
                "download failed for")
 })
+
+# delete any cached files
+isd_cache$delete_all()
+isd_dir <- isd_cache$cache_path_get()
+# list.files(isd_dir, full.names = TRUE)
+unlink(list.files(isd_dir, full.names = TRUE))

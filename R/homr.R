@@ -190,4 +190,4 @@ ifn_null <- function(x, y) if (is.null(x)) x else y
 ifn_na <- function(x) if (is.null(x)) NA else x
 na2null <- function(x) if (all(is.na(x))) NULL else x
 
-homr_base <- function() 'https://www.ncdc.noaa.gov/homr/services/station/'
+homr_base <- function() 'https://www.ncei.noaa.gov/access/homr/services/station/'

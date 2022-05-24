@@ -15,3 +15,5 @@ test_that("rnoaa_options", {
   # reset options
   rnoaa_options()
 })
+
+arc2_cache$delete_all()
