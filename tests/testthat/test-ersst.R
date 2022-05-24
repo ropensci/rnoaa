@@ -27,6 +27,8 @@ test_that("errst works with valid character and numeric input", {
 })
 
 test_that("errst fails well", {
+  skip_on_cran()
+
   expect_error(ersst(year = 2016), "argument \"month\" is missing")
   expect_error(ersst(month = 10), "argument \"year\" is missing")
   expect_error(ersst(year = 1853, month = 10), "year must be > 1853")

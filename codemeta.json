@@ -5,18 +5,18 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "rnoaa",
-  "description": "Client for many 'NOAA' data sources including the 'NCDC' climate\n    'API' at <https://www.ncdc.noaa.gov/cdo-web/webservices/v2>, with functions for\n    each of the 'API' 'endpoints': data, data categories, data sets, data types,\n    locations, location categories, and stations. In addition, we have an interface\n    for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical\n    Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',\n    tornado data via the 'NOAA' storm prediction center, and more.",
+  "description": "Client for many 'NOAA' data sources including the 'NCDC' climate 'API' at <https://www.ncdc.noaa.gov/cdo-web/webservices/v2>, with functions for each of the 'API' 'endpoints': data, data categories, data sets, data types, locations, location categories, and stations. In addition, we have an interface for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS', tornado data via the 'NOAA' storm prediction center, and more.",
   "name": "rnoaa: 'NOAA' Weather Data from R",
   "codeRepository": "https://github.com/ropensci/rnoaa",
   "issueTracker": "https://github.com/ropensci/rnoaa/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.3.4",
+  "version": "1.3.8",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.5 Patched (2021-03-31 r80136)",
+  "runtimePlatform": "R version 4.1.2 (2021-11-01)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -33,6 +33,13 @@
     }
   ],
   "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Daniel",
+      "familyName": "Hocking",
+      "email": "djhocking@gmail.com",
+      "@id": "https://orcid.org/0000-0003-1889-9184"
+    },
     {
       "@type": "Person",
       "givenName": "Brooke",
@@ -77,10 +84,10 @@
   "maintainer": [
     {
       "@type": "Person",
-      "givenName": "Scott",
-      "familyName": "Chamberlain",
-      "email": "myrmecocystus@gmail.com",
-      "@id": "https://orcid.org/0000-0003-1444-9135"
+      "givenName": "Daniel",
+      "familyName": "Hocking",
+      "email": "djhocking@gmail.com",
+      "@id": "https://orcid.org/0000-0003-1889-9184"
     }
   ],
   "softwareSuggestions": [
@@ -348,18 +355,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "rappdirs",
-      "name": "rappdirs",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rappdirs"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "gridExtra",
       "name": "gridExtra",
       "provider": {
@@ -433,10 +428,10 @@
       "sameAs": "https://CRAN.R-project.org/package=data.table"
     }
   ],
-  "contIntegration": "https://codecov.io/github/ropensci/rnoaa?branch=master",
+  "contIntegration": ["https://github.com/ropensci/rnoaa/actions", "https://codecov.io/github/ropensci/rnoaa?branch=master"],
   "releaseNotes": "https://github.com/ropensci/rnoaa/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rnoaa/blob/master/README.md",
-  "fileSize": "18279.923KB",
+  "fileSize": "59421.267KB",
   "applicationCategory": "Climate",
   "isPartOf": "https://ropensci.org",
   "keywords": ["earth", "science", "climate", "precipitation", "temperature", "storm", "buoy", "NCDC", "NOAA", "tornadoe", "seaice", "ISD", "noaa", "rstats", "noaa-data", "r", "r-package"],

@@ -65,13 +65,19 @@ You'll need the `ncdf4` package for those functions, and those only. `ncdf4` is 
 There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `NEXRAD3`, for an unknown reason. This relates to `ncdc_*()` functions only.
 
 
-```
-#> Error: Bad Gateway (HTTP 502)
-#> Error in eval(expr, envir, enclos): object 'dat' not found
-#> Error in eval(expr, envir, enclos): object 'dat' not found
-#> Error in names(dat) <- c("Dataset", "Description", "Start Date", "End Date", : object 'dat' not found
-#> Error in knitr::kable(dat): object 'dat' not found
-```
+|Dataset    |Description                 |Start Date |End Date   | Data Coverage|
+|:----------|:---------------------------|:----------|:----------|-------------:|
+|GHCND      |Daily Summaries             |1763-01-01 |2022-05-21 |          1.00|
+|GSOM       |Global Summary of the Month |1763-01-01 |2022-05-01 |          1.00|
+|GSOY       |Global Summary of the Year  |1763-01-01 |2022-01-01 |          1.00|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2022-05-21 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2022-05-21 |          0.95|
+|NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
+|NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
+|NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
+|NORMAL_MLY |Normals Monthly             |2010-01-01 |2010-12-01 |          1.00|
+|PRECIP_15  |Precipitation 15 Minute     |1970-05-12 |2014-01-01 |          0.25|
+|PRECIP_HLY |Precipitation Hourly        |1900-01-01 |2014-01-01 |          1.00|
 
 
 ```
@@ -86,6 +92,7 @@ Each NOAA dataset has a different set of attributes that you can potentially get
 ## Contributors
 
 * Scott Chamberlain (https://github.com/sckott)
+* Daniel Hocking (https://github.com/djhocking)
 * Brooke Anderson (https://github.com/geanders)
 * Maëlle Salmon (https://github.com/maelle)
 * Adam Erickson (https://github.com/adam-erickson)

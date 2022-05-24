@@ -120,6 +120,7 @@ Each NOAA dataset has a different set of attributes that you can potentially get
 ## Contributors
 
 * Scott Chamberlain (https://github.com/sckott)
+* Daniel Hocking (https://github.com/djhocking)
 * Brooke Anderson (https://github.com/geanders)
 * Maëlle Salmon (https://github.com/maelle)
 * Adam Erickson (https://github.com/adam-erickson)

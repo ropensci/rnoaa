@@ -7,7 +7,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 1.3.7
+Version: 1.3.9
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US
@@ -45,7 +45,6 @@ Imports:
     XML,
     xml2,
     jsonlite,
-    rappdirs,
     gridExtra,
     tibble,
     isdparser (>= 0.2.0),
@@ -63,7 +62,7 @@ Suggests:
     purrr,
     vcr (>= 0.5.4),
     webmockr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 X-schema.org-applicationCategory: Climate
 X-schema.org-keywords: earth, science, climate, precipitation, temperature, storm, buoy, NCDC, NOAA, tornadoe, sea ice, ISD
 X-schema.org-isPartOf: https://ropensci.org

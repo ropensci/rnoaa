@@ -30,3 +30,4 @@ vignettes/
 tests/fixtures/homr.yml
 tests/fixtures/buoy_buoyid_case.yml
 ^LICENSE\.md$
+^CRAN-RELEASE$

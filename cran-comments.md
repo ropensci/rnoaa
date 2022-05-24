@@ -1,21 +1,20 @@
 ## Test environments
 
-* local macOS install, R 4.0.5
-* ubuntu 16.04 (on GitHub Actions), R 4.0.5
+* ubuntu 20.04 (local install), R 4.1.2
+* macOS-latest (release, on GitHub Actions), R 4.1.2
+* macOS-latest (devel, on GitHub Actions), R-dev
+* ubuntu-latest (release, on GitHub Actions), R 4.1.2
 * win-builder (release, devel)
 
 ## R CMD check results
 
 0 errors | 0 warnings | 0 notes
 
-## Reverse dependencies
-
-Checked on the 1 reverse dependency - no problems were found
-<https://github.com/ropensci/rnoaa/blob/master/revdep/README.md>
-
 -----
 
-This version fixes a bug.
+This version updates the writing locations to comply with CRAN policy by switching from using rappdirs::user_cache_dir("rnoaa/ersst") to using tools::R_user_dir("rnoaa/ersst", which = "cache").
+
+The previous release had missed a use of rappdirs::user_cache_dir in the tests.
 
 Thanks!
-Scott Chamberlain
+Daniel Hocking

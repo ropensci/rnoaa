@@ -35,5 +35,4 @@ test_that("isd fails well", {
 # delete any cached files
 isd_cache$delete_all()
 isd_dir <- isd_cache$cache_path_get()
-# list.files(isd_dir, full.names = TRUE)
 unlink(list.files(isd_dir, full.names = TRUE))

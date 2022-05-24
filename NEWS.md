@@ -1,5 +1,4 @@
-rnoaa 1.3.7
-==============
+rnoaa 1.3.9
 
 ### BUG FIXES
 
@@ -7,13 +6,19 @@ rnoaa 1.3.7
 * added cache cleanup in tests
 * updated homr API base url to https://www.ncei.noaa.gov/access/homr/services/station/
 
-rnoaa 1.3.6.95
-==============
+rnoaa 1.3.8
+=======
+* changed location of temporary cache file writing in the ersst tests to match requirements of CRAN for Mac OS. Missed on v1.3.7 release. 
+* removed rappsdir from Imports now that using tools to create cache directories
+* removed a couple other internal tests from CRAN with skip_on_cran()
+
+
+rnoaa 1.3.7
 
 ### BUG FIXES
 
 * changed location of temporary file writing to match requirements of CRAN for Mac OS
-* removed checks on Ubuntu 16.04 because not supported. Replaced with checks on latest Ubuntu version
+* removed checks on Ubuntu 16.04. Replaced with checks on latest Ubuntu version
 
 
 rnoaa 1.3.4

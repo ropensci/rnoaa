@@ -6,6 +6,7 @@ skip_on_cran()
 lcd_cache$delete_all()
 
 test_that("lcd", {
+  skip_on_cran()
   skip_if_government_down()
 
   # vcr::use_cassette("lcd_1", {
@@ -23,6 +24,7 @@ test_that("lcd", {
 })
 
 test_that("lcd fails well", {
+  skip_on_cran()
   skip_if_government_down()
 
   # a station/year combination that doesn't exist
@@ -54,3 +56,4 @@ test_that("lcd fails well", {
 #   lcd_cache$delete_all()
 #   unlink(path)
 # })
+
