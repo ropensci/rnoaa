@@ -2,7 +2,7 @@ test_that("homr", {
   skip_on_cran()
   skip_on_ci()
 
-  vcr::use_cassette("homr", {
+  # vcr::use_cassette("homr", {
     # qid
     a <- homr(qid = 'COOP:046742')
     # headersonly
@@ -17,8 +17,8 @@ test_that("homr", {
     g <- homr(headersOnly=TRUE, state='NC', county='BUNCOMBE')
     # name
     h <- homr(name='CLAYTON')
-  })
-  
+  # })
+
   # class
   expect_is(a, "homr")
   expect_is(unclass(a), "list")
@@ -44,5 +44,5 @@ test_that("homr", {
 
   expect_gt(length(e), 1)
 
-  expect_match(f$`20004167`$head$preferredName, "DE")  
+  expect_match(f$`20004167`$head$preferredName, "DE")
 })

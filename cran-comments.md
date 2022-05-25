@@ -12,9 +12,14 @@
 
 -----
 
-This version updates the writing locations to comply with CRAN policy by switching from using rappdirs::user_cache_dir("rnoaa/ersst") to using tools::R_user_dir("rnoaa/ersst", which = "cache").
+## revdepcheck results
 
-The previous release had missed a use of rappdirs::user_cache_dir in the tests.
+We checked 3 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
+ * We failed to check 0 packages
+ 
+## Notes
 
 Thanks!
 Daniel Hocking

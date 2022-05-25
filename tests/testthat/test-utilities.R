@@ -10,7 +10,7 @@ test_that("safe_read_csv",{
   # file empty
   file2 <- tempfile()
   file.create(file2)
-  expect_error(safe_read_csv(file2))
+  expect_warning(safe_read_csv(file2))
 
   # file with a single newline
   file3 <- tempfile()
