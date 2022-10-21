@@ -83,7 +83,7 @@
 #' units) or consult the documentation for each dataset to ensure you're using
 #' the correct units.
 #'
-#' @family ncdc
+#' @family ncdc2
 #'
 #' @examples \dontrun{
 #' # GHCN-Daily (or GHCND) data, for a specific station

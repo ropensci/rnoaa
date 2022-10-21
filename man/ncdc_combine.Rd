@@ -67,7 +67,6 @@ ncdc_combine(out1, out2, out3)
 }
 \seealso{
 Other ncdc: 
-\code{\link{ncdc2}()},
 \code{\link{ncdc_datacats}()},
 \code{\link{ncdc_datasets}()},
 \code{\link{ncdc_datatypes}()},

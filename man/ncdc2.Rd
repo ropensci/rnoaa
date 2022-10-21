@@ -271,16 +271,4 @@ startdate = "2015-10-01", enddate = "2016-09-30", limit=500,add_units = TRUE)
 
 }
 }
-\seealso{
-Other ncdc: 
-\code{\link{ncdc_combine}()},
-\code{\link{ncdc_datacats}()},
-\code{\link{ncdc_datasets}()},
-\code{\link{ncdc_datatypes}()},
-\code{\link{ncdc_locs_cats}()},
-\code{\link{ncdc_locs}()},
-\code{\link{ncdc_plot}()},
-\code{\link{ncdc_stations}()},
-\code{\link{ncdc}()}
-}
-\concept{ncdc}
+\concept{ncdc2}

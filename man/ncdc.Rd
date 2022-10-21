@@ -266,7 +266,6 @@ ncdc(datasetid='NEXRAD2', startdate = '2013-10-01', enddate = '2013-12-01')
 }
 \seealso{
 Other ncdc: 
-\code{\link{ncdc2}()},
 \code{\link{ncdc_combine}()},
 \code{\link{ncdc_datacats}()},
 \code{\link{ncdc_datasets}()},
