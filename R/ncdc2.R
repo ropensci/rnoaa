@@ -189,19 +189,6 @@
 #' startdate = "2015-10-01", enddate = "2016-09-30", limit=500,add_units = TRUE)
 #'
 #' }
-<<<<<<< HEAD
-=======
-
-precip_tmp <- ncdc2(datasetid='daily-summaries', datatypeid=c('PRCP'), stationid="US1LAWC0001",  startdate = "2015-10-01", enddate = "2016-09-30", limit=500,add_units = TRUE)
-
-# convert to precip to inches
-precip_tmp$data$precip_mm <- round(precip_tmp$data$prcp/10,2) #GHCN data retrieve is in 10ths of mm
-precip_tmp$data$precip_IN <- round(precip_tmp$data$precip_mm / 25.4,2)
-
-# units directly into "standards"
-precip_std <- ncdc2(datasetid='daily-summaries', datatypeid=c('PRCP'), stationid="US1LAWC0001",  startdate = "2015-10-01", enddate = "2016-09-30", limit=500,add_units = TRUE, units='standard')
-
->>>>>>> 1a67a08f2030bdb723d47add3fd3ac17b67f956f
 ncdc2 <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL,
                  startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
                  token=NULL, includemetadata=TRUE, add_units=FALSE, units='metric', ...)
