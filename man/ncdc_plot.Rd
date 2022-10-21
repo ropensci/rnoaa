@@ -53,6 +53,7 @@ ncdc_plot(out1, out2, breaks="45 days")
 }
 \seealso{
 Other ncdc: 
+\code{\link{ncdc2}()},
 \code{\link{ncdc_combine}()},
 \code{\link{ncdc_datacats}()},
 \code{\link{ncdc_datasets}()},

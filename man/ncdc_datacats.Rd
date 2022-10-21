@@ -113,6 +113,7 @@ https://www.ncdc.noaa.gov/cdo-web/webservices/v2
 }
 \seealso{
 Other ncdc: 
+\code{\link{ncdc2}()},
 \code{\link{ncdc_combine}()},
 \code{\link{ncdc_datasets}()},
 \code{\link{ncdc_datatypes}()},
