@@ -189,6 +189,7 @@
 #' startdate = "2015-10-01", enddate = "2016-09-30", limit=500,add_units = TRUE)
 #'
 #' }
+
 ncdc2 <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NULL,
                  startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
                  token=NULL, includemetadata=TRUE, add_units=FALSE, units='metric', ...)

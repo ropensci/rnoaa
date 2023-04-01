@@ -11,9 +11,9 @@
 #' return object, in that the named part of the output list called "meta"
 #' is still returned, but is NULL. In practice, I haven't seen response
 #' time's improve, but perhaps they will for you.
-#' @param add_units (logical) whether to add units information or not. 
+#' @param add_units (logical) whether to add units information or not.
 #' default: `FALSE`. If \code{TRUE}, after getting data from NOAA
-#' we add a new column \code{units}. See "Adding units" in Details 
+#' we add a new column \code{units}. See "Adding units" in Details
 #' for more
 #'
 #' @details
@@ -60,20 +60,20 @@
 #' `system.file("extdata/gsom_readme.txt", package = "rnoaa")`
 #' and `system.file("extdata/gsoy_readme.txt", package = "rnoaa")`
 #' in a text editor.
-#' 
+#'
 #' @section Adding units:
-#' The `add_units` parameter is experimental - USE WITH CAUTION! 
+#' The `add_units` parameter is experimental - USE WITH CAUTION!
 #' If `add_units=TRUE` we pull data from curated lists of data
 #' used by matching by datasetid and data type.
-#' 
+#'
 #' We've attempted to gather as much information as possible on the many, many
 #' data types across the many different NOAA data sets. However, we may have
-#' got some things wrong, so make sure to double check data you get if you 
+#' got some things wrong, so make sure to double check data you get if you
 #' do add units.
-#' 
-#' Get in touch if you find some units that are wrong or missing, and 
+#'
+#' Get in touch if you find some units that are wrong or missing, and
 #' if you are able to help correct information.
-#' 
+#'
 #'
 #' @return An S3 list of length two, a slot of metadata (meta), and a slot
 #' for data (data). The meta slot is a list of metadata elements, and the
@@ -188,6 +188,8 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
   startdate=NULL, enddate=NULL, sortfield=NULL, sortorder=NULL, limit=25, offset=NULL,
   token=NULL, includemetadata=TRUE, add_units=FALSE, ...)
 {
+  .Deprecated("ncdc2")
+
   token <- check_key(token)
   args <- noaa_compact(list(datasetid  = datasetid,
     startdate = as.character(startdate), enddate = as.character(enddate),
@@ -225,8 +227,11 @@ ncdc <- function(datasetid=NULL, datatypeid=NULL, stationid=NULL, locationid=NUL
 }
 
 ncdc_GET <- function(path, args, token, ...) {
+
+  .Deprecated("ncdc_get")
+
   cli <- crul::HttpClient$new(
-    url = paste0(ncdc_base(), path), 
+    url = paste0(ncdc_base(), path),
     headers = list(token = token),
     opts = list(...))
   temp <- cli$get(query = args)
@@ -234,6 +239,9 @@ ncdc_GET <- function(path, args, token, ...) {
 }
 
 split_atts <- function(x, ds = "GSOM"){
+
+  .Deprecated("split_atts")
+
   out <- switch(
     ds,
     GHCND = parse_ncdc(x, c('fl_m','fl_q','fl_so','fl_t')),
