@@ -24,7 +24,6 @@
 #' - `storm_` - Storms (IBTrACS) vignette
 #' - `swdi` - Severe Weather Data Inventory (SWDI) vignette
 #' - `tornadoes` - From the NOAA Storm Prediction Center
-#' - `argo_*` - Argo buoys
 #' - `coops_search` - NOAA CO-OPS - tides and currents data
 #' - `cpc_prcp` - rainfall data from the NOAA Climate
 #'  Prediction Center (CPC)
@@ -53,7 +52,6 @@
 #' - `ncdc_*` - Down
 #' - `swdi` - Down
 #' - `tornadoes` - Down
-#' - `argo_*` - Up (all HTTP except two fxns, see also FTP below)
 #' - `coops_search` - Up
 #' - `ersst` - Down
 #' - `lcd` - Down
@@ -65,7 +63,6 @@
 #' - `isd_*` - Up
 #' - `sea_ice` - Up
 #' - `storm_` - Up
-#' - `argo_*` - Up (only two fxns: [argo()], [argo_buoy_files()])
 #' - `cpc_prcp` - Up
 #' - `arc2` - Up
 #' - `bsw` - Up
@@ -82,7 +79,6 @@
 #' - `ersst`
 #' - `buoy`
 #' - `bsw`
-#' - `argo`
 #'
 #' You'll need the `ncdf4` package for those functions, and those only.
 #' `ncdf4` is in Suggests in this package, meaning you only need

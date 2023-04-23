@@ -19,21 +19,21 @@
 #' sea_ice(year = 1990, month = "Apr", pole = "N")
 #' sea_ice(year = 1990, month = "Apr", pole = "N", format = "geotiff-extent")
 #' sea_ice(year = 1990, month = "Apr", pole = "N", format = "geotiff-conc")
-#' 
+#'
 #' ## one year, one month, many poles
 #' sea_ice(year = 1990, month = "Apr")
-#' 
+#'
 #' ## one year, many months, many poles
 #' sea_ice(year = 1990, month = c("Apr", "Jun", "Oct"))
-#' 
+#'
 #' ## many years, one month, one pole
 #' sea_ice(year = 1990:1992, month = "Sep", pole = "N")
 #'
-#' # get geotiff instead of shp data. 
+#' # get geotiff instead of shp data.
 #' x <- sea_ice(year = 1990, month = "Apr", format = "geotiff-extent")
 #' y <- sea_ice(year = 1990, month = "Apr", format = "geotiff-conc")
 #' }
-#' 
+#'
 #' }
 sea_ice <- function(year = NULL, month = NULL, pole = NULL, format = "shp",
   ...) {
@@ -65,7 +65,7 @@ sea_ice <- function(year = NULL, month = NULL, pole = NULL, format = "shp",
 #' @examples \dontrun{
 #' # Get all urls
 #' seaiceeurls()
-#' 
+#'
 #' # for some range of years
 #' seaiceeurls(yr = 1980:1983)
 #' seaiceeurls(yr = 1980, mo = c("Jan", "Feb", "Mar"))
@@ -203,7 +203,7 @@ readshpfile <- function(x, storepath = NULL) {
   path_write <- paste0(storepath, '/', filename_noending)
   path <- paste0(storepath, '/', filename)
   bb <- try(download.file(x, path, quiet = TRUE), silent = TRUE)
-  if (class(bb) == "try-error") {
+  if (inherits(bb, "try-error")) {
     stop('Data not available, ftp server may be down')
   }
   dir.create(path_write, showWarnings = FALSE)

@@ -3,7 +3,7 @@ rnoaa
 
 
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Project Status: Unsupported](https://www.repostatus.org/badges/latest/unsupported.svg)](https://www.repostatus.org/#unsupported)
 [![cran checks](https://cranchecks.info/badges/worst/rnoaa)](https://cranchecks.info/pkgs/rnoaa)
 [![R-check](https://github.com/ropensci/rnoaa/workflows/R-check/badge.svg)](https://github.com/ropensci/rnoaa/actions)
 [![codecov.io](https://codecov.io/github/ropensci/rnoaa/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rnoaa?branch=master)
@@ -12,6 +12,10 @@ rnoaa
 
 
 `rnoaa` is an R interface to many NOAA data sources. We don't cover all of them, but we include many commonly used sources, and add we are always adding new sources. We focus on easy to use interfaces for getting NOAA data, and giving back data in easy to use formats downstream. We currently don't do much in the way of plots or analysis. To get started see: https://docs.ropensci.org/rnoaa/articles/rnoaa.html
+
+## NOTICE: PACKAGE TO BE ARCHIVED
+
+NOAA has changed not only the base URL of the API but reorganized the structure and endpoints of the data and API. The current `rnoaa` package is still functional with the NOAA API v2 but the data available in the API end at approximately 2022-09-15. A new NOAA weather package is planned to replace rnoaa functionality where possible. At that point the rnoaa package will be archived.
 
 ## Data sources in rnoaa
 
@@ -28,7 +32,6 @@ rnoaa
 * HOMR - Historical Observing Metadata Repository (http://www.ncdc.noaa.gov/homr/api)
 * GHCND FTP data (ftp://ftp.ncdc.noaa.gov/pub/data/noaa) - NOAA NCDC API has some/all (not sure really) of this data, but FTP allows to get more data more quickly
 * Extended Reconstructed Sea Surface Temperature (ERSST) data (https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4)
-* Argo buoys (http://www.argo.ucsd.edu/) - a global array of more than 3,000 free-drifting profiling floats that measures thetemperature and salinity of the upper 2000 m of the ocean
 * NOAA CO-OPS - tides and currents data (https://tidesandcurrents.noaa.gov/)
 * NOAA Climate Prediction Center (CPC) (http://www.cpc.ncep.noaa.gov/)
 * Africa Rainfall Climatology version 2 (ftp://ftp.cpc.ncep.noaa.gov/fews/fewsdata/africa/arc2/ARC2_readme.txt)
@@ -67,11 +70,11 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 |Dataset    |Description                 |Start Date |End Date   | Data Coverage|
 |:----------|:---------------------------|:----------|:----------|-------------:|
-|GHCND      |Daily Summaries             |1763-01-01 |2022-05-21 |          1.00|
-|GSOM       |Global Summary of the Month |1763-01-01 |2022-05-01 |          1.00|
-|GSOY       |Global Summary of the Year  |1763-01-01 |2022-01-01 |          1.00|
-|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2022-05-21 |          0.95|
-|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2022-05-21 |          0.95|
+|GHCND      |Daily Summaries             |1763-01-01 |2023-04-20 |          1.00|
+|GSOM       |Global Summary of the Month |1763-01-01 |2023-03-01 |          1.00|
+|GSOY       |Global Summary of the Year  |1763-01-01 |2023-01-01 |          1.00|
+|NEXRAD2    |Weather Radar (Level II)    |1991-06-05 |2023-04-19 |          0.95|
+|NEXRAD3    |Weather Radar (Level III)   |1994-05-20 |2023-04-18 |          0.95|
 |NORMAL_ANN |Normals Annual/Seasonal     |2010-01-01 |2010-01-01 |          1.00|
 |NORMAL_DLY |Normals Daily               |2010-01-01 |2010-12-31 |          1.00|
 |NORMAL_HLY |Normals Hourly              |2010-01-01 |2010-12-31 |          1.00|
@@ -81,7 +84,7 @@ There are many NOAA NCDC datasets. All data sources work, except `NEXRAD2` and `
 
 
 ```
-#> table updated on 2022-05-24
+#> table updated on 2023-04-22
 ```
 
 **NOAA NCDC Attributes**

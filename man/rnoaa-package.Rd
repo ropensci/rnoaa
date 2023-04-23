@@ -31,7 +31,6 @@ vignette
 \item \code{storm_} - Storms (IBTrACS) vignette
 \item \code{swdi} - Severe Weather Data Inventory (SWDI) vignette
 \item \code{tornadoes} - From the NOAA Storm Prediction Center
-\item \verb{argo_*} - Argo buoys
 \item \code{coops_search} - NOAA CO-OPS - tides and currents data
 \item \code{cpc_prcp} - rainfall data from the NOAA Climate
 Prediction Center (CPC)
@@ -64,7 +63,6 @@ HTTP services (whether service is/was up or down during early 2019 shutdown)
 \item \verb{ncdc_*} - Down
 \item \code{swdi} - Down
 \item \code{tornadoes} - Down
-\item \verb{argo_*} - Up (all HTTP except two fxns, see also FTP below)
 \item \code{coops_search} - Up
 \item \code{ersst} - Down
 \item \code{lcd} - Down
@@ -77,7 +75,6 @@ FTP services (whether service is/was up or down during early 2019 shutdown)
 \item \verb{isd_*} - Up
 \item \code{sea_ice} - Up
 \item \code{storm_} - Up
-\item \verb{argo_*} - Up (only two fxns: \code{\link[=argo]{argo()}}, \code{\link[=argo_buoy_files]{argo_buoy_files()}})
 \item \code{cpc_prcp} - Up
 \item \code{arc2} - Up
 \item \code{bsw} - Up
@@ -97,7 +94,6 @@ Some functions use netcdf files, including:
 \item \code{ersst}
 \item \code{buoy}
 \item \code{bsw}
-\item \code{argo}
 }
 
 You'll need the \code{ncdf4} package for those functions, and those only.

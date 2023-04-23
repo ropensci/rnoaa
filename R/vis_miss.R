@@ -53,16 +53,21 @@ vis_miss <- function(x, cluster = FALSE, sort_miss = FALSE) {
   d <- x.na[row_order_index , ] %>%
     as.data.frame %>%
     dplyr::mutate(rows = dplyr::row_number()) %>%
-    # gather the variables together for plotting
-    # here we now have a column of the row number (row),
-    # then the variable(variables),
-    # then the contents of that variable (value)
-    tidyr::gather_(key_col = "variables",
-                   value_col = "valueType",
-                   gather_cols = names(.)[-length(.)])
+    tidyr::pivot_longer(cols = !rows,
+                   names_to = "variables",
+                   values_to = "valueType")
 
-  d$value <- suppressWarnings(tidyr::gather_(x, "variables", "value",
-                                             names(x))$value)
+  d_value <- x[row_order_index , ] %>%
+    as.data.frame %>%
+    dplyr::mutate(rows = dplyr::row_number()) %>%
+    tidyr::pivot_longer(cols = !rows,
+                        names_to = "variables",
+                        values_to = "value",
+                        values_transform = as.character)
+
+  d <- d |>
+    dplyr::left_join(d_value, by = c("rows", "variables"))
+
   ggplot(data = d,
          ggplot2::aes_string(x = "variables",
                              y = "rows",

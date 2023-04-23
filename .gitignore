@@ -21,3 +21,4 @@ vignettes/cache/
 tests/fixtures/homr.yml
 tests/fixtures/buoy_buoyid_case.yml
 rnoaa.Rproj
+docs/

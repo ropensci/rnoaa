@@ -106,8 +106,9 @@ check_response <- function(x){
         warning("Sorry, no data found", call. = FALSE)
       }
     } else {
+      res <- try(out$results, silent = TRUE)
       if (
-        class(try(out$results, silent = TRUE)) == "try-error" ||
+        inherits(res, "try-error") ||
         is.null(try(out$results, silent = TRUE))
       ) {
         warning("Sorry, no data found", call. = FALSE)

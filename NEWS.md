@@ -1,3 +1,13 @@
+rnoaa 1.4.0
+=======
+
+* All API changed base URL and endpoints so current package does not work to pull new data
+* Started the process of archiving the package
+* Fixed roxygen documentation to have autoplot as function not s3method in the NAMESPACE
+* Removed argo bouy data functions since API is gone
+
+
+
 rnoaa 1.3.9
 =======
 

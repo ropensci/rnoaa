@@ -24,7 +24,8 @@ if (getRversion() >= "2.15.1") {
       'end_date',
       'last_year',
       'first_year',
-      'name'
+      'name',
+      'rows'
     )
   )
 }

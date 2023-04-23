@@ -66,7 +66,7 @@ ncdc_locs <- function(datasetid=NULL, locationid=NULL, locationcategoryid=NULL,
       dat <- data.frame(tt, stringsAsFactors=FALSE)
       all <- list(meta=NULL, data=dat)
     } else {
-      if (class(try(tt$results, silent = TRUE)) == "try-error"){
+      if (inherits(try(tt$results, silent = TRUE), "try-error")){
         all <- list(meta = NULL, data = NULL)
         warning("Sorry, no data found")
       } else {
