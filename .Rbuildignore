@@ -32,3 +32,4 @@ tests/fixtures/buoy_buoyid_case.yml
 ^LICENSE\.md$
 ^CRAN-RELEASE$
 docs/
+^CRAN-SUBMISSION$
