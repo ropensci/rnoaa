@@ -4,6 +4,7 @@ rnoaa 1.4.0
 * All API changed base URL and endpoints so current package does not work to pull new data
 * Started the process of archiving the package
 * Fixed roxygen documentation to have autoplot as function not s3method in the NAMESPACE
+* autoplot.meteo_coverage changed to autoplot_meteo_coverage to avoid S3 generic naming convention
 * Removed argo bouy data functions since API is gone
 
 

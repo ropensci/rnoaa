@@ -5,8 +5,6 @@
 #' or both `obs_start_date` or `obs_end_date` are specified,
 #' the coverage test will be limited to that date range.
 #'
-#' There is an `autoplot` method for the output of this function.
-#'
 #' @param meteo_df a *meteo* \code{data.frame}
 #' @param obs_start_date specify either or both (obs_start_date, obs_end_date)
 #' to constrain coverate tests. These should be `Date` objects.
@@ -34,10 +32,6 @@
 #' obs <- meteo_pull_monitors(monitors)
 #' obs_covr <- meteo_coverage(obs)
 #'
-#' if (interactive()) {
-#'   library("ggplot2")
-#'   autoplot(obs_covr)
-#' }
 #' }
 meteo_coverage <- function(meteo_df,
                             obs_start_date=NULL,

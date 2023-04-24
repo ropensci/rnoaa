@@ -1,13 +1,12 @@
 #' autoplot method for meteo_coverage objects
 #'
-#' @export autoplot.meteo_coverage
-#' @method autoplot meteo_coverage
+#' @export autoplot_meteo_coverage
 #' @param mateo_coverage the object returned from [meteo_coverage()]
 #' @param old_style (logical) create the old style of plots, which is faster, but
 #' does not plot gaps to indicate missing data
 #' @return A ggplot2 plot
-#' @details see [meteo_coverage()] for examples
-autoplot.meteo_coverage <- function(mateo_coverage, old_style = FALSE) {
+#' @details see [meteo_coverage()] for examples.
+autoplot_meteo_coverage <- function(mateo_coverage, old_style = FALSE) {
 
   if(old_style){
     # ungroup

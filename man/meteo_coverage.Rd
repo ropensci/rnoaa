@@ -42,9 +42,6 @@ to retrieve the "coverage" (i.e. how complete each field is). If either
 or both \code{obs_start_date} or \code{obs_end_date} are specified,
 the coverage test will be limited to that date range.
 }
-\details{
-There is an \code{autoplot} method for the output of this function.
-}
 \examples{
 \dontrun{
 
@@ -54,9 +51,5 @@ monitors <- c("ASN00095063", "ASN00024025", "ASN00040112", "ASN00041023",
 obs <- meteo_pull_monitors(monitors)
 obs_covr <- meteo_coverage(obs)
 
-if (interactive()) {
-  library("ggplot2")
-  autoplot(obs_covr)
-}
 }
 }
