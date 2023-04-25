@@ -4,10 +4,10 @@
 \alias{autoplot_meteo_coverage}
 \title{autoplot method for meteo_coverage objects}
 \usage{
-autoplot_meteo_coverage(mateo_coverage, old_style = FALSE)
+autoplot_meteo_coverage(meteo_object, old_style = FALSE, ...)
 }
 \arguments{
-\item{mateo_coverage}{the object returned from \code{\link[=meteo_coverage]{meteo_coverage()}}}
+\item{meteo_object}{the object returned from \code{\link[=meteo_coverage]{meteo_coverage()}}}
 
 \item{old_style}{(logical) create the old style of plots, which is faster, but
 does not plot gaps to indicate missing data}
