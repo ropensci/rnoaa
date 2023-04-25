@@ -4,7 +4,7 @@
 \alias{autoplot_meteo_coverage}
 \title{autoplot method for meteo_coverage objects}
 \usage{
-autoplot_meteo_coverage(meteo_object, old_style = FALSE, ...)
+autoplot_meteo_coverage(meteo_object, old_style = FALSE)
 }
 \arguments{
 \item{meteo_object}{the object returned from \code{\link[=meteo_coverage]{meteo_coverage()}}}

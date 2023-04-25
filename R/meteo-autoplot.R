@@ -6,7 +6,7 @@
 #' does not plot gaps to indicate missing data
 #' @return A ggplot2 plot
 #' @details see [meteo_coverage()] for examples.
-autoplot_meteo_coverage <- function(meteo_object, old_style = FALSE, ...) {
+autoplot_meteo_coverage <- function(meteo_object, old_style = FALSE) {
 
   mateo_coverage <- meteo_object
 
