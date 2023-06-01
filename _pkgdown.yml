@@ -45,7 +45,7 @@ reference:
       - ghcnd_version
       - starts_with("meteo_")
       - vis_miss
-      - autoplot.meteo_coverage
+      - autoplot_meteo_coverage
   - title: "Historical Observing Metadata Repository"
     contents:
       - starts_with("homr")
