@@ -26,7 +26,7 @@ Authors@R: c(
     person("Alex", "Simmons", role = "ctb"),
     person("Karthik", "Ram", role = "ctb"),
     person("Hart", "Edmund", role = "ctb"),
-    person("rOpenSci", role = "fnd", comment = "https://ropensci.org")
+    person("rOpenSci", role = "fnd", comment = c(ROR = "019jywm96"))
   )
 URL: https://docs.ropensci.org/rnoaa/ (docs),
     https://github.com/ropensci/rnoaa (devel)
