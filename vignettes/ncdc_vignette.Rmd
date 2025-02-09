@@ -22,6 +22,8 @@ library('rnoaa')
 
 ## Get info on a station by specifying a datasetid, locationid, and stationid
 
+You can get the list of available stations, stationids, and cities from [this link](https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt). 
+
 
 ```r
 ncdc_stations(datasetid='GHCND', locationid='FIPS:12017', stationid='GHCND:USC00084289')
